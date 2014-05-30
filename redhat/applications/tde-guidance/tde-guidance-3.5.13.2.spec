@@ -32,7 +32,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		A collection of system administration tools for Trinity
 Version:		0.8.0svn20080103
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -79,19 +79,23 @@ BuildRequires:	sip-devel
 
 # PYTHON-QT support
 BuildRequires:	python-qt3-devel
-Requires:		python-qt3
+BuildRequires:	trinity-python-trinity-devel
 
+Requires:		python-qt3
 Requires:		trinity-python-trinity
 Requires:		trinity-pytdeextensions
-Requires:		%{name}-backends = %{version}-%{release}
 Requires:		python
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 Requires:		hwdata
 %endif
 
+Requires:		%{name}-backends = %{version}-%{release}
 
 # POWERMANAGER support (requires HAL)
 %define with_powermanager 1
+
+# DISPLAYCONFIG support (deprecated)
+#define with_displayconfig 1
 
 Obsoletes:		trinity-guidance < %{version}-%{release}
 Provides:		trinity-guidance = %{version}-%{release}
@@ -110,8 +114,10 @@ or can be run as standalone applications.
 %files
 %defattr(-,root,root,-)
 %doc ChangeLog COPYING README TODO
-#%{tde_bindir}/displayconfig
-#%{tde_bindir}/displayconfig-restore
+%if 0%{?with_displayconfig}
+%{tde_bindir}/displayconfig
+%{tde_bindir}/displayconfig-restore
+%endif
 %{tde_bindir}/grubconfig
 %{tde_bindir}/mountconfig
 %{tde_bindir}/serviceconfig
@@ -147,7 +153,9 @@ or can be run as standalone applications.
 %exclude %{tde_datadir}/apps/guidance/MonitorsDB
 
 # Files from powermanager
+%if 0%{?with_powermanager}
 %exclude %{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
+%endif
 %exclude %{tde_datadir}/apps/guidance/pics/ac-adapter.png
 %exclude %{tde_datadir}/apps/guidance/pics/battery*.png
 %exclude %{tde_datadir}/apps/guidance/pics/processor.png
@@ -184,9 +192,11 @@ Guidance configuration tools.
 %{python_sitearch}/%{name}/MicroHAL.py*
 %{python_sitearch}/%{name}/ScanPCI.py*
 %{python_sitearch}/%{name}/infimport.py*
+%if 0%{?with_displayconfig}
 %{python_sitearch}/%{name}/displayconfigabstraction.py*
 %{python_sitearch}/%{name}/displayconfig-hwprobe.py*
 %{python_sitearch}/%{name}/displayconfig-restore.py*
+%endif
 %{python_sitearch}/%{name}/drivedetect.py*
 %{python_sitearch}/%{name}/execwithcapture.py*
 %{python_sitearch}/%{name}/wineread.py*
@@ -280,11 +290,11 @@ export KDEDIR=%{tde_prefix}
 export PYTHONDONTWRITEBYTECODE=
 
 # FTBFS on PCLOS ...
-export CXXFLAGS="${RPM_OPT_FLAGS} -I%{tde_tdeincludedir} -I%{tde_includedir}"
+export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I%{tde_tdeincludedir} -I%{tde_includedir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
   %__sed -i "setup.py" -e "s|/usr/X11R6/lib|/usr/X11R6/%{_lib}|g"
 fi
 
@@ -316,15 +326,15 @@ done
 ##### MAIN PACKAGE INSTALLATION (based on Debian/Ubuntu packaging rules)
 # install icons to right place
 %__mkdir_p %{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps
-%__mv -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-app-daemons.png \
+%__cp -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-app-daemons.png \
 	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/daemons.png
-%__mv -f %{buildroot}%{tde_datadir}/apps/guidance/pics/kcmpartitions.png \
+%__cp -f %{buildroot}%{tde_datadir}/apps/guidance/pics/kcmpartitions.png \
 	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/disksfilesystems.png
-%__mv -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-user.png \
+%__cp -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-user.png \
 	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/userconfig.png
-%__mv -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-display.png \
-	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/displayconfig.png
-%__mv -f %{buildroot}%{tde_datadir}/apps/guidance/pics/32-wine.png \
+#%__cp -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-display.png \
+#	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/displayconfig.png
+%__cp -f %{buildroot}%{tde_datadir}/apps/guidance/pics/32-wine.png \
 	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/wineconfig.png
 %__install -D -p -m0644 kde/wineconfig/pics/16x16/wineconfig.png \
 	%{buildroot}%{tde_datadir}/icons/crystalsvg/16x16/apps/wineconfig.png
@@ -339,7 +349,7 @@ chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 %__mkdir_p %{buildroot}%{python_sitearch}/%{name} 
 %__mv -f %{buildroot}%{tde_datadir}/apps/guidance/*.py* %{buildroot}%{python_sitearch}/%{name}
 
-# fix the link properly
+# Generates the startup scripts
 %__rm -f %{buildroot}%{tde_bindir}/*
 #%__ln_s -f %{python_sitearch}/%{name}/displayconfig.py %{buildroot}%{tde_bindir}/displayconfig
 %__ln_s -f %{python_sitearch}/%{name}/mountconfig.py %{buildroot}%{tde_bindir}/mountconfig
@@ -355,12 +365,12 @@ chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 %__chmod 0755 %{buildroot}%{python_sitearch}/%{name}/fuser.py
 %__chmod 0755 %{buildroot}%{python_sitearch}/%{name}/grubconfig.py
 
-%__mv -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop %{buildroot}%{tde_tdeappdir}/guidance-displayconfig.desktop
+#%__mv -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop %{buildroot}%{tde_tdeappdir}/guidance-displayconfig.desktop
 
 ##### BACKENDS INSTALLATION
 # install displayconfig-hwprobe.py script
-%__install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
-	%{buildroot}%{python_sitearch}/%{name}/displayconfig-hwprobe.py
+#%__install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
+#	%{buildroot}%{python_sitearch}/%{name}/displayconfig-hwprobe.py
 
 # The xf86misc stuff should not go under /opt/trinity bur under /usr !!!
 %__mv -f %{buildroot}%{tde_libdir}/python*/site-packages/ixf86misc.so %{buildroot}%{python_sitearch}
@@ -389,7 +399,7 @@ chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 %__cp powermanager/tooltip.py %{buildroot}%{python_sitearch}/%{name}
 
 # generate guidance-power-manager script
-cat <<EOF >%{buildroot}%{tde_bindir}/guidance-power-manager
+cat <<EOF >%{?buildroot}%{tde_bindir}/guidance-power-manager
 #!/bin/sh
 export PYTHONPATH=%{python_sitearch}/%{name}:%{python_sitearch}/python-qt3
 %{python_sitearch}/%{name}/guidance-power-manager.py &
@@ -407,8 +417,33 @@ chmod 0755 %{buildroot}%{python_sitearch}/%{name}/gpmhelper.py
 %__rm -f %{buildroot}%{python_sitearch}/%{name}/guidance_power_manager_ui.py*
 %__rm -f %{buildroot}%{python_sitearch}/%{name}/powermanage.py*
 %__rm -f %{buildroot}%{python_sitearch}/%{name}/powermanager_ui.py*
- 
+%__rm -f %{buildroot}%{tde_datadir}/apps/guidance/powermanager_ui.ui
+
 %endif
+
+# DISPLAYCONFIG (obsolete)
+%if 0%{?with_displayconfig}
+%__cp -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-display.png \
+	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/displayconfig.png
+%__ln_s -f %{python_sitearch}/%{name}/displayconfig.py %{buildroot}%{tde_bindir}/displayconfig
+%__mv -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop %{buildroot}%{tde_tdeappdir}/guidance-displayconfig.desktop
+
+# install displayconfig-hwprobe.py script
+%__install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
+	%{buildroot}%{python_sitearch}/%{name}/displayconfig-hwprobe.py
+
+%else
+# Removes obsolete display config manager
+%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfig*
+%__rm -f %{?buildroot}/etc/X11/Xsession.d/40guidance-displayconfig_restore
+%__rm -f %{?buildroot}%{tde_tdelibdir}/kcm_displayconfig.*
+%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfig.py*
+%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfigwidgets.py*
+%__rm -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop
+%__rm -f %{buildroot}%{tde_datadir}/icons/*/*/apps/displayconfig.png
+%__rm -fr %{buildroot}%{tde_datadir}/apps/guidance/pics/displayconfig
+%endif
+
 
 # Replace all '#!' calls to python with /usr/bin/python
 # and make them executable
@@ -428,19 +463,16 @@ done
 find %{buildroot} -name "*.egg-info" -exec rm -f {} \;
 find %{buildroot}%{tde_libdir} -name "*.a" -exec rm -f {} \;
 
-# Removes obsolete display config manager
-%__rm -f %{?buildroot}/etc/X11/Xsession.d/40guidance-displayconfig_restore
-%__rm -f %{?buildroot}%{tde_tdelibdir}/kcm_displayconfig.*
-%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfig.py*
-%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfigwidgets.py*
-
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %changelog
-* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-9
+* Sun May 18 2014 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-8
+- Backport fixes from R14
+
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-7
 - Build for Fedora 19
 
 * Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-6

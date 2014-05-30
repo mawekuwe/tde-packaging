@@ -1,0 +1,51 @@
+commit c383da9dc680e5e79e75b84003eca7bfa08dd991
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1400559462 -0500
+
+    Forward port KDE SVN r803253 to fix potential security hole
+
+diff --git a/config.h.cmake b/config.h.cmake
+index f5ebeeb..cacb97c 100644
+--- a/config.h.cmake
++++ b/config.h.cmake
+@@ -182,6 +182,7 @@
+ 
+ // ksmserver
+ #cmakedefine DBUS_SYSTEM_BUS "@DBUS_SYSTEM_BUS@"
++#cmakedefine HAVE__ICETRANSNOLISTEN 1
+ 
+ // ksplashml
+ #cmakedefine HAVE_XINERAMA 1
+diff --git a/ksmserver/CMakeLists.txt b/ksmserver/CMakeLists.txt
+index fdd521b..8578b01 100644
+--- a/ksmserver/CMakeLists.txt
++++ b/ksmserver/CMakeLists.txt
+@@ -9,6 +9,8 @@
+ #
+ #################################################
+ 
++include( ConfigureChecks.cmake )
++
+ if( NOT DBUS_SYSTEM_BUS )
+   set( DBUS_SYSTEM_BUS "unix:path=/var/run/dbus/system_bus_socket" CACHE INTERNAL "" FORCE )
+ endif()
+diff --git a/ksmserver/ConfigureChecks.cmake b/ksmserver/ConfigureChecks.cmake
+new file mode 100644
+index 0000000..4f8cf79
+--- /dev/null
++++ b/ksmserver/ConfigureChecks.cmake
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2014 Timothy Pearson
++#  kb9vqf (AT) pearsoncomputing (DOT) net
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++check_library_exists( ICE _IceTransNoListen "" HAVE__ICETRANSNOLISTEN )
+\ No newline at end of file
+

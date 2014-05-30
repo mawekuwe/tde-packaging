@@ -26,7 +26,7 @@
 
 Name:		trinity-tdebase
 Version:	%{tde_version}
-Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -115,6 +115,8 @@ Patch12:	tdebase-3.5.13.2-kdesu-noignorebutton.patch
 Patch13:	tdebase-3.5.13.2-fix_xdg_menu.patch
 ## [kdebase/tdm] Fix USER_PATH variable in TDM
 Patch14:	tdebase-3.5.13.2-fix_tdm_user_path.patch
+## [kdebase/Ksmserver] orward port KDE SVN r803253 to fix potential security hole [Commit #c383da9d]
+Patch15:	tdebase-3.5.13.2-fix_ice_security_hole.patch
 
 # Patches from Mandriva
 Patch101:	tdebase-3.5.13.2-vibrate_dialog.patch
@@ -196,6 +198,18 @@ Requires:	fedora-logos
 Requires:	fedora-release-notes
 %define tde_aboutlabel Fedora 19
 %define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
+%endif
+
+# Fedora 20 Theme: "Heisenbug"
+%if 0%{?fedora} == 20
+Requires:	heisenbug-backgrounds-base
+%define tde_bg /usr/share/backgrounds/heisenbug/default/standard/heisenbug.png
+Requires:	fedora-logos
+%define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
+
+Requires:	fedora-release-notes
+%define tde_aboutlabel Fedora 20
+%define tde_aboutpage /usr/share/doc/fedora-release-notes/index.html
 %endif
 
 # RHEL 4 Theme
@@ -2674,7 +2688,6 @@ ever launching another application.
 %exclude %{tde_datadir}/apps/konqueror/servicemenus/installfont.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/*.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
-%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase
 %{tde_datadir}/apps/konqueror/tiles/*.png
 %{tde_datadir}/autostart/konqy_preload.desktop
 %{tde_datadir}/config.kcfg/keditbookmarks.kcfg
@@ -2938,7 +2951,7 @@ TDE will start, but many good defaults will not be set.
 %{tde_datadir}/apps/kconf_update/move_session_config.sh
 %{tde_datadir}/apps/ksmserver/pics/shutdownkonq.png
 
-# Remove conflicts with redhat-menus
+# Workaround conflict with KDE4
 %if "%{?tde_prefix}" != "/usr"
 %{tde_bindir}/plasma-desktop
 %endif
@@ -3359,6 +3372,7 @@ Windows and Samba shares.
 %patch12 -p1 -b .kdesunoignorebutton
 %patch13 -p1 -b .xdgmenu
 %patch14 -p1 -b .tdmuserpath
+%patch15 -p1 -b .iceauth
 
 %patch101 -p1 -b .vibrate_dialog
 %patch102 -p1 -b .kcontrol_menu_entry
@@ -3415,6 +3429,20 @@ Windows and Samba shares.
 %if 0%{?suse_version}
 %__sed -i "kdm/kfrontend/genkdmconf.c" -e "s|/etc/X11/Xsession|/etc/X11/xdm/Xsession|"
 %endif
+
+# Reboot command location may vary on some distributions
+if [ -x "/usr/bin/reboot" ]; then
+  POWEROFF="/usr/bin/poweroff"
+  REBOOT="/usr/bin/reboot"
+fi
+if [ -n "${REBOOT}" ]; then
+  %__sed -i \
+    "doc/kdm/kdmrc-ref.docbook" \
+    "kcontrol/kdm/kdm-shut.cpp" \
+    "kdm/config.def" \
+  -e "s|/sbin/poweroff|${POWEROFF}|g" \
+  -e "s|/sbin/reboot|${REBOOT}|g"
+fi
 
 
 %build
@@ -3562,7 +3590,7 @@ EOF
 
 # TDM configuration
 %__sed -i "%{?buildroot}%{_sysconfdir}/trinity/kdm/kdmrc" \
-%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1220
+%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1210
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
 	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
@@ -3570,7 +3598,7 @@ EOF
 
 # Symlinks 'usb.ids' (Use system-provided version, not TDE provided version)
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
-%if 0%{?suse_version} 
+%if 0%{?suse_version} || 0%{?mgaversion} >= 4
 %__ln_s -f "/usr/share/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
 %else
 %__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
@@ -3578,11 +3606,8 @@ EOF
 
 # Makes 'media_safelyremove.desktop' an alternative
 %__mv -f "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase"
-%__ln_s "%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop"
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/alternatives"
-%__ln_s "%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase" "%{?buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase"
 
-# SUSE: creates DM config file, used by '/etc/init.d/xdm'
+# SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
 #  You must set 'DISPLAYMANAGER=tdm' in '/etc/sysconfig/displaymanager'
 %if 0%{?suse_version} >= 1210
 %__install -D -m 644 "%{SOURCE6}" "%{?buildroot}/usr/lib/X11/displaymanagers/tdm"
@@ -3619,6 +3644,11 @@ EOF
 
 
 %changelog
+* Sun May 18 2014 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-4
+- Fix Fedora 20 theme
+- Fix some Mageia 4 path problems
+- Forward port KDE SVN r803253 to fix potential security hole [Commit #c383da9d]
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
 - Build for Fedora 19
 
