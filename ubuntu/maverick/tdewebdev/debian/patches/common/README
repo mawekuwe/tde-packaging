@@ -1,7 +1,7 @@
-Common patches across KDE Debian packages
+Common patches across TDE Debian packages
 =========================================
 
-  These directory should contain patches to the admin/ subdir of KDE
+  These directory should contain patches to the admin/ subdir of TDE
   modules that are meant to be applied to all packaged modules. As the
   admin/ subdir is shared across modules (and so, it's identical for all
   modules at a certain version), I think it makes sense to have these

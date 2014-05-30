@@ -1,4 +1,4 @@
-?package(kpersonalizer):\
+?package(kpersonalizer-trinity):\
 	needs="X11"\
 	section="Applications/System/Administration"\
 	hints="TDE"\

@@ -1,4 +1,4 @@
-?package(kpowersave):\
+?package(kpowersave-trinity):\
   needs="X11"\
   section="Applications/System/Monitoring"\
   title="KPowersave"\

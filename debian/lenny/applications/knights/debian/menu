@@ -1,4 +1,4 @@
-?package(knights):\
+?package(knights-trinity):\
 needs="X11"\
 section="Games/Board"\
 title="Knights"\

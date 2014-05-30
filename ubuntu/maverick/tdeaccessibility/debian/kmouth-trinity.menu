@@ -1,4 +1,4 @@
-?package(kmouth):\
+?package(kmouth-trinity):\
 	needs="x11"\
 	section="Applications/Accessibility"\
 	hints="TDE"\

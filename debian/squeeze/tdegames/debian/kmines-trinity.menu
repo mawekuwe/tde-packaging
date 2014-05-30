@@ -1,4 +1,4 @@
-?package(kmines):\
+?package(kmines-trinity):\
 	needs="x11"\
 	section="Games/Puzzles"\
 	hints="TDE,Mines"\

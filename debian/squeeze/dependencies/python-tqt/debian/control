@@ -17,9 +17,9 @@ Provides: ${python:Provides}
 Description: TQt bindings for Python
  Python binding module that allows use of TQt X Window toolkit v3.
  You can use it to create portable graphics-capable scripts (there
- are PyQt versions for Linux, Windows and MacOS X).
+ are PyTQt versions for Linux, Windows and MacOS X).
  .
- At this moment PyQt offers a vast subset of TQt API. There are
+ At this moment PyTQt offers a vast subset of TQt API. There are
  some minor issues related to the differences between C++ and Python
  (types, etc), but usually you'll be able to write code pretty much the
  same way in both languages (with syntax differences, of course)
@@ -34,7 +34,7 @@ Depends: ${shlibs:Depends}, python-dbg, python-tqt (= ${binary:Version}), python
 Description: TQt bindings for Python (debug extension)
  Python binding module that allows use of TQt X Window toolkit v3.
  You can use it to create portable graphics-capable scripts (there
- are PyQt versions for Linux, Windows and MacOS X).
+ are PyTQt versions for Linux, Windows and MacOS X).
  .
  This package contains the extension built for the Python debug interpreter.
 
@@ -48,7 +48,7 @@ Provides: ${python:Provides}
 Description: TQt OpenGL bindings for Python
  Python binding module that allows use of the OpenGL facilities
  offered by the TQt X Window toolkit v3. You can use it to create
- portable graphics-capable scripts (there are PyQt versions for
+ portable graphics-capable scripts (there are PyTQt versions for
  Linux, Windows and MacOS X).
 
 Package: python-tqt-gl-dbg
@@ -61,7 +61,7 @@ Depends: ${shlibs:Depends}, python-dbg, python-tqt-gl (= ${binary:Version}), pyt
 Description: TQt OpenGL bindings for Python (debug extension)
  Python binding module that allows use of the OpenGL facilities
  offered by the TQt X Window toolkit v3. You can use it to create
- portable graphics-capable scripts (there are PyQt versions for
+ portable graphics-capable scripts (there are PyTQt versions for
  Linux, Windows and MacOS X).
  .
  This package contains the extension built for the Python debug interpreter.
@@ -72,8 +72,8 @@ Depends: ${shlibs:Depends}, ${python:Depends}, python-tqt (= ${binary:Version}),
 Replaces: python-tqtext (<< 4:14.0.0~)
 Breaks: python-tqtext (<< 4:14.0.0~)
 Provides: ${python:Provides}
-Description: TQt extensions for PyQt
- PyQt Extensions. Contains:
+Description: TQt extensions for PyTQt
+ PyTQt Extensions. Contains:
  .
    * QScintilla: a featureful TQt source code editing component based
                  on Scintilla.
@@ -85,8 +85,8 @@ Replaces: python-tqtext-dbg (<< 4:14.0.0~)
 Breaks: python-tqtext-dbg (<< 4:14.0.0~)
 Architecture: any
 Depends: ${shlibs:Depends}, python-dbg, python-tqtext (= ${binary:Version}), python-tqt-dbg (= ${binary:Version}), ${misc:Depends}
-Description: TQt debug extensions for PyQt
- PyQt debug Extensions. Contains:
+Description: TQt debug extensions for PyTQt
+ PyTQt debug Extensions. Contains:
  .
    * QScintilla: a featureful TQt source code editing component based
                  on Scintilla.
@@ -97,7 +97,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: pytqt-tools (<< 4:14.0.0~)
 Breaks: pytqt-tools (<< 4:14.0.0~)
 Description: pyuic and pylupdate for TQt
- pyuic is the PyQt counterpart for TQt's uic. It takes an XML
+ pyuic is the PyTQt counterpart for TQt's uic. It takes an XML
  user interface file and generates Python code.
  .
  pylupdate is the counterpart for TQt's lupdate. It updates TQt
@@ -110,9 +110,9 @@ Replaces: python-tqt-dev (<< 4:14.0.0~)
 Breaks: python-tqt-dev (<< 4:14.0.0~)
 Architecture: all
 Description: TQt bindings for Python - Development files
- Development .sip files with definitions of PyQt classes. They
- are needed to build PyQt, but also as building blocks of other
- packages based on them, like PyKDE.
+ Development .sip files with definitions of PyTQt classes. They
+ are needed to build PyTQt, but also as building blocks of other
+ packages based on them, like PyTDE.
 
 Package: python-tqt-doc
 Section: doc
@@ -122,5 +122,5 @@ Breaks: python-tqt-doc (<< 4:14.0.0~)
 Depends: ${misc:Depends}
 Suggests: python-tqt
 Description: TQt bindings for Python - Documentation and examples
- Documentation and examples for the PyQt (bindings that allow
+ Documentation and examples for the PyTQt (bindings that allow
  the use of TQt library from within a Python script).

@@ -1,4 +1,4 @@
-?package(kanagram):needs="X11"\
+?package(kanagram-trinity):needs="X11"\
   section="Games/Puzzles"\
   hints="TDE"\
   title="KAnagram"\

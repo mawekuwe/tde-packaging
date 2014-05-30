@@ -2,8 +2,8 @@
 Comment=Archive 7-Zip
 Hidden=false
 Patterns=*.7z;*.7Z
-X-KDE-AutoEmbed=true
+X-TDE-AutoEmbed=true
 
-[Property::X-KDE-LocalProtocol]
+[Property::X-TDE-LocalProtocol]
 Type=
 Value=

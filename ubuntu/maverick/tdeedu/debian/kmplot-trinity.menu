@@ -1,4 +1,4 @@
-?package(kmplot):needs="X11"\
+?package(kmplot-trinity):needs="X11"\
   section="Applications/Science/Mathematics"\
   hints="TDE"\
   title="KmPlot"\

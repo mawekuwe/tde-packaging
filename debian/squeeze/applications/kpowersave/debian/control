@@ -14,7 +14,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, hal (>= 0.5.8.1)
 Replaces: kpowersave-trinity (<< 4:14.0.0~)
 Breaks: kpowersave-trinity (<< 4:14.0.0~)
 Description: HAL based power management applet for Trinity
- KPowersave is a KDE systray applet which allows to control the power 
+ KPowersave is a TDE systray applet which allows to control the power 
  management settings and policies of your computer.
  It relies on HAL to do the heavy lifting.
  .

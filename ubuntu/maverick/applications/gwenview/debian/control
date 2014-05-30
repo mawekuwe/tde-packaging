@@ -14,7 +14,7 @@ Breaks: gwenview-kde3 (<< 4:14.0.0~), gwenview-trinity (<< 4:14.0.0~)
 Recommends: tdegraphics-tdefile-plugins-trinity, kipi-plugins-trinity
 Suggests: gwenview-i18n
 Description: image viewer for TDE
- Gwenview is an image viewer for the K Desktop Environment. It features a
+ Gwenview is an image viewer for the Trinity Desktop Environment. It features a
  folder tree window and a file list window to provide easy navigation of your
  file hierarchy. Gwenview uses docked windows, so you can alter its layout
  any way you wish. You can also browse your images in full-screen mode, or
@@ -24,7 +24,7 @@ Description: image viewer for TDE
  formats your Qt installation supports. Gwenview correctly displays images
  with an alpha channel. Gwenview supports the displaying and editing of EXIF
  comments, and, if the tdegraphics-tdefile-plugins package is installed, other
- image meta-information as well. Also supported is KIPI, the KDE Image Plugin
+ image meta-information as well. Also supported is KIPI, the TDE Image Plugin
  Interface, a collection of helpful tools provided by the kipi-plugins
  package. The ability to perform lossless JPEG transforms is built in.
  .

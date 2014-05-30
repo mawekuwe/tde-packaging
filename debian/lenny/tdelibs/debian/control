@@ -51,7 +51,7 @@ Description: core shared data for all TDE applications
  TDE applications.
  .
  This package is part of TDE, and a component of the TDE libraries module.
- See the 'kde-trinity' and 'tdelibs-trinity' packages for more information.
+ See the 'tde-trinity' and 'tdelibs-trinity' packages for more information.
 
 Package: tdelibs14-trinity
 Section: libs
@@ -72,7 +72,7 @@ Description: core libraries and binaries for all TDE applications
  and NFS shares, require the perl-suid package to work properly.
  .
  This package is part of TDE, and a component of the TDE libraries module.
- See the 'kde-trinity' and 'tdelibs-trinity' packages for more information.
+ See the 'tde-trinity' and 'tdelibs-trinity' packages for more information.
 
 Package: tdelibs14-trinity-dev
 Section: libdevel
@@ -95,7 +95,7 @@ Description: development files for the TDE core libraries
  core TDE libraries.
  .
  This package is part of TDE, and a component of the TDE libraries module.
- See the 'kde-trinity' and 'tdelibs-trinity' packages for more information.
+ See the 'tde-trinity' and 'tdelibs-trinity' packages for more information.
 
 Package: tdelibs14-trinity-doc
 Section: doc
@@ -109,7 +109,7 @@ Description: developer documentation for the TDE core libraries
  TDE libraries, than regular users.
  .
  This package is part of TDE, and a component of the TDE libraries module.
- See the 'kde-trinity' and 'tdelibs-trinity' packages for more information.
+ See the 'tde-trinity' and 'tdelibs-trinity' packages for more information.
 
 Package: tdelibs-trinity-dbg
 Section: libdevel

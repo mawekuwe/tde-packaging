@@ -1,4 +1,4 @@
-?package(khangman):needs="X11"\
+?package(khangman-trinity):needs="X11"\
   section="Games/Puzzles"\
   hints="TDE"\
   title="KHangMan"\

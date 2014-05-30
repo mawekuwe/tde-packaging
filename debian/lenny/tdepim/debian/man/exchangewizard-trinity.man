@@ -3,7 +3,7 @@
 exchangewizard \- MS Exchange Setup Wizard
 .SH SYNOPSIS
 .B exchangewizard
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B exchangewizard
 is a front end to configure Microsoft Exchange servers.

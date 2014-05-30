@@ -1,9 +1,9 @@
 .TH KSPACEDUEL 6
 .SH NAME
-kspaceduel \- Arcade two-player space game for KDE
+kspaceduel \- Arcade two-player space game for TDE
 .SH SYNOPSIS
 .B kspaceduel
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kspaceduel
 is a space arcade game for two players. Each player controls a ship

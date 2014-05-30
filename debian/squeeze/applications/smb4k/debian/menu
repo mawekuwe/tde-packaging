@@ -1,4 +1,4 @@
-?package(smb4k):\
+?package(smb4k-trinity):\
 	needs="X11"\
         section="Applications/Network"\
 	hints="TDE"\

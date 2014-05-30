@@ -1,13 +1,13 @@
-.TH KDEVELOP-HTDIG 1
+.TH TDEVELOP-HTDIG 1
 .SH NAME
-tdevelop-htdig \- KDevelop index generator for documentation files
+tdevelop-htdig \- TDevelop index generator for documentation files
 .SH SYNOPSIS
 .B tdevelop-htdig
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B tdevelop-htdig
 is an index generator for documentation files which is used by the 
-KDevelop integrated development environment.
+TDevelop integrated development environment.
 .SH PROGRAM OPTIONS
 .TP
 .B -c

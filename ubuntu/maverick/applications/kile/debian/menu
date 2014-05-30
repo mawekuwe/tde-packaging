@@ -1,4 +1,4 @@
-?package(kile):needs="X11" \
+?package(kile-trinity):needs="X11" \
   section="Applications/Editors" \
   hints="TDE" \
   title="Kile" \

@@ -24,7 +24,7 @@
   </refmeta>
   <refnamediv>
     <refname>kmplayer</refname>
-    <refpurpose>a media player for KDE</refpurpose>
+    <refpurpose>a media player for TDE</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -33,14 +33,14 @@
         <option><replaceable>Qt-options</replaceable></option>
       </arg>
       <arg choice="opt">
-        <option><replaceable>KDE-options</replaceable></option>
+        <option><replaceable>TDE-options</replaceable></option>
       </arg>
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
     <title>DESCRIPTION</title>
     <para>
-      KMPlayer is a basic audio/video viewer application for KDE.<br />
+      KMPlayer is a basic audio/video viewer application for TDE.<br />
       <br />
       KMPlayer can:<br />
       * play DVD (DVDNav only with the Xine player).<br />
@@ -50,7 +50,7 @@
       * show backend player's console output.<br />
       * launch ffserver (only 0.4.8 works) when viewing from a v4l device.<br />
       * DCOP KMediaPlayer interface support.<br />
-      * VDR viewer frontend (with *kxvplayer), configure VDR keys with standard KDE<br />
+      * VDR viewer frontend (with *kxvplayer), configure VDR keys with standard TDE<br />
         shortcut configure window.<br />
       * Lots of configurable shortcuts. Highly recommended for the VDR keys<br />
         (if you have VDR) and volume increase/decrease.<br />
@@ -59,7 +59,7 @@
   <refsect1>
     <title>OPTIONS</title>
     <para>
-      All <productname>KDE</productname> and <productname>Qt</productname>
+      All <productname>TDE</productname> and <productname>Qt</productname>
       programs accept a some common command-line options.  KMPlayer has no
       application-specific options.
     </para>
@@ -75,8 +75,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>

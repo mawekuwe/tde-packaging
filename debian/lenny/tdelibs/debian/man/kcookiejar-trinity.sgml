@@ -63,7 +63,7 @@ manpage.1: manpage.sgml
       <command>&dhpackage;</command>
 
       <arg><option><replaceable>Qt-options</replaceable></option></arg>
-      <arg><option><replaceable>KDE-options</replaceable></option></arg>
+      <arg><option><replaceable>TDE-options</replaceable></option></arg>
       <arg><option>--reload-config</option></arg>
       <arg><option>--remove <replaceable>domain</replaceable></option></arg>
       <arg><option>--remove-all</option></arg>
@@ -110,10 +110,10 @@ manpage.1: manpage.sgml
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term><option>--help-kde</option>
+        <term><option>--help-tde</option>
         </term>
         <listitem>
-          <para>Show KDE specific options.</para>
+          <para>Show TDE specific options.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -272,7 +272,7 @@ manpage.1: manpage.sgml
     </variablelist>
   </refsect1>
   <refsect1>
-    <title>KDE OPTIONS</title>
+    <title>TDE OPTIONS</title>
 
     <variablelist>
       <varlistentry>

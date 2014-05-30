@@ -51,7 +51,7 @@ Description: aRts sound system core components
  with aRts is recommended.
  .
  This package is part of TDE, and a component of the TDE aRts module.
- See the 'kde-trinity' and 'arts-trinity' packages for more information.
+ See the 'tde-trinity' and 'arts-trinity' packages for more information.
 
 Package: libarts1-trinity-dev
 Architecture: any
@@ -64,7 +64,7 @@ Description: development files for the aRts sound system core components
  use the aRts sound system.
  .
  This package is part of TDE, and a component of the TDE aRts module.
- See the 'kde-trinity' and 'arts-trinity' packages for more information.
+ See the 'tde-trinity' and 'arts-trinity' packages for more information.
 
 Package: libartsc0-trinity
 Architecture: any
@@ -77,7 +77,7 @@ Description: aRts sound system C support library
  This package contains the C bindings for the aRts sound daemon.
  .
  This package is part of TDE, and a component of the TDE aRts module.
- See the 'kde-trinity' and 'arts-trinity' packages for more information.
+ See the 'tde-trinity' and 'arts-trinity' packages for more information.
 
 Package: libartsc0-trinity-dev
 Architecture: any
@@ -90,7 +90,7 @@ Description: development files for the aRts sound system C support library
  use the aRts sound daemon's C bindings.
  .
  This package is part of TDE, and a component of the TDE aRts module.
- See the 'kde-trinity' and 'arts-trinity' packages for more information.
+ See the 'tde-trinity' and 'arts-trinity' packages for more information.
 
 Package: arts-trinity-dbg
 Section: libdevel

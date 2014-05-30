@@ -120,18 +120,18 @@ Input methods:
  * (scim-qtimm)
 # * (scim-tables-additional) [i386] # input support for language packs that we ship
 
-= Desktop KDE Apps =
+= Desktop TDE Apps =
 
-We've chosen KDE as our desktop user interface of choice
+We've chosen TDE as our desktop user interface of choice
 
  * arts-trinity
 
-== kdebase-trinity ==
+== tdebase-trinity ==
 
  * (kate-trinity)
  * kcontrol-trinity
- * kdepasswd-trinity
- * kdeprint-trinity
+ * tdepasswd-trinity
+ * tdeprint-trinity
  * kdesktop-trinity
  * (kfind-trinity)
  * khelpcenter-trinity
@@ -147,43 +147,43 @@ We've chosen KDE as our desktop user interface of choice
  * kwin-trinity
  * kdm-trinity 			# we want trinity as loginmanager
 
-== kdeadmin-trinity ==
+== tdeadmin-trinity ==
 
  * kcron-trinity
- * kdeadmin-kfile-plugins-trinity
+ * tdeadmin-tdefile-plugins-trinity
  * knetworkconf-trinity
 
-== kdegraphics-trinity ==
+== tdegraphics-trinity ==
 
  * (gwenview-trinity)
  * (kipi-plugins-trinity) [i386 amd64]		# set of plugins for digikam and gwenview
  * (kamera-trinity)
- * kdegraphics-kfile-plugins-trinity
+ * tdegraphics-tdefile-plugins-trinity
  * (kooka-trinity)
  * kpdf-trinity
  * ksnapshot-trinity
  * ksvg-trinity
  * kghostview-trinity 		# For print preview
 
-== kdemultimedia-trinity ==
+== tdemultimedia-trinity ==
 
  * libarts1-akode-trinity
- * kdemultimedia-kfile-plugins-trinity
- * kdemultimedia-kio-plugins-trinity
+ * tdemultimedia-tdefile-plugins-trinity
+ * tdemultimedia-tdeio-plugins-trinity
  * kmix-trinity
 
-== kdenetwork-trinity ==
+== tdenetwork-trinity ==
 
- * kdenetwork-filesharing-trinity
+ * tdenetwork-filesharing-trinity
  * tdednssd-trinity
  * (kopete-trinity)
  * (kpf-trinity)
  * (kppp-trinity)
  * (krdc-trinity)
  * (krfb-trinity)
- * kdenetwork-kfile-plugins-trinity
+ * tdenetwork-tdefile-plugins-trinity
 
-== kdepim-trinity ==
+== tdepim-trinity ==
 
  * (kontact-trinity)
  * (kmail-trinity)
@@ -192,9 +192,9 @@ We've chosen KDE as our desktop user interface of choice
  * (kaddressbook-trinity)
  * (knotes-trinity)
  * (karm-trinity)
- * (kdepim-wizards-trinity)
+ * (tdepim-wizards-trinity)
 
-== kdeutils-trinity ==
+== tdeutils-trinity ==
 
  * ark-trinity
  * (speedcrunch-trinity)
@@ -206,30 +206,30 @@ We've chosen KDE as our desktop user interface of choice
 # * (krita-trinity)
 # * (kexi-trinity)                 # instead of libreoffice-base|openoffice.org-base
 
-== everything else KDE ==
+== everything else TDE ==
 
- * (k3b-trinity)			# kde CD burning
- * (konversation-trinity)		# kde irc-client
+ * (k3b-trinity)			# tde CD burning
+ * (konversation-trinity)		# tde irc-client
  * vorbis-tools	         # for kaudiocreator
  * (amarok-trinity) 		# audio multimediaplayer
  * (kaffeine-xine-trinity)	# video multimediaplayer
- * (keep-trinity) 		# kde backuptool
+ * (keep-trinity) 		# tde backuptool
  * (adept-trinity)		# better package manager
  * konq-plugins-trinity
- * kde-systemsettings-trinity   # kcontrol replacement
+ * tde-systemsettings-trinity   # kcontrol replacement
  * dbus 		# for session dbus, #895.  Previously dbus-1-utils which brought in gtk, dbus-launch moved to dbus
  * (kubuntu-default-settings-trinity)
  * tdeio-locate-trinity           # file searching
  * (katapult-trinity)             # program launcher
  * (kubuntu-konqueror-shortcuts-trinity)
  * qca-tls		# used by Kopete Jabber plugin
- * (kdebluetooth-trinity)
+ * (tdebluetooth-trinity)
  * ksystemlog-trinity
- * (kdepim-kio-plugins-trinity)   # Make sure we have both of these for KMail
- * kdebase-kio-plugins-trinity
+ * (tdepim-tdeio-plugins-trinity)   # Make sure we have both of these for KMail
+ * tdebase-tdeio-plugins-trinity
  * (gtk-qt-engine-trinity)
- * kde-guidance-trinity		# configuration tools
- * (kde-guidance-powermanager-trinity)
+ * tde-guidance-trinity		# configuration tools
+ * (tde-guidance-powermanager-trinity)
  * tdeio-apt-trinity
  * ksplash-engine-moodin-trinity
  * (ktorrent-trinity)
@@ -237,18 +237,18 @@ We've chosen KDE as our desktop user interface of choice
  * language-selector-qt
  * (kmailcvt-trinity)
  * (bogofilter)           # spam filter for KMail
- * hwdb-client-kde
+ * hwdb-client-tde
  * libqt-perl           # for debconf
  * (digikam-trinity) [i386 amd64]
- * kde-style-polyester
+ * tde-style-polyester
  * (networkstatus-trinity)
- * software-properties-kde
+ * software-properties-tde
  * (apport-qt)
  * (strigi-trinity)
  * (strigi-applet-trinity)
  * (pinentry-qt) # for SMIME e-mail support
  * (gpg-agent) # for SMIME e-mail support
- * (gdebi-kde-trinity)
+ * (gdebi-tde-trinity)
 
 Don't use gstreamer for dapper, 0.8 is unsupported upstream and amarok/kaffeine are not yet ported to 0.10
 #The gstreamer0.10 packages we want to install:
@@ -260,7 +260,7 @@ Don't use gstreamer for dapper, 0.8 is unsupported upstream and amarok/kaffeine 
 Accessibility tools:
 
  * (kmag-trinity-trinity)
- * (kde-icons-mono-trinity)
+ * (tde-icons-mono-trinity)
  * (kbstate-trinity)
  * (kmousetool-trinity)
  * (xcursor-themes-trinity)

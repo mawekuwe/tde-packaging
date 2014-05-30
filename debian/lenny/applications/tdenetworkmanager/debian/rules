@@ -22,8 +22,3 @@ DEB_INSTALL_DOCS_ALL := -XNEWS -XTODO
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
-
-binary-install/network-manager-kde-trinity::
-	# Install autostart file
-	install -D -m 644 tdenetworkmanager-0.8/src/tdenetworkmanager.desktop \
-		debian/network-manager-kde-trinity/opt/trinity/share/autostart/tdenetworkmanager-trinity.desktop

@@ -1,4 +1,4 @@
-?package(kbounce):\
+?package(kbounce-trinity):\
 	needs="x11"\
 	section="Games/Arcade"\
 	hints="TDE"\

@@ -1,9 +1,9 @@
 .TH KWIN4 6
 .SH NAME
-twin4 \- Connect Four clone for KDE
+twin4 \- Connect Four clone for TDE
 .SH SYNOPSIS
 .B twin4
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 Four wins is a game for two players.  Each player is represented by a
 color (yellow and red).  The goal of the game is to get four connected

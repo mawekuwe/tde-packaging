@@ -1,4 +1,4 @@
-?package(konsole):\
+?package(konsole-trinity):\
 	needs="X11"\
 	section="Applications/Terminal Emulators"\
 	hints="TDE"\

@@ -1,9 +1,9 @@
 .TH digikam "1" "Feb 2005" "digikam 0.7.4" "User Commands"
 .SH NAME
-digikam \- digital photo management application for KDE
+digikam \- digital photo management application for TDE
 .SH SYNOPSIS
 .B digikam
-[\fIQt\-options\fR] [\fIKDE\-options\fR]
+[\fIQt\-options\fR] [\fITDE\-options\fR]
 [\fB\-\-detect\-camera\fR]
 .SH DESCRIPTION
 Digikam is an easy to use and powerful digital photo management
@@ -30,7 +30,7 @@ USB mass storage devices.
 .TP
 \fB\-\-download\-from  <path>\fR
 Open camera dialog at <path>. Use this with cameras that export
-their pictures as USB mass storage.  KDE automounts the camera
+their pictures as USB mass storage.  TDE automounts the camera
 storage, if the path given as, e.g., \fIsystem:/media/<dir>\fR or \fImedia:/<dir>\fR
 .SS "Generic options:"
 .TP
@@ -40,8 +40,8 @@ Show help about options
 \fB\-\-help\-qt\fR
 Show Qt specific options
 .TP
-\fB\-\-help\-kde\fR
-Show KDE specific options
+\fB\-\-help\-tde\fR
+Show TDE specific options
 .TP
 \fB\-\-help\-all\fR
 Show all options

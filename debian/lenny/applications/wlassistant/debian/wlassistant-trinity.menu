@@ -1,4 +1,4 @@
-?package(wlassistant):\
+?package(wlassistant-trinity):\
         needs="X11"\
         section="Applications/Network/Monitoring"\
         hints="TDE"\

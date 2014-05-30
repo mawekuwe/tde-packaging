@@ -45,14 +45,14 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>A KDE-based Instant Messaging client.</refpurpose>
+    <refpurpose>A TDE-based Instant Messaging client.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
       <command>&dhpackage;</command>
 
       <arg><option>--help<replaceable></replaceable></option></arg>
-      <arg><option>--help-kde<replaceable></replaceable></option></arg>
+      <arg><option>--help-tde<replaceable></replaceable></option></arg>
       <arg><option>--help-qt<replaceable></replaceable></option></arg>
       <arg><option>--version<replaceable> -v</replaceable></option></arg>
       <arg><option>--license<replaceable></replaceable</option></arg>
@@ -89,7 +89,7 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> is a KDE-based multi-protocol Instant
+    <para><command>&dhpackage;</command> is a TDE-based multi-protocol Instant
     Messaging client. Currently, it supports AIM, ICQ, MSN, IRC and Jabber.
     </para>
 
@@ -156,7 +156,7 @@ manpage.1: manpage.sgml
         <term><option>--nocrashhandler</option>
 	</term>
 	<listitem>
-	  <para>Disable KDE crash handler (enables core dumps).</para>
+	  <para>Disable TDE crash handler (enables core dumps).</para>
 	</listitem>
       </varlistentry>
       <varlistentry>
@@ -170,7 +170,7 @@ manpage.1: manpage.sgml
         <term><option>--style &lt;style&gt;</option>
 	</term>
 	<listitem>
-	  <para>Sets the application's GUI style (overrides KDE).</para>
+	  <para>Sets the application's GUI style (overrides TDE).</para>
 	</listitem>
       </varlistentry>
       <varlistentry>

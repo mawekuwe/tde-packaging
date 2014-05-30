@@ -1,4 +1,4 @@
-?package(kmousetool):\
+?package(kmousetool-trinity):\
 	needs="x11"\
 	section="Applications/Accessibility"\
 	hints="TDE"\

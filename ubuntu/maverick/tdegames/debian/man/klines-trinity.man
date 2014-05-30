@@ -1,9 +1,9 @@
 .TH KLINES 6
 .SH NAME
-klines \- Color Lines game for KDE
+klines \- Color Lines game for TDE
 .SH SYNOPSIS
 .B klines
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 KLines is a simple game. It is played by one player, so there is only one
 winner :-). You play for fun and against the high score. It was inspired

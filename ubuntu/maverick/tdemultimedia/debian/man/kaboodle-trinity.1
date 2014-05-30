@@ -1,19 +1,19 @@
 .lf 1 info/tdemultimedia.kaboodle.1
-.TH KABOODLE 1 "May 2003" KDE "KDE Application"
+.TH KABOODLE 1 "May 2003" TDE "TDE Application"
 .SH NAME
-kaboodle \- KDE simple and lean Media Player
+kaboodle \- TDE simple and lean Media Player
 .SH SYNOPSIS
 .B kaboodle
-[\fIQt-options\fR] [\fIKDE-options\fR] [\fIURL\fR]
+[\fIQt-options\fR] [\fITDE-options\fR] [\fIURL\fR]
 .SH DESCRIPTION
 This manual page documents briefly the
 .B kaboodle
-KDE Application.
+TDE Application.
 This manual page was written for the Debian GNU/Linux distribution
 because the original program does not have a manual page.
 .PP
 .B Kaboodle
-is a simple KMedia (aRts) player for KDE, which can play standalone,
+is a simple KMedia (aRts) player for TDE, which can play standalone,
 or embedded in Konqueror. The embedded player should work for media embedded in tdehtml, too.
 It is meant for simple stuff like playing a quick video or sound file. 
 .B Kaboodle
@@ -33,8 +33,8 @@ Show help about options
 .B \-\-help\-qt
 Show Qt specific options
 .TP
-.B \-\-help\-kde
-Show KDE specific options
+.B \-\-help\-tde
+Show TDE specific options
 .TP
 .B \-\-help\-all
 Show all options
@@ -51,7 +51,7 @@ Show license information
 .B \-\-
 End of options
 .lf 1 info/kdeqtoptions
-.SS "KDE options"
+.SS "TDE options"
 .TP 12
 .BI \-\-caption \ caption
 Use \fIcaption\fP as name in the titlebar.
@@ -59,7 +59,7 @@ Use \fIcaption\fP as name in the titlebar.
 .BI \-\-icon \ icon
 Use \fIicon\fP as the application icon. \fIicon\fP is the name of the
 icon, which can either be an absolute filename path, or otherwise the
-icon is sought for in places according to the normal KDE rules.
+icon is sought for in places according to the normal TDE rules.
 .TP
 .BI \-\-miniicon \ icon
 Use \fIicon\fP as the icon in the titlebar. \fIicon\fP is the filename
@@ -77,7 +77,7 @@ Set the address of the DCOP server to attach to.
 .TP
 .B \-\-nocrashhandler
 Disable crash handler, to get core dumps. This option has the same
-effect as definiting the environment variable KDE_DEBUG.
+effect as definiting the environment variable TDE_DEBUG.
 .TP
 .B \-\-waitforwm
 Waits for a WM_NET compatible windowmanager.
@@ -183,48 +183,48 @@ scroll bar will be on the left side and so on.
 .lf 53 info/tdemultimedia.kaboodle.1
 .SH ENVIRONMENT
 .lf 1 info/kdeenviron
-.SS "standard KDE environment variables"
-.IP KDE_LANG
+.SS "standard TDE environment variables"
+.IP TDE_LANG
 Language locale setting to use. This option makes it possible to set
 another language environment for a program than what is the default. The
 correct language pack for this language has to be installed for this option
 to work. The default language when there is none set is en_US. When
 deciding upon a language, the following resources are looked up, in
-order: KDE_LANG, configuration file, LC_CTYPE, LC_MESSAGES, LC_ALL,
+order: TDE_LANG, configuration file, LC_CTYPE, LC_MESSAGES, LC_ALL,
 LANG.
-.IP KDE_UTF8_FILENAMES
+.IP TDE_UTF8_FILENAMES
 Assume that all filenames are in UTF-8 format regardless of the
 current language setting. Otherwise the filename format is defined by
 the language.
 .IP TDE_MULTIHEAD
 If this variable has the value
 .B true
-multihead multiple display mode is enabled. The KDE display will be
+multihead multiple display mode is enabled. The TDE display will be
 shared over more than one screen.
 .IP DISPLAY
-Specifies the X display to run KDE on.
-.IP KDESYCOCA
+Specifies the X display to run TDE on.
+.IP TDESYCOCA
 Specifies and alternative path for the 
 .I tdesycoca
-KDE system configuration cache file.
+TDE system configuration cache file.
 The default path is
-/tmp/kde-$USER/tdesycoca
+/tmp/tde-$USER/tdesycoca
 .IP DCOPSERVER
 Specifies an alternative path for the DCOP server file. The default
 file is
 $HOME/.DCOPserver_\fIhostname\fP_\fIdisplayname\fP
 .IP SESSION_MANAGER
-The session manager to use. This option is set automatically by KDE
+The session manager to use. This option is set automatically by TDE
 and is a network path to the session manager socket.
 .IP HOME
 Path to the home directory for the current user. 
 .IP TDEHOME
-The KDE per-user setting directory. Default if not specified is
-.I $HOME/.kde
+The TDE per-user setting directory. Default if not specified is
+.I $HOME/.trinity
 .lf 55 info/tdemultimedia.kaboodle.1
 .SH FILES
 .TP
-.I $HOME/.kde/share/config/kaboodlerc
+.I $HOME/.trinity/share/config/kaboodlerc
 configuration file.
 .SH AUTHOR
 Kaboodle was written by
@@ -235,7 +235,7 @@ Nikolas Zimmermann <wildfox@kde.org>,
 and Charles Samuels <charles@kde.org>.
 .hy
 .br
-Please use http://bugs.kde.org to report bugs, do not mail the authors directly.
+Please use http://bugs.trinitydesktop.org to report bugs, do not mail the authors directly.
 .br
 This manual page was prepared by
 .nh

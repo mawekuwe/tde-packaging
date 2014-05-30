@@ -1,4 +1,4 @@
-?package(karm):\
+?package(karm-trinity):\
 	needs="X11"\
 	section="Applications/Project Management"\
 	hints="TDE"\

@@ -1,4 +1,4 @@
-?package(kvoctrain):needs="X11"\
+?package(kvoctrain-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KVocTrain"\

@@ -1,4 +1,4 @@
-?package(knewsticker):\
+?package(knewsticker-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE"\

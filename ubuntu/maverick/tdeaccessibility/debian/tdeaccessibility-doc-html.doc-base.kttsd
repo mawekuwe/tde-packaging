@@ -1,7 +1,7 @@
 Document: tdeaccessibility-doc-html-kttsd
 Title: Kttsd Handbook
 Author: Gary R. Cramblitt 
-Abstract: The KDE Text-to-Speech system is a plugin based service that
+Abstract: The TDE Text-to-Speech system is a plugin based service that
  allows any application to speak using the DCOP interface.
 Section: Apps/Text
 

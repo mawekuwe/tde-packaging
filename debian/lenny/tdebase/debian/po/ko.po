@@ -67,7 +67,7 @@ msgstr "tdm 데몬을 중지시킬까요?"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
 "K 데스크탑 관리자(tdm) 데몬은 일반적으로 꾸러미를 설치하고 업그레이드할 때 "

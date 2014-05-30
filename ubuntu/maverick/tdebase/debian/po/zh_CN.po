@@ -82,7 +82,7 @@ msgstr "停止 tdm 守护进程吗？"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
 "K 桌面管理器 (tdm) 守护进程通常会在软件包升级和卸载时被停止，但看起来它目前在"

@@ -3,7 +3,7 @@
 kpilotDaemon \- KPilot server
 .SH SYNOPSIS
 .B kpilotDaemon
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B kpilotDaemon
 is a program that runs in the background and handles the actual communication

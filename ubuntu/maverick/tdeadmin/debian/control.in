@@ -13,51 +13,51 @@ Architecture: all
 Depends: kcron (>= ${Source-Version}), kdat (>= ${Source-Version}), tdeadmin-tdefile-plugins (>= ${Source-Version}), knetworkconf (>= ${Source-Version}), kpackage (>= ${Source-Version}), ksysv (>= ${Source-Version}), kuser (>= ${Source-Version})
 Recommends: lilo-config (>= ${Source-Version})
 Suggests: tdeadmin-doc-html (>= ${Source-Version})
-Description: system administration tools from the official KDE release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: system administration tools from the official TDE release
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of system administration tools
- provided with the official release of KDE.
+ provided with the official release of TDE.
 
 Package: tdeadmin-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror | www-browser, tdebase
-Description: KDE administration documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE administration documentation
+Description: TDE administration documentation in HTML format
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE administration documentation
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /usr/share/doc/tde/HTML/<language>/<app>/, for instance
  /usr/share/doc/tde/HTML/en/kcron/. Documentation is provided for most
- KDE administration packages.
+ TDE administration packages.
  .
- This package is part of KDE, and a component of the KDE administration
- module. See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, and a component of the TDE administration
+ module. See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: kcron
 Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: the KDE crontab editor
+Description: the TDE crontab editor
  KCron is an application for scheduling programs to run in the background.
  It is a graphical user interface to cron, the UNIX system scheduler.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: kdat
 Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: a KDE tape backup tool
+Description: a TDE tape backup tool
  KDat is a tar-based tape archiver. It is designed to work with multiple
  archives on a single tape.
  .
@@ -68,29 +68,29 @@ Description: a KDE tape backup tool
   * Selective restore of files from an archive.
   * Backup profiles for frequently used backups.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: tdeadmin-tdefile-plugins
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: KDE file metainfo plugins for deb and rpm files
+Description: TDE file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: knetworkconf
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: KDE network configuration tool
- This is a KDE control center module to configure TCP/IP settings.  It
+Description: TDE network configuration tool
+ This is a Trinity control center module to configure TCP/IP settings.  It
  can be used to manage network devices and settings for each device.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: kpackage
 Section: admin
@@ -98,36 +98,36 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: rpm
 Suggests: khelpcenter
-Description: KDE package management tool
+Description: TDE package management tool
  This is a frontend to both .rpm and .deb package formats. It allows you
  to view currently installed packages, browse available packages, and
  install/remove them.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: ksysv
 Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: KDE SysV-style init configuration editor
+Description: TDE SysV-style init configuration editor
  This program allows you to edit your start and stop scripts using a
  drag and drop GUI.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: kuser
 Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: KDE user/group administration tool
- A user/group administration tool for KDE.
+Description: TDE user/group administration tool
+ A user/group administration tool for TDE.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: lilo-config
 Section: tde
@@ -135,15 +135,15 @@ Architecture: i386 amd64
 Depends: ${shlibs:Depends}, kcontrol
 Recommends: tdebase-bin
 Suggests: lilo
-Description: KDE frontend for lilo configuration
- lilo-config is a KDE based frontend to the lilo boot manager configuration.
- It runs out of the KDE Control Center.
+Description: TDE frontend for lilo configuration
+ lilo-config is a TDE based frontend to the lilo boot manager configuration.
+ It runs out of the Trinity Control Center.
  .
  If you want to use the menu entry to launch lilo-config, you need to install
  tdebase-bin since it uses the tdesu command to gain root privileges.
  .
- This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'tdeadmin' packages for more information.
+ This package is part of TDE, as a component of the TDE administration module.
+ See the 'tde' and 'tdeadmin' packages for more information.
 
 Package: tdeadmin-dbg
 Section: libdevel

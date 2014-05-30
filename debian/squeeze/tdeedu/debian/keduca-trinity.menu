@@ -1,4 +1,4 @@
-?package(keduca):needs="X11"\
+?package(keduca-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KEduca"\
@@ -6,7 +6,7 @@
   command="/opt/trinity/bin/keduca"\
   icon="/opt/trinity/share/pixmaps/keduca.xpm"
 
-?package(keduca):needs="X11"\
+?package(keduca-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KEduca-Editor"\

@@ -1,4 +1,4 @@
-?package(kjscmd):\
+?package(kjscmd-trinity):\
 	needs="X11"\
 	section="Applications/Programming"\
 	hints="TDE"\

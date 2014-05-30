@@ -18,7 +18,7 @@ Depends: ${shlibs:Depends}, hdparm, libxine2-x | libxine1-x (<< 1.1.20) | libxin
 Replaces: kaffeine-trinity (<< 4:14.0.0~)
 Breaks: kaffeine-trinity (<< 4:14.0.0~)
 Description: versatile media player for TDE
- Kaffeine is a media player for KDE. While it supports multiple player
+ Kaffeine is a media player for TDE. While it supports multiple player
  engines, its default engine is Xine, giving Kaffeine a wide variety of
  supported media types and letting Kaffeine access CDs, DVDs, and
  network streams easily.
@@ -46,7 +46,7 @@ Depends: ${shlibs:Depends}, kaffeine-trinity
 Replaces: kaffeine-gstreamer-trinity (<< 4:14.0.0~)
 Breaks: kaffeine-gstreamer-trinity (<< 4:14.0.0~)
 Description: Gstreamer engine for kaffeine media player [Trinity]
- Kaffeine is a media player for KDE. While it supports multiple player
+ Kaffeine is a media player for TDE. While it supports multiple player
  engines, its default engine is Gstreamer, giving Kaffeine a wide variety of
  supported media types and letting Kaffeine access CDs, DVDs, and
  network streams easily.

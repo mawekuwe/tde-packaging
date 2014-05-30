@@ -1,4 +1,4 @@
-?package(kget):\
+?package(kget-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE"\

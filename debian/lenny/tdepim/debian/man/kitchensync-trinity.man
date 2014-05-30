@@ -1,9 +1,9 @@
 .TH KITCHENSYNC 1
 .SH NAME
-kitchensync \- Synchronize Data with KDE
+kitchensync \- Synchronize Data with TDE
 .SH SYNOPSIS
 .B kitchensync
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kitchensync
 is a synchronization framework, still under heavy development.

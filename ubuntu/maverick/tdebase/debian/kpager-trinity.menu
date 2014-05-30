@@ -1,4 +1,4 @@
-?package(kpager):\
+?package(kpager-trinity):\
 	needs="X11"\
 	section="Applications/System/Administration"\
 	hints="TDE"\

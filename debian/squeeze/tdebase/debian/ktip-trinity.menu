@@ -1,4 +1,4 @@
-?package(ktip):\
+?package(ktip-trinity):\
 	needs="X11"\
 	section="Help"\
 	hints="TDE"\

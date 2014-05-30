@@ -15,7 +15,7 @@ Breaks: kdeaddons-trinity (<< 4:14.0.0~)
 Depends: atlantikdesigner-trinity (>= ${Source-Version}), kaddressbook-plugins-trinity (>= ${Source-Version}), kate-plugins-trinity (>= ${Source-Version}), tdeaddons-tdefile-plugins-trinity (>= ${Source-Version}), kicker-applets-trinity (>= ${Source-Version}), konq-plugins-trinity (>= ${Source-Version}), ksig-trinity (>= ${Source-Version}), noatun-plugins-trinity (>= ${Source-Version})
 Suggests: tdeaddons-trinity-doc-html
 Description: add-on plugins and applets provided with Trinity
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
@@ -29,19 +29,19 @@ Section: doc
 Replaces: kdeaddons-trinity-doc-html (<< 4:14.0.0~)
 Breaks: kdeaddons-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdeaddons-trinity
-Description: KDE add-ons documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE addons documentation
+Description: TDE add-ons documentation in HTML format
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE addons documentation
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
  /opt/trinity/share/doc/tde/HTML/en/kicker-applets/. Documentation is provided for
- most KDE addons packages.
+ most TDE addons packages.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: atlantikdesigner-trinity
 Architecture: any
@@ -53,14 +53,14 @@ Enhances: atlantik-trinity
 Description: game board designer for Atlantik
  Atlantik Designer is a game board designer for the game Atlantik.
  .
- Atlantik is a KDE client for playing Monopoly-like board games on the
+ Atlantik is a TDE client for playing Monopoly-like board games on the
  monopd network.  It can play any board supported by the network
  server, including the classic Monopoly game as well as the Atlantik
  game in which the properties include several major cities in North
  America and Europe.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: kaddressbook-plugins-trinity
 Architecture: any
@@ -71,15 +71,15 @@ Depends: ${shlibs:Depends}
 Suggests: kworldclock-trinity, khelpcenter-trinity, tdeaddons-trinity-doc-html
 Enhances: kaddressbook-trinity
 Description: plugins for KAddressBook, the Trinity address book
- This package contains a variety of useful plugins for the KDE address
- book.  These plugins can be loaded through the KDE address book settings.
+ This package contains a variety of useful plugins for the TDE address
+ book.  These plugins can be loaded through the TDE address book settings.
  .
  Highlights include exporting postal addresses as flags in KWorldClock,
  as well as importing and exporting contacts in the native format used
  by the German freemail provider GMX.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: kate-plugins-trinity
 Architecture: any
@@ -89,8 +89,8 @@ Breaks: kate-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, tidy
 Suggests: khelpcenter-trinity, tdeaddons-trinity-doc-html, kaddressbook-trinity
 Enhances: kate-trinity
-Description: plugins for Kate, the KDE Advanced Text Editor
- This package contains a variety of useful plugins for Kate, the KDE
+Description: plugins for Kate, the TDE Advanced Text Editor
+ This package contains a variety of useful plugins for Kate, the TDE
  Advanced Text Editor.  These plugins can be loaded through the plugin
  manager in Kate settings.
  .
@@ -99,8 +99,8 @@ Description: plugins for Kate, the KDE Advanced Text Editor
  and text snippets, opening of C/C++ headers, extraction of C/C++ symbols,
  a tab bar, a Python browser and even more.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: tdeaddons-tdefile-plugins-trinity
 Architecture: any
@@ -110,18 +110,18 @@ Breaks: kdeaddons-kfile-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Provides: renamedlg-plugins-trinity
 Description: Trinity file dialog plugins for text files and folders
- This is a collection of plugins for the KDE file dialog.  These plugins
+ This is a collection of plugins for the TDE file dialog.  These plugins
  extend the file dialog to offer advanced meta-information for text,
  HTML and desktop files, as well as for folders, Windows .lnk files,
  MIME archives and X.509 certificates.
  .
- This package also includes plugins for the KDE file rename dialog,
+ This package also includes plugins for the TDE file rename dialog,
  allowing a user to more easily decide what to do when faced with a
  decision regarding conflicting filenames.  Rename dialog plugins are
  provided for audio and image files.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: kicker-applets-trinity
 Architecture: any
@@ -133,7 +133,7 @@ Suggests: xmms-kde-trinity, khelpcenter-trinity, tdeaddons-trinity-doc-html
 Provides: ktimemon-trinity
 Enhances: kicker-trinity
 Description: applets for Kicker, the Trinity panel
- This package contains a variety of applets for Kicker, the KDE panel.
+ This package contains a variety of applets for Kicker, the TDE panel.
  These applets will appear in the panel's Add--Applet menu.
  .
  Included are a system monitor, a colour picker, a media player controller,
@@ -143,8 +143,8 @@ Description: applets for Kicker, the Trinity panel
  kicker-applets users to install XMMS. If you want a kicker applet that
  controls XMMS, install the xmms-kde-trinity package.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: knewsticker-scripts-trinity
 Architecture: all
@@ -156,14 +156,14 @@ Recommends: knewsticker-trinity
 Enhances: knewsticker-trinity
 Description: scripts for KNewsTicker, the Trinity news ticker
  This package contains a variety of scripts that provide additional news
- sources for KNewsTicker, the news ticker applet for the KDE panel.  See
+ sources for KNewsTicker, the news ticker applet for the TDE panel.  See
  /opt/trinity/share/doc/knewsticker-scripts/README.Debian for usage details.
  .
  Highlights include newsgroup handling, stock data retrieval, sports scores
  and various local news sources.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: konq-plugins-trinity
 Architecture: any
@@ -177,7 +177,7 @@ Enhances: konqueror-trinity, akregator-trinity
 Provides: akregator-konq-plugin-trinity
 Description: plugins for Konqueror, the Trinity file/web/doc browser
  This package contains a variety of useful plugins for Konqueror, the
- file manager, web browser and document viewer for KDE.  Many of these
+ file manager, web browser and document viewer for TDE.  Many of these
  plugins will appear in Konqueror's Tools menu.
  .
  Highlights for web browsing include web page translation, web page archiving,
@@ -191,8 +191,8 @@ Description: plugins for Konqueror, the Trinity file/web/doc browser
  media player, a file information metabar/sidebar, a media folder helper, a
  graphical disk usage viewer and image conversions and transformations.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: ksig-trinity
 Architecture: any
@@ -212,8 +212,8 @@ Description: graphical tool for managing multiple email signatures
  signatures in external mail clients such as KMail.  See
  /opt/trinity/share/doc/ksig/README.Debian for details on how this can be done.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: noatun-plugins-trinity
 Architecture: any
@@ -224,15 +224,15 @@ Depends: ${shlibs:Depends}
 Enhances: noatun-trinity
 Description: plugins for Noatun, the Trinity media player
  This package contains a variety of useful plugins for Noatun, the audio and
- video media player for KDE.  These plugins can be loaded through the plugin
+ video media player for TDE.  These plugins can be loaded through the plugin
  manager in Noatun settings.
  .
  Highlights include an alarm clock, guessing tags from filenames, adjustable
  playback speed, capture to wave file and displaying lyrics, plus a variety
  of user interfaces, playlists and visualisation plugins.
  .
- This package is part of Trinity, as a component of the KDE addons module.
- See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE addons module.
+ See the 'tde-trinity' and 'tdeaddons-trinity' packages for more information.
 
 Package: tdeaddons-trinity-dbg
 Section: libdevel

@@ -1,4 +1,4 @@
-?package(klipper):\
+?package(klipper-trinity):\
 	needs="X11"\
 	section="Applications/Editors"\
 	hints="TDE"\

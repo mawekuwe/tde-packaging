@@ -26,7 +26,7 @@ manpage.1: manpage.sgml
   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
   <!ENTITY dhemail     "<email>ccheney@debian.org</email>">
   <!ENTITY dhusername  "Chris Cheney">
-  <!ENTITY dhucpackage "<refentrytitle>KDE-CONFIG</refentrytitle>">
+  <!ENTITY dhucpackage "<refentrytitle>TDE-CONFIG</refentrytitle>">
   <!ENTITY dhpackage   "tde-config">
 
   <!ENTITY debian      "<productname>Debian</productname>">
@@ -63,7 +63,7 @@ manpage.1: manpage.sgml
       <command>&dhpackage;</command>
 
       <arg><option><replaceable>Qt-options</replaceable></option></arg>
-      <arg><option><replaceable>KDE-options</replaceable></option></arg>
+      <arg><option><replaceable>TDE-options</replaceable></option></arg>
       <arg><option>--exec-prefix</option></arg>
       <arg><option>--expandvars</option></arg>
       <arg><option>--install <replaceable>type</replaceable></option></arg>
@@ -114,10 +114,10 @@ manpage.1: manpage.sgml
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term><option>--help-kde</option>
+        <term><option>--help-tde</option>
         </term>
         <listitem>
-          <para>Show KDE specific options.</para>
+          <para>Show TDE specific options.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -276,7 +276,7 @@ manpage.1: manpage.sgml
     </variablelist>
   </refsect1>
   <refsect1>
-    <title>KDE OPTIONS</title>
+    <title>TDE OPTIONS</title>
 
     <variablelist>
       <varlistentry>
@@ -352,7 +352,7 @@ manpage.1: manpage.sgml
         <term><option>--exec-prefix</option>
         </term>
         <listitem>
-          <para>Compiled in exec_prefix for KDE libraries.</para>
+          <para>Compiled in exec_prefix for TDE libraries.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -387,14 +387,14 @@ manpage.1: manpage.sgml
         <term><option>--prefix</option>
         </term>
         <listitem>
-          <para>Compiled in prefix for KDE libraries.</para>
+          <para>Compiled in prefix for TDE libraries.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term><option>--types</option>
         </term>
         <listitem>
-          <para>Available KDE resource types.</para>
+          <para>Available TDE resource types.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

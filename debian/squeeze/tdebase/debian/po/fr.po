@@ -94,10 +94,10 @@ msgstr "Faut-il arrêter le démon tdm ?"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Le gestionnaire de sessions KDE (tdm) est généralement arrêté lors de la mise "
+"Le gestionnaire de sessions TDE (tdm) est généralement arrêté lors de la mise "
 "à jour ou de la suppression du paquet. Cependant, il semble qu'il gère "
 "actuellement encore au moins une session X."
 

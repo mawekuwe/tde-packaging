@@ -3,7 +3,7 @@
 klickety \- A Clickomania-alike game
 .SH SYNOPSIS
 .B klickety
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 Klickety is an adaptation of the (perhaps) well-known Clickomania
 game; it is very similar to the `same' game.

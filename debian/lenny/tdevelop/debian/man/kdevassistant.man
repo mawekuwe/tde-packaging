@@ -1,9 +1,9 @@
 .TH KDEVASSISTANT 1
 .SH NAME
-kdevassistant \- KDevelop documentation viewer
+kdevassistant \- TDevelop documentation viewer
 .SH SYNOPSIS
 .B kdevdesigner
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B KDevAssistant
 is an API documentation browser with contents tree, index and full text
@@ -12,13 +12,13 @@ documentation formats:
 
 * Qt DCF format (Qt library API and tools documentation);
 
-* Doxygen .tag format (KDE libraries documentation and other generated
+* Doxygen .tag format (TDE libraries documentation and other generated
 by doxygen with tags);
 
 * DevHelp format (GTK, GNOME API documentation and other generated for
 devhelp);
 
-* KDevelopTOC format (for online html documentation);
+* TDevelopTOC format (for online html documentation);
 
 * CHM format;
 

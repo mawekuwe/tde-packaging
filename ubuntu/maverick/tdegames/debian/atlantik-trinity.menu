@@ -1,4 +1,4 @@
-?package(atlantik):\
+?package(atlantik-trinity):\
 	needs="x11"\
 	section="Games/Board"\
 	hints="TDE,Monopoly"\

@@ -3,7 +3,7 @@
 kandy_client \- DCOP client for Kandy
 .SH SYNOPSIS
 .B kandy_client
-.I [Qt-options] [KDE-options] [URL]
+.I [Qt-options] [TDE-options] [URL]
 .SH DESCRIPTION
 .B kandy_client
 sends a URL to a running

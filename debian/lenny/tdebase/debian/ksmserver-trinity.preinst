@@ -2,26 +2,30 @@
 
 package_name=ksmserver-trinity
 
+divert_remove()
+ {
+    divert=`dpkg-divert --listpackage "$1"`
+    if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
+        if [ -e "$1" ]; then
+            rm "$1"
+        fi
+        dpkg-divert --remove --local --rename "$1"
+    fi
+    if [ -n "$divert" ] && [ "$divert" = "$package_name" ]; then
+        if [ -e "$1" ]; then
+            rm "$1"
+        fi
+        dpkg-divert --remove --package $package_name --rename "$1"
+    fi
+ }
+
 case "$1" in
 
     upgrade)
 	# Remove old-style Plasma diversions
-	divert=`dpkg-divert --listpackage "/usr/bin/plasma"`
-	if [ -n "$divert" ]; then
-	    if [ "$divert" = "LOCAL" ]; then
-	        dpkg-divert --local --rename --remove /usr/bin/plasma
-	    else
-	        dpkg-divert --package $package_name --rename --remove /usr/bin/plasma
-	    fi
-	fi
-	divert=`dpkg-divert --listpackage "/usr/bin/plasma-desktop"`
-	if [ -n "$divert" ]; then
-	    if [ "$divert" = "LOCAL" ]; then
-	        dpkg-divert --local --rename --remove /usr/bin/plasma-desktop
-	    else
-	        dpkg-divert --package $package_name --rename --remove /usr/bin/plasma-desktop
-	    fi
-	fi
+	divert_remove /usr/bin/plasma
+	divert_remove /usr/bin/plasma-desktop
+
 	mkdir -p /usr/share/autostart
     ;;
 

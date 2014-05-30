@@ -1,4 +1,4 @@
-?package(kontact):\
+?package(kontact-trinity):\
 	needs="X11"\
 	section="Applications/Data Management"\
 	hints="TDE"\

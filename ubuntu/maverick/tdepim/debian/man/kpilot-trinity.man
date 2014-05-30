@@ -1,15 +1,15 @@
 .TH KPILOT 1
 .SH NAME
-kpilot \- Palm Pilot synchronization software for KDE
+kpilot \- Palm Pilot synchronization software for TDE
 .SH SYNOPSIS
 .B kpilot
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B KPilot
 is an application that synchronizes a PalmPilot or similar device with
-the KDE desktop, much like the Palm Desktop HotSync software does for
+the Trinity desktop, much like the Palm Desktop HotSync software does for
 Windows.  KPilot can backup, restore, and HotSync your PalmPilot.  It can
-synchronize the built-in applications with their KDE counterparts.  It also
+synchronize the built-in applications with their TDE counterparts.  It also
 features additional conduits for third-party software.
 .SH PROGRAM OPTIONS
 .TP

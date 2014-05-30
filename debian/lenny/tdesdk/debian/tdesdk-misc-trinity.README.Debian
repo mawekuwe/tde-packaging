@@ -1,8 +1,8 @@
-KDE Software Development Kit for Debian
+TDE Software Development Kit for Debian
 ---------------------------------------
 
 The tdesdk-misc package includes palettes for both the Gimp and Xpaint
-that match the KDE standard colour palette.  They may be useful for
+that match the TDE standard colour palette.  They may be useful for
 designing themes and icons.
 
 These palettes have been placed in /usr/share/kdepalettes/.

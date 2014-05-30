@@ -1,4 +1,4 @@
-?package(network-manager-tde): \
+?package(network-manager-kde-trinity): \
 	needs="X11" \
 	section="Applications/Network/Monitoring" \
   	title="KNetworkManager" \

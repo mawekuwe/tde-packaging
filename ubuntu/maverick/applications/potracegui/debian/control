@@ -13,9 +13,9 @@ Depends: ${shlibs:Depends}, potrace
 Replaces: potracegui-kde3 (<< 4:14.0.0~), potracegui-trinity (<< 4:14.0.0~)
 Breaks: potracegui-kde3 (<< 4:14.0.0~), potracegui-trinity (<< 4:14.0.0~)
 Suggests: autotrace
-Description: KDE frontend for potrace [Trinity]
- A KDE interface for the commandline tracing tools potrace and/or autotrace. It
- supports drag and drop as well as all image types recognized by KDE, which are
+Description: TDE frontend for potrace [Trinity]
+ A TDE interface for the commandline tracing tools potrace and/or autotrace. It
+ supports drag and drop as well as all image types recognized by TDE, which are
  a lot more than the 4 recognized by the potrace commandline tool. Loading of
  remote files (web, ftp, ...) is also supported.  
  .  

@@ -1,4 +1,4 @@
-?package(ktnef):\
+?package(ktnef-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	hints="TDE"\

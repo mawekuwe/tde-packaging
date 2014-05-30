@@ -92,7 +92,7 @@ msgstr "Θέλετε να σταματήσετε να χρησιμοποιείτ
 #: ../tdm.templates:3001
 #, fuzzy
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
 "Κανονικά, η λειτουργία του δαίμονα του διαχειριστή οθόνης των X (tdm) "

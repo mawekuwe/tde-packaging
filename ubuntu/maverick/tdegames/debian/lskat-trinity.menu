@@ -1,4 +1,4 @@
-?package(lskat):\
+?package(lskat-trinity):\
 	needs="x11"\
 	section="Games/Card"\
 	hints="TDE"\

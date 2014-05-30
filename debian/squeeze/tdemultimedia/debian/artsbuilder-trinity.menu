@@ -1,4 +1,4 @@
-?package(artsbuilder):\
+?package(artsbuilder-trinity):\
 	needs="X11"\
 	section="Apps/Sound"\
 	hints="TDE"\
@@ -6,7 +6,7 @@
 	icon="/opt/trinity/share/pixmaps/artsbuilder.xpm"\
 	command="/opt/trinity/bin/artsbuilder"
 
-?package(artsbuilder):\
+?package(artsbuilder-trinity):\
 	needs="X11"\
 	section="Apps/Sound"\
 	hints="TDE"\

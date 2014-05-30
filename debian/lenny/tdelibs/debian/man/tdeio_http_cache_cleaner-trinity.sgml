@@ -56,14 +56,14 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>KDE HTTP cache maintenance tool</refpurpose>
+    <refpurpose>TDE HTTP cache maintenance tool</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
       <command>&dhpackage;</command>
 
       <arg><option><replaceable>Qt-options</replaceable></option></arg>
-      <arg><option><replaceable>KDE-options</replaceable></option></arg>
+      <arg><option><replaceable>TDE-options</replaceable></option></arg>
       <arg><option>--clear-all</option></arg>
 
     </cmdsynopsis>
@@ -74,7 +74,7 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> is a KDE HTTP cache maintenance tool.</para>
+    <para><command>&dhpackage;</command> is a TDE HTTP cache maintenance tool.</para>
 
   </refsect1>
   <refsect1>
@@ -107,10 +107,10 @@ manpage.1: manpage.sgml
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term><option>--help-kde</option>
+        <term><option>--help-tde</option>
         </term>
         <listitem>
-          <para>Show KDE specific options.</para>
+          <para>Show TDE specific options.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -269,7 +269,7 @@ manpage.1: manpage.sgml
     </variablelist>
   </refsect1>
   <refsect1>
-    <title>KDE OPTIONS</title>
+    <title>TDE OPTIONS</title>
 
     <variablelist>
       <varlistentry>

@@ -1,9 +1,9 @@
 .TH KMAHJONGG 6
 .SH NAME
-kmahjongg \- Mahjongg game for KDE
+kmahjongg \- Mahjongg game for TDE
 .SH SYNOPSIS
 .B kmahjongg
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 Your mission in this game is to remove all tiles from the game
 board. A matching pair of tiles can be removed, if they are `free',

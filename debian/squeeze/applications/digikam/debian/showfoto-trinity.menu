@@ -1,4 +1,4 @@
-?package(showfoto):\
+?package(showfoto-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	title="showfoto"\

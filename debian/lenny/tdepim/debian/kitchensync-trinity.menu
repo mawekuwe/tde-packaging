@@ -1,11 +1,11 @@
-?package(kitchensync):\
+?package(kitchensync-trinity):\
 	needs="X11"\
 	section="Applications/Data Management"\
 	hints="TDE"\
 	title="KitchenSync"\
 	command="/opt/trinity/bin/kitchensync"
 
-?package(kitchensync):\
+?package(kitchensync-trinity):\
 	needs="X11"\
 	section="Applications/Data Management"\
 	hints="TDE"\

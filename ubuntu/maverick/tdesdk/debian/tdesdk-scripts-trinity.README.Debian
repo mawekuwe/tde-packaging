@@ -13,7 +13,7 @@ Debugger macros:
 Editor helper files:
 
   Both vim and emacs helper files are provided containing many functions
-  and keybindings for developing KDE/Qt/C++ applications.
+  and keybindings for developing TDE/TQt/C++ applications.
 
   To use the vim helper file, add this line to your ~/.vimrc :
 
@@ -39,7 +39,7 @@ Shell completion controls:
   To enable completion controls for zsh, you need to add the following
   lines to your ~/.zshrc :
 
-    # Add the KDE completion controls to the zsh function path.
+    # Add the TDE completion controls to the zsh function path.
     set -A fpath $fpath /usr/share/tdesdk-scripts/completions/zsh
 
     # Initialise the zsh completion system.
@@ -54,7 +54,7 @@ Shell completion controls:
 Valgrind error suppressions:
 
   A valgrind suppression file is included for ignoring things we don't
-  care about when valgrinding KDE applications.
+  care about when valgrinding TDE applications.
 
   The suppression file is provided as /usr/lib/valgrind/kde.supp .
 

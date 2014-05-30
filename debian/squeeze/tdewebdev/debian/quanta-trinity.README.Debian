@@ -16,13 +16,13 @@ Reference Documentation:
   not supported natively by this package.  To make JavaScript or MySQL
   documentation accessible in Quanta Plus, download the relevant documentation
   tarball from http://sourceforge.net/projects/quanta/.  You should unpack
-  this tarball beneath ~/.kde/share/apps/quanta/doc/, so that the file
+  this tarball beneath ~/.trinity/share/apps/quanta/doc/, so that the file
   javascript.docrc or mysql.docrc is unpacked directly into this directory.
 
 HTML Documentation:
 
   Quanta Plus provides documentation in a docbook format that the
-  KDE Help Centre can display.  For HTML documentation that can be read
+  TDE Help Centre can display.  For HTML documentation that can be read
   in any web browser, see the package tdewebdev-doc-html.
 
 Kommander:

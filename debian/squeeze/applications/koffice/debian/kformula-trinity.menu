@@ -1,4 +1,4 @@
-?package(kformula):\
+?package(kformula-trinity):\
 	needs="x11"\
 	section="Applications/Science/Mathematics"\
 	hints="TDE"\

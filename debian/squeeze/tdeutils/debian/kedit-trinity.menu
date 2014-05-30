@@ -1,4 +1,4 @@
-?package(kedit):\
+?package(kedit-trinity):\
 	needs="X11"\
 	section="Apps/Editors"\
 	hints="TDE,Text"\

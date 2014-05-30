@@ -1,11 +1,11 @@
 .TH KADDRESSBOOK 1
 .SH NAME
-kaddressbook \- The KDE Address Book
+kaddressbook \- The TDE Address Book
 .SH SYNOPSIS
 .B kaddressbook
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
-\fBKAddressBook\fP is the main address book application for KDE; it enables
+\fBKAddressBook\fP is the main address book application for TDE; it enables
 you to manage your contacts efficiently and comfortably.  Since it is based
 on the tdeabc library it supports resources, which can be used to load and save
 your contacts to many different locations -- not just the local file system,

@@ -1,9 +1,9 @@
 .TH KBOUNCE 6
 .SH NAME
-kbounce \- KDE Jezz Ball game
+kbounce \- TDE Jezz Ball game
 .SH SYNOPSIS
 .B kbounce
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 This is a clone of the popular Jezzball game originally created by
 Microsoft. Jezzball is one of the rare and simple games requiring

@@ -2,6 +2,6 @@
 presentation=65
 soundfile=/usr/share/sounds/KDE_Error_1.ogg
 
-[startkde]
+[starttde]
 presentation=1
 soundfile=/usr/share/sounds/kubuntu-login.ogg

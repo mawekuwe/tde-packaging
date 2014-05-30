@@ -37,13 +37,13 @@ Breaks: kdesvn-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}, tdesvn-tdeio-plugins-trinity (= ${binary:Version})
 Recommends: kompare-trinity, graphviz
 Suggests: khelpcenter-trinity, kdiff3-trinity
-Description: subversion client with tight KDE integration [Trinity]
- KDESvn is a graphical client for the subversion revision control
+Description: subversion client with tight TDE integration [Trinity]
+ TDESvn is a graphical client for the subversion revision control
  system (svn).
  .
  Besides offering common and advanced svn operations, it features
- a tight integration into KDE and can be embedded into other KDE 
- applications like konqueror via the KDE component technology KParts.
+ a tight integration into TDE and can be embedded into other TDE 
+ applications like konqueror via the TDE component technology KParts.
 
 Package: tdesvn-tdeio-plugins-trinity
 Section: devel
@@ -55,6 +55,6 @@ Conflicts: tdesdk-tdeio-plugins-trinity
 Description: subversion I/O slaves for Trinity
  This packages includes KIO slaves for svn, svn+file, svn+http, 
  svn+https, svn+ssh. This allows you to access subversion repositories 
- inside any KIO enabled KDE application.
+ inside any KIO enabled TDE application.
  .
  This package is part of tdesvn-trinity.

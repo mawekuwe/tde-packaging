@@ -1,4 +1,4 @@
-?package(khexedit):\
+?package(khexedit-trinity):\
 	needs="X11"\
 	section="Apps/Tools"\
 	hints="TDE"\

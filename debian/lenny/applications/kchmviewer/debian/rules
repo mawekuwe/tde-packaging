@@ -23,7 +23,7 @@ DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
 CFLAGS = -Wall -g
 
-CONFIGURE_OPTIONS_KDE = \
+CONFIGURE_OPTIONS_TDE = \
 	--host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
 	--prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib \
 	--includedir=/opt/trinity/include/tde --mandir=/opt/trinity/share/man \
@@ -57,7 +57,8 @@ debian/build-kde:
 	test -e config.guess -a -L config.guess || \
 		ln -sf /usr/share/misc/config.guess config.guess
 
-	mkdir build-kde && cd build-kde && ../configure CFLAGS="$(CFLAGS)" $(CONFIGURE_OPTIONS_KDE)
+	[ -d build-kde ] || mkdir build-kde
+        cd build-kde && ../configure CFLAGS="$(CFLAGS)" $(CONFIGURE_OPTIONS_TDE)
 	$(MAKE) -C build-kde
 	touch debian/build-kde
 

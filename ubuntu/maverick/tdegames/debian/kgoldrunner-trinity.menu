@@ -1,4 +1,4 @@
-?package(kgoldrunner):\
+?package(kgoldrunner-trinity):\
 	needs="x11"\
 	section="Games/Arcade"\
 	hints="TDE"\

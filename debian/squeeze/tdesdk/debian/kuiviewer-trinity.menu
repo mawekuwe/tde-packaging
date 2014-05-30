@@ -1,4 +1,4 @@
-?package(kuiviewer):\
+?package(kuiviewer-trinity):\
   needs="x11"\
   section="Applications/Programming"\
   hints="TDE"\

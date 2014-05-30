@@ -10,7 +10,7 @@ wrap_before = ['<h1>', '<h2>', '<h3>', '<h4>', '<h5>', '<h6>', '<p>', '<br>', '<
 	       '<ol>', '<ul>', '<li>', '<table>', '<th>', '<tr>', '<td>', '<center>', 
 	       '<blockquote>', '<pre>', '<hr>', '<hr/>']
 
-### TODO: try to support any charset, not only UTF-8 (so that it can be used outside KDE)
+### TODO: try to support any charset, not only UTF-8 (so that it can be used outside TDE)
 
 def splitit( start, message, outfile ):
 	# print start+"\""+message+"\"" # DEBUG

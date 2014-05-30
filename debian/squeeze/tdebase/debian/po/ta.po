@@ -67,7 +67,7 @@ msgstr "கேடிஎம் கிங்கரனை (tdm daemon) நிறு
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
 "கே மேல்மேசை மேலாளர் (கேடிஎம்) கிங்கரன் வழக்கமாக பொதி மேலாக்கம் அல்லது நீக்கம் நிகழும் போது நிறுத்தப் படும். "

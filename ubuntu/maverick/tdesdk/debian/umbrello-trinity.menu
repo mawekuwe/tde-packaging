@@ -1,4 +1,4 @@
-?package(umbrello):\
+?package(umbrello-trinity):\
   needs="x11"\
   section="Applications/Programming"\
   hints="TDE"\

@@ -11,8 +11,8 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, barcode, imagemagick
 Replaces: kbarcode-trinity (<< 4:14.0.0~)
 Breaks: kbarcode-trinity (<< 4:14.0.0~)
-Recommends: libqt3-mt-mysql | libqt3-mt-psql | libqt3-mt-odbc | libqt3-mt-sqlite |
- libqt3-mt-ibase
+Recommends: libtqt3-mt-mysql | libtqt3-mt-psql | libtqt3-mt-odbc | libtqt3-mt-sqlite |
+ libtqt3-mt-ibase
 Description: barcode and label printing application for Trinity
  KBarcode is a barcode and label printing application for Trinity. It can be used
  to print everything from simple business cards up to complex labels with
@@ -23,7 +23,7 @@ Description: barcode and label printing application for Trinity
  note), thousands of predefined labels, database management tools and
  translations in many languages. Even printing more than 10.000 labels in one
  go is no problem for KBarcode. Data for printing can be imported from several
- different data sources, including SQL databases, CSV files and the KDE address
+ different data sources, including SQL databases, CSV files and the TDE address
  book.
  .
  Additionally it is a simple barcode generator (similar to the old xbarcode you

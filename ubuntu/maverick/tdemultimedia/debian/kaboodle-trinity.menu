@@ -1,4 +1,4 @@
-?package(kaboodle):\
+?package(kaboodle-trinity):\
 	needs="X11"\
 	section="Apps/Sound"\
 	hints="TDE"\

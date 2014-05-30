@@ -1,9 +1,9 @@
 .TH KFOULEGGS 6
 .SH NAME
-kfouleggs \- PuyoPuyo game for KDE
+kfouleggs \- PuyoPuyo game for TDE
 .SH SYNOPSIS
 .B kfouleggs
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kfouleggs
 is a clone of the Japanese PuyoPuyo game, with advanced features such

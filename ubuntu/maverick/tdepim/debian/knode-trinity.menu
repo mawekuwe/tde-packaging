@@ -1,4 +1,4 @@
-?package(knode):\
+?package(knode-trinity):\
 	needs="X11"\
 	section="Applications/Network/Communication"\
 	hints="TDE,News"\

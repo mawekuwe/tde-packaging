@@ -12,32 +12,32 @@ Architecture: all
 Section: tde
 Depends: atlantikdesigner (>= ${Source-Version}), kaddressbook-plugins (>= ${Source-Version}), kate-plugins (>= ${Source-Version}), tdeaddons-tdefile-plugins (>= ${Source-Version}), kicker-applets (>= ${Source-Version}), knewsticker-scripts (>= ${Source-Version}), konq-plugins (>= ${Source-Version}), ksig (>= ${Source-Version}), noatun-plugins (>= ${Source-Version})
 Suggests: tdeaddons-doc-html
-Description: add-on plugins and applets provided with KDE
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: add-on plugins and applets provided with TDE
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of add-on plugins and applets
- provided with the official release of KDE.
+ provided with the official release of TDE.
 
 Package: tdeaddons-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror | www-browser, tdeaddons
-Description: KDE add-ons documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE addons documentation
+Description: TDE add-ons documentation in HTML format
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE addons documentation
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
  /opt/trinity/share/doc/tde/HTML/en/kicker-applets/. Documentation is provided for
- most KDE addons packages.
+ most TDE addons packages.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: atlantikdesigner
 Architecture: any
@@ -47,14 +47,14 @@ Enhances: atlantik
 Description: game board designer for Atlantik
  Atlantik Designer is a game board designer for the game Atlantik.
  .
- Atlantik is a KDE client for playing Monopoly-like board games on the
+ Atlantik is a TDE client for playing Monopoly-like board games on the
  monopd network.  It can play any board supported by the network
  server, including the classic Monopoly game as well as the Atlantik
  game in which the properties include several major cities in North
  America and Europe.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: kaddressbook-plugins
 Architecture: any
@@ -62,16 +62,16 @@ Section: tde
 Depends: ${shlibs:Depends}
 Suggests: kworldclock, khelpcenter, tdeaddons-doc-html
 Enhances: kaddressbook
-Description: plugins for KAddressBook, the KDE address book
- This package contains a variety of useful plugins for the KDE address
- book.  These plugins can be loaded through the KDE address book settings.
+Description: plugins for KAddressBook, the TDE address book
+ This package contains a variety of useful plugins for the TDE address
+ book.  These plugins can be loaded through the TDE address book settings.
  .
  Highlights include exporting postal addresses as flags in KWorldClock,
  as well as importing and exporting contacts in the native format used
  by the German freemail provider GMX.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: kate-plugins
 Architecture: any
@@ -79,8 +79,8 @@ Section: editors
 Depends: ${shlibs:Depends}, tidy
 Suggests: khelpcenter, tdeaddons-doc-html, kaddressbook
 Enhances: kate
-Description: plugins for Kate, the KDE Advanced Text Editor
- This package contains a variety of useful plugins for Kate, the KDE
+Description: plugins for Kate, the TDE Advanced Text Editor
+ This package contains a variety of useful plugins for Kate, the TDE
  Advanced Text Editor.  These plugins can be loaded through the plugin
  manager in Kate settings.
  .
@@ -89,8 +89,8 @@ Description: plugins for Kate, the KDE Advanced Text Editor
  and text snippets, opening of C/C++ headers, extraction of C/C++ symbols,
  a tab bar, a Python browser and even more.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: tdeaddons-tdefile-plugins
 Architecture: any
@@ -99,19 +99,19 @@ Depends: ${shlibs:Depends}
 Conflicts: renamedlg-plugins (<= 4:3.2.0-1)
 Replaces: renamedlg-plugins (<= 4:3.2.0-1)
 Provides: renamedlg-plugins
-Description: KDE file dialog plugins for text files and folders
- This is a collection of plugins for the KDE file dialog.  These plugins
+Description: TDE file dialog plugins for text files and folders
+ This is a collection of plugins for the TDE file dialog.  These plugins
  extend the file dialog to offer advanced meta-information for text,
  HTML and desktop files, as well as for folders, Windows .lnk files,
  MIME archives and X.509 certificates.
  .
- This package also includes plugins for the KDE file rename dialog,
+ This package also includes plugins for the TDE file rename dialog,
  allowing a user to more easily decide what to do when faced with a
  decision regarding conflicting filenames.  Rename dialog plugins are
  provided for audio and image files.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: kicker-applets
 Architecture: any
@@ -122,8 +122,8 @@ Conflicts: ktimemon (<< 4:2.2-alpha1-0)
 Replaces: ktimemon (<< 4:2.2-alpha1-0)
 Provides: ktimemon
 Enhances: kicker
-Description: applets for Kicker, the KDE panel
- This package contains a variety of applets for Kicker, the KDE for panel.
+Description: applets for Kicker, the TDE panel
+ This package contains a variety of applets for Kicker, the TDE for panel.
  These applets will appear in the panel's Add--Applet menu.
  .
  Included are a system monitor, a colour picker, a media player controller,
@@ -133,8 +133,8 @@ Description: applets for Kicker, the KDE panel
  kicker-applets users to install XMMS. If you want a kicker applet that
  controls XMMS, install the xmms-kde package.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: knewsticker-scripts
 Architecture: all
@@ -142,16 +142,16 @@ Section: tde
 Depends: ${perl:Depends}, python, libfinance-quote-perl, libmime-perl, libnews-nntpclient-perl, libwww-perl
 Recommends: knewsticker
 Enhances: knewsticker
-Description: scripts for KNewsTicker, the KDE news ticker
+Description: scripts for KNewsTicker, the TDE news ticker
  This package contains a variety of scripts that provide additional news
- sources for KNewsTicker, the news ticker applet for the KDE panel.  See
+ sources for KNewsTicker, the news ticker applet for the TDE panel.  See
  /opt/trinity/share/doc/knewsticker-scripts/README.Debian for usage details.
  .
  Highlights include newsgroup handling, stock data retrieval, sports scores
  and various local news sources.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: konq-plugins
 Architecture: any
@@ -163,9 +163,9 @@ Enhances: konqueror, akregator
 Replaces: akregator (<< 1.1), akregator-konq-plugin (<< 1.1)
 Conflicts: akregator-konq-plugin (<< 1.1)
 Provides: akregator-konq-plugin
-Description: plugins for Konqueror, the KDE file/web/doc browser
+Description: plugins for Konqueror, the TDE file/web/doc browser
  This package contains a variety of useful plugins for Konqueror, the
- file manager, web browser and document viewer for KDE.  Many of these
+ file manager, web browser and document viewer for TDE.  Many of these
  plugins will appear in Konqueror's Tools menu.
  .
  Highlights for web browsing include web page translation, web page archiving,
@@ -179,8 +179,8 @@ Description: plugins for Konqueror, the KDE file/web/doc browser
  media player, a file information metabar/sidebar, a media folder helper, a
  graphical disk usage viewer and image conversions and transformations.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: ksig
 Architecture: any
@@ -198,25 +198,25 @@ Description: graphical tool for managing multiple email signatures
  signatures in external mail clients such as KMail.  See
  /opt/trinity/share/doc/ksig/README.Debian for details on how this can be done.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: noatun-plugins
 Architecture: any
 Section: sound
 Depends: ${shlibs:Depends}
 Enhances: noatun
-Description: plugins for Noatun, the KDE media player
+Description: plugins for Noatun, the TDE media player
  This package contains a variety of useful plugins for Noatun, the audio and
- video media player for KDE.  These plugins can be loaded through the plugin
+ video media player for TDE.  These plugins can be loaded through the plugin
  manager in Noatun settings.
  .
  Highlights include an alarm clock, guessing tags from filenames, adjustable
  playback speed, capture to wave file and displaying lyrics, plus a variety
  of user interfaces, playlists and visualisation plugins.
  .
- This package is part of KDE, as a component of the KDE addons module.
- See the 'kde' and 'tdeaddons' packages for more information.
+ This package is part of TDE, as a component of the TDE addons module.
+ See the 'tde' and 'tdeaddons' packages for more information.
 
 Package: tdeaddons-dbg
 Section: libdevel

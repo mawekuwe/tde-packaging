@@ -1,4 +1,4 @@
-?package(khelpcenter):\
+?package(khelpcenter-trinity):\
 	needs="X11"\
 	section="Help"\
 	hints="TDE"\

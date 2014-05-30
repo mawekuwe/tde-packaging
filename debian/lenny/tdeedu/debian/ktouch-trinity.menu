@@ -1,4 +1,4 @@
-?package(ktouch):needs="X11"\
+?package(ktouch-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KTouch"\

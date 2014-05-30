@@ -11,55 +11,55 @@ Standards-Version: 3.7.2
 Package: tdeutils
 Section: tde
 Architecture: all
-Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), kdelirc (>= ${Source-Version}), tdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), tdewalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version})
+Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), tdelirc (>= ${Source-Version}), tdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), tdewalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version})
 Suggests: tdeutils-doc-html (>= ${Source-Version})
-Description: general purpose utilities from the official KDE release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: general purpose utilities from the official TDE release
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of general purpose utilities 
- provided with the official release of KDE.
+ provided with the official release of TDE.
 
 Package: tdeutils-doc
 Section: doc
 Architecture: all
-Description: developer documentation for the KDE utilities module
- This package contains documentation for the KDE utilities module, of
+Description: developer documentation for the TDE utilities module
+ This package contains documentation for the TDE utilities module, of
  use more for developers creating applications than regular users.
  .
- This package is part of KDE, and a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, and a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: tdeutils-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror | www-browser, tdebase
-Description: KDE utilities documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE utilities documentation
+Description: TDE utilities documentation in HTML format
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE utilities documentation
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /usr/share/doc/tde/HTML/<language>/<app>/, for instance
  /usr/share/doc/tde/HTML/en/ark/. Documentation is provided for most
- KDE utilities packages.
+ TDE utilities packages.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: tdeutils-dev
 Section: utils
 Architecture: any
-Depends: ark (= ${Source-Version}), kcalc (= ${Source-Version}), kdelirc (= ${Source-Version}), kedit (= ${Source-Version}), khexedit (= ${Source-Version}), klaptopdaemon (= ${Source-Version}), kmilo (= ${Source-Version}), kregexpeditor (= ${Source-Version}), ksim (= ${Source-Version}), tdelibs4-dev
-Description: development files for the KDE utilities module
+Depends: ark (= ${Source-Version}), kcalc (= ${Source-Version}), tdelirc (= ${Source-Version}), kedit (= ${Source-Version}), khexedit (= ${Source-Version}), klaptopdaemon (= ${Source-Version}), kmilo (= ${Source-Version}), kregexpeditor (= ${Source-Version}), ksim (= ${Source-Version}), tdelibs4-dev
+Description: development files for the TDE utilities module
  This package contains development files needed to compile tdeutils
  applications.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: ark
 Section: utils
@@ -68,20 +68,20 @@ Depends: ${shlibs:Depends}
 Recommends: ncompress, unzip, zip, zoo, bzip2, p7zip-full
 Suggests: khelpcenter, rar, unrar | unrar-free
 Replaces: tdebase-data (<< 4:3.3.91)
-Description: graphical archiving tool for KDE
+Description: graphical archiving tool for TDE
  Ark is a graphical program for managing various archive formats within the
- KDE environment. Archives can be viewed, extracted, created and modified
+ TDE environment. Archives can be viewed, extracted, created and modified
  from within Ark.
  .
  The program can handle various formats such as tar, gzip, bzip2, zip, rar and
  lha (if appropriate command-line programs are installed).
  .
- Ark can work closely with Konqueror in the KDE environment to handle archives,
+ Ark can work closely with Konqueror in the TDE environment to handle archives,
  if you install the Konqueror Integration plugin available in the konq-plugins
  package.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kcalc
 Section: utils
@@ -89,8 +89,8 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
 Replaces: tdebase-data (<< 4:3.3.91)
-Description: calculator for KDE
- KCalc is KDE's scientific calculator.
+Description: calculator for TDE
+ KCalc is TDE's scientific calculator.
  .
  It provides:
   * trigonometric functions, logic operations, and statistical calculations
@@ -98,89 +98,89 @@ Description: calculator for KDE
   * a results-stack which lets you conveniently recall previous results
   * configurable precision, and number of digits after the period
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kcharselect
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: character selector for KDE
- A character set selector for KDE.
+Description: character selector for TDE
+ A character set selector for TDE.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
-Package: kdelirc
+Package: tdelirc
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: infrared control for KDE
- This is a frontend for the LIRC suite to use infrared devices with KDE.
+Description: infrared control for TDE
+ This is a frontend for the LIRC suite to use infrared devices with TDE.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: tdessh
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, openssh-client | ssh-client
-Description: ssh frontend for KDE
- This package contains KDE's frontend for ssh.
+Description: ssh frontend for TDE
+ This package contains TDE's frontend for ssh.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kdf
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: disk space utility for KDE
+Description: disk space utility for TDE
  KDiskFree displays the available file devices (hard drive partitions, floppy
  and CD drives, etc.) along with information on their capacity, free space, type
  and mount point. It also allows you to mount and unmount drives and view them
  in a file manager.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kedit
 Section: editors
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: basic text editor for KDE
- A simple text editor for KDE.
+Description: basic text editor for TDE
+ A simple text editor for TDE.
  .
  It can be used with Konqueror for text and configuration file browsing.
  KEdit also serves well for creating small plain text documents. KEdit's
  functionality will intentionally remain rather limited to ensure a
  reasonably fast start.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kfloppy
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, dosfstools
 Suggests: khelpcenter
-Description: floppy formatter for KDE
+Description: floppy formatter for TDE
  Kfloppy is a utility that provides a straightforward graphical means
  to format 3.5" and 5.25" floppy disks.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kgpg
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, konsole, gnupg
 Suggests: khelpcenter
-Description: GnuPG frontend for KDE
+Description: GnuPG frontend for TDE
  Kgpg is a frontend for GNU Privacy Guard (GnuPG). It provides file
  encryption, file decryption and key management.
  .
@@ -195,110 +195,110 @@ Description: GnuPG frontend for KDE
      signing)
    * decrypting clipboard contents, including integration with Klipper
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: khexedit
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: KDE hex editor
+Description: TDE hex editor
  KHexEdit is an editor for the raw data of binary files.  It includes
  find/replace functions, bookmarks, many configuration options, drag and drop
  support and other powerful features.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kjots
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: note taking utility for KDE
+Description: note taking utility for TDE
  Kjots is a small note taker program. Name and idea are taken from the jots
  program included in the tkgoodstuff package.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: klaptopdaemon
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: battery monitoring and management for laptops using KDE
+Description: battery monitoring and management for laptops using TDE
  This package contains utilities to monitor batteries and configure
- power management, for laptops, from within KDE.
+ power management, for laptops, from within TDE.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kmilo
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
-Description:  laptop special keys support for KDE
+Description:  laptop special keys support for TDE
  KMilo lets you use the special keys on some keyboards and laptops.
  .
  Usually this includes volume keys and other features. Currently, KMilo
  comes with plugins for Powerbooks, Thinkpads, Vaios and generic keyboards
  with special keys.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: kregexpeditor
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: graphical regular expression editor plugin for KDE
+Description: graphical regular expression editor plugin for TDE
  This package contains a graphical regular expression editor plugin for use
- with KDE. It let you draw your regular expression in an unambiguous way.
+ with TDE. It let you draw your regular expression in an unambiguous way.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: ksim
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: system information monitor for KDE
+Description: system information monitor for TDE
  KSim is a system monitor app which has its own plugin system with support
  for GKrellm skins. It allows users to follow uptime, memory usage, network
  connections, power, etc.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: ktimer
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: timer utility for KDE
- This is a timer application for KDE. It allows you to execute commands after
+Description: timer utility for TDE
+ This is a timer application for TDE. It allows you to execute commands after
  a certain amount of time. It supports looping commands as well as delayed
  command execution.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: tdewalletmanager
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: wallet manager for KDE
+Description: wallet manager for TDE
  This program keeps various wallets for any kind of data that the user can
  store encrypted with passwords and can also serve as a password manager that
  keeps a master password to all wallets.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: superkaramba
 Section: tde
@@ -306,9 +306,9 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
 Conflicts: karamba
-Description: a program based on karamba improving the eyecandy of KDE
+Description: a program based on karamba improving the eyecandy of TDE
  SuperKaramba is a tool based on karamba that allows anyone to easily create
- and run little interactive widgets on a KDE desktop. Widgets are defined in a
+ and run little interactive widgets on a Trinity desktop. Widgets are defined in a
  simple text file and can be augmented with Python code to make them
  interactive.
  .
@@ -319,8 +319,8 @@ Description: a program based on karamba improving the eyecandy of KDE
   * Create little games or virtual pets that live on your desktop.
   * Display information from the internet, such as weather and headlines.
  .
- This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'tdeutils' packages for more information.
+ This package is part of TDE, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.
 
 Package: tdeutils-dbg
 Section: libdevel

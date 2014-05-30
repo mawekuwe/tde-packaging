@@ -1,15 +1,15 @@
 .TH MULTISYNK 1
 .SH NAME
-multisynk \- KDE synchronization application
+multisynk \- TDE synchronization application
 .SH SYNOPSIS
 .B multisynk
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B MultiSynk
-is a frontend for KDE's synchronization framework kitchensync.  This
+is a frontend for TDE's synchronization framework kitchensync.  This
 framework lets you synchronize a lot of mobile devices like handhelds
-and mobile phones with your KDE desktop, but also offers the possibility
-to synchronize two or more KDE desktops directly.
+and mobile phones with your Trinity desktop, but also offers the possibility
+to synchronize two or more Trinity desktops directly.
 .so kdeopt.part
 .SH SEE ALSO
 More detailed user documentation is available from

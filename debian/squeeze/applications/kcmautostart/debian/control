@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kcontrol-autostart-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: autostart module for the TDE control center
- Autostart is a TDE control center module to configure which applications
+Description: autostart module for the Trinity control center
+ Autostart is a Trinity control center module to configure which applications
  start up when you login into a TDE session.
  .
   Homepage: http://www.kde-apps.org/content/download.php?content=45975

@@ -67,7 +67,7 @@ msgstr "tdm ഡീമണെ നിര്‍ത്തിക്കോട്ട�
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
 "കെ പ്രദര്‍ശന മാനേജര്‍ (tdm) ഡീമണ്‍ സാധാരണയായി പാക്കേജ്  പുതുക്കലിന്റേയും നീക്കം "

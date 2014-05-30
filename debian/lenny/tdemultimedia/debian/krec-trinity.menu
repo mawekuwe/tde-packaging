@@ -1,4 +1,4 @@
-?package(krec):\
+?package(krec-trinity):\
 	needs="X11"\
 	section="Apps/Sound"\
 	hints="TDE"\

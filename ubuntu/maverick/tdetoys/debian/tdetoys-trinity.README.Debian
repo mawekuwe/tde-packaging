@@ -1,10 +1,10 @@
-KDE Toys for Debian
+TDE Toys for Debian
 -------------------
 
 Package tdetoys is a metapackage that depends on the full set of toys
-provided with the official release of KDE.
+provided with the official release of TDE.
 
-Each application provides documentation in a docbook format that the KDE
+Each application provides documentation in a docbook format that the TDE
 Help Centre can display.  For HTML documentation that can be read in any
 web browser, see the package tdetoys-doc-html.
 

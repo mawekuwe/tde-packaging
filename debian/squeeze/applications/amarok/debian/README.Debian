@@ -16,9 +16,9 @@ Amarok packages for Debian
       some other packages for them to work. Those packages are listed in
       the Suggests: field of the amarok package.
 
-  Also, users not using the full KDE environment may get the following
+  Also, users not using the full TDE environment may get the following
   error when executing amarok for the first time: "Socket-path is not a
-  link or a directory: /home/$USER/.kde/socket-$HOSTNAME". Just execute:
+  link or a directory: /home/$USER/.trinity/socket-$HOSTNAME". Just execute:
 
     $ lnusertemp socket
 

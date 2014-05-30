@@ -16,7 +16,7 @@ Suggests: bibletime-i18n-trinity
 Provides: sword-frontend
 Description: A bible study tool for Trinity
  BibleTime is a free and easy to use bible study tool for UNIX systems.
- It requires a working KDE environment and the SWORD library.
+ It requires a working TDE environment and the SWORD library.
  BibleTime provides easy handling of digitized texts (Bibles, commentaries
  and lexicons) and powerful features to work with these texts (search in
  texts, write own notes, save, print etc.).

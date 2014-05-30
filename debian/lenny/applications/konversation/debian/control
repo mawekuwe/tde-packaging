@@ -16,7 +16,7 @@ Replaces: konversation-trinity (<< 4:14.0.0~)
 Breaks: konversation-trinity (<< 4:14.0.0~)
 Recommends: python, ruby
 Suggests: libsoap-lite-perl
-Description: user friendly Internet Relay Chat (IRC) client for KDE [Trinity]
+Description: user friendly Internet Relay Chat (IRC) client for TDE [Trinity]
  Konversation is a client for the Internet Relay Chat (IRC) protocol.
  It is easy to use and well-suited for novice IRC users, but novice
  and experienced users alike will appreciate its many features:

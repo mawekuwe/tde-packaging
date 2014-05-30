@@ -1,4 +1,4 @@
-?package(kppp):\
+?package(kppp-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE"\
@@ -7,7 +7,7 @@
 	icon16x16="/opt/trinity/share/pixmaps/kppp-16.xpm"\
 	command="/opt/trinity/bin/kppp"
 
-?package(kppp):\
+?package(kppp-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE"\

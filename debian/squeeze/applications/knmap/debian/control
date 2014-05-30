@@ -17,7 +17,7 @@ Description: nmap graphical interface for TDE
  This program is a complete re-write of one by the same name written by
  Alexandre Sagala. The last version of that program was 0.9 which was
  released on 2003-03-09 and targeted the KDE 2.2 and QT 2.3 environments.
- Unfortunately it does not compile on today's TDE / QT environments.
+ It can be compiled on today's TDE / TQt environment.
  .
  Not to mention that it did not cater for the full set of 'nmap' options.
  Or, perhaps, 'nmap' progressed whilst that version of Knmap languished.

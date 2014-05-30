@@ -1,4 +1,4 @@
-?package(kcalc):\
+?package(kcalc-trinity):\
 	needs="X11"\
 	section="Apps/Math"\
 	hints="TDE,Calculators"\

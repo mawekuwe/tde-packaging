@@ -56,7 +56,7 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>Find the DCOP reference of a KDE service</refpurpose>
+    <refpurpose>Find the DCOP reference of a TDE service</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -72,7 +72,7 @@ manpage.1: manpage.sgml
     <title>DESCRIPTION</title>
 
 	<para><command>&dhpackage;</command> returns a reference to the first
-	instance of the KDE service specified by
+	instance of the TDE service specified by
 	<replaceable>service</replaceable>. See also dcopstart, which starts a
 	service/application and immediately returns its reference.
 	</para>

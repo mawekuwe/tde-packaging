@@ -1,7 +1,7 @@
 kvpnc for Debian
 ----------------
 
-kvpnc for Debian uses su-to-root from menu package instead kdesu.
+kvpnc for Debian uses su-to-root from menu package instead tdesu.
 
 Howto setup kvpnc for use without root password using sudo:
 

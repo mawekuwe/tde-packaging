@@ -1,4 +1,4 @@
-?package(ktechlab):needs="X11" \
+?package(ktechlab-trinity):needs="X11" \
   section="Applications/Programming" \
   hints="TDE" \
   title="KTechLab" \

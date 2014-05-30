@@ -10,6 +10,6 @@ Architecture: all
 Depends: crystalcursors
 Conflicts: kubuntu-default-settings
 Recommends: tdmtheme-trinity, kubuntu-tdm-themes
-Description: Default settings and artwork for the Ubuntu TDE desktop
+Description: Default settings and artwork for the Ubuntu Trinity desktop
  This package contains the default settings used by Ubuntu [Trinity].  It also
  includes artwork and Ubuntu branding.

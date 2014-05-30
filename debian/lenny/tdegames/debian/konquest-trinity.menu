@@ -1,4 +1,4 @@
-?package(konquest):\
+?package(konquest-trinity):\
 	needs="x11"\
 	section="Games/Strategy"\
 	hints="TDE"\

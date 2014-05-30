@@ -1,4 +1,4 @@
-?package(kshisen):\
+?package(kshisen-trinity):\
 	needs="x11"\
 	section="Games/Board"\
 	hints="TDE"\

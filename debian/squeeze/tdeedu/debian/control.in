@@ -12,25 +12,25 @@ Architecture: all
 Section: tde
 Depends: blinken (>= ${Source-Version}), kalzium (>= ${Source-Version}), kanagram (>= ${Source-Version}), kbruch (>= ${Source-Version}), tdeedu-data (>= ${Source-Version}), keduca (>= ${Source-Version}), kgeography (>= ${Source-Version}), khangman (>= ${Source-Version}), kig (>= ${Source-Version}), kiten (>= ${Source-Version}), klatin (>= ${Source-Version}), klettres (>= ${Source-Version}), kmplot (>= ${Source-Version}), kpercentage (>= ${Source-Version}), kstars (>= ${Source-Version}), ktouch (>= ${Source-Version}), kturtle (>= ${Source-Version}), kverbos (>= ${Source-Version}), kvoctrain (>= ${Source-Version}), kwordquiz (>= ${Source-Version}), indi (>= ${Source-Version})
 Suggests: tdeedu-doc-html
-Description: educational apps from the official KDE release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: educational apps from the official TDE release
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes educational applications provided with the
- official release of KDE.
+ official release of TDE.
 
 Package: tdeedu-data
 Architecture: all
 Section: tde
-Description: shared data for KDE educational applications
+Description: shared data for TDE educational applications
  This package contains shared data necessary for running the
- educational applications provided with KDE (the K Desktop
+ educational applications provided with TDE (the Trinity Desktop
  Environment).
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: tdeedu-dbg
 Architecture: any
@@ -46,27 +46,27 @@ Package: tdeedu-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror | www-browser, tdeedu
-Description: KDE edutainment documentation in HTML format
- By default the educational applications provided with KDE (the K
- Desktop Environment) only provide their documentation in KDE docbook
+Description: TDE edutainment documentation in HTML format
+ By default the educational applications provided with TDE (the Trinity
+ Desktop Environment) only provide their documentation in TDE docbook
  format, which can only be read by Konqueror or KHelpCenter. This
- package provides all of the KDE edutainment documentation converted
+ package provides all of the TDE edutainment documentation converted
  to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
  /opt/trinity/share/doc/tde/HTML/en/kalzium/. Documentation is provided for
- most KDE educational packages.
+ most TDE educational packages.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: blinken
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, ttf-sjfonts, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, ttf-sjfonts, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: KDE version of the Simon Says electronic memory game
+Description: TDE version of the Simon Says electronic memory game
  Blinken is based on an electronic game released in 1978, which
  challenges players to remember sequences of increasing length.  On
  the face of the device, there are 4 different color buttons, each
@@ -76,15 +76,15 @@ Description: KDE version of the Simon Says electronic memory game
  correct order, they advance to the next stage, where an identical
  sequence with one extra step is presented.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kalzium
 Architecture: any
 Section: science
-Depends: ${shlibs:Depends}, kalzium-data (>> ${KDE-Version3}), kalzium-data (<< ${KDE-Next-Version3}), tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, kalzium-data (>> ${TDE-Version3}), kalzium-data (<< ${TDE-Next-Version3}), tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: chemistry teaching tool for KDE
+Description: chemistry teaching tool for TDE
  Kalzium is a program which shows you the Periodic System of Elements
  (PSE).  You can use Kalzium to search for information about the
  elements or to learn facts about the PSE.
@@ -101,8 +101,8 @@ Description: chemistry teaching tool for KDE
  OCaml supports native code generation, Kalzium includes a chemical
  equation solver.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kalzium-data
 Architecture: all
@@ -110,21 +110,21 @@ Section: science
 Replaces: kalzium (<< 4:3.5.0)
 Description: data files for Kalzium
  This package contains architecture-independent data files for
- Kalzium, the KDE periodic table application.  This includes pictures
+ Kalzium, the TDE periodic table application.  This includes pictures
  of various chemical equipment and of samples of several elements, in
  addition to the actual chemical data.
  .
  See the kalzium package for further information.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kanagram
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: letter order game for KDE
+Description: letter order game for TDE
  KAnagram is a game that is based on the word/letter puzzles that the
  author played as a child.  A word is picked at random and displayed
  with its letters in a messed order, with difficulty dependent on the
@@ -137,67 +137,67 @@ Description: letter order game for KDE
  children aged 10+ because of the difficulty, but of course everyone
  is welcome to try.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kbruch
 Architecture: any
 Section: math
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: fraction calculation teaching tool for KDE
+Description: fraction calculation teaching tool for TDE
  KBruch is a small program to practice calculating with fractions.
  Different exercises are provided for this purpose.  The program
  checks the user's input and gives feedback.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: keduca
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: interactive form-based tests for KDE
+Description: interactive form-based tests for TDE
  KEduca is a flash-card application which allows you to make
  interactive form-based tests.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kgeography
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, kgeography-data (>> ${KDE-Version3}), kgeography-data (<< ${KDE-Next-Version3}), tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, kgeography-data (>> ${TDE-Version3}), kgeography-data (<< ${TDE-Next-Version3}), tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: Geography learning tool for KDE
+Description: Geography learning tool for TDE
  KGeography contains maps allowing you to learn various countries or
  the political divisions of several countries.  It has several modes,
  including a map browser and games involving the names, capitals, or
  flags of the map divisions.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kgeography-data
 Architecture: all
 Section: tde
 Description: data files for KGeography
  This package contains architecture-independent data files for
- KGeography, the geography learning tool for KDE.  This includes map
+ KGeography, the geography learning tool for TDE. This includes map
  and flag images.
  .
  See the kgeography package for further information.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: khangman
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, ttf-dustin, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, ttf-dustin, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: the classical hangman game for KDE
+Description: the classical hangman game for TDE
  KHangMan is a game based on the well known hangman game.  It is aimed
  for children aged 6 and above.  It has four levels of difficulty:
  Animals (animals words), Easy, Medium and Hard.
@@ -207,15 +207,15 @@ Description: the classical hangman game for KDE
  guess a wrong letter, a picture of a hangman is drawn.  You must
  guess the word before getting hanged!  You have 10 tries.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kig
 Architecture: any
 Section: math
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: interactive geometry program for KDE
+Description: interactive geometry program for TDE
  Kig is an application for interactive geometry.  It is intended to
  serve two purposes:
  .
@@ -233,28 +233,28 @@ Description: interactive geometry program for KDE
  and exports to/from foreign file formats including Cabri, Dr. Geo,
  KGeo, KSeg and XFig.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kiten
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3}), ttf-kochi-gothic | ttf-kochi-mincho
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3}), ttf-kochi-gothic | ttf-kochi-mincho
 Suggests: khelpcenter, tdeedu-doc-html
-Description: Japanese reference/study tool for KDE
- Kiten is a Japanese reference and study tool for KDE.  It is an
+Description: Japanese reference/study tool for TDE
+ Kiten is a Japanese reference and study tool for TDE. It is an
  application with multiple functions.  Firstly, it is a convenient
  English to Japanese and Japanese to English dictionary.  Secondly, it
  is a Kanji dictionary, with multiple ways to look up specific
  characters.  Thirdly, it is a tool to help you learn Kanji.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: klatin
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: application to help revise/teach Latin
  KLatin is a program to help revise Latin.  There are three "sections"
@@ -271,15 +271,15 @@ Description: application to help revise/teach Latin
  a noun or a verb, such as the "ablative singular", or the "1st person
  indicative passive plural", and is not multiple choice.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: klettres
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, klettres-data (>> ${KDE-Version3}), klettres-data (<< ${KDE-Next-Version3}), tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, klettres-data (>> ${TDE-Version3}), klettres-data (<< ${TDE-Next-Version3}), tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: foreign alphabet tutor for KDE
+Description: foreign alphabet tutor for TDE
  KLettres is an application specially designed to help the user to
  learn the alphabet in a new language and then to learn to read simple
  syllables.  The user can be a young child aged from two and a half or
@@ -288,8 +288,8 @@ Description: foreign alphabet tutor for KDE
  Seven languages are currently available: Czech, Danish, Dutch,
  English, French, Italian and Slovak.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: klettres-data
 Architecture: all
@@ -297,21 +297,21 @@ Section: tde
 Replaces: klettres (<< 4:3.2.0.1)
 Description: data files for KLettres foreign alphabet tutor
  This package contains architecture-independent data files for
- KLettres, the foreign alphabet tutor for KDE.  This includes sound
+ KLettres, the foreign alphabet tutor for TDE. This includes sound
  files and graphics.
  .
  See the klettres package for further information.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kmplot
 Architecture: any
 Section: math
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: mathematical function plotter for KDE
- KmPlot is a mathematical function plotter for KDE.  It has a powerful
+Description: mathematical function plotter for TDE
+ KmPlot is a mathematical function plotter for TDE. It has a powerful
  built-in parser.  You can plot different functions simultaneously and
  combine them to build new functions.
  .
@@ -324,15 +324,15 @@ Description: mathematical function plotter for KDE
  maximum and minimum values, changing function parameters dynamically
  and plotting derivatives and integral functions.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kpercentage
 Architecture: any
 Section: math
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: percentage calculation teaching tool for KDE
+Description: percentage calculation teaching tool for TDE
  KPercentage is a small math application that will help pupils to
  improve their skills in calculating percentages.
  .
@@ -340,16 +340,16 @@ Description: percentage calculation teaching tool for KDE
  Finally the pupil can select a random mode, in which all three tasks
  are mixed randomly.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kstars
 Architecture: any
 Section: science
-Depends: ${shlibs:Depends}, kstars-data (>> ${KDE-Version3}), kstars-data (<< ${KDE-Next-Version3}), tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3}), indi (= ${Source-Version})
+Depends: ${shlibs:Depends}, kstars-data (>> ${TDE-Version3}), kstars-data (<< ${TDE-Next-Version3}), tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3}), indi (= ${Source-Version})
 Suggests: konqueror, khelpcenter, tdeedu-doc-html
-Description: desktop planetarium for KDE
- KStars is a graphical desktop planetarium for KDE.  It depicts an
+Description: desktop planetarium for TDE
+ KStars is a graphical desktop planetarium for TDE. It depicts an
  accurate simulation of the night sky, including stars,
  constellations, star clusters, nebulae, galaxies, all planets, the
  Sun, the Moon, comets and asteroids.  You can see the sky as it
@@ -361,8 +361,8 @@ Description: desktop planetarium for KDE
  powerful features, yet the interface is clean and simple and fun to
  use.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kstars-data
 Architecture: all
@@ -370,20 +370,20 @@ Section: science
 Replaces: kstars (<< 4:3.2.0.1)
 Description: data files for KStars desktop planetarium
  This package contains architecture-independent data files for KStars,
- the graphical desktop planetarium for KDE.  This includes star
+ the graphical desktop planetarium for TDE. This includes star
  catalogues and astronomical images.
  .
  See the kstars package for further information.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: ktouch
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: touch typing tutor for KDE
+Description: touch typing tutor for TDE
  KTouch is a program for learning touch typing - it helps you learn to
  type on a keyboard quickly and correctly.  Every finger has its place
  on the keyboard with associated keys to press.
@@ -393,13 +393,13 @@ Description: touch typing tutor for KDE
  are.  It can display which key to press next, and the correct finger
  to use.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kturtle
 Architecture: any
 Section: devel
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: educational Logo programming environment
  KTurtle is an educational programming environment using the Logo
@@ -419,15 +419,15 @@ Description: educational Logo programming environment
  qualities of the programming language and will not try to suit
  professional programmers' needs.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kverbos
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: Spanish verb form study application for KDE
+Description: Spanish verb form study application for TDE
  Kverbos allows the user to learn the forms of Spanish verbs.  The
  program suggests a verb and a time and the user enters the different
  verb forms.  The program corrects the user input and gives feedback.
@@ -436,15 +436,15 @@ Description: Spanish verb form study application for KDE
  program can build regular verb forms by itself.  Irregular verb forms
  have to be entered by the user.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kvoctrain
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: vocabulary trainer for KDE
+Description: vocabulary trainer for TDE
  KVocTrain is a little utility to help you train your vocabulary when
  you are trying to learn a foreign language.  You can create your own
  database with the words you need.  It is intended as a replacement
@@ -460,25 +460,25 @@ Description: vocabulary trainer for KDE
  things.  This is and probably will stay beyond the scope of this
  application.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: kwordquiz
 Architecture: any
 Section: tde
-Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data (>> ${TDE-Version3}), tdeedu-data (<< ${TDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
-Description: flashcard and vocabulary learning program for KDE
+Description: flashcard and vocabulary learning program for TDE
  KWordQuiz is a flashcard-based tool that helps you to master new
  vocabularies. It may be a language or any other kind of terminology.
  .
  KWordQuiz can open several types of vocabulary data.  Supported are
- kvtml files used by other KDE programs such as KVocTrain, wql files
+ kvtml files used by other TDE programs such as KVocTrain, wql files
  used by WordQuiz for Windows, csv files with comma-separated text,
  and xml.gz files created by Pauker (http://pauker.sourceforge.net).
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: libtdeedu3
 Architecture: any
@@ -486,27 +486,27 @@ Section: libs
 Depends: ${shlibs:Depends}
 Conflicts: libtdeedu1
 Replaces: libtdeedu1
-Description: library for use with KDE educational apps
- The KDE-based library libtdeedu is used with educational
+Description: library for use with TDE educational apps
+ The TDE-based library libtdeedu is used with educational
  applications.  It currently provides support for data plotting and
  vocabulary items (including a parser for kvtml vocabulary files).
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: libtdeedu-dev
 Architecture: any
 Section: libdevel
 Depends: libtdeedu3 (= ${Source-Version}), tdelibs4-dev
-Description: development files for KDE educational library
- The KDE-based library libtdeedu is used with educational
+Description: development files for TDE educational library
+ The TDE-based library libtdeedu is used with educational
  applications.  It currently provides support for data plotting and
  vocabulary items (including a parser for kvtml vocabulary files).
  .
  Development files for libtdeedu are included in this package.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: libkiten1
 Architecture: any
@@ -515,7 +515,7 @@ Depends: ${shlibs:Depends}, edict, kanjidic
 Recommends: ttf-kochi-gothic | ttf-kochi-mincho
 Replaces: kiten (<< 4:3.4.0)
 Description: library for Kiten Japanese reference/study tool
- Kiten is a Japanese reference/study tool for KDE.  The library
+ Kiten is a Japanese reference/study tool for TDE. The library
  libkiten contains portions of Kiten that may be useful for other
  applications.  These portions include dictionary, character lookup
  and widget classes.
@@ -524,15 +524,15 @@ Description: library for Kiten Japanese reference/study tool
  data, such as Japanese language data files and GUI resource files.
  For further information, see the kiten package.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: libkiten-dev
 Architecture: any
 Section: libdevel
 Depends: libkiten1 (= ${Source-Version}), tdelibs4-dev
 Description: development files for Kiten library
- Kiten is a Japanese reference/study tool for KDE.  The library
+ Kiten is a Japanese reference/study tool for TDE. The library
  libkiten contains portions of Kiten that may be useful for other
  applications.  These portions include dictionary, character lookup
  and widget classes.
@@ -540,8 +540,8 @@ Description: development files for Kiten library
  Development files for libkiten are included in this package.  For
  further information, see the kiten package.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.
 
 Package: indi
 Architecture: any
@@ -556,5 +556,5 @@ Description: Instrument Neutral Distributed Interface for astronomical devices
  communicate with the device drivers and build a completely dynamic GUI
  based on the services provided by the device.
  .
- This package is part of KDE, as a component of the KDE education module.
- See the 'kde' and 'tdeedu' packages for more information.
+ This package is part of TDE, as a component of the TDE education module.
+ See the 'tde' and 'tdeedu' packages for more information.

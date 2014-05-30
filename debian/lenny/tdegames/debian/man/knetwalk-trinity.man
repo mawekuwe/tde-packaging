@@ -3,7 +3,7 @@
 knetwalk \- A game for system administrators
 .SH SYNOPSIS
 .B knetwalk
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 \fBKNetwalk\fP presents the player with a rectangular grid containing
 a server, several clients, and pieces of wire.  The object of the game

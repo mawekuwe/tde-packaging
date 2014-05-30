@@ -1,4 +1,4 @@
-?package(kiten):needs="X11"\
+?package(kiten-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="Kiten"\

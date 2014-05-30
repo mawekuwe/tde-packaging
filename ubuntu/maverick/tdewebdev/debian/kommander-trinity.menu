@@ -1,4 +1,4 @@
-?package(kommander):\
+?package(kommander-trinity):\
     needs="X11"\
     hints="TDE"\
     section="Apps/Tools"\

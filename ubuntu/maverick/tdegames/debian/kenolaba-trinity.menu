@@ -1,4 +1,4 @@
-?package(kenolaba):\
+?package(kenolaba-trinity):\
 	needs="x11"\
 	section="Games/Board"\
 	hints="TDE"\

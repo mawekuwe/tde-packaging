@@ -1,4 +1,4 @@
-?package(kodo):\
+?package(kodo-trinity):\
 	needs="x11"\
 	section="Games/Toys"\
 	hints="TDE"\

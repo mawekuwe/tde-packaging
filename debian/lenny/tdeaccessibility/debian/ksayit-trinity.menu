@@ -1,4 +1,4 @@
-?package(ksayit):\
+?package(ksayit-trinity):\
 	needs="x11"\
 	section="Applications/Accessibility"\
 	hints="TDE"\

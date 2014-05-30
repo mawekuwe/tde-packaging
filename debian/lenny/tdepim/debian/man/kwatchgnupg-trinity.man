@@ -3,7 +3,7 @@
 kwatchgnupg \- GnuPG log viewer
 .SH SYNOPSIS
 .B kwatchgnupg
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B KWatchGnuPG
 is a simple GnuPG log viewer for GnuPG.  It works as a GUI wrapper around
