@@ -58,7 +58,7 @@ debian/build-kde:
 		ln -sf /usr/share/misc/config.guess config.guess
 
 	[ -d build-kde ] || mkdir build-kde
-        cd build-kde && ../configure CFLAGS="$(CFLAGS)" $(CONFIGURE_OPTIONS_TDE)
+	cd build-kde && ../configure CFLAGS="$(CFLAGS)" $(CONFIGURE_OPTIONS_TDE)
 	$(MAKE) -C build-kde
 	touch debian/build-kde
 
