@@ -1,11 +1,11 @@
 -----BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hash: SHA512
 
-c92d44bfab485525f3078b6bcdafa0aa  keyrings/kde3-maintainers-keyring.gpg
+7d31c6d96998f2cf978c8b641a72c1d8  keyrings/trinity-keyring.gpg
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (GNU/Linux)
+Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAknxzxAACgkQ1qe3DOI85pKjkgCeLm9YEGnuXOvhzuCQF2UDLLAn
-pC0AoMNmSPQt2+W0jStHxn7lnHHnoqHd
-=068G
+iFYEAREKAAYFAlOU3l0ACgkQLaxZSoRZrGEK8gDfb8NcvOCmRG1vlISV5Wnqdehb
++ZL9t4tbCl9vwQDgv8OYHWXQHigPDgR5N6n/9Eymy8aurntPF90BYQ==
+=kKmH
 -----END PGP SIGNATURE-----
