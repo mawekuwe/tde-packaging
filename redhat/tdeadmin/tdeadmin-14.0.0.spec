@@ -353,7 +353,7 @@ Requires:	trinity-tdebase-bin
 
 %description -n trinity-lilo-config
 lilo-config is a TDE based frontend to the lilo boot manager configuration.
-It runs out of the TDE Control Center.
+It runs out of the Trinity Control Center.
 
 If you want to use the menu entry to launch lilo-config, you need to install
 tdebase-bin since it uses the tdesu command to gain root privileges.

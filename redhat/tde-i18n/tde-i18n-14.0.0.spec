@@ -48,13 +48,7 @@ AutoReq: no
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # Main patch: lots of updates for TDE R14.0.0
-Patch1:		tde-i18n-14.0.0-fr-updates.patch
-
-# Translate 'tdesu' message was modified in 'tdebase' package
-Patch2:		tde-i18n-14.0.0-fr-tdesu_no_ignore_button.patch
-
-# Translate 'Open Terminal Here' desktop shortcut
-Patch3:		tde-i18n-14.0.0-fr-openterminalhere.patch
+Patch1:		tde-i18n-14.0.0-extra_translations.patch
 
 
 BuildRequires:	findutils
@@ -693,8 +687,6 @@ Provides:	 trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
 # Patches for French translations
 pushd tde-i18n-fr
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 popd
 
 
@@ -730,7 +722,7 @@ for l in %{TDE_LANGS}; do
       ..
 
       # Run the build process in background
-      ( %__make -j4 || %__make || echo Error ) &
+      ( %__make -j4 || %__make || echo TDE_Error ) &
       
       # Do not build more than 4 languages at the same time
       while [ $(jobs | wc -l) -ge 4 ]; do sleep 3; done
@@ -740,7 +732,7 @@ for l in %{TDE_LANGS}; do
 done
 ) 2>&1 | tee /tmp/rpmbuild.$$
 
-if grep -qw Error /tmp/rpmbuild.$$; then
+if grep -qw TDE_Error /tmp/rpmbuild.$$; then
   echo "Error while building. See '/tmp/rpmbuild.$$'"
   exit 1
 fi

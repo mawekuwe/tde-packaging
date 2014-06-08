@@ -14,7 +14,7 @@
 +		 || (sdevice->fileSystemName() == "umsdos")
 +		 || (sdevice->fileSystemName() == "vfat")
 +		) {
-+			value = false; //config.readBoolEntry("utf8", true);
++			value = config.readBoolEntry("utf8", true);
 +		} else {
 +			value = false;
 +       }

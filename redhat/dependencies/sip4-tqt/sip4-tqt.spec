@@ -39,12 +39,6 @@ SIP is a tool for generating bindings for C++ classes with some ideas
 borrowed from SWIG, but capable of tighter bindings because of its
 specificity towards C++ and Python.
 
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
 %files
 %defattr(-,root,root,-)
 %dir %{python_sitearch}/sip4_tqt
@@ -70,8 +64,8 @@ has explicit support for the signal slot mechanism used by the Qt/KDE
 class libraries.
 
 Features:
-- connecting Qt signals to Python functions and class methods
-- connecting Python signals to Qt slots
+- connecting TQt signals to Python functions and class methods
+- connecting Python signals to TQt slots
 - overloading virtual member functions with Python class methods
 - protected member functions
 - abstract classes
@@ -81,12 +75,6 @@ Features:
 
 This package contains the code generator tool and the development headers
 needed to develop Python bindings with sip.
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
 
 %files devel
 %defattr(-,root,root,-)

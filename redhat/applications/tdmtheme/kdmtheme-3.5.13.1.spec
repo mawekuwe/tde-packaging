@@ -48,7 +48,7 @@ BuildRequires:	gettext
 
 
 %description
-kdmtheme is a theme manager for KDM. It provides a TDE Control Module (KCM)
+kdmtheme is a theme manager for KDM. It provides a Trinity Control Module (KCM)
 that allows you to easily install, remove and change your KDM themes.
 
 

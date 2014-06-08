@@ -297,7 +297,7 @@ Obsoletes:		tdenetwork-filesharing < %{version}-%{release}
 Provides:		tdenetwork-filesharing = %{version}-%{release}
 
 %description filesharing
-This package provides a TDE Control Center module to configure
+This package provides a Trinity Control Center module to configure
 NFS and Samba.
 
 %files filesharing

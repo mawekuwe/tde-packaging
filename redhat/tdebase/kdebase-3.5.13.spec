@@ -785,7 +785,7 @@ Requires:	hwdata
 %endif
 
 %description -n trinity-kcontrol
-The TDE Control Center provides you with a centralized and convenient
+The Trinity Control Center provides you with a centralized and convenient
 way to configure all of your TDE settings.
 
 It is made up of multiple modules. Each module is a separate application,

@@ -45,7 +45,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:		kmymoneytitlelabel.png
-Patch0:			kmymoney-sqlite3-detection.diff
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -91,7 +90,7 @@ support.
 %package common
 Summary:		KMyMoney architecture independent files
 Group:			Applications/Utilities
-Requires:		%{name} == %{version}
+Requires:		%{name} == %{version}-%{release}
 
 %description common
 This package contains architecture independent files needed for KMyMoney to
@@ -102,7 +101,7 @@ have '%{name}' package installed, you will hardly find this package useful.
 %package devel
 Summary:		KMyMoney development files
 Group:			Development/Libraries
-Requires:		%{name} == %{version}
+Requires:		%{name} == %{version}-%{release}
 
 %description devel
 This package contains development files needed for KMyMoney plugins.
@@ -115,7 +114,6 @@ This package contains development files needed for KMyMoney plugins.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .sqlite3
 
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
 

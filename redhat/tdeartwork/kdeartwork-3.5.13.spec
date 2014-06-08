@@ -145,7 +145,7 @@ Group:		User Interface/Desktops
 This package contains additional widget styles for Trinity. Widget styles
 can be used to customise the look and feel of interface components such
 as buttons, scrollbars and so on.  They can be applied using the style
-manager in the TDE Control Centre.
+manager in the Trinity Control Center.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 
@@ -215,7 +215,7 @@ Group:		User Interface/Desktops
 
 %description -n trinity-kdewallpapers
 This package contains additional wallpapers for Trinity. Wallpapers can be
-applied using the background manager in the TDE Control Centre.
+applied using the background manager in the Trinity Control Center.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 
@@ -236,7 +236,7 @@ Center.
 
 The hooks for the standard xscreensavers are no longer part of this
 package. To select and/or configure the standard xscreensavers through
-the TDE Control Center, install the separate package kscreensaver-xsavers.
+the Trinity Control Center, install the separate package kscreensaver-xsavers.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 

@@ -41,8 +41,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:		1391880088:c68a1bac04c5cfdb0cdcbd91dc54995bfa05e292.diff
-
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -89,7 +87,6 @@ settings for:
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -R -p1
 
 
 %build

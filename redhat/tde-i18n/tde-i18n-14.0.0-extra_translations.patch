@@ -1,0 +1,123 @@
+diff -Nuar fr.p2/messages/tdebase/kcmbackground.po fr.p3/messages/tdebase/kcmbackground.po
+--- fr.p2/messages/tdebase/kcmbackground.po	2014-06-07 15:36:34.455347661 +0200
++++ fr.p3/messages/tdebase/kcmbackground.po	2014-06-07 16:44:15.728310955 +0200
+@@ -920,3 +920,9 @@
+ #, no-c-format
+ msgid "Move &Up"
+ msgstr "Mon&ter"
++
++msgid "Cross-fading background"
++msgstr "Affichage progressif du fond d'écran"
++
++msgid "Enables a smooth fading effect when changing background image."
++msgstr "Activer un effet de fondu lors du changement de fond d'écran."
+diff -Nuar fr.p2/messages/tdebase/kcmenergy.po fr.p3/messages/tdebase/kcmenergy.po
+--- fr.p2/messages/tdebase/kcmenergy.po	2014-06-07 15:36:34.455347661 +0200
++++ fr.p3/messages/tdebase/kcmenergy.po	2014-06-07 16:44:21.892169693 +0200
+@@ -102,3 +102,10 @@
+ "Choisissez la période d'inactivité après laquelle l'affichage doit être éteint. "
+ "Ceci est le plus haut niveau d'économie d'énergie qui puisse être utilisé "
+ "lorsque l'écran est physiquement allumé."
++
++msgid "&Enable specific display power management"
++msgstr "&Activer la gestion spécifique de l'énergie"
++
++msgid "Configure KPowersave..."
++msgstr "Configurer KPowersave..."
++
+diff -Nuar fr.p2/messages/tdebase/kcmkonq.po fr.p3/messages/tdebase/kcmkonq.po
+--- fr.p2/messages/tdebase/kcmkonq.po	2014-06-07 15:52:30.603936867 +0200
++++ fr.p3/messages/tdebase/kcmkonq.po	2014-06-07 16:44:27.234047255 +0200
+@@ -877,3 +877,43 @@
+ #: rootopts.cpp:276
+ msgid "Confirmation Required"
+ msgstr "Confirmation requise"
++
++# TDE
++msgid "Download path:"
++msgstr "Dossier des téléchargements :"
++
++msgid "This folder will be used by default to load or save downloads from or to."
++msgstr "Ce dossier sera utilisé par défaut pour télécharger des fichiers."
++
++msgid "Music path:"
++msgstr "Dossier des musiques :"
++
++msgid "This folder will be used by default to load or save music from or to."
++msgstr "Ce dossier sera utilisé par défaut pour lire ou enregistrer de la musique."
++
++msgid "Pictures path:"
++msgstr "Dossier des images :"
++
++msgid "This folder will be used by default to load or save pictures from or to."
++msgstr "Ce dossier sera utilisé par défaut pour lire en enregistrer des images."
++
++msgid "Public Share path:"
++msgstr "Dossier des partages publics :"
++
++msgid "This folder will be used by default to load or save public shared files from or to."
++msgstr "Ce dossier sera utilisé par défaut pour ouvrir ou enregistrer les fichiers partagés publiquement."
++
++msgid "Templates path:"
++msgstr "Dossier des modèles :"
++
++msgid "This folder will be used by default to load or save templates from or to."
++msgstr "Ce dossier sera utilisé par défaut pour ouvrir ou enregistrer des modèles."
++
++msgid "Videos path:"
++msgstr "Dossier des vidéos :"
++
++msgid "This folder will be used by default to load or save videos from or to."
++msgstr "Ce dossier sera utilisé par défaut pour lire en ouregistrer des vidéos."
++
++msgid "&Show free space overlay on device icons"
++msgstr "&Afficher l'espace libre sur les icônes"
+diff -Nuar fr.p2/messages/tdebase/kcmscreensaver.po fr.p3/messages/tdebase/kcmscreensaver.po
+--- fr.p2/messages/tdebase/kcmscreensaver.po	2014-06-07 15:53:13.977782717 +0200
++++ fr.p3/messages/tdebase/kcmscreensaver.po	2014-06-07 16:44:38.180796311 +0200
+@@ -362,3 +362,9 @@
+ 
+ msgid "Hide all active windows from the screen saver and use the desktop background as the screen saver input."
+ msgstr "Masquer toutes les fenêtres actives et afficher le fond d'écran lorsque l'économiseur d'écran est déclenché."
++
++msgid "&Vibrate unlock dialog box on failure"
++msgstr "&Vibrer en cas d'échec de déverrouillage"
++
++msgid "Makes the unlock dialog box vibrate when entering an incorrect password."
++msgstr "Faire vibrer la fenêtre de déverrouillage lorsqu'un mauvais mot de passe est saisi."
+diff -Nuar fr.p2/messages/tdebase/kdesktop.po fr.p3/messages/tdebase/kdesktop.po
+--- fr.p2/messages/tdebase/kdesktop.po	2014-06-07 15:49:50.020212889 +0200
++++ fr.p3/messages/tdebase/kdesktop.po	2014-06-07 16:44:58.546329306 +0200
+@@ -250,6 +250,10 @@
+ msgid "Open Terminal Here..."
+ msgstr "Ouvrir un Terminal..."
+ 
++#: krootwm.cc:135 (Trinity Specific)
++msgid "Open Terminal..."
++msgstr "Ouvrir un Terminal..."
++
+ #: krootwm.cc:137
+ msgid "Configure Desktop..."
+ msgstr "Configurer le bureau..."
+diff -Nuar fr.p2/messages/tdebase/kicker.po fr.p3/messages/tdebase/kicker.po
+--- fr.p2/messages/tdebase/kicker.po	2014-06-07 16:41:47.636699669 +0200
++++ fr.p3/messages/tdebase/kicker.po	2014-06-07 16:45:04.820185402 +0200
+@@ -889,6 +889,18 @@
+ msgid "My Documents"
+ msgstr "Mes Documents"
+ 
++msgid "My Images"
++msgstr "Mes Images"
++
++msgid "My Music"
++msgstr "Ma Musique"
++
++msgid "My Videos"
++msgstr "Mes Vidéos"
++
++msgid "My Downloads"
++msgstr "Mes Téléchargements"
++
+ msgid "Switch to Kickoff Menu Style"
+ msgstr "Utiliser le menu Kickoff"
+ 
