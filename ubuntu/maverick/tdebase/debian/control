@@ -297,8 +297,7 @@ Section: tde
 Architecture: any
 Replaces: khelpcenter-kde3 (<< 4:14.0.0~), khelpcenter-trinity (<< 4:14.0.0~)
 Breaks: khelpcenter-kde3 (<< 4:14.0.0~), khelpcenter-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}
-Suggests: htdig
+Depends: ${shlibs:Depends}, htdig
 Description: help center for TDE
  The TDE Help Center provides documentation on how to use the Trinity desktop.
  .
