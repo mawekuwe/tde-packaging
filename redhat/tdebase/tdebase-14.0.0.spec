@@ -82,7 +82,6 @@ Source9:	mgabutton.svg
 %endif
 
 # Patch party !
-#Patch0:		tdebase-14.0.0-ftbfs.patch
 
 # Permanent patches, all TDE versions
 ## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
@@ -98,9 +97,7 @@ Patch105:		tdebase-14.0.0-konsole_wordseps.patch
 
 # Patches from Mandriva
 Patch201:	tdebase-14.0.0-vibrate_dialog.patch
-Patch202:	tdebase-14.0.0-kcontrol_menu_entry.patch
 Patch203:	tdebase-14.0.0-kdesktop_crossfade.patch
-Patch204:	tdebase-14.0.0-kickoff_xdg_dirs.patch
 Patch205:	tdebase-14.0.0-suspend_unmount.patch
 Patch206:	tdebase-14.0.0-bookmark_global_copy.patch
 
@@ -3333,7 +3330,6 @@ Windows and Samba shares.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-#patch0 -p1 -b .ftbfs
 
 %patch101 -p1 -b .openterminalhere
 %patch102 -p1 -b .startmenuicon
@@ -3341,9 +3337,7 @@ Windows and Samba shares.
 %patch105 -p1 -b .konsolewordseps
 
 %patch201 -p1 -b .vibrate_dialog
-%patch202 -p1 -b .kcontrol_menu_entry
 %patch203 -p1 -b .kdesktop_crossfade
-%patch204 -p1 -b .kickoff_xdg
 %patch205 -p1 -b .suspend_unmount
 %patch206 -p1 -b .bookmark_global_copy
 

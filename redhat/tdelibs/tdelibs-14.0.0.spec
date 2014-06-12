@@ -39,7 +39,6 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 #Patch11:		tdelibs-14.0.0-displayconfig_crash.patch
 
 # Patches from Mandriva
-Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
 Patch102:		tdelibs-14.0.0-cups_by_default.patch
 
 # Enables the 'kddebug' feature even when built with '-DNDEBUG'
@@ -468,7 +467,6 @@ applications for TDE.
 
 #patch11 -p1 -b .displayconfigcrash
 
-%patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
 
 #patch201 -p1 -b .kddebug
