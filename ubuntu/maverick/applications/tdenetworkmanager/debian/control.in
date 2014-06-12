@@ -9,7 +9,7 @@ Build-Depends: cdbs,
  pkg-config,
  tdelibs14-trinity-dev,
  libiw-dev,
- libnl-dev (>= 1.1),
+ libnl-3-dev | libnl-dev (>= 1.1),
  quilt,
  libtool, libltdl-dev, cmake
 Standards-Version: 3.8.4
