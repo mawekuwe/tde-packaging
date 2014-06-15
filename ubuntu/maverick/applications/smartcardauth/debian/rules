@@ -12,3 +12,5 @@ DEB_INSTALL_DOCS_ALL :=
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
+
+DEB_DH_SHLIBDEPS_ARGS_ALL=--dpkg-shlibdeps-params=--ignore-missing-info
