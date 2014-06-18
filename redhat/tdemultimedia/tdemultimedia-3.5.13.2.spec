@@ -132,7 +132,7 @@ BuildRequires:	libXt-devel
 %endif
 
 # XINE support
-%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?fedora} || 0%{?rhel} == 4 || 0%{?rhel} == 5 || 0%{?rhel} == 6 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}

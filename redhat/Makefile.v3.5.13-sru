@@ -114,8 +114,8 @@ tdewebdev:	tdebase tdesdk
 
 ### 3rd party libraries and tools
 esound:
-# Build on Mageia only
-ifneq ($(wildcard /etc/mageia-release),)
+# Build on Mageia and CentOS >= 7
+ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/esound)
 endif
 
@@ -138,8 +138,8 @@ ifeq ($(wildcard /etc/centos-release),)
 endif
 
 htdig:
-# build on Mageia only
-ifneq ($(wildcard /etc/mageia-release),)
+# build on Mageia, and CentOS >= 7
+ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/htdig)
 endif
 
@@ -399,7 +399,7 @@ kpicosim:	tdebase
 	$(call buildpkg,applications/kpicosim)
 
 kpilot:	tdebase
-# Do NOT build on CentOS 5
+# Do NOT build on CentOS 5 (pilot-link library is too old)
 ifeq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,applications/kpilot)
 endif

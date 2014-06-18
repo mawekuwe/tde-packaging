@@ -639,7 +639,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/xmatrix.desktop
 %endif
 
-%if 0%{?rhel} == 6
+%if 0%{?rhel} >= 6
 %{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
 %endif

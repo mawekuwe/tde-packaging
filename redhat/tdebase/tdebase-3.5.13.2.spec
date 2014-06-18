@@ -65,7 +65,7 @@ Source5:	pamd.kscreensaver-trinity%{?dist}
 Source6:	suse-displaymanagers-tdm
 
 # Fedora 18: use SYSTEMD for TDM startup
-%if 0%{?fedora} >= 18
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 Source7:	tdm.service%{?dist}
 %endif
 
@@ -243,6 +243,17 @@ Requires:	redhat-logos
 
 Requires:	redhat-indexhtml
 %define tde_aboutlabel Enterprise Linux 6
+%define tde_aboutpage /usr/share/doc/HTML/index.html
+%endif
+
+# RHEL 7 Theme
+%if 0%{?rhel} == 7
+Requires:	redhat-logos
+%define tde_bg /usr/share/backgrounds/day.jpg
+%define tde_starticon /usr/share/icons/hicolor/96x96/apps/system-logo-icon.png
+
+Requires:	redhat-indexhtml
+%define tde_aboutlabel Enterprise Linux 7
 %define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
@@ -433,7 +444,7 @@ BuildRequires:	OpenEXR-devel
 %endif
 
 # XSCREENSAVER support
-#  Disabled on RHEL4
+#  Disabled on RHEL4, RHEL >= 7
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
 %define with_xscreensaver 1
 %if 0%{?rhel} == 5
@@ -2146,7 +2157,7 @@ already. Most users won't need this.
 %if 0%{?suse_version} >= 1210
 /usr/lib/X11/displaymanagers/tdm
 %endif
-%if 0%{?fedora} >= 18
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 /usr/lib/systemd/system/tdm.service
 %endif
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -3615,7 +3626,7 @@ EOF
 %endif
 
 # Fedora 18: no more SYSV init script, we have to use systemd.
-%if 0%{?fedora} >= 18
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 %__install -D -m 644 "%{SOURCE7}" "%{?buildroot}/usr/lib/systemd/system/tdm.service"
 %endif
 

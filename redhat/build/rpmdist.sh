@@ -6,7 +6,7 @@ MGA=0
 DIST=""
 
 if [ -r /etc/redhat-release ]; then
-  read a b c d e < /etc/redhat-release
+  read a b c d e f g < /etc/redhat-release
 elif [ -r /etc/SuSE-release ]; then
   a="opensuse"
 fi
@@ -30,6 +30,10 @@ case $a in
     else
       RHEL="${c%%.*}"; DIST=".el${RHEL}"
     fi
+  ;;
+  
+  "Red")
+    RHEL="${g%%.*}"; DIST=".el${RHEL}"
   ;;
   # Fedora release 15 (Lovelock)
   Fedora*) FEDORA="${c}"; DIST=".fc${FEDORA}";;
