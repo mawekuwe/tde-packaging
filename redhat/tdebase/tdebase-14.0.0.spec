@@ -97,9 +97,7 @@ Patch105:		tdebase-14.0.0-konsole_wordseps.patch
 
 # Patches from Mandriva
 Patch201:	tdebase-14.0.0-vibrate_dialog.patch
-Patch203:	tdebase-14.0.0-kdesktop_crossfade.patch
 Patch205:	tdebase-14.0.0-suspend_unmount.patch
-Patch206:	tdebase-14.0.0-bookmark_global_copy.patch
 
 # Experimental patches
 Patch301:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
@@ -3337,9 +3335,7 @@ Windows and Samba shares.
 %patch105 -p1 -b .konsolewordseps
 
 %patch201 -p1 -b .vibrate_dialog
-%patch203 -p1 -b .kdesktop_crossfade
 %patch205 -p1 -b .suspend_unmount
-%patch206 -p1 -b .bookmark_global_copy
 
 %patch301 -p1 -b .kcmxcursor
 %patch302 -p1 -b .twintranslation
