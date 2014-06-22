@@ -1,0 +1,2 @@
+keyrings			usr/share
+repositories/trinity.list	etc/apt/sources.list.d
