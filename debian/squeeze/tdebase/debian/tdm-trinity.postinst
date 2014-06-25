@@ -63,7 +63,7 @@ for HOST in "" \
   fi
 done
 # or if it's already running
-if start-stop-daemon --stop --quiet --signal 0 --pid /var/run/tdm.pid --name tdm-trinity; then
+if start-stop-daemon --stop --quiet --signal 0 --pid /var/run/tdm.pid --exec /opt/trinity/bin/tdm; then
   NOSTART=yes
 fi
 # or if the options file says not to

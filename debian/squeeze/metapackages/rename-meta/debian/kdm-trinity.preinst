@@ -14,15 +14,14 @@ fi
 
 # remove former service
 if [ -e /etc/init.d/kdm-trinity ]; then
-    REMOVING=yes
-    rm -f /etc/init.d/kdm-trinity
+  REMOVING=yes
 fi
 
 if [ -n "$REMOVING" ]; then
-  # is there an kdm process running?
-  if start-stop-daemon --stop --quiet --signal 0 --name kdm-trinity; then
+  # is there an kdm-trinity process running?
+  if start-stop-daemon --stop --quiet --signal 0 --exec /opt/trinity/bin/kdm; then
     # any children?
-    PARENTS=$(pidof /usr/bin/kdm-trinity || true)
+    PARENTS=$(pidof /opt/trinity/bin/kdm || true)
     CHILDREN=
     if [ -n "$PARENTS" ]; then
       for PROCESS in $PARENTS; do
@@ -39,11 +38,11 @@ if [ -n "$REMOVING" ]; then
       if [ -n "$CHILDREN" ]; then
         if [ -n "$HAVE_DEBCONF" ]; then
           # ask the question
-          db_input high kdm/stop_running_server_with_children || true
+          db_input high kdm-trinity/stop_running_server_with_children || true
           db_go
           # what did the user say?
           ANSWER=
-          if db_get kdm/stop_running_server_with_children; then
+          if db_get kdm-trinity/stop_running_server_with_children; then
             ANSWER="$RET"
           fi
           if [ "$ANSWER" = "true" ]; then
@@ -51,7 +50,7 @@ if [ -n "$REMOVING" ]; then
           fi
           # forget that we have seen the question; this is the sort of
           # non-configuration question that should be asked every time
-          db_fset kdm/stop_running_server_with_children seen false
+          db_fset kdm-trinity/stop_running_server_with_children seen false
         fi
       else
         STOP=yes
@@ -66,6 +65,12 @@ if [ -n "$STOP" ]; then
   else
     /etc/init.d/kdm-trinity stop || true
   fi
+fi
+
+if [ -n "$REMOVING" ]; then
+  rm -f /etc/init.d/kdm-trinity
+  [ ! -e /etc/init/kdm-trinity.conf ] || \
+  rm -f /etc/init/kdm-trinity.conf
 fi
 
 

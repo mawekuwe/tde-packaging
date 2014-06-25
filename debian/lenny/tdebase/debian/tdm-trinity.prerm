@@ -24,14 +24,13 @@ if [ -e /usr/share/debconf/confmodule ]; then
 fi
 
 case "$1" in
-    # we NEVER want to unconditionally stop tdm; see below
+    # we NEVER want to unconditionally stop tdm-trinity; see below
     upgrade|failed-upgrade)
         REMOVING=
     ;;
 
     remove|deconfigure)
         REMOVING=yes
-	rm -f /etc/init.d/tdm-trinity
     ;;
 
     *)
@@ -41,16 +40,16 @@ case "$1" in
 esac
 
 STOP=
-# are we supposed to restart on upgrade?  if REMOVING tdm, we don't care what
+# are we supposed to restart on upgrade?  if REMOVING tdm-trinity, we don't care what
 # the user says, we have to stop the daemon
 if grep -qs ^restart-on-upgrade /etc/trinity/tdm/tdm.options ||
    [ -n "$REMOVING" ]; then
   # is there an tdm process running?
-  if start-stop-daemon --stop --quiet --signal 0 --name tdm-trinity; then
+  if start-stop-daemon --stop --quiet --signal 0 --exec /opt/trinity/bin/tdm; then
     # any children?
-    PARENTS=$(pidof /usr/bin/tdm-trinity || true)
+    PARENTS=$(pidof /opt/trinity/bin/tdm || true)
     CHILDREN=
-    if [ -n "$PARENTS" ]; then    
+    if [ -n "$PARENTS" ]; then
       for PROCESS in $PARENTS; do
         # make sure we got numbers back
         [ $PROCESS -eq $PROCESS ] 2> /dev/null ||
@@ -65,11 +64,11 @@ if grep -qs ^restart-on-upgrade /etc/trinity/tdm/tdm.options ||
       if [ -n "$CHILDREN" ]; then
         if [ -n "$HAVE_DEBCONF" ]; then
           # ask the question
-          db_input high tdm/stop_running_server_with_children || true
+          db_input high tdm-trinity/stop_running_server_with_children || true
           db_go
           # what did the user say?
           ANSWER=
-          if db_get tdm/stop_running_server_with_children; then
+          if db_get tdm-trinity/stop_running_server_with_children; then
             ANSWER="$RET"
           fi
           if [ "$ANSWER" = "true" ]; then
@@ -77,7 +76,7 @@ if grep -qs ^restart-on-upgrade /etc/trinity/tdm/tdm.options ||
           fi
           # forget that we have seen the question; this is the sort of
           # non-configuration question that should be asked every time
-          db_fset tdm/stop_running_server_with_children seen false
+          db_fset tdm-trinity/stop_running_server_with_children seen false
         fi
       else
         STOP=yes
@@ -96,6 +95,12 @@ else
   if [ "$1" = "upgrade" -o "$1" = "failed-upgrade" ]; then
     touch /var/run/tdm-trinity.upgrade
   fi
+fi
+
+if [ -n "$REMOVING" ]; then
+  rm -f /etc/init.d/tdm-trinity
+  [ ! -e /etc/init/tdm-trinity.conf ] || \
+  rm -f /etc/init/tdm-trinity.conf
 fi
 
 DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
