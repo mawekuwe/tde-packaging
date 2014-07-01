@@ -73,6 +73,23 @@ if [ -n "$REMOVING" ]; then
   rm -f /etc/init/kdm-trinity.conf
 fi
 
+# convert former configuration (kdm => tdm)
+if [ -d "/etc/trinity/kdm" ] && [ ! -d "/etc/trinity/tdm" ]; then
+  # copy old configuration
+  cp -a "/etc/trinity/kdm" "/etc/trinity/tdm"
+
+  # cleanup
+  find "/etc/trinity/tdm" -name "*.dpkg-*" -print0 | \
+  xargs -r0 rm
+
+  # rename files
+  find "/etc/trinity/tdm" -name "*kdm*" | \
+  while read f; do mv "${f}" "$(echo "$f" | sed "s|kdm|tdm|g")"; done
+
+  # rename in the files content
+  egrep -rl "KDE|KDM|kdm|kwin" "/etc/trinity/tdm" | tr "\n" "\0" | \
+  xargs -r0 sed -i -e "s|KDE|TDE|g" -e "s|KDM|TDM|g" -e "s|kdm|tdm|g" -e "s|kwin|twin|g"
+fi
 
 DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
 
