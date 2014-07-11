@@ -88,8 +88,6 @@ Source9:	mgabutton.svg
 Patch101:		tdebase-14.0.0-open_terminal_here.patch
 ## [tdebase] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
 Patch102:		tdebase-14.0.0-default_menu_icon.patch
-## [tdebase/kicker] Adds default entries for Kickoff menu
-Patch104:		tdebase-14.0.0-kickoff_default_favs.patch
 ## [tdebase] Changes konsole default word separator
 Patch105:		tdebase-14.0.0-konsole_wordseps.patch
 
@@ -3331,7 +3329,6 @@ Windows and Samba shares.
 
 %patch101 -p1 -b .openterminalhere
 %patch102 -p1 -b .startmenuicon
-%patch104 -p1 -b .kickoffdefaultsfav
 %patch105 -p1 -b .konsolewordseps
 
 %patch201 -p1 -b .vibrate_dialog
