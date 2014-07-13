@@ -40,7 +40,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch0:			bibletime-14.0.0-ftbfs.patch
+Patch0:			bibletime-3.5.13.2-fix_sword_detection.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -105,7 +105,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-closure \
   --enable-rpath \
   \
-%if 0%{?fedora} >= 20 || 0%{?pclinuxos}
+%if 0%{?fedora} >= 20 || 0%{?pclinuxos} || 0%{?rhel} >= 7
   --with-sword-dir=%{tde_prefix}
 %endif
 

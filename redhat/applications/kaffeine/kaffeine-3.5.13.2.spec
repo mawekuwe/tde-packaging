@@ -56,7 +56,7 @@ BuildRequires:	libcdda-devel
 BuildRequires:	cdparanoia
 BuildRequires:	cdparanoia-devel
 %endif
-%if 0%{?suse_version} >= 1210 || 0%{?fedora} >= 19
+%if 0%{?suse_version} >= 1210 || 0%{?fedora} >= 19 || 0%{?rhel} >= 7
 BuildRequires:	libcdio-paranoia-devel
 %endif
 

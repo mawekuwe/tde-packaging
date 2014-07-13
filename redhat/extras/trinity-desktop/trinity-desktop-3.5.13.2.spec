@@ -161,7 +161,6 @@ Requires: trinity-tde-systemsettings
 Requires: trinity-tdeio-apt
 Requires: trinity-tdeio-locate
 Requires: trinity-tdeio-umountwrapper
-Requires: trinity-tderadio
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
 Requires: trinity-wlassistant
@@ -178,10 +177,19 @@ Requires: trinity-tdesudo
 Requires: trinity-kpowersave
 # On RHEL 5, GTK2 version is too old for GTK stuff ...
 Requires: trinity-gtk-qt-engine
-# On RHEL 5, lilypond is not available, so no rosegarden :'-(
-Requires: trinity-rosegarden
 # RHEL5: kpilot library is too old
 Requires: trinity-kpilot
+%endif
+
+# On RHEL 5/7, lilypond is not available, so no rosegarden :'-(
+%if 0%{?rhel} == 5 || 0%{?rhel} == 7
+%else
+Requires: trinity-rosegarden
+%endif
+
+# On RHEL 7, lirc is not available, so not tderaiod :'-(
+%if 0%{?rhel} != 7
+Requires: trinity-tderadio
 %endif
 
 # This one causes several crashes . Obsolete.

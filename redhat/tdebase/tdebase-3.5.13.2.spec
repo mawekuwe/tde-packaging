@@ -446,6 +446,7 @@ BuildRequires:	OpenEXR-devel
 # XSCREENSAVER support
 #  Disabled on RHEL4, RHEL >= 7
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
+%if 0%{?rhel} == 0 || 0%{?rhel} <= 6
 %define with_xscreensaver 1
 %if 0%{?rhel} == 5
 BuildRequires:	xorg-x11-proto-devel
@@ -464,6 +465,7 @@ BuildRequires:	libXScrnSaver-devel
 %endif
 %if 0%{?suse_version} == 1140
 BuildRequires:	xscreensaver
+%endif
 %endif
 %endif
 
@@ -3601,7 +3603,7 @@ EOF
 
 # TDM configuration
 %__sed -i "%{?buildroot}%{_sysconfdir}/trinity/kdm/kdmrc" \
-%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1210
+%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1210 || 0%{?rhel} >= 7
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
 	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
