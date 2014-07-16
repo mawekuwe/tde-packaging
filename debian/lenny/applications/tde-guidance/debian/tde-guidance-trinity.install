@@ -44,9 +44,6 @@ opt/trinity/share/apps/guidance/pics/file.png
 opt/trinity/share/apps/guidance/pics/important.png
 opt/trinity/share/apps/guidance/pics/tux.png
 opt/trinity/share/apps/guidance/pics/user.png
-opt/trinity/share/apps/guidance/pics/energystar.png
-opt/trinity/share/apps/guidance/pics/hi32-gfxcard.png
-opt/trinity/share/apps/guidance/pics/hi32-display.png
 opt/trinity/share/apps/guidance/pics/32-wine.png
 opt/trinity/share/apps/guidance/pics/kdewinewizard.png
 opt/trinity/share/python-support/tde-guidance-trinity/SMBShareSelectDialog.py
@@ -54,9 +51,7 @@ opt/trinity/share/python-support/tde-guidance-trinity/SimpleCommandRunner.py
 opt/trinity/share/python-support/tde-guidance-trinity/fuser.py
 opt/trinity/share/python-support/tde-guidance-trinity/fuser_ui.py
 #opt/trinity/share/python-support/tde-guidance-trinity/grubconfig.py
-opt/trinity/share/python-support/tde-guidance-trinity/ktimerdialog.py
 opt/trinity/share/python-support/tde-guidance-trinity/mountconfig.py
-opt/trinity/share/python-support/tde-guidance-trinity/servertestdialog.py
 opt/trinity/share/python-support/tde-guidance-trinity/serviceconfig.py
 opt/trinity/share/python-support/tde-guidance-trinity/sizeview.py
 opt/trinity/share/python-support/tde-guidance-trinity/unixauthdb.py

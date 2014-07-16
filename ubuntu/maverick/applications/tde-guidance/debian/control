@@ -23,7 +23,6 @@ Description: collection of TDE system administration tools for GNU/Linux [Trinit
   o  userconfig - User and Group administration
   o  serviceconfig - Service/daemon administration
   o  mountconfig - Disk and filesystem administration
-  o  displayconfig - Screen and display configuration
   o  wineconfig - Wine configuration
  .
  These tools are available in Trinity Control Center, System Settings 
