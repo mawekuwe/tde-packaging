@@ -723,7 +723,7 @@ This is a meta-package that installs all tdebase development packages.
 
 Header files for developing applications using %{name}.
 Install tdebase-devel if you want to develop or compile Konqueror,
-Kate plugins or KWin styles.
+Kate plugins or TWin styles.
 
 %files devel
 %defattr(-,root,root,-)
