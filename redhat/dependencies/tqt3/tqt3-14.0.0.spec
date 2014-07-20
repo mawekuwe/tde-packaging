@@ -154,6 +154,9 @@ BuildRequires: libxmu-devel
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXi-devel
 %endif
+%if 0%{?mgaversion}
+BuildRequires: %{_lib}xi-devel
+%endif
 
 # Xorg support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}

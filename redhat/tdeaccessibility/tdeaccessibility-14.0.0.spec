@@ -473,11 +473,6 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-# Specific path for RHEL4
-if [ -d /usr/X11R6 ]; then
-  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-fi
-
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -508,11 +503,6 @@ export PATH="%{tde_bindir}:${PATH}"
 # Avoid conflict with tdelibs
 %__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
 %__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/scalable/apps/kttsd.svgz
-
-
-if [ -x /usr/bin/optimizegraphics ]; then
-  (cd %{?buildroot} && /usr/bin/optimizegraphics)
-fi
 
 
 %clean

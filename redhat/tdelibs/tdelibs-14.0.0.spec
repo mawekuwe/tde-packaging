@@ -74,13 +74,6 @@ BuildRequires:	glib2-devel
 # LIBART_LGPL support
 BuildRequires:	trinity-libart-lgpl-devel
 
-# ELFICON support
-#  It's an Ubuntu gadget, not useful for us.
-%if 0
-%define with_elficon 1
-BuildRequires:	libr-devel
-%endif
-
 # ASPELL support
 BuildRequires:	aspell
 BuildRequires:	aspell-devel
@@ -122,7 +115,7 @@ BuildRequires:	libudev-devel
 %endif
 
 # UDISKS support
-%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} == 6
 %define with_udisks 1
 BuildRequires:	udisks-devel
 Requires:		udisks
@@ -132,9 +125,9 @@ Requires:		udisks
 #Requires:		pmount
 
 # UDISKS2 support
-%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 7
 %define with_udisks2 1
-%if 0%{?fedora} >= 20
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
 BuildRequires:	libudisks2-devel
 %else
 BuildRequires:	udisks2-devel
@@ -143,19 +136,19 @@ Requires:		udisks2
 %endif
 
 # DEVICEKIT POWER support
-%if 0%{?rhel} >= 6
+%if 0%{?rhel} == 6
 %define with_devkitpower 1
 Requires:		DeviceKit-power
 %endif
 
 # UPOWER support
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?rhel} >= 7
 %define with_upower 1
 Requires:		upower
 %endif
 
 # SYSTEMD support
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?rhel} >= 7
 %define with_systemd 1
 %endif
 

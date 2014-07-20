@@ -1,3 +1,9 @@
+# Note for RHEL6 / Fedora:
+#  Do *NOT* use 'byacc' to build sip4-tqt.
+#  Instead, use 'bison' with a wrapper shell script.
+#  e.g. /usr/local/bin/yacc
+#   contains 'bison --yacc $@'
+
 # Default version for this component
 %define tde_pkg sip4-tqt
 %define tde_version 14.0.0
@@ -104,18 +110,13 @@ python ../configure.py \
 	-d %{python_sitearch}/sip4_tqt \
 	-e %{tde_includedir} \
 	-u STRIP="" \
-	CFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3 -I${PWD}/../sipgen" \
-	CFLAGS_RELEASE="" \
-	CXXFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3 -I${PWD}/../sipgen" \
-	CXXFLAGS_RELEASE=""
+	CFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3 -I${PWD}/../sipgen -DYYERROR_VERBOSE" \
+	CXXFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3 -I${PWD}/../sipgen -DYYERROR_VERBOSE"
 
 
 %install
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
-
-# Dummy file to allow loading as a module
-touch %{?buildroot}%{python_sitearch}/sip4_tqt/__init__.py
 
 
 %clean

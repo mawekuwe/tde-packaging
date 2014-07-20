@@ -80,9 +80,6 @@ Requires:		%{name}-backends = %{version}-%{release}
 # POWERMANAGER support (requires HAL)
 #define with_powermanager 1
 
-# DISPLAYCONFIG support (deprecated)
-#define with_displayconfig 1
-
 Obsoletes:		trinity-guidance < %{version}-%{release}
 Provides:		trinity-guidance = %{version}-%{release}
 
@@ -100,10 +97,6 @@ or can be run as standalone applications.
 %files
 %defattr(-,root,root,-)
 %doc ChangeLog COPYING README TODO
-%if 0%{?with_displayconfig}
-%{tde_bindir}/displayconfig
-%{tde_bindir}/displayconfig-restore
-%endif
 %{tde_bindir}/grubconfig
 %{tde_bindir}/mountconfig
 %{tde_bindir}/serviceconfig
@@ -120,9 +113,7 @@ or can be run as standalone applications.
 %{python_sitearch}/%{name}/fuser.py*
 %{python_sitearch}/%{name}/fuser_ui.py*
 %{python_sitearch}/%{name}/grubconfig.py*
-%{python_sitearch}/%{name}/ktimerdialog.py*
 %{python_sitearch}/%{name}/mountconfig.py*
-%{python_sitearch}/%{name}/servertestdialog.py*
 %{python_sitearch}/%{name}/serviceconfig.py*
 %{python_sitearch}/%{name}/sizeview.py*
 %{python_sitearch}/%{name}/unixauthdb.py*
@@ -130,13 +121,6 @@ or can be run as standalone applications.
 %{python_sitearch}/%{name}/wineconfig.py*
 %{tde_tdedocdir}/HTML/en/guidance/
 
-# Files from backends
-%exclude %{tde_datadir}/apps/guidance/vesamodes
-%exclude %{tde_datadir}/apps/guidance/extramodes
-%exclude %{tde_datadir}/apps/guidance/widescreenmodes
-%exclude %{tde_datadir}/apps/guidance/Cards+
-%exclude %{tde_datadir}/apps/guidance/pcitable
-%exclude %{tde_datadir}/apps/guidance/MonitorsDB
 
 # Files from powermanager
 %if 0%{?with_powermanager}
@@ -176,26 +160,11 @@ Guidance configuration tools.
 %files backends
 %defattr(-,root,root,-)
 %{python_sitearch}/%{name}/MicroHAL.py*
-%{python_sitearch}/%{name}/ScanPCI.py*
-%{python_sitearch}/%{name}/infimport.py*
-%if 0%{?with_displayconfig}
-%{python_sitearch}/%{name}/displayconfigabstraction.py*
-%{python_sitearch}/%{name}/displayconfig-hwprobe.py*
-%{python_sitearch}/%{name}/displayconfig-restore.py*
-%endif
 %{python_sitearch}/%{name}/drivedetect.py*
-%{python_sitearch}/%{name}/execwithcapture.py*
 %{python_sitearch}/%{name}/wineread.py*
 %{python_sitearch}/%{name}/winewrite.py*
 %{python_sitearch}/%{name}/xf86misc.py*
-%{python_sitearch}/%{name}/xorgconfig.py*
 %{python_sitearch}/ixf86misc.so
-%{tde_datadir}/apps/guidance/vesamodes
-%{tde_datadir}/apps/guidance/extramodes
-%{tde_datadir}/apps/guidance/widescreenmodes
-%{tde_datadir}/apps/guidance/Cards+
-%{tde_datadir}/apps/guidance/pcitable
-%{tde_datadir}/apps/guidance/MonitorsDB
 
 ##########
 
@@ -333,15 +302,11 @@ chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 
 # Generates the startup scripts
 %__rm -f %{buildroot}%{tde_bindir}/*
-#%__ln_s -f %{python_sitearch}/%{name}/displayconfig.py %{buildroot}%{tde_bindir}/displayconfig
 %__ln_s -f %{python_sitearch}/%{name}/mountconfig.py %{buildroot}%{tde_bindir}/mountconfig
 %__ln_s -f %{python_sitearch}/%{name}/serviceconfig.py %{buildroot}%{tde_bindir}/serviceconfig
 %__ln_s -f %{python_sitearch}/%{name}/userconfig.py %{buildroot}%{tde_bindir}/userconfig
 %__ln_s -f %{python_sitearch}/%{name}/wineconfig.py %{buildroot}%{tde_bindir}/wineconfig
 %__ln_s -f %{python_sitearch}/%{name}/grubconfig.py %{buildroot}%{tde_bindir}/grubconfig
-
-# (obsolete)  put this here since gnome people probably don't want it by default
-#%__ln_s -f %{_python_sitearch}/%{name}/displayconfig-restore.py %{buildroot}%{tde_bindir}/displayconfig-restore
 
 # fix script-not-executable
 %__chmod 0755 %{buildroot}%{python_sitearch}/%{name}/fuser.py
@@ -396,30 +361,6 @@ chmod 0755 %{buildroot}%{python_sitearch}/%{name}/gpmhelper.py
 %__rm -f %{buildroot}%{tde_datadir}/apps/guidance/powermanager_ui.ui
 
 %endif
-
-# DISPLAYCONFIG (obsolete)
-%if 0%{?with_displayconfig}
-%__cp -f %{buildroot}%{tde_datadir}/apps/guidance/pics/hi32-display.png \
-	%{buildroot}%{tde_datadir}/icons/crystalsvg/32x32/apps/displayconfig.png
-%__ln_s -f %{python_sitearch}/%{name}/displayconfig.py %{buildroot}%{tde_bindir}/displayconfig
-%__mv -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop %{buildroot}%{tde_tdeappdir}/guidance-displayconfig.desktop
-
-# install displayconfig-hwprobe.py script
-%__install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
-	%{buildroot}%{python_sitearch}/%{name}/displayconfig-hwprobe.py
-
-%else
-# Removes obsolete display config manager
-%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfig*
-%__rm -f %{?buildroot}/etc/X11/Xsession.d/40guidance-displayconfig_restore
-%__rm -f %{?buildroot}%{tde_tdelibdir}/kcm_displayconfig.*
-%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfig.py*
-%__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfigwidgets.py*
-%__rm -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop
-%__rm -f %{buildroot}%{tde_datadir}/icons/*/*/apps/displayconfig.png
-%__rm -fr %{buildroot}%{tde_datadir}/apps/guidance/pics/displayconfig
-%endif
-
 
 # Replace all '#!' calls to python with /usr/bin/python
 # and make them executable

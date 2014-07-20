@@ -56,9 +56,6 @@ Source2:	ktalk
 # [kdenetwork] Missing LDFLAGS cause FTBFS
 Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
 
-# RedHat/Fedora legacy patches
-Patch4: 	kdenetwork-3.2.3-resolv.patch
-
 # RHEL4 specific
 Patch201:	kdenetwork-3.5.13.1-fix_rhel4_libraries.patch
 Patch202:	tdenetwork-3.5.13.2-fix_conflicting_definitions.patch
@@ -1120,7 +1117,6 @@ update-desktop-database 2> /dev/null || :
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
 %patch1 -p1 -b .ldflags
-%patch4 -p1 -b .resolv
 
 %if 0%{?rhel} == 4
 %patch201 -p1 -b .rhel4
