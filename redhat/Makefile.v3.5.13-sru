@@ -27,22 +27,22 @@ i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
 
 
 ### Trinity Dependencies
-arts:	tqtinterface esound
+arts:	tqtinterface esound cmake
 	$(call buildpkg,dependencies/arts)
 
 avahi-tqt:	tqtinterface
 	$(call buildpkg,dependencies/avahi-tqt)
 
-dbus-1-tqt:	tqtinterface
+dbus-1-tqt:	tqtinterface cmake
 	$(call buildpkg,dependencies/dbus-1-tqt)
 
-dbus-tqt: tqtinterface
+dbus-tqt: tqtinterface cmake
 	$(call buildpkg,dependencies/dbus-tqt)
 
-libcaldav: tqtinterface libcurl
+libcaldav: tqtinterface autoconf libcurl
 	$(call buildpkg,dependencies/libcaldav)
 
-libcarddav:	tqtinterface libcurl
+libcarddav:	tqtinterface autoconf libcurl
 	$(call buildpkg,dependencies/libcarddav)
 	
 tqca:	tqtinterface
@@ -54,7 +54,7 @@ tqca-tls: tqtinterface tqca
 qt3: esound
 	$(call buildpkg,dependencies/qt3)
 
-tqtinterface:	qt3
+tqtinterface:	qt3 cmake
 	$(call buildpkg,dependencies/tqtinterface)
 
 # Main packages
@@ -70,7 +70,7 @@ tdeadmin:	tdebase
 tdeartwork:	tdebase
 	$(call buildpkg,tdeartwork)
 
-tdebase:	tdelibs htdig hal
+tdebase:	tdelibs htdig cmake hal
 	$(call buildpkg,tdebase)
 
 tdebindings:	tdebase
@@ -82,10 +82,10 @@ tdeedu:	tdebase
 tdegames:	tdebase tdemultimedia
 	$(call buildpkg,tdegames)
 
-tdegraphics:	tdebase poppler
+tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	qt3 tqtinterface arts dbus-tqt dbus-1-tqt
+tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode
@@ -94,10 +94,10 @@ tdemultimedia:	tdebase akode
 tdenetwork:	tdebase
 	$(call buildpkg,tdenetwork)
 
-tdepim:	tdebase libcaldav libcarddav
+tdepim:	tdebase libcaldav libcarddav cmake
 	$(call buildpkg,tdepim)
 
-tdesdk:		tdebase tdebindings
+tdesdk:		tdebase tdebindings cmake
 	$(call buildpkg,tdesdk)
 
 tdetoys:	tdebase
@@ -106,13 +106,31 @@ tdetoys:	tdebase
 tdeutils:	tdebase
 	$(call buildpkg,tdeutils)
 
-tdevelop:	tdebase tdesdk
+tdevelop:	tdebase tdesdk cmake
 	$(call buildpkg,tdevelop)
 
 tdewebdev:	tdebase tdesdk
 	$(call buildpkg,tdewebdev)
 
 ### 3rd party libraries and tools
+autoconf: m4
+# Build on CentOS 5 only
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/autoconf)
+endif
+
+automake:
+# Build on CentOS 5 only
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/automake)
+endif
+
+cmake:
+# Build on CentOS only
+ifneq ($(wildcard /etc/centos-release /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/cmake)
+endif
+
 esound:
 # Build on Mageia and CentOS >= 7
 ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
@@ -153,7 +171,7 @@ endif
 endif
 endif
 
-libcurl:
+libcurl: automake libtool
 # Build on CentOS 5 only
 ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,3rdparty/curl)
@@ -165,10 +183,22 @@ ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/libotr3)
 endif
 
+libtool: autoconf automake
+# Build on CentOS 5 only
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/libtool)
+endif
+
 lilypond: mftrace
 # Build on CentOS 6 only
 ifneq ($(wildcard /boot/vmlinuz*.el6*),)
 	$(call buildpkg,3rdparty/lilypond)
+endif
+
+m4:
+# Build on CentOS 5 only (vendor-provided Poppler is too old)
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/m4)
 endif
 
 mftrace:
@@ -249,7 +279,7 @@ abakus:	tdebase
 adept:	tdebase
 	$(call buildpkg,applications/adept)
 
-amarok:	tdebase
+amarok:	tdebase cmake
 	$(call buildpkg,applications/amarok)
 
 basket:	tdebase
@@ -520,7 +550,7 @@ k3b-i18n:	tdebase
 koffice-i18n:	tdebase
 	$(call buildpkg,applications/koffice-i18n)
 
-tde-i18n:	tdebase
+tde-i18n:	tdebase cmake
 	$(call buildpkg,tde-i18n)
 
 ### Meta packages

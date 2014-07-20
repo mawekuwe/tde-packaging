@@ -11,7 +11,7 @@ RPM=$(get_latest_built_package_filename.sh "${PKGNAME}" ${TDE_VERSION})
 
 VERSION=$(rpm -qp --qf "%{version}-%{release}" "${RPM}")
 VERSION=${VERSION%.opt}
-VERSION=${VERSION%.*}
+VERSION=${VERSION%.[a-z]*}
 VERSION=${VERSION/-*_/\~}
 
 

@@ -54,6 +54,27 @@ checknew() {
   done
 }
 
+
+do_optimizegraphics() {
+  if ! (which optipng && which advdef && which pngout) ; then
+    echo "Missing utility ! Check that 'optipng', 'advdef' and 'pngout' utilities are available !"
+    return 1
+  fi
+  
+  while read m; do
+    if [ -d "${m}" ]; then
+      pushd "${m}"
+      if [ -r .optimizegraphics ]; then
+        echo "Graphics are already optimized !"
+      else
+        optimizegraphics
+        touch .optimizegraphics
+      fi
+      popd
+    fi
+  done < submodules
+}
+
 alias rr='rpm -qa --qf "%{name} %{buildhost}\n" | grep "\.vtf" | awk "{print \$1}"'
 
 # Update main repository

@@ -3,6 +3,7 @@ ImageMagick-devel
 NetworkManager-glib-devel
 OpenEXR-devel
 SDL-devel
+advancecomp
 alsa-lib-devel
 aspell
 aspell-devel
@@ -45,11 +46,13 @@ gphoto2-devel
 gsl-devel
 gtk-doc
 gtk2-devel
+gtk+3.0-devel
 hspell-devel
 imake
 java-1.7.0-openjdk
 java-1.7.0-openjdk-devel
 karma-sharp
+kde-dev-scripts
 lcms-devel
 lib64binutils-devel
 lib64clucene-devel
@@ -90,6 +93,7 @@ libblkid-devel
 libcdda-devel
 libclucene-devel
 libcommoncpp-devel
+libconfig-devel
 libcurl-devel
 libdvdread-devel
 libffmpeg-devel
@@ -161,6 +165,7 @@ ocaml
 openldap-devel
 openslp-devel
 opensp-devel
+optipng
 pam-devel
 pciutils-devel
 perl(XML::Parser)
@@ -173,6 +178,7 @@ postgresql9.3-devel
 pth-devel
 python-devel
 python-sip
+qt4-devel
 readline-devel
 recode
 rpm-build
@@ -186,6 +192,8 @@ subversion-devel
 sword-devel
 taglib-devel
 transfig
+udisks-devel
+udisks2-devel
 unixODBC-devel
 valgrind
 wv2-devel

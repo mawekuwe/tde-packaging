@@ -139,25 +139,25 @@ endif
 
 cmake:
 # Build on CentOS only
-ifneq ($(wildcard /etc/centos-release /boot/vmlinuz*.el5*),)
+ifneq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el6*),)
 	$(call buildpkg,3rdparty/cmake)
 endif
 
 esound:
-# Build on Mageia only
-ifneq ($(wildcard /etc/mageia-release),)
+# Build on Mageia and CentOS >= 7
+ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/esound)
 endif
 
 gnuchess:
-# Build on CentOS 5 only
-ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+# Build on CentOS 5, CentOS 7
+ifneq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/gnuchess)
 endif
 
 htdig:
-# build on Mageia only
-ifneq ($(wildcard /etc/mageia-release),)
+# build on Mageia, and CentOS >= 7
+ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/htdig)
 endif
 
@@ -178,8 +178,8 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 
 libotr3:
-# Build on Mageia only
-ifneq ($(wildcard /etc/mageia-release),)
+# Build on Mageia, CentOS >= 7
+ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/libotr3)
 endif
 
@@ -190,8 +190,8 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 
 lilypond: mftrace
-# Build on CentOS only
-ifneq ($(wildcard /etc/centos-release),)
+# Build on CentOS 6 only
+ifneq ($(wildcard /boot/vmlinuz*.el6*),)
 	$(call buildpkg,3rdparty/lilypond)
 endif
 
@@ -202,8 +202,8 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 
 mftrace:
-# Build on CentOS only
-ifneq ($(wildcard /etc/centos-release),)
+# Build on CentOS 6 only
+ifneq ($(wildcard /boot/vmlinuz*.el6*),)
 	$(call buildpkg,3rdparty/mftrace)
 endif
 
@@ -229,8 +229,8 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 
 sword:
-# Build on Fedora >= 20 only, or PCLinuxOS
-ifneq ($(wildcard /boot/vmlinuz*.fc20* /etc/pclinuxos-release),)
+# Build on Fedora >= 20, PCLinuxOS, CentOS >= 7
+ifneq ($(wildcard /boot/vmlinuz*.fc20* /etc/pclinuxos-release /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/sword)
 endif
 
@@ -413,8 +413,10 @@ kftpgrabber:	tdebase
 
 kgtk-qt3:	tdebase
 # Do NOT build on CentOS 5 (GTK2 is too old)
+# Do NOT build on CentOS >=7 (GTK2 is too new)
 # Do NOT build on Fedora >= 20 (GTK2 is too new)
-ifeq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.fc20*),)
+# Do NOT build on Mageia >= 4 (GTK2 is too new)
+ifeq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el7* /boot/vmlinuz*.fc20* /boot/vmlinuz*.mga4*),)
 	$(call buildpkg,applications/kgtk-qt3)
 endif
 
@@ -472,14 +474,14 @@ koffice:	tdebase wv2
 konversation:	tdebase
 	$(call buildpkg,applications/konversation)
 
-kopete-otr:	tdebase
+kopete-otr:	tdebase libotr3
 	$(call buildpkg,applications/kopete-otr)
 
 kpicosim:	tdebase
 	$(call buildpkg,applications/kpicosim)
 
 kpilot:	tdebase
-# Do NOT build on CentOS 5
+# Do NOT build on CentOS 5 (pilot-link library is too old)
 ifeq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,applications/kpilot)
 endif
@@ -554,8 +556,8 @@ ifeq ($(wildcard /etc/centos-release),)
 endif
 
 rosegarden:	tdebase lilypond
-# Do NOT build on CentOS 5
-ifeq ($(wildcard /boot/vmlinuz*.el5*),)
+# Do NOT build on CentOS 5, CentOS 7
+ifeq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el7*),)
 	$(call buildpkg,applications/rosegarden)
 endif
 
@@ -596,7 +598,10 @@ tdepowersave:	tdebase
 	$(call buildpkg,applications/tdepowersave)
 
 tderadio:	tdebase
+# Do NOT build on CentOS 7
+ifeq ($(wildcard /boot/vmlinuz*.el7*),)
 	$(call buildpkg,applications/tderadio)
+endif
 
 tde-style-lipstik:	tdebase
 	$(call buildpkg,applications/tde-style-lipstik)

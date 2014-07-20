@@ -20,7 +20,11 @@ if [ -x /usr/sbin/urpmi ]; then
 elif [ -x /usr/bin/zypper ]; then
   REPOUPDATE='(cd ${RPMDIR}; createrepo --workers=${WORKERS} ${ARCH} & createrepo --workers=${WORKERS} noarch & wait; sudo zypper refresh rpmbuild.${ARCH} rpmbuild.noarch)'
 elif [ -x /usr/bin/yum ]; then
-  REPOUPDATE='(cd ${RPMDIR}; createrepo ${ARCH} & createrepo noarch & wait; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
+  if [ "$(rpm -E %dist)" = ".el5" ]; then
+    REPOUPDATE='(cd ${RPMDIR}; createrepo ${ARCH} & createrepo noarch & wait; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
+  else
+    REPOUPDATE='(cd ${RPMDIR}; createrepo --workers=${WORKERS} ${ARCH} & createrepo --workers=${WORKERS} noarch & wait; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
+  fi
 elif [ -x /usr/bin/apt-get ]; then
   REPOUPDATE='(cd ${RPMDIR}; genpkglist $PWD noarch & genpkglist $PWD ${ARCH} & wait; genbasedir $PWD ${ARCH} noarch; sudo apt-get update)'
 fi
