@@ -10,7 +10,7 @@ include /usr/share/cdbs/1/rules/utils.mk
 
 DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
 DEB_UPDATE_RCD_PARAMS := multiuser
-DEB_INSTALL_MANPAGES_tde-guidance-trinity := debian/displayconfig-trinity.1  debian/mountconfig-trinity.1  debian/serviceconfig-trinity.1  debian/userconfig-trinity.1
+DEB_INSTALL_MANPAGES_tde-guidance-trinity := debian/mountconfig-trinity.1  debian/serviceconfig-trinity.1  debian/userconfig-trinity.1
 PYSUPPORT_PATH = $(DEB_DESTDIR)/opt/trinity/share/python-support
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 LDFLAGS_APPEND := -L/opt/trinity/lib
@@ -26,8 +26,6 @@ install/tde-guidance-trinity::
 		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/disksfilesystems.png
 	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/hi32-user.png \
 		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/userconfig.png
-	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/hi32-display.png \
-		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/displayconfig.png
 	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/32-wine.png \
 		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/wineconfig.png
 	install -D -p -m0644 kde/wineconfig/pics/16x16/wineconfig.png \
@@ -45,28 +43,20 @@ install/tde-guidance-trinity::
 
 	# fix the link properly
 	mkdir -p debian/tde-guidance-trinity/opt/trinity/bin
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/displayconfig.py displayconfig)
 	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/mountconfig.py mountconfig)
 	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/serviceconfig.py serviceconfig)
 	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/userconfig.py userconfig)
 	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/wineconfig.py wineconfig)
 #	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/grubconfig.py grubconfig)
 
-	# put this here since gnome people probably don't want it by default
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf ../share/python-support/guidance-backends-trinity/displayconfig-restore.py displayconfig-restore)
-
 	# move python modules in PYSUPPORT_PATH
 	mkdir -p $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/SMBShareSelectDialog.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/SimpleCommandRunner.py $(PYSUPPORT_PATH)/tde-guidance-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfigwidgets.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/fuser.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/fuser_ui.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 #	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/grubconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/ktimerdialog.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/mountconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/servertestdialog.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/serviceconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/sizeview.py $(PYSUPPORT_PATH)/tde-guidance-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/unixauthdb.py $(PYSUPPORT_PATH)/tde-guidance-trinity
@@ -92,30 +82,10 @@ install/tde-guidance-trinity::
 	done
 
 install/guidance-backends-trinity::
-	# install displayconfig-hwprobe.py script
-	install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
-		$(PYSUPPORT_PATH)/guidance-backends-trinity/displayconfig-hwprobe.py
-
-	for PYDIR in python2.5 python2.6 python2.7 python2.8; do \
-		echo "Looking for $(DEB_DESTDIR)/usr/lib/$$PYDIR"; \
-		if test -d $(DEB_DESTDIR)/usr/lib/$$PYDIR; then \
-			cp $(DEB_DESTDIR)/usr/lib/$$PYDIR/site-packages/xf86misc.py $(PYSUPPORT_PATH)/guidance-backends-trinity; \
-		fi; \
-	done
-
+	mkdir -p $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MicroHAL.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/ScanPCI.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/infimport.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfigabstraction.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfig-restore.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/drivedetect.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/execwithcapture.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/wineread.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/winewrite.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/xorgconfig.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-
-	rm -f $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MonitorsDB
-	ln -s /usr/share/hwdata/MonitorsDB $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MonitorsDB
 
 install/tde-guidance-powermanager-trinity::
 	# install icon to right place
