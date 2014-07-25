@@ -253,6 +253,7 @@ debian/tmp/opt/trinity/share/apps/kjava/pluginsinfo
 debian/tmp/opt/trinity/share/apps/knewstuff/types
 debian/tmp/opt/trinity/share/apps/knotify/eventsrc
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/entities/help-menu.docbook
@@ -270,6 +271,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/contributor.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/entities/gpl-notice.docbook
@@ -288,6 +290,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/bg/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/entities/help-menu.docbook
@@ -305,8 +308,10 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/entities/update-d
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ca/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/entities/help-menu.docbook
@@ -324,6 +329,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/cs/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/entities/help-menu.docbook
@@ -342,6 +348,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/da/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/de/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/de/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/de/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/de/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/de/entities/help-menu.docbook
@@ -364,6 +371,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/dtd/modifications.el
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/dtd/rdbhier2.elements
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/dtd/rdbpool.elements
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/entities/help-menu.docbook
@@ -381,6 +389,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/el/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/entities/help-menu.docbook
@@ -396,6 +405,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/entities/underLGP
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/entities/underX11License.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/entities/update-doc.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en-GB/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en-GB/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en-GB/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en-GB/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en-GB/entities/help-menu.docbook
@@ -419,6 +429,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/entities/general.ent
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/entities/l10n.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/en/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/entities/help-menu.docbook
@@ -436,6 +447,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/es/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/entities/help-menu.docbook
@@ -454,6 +466,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/et/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/entities/help-menu.docbook
@@ -471,6 +484,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fi/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/contributor.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/entities/gpl-notice.docbook
@@ -489,6 +503,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fo/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/entities/help-menu.docbook
@@ -507,6 +522,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/fr/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/he/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/he/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/he/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/he/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/he/entities/help-menu.docbook
@@ -525,6 +541,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/he/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/he/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/htdig_index.xsl
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/entities/help-menu.docbook
@@ -542,6 +559,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/hu/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/entities/help-menu.docbook
@@ -559,6 +577,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/id/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/entities/help-menu.docbook
@@ -577,6 +596,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/it/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/entities/help-menu.docbook
@@ -605,6 +625,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tde-ttlpg.xsl
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tde-web-navig.xsl
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tde-web.xsl
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/entities/help-menu.docbook
@@ -621,6 +642,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ko/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/contributor.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/entities/gpl-notice.docbook
@@ -639,6 +661,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/lt/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/entities/help-menu.docbook
@@ -656,6 +679,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nl/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/entities/help-menu.docbook
@@ -673,6 +697,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/nn/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/no/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/no/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/no/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/no/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/no/entities/help-menu.docbook
@@ -695,6 +720,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/obsolete/kdex.dtd
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/obsolete/modifications.elements
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/obsolete/rdbpool.elements
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/entities/help-menu.docbook
@@ -712,6 +738,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pl/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/entities/help-menu.docbook
@@ -730,6 +757,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt-BR/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt/contributor.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt/entities/gpl-notice.docbook
@@ -749,6 +777,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/pt/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/README
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/entities/help-menu.docbook
@@ -767,6 +796,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ro/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/entities/help-menu.docbook
@@ -784,6 +814,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ru/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/entities/help-menu.docbook
@@ -801,6 +832,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sk/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/entities/help-menu.docbook
@@ -818,6 +850,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sl/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/entities/help-menu.docbook
@@ -835,6 +868,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sr/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/entities/help-menu.docbook
@@ -853,6 +887,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/sv/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/entities/help-menu.docbook
@@ -870,6 +905,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tr/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/entities/help-menu.docbook
@@ -887,6 +923,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/uk/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/contributor.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/entities/gpl-notice.docbook
@@ -905,6 +942,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/wa/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xh/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xh/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xh/contributor.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xh/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xh/entities/gpl-notice.docbook
@@ -951,6 +989,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xsl/sr.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xsl/sv.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xsl/zh_tw.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/contributor.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/entities/gpl-notice.docbook
@@ -969,6 +1008,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/xx/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/entities/help-menu.docbook
@@ -987,6 +1027,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-CN/user.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-TW/catalog
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-TW/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-TW/entities/fdl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-TW/entities/gpl-notice.docbook
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/zh-TW/entities/help-menu.docbook
@@ -1007,6 +1048,7 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/README.kde
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/40chg.txt
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/41chg.txt
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/calstblx.dtd
+debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/catalog.xml
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/ChangeLog
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/dbcentx.mod
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xml-dtd-4.1.2/dbgenent.mod
