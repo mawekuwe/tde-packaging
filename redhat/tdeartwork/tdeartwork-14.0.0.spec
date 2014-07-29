@@ -60,6 +60,7 @@ BuildRequires:	trinity-libart-lgpl-devel
 
 # XSCREENSAVER support
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%if 0%{?rhel} == 0 || 0%{?rhel} <= 6
 %define with_xscreensaver 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?mgaversion} >= 4
@@ -92,6 +93,7 @@ BuildRequires:	xscreensaver-data-extra
 %define with_webcollage 1
 %endif
 
+%endif
 %endif
 
 # JACK support
@@ -431,6 +433,11 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/photopile.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/skytentacles.desktop
 
+# These screensavers do not exist on Mageia 2
+%if 0%{?mgaversion} == 0 && 0%{?mdkversion} == 0
+%{tde_datadir}/applnk/System/ScreenSavers/glmatrix.desktop
+%endif
+
 ##########
 
 %if 0%{?with_webcollage}
@@ -455,10 +462,6 @@ IMPORTANT NOTICE: The internet contains all kinds of pictures, some of which
 you might find inappropriate and offensive.
 You are specially discouraged to install this package if you are using 
 your computer in a working environment or in an environment with children.
-
-If you still want to install this package, please read the file
-/usr/share/doc/tdescreensaver-xsavers-webcollage/README.Debian after the 
-installation.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 
@@ -629,7 +632,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/xmatrix.desktop
 %endif
 
-%if 0%{?rhel} == 6
+%if 0%{?rhel} >= 6
 %{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
 %endif

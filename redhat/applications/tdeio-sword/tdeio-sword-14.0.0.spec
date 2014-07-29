@@ -83,7 +83,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-%if 0%{?fedora} >= 20 || 0%{?pclinuxos}
+%if 0%{?fedora} >= 20 || 0%{?pclinuxos} || 0%{?rhel} >= 7
   --with-sword-dir=%{tde_prefix}
 %endif
 

@@ -79,7 +79,7 @@ BuildRequires:	xmedcon-devel
 %if 0%{?fedora} || 0%{?rhel} 
 BuildRequires:	librsvg2
 %endif
-%if 0%{?fedora}
+%if 0%{?fedora} || 0%{?rhel} >= 7
 BuildRequires:	librsvg2-tools
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}

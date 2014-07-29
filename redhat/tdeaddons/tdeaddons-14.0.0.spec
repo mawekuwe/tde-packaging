@@ -65,14 +65,14 @@ BuildRequires:	db4-devel
 BuildRequires:	db5-devel
 %endif
 %endif
-%if 0%{?fedora} >= 18
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 BuildRequires:	libdb-devel
 BuildRequires:	libdb-cxx-devel
 %endif
 %if 0%{?suse_version}
 BuildRequires:	libdb-4_8-devel
 %endif
-%if 0%{?rhel}
+%if 0%{?rhel} && 0%{?rhel} <= 6
 BuildRequires:	db4-devel
 %endif
 %endif
@@ -391,7 +391,7 @@ Requires:	%{_lib}jpeg8
 %if 0%{?rhel} || 0%{?fedora}
 Requires:	libjpeg
 %endif
-%if 0%{?suse_version} >= 1220
+%if 0%{?suse_version} == 1220
 Requires:	libjpeg62
 %endif
 %if 0%{?pclinuxos}
@@ -669,7 +669,6 @@ done
 %endif
 
 ##########
-
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}

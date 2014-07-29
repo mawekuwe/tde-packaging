@@ -84,13 +84,6 @@ BuildRequires:	libXau-devel
 BuildRequires:	xorg-x11-devel
 %endif
 
-# Broken PNG images
-%if 0%{?mgaversion} >= 4 || 0%{?fedora} >= 20
-BuildRequires:	kde-dev-scripts
-BuildRequires:	optipng
-BuildRequires:	advancecomp
-%endif
-
 Obsoletes:		trinity-kdeaccessibility < %{version}-%{release}
 Provides:		trinity-kdeaccessibility = %{version}-%{release}
 Obsoletes:		trinity-kdeaccessibility-libs < %{version}-%{release}
