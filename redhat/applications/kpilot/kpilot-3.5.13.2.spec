@@ -48,8 +48,9 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
+BuildRequires:	flex-devel
 BuildRequires:	gettext
-BuildRequires:	pilot-link-devel
+BuildRequires:	pilot-link-devel >= 0.12
 BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
 %description
@@ -73,7 +74,8 @@ and synchronize the built-in applications with their TDE counterparts.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 %configure \

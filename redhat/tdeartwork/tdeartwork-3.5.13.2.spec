@@ -468,10 +468,6 @@ you might find inappropriate and offensive.
 You are specially discouraged to install this package if you are using 
 your computer in a working environment or in an environment with children.
 
-If you still want to install this package, please read the file
-/usr/share/doc/kscreensaver-xsavers-webcollage/README.Debian after the 
-installation.
-
 This package is part of Trinity, and a component of the TDE artwork module.
 
 %files -n trinity-tdescreensaver-xsavers-webcollage

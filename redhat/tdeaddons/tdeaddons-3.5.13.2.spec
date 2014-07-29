@@ -55,7 +55,7 @@ BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
 BuildRequires: openssl-devel
 
-# DB4 support
+# DB4/DB5 support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1220 || 0%{?mdkversion} || 0%{?mgaversion}
 %define with_db 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -86,7 +86,7 @@ BuildRequires:	db4-devel
 Requires: trinity-atlantikdesigner = %{version}-%{release}
 Requires: trinity-kaddressbook-plugins = %{version}-%{release}
 Requires: trinity-kate-plugins = %{version}-%{release}
-Requires: trinity-tdeaddons-kfile-plugins = %{version}-%{release}
+Requires: trinity-tdeaddons-tdefile-plugins = %{version}-%{release}
 Requires: trinity-kicker-applets = %{version}-%{release}
 Requires: trinity-knewsticker-scripts = %{version}-%{release}
 Requires: trinity-konq-plugins = %{version}-%{release}
@@ -244,11 +244,14 @@ a tab bar, a Python browser and even more.
 
 ##########
 
-%package kfile-plugins
+%package tdefile-plugins
 Summary:	Trinity file dialog plugins for text files and folders
 Group:		Applications/Utilities
 
-%description kfile-plugins
+Obsoletes:	trinity-tdeaddons-kfile-plugins < %{version}-%{release}
+Provides:	trinity-tdeaddons-kfile-plugins = %{version}-%{release}
+
+%description tdefile-plugins
 This is a collection of plugins for the TDE file dialog.  These plugins
 extend the file dialog to offer advanced meta-information for text,
 HTML and desktop files, as well as for folders, Windows .lnk files,
@@ -259,7 +262,7 @@ allowing a user to more easily decide what to do when faced with a
 decision regarding conflicting filenames.  Rename dialog plugins are
 provided for audio and image files.
 
-%files kfile-plugins
+%files tdefile-plugins
 %defattr(-,root,root,-)
 %doc kfile-plugins/lnk/README
 %{tde_bindir}/lnkforward
@@ -612,7 +615,7 @@ Requires:	trinity-noatun
 
 %description -n trinity-noatun-plugins
 This package contains a variety of useful plugins for Noatun, the audio and
-video media player for TDE.  These plugins can be loaded through the plugin
+video media player for TDE. These plugins can be loaded through the plugin
 manager in Noatun settings.
 
 Highlights include an alarm clock, guessing tags from filenames, adjustable
