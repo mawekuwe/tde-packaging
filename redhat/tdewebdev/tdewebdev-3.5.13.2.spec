@@ -88,7 +88,7 @@ Requires: trinity-kommander = %{version}-%{release}
 ##########
 
 %package -n trinity-quanta
-Summary:	web development environment for KDE [Trinity]
+Summary:	web development environment for TDE [Trinity]
 Group:		Applications/Development
 Requires:	trinity-kfilereplace = %{version}-%{release}
 Requires:	trinity-klinkstatus = %{version}-%{release}
@@ -105,7 +105,7 @@ to all markup languages, while supporting popular web-based scripting
 languages, CSS and other emerging W3C recommendations.
 
 Quanta Plus supports many external components, debuggers and other tools
-for web development, several of which are shipped with the KDE web
+for web development, several of which are shipped with the TDE web
 development module.
 
 Quanta Plus is not in any way affiliated with any commercial versions
@@ -168,11 +168,11 @@ This package is part of TDE, as a component of the TDE web development module.
 ##########
 
 %package -n trinity-kfilereplace
-Summary:	batch search-and-replace component for KDE [Trinity]
+Summary:	batch search-and-replace component for TDE [Trinity]
 Group:		Applications/Development
 
 %description -n trinity-kfilereplace
-KFileReplace is an embedded component for KDE that acts as a batch
+KFileReplace is an embedded component for TDE that acts as a batch
 search-and-replace tool. It allows you to replace one expression with
 another in many files at once.
 
@@ -211,7 +211,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kimagemapeditor
-Summary:	HTML image map editor for KDE [Trinity]
+Summary:	HTML image map editor for TDE [Trinity]
 Group:		Applications/Development
 
 %description -n trinity-kimagemapeditor
@@ -249,11 +249,11 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-klinkstatus
-Summary:	web link validity checker for KDE [Trinity]
+Summary:	web link validity checker for TDE [Trinity]
 Group:		Applications/Development
 
 %description -n trinity-klinkstatus
-KLinkStatus is KDE's web link validity checker. It allows you to
+KLinkStatus is TDE's web link validity checker. It allows you to
 search internal and external links throughout your web site. Simply
 point it to a single page and choose the depth to search.
 
@@ -402,13 +402,13 @@ This package is part of TDE, as a component of the TDE web development module.
 %if 0%{?build_kxsldbg}
 
 %package -n trinity-kxsldbg
-Summary:	graphical XSLT debugger for KDE [Trinity]
+Summary:	graphical XSLT debugger for TDE [Trinity]
 Group:		Applications/Development
 
 %description -n trinity-kxsldbg
 KXSLDbg is a debugger for XSLT scripts. It includes a graphical user
 interface as well as a text-based debugger. KXSLDbg can be run as a
-standalone application or as an embedded KDE part.
+standalone application or as an embedded TDE part.
 
 XSLT is an XML language for defining transformations of XML files from
 XML to some other arbitrary format, such as XML, HTML, plain text, etc.,
@@ -501,8 +501,8 @@ unset QTDIR || : ; source /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-# Do not build against any "/usr" installed KDE
-export KDEDIR="%{tde_prefix}"
+# Do not build against any "/usr" installed TDE
+export TDEDIR="%{tde_prefix}"
 
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then
