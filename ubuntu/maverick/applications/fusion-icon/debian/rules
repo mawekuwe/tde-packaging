@@ -14,8 +14,17 @@ binary-install/fusion-icon-trinity::
 	mkdir -p debian/fusion-icon-trinity/usr/local/lib
 	cp -Rp debian/fusion-icon-trinity/usr/local/* debian/fusion-icon-trinity/usr/
 	rm -rf debian/fusion-icon-trinity/usr/local
+	mkdir -p debian/fusion-icon-trinity/temp
+	mv debian/fusion-icon-trinity/usr/lib debian/fusion-icon-trinity/temp
 	mkdir -p debian/fusion-icon-trinity/opt/trinity
 	cp -Rp debian/fusion-icon-trinity/usr/* debian/fusion-icon-trinity/opt/trinity/
 	rm -rf debian/fusion-icon-trinity/usr
 	dh_pysupport -pfusion-icon-trinity
+	### 
+	# Must be done after invoking dh_pysupport, otherwise python scripts will
+	# end up in /usr/share/pyshare instead of dist-packages
+	mkdir -p debian/fusion-icon-trinity/usr
+	mv debian/fusion-icon-trinity/temp/lib debian/fusion-icon-trinity/usr
+	rm -rf debian/fusion-icon-trinity/temp
+	###
 	dh_icons
