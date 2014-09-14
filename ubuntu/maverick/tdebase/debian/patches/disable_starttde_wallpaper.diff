@@ -7,10 +7,10 @@
 -# Make sure a default wallpaper is set.
 -if [ ! -e "$tdehome/share/config/kdesktoprc" ]; then
 - # With Trinity this file should exist, but test first.
--  if [ -r /usr/share/wallpapers/isadora.png.desktop ]; then
+-  if [ -r $TDEDIR/share/wallpapers/Trinity-lineart.svg.desktop ]; then
 -cat >"$tdehome/share/config/kdesktoprc" <<EOF
 -[Desktop0]
--Wallpaper=isadora.png
+-Wallpaper=Trinity-lineart.svg
 -WallpaperMode=Scaled
 -EOF
 -  fi
@@ -18,10 +18,10 @@
 +## Make sure a default wallpaper is set.
 +#if [ ! -e "$tdehome/share/config/kdesktoprc" ]; then
 +# # With Trinity this file should exist, but test first.
-+#  if [ -r /usr/share/wallpapers/isadora.png.desktop ]; then
++#  if [ -r $TDEDIR/share/wallpapers/Trinity-lineart.svg.desktop ]; then
 +#cat >"$tdehome/share/config/kdesktoprc" <<EOF
 +#[Desktop0]
-+#Wallpaper=isadora.png
++#Wallpaper=Trinity-lineart.svg
 +#WallpaperMode=Scaled
 +#EOF
 +#  fi
