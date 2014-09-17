@@ -168,7 +168,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   \
-  --disable-rpath \
+  --enable-rpath \
   --enable-closure \
   \
   --with-extra-includes=%{_includedir}/tqt3 \

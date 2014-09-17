@@ -1,5 +1,6 @@
 # Default version for this component
-%define kdecomp fusion-icon
+%define tde_pkg fusion-icon
+%define tde_version 14.0.0
 
 %if "%{?python2_sitelib}" == ""
 %define python2_sitelib    %(python2 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
@@ -11,7 +12,7 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -27,7 +28,7 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
+Name:		trinity-%{tde_pkg}
 Summary:	tray icon to launch and manage Compiz Fusion [Trinity]
 Version:	0.0.0+git20071028
 Release:	2%{?dist}%{?_variant}
@@ -42,7 +43,7 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # [fusion-icon] Allow python installation under /usr instead of tde_prefix
 Patch1:		fusion-icon-3.5.13-fix_python_sitelib.patch
@@ -65,12 +66,12 @@ decorators.
 
 
 %prep
-%setup -q -n applications/%{kdecomp}
-%patch1 -p1
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 

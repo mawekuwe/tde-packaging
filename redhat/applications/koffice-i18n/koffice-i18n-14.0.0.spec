@@ -553,7 +553,6 @@ Provides: %{name}-tz_TW = %{version}-%{release}
 
 %build
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 export kde_htmldir="%{tde_tdedocdir}/HTML"
 

@@ -176,7 +176,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/services/tdenetman_pptp.desktop
 %{tde_datadir}/services/tdenetman_strongswan.desktop
 %{tde_datadir}/services/tdenetman_vpnc.desktop
-
+%{tde_tdedocdir}/HTML/en/tdenetworkmanager/
 
 %files devel
 %defattr(-,root,root,-)

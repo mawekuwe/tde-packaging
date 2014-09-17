@@ -23,11 +23,12 @@
 
 %define _docdir %{tde_docdir}
 
+##########
 
 Name:			trinity-%{tde_pkg}
 Summary:		barcode and label printing application for Trinity
-Version:		2.0.6
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Version:		2.0.7
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -50,6 +51,8 @@ BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
 
+Requires:		%{name}-tdefile-plugin = %{version}-%{release}
+
 
 %description
 KBarcode is a barcode and label printing application for Trinity. It can be used
@@ -70,11 +73,57 @@ supported. Even complex 2D barcodes are supported using third party tools. The
 generated barcodes can be directly printed or you can export them into images
 to use them in another application.
 
+%post
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} &> /dev/null
+
+%postun
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} &> /dev/null
+
+%files -f %{tde_pkg}.lang
+%defattr(-,root,root,-)
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%{tde_bindir}/kbarcode
+%{tde_tdeappdir}/kbarcode-batch.desktop
+%{tde_tdeappdir}/kbarcode-editor.desktop
+%{tde_tdeappdir}/kbarcode-single.desktop
+%{tde_tdeappdir}/kbarcode.desktop
+%{tde_datadir}/mimelnk/application/kbarcode-label.desktop
+%{tde_datadir}/apps/kbarcode/
+%{tde_datadir}/icons/hicolor/*/actions/barcode.png
+%{tde_datadir}/icons/hicolor/*/actions/kbarcodeellipse.png
+%{tde_datadir}/icons/hicolor/*/actions/kbarcodegrid.png
+%{tde_datadir}/icons/hicolor/*/actions/kbarcodelinetool.png
+%{tde_datadir}/icons/hicolor/*/actions/kbarcoderect.png
+%{tde_datadir}/icons/hicolor/*/apps/kbarcode.png
+%{tde_tdedocdir}/HTML/en/kbarcode/
+
+##########
+
+%package tdefile-plugin
+Summary:		tdefile-plugin for %{name}
+Group:			Applications/Utilities
+#Requires:		%{name} = %{version}-%{release}
+
+%description tdefile-plugin
+%{summary}.
+
+%files tdefile-plugin
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/tdefile_kbarcode.la
+%{tde_tdelibdir}/tdefile_kbarcode.so
+%{tde_datadir}/services/tdefile_kbarcode.desktop
+
+##########
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -87,7 +136,6 @@ to use them in another application.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -123,39 +171,6 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %clean
 %__rm -rf %{buildroot}
-
-
-%post
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-update-desktop-database %{tde_appdir} &> /dev/null
-
-%postun
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-update-desktop-database %{tde_appdir} &> /dev/null
-
-
-%files -f %{tde_pkg}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{tde_bindir}/kbarcode
-%{tde_tdelibdir}/tdefile_kbarcode.la
-%{tde_tdelibdir}/tdefile_kbarcode.so
-%{tde_tdeappdir}/kbarcode-batch.desktop
-%{tde_tdeappdir}/kbarcode-editor.desktop
-%{tde_tdeappdir}/kbarcode-single.desktop
-%{tde_tdeappdir}/kbarcode.desktop
-%{tde_datadir}/mimelnk/application/kbarcode-label.desktop
-%{tde_datadir}/apps/kbarcode/
-%{tde_datadir}/icons/hicolor/*/actions/barcode.png
-%{tde_datadir}/icons/hicolor/*/actions/kbarcodeellipse.png
-%{tde_datadir}/icons/hicolor/*/actions/kbarcodegrid.png
-%{tde_datadir}/icons/hicolor/*/actions/kbarcodelinetool.png
-%{tde_datadir}/icons/hicolor/*/actions/kbarcoderect.png
-%{tde_datadir}/icons/hicolor/*/apps/kbarcode.png
-%{tde_datadir}/services/tdefile_kbarcode.desktop
-%{tde_tdedocdir}/HTML/en/kbarcode/
 
 
 %changelog
