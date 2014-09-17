@@ -32,10 +32,7 @@ Packager:		Francois Andriot <francois.andriot@free.fr>
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:        tqca-master.tar.gz
-
-Patch0:         qca-1.0-mach.patch
-Patch1:			tqca-1.0-fix_qt3_detection.patch
+Source0:        tqca-3.5.13.2.tar.gz
 
 BuildRequires:  qt3-devel >= 3.3.8.d
 BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
@@ -91,19 +88,15 @@ This packages contains the development files for TQCA
 ##########
 
 %prep
-%setup -q -n tqca-master
-%patch0 -p0 -b .mach
-%patch1 -p1 -b .qt
+%setup -q -n tqca-3.5.13.2
 
 # Fix 'lib64' library directory
 perl -pi -e 's,target\.path=\$PREFIX/lib,target.path=\$PREFIX/%{_lib},g' qcextra
 
-# Revert TQCA to QCA
-%__sed -i examples/*/*.cpp src/*.h src/*.cpp -e "s|TQCA|QCA|g"
-
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
