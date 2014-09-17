@@ -49,7 +49,7 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # Main patch: lots of updates for TDE R14.0.0
 Patch1:		tde-i18n-14.0.0-extra_translations.patch
-
+Patch2:		tde-i18n-14.0.0-updates.patch
 
 BuildRequires:	findutils
 BuildRequires:	gettext
@@ -685,9 +685,8 @@ Provides:	 trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Patches for French translations
-pushd tde-i18n-fr
 %patch1 -p1
-popd
+%patch2 -p1
 
 
 %build
