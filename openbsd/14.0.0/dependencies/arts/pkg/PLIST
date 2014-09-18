@@ -1,0 +1,158 @@
+@comment $OpenBSD$
+bin/
+bin/artsc-config
+@bin bin/artscat
+@bin bin/artsd
+bin/artsdsp
+@bin bin/artsplay
+@bin bin/artsrec
+@bin bin/artsshell
+@bin bin/artswrapper
+@bin bin/mcopidl
+include/
+include/artsc/
+include/artsc/artsc.h
+include/artsc/artsc_export.h
+include/tde/
+include/tde/arts/
+include/tde/arts/anyref.h
+include/tde/arts/arts_export.h
+include/tde/arts/artsflow.h
+include/tde/arts/artsflow.idl
+include/tde/arts/artsversion.h
+include/tde/arts/asyncstream.h
+include/tde/arts/audioio.h
+include/tde/arts/audiosubsys.h
+include/tde/arts/buffer.h
+include/tde/arts/bufferqueue.h
+include/tde/arts/cache.h
+include/tde/arts/cachedwav.h
+include/tde/arts/common.h
+include/tde/arts/connect.h
+include/tde/arts/connection.h
+include/tde/arts/convert.h
+include/tde/arts/core.h
+include/tde/arts/core.idl
+include/tde/arts/cpuinfo.h
+include/tde/arts/datapacket.h
+include/tde/arts/debug.h
+include/tde/arts/delayedreturn.h
+include/tde/arts/dispatcher.h
+include/tde/arts/dynamicrequest.h
+include/tde/arts/dynamicskeleton.h
+include/tde/arts/extensionloader.h
+include/tde/arts/factory.h
+include/tde/arts/fft.h
+include/tde/arts/flowsystem.h
+include/tde/arts/giomanager.h
+include/tde/arts/gsl/
+include/tde/arts/gsl/gslcommon.h
+include/tde/arts/gsl/gslconfig.h
+include/tde/arts/gsl/gslconvert.h
+include/tde/arts/gsl/gsldatacache.h
+include/tde/arts/gsl/gsldatahandle-mad.h
+include/tde/arts/gsl/gsldatahandle-vorbis.h
+include/tde/arts/gsl/gsldatahandle.h
+include/tde/arts/gsl/gsldatautils.h
+include/tde/arts/gsl/gsldefs.h
+include/tde/arts/gsl/gslengine.h
+include/tde/arts/gsl/gslfft.h
+include/tde/arts/gsl/gslfilter.h
+include/tde/arts/gsl/gslieee754.h
+include/tde/arts/gsl/gslloader.h
+include/tde/arts/gsl/gslmagic.h
+include/tde/arts/gsl/gslmath.h
+include/tde/arts/gsl/gsloscillator.h
+include/tde/arts/gsl/gslosctable.h
+include/tde/arts/gsl/gslsignal.h
+include/tde/arts/gsl/gslwavechunk.h
+include/tde/arts/gsl/gslwaveosc.h
+include/tde/arts/gslschedule.h
+include/tde/arts/idlfilereg.h
+include/tde/arts/ifacerepo_impl.h
+include/tde/arts/iomanager.h
+include/tde/arts/kmedia2.h
+include/tde/arts/kmedia2.idl
+include/tde/arts/mcopconfig.h
+include/tde/arts/mcoputils.h
+include/tde/arts/notification.h
+include/tde/arts/object.h
+include/tde/arts/objectmanager.h
+include/tde/arts/pipebuffer.h
+include/tde/arts/pool.h
+include/tde/arts/qiomanager.h
+include/tde/arts/reference.h
+include/tde/arts/referenceclean.h
+include/tde/arts/resample.h
+include/tde/arts/socketconnection.h
+include/tde/arts/soundserver.h
+include/tde/arts/soundserver.idl
+include/tde/arts/startupmanager.h
+include/tde/arts/stdsynthmodule.h
+include/tde/arts/synthschedule.h
+include/tde/arts/tcpconnection.h
+include/tde/arts/tcpserver.h
+include/tde/arts/thread.h
+include/tde/arts/type.h
+include/tde/arts/unixconnection.h
+include/tde/arts/unixserver.h
+include/tde/arts/weakreference.h
+lib/
+lib/libartsc.la
+@lib lib/libartsc.so.${LIBartsc_VERSION}
+lib/libartscbackend.la
+@lib lib/libartscbackend.so.${LIBartscbackend_VERSION}
+lib/libartsdsp.la
+@lib lib/libartsdsp.so.${LIBartsdsp_VERSION}
+lib/libartsdsp_st.la
+@lib lib/libartsdsp_st.so.${LIBartsdsp_st_VERSION}
+lib/libartsflow.la
+@lib lib/libartsflow.so.${LIBartsflow_VERSION}
+lib/libartsflow_idl.la
+@lib lib/libartsflow_idl.so.${LIBartsflow_idl_VERSION}
+lib/libartsgsl.a
+lib/libartsgslplayobject.la
+@lib lib/libartsgslplayobject.so.${LIBartsgslplayobject_VERSION}
+lib/libartswavplayobject.la
+@lib lib/libartswavplayobject.so.${LIBartswavplayobject_VERSION}
+lib/libgmcop.la
+@lib lib/libgmcop.so.${LIBgmcop_VERSION}
+lib/libkmedia2.la
+@lib lib/libkmedia2.so.${LIBkmedia2_VERSION}
+lib/libkmedia2_idl.la
+@lib lib/libkmedia2_idl.so.${LIBkmedia2_idl_VERSION}
+lib/libmcop.la
+@lib lib/libmcop.so.${LIBmcop_VERSION}
+lib/libmcop_mt.la
+@lib lib/libmcop_mt.so.${LIBmcop_mt_VERSION}
+lib/libqtmcop.la
+@lib lib/libqtmcop.so.${LIBqtmcop_VERSION}
+lib/libsoundserver_idl.la
+@lib lib/libsoundserver_idl.so.${LIBsoundserver_idl_VERSION}
+lib/mcop/
+lib/mcop/Arts/
+lib/mcop/Arts/DataHandlePlay.mcopclass
+lib/mcop/Arts/FileInputStream.mcopclass
+lib/mcop/Arts/GSLPlayObject.mcopclass
+lib/mcop/Arts/Synth_ADD.mcopclass
+lib/mcop/Arts/Synth_AMAN_PLAY.mcopclass
+lib/mcop/Arts/Synth_AMAN_RECORD.mcopclass
+lib/mcop/Arts/Synth_BUS_DOWNLINK.mcopclass
+lib/mcop/Arts/Synth_BUS_UPLINK.mcopclass
+lib/mcop/Arts/Synth_FREQUENCY.mcopclass
+lib/mcop/Arts/Synth_MUL.mcopclass
+lib/mcop/Arts/Synth_MULTI_ADD.mcopclass
+lib/mcop/Arts/Synth_PLAY.mcopclass
+lib/mcop/Arts/Synth_PLAY_WAV.mcopclass
+lib/mcop/Arts/Synth_RECORD.mcopclass
+lib/mcop/Arts/Synth_WAVE_SIN.mcopclass
+lib/mcop/Arts/WavPlayObject.mcopclass
+lib/mcop/Arts/WaveDataHandle.mcopclass
+lib/mcop/artsflow.mcopclass
+lib/mcop/artsflow.mcoptype
+lib/mcop/kmedia2.mcopclass
+lib/mcop/kmedia2.mcoptype
+lib/mcop/soundserver.mcopclass
+lib/mcop/soundserver.mcoptype
+lib/pkgconfig/
+lib/pkgconfig/arts.pc
