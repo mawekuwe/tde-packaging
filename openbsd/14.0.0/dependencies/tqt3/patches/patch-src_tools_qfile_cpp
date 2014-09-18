@@ -1,0 +1,68 @@
+--- src/tools/qfile.cpp.orig	Fri Sep  5 20:07:14 2014
++++ src/tools/qfile.cpp	Fri Sep  5 20:11:15 2014
+@@ -73,8 +73,13 @@
+ {
+ public:
+     TQString errorString;
++    int lastAccess;
+ };
+ 
++#define ACCESS_NONE -1
++#define ACCESS_READ 0
++#define ACCESS_WRITE 1
++
+ extern bool qt_file_access( const TQString& fn, int t );
+ 
+ /*!
+@@ -199,6 +204,7 @@
+ {
+     delete d;
+     d = new TQFilePrivate;
++    d->lastAccess = ACCESS_NONE;
+     setFlags( IO_Direct );
+     setStatus( IO_Ok );
+     setErrorString( qt_fileerr_unknown );
+@@ -385,6 +391,10 @@
+     if ( isRaw() ) {				// raw file
+ 	nread = TQIODevice::readLine( p, maxlen );
+     } else {					// buffered file
++        if (d->lastAccess == ACCESS_WRITE) {
++            ::fseek(fh, 0, SEEK_CUR);
++            d->lastAccess = ACCESS_READ;
++        }
+ 	p = fgets( p, maxlen, fh );
+ 	if ( p ) {
+ 	    nread = tqstrlen( p );
+@@ -466,6 +476,10 @@
+ 	char buf[1];
+ 	ch = readBlock( buf, 1 ) == 1 ? buf[0] : EOF;
+     } else {					// buffered file
++        if (d->lastAccess == ACCESS_WRITE) {
++            ::fseek(fh, 0, SEEK_CUR);
++            d->lastAccess = ACCESS_READ;
++        }
+ 	if ( (ch = getc( fh )) != EOF ) {
+ 	    if ( !isSequentialAccess() )
+ 		ioIndex++;
+@@ -502,6 +516,10 @@
+ 	buf[0] = ch;
+ 	ch = writeBlock( buf, 1 ) == 1 ? ch : EOF;
+     } else {					// buffered file
++        if (d->lastAccess == ACCESS_READ) {
++            ::fseek(fh, 0, SEEK_CUR);
++            d->lastAccess = ACCESS_WRITE;
++        }
+ 	if ( (ch = putc( ch, fh )) != EOF ) {
+ 	    if ( !isSequentialAccess() )
+ 		ioIndex++;
+@@ -556,6 +574,10 @@
+ 	else
+ 	    ch = EOF;
+     } else {					// buffered file
++        if (d->lastAccess == ACCESS_WRITE) {
++            ::fseek(fh, 0, SEEK_CUR);
++            d->lastAccess = ACCESS_READ;
++        }
+ 	if ( (ch = ungetc(ch, fh)) != EOF ) {
+ 	    if ( !isSequentialAccess() )
+ 		ioIndex--;

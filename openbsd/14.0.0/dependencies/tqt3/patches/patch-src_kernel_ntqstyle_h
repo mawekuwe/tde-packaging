@@ -1,0 +1,17 @@
+--- src/kernel/ntqstyle.h.orgi	Wed Aug 20 19:21:35 2014
++++ src/kernel/ntqstyle.h	Wed Aug 20 19:23:23 2014
+@@ -287,14 +287,8 @@
+ 		TQ_UINT32 topLevelWidgetFlags;
+ 		TQPixmap paletteBgPixmap;
+ 
+-#ifdef ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY
+ 	public:
+ 		TQStyleControlElementData(const TQStyleControlElementData&);
+-#else // ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY
+-	private:
+-		// Disable copy constructor
+-		TQStyleControlElementData(const TQStyleControlElementData&);
+-#endif // ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY
+ 
+ };
+ 
