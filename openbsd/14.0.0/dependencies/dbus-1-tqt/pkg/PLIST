@@ -1,0 +1,23 @@
+@comment $OpenBSD$
+bin/
+@bin bin/dbusxml2qt3
+include/
+include/tde/
+include/tde/tqdbusconnection.h
+include/tde/tqdbusdata.h
+include/tde/tqdbusdataconverter.h
+include/tde/tqdbusdatalist.h
+include/tde/tqdbusdatamap.h
+include/tde/tqdbuserror.h
+include/tde/tqdbusmacros.h
+include/tde/tqdbusmessage.h
+include/tde/tqdbusobject.h
+include/tde/tqdbusobjectpath.h
+include/tde/tqdbusproxy.h
+include/tde/tqdbusunixfd.h
+include/tde/tqdbusvariant.h
+lib/
+lib/libdbus-1-tqt.la
+@lib lib/libdbus-1-tqt.so.${LIBdbus-1-tqt_VERSION}
+lib/pkgconfig/
+lib/pkgconfig/dbus-1-tqt.pc
