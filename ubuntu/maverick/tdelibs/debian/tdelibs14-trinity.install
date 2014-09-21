@@ -287,8 +287,8 @@ debian/tmp/opt/trinity/lib/libtdemediaplayer.so.0
 debian/tmp/opt/trinity/lib/libtdemediaplayer.so.0.0.0
 debian/tmp/opt/trinity/lib/libtdemid.so.0
 debian/tmp/opt/trinity/lib/libtdemid.so.0.0.95
-debian/tmp/opt/trinity/lib/libknewstuff.so.1
-debian/tmp/opt/trinity/lib/libknewstuff.so.1.0.0
+debian/tmp/opt/trinity/lib/libtdenewstuff.so.1
+debian/tmp/opt/trinity/lib/libtdenewstuff.so.1.0.0
 debian/tmp/opt/trinity/lib/libtdentlm.so.0
 debian/tmp/opt/trinity/lib/libtdentlm.so.0.0.0
 debian/tmp/opt/trinity/lib/libtdeparts.so.2
