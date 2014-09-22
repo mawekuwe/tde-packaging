@@ -3,9 +3,8 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Harald Sitter <apachelogger@ubuntu.com>
-Build-Depends: cdbs, debhelper (>= 5), tdenetwork-trinity-dev, libotr2-dev (>= 3.0.0), automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>= 5), tdenetwork-trinity-dev, libotr2-dev (>= 3.0.0) | libotr5-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
-Homepage: http://kopete-otr.follefuder.org/
 
 Package: kopete-otr-trinity
 Architecture: any
