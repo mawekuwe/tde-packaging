@@ -90,51 +90,6 @@ install/guidance-backends-trinity::
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/wineread.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/winewrite.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 
-install/tde-guidance-powermanager-trinity::
-	# install icon to right place
-	install -D -p -m0644 kde/powermanager/pics/battery-charging-100.png \
-		$(DEB_DESTDIR)/opt/trinity/share/icons/hicolor/22x22/apps/power-manager.png
-	install -D -p -m0644 kde/powermanager/pics/*.png \
-		$(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/
-
-	# install desktop file
-	install -D -p -m0644 powermanager/guidance-power-manager.desktop \
-		$(DEB_DESTDIR)/opt/trinity/share/autostart/guidance-power-manager.desktop
-
-	# copy python modules in PYSUPPORT_PATH
-	mkdir -p $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MicroHAL.py $(PYSUPPORT_PATH)/guidance-backends-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/guidance-power-manager.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/powermanage.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/gpmhelper.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/powermanager_ui.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-	cp powermanager/guidance_power_manager_ui.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-	cp powermanager/notify.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-	cp powermanager/tooltip.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
-
-	# generate guidance-power-manager script
-	echo "#!/bin/sh" > $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
-	echo "$(PYSUPPORT_INST_PATH)/tde-guidance-powermanager-trinity/guidance-power-manager.py &" >> $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
-	chmod +x $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
-
-	# fix script-not-executable
-	chmod 0755 $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity/powermanage.py
-	chmod 0755 $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity/gpmhelper.py
-
-	: # Replace all '#!' calls to python with /usr/bin/python
-	: # and make them executable
-	for i in `find debian/tde-guidance-powermanager-trinity -type f`; do \
-		sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
-			$$i > $$i.temp; \
-		if cmp --quiet $$i $$i.temp; then \
-			rm -f $$i.temp; \
-		else \
-			mv -f $$i.temp $$i; \
-			chmod 755 $$i; \
-			echo "fixed interpreter: $$i"; \
-		fi; \
-	done
-
 clean::
 	rm -rf build
 
@@ -158,9 +113,6 @@ clean::
 
 common-install-prehook-impl::
 	# generate form implementation using pytde user interface compiler
-	(cd powermanager; /opt/trinity/bin/tdepyuic --usetdei18n guidance_power_manager_ui.ui)
-	(cd powermanager; /opt/trinity/bin/tdepyuic --usetdei18n tooltip.ui)
-	(cd powermanager; /opt/trinity/bin/tdepyuic --usetdei18n notify.ui)
 
 	mkdir -p po
 	touch list
@@ -193,4 +145,3 @@ common-install-prehook-impl::
 	fi
 
 	rm -f tde-guidance-trinity/usr/share/python-support/tde-guidance-trinity/.version
-	rm -f tde-guidance-trinity/usr/share/python-support/tde-guidance-powermanager-trinity/.version
