@@ -1,6 +1,9 @@
 #!/usr/bin/make -f
 
 DEB_PYTHON_SYSTEM = pysupport
+PYSUPPORT_INST_PATH = /opt/trinity/share/python-support
+GUIDANCE_INST_PATH = $(PYSUPPORT_INST_PATH)/tde-guidance-trinity
+export EXTRA_MODULE_DIR=$(GUIDANCE_INST_PATH)
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 #include /usr/share/cdbs/1/class/python-distutils.mk
@@ -11,7 +14,7 @@ include /usr/share/cdbs/1/rules/utils.mk
 DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
 DEB_UPDATE_RCD_PARAMS := multiuser
 DEB_INSTALL_MANPAGES_tde-guidance-trinity := debian/mountconfig-trinity.1  debian/serviceconfig-trinity.1  debian/userconfig-trinity.1
-PYSUPPORT_PATH = $(DEB_DESTDIR)/opt/trinity/share/python-support
+PYSUPPORT_PATH = $(DEB_DESTDIR)$(PYSUPPORT_INST_PATH)
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 LDFLAGS_APPEND := -L/opt/trinity/lib
 
@@ -43,11 +46,11 @@ install/tde-guidance-trinity::
 
 	# fix the link properly
 	mkdir -p debian/tde-guidance-trinity/opt/trinity/bin
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/mountconfig.py mountconfig)
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/serviceconfig.py serviceconfig)
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/userconfig.py userconfig)
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/wineconfig.py wineconfig)
-#	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/grubconfig.py grubconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf $(GUIDANCE_INST_PATH)/mountconfig.py mountconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf $(GUIDANCE_INST_PATH)/serviceconfig.py serviceconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf $(GUIDANCE_INST_PATH)/userconfig.py userconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf $(GUIDANCE_INST_PATH)/wineconfig.py wineconfig)
+#	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf $(GUIDANCE_INST_PATH)/grubconfig.py grubconfig)
 
 	# move python modules in PYSUPPORT_PATH
 	mkdir -p $(PYSUPPORT_PATH)/tde-guidance-trinity
@@ -111,7 +114,7 @@ install/tde-guidance-powermanager-trinity::
 
 	# generate guidance-power-manager script
 	echo "#!/bin/sh" > $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
-	echo "/opt/trinity/share/python-support/tde-guidance-powermanager-trinity/guidance-power-manager.py &" >> $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
+	echo "$(PYSUPPORT_INST_PATH)/tde-guidance-powermanager-trinity/guidance-power-manager.py &" >> $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
 	chmod +x $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
 
 	# fix script-not-executable
