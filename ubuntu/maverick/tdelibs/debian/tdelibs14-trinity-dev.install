@@ -218,7 +218,7 @@ debian/tmp/opt/trinity/include/tdesensordevice.h
 debian/tmp/opt/trinity/include/tdestoragedevice.h
 debian/tmp/opt/trinity/include/tdelibs_export.h
 debian/tmp/opt/trinity/include/kdemacros.h
-debian/tmp/opt/trinity/include/kde.pot
+debian/tmp/opt/trinity/include/tde.pot
 debian/tmp/opt/trinity/include/tdeprint/driver.h
 debian/tmp/opt/trinity/include/tdeprint/kiconselectaction.h
 debian/tmp/opt/trinity/include/tdeprint/kmjob.h
