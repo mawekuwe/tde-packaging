@@ -46,6 +46,19 @@ BuildRequires:	libXi-devel
 BuildRequires:	libXi6-devel
 %endif
 
+# MESA support
+%if 0%{?rhel} || 0%{?fedora}
+BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGLU-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires: mesaglu-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: Mesa-libGL-devel
+BuildRequires: Mesa-libGLU-devel
+%endif
+
 Obsoletes:	tqtinterface < %{version}-%{release}
 Provides:	tqtinterface = %{version}-%{release}
 
