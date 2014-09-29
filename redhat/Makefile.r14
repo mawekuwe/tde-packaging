@@ -97,7 +97,7 @@ tdegames:	tdebase tdemultimedia
 tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake
+tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake avahi-tqt
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode
@@ -140,7 +140,7 @@ endif
 cmake:
 # Build on CentOS only
 ifneq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el6*),)
-	$(call buildpkg,3rdparty/cmake)
+#	$(call buildpkg,3rdparty/cmake)
 endif
 
 esound:

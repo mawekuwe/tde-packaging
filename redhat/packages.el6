@@ -80,6 +80,7 @@ libXaw-devel
 libXcomposite-devel
 libXdamage-devel
 libXdmcp-devel
+libXScrnSaver-devel
 libXtst-devel
 libXv-devel
 libXxf86dga-devel
