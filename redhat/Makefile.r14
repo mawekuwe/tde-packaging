@@ -1,9 +1,11 @@
 SHELL := /bin/bash
+PACKAGING_DIR := $(shell cd ..; pwd)
 PATH := $(PATH):$(shell pwd)/build
 TDE_VERSION = 14.0.0
 
 buildpkg = \
-  @echo "Now processing '$(1)' ."; \
+  @echo "Now processing '$(1)' [from $(PACKAGING_DIR)]."; \
+  export PACKAGING_DIR=$(PACKAGING_DIR); \
   if [ "${REBUILD}" = "$(1)" ] || ! is_latest_package_installed.sh "$(1)" ${TDE_VERSION}; then \
     echo "  Package '${1}' is not yet installed."; \
     if [ "${REBUILD}" = "$(1)" ] || ! is_latest_package_built.sh "$(1)" ${TDE_VERSION}; then \
@@ -18,12 +20,13 @@ buildpkg = \
   echo
 
 
-all:	dependencies main libraries applications i18n meta
+all:	dependencies main libraries applications i18n meta extras
 dependencies:	tqt3 tqtinterface arts libart_lgpl libcaldav libcarddav sip4-tqt tqca tqca-tls avahi-tqt dbus-tqt dbus-1-tqt akode
 main:	tdelibs tdebase tdeaccessibility tdeadmin tdegames tdemultimedia tdepim tdetoys tdevelop tdeaddons tdeartwork tdebindings tdeedu tdegraphics tdenetwork tdesdk tdeutils tdewebdev
 libraries:	libkdcraw libkexiv2 libkipi libksquirrel libtdeldap libtqt-perl pytdeextensions python-trinity
 applications:	abakus amarok basket bibletime digikam dolphin filelight gtk3-tqt-engine gtk-qt-engine gwenview k3b k9copy kaffeine kaffeine-mozilla kasablanca katapult kbarcode kbfx kbibtex kbiff kbookreader kchmviewer kcmautostart kcmldap kcmldapcontroller kcmldapmanager kcpuload kdbg kdbusnotification kdiff3 kdirstat keep kerberostray kftpgrabber kile kima kiosktool kkbswitch klcddimmer kmplayer kmyfirewall kmymoney knemo knetload knetstats knights knmap knowit knutclient koffice konversation kopete-otr kpicosim kpilot krecipes krename krusader kscope ksensors kshowmail kshutdown ksplash-engine-moodin ksquirrel kstreamripper ksystemlog ktechlab ktorrent kuickshow kvirc kvkbd kvpnc mplayerthumbs piklab potracegui qt4-tqt-theme-engine rosegarden smartcardauth smb4k soundkonverter tde-guidance tdeio-apt tdeio-ftps tdeio-locate tdeio-sword tdeio-umountwrapper tdenetworkmanager tdepowersave tderadio tde-style-lipstik tde-style-qtcurve tdesudo tdesvn tde-systemsettings tdmtheme tellico tork twin-style-crystal wlassistant yakuake
 i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
+extras:	icons-nuvola kdevmon kdissert klamav kompose koverartist kpacman style-ia-ora
 
 
 ### Trinity Dependencies
@@ -570,7 +573,7 @@ smb4k:	tdebase
 soundkonverter:	tdebase
 	$(call buildpkg,applications/soundkonverter)
 
-tde-guidance:	tdebase pytdeextensions
+tde-guidance:	 pytdeextensions
 	$(call buildpkg,applications/tde-guidance)
 
 tdeio-apt:	tdebase
@@ -652,3 +655,28 @@ tde-i18n:	tdebase cmake
 ### Meta packages
 meta:
 	$(call buildpkg,extras/trinity-desktop)
+
+### Extra packages
+icons-nuvola:
+	$(call buildpkg,extras/icons-nuvola)
+
+kdevmon:
+	$(call buildpkg,extras/kdevmon)
+
+kdissert:
+	$(call buildpkg,extras/kdissert)
+
+klamav:
+	$(call buildpkg,extras/klamav)
+
+kompose:
+	$(call buildpkg,extras/kompose)
+
+koverartist:
+	$(call buildpkg,extras/koverartist)
+
+kpacman:
+	$(call buildpkg,extras/kpacman)
+
+style-ia-ora:
+	$(call buildpkg,extras/style-ia-ora)
