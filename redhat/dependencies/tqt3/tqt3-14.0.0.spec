@@ -25,6 +25,8 @@ Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 # [tqt3] Unexplained FTBFS on RHEL5
 Patch1:		tqt3-14.0.0-rhel5_ftbfs.patch
 
+Patch15:	tqt3-14.0.0-add_tqt_home_dir_variable.patch
+
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
 BuildRequires: glibc-devel
@@ -482,6 +484,10 @@ for the TQt 3 toolkit.
 %patch1 -p1 -b .ftbfs
 %endif
 
+%patch15 -p1 -b .tqthomedir
+
+%__ln_s ../src/sql/drivers/sqlite3/qsql_sqlite3.h include/qsql_sqlite3.h
+
 # fix variables in 'qmake.conf'
 %__sed -i mkspecs/*/qmake.conf \
   -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= %{_includedir}/tqt3|" \
@@ -502,8 +508,8 @@ for the TQt 3 toolkit.
 %build
 unset QTDIR QTINC QTLIB
 export QTDIR=$(pwd)
-export PATH=${QTDIR}/bin:$PATH
-export MANPATH=${QTDIR}/doc/man:$MANPATH
+export PATH=${QTDIR}/bin:${PATH}
+export MANPATH=${QTDIR}/doc/man:${MANPATH}
 export LD_LIBRARY_PATH="${QTDIR}/lib"
 
 # Checks for supplementary include dir
@@ -539,14 +545,15 @@ echo yes | ./configure \
 		${INCDIRS} \
 		${LIBDIRS} \
 		-L%{_libdir} \
+		\
 		-prefix		"%{tde_prefix}" \
 		-libdir		"%{tde_libdir}" \
+		-plugindir	"%{tde_libdir}/tqt3/plugins" \
 		-sysconfdir	"%{_sysconfdir}/tqt3" \
 		-datadir	"%{tde_datadir}/tqt3" \
-		-headerdir	"%{tde_includedir}/tqt3" \
 		-docdir		"%{tde_datadir}/tqt3/doc" \
-		-plugindir	"%{tde_libdir}/tqt3/plugins" \
 		-translationdir	"%{tde_datadir}/tqt3/translations" \
+		-headerdir	"%{tde_includedir}/tqt3" \
 		\
 		-thread \
 		-shared \
@@ -584,6 +591,7 @@ echo yes | ./configure \
 		-dlopen-opengl			\
 		\
 		-qt-gif				\
+		-qt-imgfmt-mng \
 		-qt-imgfmt-png			\
 		-qt-imgfmt-jpeg			\
 		-plugin-imgfmt-mng		\
