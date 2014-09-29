@@ -9,13 +9,13 @@
 Name:		trinity-tqtinterface
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
-Summary:	Trinity QT Interface
-Group:		System Environment/Libraries
+License:	GPL-2.0+
+Summary:	The Trinity Qt Interface Libraries
+Group:		System/GUI/Other
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
-Packager:	Francois Andriot <francois.andriot@free.fr>
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -23,11 +23,12 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
+BuildRequires:	pkg-config
 
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 Requires:		trinity-tqt3 >= 3.5.0
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} && 0%{?suse_version} < 1300
 BuildRequires:	trinity-cmake-macros
 Requires:		trinity-cmake-macros
 %endif
@@ -70,7 +71,10 @@ Provides:	tqtinterface = %{version}-%{release}
 
 
 %description
-Trinity QT Interface
+The Trinity Qt Interface is a library that abstracts Qt from Trinity.
+This allows the Trinity code to rapidly port from one version of Qt to another.
+This is primarily accomplished by defining old functions in terms of new functions,
+although some code has been added for useful functions that are no longer part of Qt.
 
 
 %post
@@ -99,12 +103,12 @@ Trinity QT Interface
 ##########
 
 %package devel
-Group:		Development/Libraries
-Summary:	%{name} - Development files
+Group:		Development/Libraries/X11
+Summary:	The Trinity Qt Interface Libraries (Development Files)
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-tqt3-devel >= 3.5.0
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} && 0%{?suse_version} < 1300
 Requires:		trinity-cmake-macros
 %endif
 
@@ -112,7 +116,10 @@ Obsoletes:	tqtinterface-devel < %{version}-%{release}
 Provides:	tqtinterface-devel = %{version}-%{release}
 
 %description devel
-Development files for %{name}
+The Trinity Qt Interface is a library that abstracts Qt from Trinity.
+This allows the Trinity code to rapidly port from one version of Qt to another.
+This is primarily accomplished by defining old functions in terms of new functions,
+although some code has been added for useful functions that are no longer part of Qt.
 
 %post devel
 /sbin/ldconfig || :
