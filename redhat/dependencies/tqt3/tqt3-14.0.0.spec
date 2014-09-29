@@ -231,20 +231,21 @@ applications, as well as the README files for TQt 3.
 %files
 %defattr(-,root,root,-)
 %doc FAQ LICENSE* README* changes*
-%dir %{tde_libdir}/tqt3/plugins
-%dir %{tde_libdir}/tqt3/plugins/sqldrivers
-#%dir %{tde_libdir}/tqt3/plugins/styles
+%dir %{tde_libdir}/tqt3/
+%dir %{tde_libdir}/tqt3/plugins/
+%dir %{tde_libdir}/tqt3/plugins/sqldrivers/
+%dir %{tde_datadir}/tqt3/
 %{tde_datadir}/tqt3/translations/
-%dir %{tde_libdir}/tqt3/plugins/designer
+%dir %{tde_libdir}/tqt3/plugins/designer/
 %{tde_libdir}/tqt3/plugins/designer/libcppeditor.so
 %{tde_libdir}/tqt3/plugins/designer/libdlgplugin.so
 %{tde_libdir}/tqt3/plugins/designer/libgladeplugin.so
 %{tde_libdir}/tqt3/plugins/designer/libkdevdlgplugin.so
 %{tde_libdir}/tqt3/plugins/designer/librcplugin.so
 %{tde_libdir}/tqt3/plugins/designer/libwizards.so
-%dir %{tde_libdir}/tqt3/plugins/imageformats
+%dir %{tde_libdir}/tqt3/plugins/imageformats/
 %{tde_libdir}/tqt3/plugins/imageformats/libqmng.so
-%dir %{tde_libdir}/tqt3/plugins/inputmethods
+%dir %{tde_libdir}/tqt3/plugins/inputmethods/
 %{tde_libdir}/tqt3/plugins/inputmethods/libqimsw-multi.so
 %{tde_libdir}/tqt3/plugins/inputmethods/libqimsw-none.so
 %{tde_libdir}/tqt3/plugins/inputmethods/libqsimple.so
@@ -360,7 +361,7 @@ example programs for TQt 3.
 %defattr(-,root,root,-)
 %doc examples
 %doc tutorial
-%{tde_datadir}/tqt3/doc/html/
+%{tde_datadir}/tqt3/doc/
 
 ##########
 
