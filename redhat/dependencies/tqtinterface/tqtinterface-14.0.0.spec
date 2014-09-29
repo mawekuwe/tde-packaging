@@ -22,10 +22,16 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 Requires:		trinity-tqt3 >= 3.5.0
 
-BuildRequires:	gcc-c++
+%if 0%{?suse_version}
+BuildRequires:	trinity-cmake-macros
+Requires:		trinity-cmake-macros
+%endif
+
 
 # PTHREAD support
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -97,6 +103,10 @@ Group:		Development/Libraries
 Summary:	%{name} - Development files
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-tqt3-devel >= 3.5.0
+
+%if 0%{?suse_version}
+Requires:		trinity-cmake-macros
+%endif
 
 Obsoletes:	tqtinterface-devel < %{version}-%{release}
 Provides:	tqtinterface-devel = %{version}-%{release}
