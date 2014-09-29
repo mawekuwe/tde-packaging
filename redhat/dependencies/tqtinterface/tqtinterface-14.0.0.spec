@@ -7,7 +7,8 @@
 %define cmake_modules_dir %{_datadir}/cmake/Modules
 
 Name:		trinity-tqtinterface
-Version:	%{tde_version}
+Epoch:		1
+Version:	4.2.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL-2.0+
 Summary:	The Trinity Qt Interface Libraries
@@ -201,5 +202,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:4.2.0-1
 - Initial release for TDE 14.0.0
