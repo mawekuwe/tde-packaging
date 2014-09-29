@@ -247,6 +247,11 @@ endif
 akode:	tqtinterface
 	$(call buildpkg,extras/akode)
 
+cmake-macros: cmake
+ifneq ($(wildcard /etc/SuSE-release),)
+	$(call buildpkg,extras/trinity-cmake-macros)
+endif
+
 ### Trinity Libraries
 kipi-plugins:	tqtinterface libkipi
 	$(call buildpkg,libraries/kipi-plugins)
