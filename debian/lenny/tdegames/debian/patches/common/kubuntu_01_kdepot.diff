@@ -4,7 +4,7 @@
  if test -z "$PREPARETIPS"; then PREPARETIPS=preparetips ; fi
  export EXTRACTRC PREPARETIPS
  
-+kdepotpath=/opt/trinity/include/tde/kde.pot
++kdepotpath=/opt/trinity/include/tde/tde.pot
 +
  for subdir in $dirs; do
    test -z "$VERBOSE" || echo "Making messages in $subdir"
@@ -13,13 +13,13 @@
     fi
     perl -e '$mes=0; while (<STDIN>) { next if (/^(if\s|else\s|endif)/); if (/^messages:/) { $mes=1; print $_; next; } if ($mes) { if (/$\\(XGETTEXT\)/ && / -o/) { s/ -o \$\(podir\)/ _translatorinfo.cpp -o \$\(podir\)/ } print $_; } else { print $_; } }' < Makefile.am | egrep -v '^include ' > _transMakefile
  
--   kdepotpath=${includedir:-`tde-config --expandvars --install include`}/kde.pot
+-   kdepotpath=${includedir:-`tde-config --expandvars --install include`}/tde.pot
 -   if ! test -f $kdepotpath; then
--	kdepotpath=`tde-config --expandvars --prefix`/include/kde.pot
+-	kdepotpath=`tde-config --expandvars --prefix`/include/tde.pot
 -   fi
-+#   kdepotpath=${includedir:-`tde-config --expandvars --install include`}/kde.pot
++#   kdepotpath=${includedir:-`tde-config --expandvars --install include`}/tde.pot
 +#   if ! test -f $kdepotpath; then
-+#	kdepotpath=`tde-config --expandvars --prefix`/include/kde.pot
++#	kdepotpath=`tde-config --expandvars --prefix`/include/tde.pot
 +#   fi
  
     $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" srcdir=. \
