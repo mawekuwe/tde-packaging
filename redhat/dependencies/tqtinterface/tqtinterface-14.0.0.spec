@@ -1,6 +1,6 @@
 # TDE specific building variables
 %define tde_version 14.0.0
-%define tde_prefix /usr
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -18,13 +18,16 @@ Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:		%{tde_prefix}
+Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+
+# This is a metapackage that depends on the following package
+Requires:	libtqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
-BuildRequires:	pkg-config
+BuildRequires:	pkgconfig
 
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 Requires:		trinity-tqt3 >= 3.5.0
@@ -67,9 +70,6 @@ BuildRequires: Mesa-libGL-devel
 BuildRequires: Mesa-libGLU-devel
 %endif
 
-Obsoletes:	tqtinterface < %{version}-%{release}
-Provides:	tqtinterface = %{version}-%{release}
-
 
 %description
 The Trinity Qt Interface is a library that abstracts Qt from Trinity.
@@ -78,63 +78,79 @@ This is primarily accomplished by defining old functions in terms of new functio
 although some code has been added for useful functions that are no longer part of Qt.
 
 
-%post
-/sbin/ldconfig || :
+##########
 
-%postun
-/sbin/ldconfig || :
+%package -n libtqt
+Group:		System/GUI/Other
+Summary:	The Trinity Qt Interface Libraries
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%files
+Obsoletes:	trinity-tqtinterface < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-tqtinterface = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n libtqt
+The Trinity Qt Interface is a library that abstracts Qt from Trinity.
+This allows the Trinity code to rapidly port from one version of Qt to another.
+This is primarily accomplished by defining old functions in terms of new functions,
+although some code has been added for useful functions that are no longer part of Qt.
+
+%files -n libtqt
 %defattr(-,root,root,-)
-%{tde_bindir}/convert_qt_tqt1
-%{tde_bindir}/convert_qt_tqt2
-%{tde_bindir}/convert_qt_tqt3
-%{tde_bindir}/dcopidl-tqt
-%{tde_bindir}/dcopidl2cpp-tqt
-%{tde_bindir}/dcopidlng-tqt
-%{tde_bindir}/mcopidl-tqt
-%{tde_bindir}/moc-tqt
-%{tde_bindir}/tmoc
-%{tde_bindir}/tqt-replace
-%{tde_bindir}/tqt-replace-stream
-%{tde_bindir}/uic-tqt
-%{tde_libdir}/libtqt.so.4
-%{tde_libdir}/libtqt.so.4.2.0
+%{_libdir}/libtqt.so.4
+%{_libdir}/libtqt.so.4.2.0
+
+%post -n libtqt
+/sbin/ldconfig || :
+
+%postun -n libtqt
+/sbin/ldconfig || :
 
 ##########
 
-%package devel
-Group:		Development/Libraries/X11
+%package -n libtqt-devel
+Group:		Development/Libraries/Other 
 Summary:	The Trinity Qt Interface Libraries (Development Files)
-Requires:	%{name} = %{version}-%{release}
+Requires:	libtqt = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	trinity-tqt3-devel >= 3.5.0
 
 %if 0%{?suse_version} && 0%{?suse_version} < 1300
 Requires:		trinity-cmake-macros
 %endif
 
-Obsoletes:	tqtinterface-devel < %{version}-%{release}
-Provides:	tqtinterface-devel = %{version}-%{release}
+Obsoletes:	trinity-tqtinterface-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-tqtinterface-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description devel
+%description -n libtqt-devel
 The Trinity Qt Interface is a library that abstracts Qt from Trinity.
 This allows the Trinity code to rapidly port from one version of Qt to another.
 This is primarily accomplished by defining old functions in terms of new functions,
 although some code has been added for useful functions that are no longer part of Qt.
 
-%post devel
+%post -n libtqt-devel
 /sbin/ldconfig || :
 
-%postun devel
+%postun -n libtqt-devel
 /sbin/ldconfig || :
 
-%files devel
+%files -n libtqt-devel
 %defattr(-,root,root,-)
-%{tde_includedir}/tqt/
-%{tde_libdir}/libtqt.la
-%{tde_libdir}/libtqt.so
-%{tde_libdir}/pkgconfig/tqt.pc
-%{tde_libdir}/pkgconfig/tqtqui.pc
+%{_bindir}/convert_qt_tqt1
+%{_bindir}/convert_qt_tqt2
+%{_bindir}/convert_qt_tqt3
+%{_bindir}/dcopidl-tqt
+%{_bindir}/dcopidl2cpp-tqt
+%{_bindir}/dcopidlng-tqt
+%{_bindir}/mcopidl-tqt
+%{_bindir}/moc-tqt
+%{_bindir}/tmoc
+%{_bindir}/tqt-replace
+%{_bindir}/tqt-replace-stream
+%{_bindir}/uic-tqt
+%{_includedir}/tqt/
+%{_libdir}/libtqt.la
+%{_libdir}/libtqt.so
+%{_libdir}/pkgconfig/tqt.pc
+%{_libdir}/pkgconfig/tqtqui.pc
 %{cmake_modules_dir}/*.cmake
 
 ##########
@@ -146,7 +162,7 @@ although some code has been added for useful functions that are no longer part o
 ##########
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 
 %build
@@ -166,17 +182,17 @@ fi
   -DWITH_GCC_VISIBILITY=OFF \
   \
   -DQTDIR="%{tde_datadir}/tqt3" \
-  -DQT_INCLUDE_DIR="%{tde_includedir}/tqt3" \
-  -DQT_LIBRARY_DIR="%{tde_libdir}" \
+  -DQT_INCLUDE_DIR="%{_includedir}/tqt3" \
+  -DQT_LIBRARY_DIR="%{_libdir}" \
   \
-  -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
-  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir}/tqt \
-  -DLIB_INSTALL_DIR=%{tde_libdir} \
-  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DCMAKE_INSTALL_PREFIX="%{_prefix}" \
+  -DPKGCONFIG_INSTALL_DIR="%{_libdir}/pkgconfig" \
+  -DINCLUDE_INSTALL_DIR=%{_includedir}/tqt \
+  -DLIB_INSTALL_DIR=%{_libdir} \
+  -DBIN_INSTALL_DIR=%{_bindir} \
   \
-  -DCMAKE_LIBRARY_PATH="%{tde_libdir}" \
-  -DCMAKE_INCLUDE_PATH="%{tde_includedir}" \
+  -DCMAKE_LIBRARY_PATH="%{_libdir}" \
+  -DCMAKE_INCLUDE_PATH="%{_includedir}" \
   \
   -DWITH_QT3="ON" \
   -DBUILD_ALL="ON" \
@@ -202,5 +218,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:4.2.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
 - Initial release for TDE 14.0.0
