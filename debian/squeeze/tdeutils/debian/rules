@@ -34,7 +34,7 @@ DEB_CMAKE_EXTRA_FLAGS := \
  -DWITH_SNMP="ON" \
  -DWITH_SENSORS="ON" \
  -DWITH_XMMS="ON" \
- -DWITH_KNEWSTUFF="ON"
+ -DWITH_TDENEWSTUFF="ON"
 
 DOC_HTML_PRUNE := kcontrol-trinity ktimer-trinity kcharselect-trinity ksim-trinity
 

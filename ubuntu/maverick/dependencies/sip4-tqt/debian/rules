@@ -41,6 +41,7 @@ build-%/configure-stamp:
 	cd build-$* \
 		&& python$* ../configure.py \
 			-d /usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt \
+			-g python$* \
 			-u STRIP="" CFLAGS="${CFLAGS} -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CFLAGS_RELEASE="" CXXFLAGS="${CFLAGS} -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CXXFLAGS_RELEASE=""
 	touch $@
 
@@ -50,6 +51,7 @@ dbg-build-%/configure-stamp:
 	cd dbg-build-$* \
 		&& python$*-dbg ../configure.py \
 			-d /usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt \
+			-g python$* \
 			-e /usr/include/python$*_d \
 			-u CFLAGS="-O0 -g -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CFLAGS_RELEASE="" CXXFLAGS="-O0 -g -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CXXFLAGS_RELEASE="" STRIP=""
 	touch $@

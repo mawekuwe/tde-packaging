@@ -1,0 +1,20 @@
+@comment $OpenBSD$
+@lib lib/libtqassistantclient.so.${LIBtqassistantclient_VERSION}
+@lib lib/libtqt-mt.so.${LIBtqt-mt_VERSION}
+@lib lib/libtqtdesignercore.so.${LIBtqtdesignercore_VERSION}
+@lib lib/libtqteditor.so.${LIBtqteditor_VERSION}
+@lib lib/libtqui.so.${LIBtqui_VERSION}
+lib/tqt3/plugins/designer/libcppeditor.so
+lib/tqt3/plugins/designer/libdlgplugin.so
+lib/tqt3/plugins/designer/libgladeplugin.so
+lib/tqt3/plugins/designer/libkdevdlgplugin.so
+lib/tqt3/plugins/designer/librcplugin.so
+lib/tqt3/plugins/designer/libwizards.so
+lib/tqt3/plugins/imageformats/libqmng.so
+lib/tqt3/plugins/inputmethods/libqimsw-multi.so
+lib/tqt3/plugins/inputmethods/libqimsw-none.so
+lib/tqt3/plugins/inputmethods/libqsimple.so
+lib/tqt3/plugins/inputmethods/libqxim.so
+lib/tqt3/plugins/sqldrivers/libqsqlite.so
+lib/tqt3/plugins/sqldrivers/libqsqlmysql.so
+lib/tqt3/plugins/sqldrivers/libqsqlpsql.so

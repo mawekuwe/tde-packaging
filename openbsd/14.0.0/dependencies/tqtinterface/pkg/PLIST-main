@@ -1,0 +1,14 @@
+@comment $OpenBSD$
+bin/convert_qt_tqt1
+bin/convert_qt_tqt2
+bin/convert_qt_tqt3
+bin/dcopidl-tqt
+bin/dcopidl2cpp-tqt
+bin/dcopidlng-tqt
+bin/mcopidl-tqt
+bin/moc-tqt
+bin/tmoc
+bin/tqt-replace
+bin/tqt-replace-stream
+bin/uic-tqt
+@lib lib/libtqt.so.${LIBtqt_VERSION}

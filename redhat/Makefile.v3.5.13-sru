@@ -85,7 +85,7 @@ tdegames:	tdebase tdemultimedia
 tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake
+tdelibs:	qt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode

@@ -135,8 +135,8 @@ fi
   -DWITH_GCC_VISIBILITY=OFF \
   \
   -DQTDIR="%{tde_datadir}/tqt3" \
-  -DQT_INCLUDE_DIRS="%{tde_includedir}/tqt3" \
-  -DQT_LIBRARY_DIRS="%{tde_libdir}" \
+  -DQT_INCLUDE_DIR="%{tde_includedir}/tqt3" \
+  -DQT_LIBRARY_DIR="%{tde_libdir}" \
   \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \

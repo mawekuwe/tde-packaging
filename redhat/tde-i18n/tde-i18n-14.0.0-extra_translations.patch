@@ -1,6 +1,6 @@
-diff -Nuar fr.p2/messages/tdebase/kcmbackground.po fr.p3/messages/tdebase/kcmbackground.po
---- fr.p2/messages/tdebase/kcmbackground.po	2014-06-07 15:36:34.455347661 +0200
-+++ fr.p3/messages/tdebase/kcmbackground.po	2014-06-07 16:44:15.728310955 +0200
+diff -Nuar tde-i18n/tde-i18n-fr/messages/tdebase/kcmbackground.po.ori tde-i18n/tde-i18n-fr/messages/tdebase/kcmbackground.po
+--- tde-i18n/tde-i18n-fr/messages/tdebase/kcmbackground.po.ori	2014-06-07 15:36:34.455347661 +0200
++++ tde-i18n/tde-i18n-fr/messages/tdebase/kcmbackground.po	2014-06-07 16:44:15.728310955 +0200
 @@ -920,3 +920,9 @@
  #, no-c-format
  msgid "Move &Up"
@@ -11,9 +11,9 @@ diff -Nuar fr.p2/messages/tdebase/kcmbackground.po fr.p3/messages/tdebase/kcmbac
 +
 +msgid "Enables a smooth fading effect when changing background image."
 +msgstr "Activer un effet de fondu lors du changement de fond d'écran."
-diff -Nuar fr.p2/messages/tdebase/kcmenergy.po fr.p3/messages/tdebase/kcmenergy.po
---- fr.p2/messages/tdebase/kcmenergy.po	2014-06-07 15:36:34.455347661 +0200
-+++ fr.p3/messages/tdebase/kcmenergy.po	2014-06-07 16:44:21.892169693 +0200
+diff -Nuar tde-i18n/tde-i18n-fr/messages/tdebase/kcmenergy.po.ori tde-i18n/tde-i18n-fr/messages/tdebase/kcmenergy.po
+--- tde-i18n/tde-i18n-fr/messages/tdebase/kcmenergy.po.ori	2014-06-07 15:36:34.455347661 +0200
++++ tde-i18n/tde-i18n-fr/messages/tdebase/kcmenergy.po	2014-06-07 16:44:21.892169693 +0200
 @@ -102,3 +102,10 @@
  "Choisissez la période d'inactivité après laquelle l'affichage doit être éteint. "
  "Ceci est le plus haut niveau d'économie d'énergie qui puisse être utilisé "
@@ -25,9 +25,9 @@ diff -Nuar fr.p2/messages/tdebase/kcmenergy.po fr.p3/messages/tdebase/kcmenergy.
 +msgid "Configure KPowersave..."
 +msgstr "Configurer KPowersave..."
 +
-diff -Nuar fr.p2/messages/tdebase/kcmkonq.po fr.p3/messages/tdebase/kcmkonq.po
---- fr.p2/messages/tdebase/kcmkonq.po	2014-06-07 15:52:30.603936867 +0200
-+++ fr.p3/messages/tdebase/kcmkonq.po	2014-06-07 16:44:27.234047255 +0200
+diff -Nuar tde-i18n/tde-i18n-fr/messages/tdebase/kcmkonq.po.ori tde-i18n/tde-i18n-fr/messages/tdebase/kcmkonq.po
+--- tde-i18n/tde-i18n-fr/messages/tdebase/kcmkonq.po.ori	2014-06-07 15:52:30.603936867 +0200
++++ tde-i18n/tde-i18n-fr/messages/tdebase/kcmkonq.po	2014-06-07 16:44:27.234047255 +0200
 @@ -877,3 +877,43 @@
  #: rootopts.cpp:276
  msgid "Confirmation Required"
@@ -72,9 +72,9 @@ diff -Nuar fr.p2/messages/tdebase/kcmkonq.po fr.p3/messages/tdebase/kcmkonq.po
 +
 +msgid "&Show free space overlay on device icons"
 +msgstr "&Afficher l'espace libre sur les icônes"
-diff -Nuar fr.p2/messages/tdebase/kcmscreensaver.po fr.p3/messages/tdebase/kcmscreensaver.po
---- fr.p2/messages/tdebase/kcmscreensaver.po	2014-06-07 15:53:13.977782717 +0200
-+++ fr.p3/messages/tdebase/kcmscreensaver.po	2014-06-07 16:44:38.180796311 +0200
+diff -Nuar tde-i18n/tde-i18n-fr/messages/tdebase/kcmscreensaver.po.ori tde-i18n/tde-i18n-fr/messages/tdebase/kcmscreensaver.po
+--- tde-i18n/tde-i18n-fr/messages/tdebase/kcmscreensaver.po.ori	2014-06-07 15:53:13.977782717 +0200
++++ tde-i18n/tde-i18n-fr/messages/tdebase/kcmscreensaver.po	2014-06-07 16:44:38.180796311 +0200
 @@ -362,3 +362,9 @@
  
  msgid "Hide all active windows from the screen saver and use the desktop background as the screen saver input."
@@ -85,9 +85,9 @@ diff -Nuar fr.p2/messages/tdebase/kcmscreensaver.po fr.p3/messages/tdebase/kcmsc
 +
 +msgid "Makes the unlock dialog box vibrate when entering an incorrect password."
 +msgstr "Faire vibrer la fenêtre de déverrouillage lorsqu'un mauvais mot de passe est saisi."
-diff -Nuar fr.p2/messages/tdebase/kdesktop.po fr.p3/messages/tdebase/kdesktop.po
---- fr.p2/messages/tdebase/kdesktop.po	2014-06-07 15:49:50.020212889 +0200
-+++ fr.p3/messages/tdebase/kdesktop.po	2014-06-07 16:44:58.546329306 +0200
+diff -Nuar tde-i18n/tde-i18n-fr/messages/tdebase/kdesktop.po.ori tde-i18n/tde-i18n-fr/messages/tdebase/kdesktop.po
+--- tde-i18n/tde-i18n-fr/messages/tdebase/kdesktop.po.ori	2014-06-07 15:49:50.020212889 +0200
++++ tde-i18n/tde-i18n-fr/messages/tdebase/kdesktop.po	2014-06-07 16:44:58.546329306 +0200
 @@ -250,6 +250,10 @@
  msgid "Open Terminal Here..."
  msgstr "Ouvrir un Terminal..."
@@ -99,9 +99,9 @@ diff -Nuar fr.p2/messages/tdebase/kdesktop.po fr.p3/messages/tdebase/kdesktop.po
  #: krootwm.cc:137
  msgid "Configure Desktop..."
  msgstr "Configurer le bureau..."
-diff -Nuar fr.p2/messages/tdebase/kicker.po fr.p3/messages/tdebase/kicker.po
---- fr.p2/messages/tdebase/kicker.po	2014-06-07 16:41:47.636699669 +0200
-+++ fr.p3/messages/tdebase/kicker.po	2014-06-07 16:45:04.820185402 +0200
+diff -Nuar tde-i18n/tde-i18n-fr/messages/tdebase/kicker.po.ori tde-i18n/tde-i18n-fr/messages/tdebase/kicker.po
+--- tde-i18n/tde-i18n-fr/messages/tdebase/kicker.po.ori	2014-06-07 16:41:47.636699669 +0200
++++ tde-i18n/tde-i18n-fr/messages/tdebase/kicker.po	2014-06-07 16:45:04.820185402 +0200
 @@ -889,6 +889,18 @@
  msgid "My Documents"
  msgstr "Mes Documents"

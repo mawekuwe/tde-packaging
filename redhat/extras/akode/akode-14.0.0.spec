@@ -28,24 +28,11 @@ Group: 		System Environment/Libraries
 #URL:		http://carewolf.com/akode/  
 URL:		http://www.kde-apps.org/content/show.php?content=30375
 
-Source0:	akode-2.0.2.tar.bz2
-Source1:	admin-14.0.0.tar.gz
+Source0:	akode-14.0.0.tar.gz
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-
-# Legacy Fedora 9 patches
-Patch1: akode-pulseaudio.patch
-Patch2: akode-2.0.2-multilib.patch
-Patch3: akode-2.0.2-flac113-portable.patch
-Patch4: akode-2.0.2-gcc43.patch
-
-# New patches
-Patch10: akode-autotools.patch
-Patch11: akode-2.0.2-fix_ffmpeg_include.patch
-Patch12: akode-2.0.2-fix_ftbfs.patch
-Patch13: akode-14.0.0-ftbfs.patch
 
 # FLAC support
 %define _with_flac --with-flac
@@ -284,21 +271,7 @@ Requires: %{name} = %{version}-%{release}
 ##########
 
 %prep
-%setup -q -n akode-%{version}
-%__rm -rf admin
-tar xfz %{SOURCE1}
-
-%patch1 -p1 -b .pulseaudio
-%patch2 -p1 -b .multilib
-%patch3 -p4 -b .flac113_portable
-%patch4 -p1 -b .gcc43
-
-#patch10 -p1 -b .autotools
-%patch11 -p1 -b .ffmpeg
-%patch12 -p1 -b .ftbfs
-%patch13 -p1 -b .ftbfs
-
-%__rm -f libtool acinclude.m4 configure.in Makefile.cvs aclocal.m4
+%setup -q -n akode-2.0.2
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"

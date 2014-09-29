@@ -28,14 +28,7 @@ Packager:		Francois Andriot <francois.andriot@free.fr>
 
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:		tqca-tls-master.tar.gz
-
-# Fix build in mach for QT apps
-Patch0:		qca-tls-1.0-mach.patch
-# Build with openssl 1.0.0
-Patch2:     qca-tls-1.0-ossl10.patch
-# Allows building with TQT3 from TDE
-Patch10:	tqca-tls-qt3.patch
+Source0:		tqca-tls-3.5.13.2.tar.gz
 
 BuildRequires:	qt3-devel >= 3.3.8.d
 BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
@@ -58,17 +51,12 @@ contains the TLS plugin.
 ##########
 
 %prep
-%setup -q -n tqca-tls-master
-%patch0 -p0 -b .mach
-%patch2 -p1 -b .ossl10
-%patch10 -p1 -b .qt
-
-# Revert TQCA to QCA
-%__sed -i * -e "s|TQCA|QCA|g"
+%setup -q -n tqca-tls-3.5.13.2
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
