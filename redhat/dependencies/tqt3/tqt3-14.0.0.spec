@@ -473,9 +473,13 @@ for the TQt 3 toolkit.
 
 ##########
 
-
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+
+# Fix strange FTBFS on RHEL5
+%if 0%{?rhel} == 5
+%__sed -i src/kernel/ntqstyle.h -e "s|#ifdef ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY|#if 1|"
+%endif
 
 # fix variables in 'qmake.conf'
 %__sed -i mkspecs/*/qmake.conf \
