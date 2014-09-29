@@ -4,6 +4,7 @@
 %endif
 
 %define tde_version 14.0.0
+%define tde_prefix /opt/trinity
 
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
@@ -32,8 +33,12 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
-BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+
+BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
