@@ -117,8 +117,17 @@ playing a wave file with some effects.
 %files
 %defattr(-,root,root,-)
 %doc COPYING.LIB
+%dir %{tde_prefix}
+%dir %{tde_bindir}
+%dir %{tde_datadir}
+%dir %{tde_datadir}/config
+%dir %{tde_datadir}/doc
+%dir %{tde_libdir}
 %dir %{tde_libdir}/mcop
 %dir %{tde_libdir}/mcop/Arts
+%dir %{tde_libdir}/pkgconfig
+%dir %{tde_includedir}
+%dir %{tde_tdeincludedir}
 %{tde_libdir}/mcop/Arts/*
 %{tde_libdir}/mcop/*.mcopclass
 %{tde_libdir}/mcop/*.mcoptype
