@@ -123,6 +123,7 @@ playing a wave file with some effects.
 %dir %{tde_bindir}
 %dir %{tde_datadir}
 %dir %{tde_datadir}/config
+%dir %{tde_datadir}/doc
 %dir %{tde_libdir}
 %dir %{tde_libdir}/mcop
 %dir %{tde_libdir}/mcop/Arts
@@ -255,6 +256,8 @@ fi
 %if 0%{?with_pulseaudio}
 %__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/config/kcmartsrc
 %endif
+
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/doc
 
 
 %clean
