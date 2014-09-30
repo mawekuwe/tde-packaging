@@ -627,6 +627,9 @@ before you send a bugreport.
 %{_includedir}/tqt3/viewmanager.h
 %{_includedir}/tqt3/widgetinterface.h
 
+%dir %{_includedir}/tqt3/private/
+%{_includedir}/tqt3/private/*.h
+
 ##########
 
 %package -n libtqt3-mt-mysql
@@ -1336,9 +1339,6 @@ find tqt3-examples -name "Makefile" | xargs rm -rf
 install -D -m 755 %{SOURCE5} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
 tar cvvfz tqt3-examples.tar.gz tqt3-examples/
 install -D tqt3-examples.tar.gz %{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz
-
-# removes private headers.
-%__rm -rf %{?buildroot}%{_includedir}/tqt3/private/
 
 %clean
 %__rm -rf %{buildroot}
