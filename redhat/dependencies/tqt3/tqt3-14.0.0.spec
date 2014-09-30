@@ -1,5 +1,5 @@
 #
-# spec file for package tqtinterface
+# spec file for package tqt3
 #
 # Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
 #
