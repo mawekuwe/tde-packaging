@@ -80,6 +80,7 @@ BuildRequires:	libtool
 %endif
 
 # MAD support
+%ifarch i586 i686 x86_64
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} 
 %define with_libmad 1
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -87,6 +88,7 @@ BuildRequires:		%{_lib}mad-devel
 %endif
 %if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
 BuildRequires:		libmad-devel
+%endif
 %endif
 %endif
 
@@ -121,7 +123,6 @@ playing a wave file with some effects.
 %dir %{tde_bindir}
 %dir %{tde_datadir}
 %dir %{tde_datadir}/config
-%dir %{tde_datadir}/doc
 %dir %{tde_libdir}
 %dir %{tde_libdir}/mcop
 %dir %{tde_libdir}/mcop/Arts
