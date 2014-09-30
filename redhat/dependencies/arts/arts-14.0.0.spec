@@ -33,7 +33,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	libtqt4-devel >= 1:4.2.0-1
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
@@ -50,8 +50,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
 
 # JACK support
-#  Not on RHEL4 !
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
 %define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}jack-devel
@@ -97,7 +96,7 @@ BuildRequires:		libmad-devel
 %define with_pulseaudio 1
 %endif
 
-Requires:		trinity-tqtinterface >= %{tde_version}
+Requires:		libtqt4 >= 1:4.2.0-1
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"
@@ -228,6 +227,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
   \
