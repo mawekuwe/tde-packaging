@@ -1,11 +1,28 @@
+#
+# spec file for package arts
+#
+# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
+# TDE specific variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
-
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -33,7 +50,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
-BuildRequires:	trinity-tqtinterface-devel >= 1:4.2.0-1
+BuildRequires:	libtqt4-devel >= 1:4.2.0
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
@@ -96,7 +113,7 @@ BuildRequires:		libmad-devel
 %define with_pulseaudio 1
 %endif
 
-Requires:		trinity-tqtinterface >= 1:4.2.0-1
+Requires:		libtqt4 >= 1:4.2.0
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"

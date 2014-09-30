@@ -1,3 +1,20 @@
+#
+# spec file for package tqtinterface
+#
+# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
 # TDE specific building variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
@@ -13,8 +30,6 @@ Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL-2.0+
 Summary:	The Trinity Qt Interface Libraries
 Group:		System/GUI/Other
-
-Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
@@ -22,21 +37,15 @@ Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-# This is a metapackage that depends on the following package
-Requires:	libtqt4 = %{?epoch:%{epoch}:}%{version}-%{release}
+BuildRequires:	libtqt3-mt-devel >= 3.5.0
+
+%if 0%{?suse_version} && 0%{?suse_version} < 1300
+BuildRequires:	trinity-cmake-macros
+%endif
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
-
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
-Requires:		trinity-tqt3 >= 3.5.0
-
-%if 0%{?suse_version} && 0%{?suse_version} < 1300
-BuildRequires:	trinity-cmake-macros
-Requires:		trinity-cmake-macros
-%endif
-
 
 # PTHREAD support
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -85,6 +94,11 @@ Group:		System/GUI/Other
 Summary:	The Trinity Qt Interface Libraries
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
+Requires:		libtqt3-mt >= 3.5.0
+%if 0%{?suse_version} && 0%{?suse_version} < 1300
+Requires:		trinity-cmake-macros
+%endif
+
 Obsoletes:	trinity-tqtinterface < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:	trinity-tqtinterface = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -108,10 +122,10 @@ although some code has been added for useful functions that are no longer part o
 ##########
 
 %package -n libtqt4-devel
-Group:		Development/Libraries/Other 
+Group:		Development/Libraries
 Summary:	The Trinity Qt Interface Libraries (Development Files)
 Requires:	libtqt4 = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:	trinity-tqt3-devel >= 3.5.0
+Requires:	libtqt3-mt-devel >= 3.5.0
 
 %if 0%{?suse_version} && 0%{?suse_version} < 1300
 Requires:		trinity-cmake-macros
@@ -155,7 +169,7 @@ although some code has been added for useful functions that are no longer part o
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -218,5 +232,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:4.2.0-1
 - Initial release for TDE 14.0.0
