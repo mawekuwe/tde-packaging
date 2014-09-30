@@ -19,13 +19,13 @@ Name:		trinity-arts
 Epoch:		1
 Version:	1.5.10
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
+License:	GPL-2.0+
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
-Packager:	Francois Andriot <francois.andriot@free.fr>
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -33,7 +33,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
-BuildRequires:	libtqt4-devel >= 1:4.2.0-1
+BuildRequires:	trinity-tqtinterface-devel >= 1:4.2.0-1
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
@@ -96,7 +96,7 @@ BuildRequires:		libmad-devel
 %define with_pulseaudio 1
 %endif
 
-Requires:		libtqt4 >= 1:4.2.0-1
+Requires:		trinity-tqtinterface >= 1:4.2.0-1
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"
@@ -153,14 +153,23 @@ playing a wave file with some effects.
 
 %package devel
 Group:		Development/Libraries
-Summary:	%{name} - Development files
+Summary:	aRts (analog realtime synthesizer) - the TDE sound system (Development files)
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if "%{?tde_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
 
 %description devel
-Development files for %{name}
+arts (analog real-time synthesizer) is the sound system of TDE.
+
+The principle of arts is to create/process sound using small modules which do
+certain tasks. These may be create a waveform (oscillators), play samples,
+filter data, add signals, perform effects like delay/flanger/chorus, or
+output the data to the soundcard.
+
+By connecting all those small modules together, you can perform complex
+tasks like simulating a mixer, generating an instrument or things like
+playing a wave file with some effects.
 
 %files devel
 %defattr(-,root,root,-)
@@ -252,12 +261,14 @@ fi
 %__rm -rf %{?buildroot}
 %__make install -C build DESTDIR=%{?buildroot}
 
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/config
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/doc
+
 # Installs the Pulseaudio configuration file
 %if 0%{?with_pulseaudio}
 %__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/config/kcmartsrc
 %endif
 
-%__install -d -m 755 %{?buildroot}%{tde_datadir}/doc
 
 
 %clean
