@@ -624,6 +624,7 @@ before you send a bugreport.
 %{_includedir}/tqt3/qsql_odbc.h
 %{_includedir}/tqt3/qsql_psql.h
 %{_includedir}/tqt3/qsql_sqlite.h
+%{_includedir}/tqt3/qsql_sqlite3.h
 %{_includedir}/tqt3/qsqlcachedresult.h
 %{_includedir}/tqt3/qt_pch.h
 %{_includedir}/tqt3/qtmultilineedit.h
