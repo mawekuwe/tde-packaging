@@ -810,17 +810,18 @@ libtqt3-headers.
 
 ###########
 
-%package -n tqt3-devel-tools
+%package -n tqt3-dev-tools
 Summary:	TQt3 development tools
 Group:		Development/Libraries/X11
 Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	tqt3-dev-tools-devel = %{version}-%{release}
 
-%description -n tqt3-devel-tools
+%description -n tqt3-dev-tools
 This package contains all tools that are necessary to build programs
 that are written using TQt3. These are: qmake, uic and moc.
 For TQt3 development, you most likely want to install this package.
 
-%files -n tqt3-devel-tools
+%files -n tqt3-dev-tools
 %defattr(-,root,root,-)
 %dir %{_datadir}/tqt3/mkspecs/
 %{_datadir}/tqt3/mkspecs/*
@@ -836,6 +837,22 @@ For TQt3 development, you most likely want to install this package.
 %{_mandir}/man1/lupdate-tqt3.1.gz
 %{_mandir}/man1/moc-tqt3.1*
 %{_mandir}/man1/uic-tqt3.1*
+
+##########
+
+%package -n tqt3-dev-tools-devel
+Summary:	TQt3 development tools
+Group:		Development/Libraries/X11
+
+%description -n tqt3-dev-tools-devel
+This package contains all tools that are necessary to build programs
+that are written using TQt3. These are: qmake, uic and moc.
+For TQt3 development, you most likely want to install this package.
+
+%files -n tqt3-dev-tools-devel
+%defattr(-,root,root,-)
+%dir %{_datadir}/tqt3/mkspecs/
+%{_datadir}/tqt3/mkspecs/*
 
 ##########
 
@@ -995,19 +1012,19 @@ install this package.
 
 ###########
 
-%package -n tqt3-devel-tools-embedded
+%package -n tqt3-dev-tools-embedded
 Summary:	Tools to develop embedded TQt applications
 Group:		System/GUI/Other
 Requires:	libtqt3-mt = %{version}-%{release}
 
-%description -n tqt3-devel-tools-embedded
+%description -n tqt3-dev-tools-embedded
 This package contains applications only suitable for developing
 applications with TQt Embedded and/or Qtopia. It provides the QVFB
 program for simulating an embedded device desktop as well as maketqpf
 for converting fonts to embedded fonts suitable for being utilized
 by TQt Embedded applications.
 
-%files -n tqt3-devel-tools-embedded
+%files -n tqt3-dev-tools-embedded
 %defattr(-,root,root,-)
 %{_bindir}/maketqpf
 %{_bindir}/tqvfb
@@ -1019,12 +1036,12 @@ by TQt Embedded applications.
 
 ###########
 
-%package -n tqt3-devel-tools-compat
+%package -n tqt3-dev-tools-compat
 Summary:	Conversion utilities for TQt3 development
 Group:		System/GUI/Other
 Requires:	libtqt3-mt = %{version}-%{release}
 
-%description -n tqt3-devel-tools-compat
+%description -n tqt3-dev-tools-compat
 This package contains some older TQt tools (namely tqt20fix tqtrename140,
 tqm2ts, tqtmergetr, tqtfindtr and msg2tqm). These tools are needed only by
 application developers who need to migrate any TQt application written
@@ -1033,7 +1050,7 @@ help fixing the changes with include file renaming as well as migrating
 the message file format of TQt 2 translation files or any gettext-based
 translation system to the TQt 3 system.
 
-%files -n tqt3-devel-tools-compat
+%files -n tqt3-dev-tools-compat
 %defattr(-,root,root,-)
 %{_bindir}/tqt20fix
 %{_bindir}/tqtrename140
@@ -1303,7 +1320,7 @@ export LD_LIBRARY_PATH=${QTDIR}/lib
 %__install -m644 -D tools/tqvfb/pda_down.png %{?buildroot}%{_datadir}/tqvfb/pda_down.png
 %__install -m644 -D tools/tqvfb/pda_up.png %{?buildroot}%{_datadir}/tqvfb/pda_up.png
 
-## create tqt3-apps-devel-package
+## create tqt3-apps-dev-package
 cp tools/designer/interfaces/*.h %{?buildroot}%{?_includedir}/tqt3/
 cp tools/designer/editor/*.h %{?buildroot}%{?_includedir}/tqt3/
 
