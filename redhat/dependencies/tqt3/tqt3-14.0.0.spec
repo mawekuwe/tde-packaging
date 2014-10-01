@@ -67,7 +67,7 @@ BuildRequires: cups-devel
 
 # GLIB2 support
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
-hdefine with_glibmainloop 1
+%define with_glibmainloop 1
 BuildRequires: glib2-devel
 %endif
 
