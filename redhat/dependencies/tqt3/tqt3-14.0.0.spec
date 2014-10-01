@@ -20,7 +20,6 @@
 
 
 Name:		trinity-tqt3
-Epoch:		0
 Version:	3.5.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	TQt GUI Library, Version 3
@@ -284,7 +283,7 @@ applications.
 
 %package -n libtqt3-mt-devel
 Summary:	TQt development files (Threaded)
-Group:		Development/Libraries
+Group:		Development/Libraries/X11
 Requires:	libtqt3-mt = %{version}-%{release}
 
 %description -n libtqt3-mt-devel
@@ -295,7 +294,7 @@ and the necessary header files for libtqui.so. (See README.Debian and
 the TQt Documentation for instructions on libtqui.so)
 
 WARNING: If you plan to build some older TQt3 applications, you will
-most probably have to install the libtqt3-compat-headers package. It
+most probably have to install the tqt3-compat-headers package. It
 contains all the headers which are not part of the official TQt3 API
 anymore but which are still used by some programs. So if you encounter
 problems with missing header files, please install this package first
@@ -736,12 +735,12 @@ SQLite3 DB.
 
 ###########
 
-%package -n libtqt3-compat-headers
+%package -n tqt3-compat-headers
 Summary:	TQt 1.x and 2.x compatibility includes
-Group:		Development/Libraries
+Group:		Development/Libraries/X11
 Requires:	libtqt3-mt = %{version}-%{release}
 
-%description -n libtqt3-compat-headers
+%description -n tqt3-compat-headers
 This package contains header files that are intended for build
 compatibility for applications that build with TQt3 but still use
 deprecated includes. It is meant as an intermediate solution and
@@ -750,7 +749,7 @@ All sourcecode that is still using the headers of this package is
 subject to be changed to use the new header files which are in
 libtqt3-headers.
 
-%files -n libtqt3-compat-headers
+%files -n tqt3-compat-headers
 %defattr(-,root,root,-)
 %{_includedir}/tqt3/ntq1xcompatibility.h
 %{_includedir}/tqt3/ntqapp.h
@@ -806,22 +805,22 @@ libtqt3-headers.
 %{_includedir}/tqt3/ntqvector.h
 %{_includedir}/tqt3/ntqwidcoll.h
 %{_includedir}/tqt3/ntqwindefs.h
-%dir %{_docdir}/libtqt3-compat-headers
-%{_docdir}/libtqt3-compat-headers/attic.tar.gz
+%dir %{_docdir}/tqt3-compat-headers
+%{_docdir}/tqt3-compat-headers/attic.tar.gz
 
 ###########
 
-%package -n tqt3-dev-tools
+%package -n tqt3-devel-tools
 Summary:	TQt3 development tools
-Group:		Development/Libraries
+Group:		Development/Libraries/X11
 Requires:	libtqt3-mt = %{version}-%{release}
 
-%description -n tqt3-dev-tools
+%description -n tqt3-devel-tools
 This package contains all tools that are necessary to build programs
 that are written using TQt3. These are: qmake, uic and moc.
 For TQt3 development, you most likely want to install this package.
 
-%files -n tqt3-dev-tools
+%files -n tqt3-devel-tools
 %defattr(-,root,root,-)
 %dir %{_datadir}/tqt3/mkspecs/
 %{_datadir}/tqt3/mkspecs/*
@@ -871,7 +870,7 @@ or automake.
 %{_libdir}/tqt3/plugins/designer/libkdevdlgplugin.so
 %{_libdir}/tqt3/plugins/designer/librcplugin.so
 %{_libdir}/tqt3/plugins/designer/libwizards.so
-#%{_datadir}/applications/designer-tqt3.desktop
+#{_datadir}/applications/designer-tqt3.desktop
 %dir %{_datadir}/tqt3/tools/tqtconv2ui
 %{_datadir}/tqt3/tools/tqtconv2ui/main.cpp
 %{_datadir}/tqt3/tools/tqtconv2ui/tqtconv2ui.pro
@@ -885,7 +884,7 @@ or automake.
 
 %package -n tqt3-apps-devel
 Summary:	TQt3 Developer applications development files
-Group:		Development/Libraries
+Group:		Development/Libraries/X11
 Requires:	libtqt3-mt = %{version}-%{release}
 Requires:	libtqt3-mt-devel = %{version}-%{release}
 
@@ -943,7 +942,7 @@ development files by the translator.
 %{_datadir}/tqt3/phrasebooks/*
 %{_datadir}/tqt3/doc/html/linguist*html
 %{_datadir}/tqt3/doc/html/linguist*dcf
-#%{_datadir}/applications/linguist-tqt3.desktop
+#{_datadir}/applications/linguist-tqt3.desktop
 %dir %{_docdir}/tqt3-linguist
 %{_docdir}/tqt3-linguist/qt_untranslated.ts
 
@@ -967,8 +966,9 @@ help display should refer to the README.Debian file for libtqt3-mt-devel and
 the package tqt3-apps-devel.
 
 %files -n tqt3-assistant
+%defattr(-,root,root,-)
 %{_bindir}/tqassistant
-#%{_datadir}/applications/assistant-tqt3.desktop
+#{_datadir}/applications/assistant-tqt3.desktop
 %{_datadir}/tqt3/doc/html/assistant*html
 %{_datadir}/tqt3/doc/html/assistant*dcf
 
@@ -976,7 +976,7 @@ the package tqt3-apps-devel.
 
 %package -n tqt3-qtconfig
 Summary:	The TQt3 Configuration Application
-Group:		Development/Libraries
+Group:		Development/Libraries/X11
 Requires:	libtqt3-mt = %{version}-%{release}
 
 %description -n tqt3-qtconfig
@@ -991,40 +991,40 @@ install this package.
 %files -n tqt3-qtconfig
 %defattr(-,root,root,-)
 %{_bindir}/tqtconfig
-#%{_datadir}/applications/tqt3config.desktop
+#{_datadir}/applications/tqt3config.desktop
 
 ###########
 
-%package -n tqt3-dev-tools-embedded
+%package -n tqt3-devel-tools-embedded
 Summary:	Tools to develop embedded TQt applications
 Group:		System/GUI/Other
 Requires:	libtqt3-mt = %{version}-%{release}
 
-%description -n tqt3-dev-tools-embedded
+%description -n tqt3-devel-tools-embedded
 This package contains applications only suitable for developing
 applications with TQt Embedded and/or Qtopia. It provides the QVFB
 program for simulating an embedded device desktop as well as maketqpf
 for converting fonts to embedded fonts suitable for being utilized
 by TQt Embedded applications.
 
-%files -n tqt3-dev-tools-embedded
+%files -n tqt3-devel-tools-embedded
 %defattr(-,root,root,-)
 %{_bindir}/maketqpf
 %{_bindir}/tqvfb
 %dir %{_sysconfdir}/tqt3/tqvfb
-%{_sysconfdir}/tqt3/tqvfb/pda.skin
+%config %{_sysconfdir}/tqt3/tqvfb/pda.skin
 %dir %{_datadir}/tqvfb
 %{_datadir}/tqvfb/pda_down.png
 %{_datadir}/tqvfb/pda_up.png
 
 ###########
 
-%package -n tqt3-dev-tools-compat
+%package -n tqt3-devel-tools-compat
 Summary:	Conversion utilities for TQt3 development
 Group:		System/GUI/Other
 Requires:	libtqt3-mt = %{version}-%{release}
 
-%description -n tqt3-dev-tools-compat
+%description -n tqt3-devel-tools-compat
 This package contains some older TQt tools (namely tqt20fix tqtrename140,
 tqm2ts, tqtmergetr, tqtfindtr and msg2tqm). These tools are needed only by
 application developers who need to migrate any TQt application written
@@ -1033,7 +1033,7 @@ help fixing the changes with include file renaming as well as migrating
 the message file format of TQt 2 translation files or any gettext-based
 translation system to the TQt 3 system.
 
-%files -n tqt3-dev-tools-compat
+%files -n tqt3-devel-tools-compat
 %defattr(-,root,root,-)
 %{_bindir}/tqt20fix
 %{_bindir}/tqtrename140
@@ -1044,17 +1044,17 @@ translation system to the TQt 3 system.
 
 ##########
 
-%package -n libtqt3-i18n
-Summary:	i18n files for TQt3 library
+%package -n tqt3-i18n
+Summary:	Translation (i18n) files for TQt3 library
 Group:		System/GUI/Other
 Requires:	libtqt3-mt = %{version}-%{release}
 
-%description -n libtqt3-i18n
+%description -n tqt3-i18n
 This package contains the internationalization files for the TQt library.
 TQt applications that are internationalized will need to depend on this package
 for full internationalization support of the application towards the end user.
 
-%files -n libtqt3-i18n
+%files -n tqt3-i18n
 %defattr(-,root,root,-)
 %dir %{_datadir}/tqt3/translations/
 %{_datadir}/tqt3/translations/assistant_de.qm
@@ -1303,12 +1303,12 @@ export LD_LIBRARY_PATH=${QTDIR}/lib
 %__install -m644 -D tools/tqvfb/pda_down.png %{?buildroot}%{_datadir}/tqvfb/pda_down.png
 %__install -m644 -D tools/tqvfb/pda_up.png %{?buildroot}%{_datadir}/tqvfb/pda_up.png
 
-## create tqt3-apps-dev-package
+## create tqt3-apps-devel-package
 cp tools/designer/interfaces/*.h %{?buildroot}%{?_includedir}/tqt3/
 cp tools/designer/editor/*.h %{?buildroot}%{?_includedir}/tqt3/
 
 # language file for linguist
-%__install -D translations/qt_untranslated.ts %{?buildroot}%{?_docdir}/tqt3-linguist/qt_untranslated.ts
+%__install -D -m644 translations/qt_untranslated.ts %{?buildroot}%{?_docdir}/tqt3-linguist/qt_untranslated.ts
 
 # fix that stupid friggin professional file
 perl -pi -e 's{\$$\$$QT_SOURCE_TREE}{$(QTDIR)}' src/qt_professional.pri
@@ -1329,17 +1329,17 @@ done
 #install -m644 -D "%{SOURCE3}" "%{?buildroot}%{_datadir}/applications/linguist-tqt3.desktop"
 #install -m644 -D "%{SOURCE4}" "%{?buildroot}%{_datadir}/applications/tqt3config.desktop"
 
-# build attic package and copy it to libtqt3-compat-headers
+# build attic package and copy it to tqt3-compat-headers
 pushd src
 tar cvvfz attic.tar.gz attic/
-install -D attic.tar.gz %{?buildroot}%{_docdir}/libtqt3-compat-headers/attic.tar.gz
+install -D -m644 attic.tar.gz %{?buildroot}%{_docdir}/tqt3-compat-headers/attic.tar.gz
 popd
 
-# install the man pages
-install -D doc/man/man1/moc.1 %{?buildroot}%{_mandir}/man1/moc-tqt3.1
-install -D doc/man/man1/uic.1 %{?buildroot}%{_mandir}/man1/uic-tqt3.1
-install -D doc/man/man1/lrelease.1 %{?buildroot}%{_mandir}/man1/lrelease-tqt3.1
-install -D doc/man/man1/lupdate.1 %{?buildroot}%{_mandir}/man1/lupdate-tqt3.1
+# install the man pages
+install -D -m644 doc/man/man1/moc.1 %{?buildroot}%{_mandir}/man1/moc-tqt3.1
+install -D -m644 doc/man/man1/uic.1 %{?buildroot}%{_mandir}/man1/uic-tqt3.1
+install -D -m644 doc/man/man1/lrelease.1 %{?buildroot}%{_mandir}/man1/lrelease-tqt3.1
+install -D -m644 doc/man/man1/lupdate.1 %{?buildroot}%{_mandir}/man1/lupdate-tqt3.1
 
 # Install source for the designer tools, such as tqtcreatecw.
 cp -ra tools/designer/tools %{?buildroot}%{_datadir}/tqt3/tools
@@ -1368,7 +1368,7 @@ find tqt3-examples -name ".obj" | xargs rm -rf
 find tqt3-examples -name "Makefile" | xargs rm -rf
 install -D -m 755 %{SOURCE5} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
 tar cvvfz tqt3-examples.tar.gz tqt3-examples/
-install -D tqt3-examples.tar.gz %{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz
+install -D -m644  tqt3-examples.tar.gz %{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz
 
 %clean
 %__rm -rf %{buildroot}
