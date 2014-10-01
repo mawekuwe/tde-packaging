@@ -31,7 +31,13 @@ alias tdep4='(rm -rf ${TDE_TARBALLS}; cd ${TDE_GITBASESRC}; export SUFFIX=0; exp
 # Build a single package
 alias cdp='cd ~/tde/tde-packaging/redhat'
 alias grp3='./genrpm.sh -v 3.5.13.2 -a'
-alias grp4='./genrpm.sh -v 14.0.0 -a'
+#alias grp4='./genrpm.sh -v 14.0.0 -a'
+
+grp4() {
+  export PACKAGING_DIR=~/tde/tde-packaging
+  export PATH="${PACKAGING_DIR}/redhat/build:$PATH"
+  build_rpm_package.sh "${1}" "${2:-14.0.0}"
+}
 
 # Check if tarballs are more recent than installed packages
 checknew() {

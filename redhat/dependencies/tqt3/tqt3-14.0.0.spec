@@ -1109,6 +1109,7 @@ things that are possible with TQt3.
 
 %files -n tqt3-examples
 %defattr(-,root,root,-)
+%dir %{_docdir}/tqt3-examples/
 %{_docdir}/tqt3-examples/build-examples
 %{_docdir}/tqt3-examples/tqt3-examples.tar.gz
 

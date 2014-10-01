@@ -1,6 +1,222 @@
---- trinity-tde-i18n-14.0.0~pre253+9fe98288/tde-i18n-fr/messages/tdelibs/tdelibs.po.orig	2014-08-22 22:50:18.774213510 +0200
-+++ trinity-tde-i18n-14.0.0~pre253+9fe98288/tde-i18n-fr/messages/tdelibs/tdelibs.po	2014-08-22 23:04:26.927794495 +0200
-@@ -5557,24 +5557,34 @@
+diff --git a/tde-i18n-fr/messages/tdebase/kcmbackground.po b/tde-i18n-fr/messages/tdebase/kcmbackground.po
+index 34c18a6..808f1d8 100644
+--- a/tde-i18n-fr/messages/tdebase/kcmbackground.po
++++ b/tde-i18n-fr/messages/tdebase/kcmbackground.po
+@@ -920,3 +920,9 @@ msgstr "&Descendre"
+ #, no-c-format
+ msgid "Move &Up"
+ msgstr "Mon&ter"
++
++msgid "Cross-fading background"
++msgstr "Affichage progressif du fond d'écran"
++
++msgid "Enables a smooth fading effect when changing background image."
++msgstr "Activer un effet de fondu lors du changement de fond d'écran."
+diff --git a/tde-i18n-fr/messages/tdebase/kcmenergy.po b/tde-i18n-fr/messages/tdebase/kcmenergy.po
+index f6e05b4..91d0ee8 100644
+--- a/tde-i18n-fr/messages/tdebase/kcmenergy.po
++++ b/tde-i18n-fr/messages/tdebase/kcmenergy.po
+@@ -102,3 +102,12 @@ msgstr ""
+ "Choisissez la période d'inactivité après laquelle l'affichage doit être éteint. "
+ "Ceci est le plus haut niveau d'économie d'énergie qui puisse être utilisé "
+ "lorsque l'écran est physiquement allumé."
++
++msgid "&Enable specific display power management"
++msgstr "&Activer la gestion spécifique de l'énergie"
++
++msgid "Configure KPowersave..."
++msgstr "Configurer KPowersave..."
++
++msgid "Configure TDEPowersave..."
++msgstr "Configurer TDEPowersave..."
+diff --git a/tde-i18n-fr/messages/tdebase/kcmkonq.po b/tde-i18n-fr/messages/tdebase/kcmkonq.po
+index e59de78..7015bde 100644
+--- a/tde-i18n-fr/messages/tdebase/kcmkonq.po
++++ b/tde-i18n-fr/messages/tdebase/kcmkonq.po
+@@ -877,3 +877,43 @@ msgstr ""
+ #: rootopts.cpp:276
+ msgid "Confirmation Required"
+ msgstr "Confirmation requise"
++
++# TDE
++msgid "Download path:"
++msgstr "Dossier des téléchargements :"
++
++msgid "This folder will be used by default to load or save downloads from or to."
++msgstr "Ce dossier sera utilisé par défaut pour télécharger des fichiers."
++
++msgid "Music path:"
++msgstr "Dossier des musiques :"
++
++msgid "This folder will be used by default to load or save music from or to."
++msgstr "Ce dossier sera utilisé par défaut pour lire ou enregistrer de la musique."
++
++msgid "Pictures path:"
++msgstr "Dossier des images :"
++
++msgid "This folder will be used by default to load or save pictures from or to."
++msgstr "Ce dossier sera utilisé par défaut pour lire en enregistrer des images."
++
++msgid "Public Share path:"
++msgstr "Dossier des partages publics :"
++
++msgid "This folder will be used by default to load or save public shared files from or to."
++msgstr "Ce dossier sera utilisé par défaut pour ouvrir ou enregistrer les fichiers partagés publiquement."
++
++msgid "Templates path:"
++msgstr "Dossier des modèles :"
++
++msgid "This folder will be used by default to load or save templates from or to."
++msgstr "Ce dossier sera utilisé par défaut pour ouvrir ou enregistrer des modèles."
++
++msgid "Videos path:"
++msgstr "Dossier des vidéos :"
++
++msgid "This folder will be used by default to load or save videos from or to."
++msgstr "Ce dossier sera utilisé par défaut pour lire en ouregistrer des vidéos."
++
++msgid "&Show free space overlay on device icons"
++msgstr "&Afficher l'espace libre sur les icônes"
+diff --git a/tde-i18n-fr/messages/tdebase/kcmkonsole.po b/tde-i18n-fr/messages/tdebase/kcmkonsole.po
+index 0da666d..0cf24ae 100644
+--- a/tde-i18n-fr/messages/tdebase/kcmkonsole.po
++++ b/tde-i18n-fr/messages/tdebase/kcmkonsole.po
+@@ -160,14 +160,14 @@ msgstr "&Permettre aux programmes de redimensionner le terminal"
+ #. i18n: file kcmkonsoledialog.ui line 174
+ #: rc.cpp:36
+ #, no-c-format
+-msgid "Use Ctrl+S/Ctrl+Q flow control"
+-msgstr "Utiliser les séquences de touches Ctrl+S/Ctrl+Q"
++msgid "&Use Ctrl+S/Ctrl+Q flow control"
++msgstr "&Utiliser les séquences de touches Ctrl+S/Ctrl+Q"
+ 
+ #. i18n: file kcmkonsoledialog.ui line 199
+ #: rc.cpp:39
+ #, no-c-format
+-msgid "Enable bidirectional text rendering"
+-msgstr "Activer le rendu bidirectionnel de texte"
++msgid "E&nable bidirectional text rendering"
++msgstr "Activer le re&ndu bidirectionnel de texte"
+ 
+ #. i18n: file kcmkonsoledialog.ui line 215
+ #: rc.cpp:42
+@@ -184,8 +184,17 @@ msgstr "Espacement des &lignes :"
+ #. i18n: file kcmkonsoledialog.ui line 297
+ #: rc.cpp:48
+ #, no-c-format
+-msgid "Set tab title to match window title"
+-msgstr "Définir le titre de l'onglet correspondant au titre de la fenêtre"
++msgid "Set &tab title to match window title"
++msgstr "Définir le &titre de l'onglet correspondant au titre de la fenêtre"
++
++msgid "Cycle tabs &with mouse wheel"
++msgstr "Faire défiler les onglets en &utilisant la molette de la souris"
++
++msgid "Enable main &menu accelerator keys"
++msgstr "Activer les touches d'accélération dans le &menu principal"
++
++msgid "Handle Meta &key as Alt Key"
++msgstr "Considérer la t&ouche Meta comme la touche Alt"
+ 
+ #. i18n: file kcmkonsoledialog.ui line 309
+ #: rc.cpp:51
+diff --git a/tde-i18n-fr/messages/tdebase/kicker.po b/tde-i18n-fr/messages/tdebase/kicker.po
+index c8fe511..abfdbf1 100644
+--- a/tde-i18n-fr/messages/tdebase/kicker.po
++++ b/tde-i18n-fr/messages/tdebase/kicker.po
+@@ -889,6 +889,18 @@ msgstr "Dossier personnel"
+ msgid "My Documents"
+ msgstr "Mes Documents"
+ 
++msgid "My Images"
++msgstr "Mes Images"
++
++msgid "My Music"
++msgstr "Ma Musique"
++
++msgid "My Videos"
++msgstr "Mes Vidéos"
++
++msgid "My Downloads"
++msgstr "Mes Téléchargements"
++
+ msgid "Switch to Kickoff Menu Style"
+ msgstr "Utiliser le menu Kickoff"
+ 
+diff --git a/tde-i18n-fr/messages/tdebase/konsole.po b/tde-i18n-fr/messages/tdebase/konsole.po
+index fc40788..7074527 100644
+--- a/tde-i18n-fr/messages/tdebase/konsole.po
++++ b/tde-i18n-fr/messages/tdebase/konsole.po
+@@ -203,8 +203,8 @@ msgid "New Sess&ion"
+ msgstr "Nouvelle sess&ion"
+ 
+ #: konsole.cpp:739 konsole_part.cpp:476
+-msgid "S&ettings"
+-msgstr "Config&uration"
++msgid "Se&ttings"
++msgstr "Configura&tion"
+ 
+ #: konsole.cpp:794 konsole.cpp:1076
+ msgid "&Detach Session"
+diff --git a/tde-i18n-fr/messages/tdebase/libtaskbar.po b/tde-i18n-fr/messages/tdebase/libtaskbar.po
+index dc2c448..033023c 100644
+--- a/tde-i18n-fr/messages/tdebase/libtaskbar.po
++++ b/tde-i18n-fr/messages/tdebase/libtaskbar.po
+@@ -445,3 +445,22 @@ msgstr "Demande votre attention"
+ #: taskcontainer.cpp:1598
+ msgid "Has unsaved changes"
+ msgstr "Possède des modifications non enregistrées"
++
++# TDE R14
++# taskbarcontainer.cpp
++msgid "Move to Beginning"
++msgstr "Déplacer en premier"
++
++msgid "Move Left"
++msgstr "Déplacer à gauche"
++
++msgid "Move Right"
++msgstr "Déplacer à droite"
++
++msgid "Move to End"
++msgstr "Déplacer en dernier"
++
++# taskrmbmenu.cpp:
++msgid "Move Task Button"
++msgstr "Déplacer l'icone"
++
+diff --git a/tde-i18n-fr/messages/tdebase/tderandr.po b/tde-i18n-fr/messages/tdebase/tderandr.po
+index 5be8618..d3c3cb1 100644
+--- a/tde-i18n-fr/messages/tdebase/tderandr.po
++++ b/tde-i18n-fr/messages/tdebase/tderandr.po
+@@ -305,9 +305,12 @@ msgstr "%1 Hz"
+ ### TDE 3.5.13 ###
+ 
+ #: tderandrtray.cpp:237
+-msgid "Global Configuation"
++msgid "Global Configuration"
+ msgstr "Configuration Globale"
+ 
++msgid "Color Profile"
++msgstr "Profil de couleurs"
++
+ #: tderandrtray.cpp:239
+ msgid "Configure Color Profiles..."
+ msgstr "Configurer les profils de couleurs ..."
+@@ -354,4 +357,8 @@ msgstr "Sortie Vidéo suivante"
+ msgid "%1 (Active)"
+ msgstr "%1 (Active)"
+ 
++msgid "%1 (Connected, Inactive)"
++msgstr "%1 (Connectée, Inactive)"
+ 
++msgid "%1 (Disconnected, Inactive)"
++msgstr "%1 (Déconnectée, Inactive)"
+diff --git a/tde-i18n-fr/messages/tdelibs/tdelibs.po b/tde-i18n-fr/messages/tdelibs/tdelibs.po
+index 507dd8f..ccdafe8 100644
+--- a/tde-i18n-fr/messages/tdelibs/tdelibs.po
++++ b/tde-i18n-fr/messages/tdelibs/tdelibs.po
+@@ -5557,24 +5557,34 @@ msgstr "Liste déroulante et automatique"
  
  #: tdeui/tdeabouttde.cpp:34
  msgid ""
@@ -47,7 +263,7 @@
  "pour plus d'informations sur le projet KDE."
  
  #: tdeui/tdeabouttde.cpp:43
-@@ -5583,7 +5593,7 @@
+@@ -5583,7 +5593,7 @@ msgid ""
  "do so. However, you - the user - must tell us when "
  "something does not work as expected or could be done better.<br><br>"
  "The Trinity Desktop Environment has a bug tracking system. Visit "
@@ -56,7 +272,7 @@
  "use the \"Report Bug...\" dialog from the \"Help\" menu to report bugs.<br><br>"
  "If you have a suggestion for improvement then you are welcome to use "
  "the bug tracking system to register your wish. Make sure you use the "
-@@ -5593,9 +5603,9 @@
+@@ -5593,9 +5603,9 @@ msgstr ""
  "faire. Cependant, vous - l'utilisateur(trice) - devez nous signaler ce qui ne "
  "fonctionne pas correctement ou pourrait être perfectionné.<br><br>"
  "L'Environnement de Bureau Trinity possède un système de suivi des bogues. Allez "
@@ -69,7 +285,7 @@
  "système de suivi des bogues pour enregistrer votre souhait. Assurez-vous "
  "d'avoir utilisé l'option « Souhait » (wish)."
  
-@@ -5606,12 +5616,13 @@
+@@ -5606,12 +5616,13 @@ msgid ""
  "program interfaces. You can provide graphics, themes, sounds, and "
  "improved documentation. You decide!"
  "<br><br>"
@@ -87,7 +303,7 @@
  "will provide you with what you need."
  msgstr ""
  "Il n'est pas nécessaire d'être programmeur pour être membre de l'équipe de Trinity. "
-@@ -5629,23 +5640,21 @@
+@@ -5629,23 +5640,21 @@ msgstr ""
  
  #: tdeui/tdeabouttde.cpp:67
  msgid ""

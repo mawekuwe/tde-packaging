@@ -75,7 +75,6 @@ baskets to HTML.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -94,7 +93,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-rpath \
   --disable-gcc-hidden-visibility
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
@@ -103,6 +102,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 %find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}

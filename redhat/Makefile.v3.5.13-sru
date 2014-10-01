@@ -556,3 +556,7 @@ tde-i18n:	tdebase cmake
 ### Meta packages
 meta:
 	$(call buildpkg,extras/trinity-desktop)
+
+### Extra packages
+ksensors:
+	$(call buildpkg,applications/ksensors)
