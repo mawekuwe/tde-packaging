@@ -48,6 +48,7 @@ build-%/configure-stamp:
 	mkdir -p build-$*
 	cd build-$* && python$* ../configure.py \
 		-c -u -k /opt/trinity -o /opt/trinity/include -n /opt/trinity/lib \
+		-e python$* \
 		-v /opt/trinity/share/sip/trinity -j $(SPLIT)
 	touch $@
 
@@ -56,6 +57,7 @@ dbg-build-%/configure-stamp:
 	mkdir -p dbg-build-$*
 	cd dbg-build-$* && python$*-dbg ../configure.py \
 		-c -u -k /opt/trinity -o /opt/trinity/include -n /opt/trinity/lib \
+		-e python$* \
 		-v /opt/trinity/share/sip/trinity -j $(SPLIT)
 	touch $@
 

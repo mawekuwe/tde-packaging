@@ -38,6 +38,7 @@ rpmbuild -ba \
   --define "_buildrootdir ${BUILDROOTDIR}" \
   --define "_rpmdir ${RPMDIR}" \
   --define "_srcrpmdir ${SRPMDIR}" \
+  --define '_build_create_debug 1' \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
   --define "preversion ${PREVERSION}" \

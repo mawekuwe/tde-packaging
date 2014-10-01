@@ -14,6 +14,8 @@ RPMDIR_NOARCH=${RPMDIR}/noarch
 RPMDIRS="${RPMDIR_ARCH} ${RPMDIR_NOARCH}"
 
 case "${PKGNAME##*/}" in
+  "tqt3") PKGNAME="libtqt3-mt";;
+  "tqtinterface") PKGNAME="libtqt4";;
   "koffice") PKGNAME="koffice-suite";;
   "tde-i18n") PKGNAME="tde-i18n-French";;
 esac

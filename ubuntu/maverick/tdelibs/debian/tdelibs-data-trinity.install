@@ -241,7 +241,7 @@ debian/tmp/opt/trinity/share/apps/kjava/icons/crystalsvg/16x16/actions/java.png
 debian/tmp/opt/trinity/share/apps/kjava/kjava.jar
 debian/tmp/opt/trinity/share/apps/kjava/kjava.policy
 debian/tmp/opt/trinity/share/apps/kjava/pluginsinfo
-debian/tmp/opt/trinity/share/apps/knewstuff/types
+debian/tmp/opt/trinity/share/apps/tdenewstuff/types
 debian/tmp/opt/trinity/share/apps/knotify/eventsrc
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/catalog
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/af/catalog.xml

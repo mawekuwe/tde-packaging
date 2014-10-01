@@ -105,9 +105,9 @@ common-install-prehook-impl::
 #		sed "s/charset=CHARSET/charset=UTF-8/" -i $$file; \
 #	done
 
-#	msgcat --use-first kde.pot po/tdelibs.pot > tdelibs.pot-merged
+#	msgcat --use-first tde.pot po/tdelibs.pot > tdelibs.pot-merged
 #	mv -f tdelibs.pot-merged po/tdelibs.pot
-	cp -Rp kde.pot po/tdelibs.pot
+	cp -Rp tde.pot po/tdelibs.pot
 
 	# generate .po files for .desktop etc files
 	if [ -f debian/kubuntu-desktop-i18n/createdesktop.pl ]; then \

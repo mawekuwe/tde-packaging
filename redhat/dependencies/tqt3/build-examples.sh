@@ -1,0 +1,1 @@
+../../../ubuntu/trusty/dependencies/tqt3/debian/maintain/build-examples.sh

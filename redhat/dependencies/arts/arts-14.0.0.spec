@@ -1,10 +1,28 @@
+#
+# spec file for package arts
+#
+# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
+# TDE specific variables
 %define tde_version 14.0.0
-
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -18,13 +36,18 @@ Name:		trinity-arts
 Epoch:		1
 Version:	1.5.10
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
-
-Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
-Packager:	Francois Andriot <francois.andriot@free.fr>
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -32,8 +55,12 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
+BuildRequires:	libtqt4-devel >= 1:4.2.0
+
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
@@ -45,8 +72,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
 
 # JACK support
-#  Not on RHEL4 !
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
 %define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}jack-devel
@@ -75,6 +101,7 @@ BuildRequires:	libtool
 %endif
 
 # MAD support
+%ifarch i386 i486 i586 i686 x86_64
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} 
 %define with_libmad 1
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -84,13 +111,14 @@ BuildRequires:		%{_lib}mad-devel
 BuildRequires:		libmad-devel
 %endif
 %endif
+%endif
 
 # Pulseaudio config file
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?suse_version}
 %define with_pulseaudio 1
 %endif
 
-Requires:		trinity-tqtinterface >= %{tde_version}
+Requires:		libtqt4 >= 1:4.2.0
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"
@@ -112,8 +140,17 @@ playing a wave file with some effects.
 %files
 %defattr(-,root,root,-)
 %doc COPYING.LIB
+%dir %{tde_prefix}
+%dir %{tde_bindir}
+%dir %{tde_datadir}
+%dir %{tde_datadir}/config
+%dir %{tde_datadir}/doc
+%dir %{tde_libdir}
 %dir %{tde_libdir}/mcop
 %dir %{tde_libdir}/mcop/Arts
+%dir %{tde_libdir}/pkgconfig
+%dir %{tde_includedir}
+%dir %{tde_tdeincludedir}
 %{tde_libdir}/mcop/Arts/*
 %{tde_libdir}/mcop/*.mcopclass
 %{tde_libdir}/mcop/*.mcoptype
@@ -138,14 +175,23 @@ playing a wave file with some effects.
 
 %package devel
 Group:		Development/Libraries
-Summary:	%{name} - Development files
+Summary:	aRts (analog realtime synthesizer) - the TDE sound system (Development files)
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if "%{?tde_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
 
 %description devel
-Development files for %{name}
+arts (analog real-time synthesizer) is the sound system of TDE.
+
+The principle of arts is to create/process sound using small modules which do
+certain tasks. These may be create a waveform (oscillators), play samples,
+filter data, add signals, perform effects like delay/flanger/chorus, or
+output the data to the soundcard.
+
+By connecting all those small modules together, you can perform complex
+tasks like simulating a mixer, generating an instrument or things like
+playing a wave file with some effects.
 
 %files devel
 %defattr(-,root,root,-)
@@ -212,6 +258,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
   \
@@ -236,10 +283,14 @@ fi
 %__rm -rf %{?buildroot}
 %__make install -C build DESTDIR=%{?buildroot}
 
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/config
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/doc
+
 # Installs the Pulseaudio configuration file
 %if 0%{?with_pulseaudio}
 %__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/config/kcmartsrc
 %endif
+
 
 
 %clean

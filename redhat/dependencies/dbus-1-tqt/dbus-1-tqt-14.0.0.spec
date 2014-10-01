@@ -1,89 +1,129 @@
+#
+# spec file for package dbus-1-tqt
+#
+# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
 # TDE specific building variables
 %define tde_version 14.0.0
-%define tde_prefix /usr
-%define tde_bindir %{tde_prefix}/bin
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
+
 
 Name:		trinity-dbus-1-tqt
 Epoch:		2
 Version:	0.9
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
-Summary:	Dbus TQT Interface
-Group:		System Environment/Libraries
+Summary:	dbus bindings for the Trinity Qt [TQt] interface
+Group:		System/Libraries
 
-Obsoletes:		dbus-1-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:		dbus-1-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+BuildRequires:	libtqt3-mt-devel >= 3.5.0
+BuildRequires:	libtqt4-devel >= 1:4.2.0
+
 BuildRequires:	gcc-c++
+BuildRequires:	cmake >= 2.8
+
+# DBUS support
 %if 0%{?suse_version}
 BuildRequires:	dbus-1-devel
 %else
 BuildRequires:	dbus-devel
 %endif
 
-BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-Requires:		trinity-tqt3 >= 3.5.0
-
-
 %description
-Dbus TQT Interface
 
-%post
+###########
+
+%package -n libdbus-1-tqt
+Summary:		dbus bindings for the Trinity Qt [TQt] interface
+Group:			System/Libraries
+
+Obsoletes:		trinity-dbus-1-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		trinity-dbus-1-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n libdbus-1-tqt
+D-BUS is a message bus, used for sending messages between applications.
+Conceptually, it fits somewhere in between raw sockets and CORBA in
+terms of complexity.
+
+This package provides bindings for the Trinity Qt TQt interface.
+
+See the dbus description for more information about D-BUS in general.
+
+%post -n libdbus-1-tqt
 /sbin/ldconfig || :
 
-%postun
+%postun -n libdbus-1-tqt
 /sbin/ldconfig || :
 
-%files
+%files -n libdbus-1-tqt
 %defattr(-,root,root,-)
-%{tde_bindir}/dbusxml2qt3
-%{tde_libdir}/libdbus-1-tqt.so.0
-%{tde_libdir}/libdbus-1-tqt.so.0.0.0
+%{_libdir}/libdbus-1-tqt.so.0
+%{_libdir}/libdbus-1-tqt.so.0.0.0
 
 ##########
 
-%package devel
-Requires:	%{name}
-Summary:	%{name} - Development files
-Group:		Development/Libraries
+%package -n libdbus-1-tqt-devel
+Summary:		dbus bindings for the Trinity Qt [TQt] interface (Development Files)
+Group:			Development/Libraries
+Requires:		libdbus-1-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes:		dbus-1-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:		dbus-1-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:		trinity-dbus-1-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		trinity-dbus-1-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description devel
-Development files for %{name}
+%description -n libdbus-1-tqt-devel
+D-BUS is a message bus, used for sending messages between applications.
+Conceptually, it fits somewhere in between raw sockets and CORBA in
+terms of complexity.
 
-%post devel
+This package provides bindings for the Trinity Qt TQt interface.
+
+See the dbus description for more information about D-BUS in general.
+
+%post -n libdbus-1-tqt-devel
 /sbin/ldconfig || :
 
-%postun devel
+%postun -n libdbus-1-tqt-devel
 /sbin/ldconfig || :
 
-%files devel
+%files -n libdbus-1-tqt-devel
 %defattr(-,root,root,-)
-%{tde_includedir}/*.h
-%{tde_libdir}/libdbus-1-tqt.so
-%{tde_libdir}/libdbus-1-tqt.la
-%{tde_libdir}/pkgconfig/*.pc
+%{_bindir}/dbusxml2qt3
+%{_includedir}/*.h
+%{_libdir}/libdbus-1-tqt.so
+%{_libdir}/libdbus-1-tqt.la
+%{_libdir}/pkgconfig/*.pc
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -91,7 +131,7 @@ Development files for %{name}
 
 %build
 unset QTDIR QTINC QTLIB
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
   %__mkdir_p build
@@ -106,9 +146,9 @@ fi
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=OFF \
   \
-  -DBIN_INSTALL_DIR=%{tde_bindir} \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
-  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DBIN_INSTALL_DIR=%{_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{_includedir} \
+  -DLIB_INSTALL_DIR=%{_libdir} \
   ..
 
 %__make %{?_smp_mflags}
