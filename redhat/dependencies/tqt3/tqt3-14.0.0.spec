@@ -844,8 +844,7 @@ Group:		Development/Libraries/X11
 
 %description -n tqt3-dev-tools-devel
 This package contains all tools that are necessary to build programs
-that are written using TQt3. These are: qmake, uic and moc.
-For TQt3 development, you most likely want to install this package.
+that are written using TQt3.
 
 %files -n tqt3-dev-tools-devel
 %defattr(-,root,root,-)

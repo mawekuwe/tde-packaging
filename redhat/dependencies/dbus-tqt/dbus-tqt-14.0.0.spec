@@ -126,11 +126,6 @@ Development files for %{name}
 
 %build
 unset QTDIR QTINC QTLIB
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-
-%if 0%{?rhel} == 4
-export CXXFLAGS="-DDBUS_API_SUBJECT_TO_CHANGE ${CXXFLAGS}"
-%endif
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
   %__mkdir_p build
