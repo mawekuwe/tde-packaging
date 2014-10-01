@@ -92,8 +92,8 @@ See the dbus description for more information about D-BUS in general.
 
 %files -n libdbus-tqt-1-0
 %defattr(-,root,root,-)
-%{_libdir}/libdbus-tqt-1-0.so.0
-%{_libdir}/libdbus-tqt-1-0.so.0.0.0
+%{_libdir}/libdbus-tqt-1.so.0
+%{_libdir}/libdbus-tqt-1.so.0.0.0
 
 ##########
 
@@ -124,8 +124,8 @@ See the dbus description for more information about D-BUS in general.
 %files -n libdbus-tqt-1-0-devel
 %defattr(-,root,root,-)
 %{_includedir}/dbus-1.0/*
-%{_libdir}/libdbus-tqt-1-0.so
-%{_libdir}/libdbus-tqt-1-0.la
+%{_libdir}/libdbus-tqt-1.so
+%{_libdir}/libdbus-tqt-1.la
 %{_libdir}/pkgconfig/dbus-tqt.pc
 
 ##########
