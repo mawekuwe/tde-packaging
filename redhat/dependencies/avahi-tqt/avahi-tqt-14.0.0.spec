@@ -51,6 +51,8 @@ BuildRequires:	pkgconfig
 BuildRequires:	libtool
 
 BuildRequires:	gettext-devel
+
+# GLIB2 support
 BuildRequires:	glib2-devel
 
 # DBUS support
@@ -184,7 +186,17 @@ export PATH="%{tde_bindir}:${PATH}"
   --disable-dependency-tracking \
   \
   --enable-compat-libdns_sd \
-  --with-systemdsystemunitdir=/lib/systemd/system
+  --with-systemdsystemunitdir=/lib/systemd/system \
+%if 0%{?suse_release}
+  --with-distro=suse \
+%endif
+%if 0%{?fedora} || 0%{?rhel}
+  --with-distro=fedora \
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+  --with-distro=mandriva \
+%endif
+
 
 %__make %{?_smp_mflags}
 
