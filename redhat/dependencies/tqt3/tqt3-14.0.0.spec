@@ -46,8 +46,6 @@ Source3:	linguist-tqt3.desktop
 Source4:	tqt3config.desktop
 Source5:	build-examples.sh
 
-Patch15:	tqt3-14.0.0-add_tqt_home_dir_variable.patch
-
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
 BuildRequires: glibc-devel
@@ -268,9 +266,6 @@ applications.
 %dir %{_datadir}/tqt3/
 %dir %{_datadir}/tqt3/doc/
 %dir %{_datadir}/tqt3/doc/html/
-%dir %{_datadir}/tqt3/mkspecs/
-%dir %{_datadir}/tqt3/phrasebooks/
-%dir %{_datadir}/tqt3/templates/
 %dir %{_datadir}/tqt3/tools/
 %dir %{_sysconfdir}/tqt3
 %{_libdir}/libtqt-mt.so.3
@@ -827,6 +822,7 @@ For TQt3 development, you most likely want to install this package.
 
 %files -n tqt3-dev-tools
 %defattr(-,root,root,-)
+%dir %{_datadir}/tqt3/mkspecs/
 %{_datadir}/tqt3/mkspecs/*
 %{_datadir}/tqt3/doc/html/qmake*html
 %{_datadir}/tqt3/doc/html/qmake*dcf
@@ -866,6 +862,7 @@ or automake.
 %{_datadir}/tqt3/doc/html/designer*html
 %{_datadir}/tqt3/doc/html/designer*dcf
 %{_datadir}/tqt3/doc/html/designer*jpg
+%dir %{_datadir}/tqt3/templates/
 %{_datadir}/tqt3/templates/*
 %{_libdir}/tqt3/plugins/designer/libcppeditor.so
 %{_libdir}/tqt3/plugins/designer/libdlgplugin.so
@@ -941,6 +938,7 @@ development files by the translator.
 %files -n tqt3-linguist
 %defattr(-,root,root,-)
 %{_bindir}/tqlinguist
+%dir %{_datadir}/tqt3/phrasebooks/
 %{_datadir}/tqt3/phrasebooks/*
 %{_datadir}/tqt3/doc/html/linguist*html
 %{_datadir}/tqt3/doc/html/linguist*dcf
@@ -1099,7 +1097,7 @@ with the TQt Assistant.
 ##########
 
 %package -n tqt3-examples
-summary:	 Examples for TQt3
+summary:	Examples for TQt3
 Group:		System/GUI/Other
 
 %description -n tqt3-examples
@@ -1129,8 +1127,7 @@ things that are possible with TQt3.
 %__sed -i src/kernel/ntqstyle.h -e "s|#ifdef ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY|#if 1|"
 %endif
 
-%patch15 -p1 -b .tqthomedir
-
+# Add missing sqlite3 header
 %__ln_s ../src/sql/drivers/sqlite3/qsql_sqlite3.h include/qsql_sqlite3.h
 
 # fix variables in 'qmake.conf'
