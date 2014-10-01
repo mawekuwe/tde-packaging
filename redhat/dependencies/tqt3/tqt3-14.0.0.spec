@@ -264,6 +264,8 @@ applications.
 %dir %{_libdir}/tqt3/plugins/inputmethods/
 %dir %{_libdir}/tqt3/plugins/sqldrivers/
 %dir %{_datadir}/tqt3/
+%dir %{_datadir}/tqt3/doc/
+%dir %{_datadir}/tqt3/doc/html/
 %dir %{_datadir}/tqt3/mkspecs/
 %dir %{_datadir}/tqt3/phrasebooks/
 %dir %{_datadir}/tqt3/templates/

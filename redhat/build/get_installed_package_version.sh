@@ -6,16 +6,7 @@ PKGNAME="${1##*/}"
 [ -z "${PKGNAME}" ] && echo "You must specify a package name !" && exit 1
 
 # Language package: install only French language package
-case ${PKGNAME} in
-  "k3b-i18n"|"koffice-i18n"|"tde-i18n") PKGNAME="trinity-${PKGNAME}-French";;
-  "koffice") PKGNAME="${PKGNAME}-suite";;
-  "trinity-"*) PKGNAME="${PKGNAME#trinity-}";;
-  "qt3") [ -r /etc/mandriva-release ] && PKGNAME="qt3-common";;
-  "curl") PKGNAME="trinity-libcurl";;
-  "esound") PKGNAME="esound-libs";;
-  "tqt3") PKGNAME="libtqt3-mt";;
-  "tqtinterface") PKGNAME="libtqt4";;
-esac
+PKGNAME="$(get_rpm_package_name.sh ${PKGNAME})"
 
 VERSION=$(LC_ALL=C rpm -q --qf "%{version}-%{release}" trinity-${PKGNAME} 2>/dev/null)
 if [ -z "${VERSION}" ] || [[ "${VERSION}" =~ "not installed" ]]; then

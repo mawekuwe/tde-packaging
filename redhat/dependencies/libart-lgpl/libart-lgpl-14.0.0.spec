@@ -1,32 +1,51 @@
+#
+# spec file for package libart-lgpl
+#
+# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
+# TDE variables
 %define tde_version 14.0.0
-
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_datadir %{tde_prefix}/share
-
 %define tde_tdeincludedir %{tde_includedir}/tde
-
 %define _docdir %{tde_datadir}/doc
 
 
 Name:           trinity-libart-lgpl
 Version:        2.3.22
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
 Summary:        Library of functions for 2D graphics - runtime files
-
 Group:          System Environment/Libraries
-License:        LGPLv2+
-
-Vendor:			Trinity Project
 URL:			http://www.trinitydesktop.org/
-Packager:		Francois Andriot <francois.andriot@free.fr>
+
+%if 0%{?suse_version}
+License:	LGPL-2.0+
+%else
+License:	LGPLv2+
+%endif
+
+#Vendor:			Trinity Project
+#Packager:		Francois Andriot <francois.andriot@free.fr>
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -35,6 +54,8 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:  trinity-tqt3-devel >= 3.5.0
 BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
+
+BuildRequires:	gcc-c++
 
 %description
 A library of functions for 2D graphics supporting a superset of the
@@ -45,10 +66,10 @@ especially suitable for embedded applications.
 
 
 %post
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %files
 %defattr(-,root,root,-)
@@ -70,10 +91,10 @@ compatible with C++. With a small footprint of 10,000 lines of code, it is
 especially suitable for embedded applications.
 
 %post devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %files devel
 %defattr(-,root,root,-)
@@ -129,7 +150,7 @@ especially suitable for embedded applications.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
