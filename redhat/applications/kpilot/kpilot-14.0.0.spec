@@ -48,7 +48,13 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
+# FLEX
+%if 0%{?suse_version}
+BuildRequires:	flex
+%else
 BuildRequires:	flex-devel
+%endif
+
 BuildRequires:	gettext
 BuildRequires:	pilot-link-devel >= 0.12
 BuildRequires:	trinity-tdepim-devel >= %{tde_version}

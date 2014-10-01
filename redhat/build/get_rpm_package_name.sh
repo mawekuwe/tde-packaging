@@ -34,6 +34,7 @@ if [ -n "${DEVEL}" ]; then
   # Applications do NOT have development packages, except K3B
   case "${PKGCATEGORY}" in
     "applications") if [ "${PKGNAME}" != "k3b" ]; then exit 0; fi;;
+    "extras") if [ "${PKGNAME}" != "akode" ]; then exit 0; fi;;
   esac
   # Other packags NOT having development package
   case "${PKGNAME}" in

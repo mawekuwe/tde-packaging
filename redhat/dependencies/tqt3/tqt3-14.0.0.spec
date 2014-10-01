@@ -49,7 +49,7 @@ BuildRequires: cups-devel
 
 # GLIB2 support
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
-%define with_glibmainloop 1
+hdefine with_glibmainloop 1
 BuildRequires: glib2-devel
 %endif
 
@@ -481,7 +481,7 @@ for the TQt 3 toolkit.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %if 0%{?rhel} == 5
-%patch1 -p1 -b .ftbfs
+#patch1 -p1 -b .ftbfs
 %endif
 
 %patch15 -p1 -b .tqthomedir
@@ -511,6 +511,10 @@ export QTDIR=$(pwd)
 export PATH=${QTDIR}/bin:${PATH}
 export MANPATH=${QTDIR}/doc/man:${MANPATH}
 export LD_LIBRARY_PATH="${QTDIR}/lib"
+
+%if 0%{?rhel} == 5
+%__sed -i src/kernel/ntqstyle.h -e "s|#ifdef ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY|#if 1|"
+%endif
 
 # Checks for supplementary include dir
 INCDIRS=""

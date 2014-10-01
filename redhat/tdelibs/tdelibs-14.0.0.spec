@@ -39,10 +39,17 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 #Patch11:		tdelibs-14.0.0-displayconfig_crash.patch
 
 # Patches from Mandriva
-Patch102:		tdelibs-14.0.0-cups_by_default.patch
+Patch101:		tdelibs-14.0.0-cups_by_default.patch
+Patch102:		tdelibs-14.0.0-fix_kurlbar_global.patch
+Patch103:		tdelibs-14.0.0-fix_enable_kdialogbox.patch
+Patch104:		tdelibs-14.0.0-fix_https_loop.patch
+Patch105:		tdelibs-14.0.0-tdeio_file_grouplist.patch
+Patch107:		tdelibs-14.0.0-karchive_assert.patch
+Patch108:		tdelibs-14.0.0-tdeabc_add_postofficebox.patch
 
 # Enables the 'kddebug' feature even when built with '-DNDEBUG'
 #Patch201:		tdelibs-14.0.0-enable_kddebug.patch
+
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -460,7 +467,13 @@ applications for TDE.
 
 #patch11 -p1 -b .displayconfigcrash
 
-%patch102 -p1 -b .cups_by_default
+%patch101 -p1 -b .cups_by_default
+%patch102 -p0 -b .kurl
+%patch103 -p0 -b .kdialogbox
+%patch104 -p0 -b .httpsloop
+%patch105 -p0 -b .tdeiofilegrouplist
+%patch107 -p0 -b .karchiveassert
+%patch108 -p0 -b .tdeabc
 
 #patch201 -p1 -b .kddebug
 
@@ -469,6 +482,7 @@ applications for TDE.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+export TDEDIR="%{tde_prefix}"
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
   %__mkdir_p build

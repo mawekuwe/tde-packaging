@@ -41,6 +41,7 @@ Source3:	http://download.sourceforge.net/quanta/php_manual_en_20030401.tar.bz2
 Source4:	http://download.sourceforge.net/quanta/javascript.tar.bz2
 Source5:	hi48-app-kxsldbg.png
 
+Patch0:		tdewebdev-14.0.0-ftbfs.patch
 Patch1:		kdewebdev-3.5.4-kxsldbg-icons.patch
 
 BuildRequires:	autoconf automake libtool m4
@@ -490,7 +491,9 @@ Requires:	trinity-kommander-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}} -a 1 -a 2 -a 3 -a 4
+%patch0 -p1 -b .ftbfs
 %patch1 -p1 -b .kxsldbg-icons
+rm -rf lib/compatibility
 
 %__install -m644 -p %{SOURCE5} kxsldbg/
 %if 0%{?build_kxsldbg} == 0
@@ -529,7 +532,8 @@ fi
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-  --enable-editors
+  --enable-editors \
+  --with-extra-includes=%{_includedir}/tqt
   
 
 # WTF hack for RHEL4
