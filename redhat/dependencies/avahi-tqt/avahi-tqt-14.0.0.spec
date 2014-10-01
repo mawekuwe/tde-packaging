@@ -50,6 +50,7 @@ BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 BuildRequires:	libtool
 
+# GETTEXT support
 BuildRequires:	gettext-devel
 
 # GLIB2 support
@@ -77,6 +78,14 @@ BuildRequires:	expat-devel
 %endif
 %if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	libexpat-devel
+%endif
+
+# UUID support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+BuildRequires: libuuid-devel
+%endif
+%if 0%{?rhel} == 5
+BuildRequires: e2fsprogs-devel
 %endif
 
 %description
@@ -170,6 +179,7 @@ into a TQt main loop application.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+export NOCONFIGURE=1
 ./autogen.sh
 
 
@@ -187,7 +197,7 @@ export PATH="%{tde_bindir}:${PATH}"
   \
   --enable-compat-libdns_sd \
   --with-systemdsystemunitdir=/lib/systemd/system \
-%if 0%{?suse_release}
+%if 0%{?suse_version}
   --with-distro=suse \
 %endif
 %if 0%{?fedora} || 0%{?rhel}
