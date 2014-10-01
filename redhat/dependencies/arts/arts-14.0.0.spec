@@ -100,7 +100,7 @@ BuildRequires:	libtool
 %endif
 
 # MAD support
-%ifarch i386 i486 i586 i686 x86_64
+%ifarch %{ix86} x86_64
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} 
 %define with_libmad 1
 %if 0%{?mdkversion} || 0%{?mgaversion}
