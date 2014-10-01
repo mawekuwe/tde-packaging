@@ -47,8 +47,11 @@ BuildRequires:	libtqt3-mt-devel >= 3.5.0
 BuildRequires:	libtqt4-devel >= 1:4.2.0
 
 BuildRequires:	gcc-c++
-BuildRequires:	gettext-devel
+BuildRequires:	pkgconfig
 BuildRequires:	libtool
+
+BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel
 
 # DBUS support
 %if 0%{?suse_version}
