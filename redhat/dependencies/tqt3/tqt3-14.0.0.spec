@@ -823,8 +823,6 @@ For TQt3 development, you most likely want to install this package.
 
 %files -n tqt3-dev-tools
 %defattr(-,root,root,-)
-%dir %{_datadir}/tqt3/mkspecs/
-%{_datadir}/tqt3/mkspecs/*
 %{_datadir}/tqt3/doc/html/qmake*html
 %{_datadir}/tqt3/doc/html/qmake*dcf
 %{_bindir}/tqmake
