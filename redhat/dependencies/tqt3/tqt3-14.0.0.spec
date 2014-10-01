@@ -286,6 +286,108 @@ Summary:	TQt development files (Threaded)
 Group:		Development/Libraries/X11
 Requires:	libtqt3-mt = %{version}-%{release}
 
+Requires: glibc-devel
+Requires: fontconfig-devel
+Requires: freetype2-devel
+Requires: libjpeg-devel
+Requires: libpng-devel
+Requires: zlib-devel
+
+# GLIB2 support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%define with_glibmainloop 1
+Requires: glib2-devel
+%endif
+
+# UUID support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+Requires: libuuid-devel
+%endif
+%if 0%{?rhel} == 5
+Requires: e2fsprogs-devel
+%endif
+
+# XI support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXi-devel
+%endif
+%if 0%{?mgaversion}
+Requires: %{_lib}xi-devel
+%endif
+
+# Xrender support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXrender-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libxrender-devel
+%endif
+
+# Xrandr support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXrandr-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libxrandr-devel
+%endif
+
+# Xcursor support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXcursor-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libxcursor-devel
+%endif
+
+# Xinerama support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXinerama-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libxinerama-devel
+%endif
+
+# Xft support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXft-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libxft-devel
+%endif
+
+# Xext support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXext-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libxext-devel
+%endif
+
+# X11 support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libX11-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libx11-devel
+%endif
+
+# SM support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libSM-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libsm-devel
+%endif
+
+# ICE support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libICE-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires: libice-devel
+%endif
+
+
 %description -n libtqt3-mt-devel
 TQt is a C++ class library optimized for graphical user interface
 development. This package contains the libtqt-mt.so symlink, necessary
