@@ -89,9 +89,9 @@ See the dbus description for more information about D-BUS in general.
 ##########
 
 %package -n libdbus-tqt-1-devel
-Requires:		libdbus-tqt-1 = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary:		Simple inter-process messaging system (TQt interface)
 Group:			Development/Libraries
+Requires:		libdbus-tqt-1 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Obsoletes:		trinity-dbus-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-dbus-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}

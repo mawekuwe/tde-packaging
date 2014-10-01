@@ -25,21 +25,26 @@ Name:		trinity-avahi-tqt
 Epoch:		2
 Version:	0.6.30
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	LGPL-2.0+
 Summary:	Avahi TQt integration library
 Group:		System/Libraries
-
-Vendor:		Trinity Project
-#Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	LGPL-2.0+
+%else
+License:	LGPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= 1:4.2.0-1
+BuildRequires:	libtqt3-mt-devel >= 3.5.0
+BuildRequires:	libtqt4-devel >= 1:4.2.0
 
 BuildRequires:	gcc-c++
 BuildRequires:	gettext-devel
@@ -69,9 +74,6 @@ BuildRequires:	expat-devel
 BuildRequires:	libexpat-devel
 %endif
 
-Requires:		trinity-tqt3 >= 3.5.0
-Requires:		trinity-tqtinterface >= 1:4.2.0-1
-
 %description
 Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
 It allows programs to publish and discover services and hosts
@@ -92,9 +94,7 @@ Group:		System/Libraries
 Provides:		%{_lib}avahi-qt3
 %endif
 
-Obsoletes:		avahi-tqt
-Provides:		avahi-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:		trinity-avahi-tqt
+Obsoletes:		trinity-avahi-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-avahi-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libavahi-tqt
@@ -129,9 +129,7 @@ Requires:	libavahi-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		%{_lib}avahi-qt3-devel
 %endif
 
-Obsoletes:		avahi-tqt-devel
-Provides:		avahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:		trinity-avahi-tqt-devel
+Obsoletes:		trinity-avahi-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-avahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n libavahi-tqt-devel
@@ -159,7 +157,7 @@ into a TQt main loop application.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 

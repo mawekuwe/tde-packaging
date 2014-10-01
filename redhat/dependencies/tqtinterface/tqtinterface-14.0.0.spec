@@ -15,7 +15,7 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# TDE specific building variables
+# TDE variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin

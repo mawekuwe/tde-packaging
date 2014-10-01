@@ -1096,6 +1096,7 @@ with the TQt Assistant.
 
 %package -n tqt3-examples
 summary:	 Examples for TQt3
+Group:		System/GUI/Other
 
 %description -n tqt3-examples
 These are examples provided with TQt3. They may be especially useful for
@@ -1310,7 +1311,7 @@ done
 # build attic package and copy it to libtqt3-compat-headers
 pushd src
 tar cvvfz attic.tar.gz attic/
-install -D attic.tar.gz %{?buildroot}%{_datadir}/doc/libtqt3-compat-headers/attic.tar.gz
+install -D attic.tar.gz %{?buildroot}%{_docdir}/libtqt3-compat-headers/attic.tar.gz
 popd
 
 # install the man pages
