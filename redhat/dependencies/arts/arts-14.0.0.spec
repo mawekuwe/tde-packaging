@@ -53,7 +53,6 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	kcmartsrc-pulseaudio
 
 BuildRequires:	libtqt4-devel >= 1:4.2.0
 
@@ -288,9 +287,14 @@ fi
 
 # Installs the Pulseaudio configuration file
 %if 0%{?with_pulseaudio}
-%__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/config/kcmartsrc
+cat <<EOF >"%{?buildroot}%{tde_datadir}/config/kcmartsrc"
+[Arts]
+Arguments=\s-F 10 -S 4096 -a esd -n -s 1 -m artsmessage -c drkonqi -l 3 -f
+NetworkTransparent=true
+SuspendTime=1
+EOF
+chmod 644 "%{?buildroot}%{tde_datadir}/config/kcmartsrc"
 %endif
-
 
 
 %clean
