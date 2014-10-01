@@ -1093,6 +1093,15 @@ with the TQt Assistant.
 
 %files -n tqt3-doc
 %defattr(-,root,root,-)
+%exclude %{_datadir}/tqt3/doc/html/qmake*html
+%exclude %{_datadir}/tqt3/doc/html/qmake*dcf
+%exclude %{_datadir}/tqt3/doc/html/designer*html
+%exclude %{_datadir}/tqt3/doc/html/designer*dcf
+%exclude %{_datadir}/tqt3/doc/html/designer*jpg
+%exclude %{_datadir}/tqt3/doc/html/linguist*html
+%exclude %{_datadir}/tqt3/doc/html/linguist*dcf
+%exclude %{_datadir}/tqt3/doc/html/assistant*html
+%exclude %{_datadir}/tqt3/doc/html/assistant*dcf
 %{_datadir}/tqt3/doc/html/*
 
 ##########
