@@ -20,16 +20,25 @@
 
 
 Name:		trinity-tqt3
+Epoch:		0
 Version:	3.5.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL-2.0+
 Summary:	TQt GUI Library, Version 3
 Group:		System/GUI/Other
-Url:		http://www.trinitydesktop.org/
+URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{tde_version}-%{release}-root-%(%{__id_u} -n)
+
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	assistant-tqt3.desktop
 Source2:	designer-tqt3.desktop
@@ -52,7 +61,6 @@ BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
 BuildRequires: gcc-c++
 BuildRequires: make
-BuildRequires: desktop-file-utils
 
 # CUPS support
 BuildRequires: cups-devel
@@ -861,7 +869,7 @@ or automake.
 %{_libdir}/tqt3/plugins/designer/libkdevdlgplugin.so
 %{_libdir}/tqt3/plugins/designer/librcplugin.so
 %{_libdir}/tqt3/plugins/designer/libwizards.so
-%{_datadir}/applications/designer-tqt3.desktop
+#%{_datadir}/applications/designer-tqt3.desktop
 %dir %{_datadir}/tqt3/tools/tqtconv2ui
 %{_datadir}/tqt3/tools/tqtconv2ui/main.cpp
 %{_datadir}/tqt3/tools/tqtconv2ui/tqtconv2ui.pro
@@ -932,7 +940,7 @@ development files by the translator.
 %{_datadir}/tqt3/phrasebooks/*
 %{_datadir}/tqt3/doc/html/linguist*html
 %{_datadir}/tqt3/doc/html/linguist*dcf
-%{_datadir}/applications/linguist-tqt3.desktop
+#%{_datadir}/applications/linguist-tqt3.desktop
 %dir %{_docdir}/tqt3-linguist
 %{_docdir}/tqt3-linguist/qt_untranslated.ts
 
@@ -957,7 +965,7 @@ the package tqt3-apps-devel.
 
 %files -n tqt3-assistant
 %{_bindir}/tqassistant
-%{_datadir}/applications/assistant-tqt3.desktop
+#%{_datadir}/applications/assistant-tqt3.desktop
 %{_datadir}/tqt3/doc/html/assistant*html
 %{_datadir}/tqt3/doc/html/assistant*dcf
 
@@ -980,7 +988,7 @@ install this package.
 %files -n tqt3-qtconfig
 %defattr(-,root,root,-)
 %{_bindir}/tqtconfig
-%{_datadir}/applications/tqt3config.desktop
+#%{_datadir}/applications/tqt3config.desktop
 
 ###########
 
@@ -1294,10 +1302,10 @@ for i in designer/designer assistant linguist/linguist; do
 done
 
 # desktop lnk files
-install -m644 -D "%{SOURCE1}" "%{?buildroot}%{_datadir}/applications/assistant-tqt3.desktop"
-install -m644 -D "%{SOURCE2}" "%{?buildroot}%{_datadir}/applications/designer-tqt3.desktop"
-install -m644 -D "%{SOURCE3}" "%{?buildroot}%{_datadir}/applications/linguist-tqt3.desktop"
-install -m644 -D "%{SOURCE4}" "%{?buildroot}%{_datadir}/applications/tqt3config.desktop"
+#install -m644 -D "%{SOURCE1}" "%{?buildroot}%{_datadir}/applications/assistant-tqt3.desktop"
+#install -m644 -D "%{SOURCE2}" "%{?buildroot}%{_datadir}/applications/designer-tqt3.desktop"
+#install -m644 -D "%{SOURCE3}" "%{?buildroot}%{_datadir}/applications/linguist-tqt3.desktop"
+#install -m644 -D "%{SOURCE4}" "%{?buildroot}%{_datadir}/applications/tqt3config.desktop"
 
 # build attic package and copy it to libtqt3-compat-headers
 pushd src

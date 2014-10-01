@@ -13,6 +13,8 @@ case ${PKGNAME} in
   "qt3") [ -r /etc/mandriva-release ] && PKGNAME="qt3-common";;
   "curl") PKGNAME="trinity-libcurl";;
   "esound") PKGNAME="esound-libs";;
+  "tqt3") PKGNAME="libtqt3-mt";;
+  "tqtinterface") PKGNAME="libtqt4";;
 esac
 
 VERSION=$(LC_ALL=C rpm -q --qf "%{version}-%{release}" trinity-${PKGNAME} 2>/dev/null)

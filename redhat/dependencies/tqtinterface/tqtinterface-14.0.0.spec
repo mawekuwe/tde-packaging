@@ -27,17 +27,26 @@ Name:		trinity-tqtinterface
 Epoch:		1
 Version:	4.2.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL-2.0+
 Summary:	The Trinity Qt Interface Libraries
 Group:		System/GUI/Other
 URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	libtqt3-mt-devel >= 3.5.0
+BuildRequires:	tqt3-dev-tools >= 3.5.0
 
 %if 0%{?suse_version} && 0%{?suse_version} < 1300
 BuildRequires:	trinity-cmake-macros
@@ -126,6 +135,7 @@ Group:		Development/Libraries
 Summary:	The Trinity Qt Interface Libraries (Development Files)
 Requires:	libtqt4 = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	libtqt3-mt-devel >= 3.5.0
+Requires:	tqt3-dev-tools >= 3.5.0
 
 %if 0%{?suse_version} && 0%{?suse_version} < 1300
 Requires:		trinity-cmake-macros

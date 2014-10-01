@@ -36,12 +36,17 @@ Name:		trinity-arts
 Epoch:		1
 Version:	1.5.10
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-License:	GPL-2.0+
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
-
-Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
@@ -96,7 +101,7 @@ BuildRequires:	libtool
 %endif
 
 # MAD support
-%ifarch i586 i686 x86_64
+%ifarch i386 i486 i586 i686 x86_64
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} 
 %define with_libmad 1
 %if 0%{?mdkversion} || 0%{?mgaversion}

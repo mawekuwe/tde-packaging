@@ -17,11 +17,13 @@ DEVEL="$2"
 case "${PKGNAME}" in
   "k3b-i18n"|"koffice-i18n"|"tde-i18n") PKGNAME="${PKGNAME}-French";;
   "koffice") PKGNAME="${PKGNAME}-suite";;
+  "tqt3") PKGNAME="libtqt3-mt";;
+  "tqtinterface") PKGNAME="libtqt4";;
 esac
 
 # Use the Trinity Prefix, or not.
 case "${PKGNAME}" in
-  "trinity-"*|"qt3"|"python-qt3"|"esound") PREFIX="";;
+  "trinity-"*|"qt3"|"python-qt3"|"esound"|"lib"*) PREFIX="";;
   "autoconf"|"automake"|"cmake"|"gnuchess"|"htdig"|"imlib1"|"libotr3"|"libtool"|"lilypond"|"m4"|"mftrace"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
   "curl") PREFIX="trinity-lib";;
   *) PREFIX="trinity-";;
