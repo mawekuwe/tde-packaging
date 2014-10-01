@@ -25,6 +25,7 @@ Version:	0.9
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	dbus bindings for the Trinity Qt [TQt] interface
 Group:		System/Libraries
+URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
 License:	GPL-2.0+
@@ -65,14 +66,14 @@ See the dbus description for more information about D-BUS in general.
 
 ###########
 
-%package -n libdbus-1-tqt
+%package -n libdbus-1-tqt0
 Summary:		dbus bindings for the Trinity Qt [TQt] interface
 Group:			System/Libraries
 
 Obsoletes:		trinity-dbus-1-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-dbus-1-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description -n libdbus-1-tqt
+%description -n libdbus-1-tqt0
 D-BUS is a message bus, used for sending messages between applications.
 Conceptually, it fits somewhere in between raw sockets and CORBA in
 terms of complexity.
@@ -81,28 +82,28 @@ This package provides bindings for the Trinity Qt TQt interface.
 
 See the dbus description for more information about D-BUS in general.
 
-%post -n libdbus-1-tqt
+%post -n libdbus-1-tqt0
 /sbin/ldconfig || :
 
-%postun -n libdbus-1-tqt
+%postun -n libdbus-1-tqt0
 /sbin/ldconfig || :
 
-%files -n libdbus-1-tqt
+%files -n libdbus-1-tqt0
 %defattr(-,root,root,-)
 %{_libdir}/libdbus-1-tqt.so.0
 %{_libdir}/libdbus-1-tqt.so.0.0.0
 
 ##########
 
-%package -n libdbus-1-tqt-devel
+%package -n libdbus-1-tqt0-devel
 Summary:		dbus bindings for the Trinity Qt [TQt] interface (Development Files)
-Group:			Development/Libraries
-Requires:		libdbus-1-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
+Group:			Development/Libraries/C and C++
+Requires:		libdbus-1-tqt0 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Obsoletes:		trinity-dbus-1-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-dbus-1-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description -n libdbus-1-tqt-devel
+%description -n libdbus-1-tqt0-devel
 D-BUS is a message bus, used for sending messages between applications.
 Conceptually, it fits somewhere in between raw sockets and CORBA in
 terms of complexity.
@@ -111,13 +112,13 @@ This package provides bindings for the Trinity Qt TQt interface.
 
 See the dbus description for more information about D-BUS in general.
 
-%post -n libdbus-1-tqt-devel
+%post -n libdbus-1-tqt0-devel
 /sbin/ldconfig || :
 
-%postun -n libdbus-1-tqt-devel
+%postun -n libdbus-1-tqt0-devel
 /sbin/ldconfig || :
 
-%files -n libdbus-1-tqt-devel
+%files -n libdbus-1-tqt0-devel
 %defattr(-,root,root,-)
 %{_bindir}/dbusxml2qt3
 %{_includedir}/*.h
