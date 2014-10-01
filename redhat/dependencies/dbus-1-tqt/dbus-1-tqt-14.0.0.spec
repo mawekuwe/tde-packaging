@@ -43,8 +43,9 @@ Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	libtqt3-mt-devel >= 3.5.0
 BuildRequires:	libtqt4-devel >= 1:4.2.0
 
-BuildRequires:	gcc-c++
 BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
 
 # DBUS support
 %if 0%{?suse_version}
@@ -54,6 +55,13 @@ BuildRequires:	dbus-devel
 %endif
 
 %description
+D-BUS is a message bus, used for sending messages between applications.
+Conceptually, it fits somewhere in between raw sockets and CORBA in
+terms of complexity.
+
+This package provides bindings for the Trinity Qt TQt interface.
+
+See the dbus description for more information about D-BUS in general.
 
 ###########
 
@@ -131,7 +139,6 @@ See the dbus description for more information about D-BUS in general.
 
 %build
 unset QTDIR QTINC QTLIB
-export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
   %__mkdir_p build
