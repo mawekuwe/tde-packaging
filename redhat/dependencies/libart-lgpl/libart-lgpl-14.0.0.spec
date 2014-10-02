@@ -109,6 +109,8 @@ especially suitable for embedded applications.
 %{_libdir}/libart_lgpl_2.a
 %{_libdir}/libart_lgpl_2.la
 %{_libdir}/libart_lgpl_2.so
+%dir %{_includedir}/libart-2.0
+%dir %{_includedir}/libart-2.0/libart_lgpl
 %{_includedir}/libart-2.0/libart_lgpl/art_affine.h
 %{_includedir}/libart-2.0/libart_lgpl/art_alphagamma.h
 %{_includedir}/libart-2.0/libart_lgpl/art_bpath.h
