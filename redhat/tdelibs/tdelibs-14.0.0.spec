@@ -60,21 +60,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-#Patch11:		tdelibs-14.0.0-displayconfig_crash.patch
-
-# Patches from Mandriva
-Patch101:		tdelibs-14.0.0-cups_by_default.patch
-Patch102:		tdelibs-14.0.0-fix_kurlbar_global.patch
-Patch103:		tdelibs-14.0.0-fix_enable_kdialogbox.patch
-Patch104:		tdelibs-14.0.0-fix_https_loop.patch
-Patch105:		tdelibs-14.0.0-tdeio_file_grouplist.patch
-Patch107:		tdelibs-14.0.0-karchive_assert.patch
-Patch108:		tdelibs-14.0.0-tdeabc_add_postofficebox.patch
-
-# Enables the 'kddebug' feature even when built with '-DNDEBUG'
-#Patch201:		tdelibs-14.0.0-enable_kddebug.patch
-
-
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
 Obsoletes:		trinity-kdelibs < %{version}-%{release}
@@ -82,14 +67,19 @@ Provides:		trinity-kdelibs = %{version}-%{release}
 Obsoletes:		trinity-kdelibs-apidocs < %{version}-%{release}
 Provides:		trinity-kdelibs-apidocs = %{version}-%{release}
 
+# Trinity dependencies
+BuildRequires:	libtqt3-mt-devel >= 3.5.0
+BuildRequires:	libtqt4-devel >= 1:4.2.0
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	libdbus-tqt-1-devel >= 2:0.63
+BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
+
+Requires:		trinity-arts >= 1:1.5.10
+
+
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
-BuildRequires:	trinity-dbus-1-tqt-devel >= 1:0.9
-BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
@@ -103,7 +93,7 @@ BuildRequires:	glib2-devel
 #BuildRequires:	lua-devel
 
 # LIBART_LGPL support
-BuildRequires:	trinity-libart-lgpl-devel
+BuildRequires:	%{libart}_lgpl-devel
 
 # ASPELL support
 BuildRequires:	aspell
@@ -320,10 +310,8 @@ Requires:		openssl
 %define with_xrandr 1
 %endif
 
-# Trinity dependencies
-Requires:		trinity-tqt3 >= 3.5.0
-Requires:		trinity-tqtinterface >= %{tde_version}
-Requires:		trinity-arts >= 1:1.5.10
+# LIBMAGIC support
+BuildRequires:	file-devel
 
 
 %description
@@ -417,7 +405,6 @@ kimgio (image manipulation).
 %{tde_datadir}/icons/default.tde
 %{tde_datadir}/icons/hicolor/index.theme
 %{tde_datadir}/locale/all_languages
-%{tde_datadir}/mimelnk/magic
 %{tde_datadir}/mimelnk/*/*.desktop
 %{tde_datadir}/services/*
 %{tde_datadir}/servicetypes/*
@@ -480,7 +467,7 @@ applications for TDE.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -488,18 +475,6 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-
-#patch11 -p1 -b .displayconfigcrash
-
-%patch101 -p1 -b .cups_by_default
-%patch102 -p0 -b .kurl
-%patch103 -p0 -b .kdialogbox
-%patch104 -p0 -b .httpsloop
-%patch105 -p0 -b .tdeiofilegrouplist
-%patch107 -p0 -b .karchiveassert
-%patch108 -p0 -b .tdeabc
-
-#patch201 -p1 -b .kddebug
 
 
 %build
