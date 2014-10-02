@@ -311,6 +311,11 @@ Requires:		openssl
 %define with_xrandr 1
 %endif
 
+# XT support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+BuildRequires: libXt-devel
+%endif
+
 # LIBMAGIC support
 BuildRequires:	file-devel
 
