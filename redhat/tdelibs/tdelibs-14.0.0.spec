@@ -81,7 +81,6 @@ BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 
-BuildRequires:	libtool
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
@@ -89,7 +88,10 @@ BuildRequires:	openssl-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libtiff-devel
+
+# GLIB2 support
 BuildRequires:	glib2-devel
+
 # LUA support are not ready yet
 #BuildRequires:	lua-devel
 
@@ -226,30 +228,32 @@ BuildRequires:	OpenEXR-devel
 %endif
 
 # LIBTOOL
+BuildRequires:	libtool
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libtool-ltdl-devel
 %endif
-%if 0%{?rhel} == 4 || 0%{?suse_version} == 1140
-BuildRequires:	libtool
-%endif
 
-# X11 support
+# XCOMPOSITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	x11-proto-devel
 %if 0%{?mgaversion} >= 4
 BuildRequires:	%{_lib}xcomposite-devel
 %else
 BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 %endif
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
-BuildRequires:	xorg-x11-proto-devel
-%endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXcomposite-devel
+%endif
+
+# X11 support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	x11-proto-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	xorg-x11-proto-devel
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
@@ -547,7 +551,7 @@ fi
   -DWITH_ASPELL=ON \
   %{?!with_hspell:-DWITH_HSPELL=OFF} \
   -DWITH_TDEICONLOADER_DEBUG=OFF \
-  ..
+  .. || cat CMakeFiles/CMakeError.log && exit 1
 
 %__make %{?_smp_mflags} || %__make
 
