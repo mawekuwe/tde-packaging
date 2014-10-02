@@ -93,7 +93,7 @@ BuildRequires:	glib2-devel
 #BuildRequires:	lua-devel
 
 # LIBART_LGPL support
-BuildRequires:	%{libart}_lgpl-devel
+BuildRequires:	libart_lgpl-devel
 
 # ASPELL support
 BuildRequires:	aspell
