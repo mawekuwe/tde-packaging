@@ -551,13 +551,7 @@ fi
   -DWITH_ASPELL=ON \
   %{?!with_hspell:-DWITH_HSPELL=OFF} \
   -DWITH_TDEICONLOADER_DEBUG=OFF \
-  .. || :
-  
-ls -l %{tde_libdir}/pkgconfig/arts.pc
-cat %{tde_libdir}/pkgconfig/arts.pc
-pkg-config --cflags arts
-pkg-config --libs arts
-exit 1
+  ..
 
 %__make %{?_smp_mflags} || %__make
 
