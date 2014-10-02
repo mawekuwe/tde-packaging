@@ -20,7 +20,7 @@
 %define _variant .opt
 %endif
 
-# TDE specific variables
+# TDE variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
@@ -174,7 +174,7 @@ playing a wave file with some effects.
 
 %package devel
 Group:		Development/Libraries
-Summary:	aRts (analog realtime synthesizer) - the TDE sound system (Development files)
+Summary:	ARTS (analog realtime synthesizer) - the TDE sound system (Development files)
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if "%{?tde_prefix}" == "/usr"
 Obsoletes:	arts-devel
