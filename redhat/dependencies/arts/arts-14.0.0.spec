@@ -36,7 +36,7 @@ Name:		trinity-arts
 Epoch:		1
 Version:	1.5.10
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-Summary:	aRts (analog realtime synthesizer) - the TDE sound system
+Summary:	ARTS (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
 URL:		http://www.trinitydesktop.org/
 
@@ -180,6 +180,33 @@ Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:	arts-devel
 %endif
 
+Requires:	alsa-lib-devel
+Requires:	audiofile-devel
+Requires:	libvorbis-devel
+Requires:	esound-devel
+
+%if 0%{?with_libmad}
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires:		%{_lib}mad-devel
+%endif
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
+Requires:		libmad-devel
+%endif
+%endif
+
+%if 0%{?with_jack}
+%if 0%{?mgaversion} || 0%{?mdkversion}
+Requires:	%{_lib}jack-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora}
+Requires:	jack-audio-connection-kit-devel
+%endif
+%if 0%{?suse_version}
+Requires:	libjack-devel
+%endif
+%endif
+
+
 %description devel
 arts (analog real-time synthesizer) is the sound system of TDE.
 
@@ -235,7 +262,6 @@ Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 
 ##########
-
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
