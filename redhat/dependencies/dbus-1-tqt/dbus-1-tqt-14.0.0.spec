@@ -15,7 +15,7 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# TDE specific building variables
+# TDE variables
 %define tde_version 14.0.0
 
 %if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
@@ -102,16 +102,16 @@ See the dbus description for more information about D-BUS in general.
 
 ##########
 
-%package -n %{libdbus}-1-tqt0-devel
+%package -n %{libdbus}-1-tqt-devel
 Summary:		dbus bindings for the Trinity Qt [TQt] interface (Development Files)
 Group:			Development/Libraries/C and C++
-Provides:		libdbus-1-tqt0-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		libdbus-1-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:		%{libdbus}-1-tqt0 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Obsoletes:		trinity-dbus-1-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-dbus-1-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description -n %{libdbus}-1-tqt0-devel
+%description -n %{libdbus}-1-tqt-devel
 D-BUS is a message bus, used for sending messages between applications.
 Conceptually, it fits somewhere in between raw sockets and CORBA in
 terms of complexity.
@@ -120,13 +120,13 @@ This package provides bindings for the Trinity Qt TQt interface.
 
 See the dbus description for more information about D-BUS in general.
 
-%post -n %{libdbus}-1-tqt0-devel
+%post -n %{libdbus}-1-tqt-devel
 /sbin/ldconfig || :
 
-%postun -n %{libdbus}-1-tqt0-devel
+%postun -n %{libdbus}-1-tqt-devel
 /sbin/ldconfig || :
 
-%files -n %{libdbus}-1-tqt0-devel
+%files -n %{libdbus}-1-tqt-devel
 %defattr(-,root,root,-)
 %{_bindir}/dbusxml2qt3
 %{_includedir}/*.h

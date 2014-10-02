@@ -15,27 +15,22 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
 
 # TDE variables
 %define tde_version 14.0.0
-%define tde_prefix /opt/trinity
-%define tde_bindir %{tde_prefix}/bin
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_datadir %{tde_prefix}/share
-%define tde_tdeincludedir %{tde_includedir}/tde
-%define _docdir %{tde_datadir}/doc
+
+%if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+%define libart %{_lib}art
+%else
+%define libart libart
+%endif
 
 
 Name:           trinity-libart-lgpl
 Version:        2.3.22
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:        Library of functions for 2D graphics - runtime files
-Group:          System Environment/Libraries
+Summary:        Library of functions for 2D graphics
+Group:			System/Libraries
 URL:			http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -47,15 +42,14 @@ License:	LGPLv2+
 #Vendor:			Trinity Project
 #Packager:		Francois Andriot <francois.andriot@free.fr>
 
-Prefix:			%{tde_prefix}
+Prefix:			/usr
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  trinity-tqt3-devel >= 3.5.0
-BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
-
 BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	libtool
 
 %description
 A library of functions for 2D graphics supporting a superset of the
@@ -64,89 +58,102 @@ and illustration programs. It is written in optimized C, and is fully
 compatible with C++. With a small footprint of 10,000 lines of code, it is
 especially suitable for embedded applications.
 
-
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
-%files
-%defattr(-,root,root,-)
-%{tde_libdir}/libart_lgpl_2.so.2
-%{tde_libdir}/libart_lgpl_2.so.2.3.21
-
 ##########
 
-%package        devel
-Summary:        Library of functions for 2D graphics - development files
-Group:          Development/Libraries
-Requires:       %{name} = %{version}-%{release}
+%package -n %{libart}_lgpl_2-2
+Summary:        Library of functions for 2D graphics - runtime files
+Group:			System/Libraries
+Provides:		libart_lgpl_2-2 = %{version}-%{release}
 
-%description    devel
+%description -n %{libart}_lgpl_2-2
 A library of functions for 2D graphics supporting a superset of the
 PostScript imaging model, designed to be integrated with graphics, artwork,
 and illustration programs. It is written in optimized C, and is fully
 compatible with C++. With a small footprint of 10,000 lines of code, it is
 especially suitable for embedded applications.
 
-%post devel
+%post -n %{libart}_lgpl_2-2
 /sbin/ldconfig || :
 
-%postun devel
+%postun -n %{libart}_lgpl_2-2
 /sbin/ldconfig || :
 
-%files devel
+%files -n %{libart}_lgpl_2-2
 %defattr(-,root,root,-)
-%{tde_bindir}/libart2-config
-%{tde_libdir}/libart_lgpl_2.a
-%{tde_libdir}/libart_lgpl_2.la
-%{tde_libdir}/libart_lgpl_2.so
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_affine.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_alphagamma.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_bpath.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_config.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_filterlevel.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_gray_svp.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_misc.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_pathcode.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_pixbuf.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_point.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rect.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rect_svp.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rect_uta.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_render.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_render_gradient.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_render_mask.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_render_svp.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgb.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgb_a_affine.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgb_affine.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgb_bitmap_affine.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgb_pixbuf_affine.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgb_rgba_affine.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgb_svp.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_rgba.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp_intersect.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp_ops.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp_point.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp_render_aa.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp_vpath.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp_vpath_stroke.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_svp_wind.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_uta.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_uta_ops.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_uta_rect.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_uta_svp.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_uta_vpath.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_vpath.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_vpath_bpath.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_vpath_dash.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/art_vpath_svp.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/libart-features.h
-%{tde_tdeincludedir}/libart-2.0/libart_lgpl/libart.h
-%{tde_libdir}/pkgconfig/libart-2.0.pc
+%{_libdir}/libart_lgpl_2.so.2
+%{_libdir}/libart_lgpl_2.so.2.3.21
+
+##########
+
+%package -n %{libart}_lgpl-devel
+Summary:        Library of functions for 2D graphics - development files
+Group:          Development/Libraries
+Requires:       %{libart}_lgpl_2-2 = %{version}-%{release}
+
+%description -n %{libart}_lgpl-devel
+A library of functions for 2D graphics supporting a superset of the
+PostScript imaging model, designed to be integrated with graphics, artwork,
+and illustration programs. It is written in optimized C, and is fully
+compatible with C++. With a small footprint of 10,000 lines of code, it is
+especially suitable for embedded applications.
+
+%post -n %{libart}_lgpl-devel
+/sbin/ldconfig || :
+
+%postun -n %{libart}_lgpl-devel
+/sbin/ldconfig || :
+
+%files -n %{libart}_lgpl-devel
+%defattr(-,root,root,-)
+%{_bindir}/libart2-config
+%{_libdir}/libart_lgpl_2.a
+%{_libdir}/libart_lgpl_2.la
+%{_libdir}/libart_lgpl_2.so
+%{_includedir}/libart-2.0/libart_lgpl/art_affine.h
+%{_includedir}/libart-2.0/libart_lgpl/art_alphagamma.h
+%{_includedir}/libart-2.0/libart_lgpl/art_bpath.h
+%{_includedir}/libart-2.0/libart_lgpl/art_config.h
+%{_includedir}/libart-2.0/libart_lgpl/art_filterlevel.h
+%{_includedir}/libart-2.0/libart_lgpl/art_gray_svp.h
+%{_includedir}/libart-2.0/libart_lgpl/art_misc.h
+%{_includedir}/libart-2.0/libart_lgpl/art_pathcode.h
+%{_includedir}/libart-2.0/libart_lgpl/art_pixbuf.h
+%{_includedir}/libart-2.0/libart_lgpl/art_point.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rect.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rect_svp.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rect_uta.h
+%{_includedir}/libart-2.0/libart_lgpl/art_render.h
+%{_includedir}/libart-2.0/libart_lgpl/art_render_gradient.h
+%{_includedir}/libart-2.0/libart_lgpl/art_render_mask.h
+%{_includedir}/libart-2.0/libart_lgpl/art_render_svp.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgb.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgb_a_affine.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgb_affine.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgb_bitmap_affine.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgb_pixbuf_affine.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgb_rgba_affine.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgb_svp.h
+%{_includedir}/libart-2.0/libart_lgpl/art_rgba.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp_intersect.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp_ops.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp_point.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp_render_aa.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp_vpath.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp_vpath_stroke.h
+%{_includedir}/libart-2.0/libart_lgpl/art_svp_wind.h
+%{_includedir}/libart-2.0/libart_lgpl/art_uta.h
+%{_includedir}/libart-2.0/libart_lgpl/art_uta_ops.h
+%{_includedir}/libart-2.0/libart_lgpl/art_uta_rect.h
+%{_includedir}/libart-2.0/libart_lgpl/art_uta_svp.h
+%{_includedir}/libart-2.0/libart_lgpl/art_uta_vpath.h
+%{_includedir}/libart-2.0/libart_lgpl/art_vpath.h
+%{_includedir}/libart-2.0/libart_lgpl/art_vpath_bpath.h
+%{_includedir}/libart-2.0/libart_lgpl/art_vpath_dash.h
+%{_includedir}/libart-2.0/libart_lgpl/art_vpath_svp.h
+%{_includedir}/libart-2.0/libart_lgpl/libart-features.h
+%{_includedir}/libart-2.0/libart_lgpl/libart.h
+%{_libdir}/pkgconfig/libart-2.0.pc
 
 ##########
 
@@ -166,16 +173,14 @@ autoreconf -fiv
 
 %build
 unset QTDIR QTINC QTLIB
-export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
-  --prefix=%{tde_prefix} \
-  --exec-prefix=%{tde_prefix} \
-  --bindir=%{tde_bindir} \
-  --libdir=%{tde_libdir} \
-  --datadir=%{tde_datadir} \
-  --includedir=%{tde_tdeincludedir} \
+  --prefix=%{_prefix} \
+  --exec-prefix=%{_prefix} \
+  --bindir=%{_bindir} \
+  --libdir=%{_libdir} \
+  --datadir=%{_datadir} \
+  --includedir=%{_includedir} \
   \
   --disable-dependency-tracking
   

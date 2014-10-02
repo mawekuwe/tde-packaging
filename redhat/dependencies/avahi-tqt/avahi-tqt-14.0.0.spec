@@ -15,7 +15,7 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# TDE specific building variables
+# TDE variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
 %define tde_includedir %{tde_prefix}/include
@@ -137,10 +137,10 @@ into a TQt main loop application.
 
 ##########
 
-%package -n %{libavahi}-tqt1-devel
+%package -n %{libavahi}-tqt-devel
 Summary:	Avahi TQt integration library (Development Files)
 Group:		Development/Libraries/C and C++
-Provides:	libavahi-tqt1-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	libavahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Requires:	%{libavahi}-tqt1 = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	libtqt4-devel >= 1:4.2.0
@@ -156,7 +156,7 @@ Requires:	%{_lib}avahi-client-devel
 Requires:	avahi-devel
 %endif
 
-%description -n %{libavahi}-tqt1-devel
+%description -n %{libavahi}-tqt-devel
 Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
 It allows programs to publish and discover services and hosts
 running on a local network with no specific configuration. For
@@ -166,13 +166,13 @@ print to, files to look at and people to talk to.
 This library contains the interface to integrate the Avahi libraries
 into a TQt main loop application.
 
-%post -n %{libavahi}-tqt1-devel
+%post -n %{libavahi}-tqt-devel
 /sbin/ldconfig || :
 
-%postun -n %{libavahi}-tqt1-devel
+%postun -n %{libavahi}-tqt-devel
 /sbin/ldconfig || :
 
-%files -n %{libavahi}-tqt1-devel
+%files -n %{libavahi}-tqt-devel
 %defattr(-,root,root,-)
 %{_includedir}/avahi-tqt/
 %{_libdir}/libavahi-tqt.so

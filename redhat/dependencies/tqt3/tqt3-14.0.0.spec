@@ -15,7 +15,7 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# TDE specific variables
+# TDE variables
 %define tde_version 14.0.0
 
 %if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
