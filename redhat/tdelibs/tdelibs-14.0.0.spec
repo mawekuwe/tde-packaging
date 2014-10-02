@@ -551,7 +551,12 @@ fi
   -DWITH_ASPELL=ON \
   %{?!with_hspell:-DWITH_HSPELL=OFF} \
   -DWITH_TDEICONLOADER_DEBUG=OFF \
-  .. || cat CMakeFiles/CMakeError.log && exit 1
+  .. || :
+  
+cat CMakeFiles/CMakeOutput.log
+ls -l %{tde_libdir}/pkgconfig/arts.pc
+cat %{tde_libdir}/pkgconfig/arts.pc
+exit 1
 
 %__make %{?_smp_mflags} || %__make
 
