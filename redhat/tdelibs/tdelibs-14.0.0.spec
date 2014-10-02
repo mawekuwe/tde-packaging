@@ -553,9 +553,10 @@ fi
   -DWITH_TDEICONLOADER_DEBUG=OFF \
   .. || :
   
-cat CMakeFiles/CMakeOutput.log
 ls -l %{tde_libdir}/pkgconfig/arts.pc
 cat %{tde_libdir}/pkgconfig/arts.pc
+pkg-config --cflags arts
+pkg-config --libs arts
 exit 1
 
 %__make %{?_smp_mflags} || %__make
