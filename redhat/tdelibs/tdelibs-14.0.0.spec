@@ -77,14 +77,15 @@ BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
 Requires:		trinity-arts >= 1:1.5.10
 
 
-
 BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
 BuildRequires:	libtool
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
 BuildRequires:	openssl-devel
-BuildRequires:	gcc-c++
 BuildRequires:	alsa-lib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libtiff-devel
@@ -148,7 +149,7 @@ Requires:		udisks
 # UDISKS2 support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 7
 %define with_udisks2 1
-%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 BuildRequires:	libudisks2-devel
 %else
 BuildRequires:	udisks2-devel
