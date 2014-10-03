@@ -74,6 +74,7 @@ BuildRequires:	libdbus-tqt-1-devel >= 2:0.63
 BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
 
 Requires:		trinity-arts >= 2:1.5.10
+Requires:		trinity-filesystem >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++

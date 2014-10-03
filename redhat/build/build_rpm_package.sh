@@ -66,7 +66,7 @@ rpmbuild -ba \
   --define "packager Francois\ Andriot\ <francois.andriot@free.fr>" \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
-  --define "preversion ${PREVERSION}" \
+  --define "preversion ${PREVERSION:\\\"\\\"}" \
   ${ARGS} \
   "${TEMPDIR}/${SPECFILE##*/}"
 RET=$?

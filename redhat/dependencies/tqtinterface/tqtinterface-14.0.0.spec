@@ -97,7 +97,6 @@ Provides:	libtqt4 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Requires:	libtqt3-mt >= 3.5.0
 
-Requires:		libtqt3-mt >= 3.5.0
 %if 0%{?suse_version} && 0%{?suse_version} < 1300
 Requires:		trinity-cmake-macros
 %endif

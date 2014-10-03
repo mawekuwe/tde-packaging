@@ -30,7 +30,7 @@ extras:	icons-nuvola kdevmon kdissert klamav kompose koverartist kpacman style-i
 
 
 ### Trinity Dependencies
-arts:	tqtinterface esound cmake
+arts:	tqtinterface trinity-filesystem esound cmake
 	$(call buildpkg,dependencies/arts)
 
 avahi-tqt:	tqtinterface
@@ -100,7 +100,7 @@ tdegames:	tdebase tdemultimedia
 tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake avahi-tqt
+tdelibs:	tqt3 tqtinterface trinity-filesystem arts dbus-tqt dbus-1-tqt cmake avahi-tqt
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode
@@ -685,3 +685,6 @@ kpacman:
 
 style-ia-ora:
 	$(call buildpkg,extras/style-ia-ora)
+
+trinity-filesystem:
+	$(call buildpkg,extras/trinity-filesystem)
