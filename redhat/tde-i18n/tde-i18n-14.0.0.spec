@@ -47,14 +47,11 @@ AutoReq: no
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-# Main patch: lots of updates for TDE R14.0.0
-Patch1:		tde-i18n-14.0.0-extra_translations.patch
-Patch2:		tde-i18n-14.0.0-updates.patch
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	findutils
 BuildRequires:	gettext
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 %description
 %{summary}.
@@ -683,10 +680,6 @@ Provides:	 trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-
-# Patches for French translations
-%patch1 -p1
-%patch2 -p1
 
 
 %build

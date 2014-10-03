@@ -968,7 +968,7 @@ Development files for %{name}.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -1025,7 +1025,7 @@ fi
   -DWITH_SNMP=ON \
   -DWITH_SENSORS=ON \
   -DWITH_XMMS=ON \
-  -DWITH_KNEWSTUFF=ON \
+  -DWITH_TDENEWSTUFF=ON \
   -DBUILD_ALL=ON \
   %{?!build_klaptopdaemon:-DBUILD_KLAPTOPDAEMON=OFF} \
   ..

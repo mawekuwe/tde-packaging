@@ -15,11 +15,6 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
 # TDE variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
@@ -27,13 +22,17 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_datadir %{tde_prefix}/share
-
 %define tde_tdeincludedir %{tde_includedir}/tde
-
 %define _docdir %{tde_datadir}/doc
 
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
+
 Name:		trinity-arts
-Epoch:		1
+Epoch:		2
 Version:	1.5.10
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 Summary:	ARTS (analog realtime synthesizer) - the TDE sound system

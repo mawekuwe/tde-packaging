@@ -1010,7 +1010,6 @@ exit 1
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 unset JAVA_HOME ||:
 %{?java_home:JAVA_HOME=%{java_home}; export JAVA_HOME}

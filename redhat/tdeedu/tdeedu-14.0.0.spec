@@ -1321,7 +1321,6 @@ Provides:	trinity-kdeedu-devel = %{version}-%{release}
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then

@@ -114,6 +114,7 @@ done
 %doc AUTHORS COPYING README TODO ChangeLog USINGTORK
 %{tde_bindir}/tork
 %{tde_bindir}/torkarkollon
+%{tde_bindir}/usewithtor
 %{tde_tdeappdir}/tork.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/tork_downloadwithfirefox.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/tork_downloadwithkonqueror.desktop

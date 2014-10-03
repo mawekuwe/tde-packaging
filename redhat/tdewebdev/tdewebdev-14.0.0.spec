@@ -41,9 +41,6 @@ Source3:	http://download.sourceforge.net/quanta/php_manual_en_20030401.tar.bz2
 Source4:	http://download.sourceforge.net/quanta/javascript.tar.bz2
 Source5:	hi48-app-kxsldbg.png
 
-Patch0:		tdewebdev-14.0.0-ftbfs.patch
-Patch1:		kdewebdev-3.5.4-kxsldbg-icons.patch
-
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -491,9 +488,6 @@ Requires:	trinity-kommander-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}} -a 1 -a 2 -a 3 -a 4
-%patch0 -p1 -b .ftbfs
-%patch1 -p1 -b .kxsldbg-icons
-rm -rf lib/compatibility
 
 %__install -m644 -p %{SOURCE5} kxsldbg/
 %if 0%{?build_kxsldbg} == 0
@@ -508,11 +502,10 @@ rm -rf lib/compatibility
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 # Warning: GCC visibility causes FTBFS [Bug #1285]
