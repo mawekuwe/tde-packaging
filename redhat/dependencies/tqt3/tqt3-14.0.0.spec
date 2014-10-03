@@ -981,8 +981,8 @@ For TQt3 development, you most likely want to install this package.
 %{_bindir}/tquic
 %{_bindir}/tqmoc
 %{_bindir}/tqembed
-%{_mandir}/man1/lrelease-tqt3.1*
 %{_mandir}/man1/lupdate-tqt3.1.gz
+%{_mandir}/man1/lrelease-tqt3.1*
 %{_mandir}/man1/moc-tqt3.1*
 %{_mandir}/man1/uic-tqt3.1*
 
@@ -1007,6 +1007,7 @@ that are written using TQt3.
 Summary:	TQt3 Designer
 Group:		System/GUI/Other
 Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-designer
 The TQt Designer is a GUI design program that interactively lets you
@@ -1091,6 +1092,7 @@ developer includes with his application.
 Summary:	The TQt3 Linguist
 Group:		System/GUI/Other
 Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-linguist
 This package contains the TQt3 Linguist which provides translators a
@@ -1116,6 +1118,7 @@ development files by the translator.
 Summary:	The TQt3 assistant application
 Group:		System/GUI/Other
 Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-assistant
 This package contains the TQt3 Assistant, an easy to use frontend for
@@ -1144,6 +1147,7 @@ the package tqt3-apps-devel.
 Summary:	The TQt3 Configuration Application
 Group:		Development/Libraries/X11
 Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-qtconfig
 The TQt Configuration program allows endusers to configure the look
@@ -1331,10 +1335,6 @@ export PATH=${QTDIR}/bin:${PATH}
 export MANPATH=${QTDIR}/doc/man:${MANPATH}
 export LD_LIBRARY_PATH="${QTDIR}/lib"
 
-%if 0%{?rhel} == 5
-%__sed -i src/kernel/ntqstyle.h -e "s|#ifdef ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY|#if 1|"
-%endif
-
 # Checks for supplementary include dir
 INCDIRS=""
 for d in \
@@ -1457,35 +1457,35 @@ export LD_LIBRARY_PATH=${QTDIR}/lib
 %__make INSTALL_ROOT=%{?buildroot} install
 %__make INSTALL_ROOT=%{?buildroot} plugins-install
 
-%__install -m755 bin/tqtrename140 %{?buildroot}%{_bindir}
-%__install -m755 bin/tqt20fix %{?buildroot}%{_bindir}
-%__install -m755 bin/tqtfindtr %{?buildroot}%{_bindir}
+%__install -m755 "bin/tqtrename140" "%{?buildroot}%{_bindir}"
+%__install -m755 "bin/tqt20fix" "%{?buildroot}%{_bindir}"
+%__install -m755 "bin/tqtfindtr" "%{?buildroot}%{_bindir}"
 
 # install tqtconv2ui
-%__install -m755 bin/tqtconv2ui %{?buildroot}%{_bindir}/tqtconv2ui
+%__install -m755 "bin/tqtconv2ui" "%{?buildroot}%{_bindir}/tqtconv2ui"
 
 # install tqvfb
-%__install -m755 -D tools/tqvfb/tqvfb %{?buildroot}%{_bindir}/tqvfb
-%__install -m644 -D tools/tqvfb/pda.skin %{?buildroot}%{_sysconfdir}/tqt3/tqvfb/pda.skin
-%__install -m644 -D tools/tqvfb/pda_down.png %{?buildroot}%{_datadir}/tqvfb/pda_down.png
-%__install -m644 -D tools/tqvfb/pda_up.png %{?buildroot}%{_datadir}/tqvfb/pda_up.png
+%__install -m755 -D "tools/tqvfb/tqvfb" "%{?buildroot}%{_bindir}/tqvfb"
+%__install -m644 -D "tools/tqvfb/pda.skin" "%{?buildroot}%{_sysconfdir}/tqt3/tqvfb/pda.skin"
+%__install -m644 -D "tools/tqvfb/pda_down.png" "%{?buildroot}%{_datadir}/tqvfb/pda_down.png"
+%__install -m644 -D "tools/tqvfb/pda_up.png" "%{?buildroot}%{_datadir}/tqvfb/pda_up.png"
 
 ## create tqt3-apps-dev-package
 cp tools/designer/interfaces/*.h %{?buildroot}%{?_includedir}/tqt3/
 cp tools/designer/editor/*.h %{?buildroot}%{?_includedir}/tqt3/
 
 # language file for linguist
-%__install -D -m644 translations/qt_untranslated.ts %{?buildroot}%{?_docdir}/tqt3-linguist/qt_untranslated.ts
+%__install -D -m644 "translations/qt_untranslated.ts" "%{?buildroot}%{?_docdir}/tqt3-linguist/qt_untranslated.ts"
 
 # fix that stupid friggin professional file
-perl -pi -e 's{\$$\$$QT_SOURCE_TREE}{$(QTDIR)}' src/qt_professional.pri
+perl -pi -e 's{\$$\$$QT_SOURCE_TREE}{$(QTDIR)}' "src/qt_professional.pri"
 
 ## i18n files for designer, linguist and assistant
 for i in designer/designer assistant linguist/linguist; do
   pushd "tools/${i}"
   tqlrelease "${i##*/}.pro"
   for j in ${i##*/}_*.qm; do
-    install -m644 "${j}" %{?buildroot}%{_datadir}/tqt3/translations/
+    install -m644 "${j}" "%{?buildroot}%{_datadir}/tqt3/translations/"
   done
   popd
 done
@@ -1497,10 +1497,10 @@ done
 %__install -m644 -D "%{SOURCE14}" "%{?buildroot}%{_datadir}/applications/tqtconfig.desktop"
 
 %if 0%{?suse_version}
-%suse_update_desktop_file tqassistant
-%suse_update_desktop_file tqdesigner
-%suse_update_desktop_file tqlinguist
-%suse_update_desktop_file tqtconfig
+%suse_update_desktop_file tqassistant Documentation
+%suse_update_desktop_file tqdesigner GUIDesigner
+%suse_update_desktop_file tqlinguist Translation
+%suse_update_desktop_file tqtconfig Settings
 %endif
 
 # Install applications icons
@@ -1511,15 +1511,15 @@ done
 
 # build attic package and copy it to tqt3-compat-headers
 pushd src
-tar cvvfz attic.tar.gz attic/
+tar cvvfz "attic.tar.gz" attic/
 install -D -m644 "attic.tar.gz" "%{?buildroot}%{_docdir}/tqt3-compat-headers/attic.tar.gz"
 popd
 
 # install the man pages
-install -D -m644 doc/man/man1/moc.1 %{?buildroot}%{_mandir}/man1/moc-tqt3.1
-install -D -m644 doc/man/man1/uic.1 %{?buildroot}%{_mandir}/man1/uic-tqt3.1
-install -D -m644 doc/man/man1/lrelease.1 %{?buildroot}%{_mandir}/man1/lrelease-tqt3.1
-install -D -m644 doc/man/man1/lupdate.1 %{?buildroot}%{_mandir}/man1/lupdate-tqt3.1
+install -D -m644 "doc/man/man1/moc.1" "%{?buildroot}%{_mandir}/man1/moc-tqt3.1"
+install -D -m644 "doc/man/man1/uic.1" "%{?buildroot}%{_mandir}/man1/uic-tqt3.1"
+install -D -m644 "doc/man/man1/lrelease.1" "%{?buildroot}%{_mandir}/man1/lrelease-tqt3.1"
+install -D -m644 "doc/man/man1/lupdate.1" "%{?buildroot}%{_mandir}/man1/lupdate-tqt3.1"
 
 # Install source for the designer tools, such as tqtcreatecw.
 cp -ra tools/designer/tools %{?buildroot}%{_datadir}/tqt3/tools
@@ -1548,7 +1548,7 @@ find tqt3-examples -name ".obj" | xargs rm -rf
 find tqt3-examples -name "Makefile" | xargs rm -rf
 install -D -m 755 %{SOURCE1} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
 tar cvvfz tqt3-examples.tar.gz tqt3-examples/
-install -D -m644  tqt3-examples.tar.gz %{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz
+install -D -m644 "tqt3-examples.tar.gz" "%{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz"
 
 %clean
 %__rm -rf %{buildroot}
