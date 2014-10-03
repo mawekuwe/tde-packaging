@@ -19,11 +19,6 @@
 #  Remove qt-devel and qt3-devel and any kde*-devel on your system !
 #  Having KDE libraries may cause FTBFS here !
 
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
 # TDE variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
@@ -32,12 +27,16 @@
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
-
 %define _docdir %{tde_docdir}
+
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 
 Name:			trinity-tdelibs
 Version:		%{tde_version}
@@ -69,13 +68,12 @@ Provides:		trinity-kdelibs-apidocs = %{version}-%{release}
 
 # Trinity dependencies
 BuildRequires:	libtqt3-mt-devel >= 3.5.0
-BuildRequires:	libtqt4-devel >= 1:4.2.0
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	libtqt4-devel = 2:4.2.0
+BuildRequires:	trinity-arts-devel >= 2:1.5.10
 BuildRequires:	libdbus-tqt-1-devel >= 2:0.63
 BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
 
-Requires:		trinity-arts >= 1:1.5.10
-
+Requires:		trinity-arts >= 2:1.5.10
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
@@ -125,55 +123,6 @@ BuildRequires:	pcre-devel
 BuildRequires:	libbz2-devel
 %else
 BuildRequires:	bzip2-devel
-%endif
-
-# UDEV support
-%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
-%define with_tdehwlib 1
-BuildRequires:	libudev-devel
-%endif
-
-# HAL support
-%if 0%{?rhel} == 5
-%define with_hal 1
-%endif
-
-# UDISKS support
-%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} == 6
-%define with_udisks 1
-BuildRequires:	udisks-devel
-Requires:		udisks
-%endif
-
-# PMOUNT support
-#Requires:		pmount
-
-# UDISKS2 support
-%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 7
-%define with_udisks2 1
-%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
-BuildRequires:	libudisks2-devel
-%else
-BuildRequires:	udisks2-devel
-%endif
-Requires:		udisks2
-%endif
-
-# DEVICEKIT POWER support
-%if 0%{?rhel} == 6
-%define with_devkitpower 1
-Requires:		DeviceKit-power
-%endif
-
-# UPOWER support
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?rhel} >= 7
-%define with_upower 1
-Requires:		upower
-%endif
-
-# SYSTEMD support
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?rhel} >= 7
-%define with_systemd 1
 %endif
 
 # UTEMPTER support
@@ -281,20 +230,6 @@ BuildRequires:	xz-devel
 %endif
 %endif
 
-# NETWORKMANAGER support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?suse_version}
-%define with_nm 1
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}nm-util-devel
-%endif
-%if 0%{?rhel} >= 6 || 0%{?fedora}
-BuildRequires:	NetworkManager-glib-devel
-%endif
-%if 0%{?suse_version}
-BuildRequires:	NetworkManager-devel
-%endif
-%endif
-
 # Certificates support
 %if 0%{?rhel} >= 6 || 0%{?fedora}
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
@@ -322,6 +257,69 @@ BuildRequires: libXt-devel
 
 # LIBMAGIC support
 BuildRequires:	file-devel
+
+# NETWORKMANAGER support
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?suse_version}
+%define with_nm 1
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}nm-util-devel
+%endif
+%if 0%{?rhel} >= 6 || 0%{?fedora}
+BuildRequires:	NetworkManager-glib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	NetworkManager-devel
+%endif
+%endif
+
+# UDEV support
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%define with_tdehwlib 1
+BuildRequires:	libudev-devel
+%endif
+
+# HAL support
+%if 0%{?rhel} == 5
+%define with_hal 1
+%endif
+
+# UDISKS support
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} == 6
+%define with_udisks 1
+BuildRequires:	udisks-devel
+Requires:		udisks
+%endif
+
+# PMOUNT support
+#Requires:		pmount
+
+# UDISKS2 support
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 7
+%define with_udisks2 1
+%if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
+BuildRequires:	libudisks2-devel
+%else
+BuildRequires:	udisks2-devel
+%endif
+Requires:		udisks2
+%endif
+
+# DEVICEKIT POWER support
+%if 0%{?rhel} == 6
+%define with_devkitpower 1
+Requires:		DeviceKit-power
+%endif
+
+# UPOWER support
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?rhel} >= 7
+%define with_upower 1
+Requires:		upower
+%endif
+
+# SYSTEMD support
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?rhel} >= 7
+%define with_systemd 1
+%endif
 
 
 %description
@@ -491,6 +489,11 @@ applications for TDE.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+
+if [ -d "/usr/X11R6" ]; then
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
+fi
+
 export TDEDIR="%{tde_prefix}"
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
@@ -504,6 +507,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
   \
