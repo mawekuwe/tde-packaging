@@ -52,21 +52,42 @@ Source12:	tqdesigner.desktop
 Source13:	tqlinguist.desktop
 Source14:	tqtconfig.desktop
 
-BuildRequires: desktop-file-utils
-BuildRequires: libmng-devel
+
 BuildRequires: glibc-devel
-BuildRequires: libjpeg-devel
-BuildRequires: libpng-devel
-BuildRequires: zlib-devel
-BuildRequires: giflib-devel
+BuildRequires: gcc-c++
+BuildRequires: make
+
+BuildRequires: desktop-file-utils
 BuildRequires: perl
 BuildRequires: sed
 BuildRequires: findutils
 BuildRequires: tar
+
+# ZLIB support
+BuildRequires: zlib-devel
+
+# JPEG support
+BuildRequires: libjpeg-devel
+
+# MNG support
+BuildRequires: libmng-devel
+
+# PNG support
+BuildRequires: libpng-devel
+
+# GIF support
+BuildRequires: giflib-devel
+
+# FREETYPE support
 BuildRequires: freetype-devel
+
+# FONTCONFIG support
 BuildRequires: fontconfig-devel
-BuildRequires: gcc-c++
-BuildRequires: make
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
 
 # CUPS support
 BuildRequires: cups-devel
