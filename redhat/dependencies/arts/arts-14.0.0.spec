@@ -53,7 +53,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	libtqt4-devel >= 1:4.2.0
+BuildRequires:	libtqt4-devel >= 2:4.2.0
 BuildRequires:	trinity-filesystem >= %{tde_version}
 Requires:		trinity-filesystem >= %{tde_version}
 
@@ -118,7 +118,7 @@ BuildRequires:		libmad-devel
 %define with_pulseaudio 1
 %endif
 
-Requires:		libtqt4 >= 1:4.2.0
+Requires:		libtqt4 >= 2:4.2.0
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"

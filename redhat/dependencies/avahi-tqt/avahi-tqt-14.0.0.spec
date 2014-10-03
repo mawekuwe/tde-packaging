@@ -50,7 +50,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	libtqt4-devel >= 1:4.2.0
+BuildRequires:	libtqt4-devel >= 2:4.2.0
 
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
@@ -143,7 +143,7 @@ Group:		Development/Libraries/C and C++
 Provides:	libavahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Requires:	%{libavahi}-tqt1 = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:	libtqt4-devel >= 1:4.2.0
+Requires:	libtqt4-devel >= 2:4.2.0
 
 Obsoletes:		trinity-avahi-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-avahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}

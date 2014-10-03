@@ -30,7 +30,7 @@
 %endif
 
 Name:		trinity-tqtinterface
-Epoch:		1
+Epoch:		2
 Version:	4.2.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	The Trinity Qt Interface Libraries

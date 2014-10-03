@@ -72,6 +72,7 @@ BuildRequires:	libtqt4-devel = 2:4.2.0
 BuildRequires:	trinity-arts-devel >= 2:1.5.10
 BuildRequires:	libdbus-tqt-1-devel >= 2:0.63
 BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
+BuildRequires:	trinity-filesystem >= %{tde_version}
 
 Requires:		trinity-arts >= 2:1.5.10
 Requires:		trinity-filesystem >= %{tde_version}
