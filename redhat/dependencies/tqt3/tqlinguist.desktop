@@ -6,6 +6,7 @@ Name[eo]=TQt3-Lingvisto
 Name[es]=Lingüista TQt3
 Name[ko]=TQt3 언어학자
 Name[lv]=TQt3 Lingvists
+GenericName=Translation Tool
 Comment=Tool for translating message catalogues of TQt3 based programs
 Comment[da]=Redskab til at oversætte TQt3 baserede programmer
 Comment[de]=Dienstprogramm zur Übersetzung von Programmen, die auf TQt3 basieren

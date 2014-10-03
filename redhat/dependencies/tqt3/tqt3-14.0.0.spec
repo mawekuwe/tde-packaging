@@ -1475,6 +1475,13 @@ done
 %__install -m644 -D "%{SOURCE13}" "%{?buildroot}%{_datadir}/applications/tqlinguist.desktop"
 %__install -m644 -D "%{SOURCE14}" "%{?buildroot}%{_datadir}/applications/tqtconfig.desktop"
 
+%if 0%{?suse_version}
+%suse_update_desktop_file tqassistant
+%suse_update_desktop_file tqdesigner
+%suse_update_desktop_file tqlinguist
+%suse_update_desktop_file tqtconfig
+%endif
+
 # Install applications icons
 %__install -m644 -D "tools/assistant/images/appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqassistant.png"
 %__install -m644 -D "tools/designer/designer/images/designer_appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqdesigner.png"
@@ -1484,7 +1491,7 @@ done
 # build attic package and copy it to tqt3-compat-headers
 pushd src
 tar cvvfz attic.tar.gz attic/
-install -D -m644 attic.tar.gz %{?buildroot}%{_docdir}/tqt3-compat-headers/attic.tar.gz
+install -D -m644 "attic.tar.gz" "%{?buildroot}%{_docdir}/tqt3-compat-headers/attic.tar.gz"
 popd
 
 # install the man pages
