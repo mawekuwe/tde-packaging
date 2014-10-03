@@ -52,9 +52,6 @@ Source12:	tqdesigner.desktop
 Source13:	tqlinguist.desktop
 Source14:	tqtconfig.desktop
 
-Source22:	tqdesigner.png
-Source23:	tqlinguist.png
-
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
 BuildRequires: glibc-devel
