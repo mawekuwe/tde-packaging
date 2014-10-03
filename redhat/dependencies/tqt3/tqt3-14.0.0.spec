@@ -260,7 +260,7 @@ BuildRequires: util-linux
 # GCC visibility stuff
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
 %define EXTRA_CFLAGS -fvisibility=hidden -fvisibility-inlines-hidden
-%endif 
+%endif
 
 %description
 
@@ -291,16 +291,19 @@ applications.
 %files -n %{libtqt3}-mt
 %defattr(-,root,root,-)
 %doc FAQ LICENSE* README* changes*
+%dir %{_datadir}/icons/hicolor
+%dir %{_datadir}/icons/hicolor/32x32
+%dir %{_datadir}/icons/hicolor/32x32/apps
+%dir %{_datadir}/tqt3/
+%dir %{_datadir}/tqt3/doc/
+%dir %{_datadir}/tqt3/doc/html/
+%dir %{_datadir}/tqt3/tools/
 %dir %{_libdir}/tqt3/
 %dir %{_libdir}/tqt3/plugins/
 %dir %{_libdir}/tqt3/plugins/designer/
 %dir %{_libdir}/tqt3/plugins/imageformats/
 %dir %{_libdir}/tqt3/plugins/inputmethods/
 %dir %{_libdir}/tqt3/plugins/sqldrivers/
-%dir %{_datadir}/tqt3/
-%dir %{_datadir}/tqt3/doc/
-%dir %{_datadir}/tqt3/doc/html/
-%dir %{_datadir}/tqt3/tools/
 %dir %{_sysconfdir}/tqt3
 %{_libdir}/libtqt-mt.so.3
 %{_libdir}/libtqt-mt.so.3.5
@@ -981,7 +984,7 @@ For TQt3 development, you most likely want to install this package.
 %{_bindir}/tquic
 %{_bindir}/tqmoc
 %{_bindir}/tqembed
-%{_mandir}/man1/lupdate-tqt3.1.gz
+%{_mandir}/man1/lupdate-tqt3.1*
 %{_mandir}/man1/lrelease-tqt3.1*
 %{_mandir}/man1/moc-tqt3.1*
 %{_mandir}/man1/uic-tqt3.1*
