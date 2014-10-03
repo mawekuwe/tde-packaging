@@ -54,6 +54,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	libtqt4-devel >= 1:4.2.0
+BuildRequires:	trinity-filesystem >= %{tde_version}
 Requires:		trinity-filesystem >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
