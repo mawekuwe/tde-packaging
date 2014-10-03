@@ -45,11 +45,15 @@ Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{tde_version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	assistant-tqt3.desktop
-Source2:	designer-tqt3.desktop
-Source3:	linguist-tqt3.desktop
-Source4:	tqt3config.desktop
-Source5:	build-examples.sh
+Source1:	build-examples.sh
+
+Source11:	tqassistant.desktop
+Source12:	tqdesigner.desktop
+Source13:	tqlinguist.desktop
+Source14:	tqtconfig.desktop
+
+Source22:	tqdesigner.png
+Source23:	tqlinguist.png
 
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
@@ -1012,7 +1016,6 @@ or automake.
 %{_libdir}/tqt3/plugins/designer/libkdevdlgplugin.so
 %{_libdir}/tqt3/plugins/designer/librcplugin.so
 %{_libdir}/tqt3/plugins/designer/libwizards.so
-#{_datadir}/applications/designer-tqt3.desktop
 %dir %{_datadir}/tqt3/tools/tqtconv2ui
 %{_datadir}/tqt3/tools/tqtconv2ui/main.cpp
 %{_datadir}/tqt3/tools/tqtconv2ui/tqtconv2ui.pro
@@ -1020,7 +1023,8 @@ or automake.
 %{_datadir}/tqt3/tools/tqtcreatecw/README
 %{_datadir}/tqt3/tools/tqtcreatecw/main.cpp
 %{_datadir}/tqt3/tools/tqtcreatecw/tqtcreatecw.pro
-
+%{_datadir}/applications/tqdesigner.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqdesigner.png
 
 ###########
 
@@ -1083,9 +1087,10 @@ development files by the translator.
 %{_datadir}/tqt3/phrasebooks/*
 %{_datadir}/tqt3/doc/html/linguist*html
 %{_datadir}/tqt3/doc/html/linguist*dcf
-#{_datadir}/applications/linguist-tqt3.desktop
 %dir %{_docdir}/tqt3-linguist
 %{_docdir}/tqt3-linguist/qt_untranslated.ts
+%{_datadir}/applications/tqlinguist.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqlinguist.png
 
 ##########
 
@@ -1109,9 +1114,11 @@ the package tqt3-apps-devel.
 %files -n tqt3-assistant
 %defattr(-,root,root,-)
 %{_bindir}/tqassistant
-#{_datadir}/applications/assistant-tqt3.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqassistant.png
 %{_datadir}/tqt3/doc/html/assistant*html
 %{_datadir}/tqt3/doc/html/assistant*dcf
+%{_datadir}/applications/tqassistant.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqassistant.png
 
 ##########
 
@@ -1132,7 +1139,8 @@ install this package.
 %files -n tqt3-qtconfig
 %defattr(-,root,root,-)
 %{_bindir}/tqtconfig
-#{_datadir}/applications/tqt3config.desktop
+%{_datadir}/applications/tqtconfig.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqtconfig.png
 
 ###########
 
@@ -1465,10 +1473,16 @@ for i in designer/designer assistant linguist/linguist; do
 done
 
 # desktop lnk files
-#install -m644 -D "%{SOURCE1}" "%{?buildroot}%{_datadir}/applications/assistant-tqt3.desktop"
-#install -m644 -D "%{SOURCE2}" "%{?buildroot}%{_datadir}/applications/designer-tqt3.desktop"
-#install -m644 -D "%{SOURCE3}" "%{?buildroot}%{_datadir}/applications/linguist-tqt3.desktop"
-#install -m644 -D "%{SOURCE4}" "%{?buildroot}%{_datadir}/applications/tqt3config.desktop"
+%__install -m644 -D "%{SOURCE11}" "%{?buildroot}%{_datadir}/applications/tqassistant.desktop"
+%__install -m644 -D "%{SOURCE12}" "%{?buildroot}%{_datadir}/applications/tqdesigner.desktop"
+%__install -m644 -D "%{SOURCE13}" "%{?buildroot}%{_datadir}/applications/tqlinguist.desktop"
+%__install -m644 -D "%{SOURCE14}" "%{?buildroot}%{_datadir}/applications/tqtconfig.desktop"
+
+# Install applications icons
+%__install -m644 -D "tools/assistant/images/appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqassistant.png"
+%__install -m644 -D "tools/designer/designer/images/designer_appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqdesigner.png"
+%__install -m644 -D "tools/linguist/linguist/images/appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqlinguist.png"
+%__install -m644 -D "tools/qtconfig/images/appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqtconfig.png"
 
 # build attic package and copy it to tqt3-compat-headers
 pushd src
@@ -1507,7 +1521,7 @@ find tqt3-examples -name "tt3" -print | xargs rm -rf
 find tqt3-examples -name ".moc" | xargs rm -rf
 find tqt3-examples -name ".obj" | xargs rm -rf
 find tqt3-examples -name "Makefile" | xargs rm -rf
-install -D -m 755 %{SOURCE5} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
+install -D -m 755 %{SOURCE1} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
 tar cvvfz tqt3-examples.tar.gz tqt3-examples/
 install -D -m644  tqt3-examples.tar.gz %{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz
 
