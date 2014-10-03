@@ -1500,7 +1500,7 @@ done
 %suse_update_desktop_file tqassistant Documentation
 %suse_update_desktop_file tqdesigner GUIDesigner
 %suse_update_desktop_file tqlinguist Translation
-%suse_update_desktop_file tqtconfig Settings
+%suse_update_desktop_file tqtconfig Utility
 %endif
 
 # Install applications icons
@@ -1549,6 +1549,7 @@ find tqt3-examples -name "Makefile" | xargs rm -rf
 install -D -m 755 %{SOURCE1} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
 tar cvvfz tqt3-examples.tar.gz tqt3-examples/
 install -D -m644 "tqt3-examples.tar.gz" "%{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz"
+
 
 %clean
 %__rm -rf %{buildroot}
