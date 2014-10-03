@@ -1532,7 +1532,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export TDEDIR="%{tde_prefix}"
 
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then

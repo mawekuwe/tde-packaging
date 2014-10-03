@@ -199,7 +199,7 @@ ifneq ($(wildcard /boot/vmlinuz*.el6*),)
 endif
 
 m4:
-# Build on CentOS 5 only (vendor-provided Poppler is too old)
+# Build on CentOS 5 only (vendor-provided m4 is too old)
 ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,3rdparty/m4)
 endif

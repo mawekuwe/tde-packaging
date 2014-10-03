@@ -23,6 +23,7 @@ case "${PKGNAME}" in
   "avahi-tqt") PKGNAME="libavahi-tqt";;
   "dbus-tqt") PKGNAME="libdbus-tqt-1";;
   "dbus-1-tqt") PKGNAME="libdbus-1-tqt";;
+  "libart-lgpl") PKGNAME="libart_lgpl_2-2";;
 esac
 
 # Use the Trinity Prefix, or not.
