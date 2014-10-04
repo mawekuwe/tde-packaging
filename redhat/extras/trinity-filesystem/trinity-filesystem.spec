@@ -166,6 +166,18 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/trinity
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/xdg/menus
 
+
+%post
+%if 0%{?suse_version}
+# Add setuid files in '/etc/permissions.local'
+for b in fileshareset kgrantpty kpac_dhcp_helper start_tdeinit; do
+  if ! grep -q "^%{tde_bindir}/${b}" "/etc/permissions.local"; then
+    echo "%{tde_bindir}/${b}          root:root       4711" >>/etc/permissions.local
+  fi
+done
+%endif
+
+
 %changelog
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
 - Initial build for TDE R14

@@ -4,6 +4,7 @@ unixODBC-devel
 mesa-libGL-devel
 mesa-libGLU-devel
 udev-devel
+fdupes
 gnokii-devel
 gpgme-devel
 flex
