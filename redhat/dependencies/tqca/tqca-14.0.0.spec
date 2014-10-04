@@ -33,8 +33,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  trinity-tqt3-devel >= 3.5.0
-BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:  libtqt4-devel >= 2:4.2.0
 
 
 %description
@@ -81,7 +80,7 @@ This packages contains the development files for TQCA
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 

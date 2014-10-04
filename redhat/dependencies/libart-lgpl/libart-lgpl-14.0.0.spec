@@ -63,6 +63,8 @@ especially suitable for embedded applications.
 %package -n %{libart}_lgpl_2-2
 Summary:        Library of functions for 2D graphics - runtime files
 Group:			System/Libraries
+Obsoletes:		libart_lgpl < %{version}-%{release}
+Provides:		libart_lgpl = %{version}-%{release}
 Provides:		libart_lgpl_2-2 = %{version}-%{release}
 
 %description -n %{libart}_lgpl_2-2
@@ -88,6 +90,7 @@ especially suitable for embedded applications.
 %package -n %{libart}_lgpl-devel
 Summary:        Library of functions for 2D graphics - development files
 Group:          Development/Libraries
+Provides:		libart_lgpl-devel = %{version}-%{release}
 Requires:       %{libart}_lgpl_2-2 = %{version}-%{release}
 
 %description -n %{libart}_lgpl-devel

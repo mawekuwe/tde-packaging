@@ -327,7 +327,7 @@ Requires:	%{libtqt3}-mt = %{version}-%{release}
 
 Requires: glibc-devel
 Requires: fontconfig-devel
-Requires: freetype2-devel
+Requires: freetype-devel
 Requires: libjpeg-devel
 Requires: libpng-devel
 Requires: zlib-devel

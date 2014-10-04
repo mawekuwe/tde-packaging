@@ -51,7 +51,7 @@ License:	GPL-2.0+
 License:	GPLv2+
 %endif
 
-#Vendor:			Trinity Project
+#Vendor:			Trinity Desktop
 #Packager:		Francois Andriot <francois.andriot@free.fr>
 
 Prefix:			%{tde_prefix}
@@ -83,11 +83,21 @@ BuildRequires:	pkgconfig
 
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
-BuildRequires:	cups-devel
-BuildRequires:	openssl-devel
+
+# ALSA support
 BuildRequires:	alsa-lib-devel
+
+# IDN support
 BuildRequires:	libidn-devel
+
+# CUPS support
+BuildRequires:	cups-devel
+
+# TIFF support
 BuildRequires:	libtiff-devel
+
+# OPENSSL support
+BuildRequires:	openssl-devel
 
 # GLIB2 support
 BuildRequires:	glib2-devel
@@ -444,6 +454,10 @@ fi
 Summary:	%{name} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+
+Requires:	libtqt3-mt-devel >= 3.5.0
+Requires:	libtqt4-devel = 2:4.2.0
+Requires:	trinity-arts-devel >= 2:1.5.10
 
 Obsoletes:	tdelibs-devel < %{version}-%{release}
 Provides:	tdelibs-devel = %{version}-%{release}

@@ -41,7 +41,7 @@ fi
 if [ -r "${TEMPDIR}/one.patch" ]; then
   sed -i "${TEMPDIR}/"*.spec \
       -e "/^Source0:/ s/$/\nPatch0: one.patch/" \
-      -e "/%setup/ s/$/\n%patch0 -p1 -b .orig/"
+      -e "/%setup/ s/$/\n%patch0 -p1/"
 fi
 
 # Determines if we are running an i386 or x86_64 distro
@@ -66,7 +66,7 @@ rpmbuild -ba \
   --define "packager Francois\ Andriot\ <francois.andriot@free.fr>" \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
-  --define "preversion ${PREVERSION:\\\"\\\"}" \
+  --define "preversion ${PREVERSION:-\\\"\\\"}" \
   ${ARGS} \
   "${TEMPDIR}/${SPECFILE##*/}"
 RET=$?

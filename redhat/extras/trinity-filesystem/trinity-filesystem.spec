@@ -80,6 +80,7 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/applications/tde
 %dir %{tde_datadir}/applnk
 %dir %{tde_datadir}/apps
+%dir %{tde_datadir}/cmake
 %dir %{tde_datadir}/config.kcfg
 %dir %{tde_datadir}/autostart
 %dir %{tde_datadir}/emoticons
@@ -88,10 +89,22 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/icons/hicolor
 %dir %{tde_datadir}/locale
 %dir %{tde_datadir}/mimelnk
+%dir %{tde_datadir}/mimelnk/all
+%dir %{tde_datadir}/mimelnk/application
+%dir %{tde_datadir}/mimelnk/audio
+%dir %{tde_datadir}/mimelnk/image
+%dir %{tde_datadir}/mimelnk/inode
+%dir %{tde_datadir}/mimelnk/message
+%dir %{tde_datadir}/mimelnk/model
+%dir %{tde_datadir}/mimelnk/multipart
+%dir %{tde_datadir}/mimelnk/text
+%dir %{tde_datadir}/mimelnk/uri
+%dir %{tde_datadir}/mimelnk/video
 %dir %{tde_datadir}/services
 %dir %{tde_datadir}/servicetypes
 
 %dir %{_sysconfdir}/trinity
+%dir %{_sysconfdir}/xdg/menus
 
 ##########
 
@@ -110,6 +123,7 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/autostart
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/cmake
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config.kcfg
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/emoticons
@@ -118,6 +132,17 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/icons/hicolor
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/all
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/application
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/audio
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/image
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/inode
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/message
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/model
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/multipart
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/text
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/uri
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/video
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/services
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/servicetypes
 
@@ -139,6 +164,7 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{_datadir}/icons/hicolor/32x32/apps
 
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/trinity
+%__install -d -m 755 %{?buildroot}%{_sysconfdir}/xdg/menus
 
 %changelog
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1

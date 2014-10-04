@@ -30,8 +30,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  trinity-tqt3-devel >= 3.5.0
-BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:  libtqt4-devel >= 2:4.2.0
 BuildRequires:	trinity-tqca-devel >= 1.0
 BuildRequires:	openssl-devel >= 0.9.8
 
