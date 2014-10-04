@@ -270,6 +270,7 @@ BuildRequires: util-linux
 Summary:	TQt GUI Library (Threaded runtime version), Version 3
 Group:		System/GUI/Other
 Provides:	libtqt3-mt = %{version}-%{release}
+Provides:	trinity-tqt3 = %{version}-%{release}
 
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -322,6 +323,7 @@ applications.
 %package -n %{libtqt3}-mt-devel
 Summary:	TQt development files (Threaded)
 Group:		Development/Libraries/X11
+Provides:	trinity-tqt3-devel = %{version}-%{release}
 Provides:	libtqt3-mt-devel = %{version}-%{release}
 Requires:	%{libtqt3}-mt = %{version}-%{release}
 
