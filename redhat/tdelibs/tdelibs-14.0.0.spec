@@ -66,7 +66,12 @@ Provides:		trinity-kdelibs = %{version}-%{release}
 Obsoletes:		trinity-kdelibs-apidocs < %{version}-%{release}
 Provides:		trinity-kdelibs-apidocs = %{version}-%{release}
 
-# Trinity dependencies
+# for set_permissions macro
+%if 0%{?suse_version}
+PreReq: permissions
+%endif
+
+# Trinity dependencies
 BuildRequires:	libtqt3-mt-devel >= 3.5.0
 BuildRequires:	libtqt4-devel = 2:4.2.0
 BuildRequires:	trinity-arts-devel >= 2:1.5.10
@@ -80,8 +85,17 @@ Requires:		trinity-filesystem >= %{tde_version}
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
+BuildRequires:	fdupes
 
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+# KRB5 support
 BuildRequires:	krb5-devel
+
+# XSLT support
 BuildRequires:	libxslt-devel
 
 # ALSA support
@@ -242,7 +256,7 @@ BuildRequires:	xz-devel
 %endif
 %endif
 
-# Certificates support
+# Certificates support
 %if 0%{?rhel} >= 6 || 0%{?fedora}
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
 Requires:		ca-certificates
@@ -357,7 +371,6 @@ kimgio (image manipulation).
 %{tde_bindir}/dcopserver_shutdown
 %{tde_bindir}/dcopstart
 %{tde_bindir}/filesharelist
-%{tde_bindir}/fileshareset
 %{tde_bindir}/imagetops
 %{tde_bindir}/tdeab2tdeabc
 %{tde_bindir}/kaddprinterwizard
@@ -390,7 +403,6 @@ kimgio (image manipulation).
 %endif
 %{tde_bindir}/tdemailservice
 %{tde_bindir}/tdemimelist
-%attr(4755,root,root) %{tde_bindir}/kpac_dhcp_helper
 %{tde_bindir}/tdesendbugmail
 %{tde_bindir}/kshell
 %{tde_bindir}/tdestartupconfig
@@ -402,9 +414,7 @@ kimgio (image manipulation).
 %{tde_bindir}/make_driver_db_lpr
 %{tde_bindir}/meinproc
 %{tde_bindir}/networkstatustestservice
-%{tde_bindir}/start_tdeinit
 %{tde_bindir}/start_tdeinit_wrapper
-%attr(4755,root,root) %{tde_bindir}/kgrantpty
 %{tde_bindir}/tde_dbus_hardwarecontrol
 %{tde_bindir}/checkXML
 %{tde_bindir}/ksvgtopng
@@ -431,9 +441,22 @@ kimgio (image manipulation).
 %{tde_tdedocdir}/HTML/en/common/*
 %{tde_tdedocdir}/HTML/en/tdespell/
 
-%{_sysconfdir}/xdg/menus/tde-applications.menu
-%{_sysconfdir}/xdg/menus/tde-applications.menu-no-kde
-%{_sysconfdir}/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
+# Some setuid binaries need special care
+%if 0%{?suse_version}
+%verify(not mode) %{tde_bindir}/fileshareset
+%verify(not mode) %{tde_bindir}/kgrantpty
+%verify(not mode) %{tde_bindir}/kpac_dhcp_helper
+%verify(not mode) %{tde_bindir}/start_tdeinit
+%else
+%attr(4755,root,root) %{tde_bindir}/fileshareset
+%attr(4755,root,root) %{tde_bindir}/kgrantpty
+%attr(4755,root,root) %{tde_bindir}/kpac_dhcp_helper
+%attr(4711,root,root) %{tde_bindir}/start_tdeinit
+%endif
+
+%config %{_sysconfdir}/xdg/menus/tde-applications.menu
+%config %{_sysconfdir}/xdg/menus/tde-applications.menu-no-kde
+%config %{_sysconfdir}/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
 %{_datadir}/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service
 
 %pre
@@ -445,14 +468,22 @@ fi
 %post
 /sbin/ldconfig || :
 
+%if 0%{?suse_version}
+# Sets permissions on setuid files (openSUSE specific)
+%set_permissions %{tde_bindir}/fileshareset
+%set_permissions %{tde_bindir}/kgrantpty
+%set_permissions %{tde_bindir}/kpac_dhcp_helper
+%set_permissions %{tde_bindir}/start_tdeinit
+%endif
+
 %postun
 /sbin/ldconfig || :
 
 ##########
 
 %package devel
-Summary:	%{name} - Development files
-Group:		Development/Libraries
+Summary:	TDE Libraries (Development files)
+Group:		Development/Libraries/X11
 Requires:	%{name} = %{version}-%{release}
 
 Requires:	libtqt3-mt-devel >= 3.5.0
@@ -580,15 +611,33 @@ fi
 %__rm -rf "%{?buildroot}"
 %__make install DESTDIR="%{?buildroot}" -C build
 
-# Use system-wide CA certificate
+# Use system-wide CA certificate
 %if "%{?cacert}" != ""
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %endif
 
+# Symlinks duplicate files (mostly under 'ksgmltools2')
+%fdupes -s "%{?buildroot}"
+
+# Fix 'tderesources.desktop' (openSUSE only)
+%if 0%{?suse_version}
+%suse_update_desktop_file -r tderesources Qt X-TDE-settings-desktop
+%endif
+
 
 %clean
 %__rm -rf "%{?buildroot}"
+
+
+%if 0%{?suse_version}
+# Check permissions on setuid files (openSUSE specific)
+%verifyscript
+%verify_permissions -e %{tde_bindir}/fileshareset
+%verify_permissions -e %{tde_bindir}/kgrantpty
+%verify_permissions -e %{tde_bindir}/kpac_dhcp_helper
+%verify_permissions -e %{tde_bindir}/start_tdeinit
+%endif
 
 
 %changelog
