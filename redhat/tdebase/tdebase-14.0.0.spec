@@ -3467,6 +3467,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
   \
@@ -3649,6 +3650,14 @@ cat << EOF > "%{buildroot}%{_sysconfdir}/logrotate.d/tdm"
     nocompress
 }
 EOF
+
+# Move faces icon to XDG directory
+if [ ! -d "%{?buildroot}%{_datadir}/faces" ]; then
+  %__mkdir_p "%{?buildroot}%{_datadir}/faces"
+  %__mv -f "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"* "%{?buildroot}%{_datadir}/faces"
+  %__rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"
+  %__ln_s "%{_datadir}/faces" "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
+fi
 
 
 %clean
