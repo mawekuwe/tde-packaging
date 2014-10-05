@@ -99,7 +99,7 @@ echo "RESTRICT=yes" > "${RPM_BUILD_ROOT}%{_sysconfdir}/security/fileshare.conf"
 %if 0%{?suse_version}
 %verify(not mode) %{_bindir}/fileshareset
 %else
-%attr(4755,root,root) %{tde_bindir}/fileshareset
+%attr(4755,root,root) %{_bindir}/fileshareset
 %endif
 
 
