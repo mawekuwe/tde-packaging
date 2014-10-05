@@ -90,56 +90,6 @@ Source8:	tdm%{?dist}.pp
 Source9:	mgabutton.svg
 %endif
 
-# Patch party !
-
-# Permanent patches, all TDE versions
-## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
-Patch1:		kdebase-3.5.12-desktop-openterminalhere.patch
-## [tdebase] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
-Patch2:		kdebase-3.5.13.1-startkde_icon.patch
-## [tdebase/kcontrol] Adds FR translation for KCM ICC
-Patch3:		tdebase-3.5.13.2-displayconfig_translation.patch
-## [tdebase/kicker] Adds default entries for Kickoff menu
-Patch4:		tdebase-3.5.13.2-kickoff_default_favs.patch
-## [tdebase] Changes konsole default word separator
-Patch5:		tdebase-14.0.0-konsole_wordseps.patch
-## [tdebase] Fix '%' caracter in hal volumes
-Patch6:		tdebase-3.5.13.2-fix_halbackend_slash.patch
-
-# Permanent patches, this TDE version only
-## [tdebase/kdm] Fix PID file is 'tdm.pid' instead of 'kdm.pid' (needed for openSUSE)
-Patch11:	kdebase-3.5.13.1-fix_tdm_pid_file.patch
-## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box [RHEL/Fedora]
-Patch12:	tdebase-3.5.13.2-kdesu-noignorebutton.patch
-## [kdebase/applnk] Fix XDG menu to avoid KDE4 conflict
-Patch13:	tdebase-3.5.13.2-fix_xdg_menu.patch
-## [kdebase/tdm] Fix USER_PATH variable in TDM
-Patch14:	tdebase-3.5.13.2-fix_tdm_user_path.patch
-## [kdebase/Ksmserver] orward port KDE SVN r803253 to fix potential security hole [Commit #c383da9d]
-Patch15:	tdebase-3.5.13.2-fix_ice_security_hole.patch
-
-# Patches from Mandriva
-Patch101:	tdebase-3.5.13.2-vibrate_dialog.patch
-Patch102:	tdebase-3.5.13.2-kcontrol_menu_entry.patch
-Patch103:	tdebase-3.5.13.2-kdesktop_crossfade.patch
-Patch104:	tdebase-3.5.13.2-kickoff_xdg_dirs.patch
-Patch105:	tdebase-3.5.13.2-suspend_unmount.patch
-Patch106:	tdebase-3.5.13.2-bookmark_global_copy.patch
-
-### Specific patches for RHEL4 (should not go upstream)
-
-## [tdebase] Fix build on RHEL4, detect old libraries without pkg file
-Patch301:	kdebase-3.5.13-fix_lib_detection.patch
-## [tdebase] Do not build against DBUS-TQT, only DBUS and DBUS-QT
-Patch302:	kdebase-3.5.13.2-build_without_dbustqt.patch
-## [tdebase] Do not build against ConsoleKit
-Patch303:	kdebase-3.5.13-build_without_consolekit.patch
-## [tdebase] Add WITH_COMPOSITE option to CMakeLists.txt
-Patch304:	kdebase-3.5.13.2-add_disable_composite_option.patch
-## [tdebase] Downgrade halbackend to support Hal 0.4
-Patch305:	kdebase-3.5.13-support_hal_04.patch
-## [tdebase] Other(s) FTBFS ...
-Patch306:	kdebase-3.5.13-fix_rhel4_compilation.patch
 
 ### Distribution-specific settings ###
 
@@ -3366,7 +3316,7 @@ Windows and Samba shares.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -3374,35 +3324,6 @@ Windows and Samba shares.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .openterminalhere
-%patch2 -p1 -b .startmenuicon
-%patch3 -p1 -b .displayconfigtranslation
-%patch4 -p1 -b .kickoffdefaultsfav
-%patch5 -p1 -b .konsolewordseps
-%patch6 -p1 -b .halbackend
-
-%patch11 -p1 -b .tdmpid
-%patch12 -p1 -b .kdesunoignorebutton
-%patch13 -p1 -b .xdgmenu
-%patch14 -p1 -b .tdmuserpath
-%patch15 -p1 -b .iceauth
-
-%patch101 -p1 -b .vibrate_dialog
-%patch102 -p1 -b .kcontrol_menu_entry
-%patch103 -p1 -b .kdesktop_crossfade
-%patch104 -p1 -b .kickoff_xdg
-%patch105 -p1 -b .suspend_unmount
-%patch106 -p1 -b .bookmark_global_copy
-
-
-%if 0%{?rhel} == 4
-%patch301 -p1 -b .libdetect
-%patch302 -p1 -b .dbustqt
-%patch303 -p1 -b .consolekit
-%patch304 -p1 -b .composite
-#patch305 -p1 -b .hal04
-%patch306 -p1 -b .rhel4
-%endif
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
