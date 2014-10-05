@@ -3651,11 +3651,11 @@ cat << EOF > "%{buildroot}%{_sysconfdir}/logrotate.d/tdm"
 }
 EOF
 
-# Move faces icon to XDG directory
+# Move faces icon to XDG directory '/usr/share/faces'
 if [ ! -d "%{?buildroot}%{_datadir}/faces" ]; then
   %__mkdir_p "%{?buildroot}%{_datadir}/faces"
   %__mv -f "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"* "%{?buildroot}%{_datadir}/faces"
-  %__rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"
+  rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"
   %__ln_s "%{_datadir}/faces" "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
 fi
 
