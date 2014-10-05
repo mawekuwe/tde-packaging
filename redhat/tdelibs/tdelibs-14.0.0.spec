@@ -490,14 +490,26 @@ Summary:	TDE Libraries (Development files)
 Group:		Development/Libraries/X11
 Requires:	%{name} = %{version}-%{release}
 
-Requires:	libtqt3-mt-devel >= 3.5.0
-Requires:	libtqt4-devel = 2:4.2.0
-Requires:	trinity-arts-devel >= 2:1.5.10
-
 Obsoletes:	tdelibs-devel < %{version}-%{release}
 Provides:	tdelibs-devel = %{version}-%{release}
 Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
 Provides:	trinity-kdelibs-devel = %{version}-%{release}
+
+Requires:	libtqt3-mt-devel >= 3.5.0
+Requires:	libtqt4-devel = 2:4.2.0
+Requires:	trinity-arts-devel >= 2:1.5.10
+
+# XCOMPOSITE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+Requires:	%{_lib}xcomposite-devel
+%else
+Requires:	%{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+Requires:	libXcomposite-devel
+%endif
 
 %description devel
 This package includes the header files you will need to compile

@@ -322,6 +322,7 @@ Requires:	opensuse-manuals_en
 %define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
 %endif
 
+BuildRequires:	trinity-arts-devel >= 2:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
@@ -459,6 +460,19 @@ BuildRequires:	xscreensaver
 BuildRequires:	libavahi-tqt-devel
 %endif
 
+# MESA support
+%if 0%{?rhel} || 0%{?fedora}
+BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGLU-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires: mesaglu-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: Mesa-libGL-devel
+BuildRequires: Mesa-libGLU-devel
+%endif
+
 # NAS support
 # (what is nas btw ?)
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
@@ -479,20 +493,6 @@ Requires:		libdbus-tqt-1-0 >= 2:0.63
 
 %if 0%{?fedora} >= 17
 BuildRequires:	perl-Digest-MD5
-%endif
-
-# JACK support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
-%define with_jack 1
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}jack-devel
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora}
-BuildRequires:	jack-audio-connection-kit-devel
-%endif
-%if 0%{?suse_version}
-BuildRequires:	libjack-devel
-%endif
 %endif
 
 # LIBART_LGPL support
@@ -569,10 +569,10 @@ BuildRequires:	libXcomposite-devel
 BuildRequires:	xorg-x11-devel
 %endif
 
+# LIBFONTENC support
 %if 0%{?suse_version} == 1140
 BuildRequires:	xorg-x11-libfontenc-devel
 %endif
-
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1220
 BuildRequires:	libfontenc-devel
 %endif
