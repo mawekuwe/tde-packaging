@@ -18,7 +18,7 @@
 # TDE variables
 %define tde_version 14.0.0
 
-%if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
 %define libdbus %{_lib}dbus
 %else
 %define libdbus libdbus

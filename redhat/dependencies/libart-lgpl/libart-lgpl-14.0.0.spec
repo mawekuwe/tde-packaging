@@ -19,7 +19,7 @@
 # TDE variables
 %define tde_version 14.0.0
 
-%if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
 %define libart %{_lib}art
 %else
 %define libart libart
@@ -65,6 +65,8 @@ Summary:        Library of functions for 2D graphics - runtime files
 Group:			System/Libraries
 Obsoletes:		libart_lgpl < %{version}-%{release}
 Provides:		libart_lgpl = %{version}-%{release}
+Obsoletes:		%{_lib}art_lgpl2 < %{version}-%{release}
+Provides:		%{_lib}art_lgpl2 = %{version}-%{release}
 Provides:		libart_lgpl_2-2 = %{version}-%{release}
 
 %description -n %{libart}_lgpl_2-2

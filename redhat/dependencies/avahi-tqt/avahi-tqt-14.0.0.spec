@@ -17,11 +17,8 @@
 
 # TDE variables
 %define tde_version 14.0.0
-%define tde_prefix /opt/trinity
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
 
-%if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
 %define libavahi %{_lib}avahi
 %else
 %define libavahi libavahi

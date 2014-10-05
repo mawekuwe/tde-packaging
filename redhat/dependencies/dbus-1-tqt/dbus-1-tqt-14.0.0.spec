@@ -18,7 +18,7 @@
 # TDE variables
 %define tde_version 14.0.0
 
-%if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
 %define libdbus %{_lib}dbus
 %else
 %define libdbus libdbus
@@ -42,7 +42,7 @@ License:	GPLv2+
 #Vendor:		Trinity Project
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:		%{tde_prefix}
+Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz

@@ -81,7 +81,7 @@ export LDFLAGS="$LDFLAGS -pie"
 %__install -D -m 644 man/fileshareset.8 %{?buildroot}%{_mandir}/man8/fileshareset.8
 
 # Install the default configuration file
-mkdir -p "${RPM_BUILD_ROOT}/etc/security/"
+mkdir -p "${RPM_BUILD_ROOT}%{_sysconfdir}/security/"
 echo "RESTRICT=yes" > "${RPM_BUILD_ROOT}%{_sysconfdir}/security/fileshare.conf"
 
 

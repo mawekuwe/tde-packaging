@@ -23,7 +23,7 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define cmake_modules_dir %{_datadir}/cmake/Modules
 
-%if 0%{?mdkversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
 %define libtqt4 %{_lib}tqt4
 %else
 %define libtqt4 libtqt4
