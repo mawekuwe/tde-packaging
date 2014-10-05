@@ -40,7 +40,10 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:        %{name}-%{version}.tar.gz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:  gcc-c++
+
 #Requires:       
 
 %description
