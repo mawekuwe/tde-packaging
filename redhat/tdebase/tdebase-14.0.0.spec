@@ -564,10 +564,8 @@ BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 BuildRequires:	libXcomposite-devel
 %endif
 
-# Other X11 stuff ...
-%if 0%{?rhel} == 4
-BuildRequires:	xorg-x11-devel
-%endif
+# Requires 'usb.ids'
+BuildRequires:	usbutils
 
 # LIBFONTENC support
 %if 0%{?suse_version} == 1140
@@ -575,6 +573,11 @@ BuildRequires:	xorg-x11-libfontenc-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1220
 BuildRequires:	libfontenc-devel
+%endif
+
+# Other X11 stuff ...
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
 %endif
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -2151,6 +2154,9 @@ already. Most users won't need this.
 %{tde_datadir}/apps/tdm/themes/
 %{tde_datadir}/config/tdm
 %dir %{_sysconfdir}/trinity/tdm
+%if 0%{?with_selinux_policy}
+%exclude %{?_sysconfdir}/trinity/tdm/tdm.pp
+%endif
 %config(noreplace) %{_sysconfdir}/trinity/tdm/*
 %{tde_tdedocdir}/HTML/en/tdm/
 %if 0%{?suse_version} == 0
@@ -2199,15 +2205,22 @@ if [ -d "%{tde_datadir}/config/tdm" ] && [ ! -L "%{tde_datadir}/config/tdm" ]; t
   if [ -d "%{_sysconfdir}/trinity/tdm" ]; then
     # If there is already something under '/etc/trinity/tdm', simply delete old configuration
     echo "Deleting TDM configuration under '%{tde_datadir}/config/tdm'"
-    %__rm -rf "%{tde_datadir}/config/tdm"
+    rm -rf "%{tde_datadir}/config/tdm"
   else
     # Else, move '/opt/trinity/share/config/tdm' to '/etc/trinity/tdm'
     if [ ! -d "%{_sysconfdir}/trinity" ]; then
-      %__mkdir_p "%{_sysconfdir}/trinity"
+      mkdir -p "%{_sysconfdir}/trinity"
     fi
     echo "Migrating TDM configuration from '%{tde_datadir}/config/tdm' to '%{_sysconfdir}/trinity/tdm'"
-    %__mv -f "%{tde_datadir}/config/tdm" "%{_sysconfdir}/trinity/tdm.migr"
+    mv -f "%{tde_datadir}/config/tdm" "%{_sysconfdir}/trinity/tdm.migr"
   fi
+fi
+
+# Remove actual directory before creating a symlink
+if [ ! -L "%{tde_datadir}/apps/tdm/pics/users" ]; then
+  [ -d "%{_datadir}/faces" ] || mkdir -p "%{_datadir}/faces"
+  cp -f "%{tde_datadir}/apps/tdm/pics/users/"* "%{_datadir}/faces"
+  rm -rf "%{tde_datadir}/apps/tdm/pics/users"
 fi
 
 %post -n trinity-tdm
@@ -3657,8 +3670,8 @@ EOF
 if [ ! -d "%{?buildroot}%{_datadir}/faces" ]; then
   %__mkdir_p "%{?buildroot}%{_datadir}/faces"
   %__mv -f "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"* "%{?buildroot}%{_datadir}/faces"
+  rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
 fi
-rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"
 %__ln_s "%{_datadir}/faces" "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
 
 
