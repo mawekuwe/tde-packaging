@@ -92,9 +92,15 @@ echo "RESTRICT=yes" > "${RPM_BUILD_ROOT}%{_sysconfdir}/security/fileshare.conf"
 %files
 %defattr(-,root,root,-)
 %{_bindir}/filesharelist
-%verify(not mode) %{_bindir}/fileshareset
 %{_mandir}/man8/fileshareset.8*
 %config(noreplace) %{_sysconfdir}/security/fileshare.conf
+
+# Setuid program
+%if 0%{?suse_version}
+%verify(not mode) %{_bindir}/fileshareset
+%else
+%attr(4755,root,root) %{tde_bindir}/fileshareset
+%endif
 
 
 %if 0%{?suse_version}
