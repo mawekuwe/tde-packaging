@@ -81,6 +81,7 @@ BuildRequires:	trinity-filesystem >= %{tde_version}
 
 Requires:		trinity-arts >= 2:1.5.10
 Requires:		trinity-filesystem >= %{tde_version}
+Requires:		fileshareset >= 2.0
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
@@ -185,7 +186,7 @@ BuildRequires:	jasper-devel
 # AVAHI support
 %if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_avahi 1
-BuildRequires:	trinity-avahi-tqt-devel >= 1:0.6.30
+BuildRequires:	libavahi-tqt-devel >= 1:0.6.30
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
 Requires:		%{_lib}avahi-client3
@@ -259,6 +260,7 @@ BuildRequires:	xz-devel
 # Certificates support
 %if 0%{?rhel} >= 6 || 0%{?fedora}
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
+BuildRequires:	ca-certificates
 Requires:		ca-certificates
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -268,6 +270,11 @@ Requires:		openssl
 %if 0%{?rhel} == 5
 %define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 Requires:		openssl
+%endif
+%if 0%{?suse_version}
+%define cacert	%{_sysconfdir}/ssl/ca-bundle.pem
+BuildRequires:	ca-certificates
+Requires:		ca-certificates
 %endif
 
 # XRANDR support
@@ -370,7 +377,6 @@ kimgio (image manipulation).
 %{tde_bindir}/dcopserver
 %{tde_bindir}/dcopserver_shutdown
 %{tde_bindir}/dcopstart
-%{tde_bindir}/filesharelist
 %{tde_bindir}/imagetops
 %{tde_bindir}/tdeab2tdeabc
 %{tde_bindir}/kaddprinterwizard
@@ -443,12 +449,10 @@ kimgio (image manipulation).
 
 # Some setuid binaries need special care
 %if 0%{?suse_version}
-%verify(not mode) %{tde_bindir}/fileshareset
 %verify(not mode) %{tde_bindir}/kgrantpty
 %verify(not mode) %{tde_bindir}/kpac_dhcp_helper
 %verify(not mode) %{tde_bindir}/start_tdeinit
 %else
-%attr(4755,root,root) %{tde_bindir}/fileshareset
 %attr(4755,root,root) %{tde_bindir}/kgrantpty
 %attr(4755,root,root) %{tde_bindir}/kpac_dhcp_helper
 %attr(4711,root,root) %{tde_bindir}/start_tdeinit
@@ -470,7 +474,6 @@ fi
 
 %if 0%{?suse_version}
 # Sets permissions on setuid files (openSUSE specific)
-%set_permissions %{tde_bindir}/fileshareset
 %set_permissions %{tde_bindir}/kgrantpty
 %set_permissions %{tde_bindir}/kpac_dhcp_helper
 %set_permissions %{tde_bindir}/start_tdeinit
@@ -611,7 +614,7 @@ fi
 %__rm -rf "%{?buildroot}"
 %__make install DESTDIR="%{?buildroot}" -C build
 
-# Use system-wide CA certificate
+# Use system-wide CA certificates
 %if "%{?cacert}" != ""
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
@@ -625,6 +628,15 @@ fi
 %suse_update_desktop_file -r tderesources Qt X-TDE-settings-desktop
 %endif
 
+# Remove setuid bit on some binaries
+chmod -s %{?buildroot}%{tde_bindir}/kgrantpty
+chmod -s %{?buildroot}%{tde_bindir}/kpac_dhcp_helper
+chmod -s %{?buildroot}%{tde_bindir}/start_tdeinit
+
+# fileshareset is provided separately.
+%__rm -f "%{?buildroot}%{tde_bindir}/filesharelist"
+%__rm -f "%{?buildroot}%{tde_bindir}/fileshareset"
+
 
 %clean
 %__rm -rf "%{?buildroot}"
@@ -633,7 +645,6 @@ fi
 %if 0%{?suse_version}
 # Check permissions on setuid files (openSUSE specific)
 %verifyscript
-%verify_permissions -e %{tde_bindir}/fileshareset
 %verify_permissions -e %{tde_bindir}/kgrantpty
 %verify_permissions -e %{tde_bindir}/kpac_dhcp_helper
 %verify_permissions -e %{tde_bindir}/start_tdeinit
