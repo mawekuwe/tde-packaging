@@ -65,11 +65,11 @@ export CXXFLAGS="$CXXFLAGS -fPIE"
 export CFLAGS="$CXXFLAGS -fPIE"
 export LDFLAGS="$LDFLAGS -pie"
 %configure
-make %{?_smp_mflags}
+%__make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
 # Install the man page
@@ -78,6 +78,10 @@ rm -rf $RPM_BUILD_ROOT
 # Install the default configuration file
 mkdir -p "${RPM_BUILD_ROOT}/etc/security/"
 echo "RESTRICT=yes" > "${RPM_BUILD_ROOT}%{_sysconfdir}/security/fileshare.conf"
+
+
+%clean
+%__rm -rf $RPM_BUILD_ROOT
 
 
 %files
