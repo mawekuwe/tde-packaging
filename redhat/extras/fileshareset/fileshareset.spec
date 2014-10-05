@@ -40,6 +40,11 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:        %{name}-%{version}.tar.gz
 
+# for set_permissions macro
+%if 0%{?suse_version}
+PreReq: permissions
+%endif
+
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:  gcc-c++
@@ -62,7 +67,7 @@ automake -a -c
 
 %build
 export CXXFLAGS="$CXXFLAGS -fPIE"
-export CFLAGS="$CXXFLAGS -fPIE"
+export CFLAGS="$CFLAGS -fPIE"
 export LDFLAGS="$LDFLAGS -pie"
 %configure
 %__make %{?_smp_mflags}
@@ -87,9 +92,16 @@ echo "RESTRICT=yes" > "${RPM_BUILD_ROOT}%{_sysconfdir}/security/fileshare.conf"
 %files
 %defattr(-,root,root,-)
 %{_bindir}/filesharelist
-%{_bindir}/fileshareset
+%verify(not mode) %{_bindir}/fileshareset
 %{_mandir}/man8/fileshareset.8*
-%{_sysconfdir}/security/fileshare.conf
+%config(noreplace) %{_sysconfdir}/security/fileshare.conf
+
+
+%if 0%{?suse_version}
+# Check permissions on setuid files (openSUSE specific)
+%verifyscript
+%verify_permissions -e /usr/bin/fileshareset
+%endif
 
 
 %changelog
