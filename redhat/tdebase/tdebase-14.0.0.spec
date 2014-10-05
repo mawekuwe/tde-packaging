@@ -1,46 +1,57 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdebase
+#
+# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# TDE variables
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 
 Name:		trinity-tdebase
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
-
-Obsoletes:	trinity-kdebase < %{version}-%{release}
-Provides:	trinity-kdebase = %{version}-%{release}
-Obsoletes:	trinity-kdebase-libs < %{version}-%{release}
-Provides:	trinity-kdebase-libs = %{version}-%{release}
-Obsoletes:	trinity-kdebase-extras < %{version}-%{release}
-Provides:	trinity-kdebase-extras = %{version}-%{release}
-Obsoletes:	tdebase < %{version}-%{release}
-Provides:	tdebase = %{version}-%{release}
-
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:			Trinity Desktop
+#Packager:		Francois Andriot <francois.andriot@free.fr>
+
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
@@ -81,28 +92,14 @@ Source8:	tdm%{?dist}.pp
 Source9:	mgabutton.svg
 %endif
 
-# Patch party !
-
-# Permanent patches, all TDE versions
-## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
-Patch101:		tdebase-14.0.0-open_terminal_here.patch
-## [tdebase] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
-Patch102:		tdebase-14.0.0-default_menu_icon.patch
-## [tdebase] Changes konsole default word separator
-Patch105:		tdebase-14.0.0-konsole_wordseps.patch
-
-# Permanent patches, this TDE version only
-
-# Patches from Mandriva
-Patch201:	tdebase-14.0.0-vibrate_dialog.patch
-Patch205:	tdebase-14.0.0-suspend_unmount.patch
-
-# Experimental patches
-Patch301:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
-## [tdebase] Fix i18n description loading in 'twin_update_default_rules'
-Patch302:	tdebase-14.0.0-fix_twin_rules_translation.patch
-
-Patch303:	tdebase-14.0.0-tdehardwarebackend_fix_iocharset.patch
+Obsoletes:	trinity-kdebase < %{version}-%{release}
+Provides:	trinity-kdebase = %{version}-%{release}
+Obsoletes:	trinity-kdebase-libs < %{version}-%{release}
+Provides:	trinity-kdebase-libs = %{version}-%{release}
+Obsoletes:	trinity-kdebase-extras < %{version}-%{release}
+Provides:	trinity-kdebase-extras = %{version}-%{release}
+Obsoletes:	tdebase < %{version}-%{release}
+Provides:	tdebase = %{version}-%{release}
 
 
 ### Distribution-specific settings ###
@@ -321,19 +318,31 @@ Requires:	opensuse-manuals_en
 %define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
 %endif
 
-BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+
+BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	make
+
+# OPENSSL support
 BuildRequires:	openssl-devel
+
+# AUDIOFILE support
 BuildRequires:	audiofile-devel
+
+# ALSA supportl
 BuildRequires:	alsa-lib-devel
+
+# RAW1394 support
 BuildRequires:	libraw1394-devel
+
+# VORBIS support
 BuildRequires:	libvorbis-devel
+
+# GLIB2 support
 BuildRequires:	glib2-devel
+
+# PCRE support
 BuildRequires:	pcre-devel
 
 # SASL support
@@ -429,15 +438,7 @@ BuildRequires:	xscreensaver
 # AVAHI support
 #  Disabled on RHEL4 and RHEL5
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
-BuildRequires:	trinity-avahi-tqt-devel
-Requires:		trinity-avahi-tqt
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}avahi-client-devel
-Requires:		%{_lib}avahi-client3
-%else
-BuildRequires:	avahi-devel
-Requires:		avahi
-%endif
+BuildRequires:	libavahi-tqt-devel
 %endif
 
 # NAS support
@@ -453,8 +454,8 @@ BuildRequires:	nas-devel
 BuildRequires:	dbus-devel >= 0.22-12.EL.9p1
 Requires:		dbus-qt >= 0.22-12.EL.9p1
 %else
-BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
-Requires:		trinity-dbus-tqt >= 1:0.63
+BuildRequires:	libdbus-tqt-devel >= 2:0.63
+Requires:		libdbus-tqt >= 2:0.63
 %endif
 
 %if 0%{?fedora} >= 17
@@ -471,7 +472,7 @@ BuildRequires:	jack-audio-connection-kit-devel
 
 # LIBART_LGPL support
 %define with_libart 1
-BuildRequires:	trinity-libart-lgpl-devel
+BuildRequires:	libart_lgpl-devel
 
 # SAMBA support
 %if 0%{?rhel} == 4
@@ -610,9 +611,9 @@ Requires: trinity-libkonq = %{version}-%{release}
 Requires: %{name}-libtqt3-integration = %{version}-%{release}
 Requires: %{name}-tdeio-smb-plugin = %{version}-%{release}
  
-Requires:	trinity-tqt3 >= 3.5.0
-Requires:	trinity-tqtinterface >= %{tde_version}
-Requires:	trinity-arts >= 1:1.5.10
+Requires:	libtqt3-mt >= 3.5.0
+Requires:	libtqt4 >= 2:4.2.0
+Requires:	trinity-arts >= 2:1.5.10
 Requires:	trinity-tdelibs >= %{tde_version}
 Requires:	openssl
 
@@ -650,8 +651,8 @@ web browser, X terminal emulator, and many other programs and components.
 Summary:	%{summary} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tqtinterface-devel >= %{tde_version}
-Requires:	trinity-arts-devel >= 1:1.5.10
+Requires:	libtqt4-devel >= 2:4.2.0
+Requires:	trinity-arts-devel >= 2:1.5.10
 Requires:	trinity-tdelibs-devel >= %{tde_version}
 
 Requires:	%{name}-bin-devel = %{version}-%{release}
@@ -974,7 +975,6 @@ plugdev group.
 %{tde_bindir}/keditfiletype
 %{tde_bindir}/tdefontinst
 %{tde_bindir}/tdefontview
-#%{tde_bindir}/kinfocenter
 %{tde_bindir}/klocaldomainurifilterhelper
 %{tde_bindir}/krdb
 %{tde_tdelibdir}/fontthumbnail.la
@@ -1017,8 +1017,6 @@ plugdev group.
 %{tde_tdelibdir}/kcm_info.so
 %{tde_tdelibdir}/kcm_input.la
 %{tde_tdelibdir}/kcm_input.so
-#%{tde_tdelibdir}/kcm_ioslaveinfo.la
-#%{tde_tdelibdir}/kcm_ioslaveinfo.so
 %{tde_tdelibdir}/kcm_joystick.la
 %{tde_tdelibdir}/kcm_joystick.so
 %{tde_tdelibdir}/kcm_kded.la
@@ -1117,7 +1115,6 @@ plugdev group.
 %{tde_tdeappdir}/installktheme.desktop
 %{tde_tdeappdir}/interrupts.desktop
 %{tde_tdeappdir}/ioports.desktop
-#%{tde_tdeappdir}/ioslaveinfo.desktop
 %{tde_tdeappdir}/joystick.desktop
 %{tde_tdeappdir}/kcm_tdednssd.desktop
 %{tde_tdeappdir}/kcmaccess.desktop
@@ -1422,7 +1419,6 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/apps/kcontrol/
 %{tde_datadir}/apps/tdedisplay/
 %{tde_datadir}/apps/tdefontview/
-#%{tde_datadir}/apps/kinfocenter/kinfocenterui.rc
 %{tde_datadir}/apps/kthememanager/themes/*
 %{tde_datadir}/icons/crystalsvg/*/apps/access.png
 %{tde_datadir}/icons/crystalsvg/*/apps/acroread.png
@@ -1880,19 +1876,43 @@ system passwords.
 %{tde_tdelibdir}/kcm_useraccount.so
 %{tde_tdeappdir}/kcm_useraccount.desktop
 %{tde_tdeappdir}/tdepasswd.desktop
-%exclude %{tde_datadir}/apps/tdm/pics/users/default1.png
-%exclude %{tde_datadir}/apps/tdm/pics/users/default2.png
-%exclude %{tde_datadir}/apps/tdm/pics/users/default3.png
-%exclude %{tde_datadir}/apps/tdm/pics/users/root1.png
-%{tde_datadir}/apps/tdm/pics/users/*.png
 %{tde_datadir}/config.kcfg/kcm_useraccount.kcfg
 %{tde_datadir}/config.kcfg/kcm_useraccount_pass.kcfg
+%{tde_tdedocdir}/HTML/en/tdepasswd/
+%{_datadir}/faces/Apple.png
+%{_datadir}/faces/BeachBall.png
+%{_datadir}/faces/Blowfish.png
+%{_datadir}/faces/Bug.png
+%{_datadir}/faces/Butterfly.png
+%{_datadir}/faces/Car.png
+%{_datadir}/faces/Cow.png 
+%{_datadir}/faces/Daemon.png
+%{_datadir}/faces/Dog.png
+%{_datadir}/faces/Elephant.png
+%{_datadir}/faces/Flower.png
+%{_datadir}/faces/Frog.png
+%{_datadir}/faces/Ghost.png
+%{_datadir}/faces/Guitar.png
+%{_datadir}/faces/Heart.png
+%{_datadir}/faces/Konqui.png
+%{_datadir}/faces/Lion.png
+%{_datadir}/faces/Monkey.png
+%{_datadir}/faces/Penguin.png
+%{_datadir}/faces/Pig.png
+%{_datadir}/faces/Rabbit.png
+%{_datadir}/faces/Ring.png
+%{_datadir}/faces/Scream.png
+%{_datadir}/faces/Shark.png
+%{_datadir}/faces/Splash.png
+%{_datadir}/faces/Star.png
+%{_datadir}/faces/Teddybear.png
+%{_datadir}/faces/Turtle.png
 
 %post -n trinity-tdepasswd
-update-desktop-database %{tde_appdir} 2> /dev/null || : 
+update-desktop-database %{tde_tdeappdir} 2> /dev/null || : 
 
 %postun -n trinity-tdepasswd
-update-desktop-database %{tde_appdir} 2> /dev/null || : 
+update-desktop-database %{tde_tdeappdir} 2> /dev/null || : 
 
 ##########
 
@@ -2074,7 +2094,7 @@ Provides:	tdm
 %endif
 
 %description -n trinity-tdm
-tdm manages a collection of X servers, which may be on the local host or
+TDM manages a collection of X servers, which may be on the local host or
 remote machines. It provides services similar to those provided by init,
 getty, and login on character-based terminals: prompting for login name and
 password, authenticating the user, and running a session. tdm supports XDMCP
@@ -2101,10 +2121,6 @@ already. Most users won't need this.
 %{tde_bindir}/krootimage
 %{tde_datadir}/apps/tdm/pics/kdelogo.png
 %{tde_datadir}/apps/tdm/pics/shutdown.jpg
-%{tde_datadir}/apps/tdm/pics/users/default1.png
-%{tde_datadir}/apps/tdm/pics/users/default2.png
-%{tde_datadir}/apps/tdm/pics/users/default3.png
-%{tde_datadir}/apps/tdm/pics/users/root1.png
 %{tde_datadir}/apps/tdm/sessions/*.desktop
 %{tde_datadir}/apps/tdm/themes/
 %{tde_datadir}/config/tdm
@@ -2115,6 +2131,13 @@ already. Most users won't need this.
 %config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity
 %config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity-np
 %endif
+
+# XDG user faces
+%{_datadir}/faces/default1.png
+%{_datadir}/faces/default2.png
+%{_datadir}/faces/default3.png
+%{_datadir}/faces/default4.png
+%{_datadir}/faces/root1.png
 
 # Distribution specific stuff
 %if 0%{?suse_version} == 1140
@@ -2141,6 +2164,9 @@ already. Most users won't need this.
 %{?_sysconfdir}/trinity/tdm/tdm.pp
 %endif
 
+# Logrotate configuration
+%{_sysconfdir}/logrotate.d/tdm
+
 %pre -n trinity-tdm
 # Make sure that TDM configuration files are now under '/etc/trinity/tdm'
 if [ -d "%{tde_datadir}/config/tdm" ] && [ ! -L "%{tde_datadir}/config/tdm" ]; then
@@ -2165,11 +2191,13 @@ fi
 %if 0%{?with_selinux_policy}
 /usr/sbin/semodule -i "%{?_sysconfdir}/trinity/tdm/tdm.pp"
 %endif
+
 # Sets default user icon in TDM
-if [ ! -r "%{tde_datadir}/apps/tdm/faces/.default.face.icon" ]; then
-  [ -d "%{tde_datadir}/apps/tdm/faces" ] || mkdir -p "%{tde_datadir}/apps/tdm/faces"
-  %__cp -f "%{tde_datadir}/apps/tdm/pics/users/default2.png" "%{tde_datadir}/apps/tdm/faces/.default.face.icon"
-fi
+#if [ ! -r "%{tde_datadir}/apps/tdm/faces/.default.face.icon" ]; then
+#  [ -d "%{tde_datadir}/apps/tdm/faces" ] || mkdir -p "%{tde_datadir}/apps/tdm/faces"
+#  %__cp -f "%{tde_datadir}/apps/tdm/pics/users/default2.png" "%{tde_datadir}/apps/tdm/faces/.default.face.icon"
+#fi
+
 # Sets default language for TDM
 if [ "$1" = "1" ]; then
   if [ -n "${LANG}" ] && [ "${LANG}" != "C" ]; then
@@ -2261,8 +2289,6 @@ documentation.
 
 %files -n trinity-khelpcenter
 %defattr(-,root,root,-)
-#%{tde_bindir}/khc_beagle_index.pl
-#%{tde_bindir}/khc_beagle_search.pl
 %{tde_bindir}/khc_docbookdig.pl
 %{tde_bindir}/khc_htdig.pl
 %{tde_bindir}/khc_htsearch.pl
@@ -2386,7 +2412,6 @@ functionality.
 %{tde_datadir}/applnk/.hidden/kicker_config_menus.desktop
 %{tde_datadir}/apps/clockapplet/pics/lcd.png
 %{tde_datadir}/apps/tdeconf_update/kicker-3.1-properSizeSetting.pl
-#%{tde_datadir}/apps/tdeconf_update/kicker-3.5-tdeconfigXTize.pl
 %{tde_datadir}/apps/tdeconf_update/kicker-3.5-taskbarEnums.pl
 %{tde_datadir}/apps/tdeconf_update/kickerrc.upd
 %{tde_datadir}/apps/kicker/
@@ -2811,6 +2836,7 @@ Using Konsole, a user can open:
 %{tde_datadir}/servicetypes/terminalemulator.desktop
 %{tde_tdedocdir}/HTML/en/konsole/
 %{tde_tdedocdir}/HTML/en/kcontrol/kcmkonsole/
+%{_sysconfdir}/fonts/conf.d/99-konsole.conf
 
 %post -n trinity-konsole
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -3331,7 +3357,7 @@ Windows and Samba shares.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -3339,18 +3365,6 @@ Windows and Samba shares.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-
-%patch101 -p1 -b .openterminalhere
-%patch102 -p1 -b .startmenuicon
-%patch105 -p1 -b .konsolewordseps
-
-%patch201 -p1 -b .vibrate_dialog
-%patch205 -p1 -b .suspend_unmount
-
-%patch301 -p1 -b .kcmxcursor
-%patch302 -p1 -b .twintranslation
-
-%patch303 -p1 -b .iocharset
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -3410,6 +3424,7 @@ fi
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
+export TDEDIR="%{tde_prefix}"
 
 # Samba 4.0 includes (Fedora 18)
 if [ -d "/usr/include/samba-4.0" ]; then
@@ -3587,6 +3602,28 @@ EOF
 %if 0%{?suse_version} == 1140
 %__install -D -m 755 "%{SOURCE7}" "%{?buildroot}%{?_sysconfdir}/init.d/xdm.tde"
 %endif
+
+# Console font to fontconfig
+%__mkdir_p "%{buildroot}%{_sysconfdir}/fonts/conf.d"
+cat <<EOF >"%{buildroot}%{_sysconfdir}/fonts/conf.d/99-konsole.conf"
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <!-- Font directory list -->
+  <dir>%{tde_datadir}/apps/konsole/fonts</dir>
+</fontconfig>
+EOF
+
+# logrotate configuration
+mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
+cat << EOF > "%{buildroot}%{_sysconfdir}/logrotate.d/tdm"
+/var/log/tdm.log {
+    weekly
+    notifempty
+    missingok
+    nocompress
+}
+EOF
 
 
 %clean
