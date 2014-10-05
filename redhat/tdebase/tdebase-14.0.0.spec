@@ -373,6 +373,16 @@ BuildRequires:	libusb-devel
 BuildRequires:	esound-devel
 %endif
 
+# IDN support
+BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 # OPENLDAP support
 %if 0%{?suse_version}
 BuildRequires:	openldap2-devel
@@ -433,6 +443,9 @@ BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
 BuildRequires:	xscreensaver
 BuildRequires:	libXScrnSaver-devel
+%if 0%{?suse_version}
+BuildRequires:	xscreensaver-data-extra
+%endif
 %endif
 %if 0%{?suse_version} == 1140
 BuildRequires:	xscreensaver
