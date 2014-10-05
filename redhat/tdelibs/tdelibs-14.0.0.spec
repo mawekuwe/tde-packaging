@@ -499,6 +499,14 @@ Requires:	libtqt3-mt-devel >= 3.5.0
 Requires:	libtqt4-devel = 2:4.2.0
 Requires:	trinity-arts-devel >= 2:1.5.10
 
+# LIBART_LGPL support
+Requires:	libart_lgpl-devel
+
+# XT support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+Requires: libXt-devel
+%endif
+
 # XCOMPOSITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?mgaversion} >= 4
