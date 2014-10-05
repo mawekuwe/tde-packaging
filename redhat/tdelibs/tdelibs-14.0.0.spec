@@ -58,6 +58,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source1:		%{name}-rpmlintrc
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -628,12 +629,13 @@ fi
 %suse_update_desktop_file -r tderesources Qt X-TDE-settings-desktop
 %endif
 
-# Remove setuid bit on some binaries
-chmod -s %{?buildroot}%{tde_bindir}/kgrantpty
-chmod -s %{?buildroot}%{tde_bindir}/kpac_dhcp_helper
-chmod -s %{?buildroot}%{tde_bindir}/start_tdeinit
+# Remove setuid bit on some binaries.
+chmod -s "%{?buildroot}%{tde_bindir}/kgrantpty"
+chmod -s "%{?buildroot}%{tde_bindir}/kpac_dhcp_helper"
+chmod -s "%{?buildroot}%{tde_bindir}/start_tdeinit"
 
-# fileshareset is provided separately.
+# fileshareset 2.0 is provided separately.
+# Remove integrated fileshareset 1.0 .
 %__rm -f "%{?buildroot}%{tde_bindir}/filesharelist"
 %__rm -f "%{?buildroot}%{tde_bindir}/fileshareset"
 
