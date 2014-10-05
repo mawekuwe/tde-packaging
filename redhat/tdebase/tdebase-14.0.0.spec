@@ -2146,6 +2146,7 @@ already. Most users won't need this.
 %{tde_bindir}/krootimage
 %{tde_datadir}/apps/tdm/pics/kdelogo.png
 %{tde_datadir}/apps/tdm/pics/shutdown.jpg
+%{tde_datadir}/apps/tdm/pics/users
 %{tde_datadir}/apps/tdm/sessions/*.desktop
 %{tde_datadir}/apps/tdm/themes/
 %{tde_datadir}/config/tdm
@@ -2218,10 +2219,10 @@ fi
 %endif
 
 # Sets default user icon in TDM
-#if [ ! -r "%{tde_datadir}/apps/tdm/faces/.default.face.icon" ]; then
-#  [ -d "%{tde_datadir}/apps/tdm/faces" ] || mkdir -p "%{tde_datadir}/apps/tdm/faces"
-#  %__cp -f "%{tde_datadir}/apps/tdm/pics/users/default2.png" "%{tde_datadir}/apps/tdm/faces/.default.face.icon"
-#fi
+if [ ! -r "%{tde_datadir}/apps/tdm/faces/.default.face.icon" ]; then
+  [ -d "%{tde_datadir}/apps/tdm/faces" ] || mkdir -p "%{tde_datadir}/apps/tdm/faces"
+  %__cp -f "%{tde_datadir}/apps/tdm/pics/users/default2.png" "%{tde_datadir}/apps/tdm/faces/.default.face.icon"
+fi
 
 # Sets default language for TDM
 if [ "$1" = "1" ]; then
@@ -2229,6 +2230,7 @@ if [ "$1" = "1" ]; then
     %__sed -i "%{_sysconfdir}/trinity/tdm/tdmrc" -e "s|^#*Language=.*|Language=${LANG}|"
   fi
 fi
+
 # openSUSE 11.4 tdm's startup script
 if [ -r "%{_sysconfdir}/init.d/xdm.tde" ]; then
   cat "%{_sysconfdir}/init.d/xdm.tde" >"%{_sysconfdir}/init.d/xdm"
@@ -3655,9 +3657,9 @@ EOF
 if [ ! -d "%{?buildroot}%{_datadir}/faces" ]; then
   %__mkdir_p "%{?buildroot}%{_datadir}/faces"
   %__mv -f "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"* "%{?buildroot}%{_datadir}/faces"
-  rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"
-  %__ln_s "%{_datadir}/faces" "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
 fi
+rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"
+%__ln_s "%{_datadir}/faces" "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
 
 
 %clean
