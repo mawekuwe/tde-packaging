@@ -327,6 +327,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	make
+BuildRequires:	htdig
 
 # OPENSSL support
 BuildRequires:	openssl-devel
@@ -415,7 +416,7 @@ BuildRequires:	OpenEXR-devel
 
 # XSCREENSAVER support
 #  Disabled on RHEL4, RHEL >= 7
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7 || 0%{?suse_version}
 %if 0%{?rhel} == 0 || 0%{?rhel} <= 6
 %define with_xscreensaver 1
 %if 0%{?rhel} == 5
