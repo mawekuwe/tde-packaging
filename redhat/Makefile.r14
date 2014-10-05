@@ -85,7 +85,7 @@ tdeadmin:	tdebase
 tdeartwork:	tdebase
 	$(call buildpkg,tdeartwork)
 
-tdebase:	tdelibs htdig cmake
+tdebase:	tdelibs cmake htdig fileshareset
 	$(call buildpkg,tdebase)
 
 tdebindings:	tdebase tqscintilla
@@ -662,6 +662,9 @@ meta:
 	$(call buildpkg,extras/trinity-desktop)
 
 ### Extra packages
+fileshareset:
+	$(call buildpkg,extras/fileshareset)
+
 icons-nuvola:
 	$(call buildpkg,extras/icons-nuvola)
 
