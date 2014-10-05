@@ -101,6 +101,10 @@ Provides:	trinity-kdebase-extras = %{version}-%{release}
 Obsoletes:	tdebase < %{version}-%{release}
 Provides:	tdebase = %{version}-%{release}
 
+# for set_permissions macro
+%if 0%{?suse_version}
+PreReq: permissions
+%endif
 
 ### Distribution-specific settings ###
 
@@ -454,8 +458,9 @@ BuildRequires:	nas-devel
 BuildRequires:	dbus-devel >= 0.22-12.EL.9p1
 Requires:		dbus-qt >= 0.22-12.EL.9p1
 %else
-BuildRequires:	libdbus-tqt-devel >= 2:0.63
-Requires:		libdbus-tqt >= 2:0.63
+BuildRequires:	libdbus-tqt-1-devel >= 2:0.63
+BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
+Requires:		libdbus-tqt-1-0 >= 2:0.63
 %endif
 
 %if 0%{?fedora} >= 17
@@ -463,11 +468,17 @@ BuildRequires:	perl-Digest-MD5
 %endif
 
 # JACK support
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
+%define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}jack-devel
 %endif
-%if 0%{?fedora} || 0%{?rhel} >= 5
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	jack-audio-connection-kit-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	libjack-devel
+%endif
 %endif
 
 # LIBART_LGPL support
