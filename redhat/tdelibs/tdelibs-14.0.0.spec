@@ -630,9 +630,9 @@ fi
 %endif
 
 # Remove setuid bit on some binaries.
-chmod -s "%{?buildroot}%{tde_bindir}/kgrantpty"
-chmod -s "%{?buildroot}%{tde_bindir}/kpac_dhcp_helper"
-chmod -s "%{?buildroot}%{tde_bindir}/start_tdeinit"
+chmod 0755 "%{?buildroot}%{tde_bindir}/kgrantpty"
+chmod 0755 "%{?buildroot}%{tde_bindir}/kpac_dhcp_helper"
+chmod 0755 "%{?buildroot}%{tde_bindir}/start_tdeinit"
 
 # fileshareset 2.0 is provided separately.
 # Remove integrated fileshareset 1.0 .
