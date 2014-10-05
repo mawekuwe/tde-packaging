@@ -111,5 +111,5 @@ echo "RESTRICT=yes" > "${RPM_BUILD_ROOT}%{_sysconfdir}/security/fileshare.conf"
 
 
 %changelog
-* Sun Oct 5 2014 François Andriot <francois.andriot@free.fr> - 1.0-1
+* Sun Oct 5 2014 François Andriot <francois.andriot@free.fr> - 2.0-1
 - Initial build for TDE R14
