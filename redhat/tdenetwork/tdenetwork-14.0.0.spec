@@ -1107,7 +1107,7 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 

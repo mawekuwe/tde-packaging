@@ -1,49 +1,63 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdelibs
+#
+# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
 %define tde_version 3.5.13.2
-
-# TDE specific variables
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
-
 %define _docdir %{tde_docdir}
+
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 
 Name:			trinity-tdelibs
 Version:		%{tde_version}
-Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
-License:		GPL
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 Summary:		TDE Libraries
-Group:			Environment/Libraries
-
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
+Group:			System/GUI/Other
 URL:			http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:			Trinity Project
+#Packager:		Francois Andriot <francois.andriot@free.fr>
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-
-# Fix categories in T-menu
-Patch1:			tdelibs-3.5.13.2-fix_xdg_menu.patch
-# Fix startup of KDE4 applications
-Patch2:			tdelibs-3.5.13.2-fix-starting-kde4-applications.patch
-# Fix ARTS includes directory
-Patch3:			tdelibs-3.5.13.2-fix_arts_include.patch
-
-# Patches from Mandriva
-Patch101:		tdelibs-3.5.13.2-xdg_dirs_set_path.patch
-Patch102:		tdelibs-3.5.13.2-cups_by_default.patch
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -52,21 +66,30 @@ Provides:		trinity-kdelibs = %{version}-%{release}
 Obsoletes:		trinity-kdelibs-apidocs < %{version}-%{release}
 Provides:		trinity-kdelibs-apidocs = %{version}-%{release}
 
+# Trinity dependencies
+BuildRequires:	qt3-devel >= 3.3.8.d
+BuildRequires:	libtqt4-devel = 1:4.2.0
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	libdbus-tqt-1-devel >= 1:0.63
+BuildRequires:	libdbus-1-tqt-devel >= 1:0.9
+
+Requires:		trinity-arts >= 1:1.5.10
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	libtool
-BuildRequires:	qt3-devel >= 3.3.8.d
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
 BuildRequires:	openssl-devel
-BuildRequires:	gcc-c++
 BuildRequires:	alsa-lib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	libtiff-devel
+
+# GLIB2 support
 BuildRequires:	glib2-devel
+
 # LUA support are not ready yet
 #BuildRequires:	lua-devel
 
@@ -154,30 +177,32 @@ BuildRequires:	OpenEXR-devel
 %endif
 
 # LIBTOOL
+BuildRequires:	libtool
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libtool-ltdl-devel
 %endif
-%if 0%{?rhel} == 4 || 0%{?suse_version} == 1140
-BuildRequires:	libtool
-%endif
 
-# X11 support
+# XCOMPOSITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	x11-proto-devel
 %if 0%{?mgaversion} >= 4
 BuildRequires:	%{_lib}xcomposite-devel
 %else
 BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 %endif
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
-BuildRequires:	xorg-x11-proto-devel
-%endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXcomposite-devel
+%endif
+
+# X11 support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	x11-proto-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	xorg-x11-proto-devel
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
@@ -219,16 +244,23 @@ Requires:		openssl
 Requires:		openssl
 %endif
 
-# Trinity dependencies
-Requires:		qt3 >= 3.3.8.d
-Requires:		trinity-tqtinterface >= %{tde_version}
-Requires:		trinity-arts >= 1:1.5.10
+# XRANDR support
+#  On RHEL5, xrandr library is too old.
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%define with_xrandr 1
+%endif
+
+# XT support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+BuildRequires: libXt-devel
+%endif
+
 
 
 %description
 Libraries for the Trinity Desktop Environment:
-TDE Libraries included: tdecore (TDE core library), kdeui (user interface),
-kfm (file manager), khtmlw (HTML widget), tdeio (Input/Output, networking),
+TDE Libraries included: tdecore (TDE core library), tdeui (user interface),
+kfm (file manager), tdehtmlw (HTML widget), tdeio (Input/Output, networking),
 kspell (spelling checker), jscript (javascript), kab (addressbook),
 kimgio (image manipulation).
 
@@ -370,7 +402,7 @@ applications for TDE.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -378,27 +410,20 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .xdg
-%patch2 -p1 -b .kde4
-%patch3 -p1 -b .arts
-%patch101 -p1 -b .xdg_path
-%patch102 -p1 -b .cups_by_default
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
-export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
+export PATH="${QTDIR}/bin:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-
-# We need LD_LIBRARY_PATH here because ld.so.conf file has not been written yet
-export LD_LIBRARY_PATH="%{tde_libdir}"
-
-export KDEDIR="%{tde_prefix}"
 
 if [ -d "/usr/X11R6" ]; then
   export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
 fi
+
+export KDEDIR="%{tde_prefix}"
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
   %__mkdir_p build
@@ -411,6 +436,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \

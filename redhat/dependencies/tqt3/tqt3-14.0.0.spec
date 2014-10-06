@@ -15,8 +15,14 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# TDE specific variables
+# TDE variables
 %define tde_version 14.0.0
+
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libtqt3 %{_lib}tqt3
+%else
+%define libtqt3 libtqt3
+%endif
 
 
 Name:		trinity-tqt3
@@ -39,27 +45,49 @@ Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{tde_version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	assistant-tqt3.desktop
-Source2:	designer-tqt3.desktop
-Source3:	linguist-tqt3.desktop
-Source4:	tqt3config.desktop
-Source5:	build-examples.sh
+Source1:	build-examples.sh
+
+Source11:	tqassistant.desktop
+Source12:	tqdesigner.desktop
+Source13:	tqlinguist.desktop
+Source14:	tqtconfig.desktop
+
+
+BuildRequires: glibc-devel
+BuildRequires: gcc-c++
+BuildRequires: make
 
 BuildRequires: desktop-file-utils
-BuildRequires: libmng-devel
-BuildRequires: glibc-devel
-BuildRequires: libjpeg-devel
-BuildRequires: libpng-devel
-BuildRequires: zlib-devel
-BuildRequires: giflib-devel
 BuildRequires: perl
 BuildRequires: sed
 BuildRequires: findutils
 BuildRequires: tar
+
+# ZLIB support
+BuildRequires: zlib-devel
+
+# JPEG support
+BuildRequires: libjpeg-devel
+
+# MNG support
+BuildRequires: libmng-devel
+
+# PNG support
+BuildRequires: libpng-devel
+
+# GIF support
+BuildRequires: giflib-devel
+
+# FREETYPE support
 BuildRequires: freetype-devel
+
+# FONTCONFIG support
 BuildRequires: fontconfig-devel
-BuildRequires: gcc-c++
-BuildRequires: make
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
 
 # CUPS support
 BuildRequires: cups-devel
@@ -170,11 +198,17 @@ BuildRequires: libxmu-devel
 %endif
 
 # XI support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXi-devel
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
 %endif
-%if 0%{?mgaversion}
-BuildRequires: %{_lib}xi-devel
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xi-devel
+%endif
+%if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
+BuildRequires:	libXi-devel
+%endif
+%if 0%{?suse_version} == 1140
+BuildRequires:	libXi6-devel
 %endif
 
 # Xorg support
@@ -226,15 +260,17 @@ BuildRequires: util-linux
 # GCC visibility stuff
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
 %define EXTRA_CFLAGS -fvisibility=hidden -fvisibility-inlines-hidden
-%endif 
+%endif
 
 %description
 
 ##########
 
-%package -n libtqt3-mt
+%package -n %{libtqt3}-mt
 Summary:	TQt GUI Library (Threaded runtime version), Version 3
 Group:		System/GUI/Other
+Provides:	libtqt3-mt = %{version}-%{release}
+Provides:	trinity-tqt3 = %{version}-%{release}
 
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -242,30 +278,33 @@ Requires: coreutils
 Requires: fontconfig >= 2.0
 Requires: /etc/ld.so.conf.d
 
-%description -n libtqt3-mt
+%description -n %{libtqt3}-mt
 This is the Trolltech TQt library, version 3. It's necessary for
 applications that link against the libtqt-mt.so.3, e.g. all Trinity
 applications.
 
-%post -n libtqt3-mt
+%post -n %{libtqt3}-mt
 /sbin/ldconfig || :
 
-%postun -n libtqt3-mt
+%postun -n %{libtqt3}-mt
 /sbin/ldconfig || :
 
-%files -n libtqt3-mt
+%files -n %{libtqt3}-mt
 %defattr(-,root,root,-)
 %doc FAQ LICENSE* README* changes*
+%dir %{_datadir}/icons/hicolor
+%dir %{_datadir}/icons/hicolor/32x32
+%dir %{_datadir}/icons/hicolor/32x32/apps
+%dir %{_datadir}/tqt3/
+%dir %{_datadir}/tqt3/doc/
+%dir %{_datadir}/tqt3/doc/html/
+%dir %{_datadir}/tqt3/tools/
 %dir %{_libdir}/tqt3/
 %dir %{_libdir}/tqt3/plugins/
 %dir %{_libdir}/tqt3/plugins/designer/
 %dir %{_libdir}/tqt3/plugins/imageformats/
 %dir %{_libdir}/tqt3/plugins/inputmethods/
 %dir %{_libdir}/tqt3/plugins/sqldrivers/
-%dir %{_datadir}/tqt3/
-%dir %{_datadir}/tqt3/doc/
-%dir %{_datadir}/tqt3/doc/html/
-%dir %{_datadir}/tqt3/tools/
 %dir %{_sysconfdir}/tqt3
 %{_libdir}/libtqt-mt.so.3
 %{_libdir}/libtqt-mt.so.3.5
@@ -281,14 +320,16 @@ applications.
 
 ###########
 
-%package -n libtqt3-mt-devel
+%package -n %{libtqt3}-mt-devel
 Summary:	TQt development files (Threaded)
 Group:		Development/Libraries/X11
-Requires:	libtqt3-mt = %{version}-%{release}
+Provides:	trinity-tqt3-devel = %{version}-%{release}
+Provides:	libtqt3-mt-devel = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
 Requires: glibc-devel
 Requires: fontconfig-devel
-Requires: freetype2-devel
+Requires: freetype-devel
 Requires: libjpeg-devel
 Requires: libpng-devel
 Requires: zlib-devel
@@ -308,11 +349,17 @@ Requires: e2fsprogs-devel
 %endif
 
 # XI support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXi-devel
+%if 0%{?rhel} == 4
+Requires:	xorg-x11-devel
 %endif
-%if 0%{?mgaversion}
-Requires: %{_lib}xi-devel
+%if 0%{?mgaversion} || 0%{?mdkversion}
+Requires:	%{_lib}xi-devel
+%endif
+%if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
+Requires:	libXi-devel
+%endif
+%if 0%{?suse_version} == 1140
+Requires:	libXi6-devel
 %endif
 
 # Xrender support
@@ -388,7 +435,7 @@ Requires: libice-devel
 %endif
 
 
-%description -n libtqt3-mt-devel
+%description -n %{libtqt3}-mt-devel
 TQt is a C++ class library optimized for graphical user interface
 development. This package contains the libtqt-mt.so symlink, necessary
 for building threaded TQt applications as well as the libtqui.so symlink
@@ -402,13 +449,13 @@ anymore but which are still used by some programs. So if you encounter
 problems with missing header files, please install this package first
 before you send a bugreport.
 
-%post -n libtqt3-mt-devel
+%post -n %{libtqt3}-mt-devel
 /sbin/ldconfig || :
 
-%postun -n libtqt3-mt-devel
+%postun -n %{libtqt3}-mt-devel
 /sbin/ldconfig || :
 
-%files -n libtqt3-mt-devel
+%files -n %{libtqt3}-mt-devel
 %defattr(-,root,root,-)
 %{_libdir}/libtqt-mt.la
 %{_libdir}/libtqt-mt.so
@@ -741,97 +788,103 @@ before you send a bugreport.
 
 ##########
 
-%package -n libtqt3-mt-mysql
+%package -n %{libtqt3}-mt-mysql
 Summary:	MySQL database driver for TQt3 (Threaded)
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Provides:	libtqt3-mt-mysql = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
-%description -n libtqt3-mt-mysql
+%description -n %{libtqt3}-mt-mysql
 This package contains the threaded MySQL plugin for TQt3. Install it if
 you intend to use or write TQt programs that are to access a MySQL DB.
 
-%files -n libtqt3-mt-mysql
+%files -n %{libtqt3}-mt-mysql
 %defattr(-,root,root,-)
 %{_libdir}/tqt3/plugins/sqldrivers/libqsqlmysql.so
 
 ##########
 
-%package -n libtqt3-mt-odbc
+%package -n %{libtqt3}-mt-odbc
 Summary:	ODBC database driver for TQt3 (Threaded)
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Provides:	libtqt3-mt-odbc = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
-%description -n libtqt3-mt-odbc
+%description -n %{libtqt3}-mt-odbc
 This package contains the threaded ODBC plugin for TQt3. Install it if
 you intend to use or write TQt programs that are to access an ODBC DB.
 
-%files -n libtqt3-mt-odbc
+%files -n %{libtqt3}-mt-odbc
 %defattr(-,root,root,-)
 %{_libdir}/tqt3/plugins/sqldrivers/libqsqlodbc.so
 
 ##########
 
-%package -n libtqt3-mt-psql
+%package -n %{libtqt3}-mt-psql
 Summary:	PostgreSQL database driver for TQt3 (Threaded)
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Provides:	libtqt3-mt-psql = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
-%description -n libtqt3-mt-psql
+%description -n %{libtqt3}-mt-psql
 This package contains the threaded PostgreSQL plugin for TQt3.
 Install it if you intend to use or write TQt programs that are
 to access a PostgreSQL DB.
 
-%files -n libtqt3-mt-psql
+%files -n %{libtqt3}-mt-psql
 %defattr(-,root,root,-)
 %{_libdir}/tqt3/plugins/sqldrivers/libqsqlpsql.so
 
 ##########
 
 %if 0%{?with_ibase}
-%package -n libtqt3-mt-ibase
+%package -n %{libtqt3}-mt-ibase
 Summary:	InterBase/FireBird database driver for TQt3 (Threaded)
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Provides:	libtqt3-mt-ibase = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
-%description -n libtqt3-mt-ibase
+%description -n %{libtqt3}-mt-ibase
 This package contains the threaded InterBase/FireBird plugin
 for TQt3. Install it if you intend to use or write TQt programs
 that are to access an InterBase/FireBird DB.
 
-%files -n libtqt3-mt-ibase
+%files -n %{libtqt3}-mt-ibase
 %defattr(-,root,root,-)
 %{_libdir}/tqt3/plugins/sqldrivers/libqsqlibase.so
 %endif
 
 ##########
 
-%package -n libtqt3-mt-sqlite
+%package -n %{libtqt3}-mt-sqlite
 Summary:	SQLite database driver for TQt3 (Threaded)
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Provides:	libtqt3-mt-sqlite = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
-%description -n libtqt3-mt-sqlite
+%description -n %{libtqt3}-mt-sqlite
 This package contains the threaded SQLite plugin for TQt3. Install
 it if you intend to use or write TQt programs that are to access an
 SQLite DB.
 
-%files -n libtqt3-mt-sqlite
+%files -n %{libtqt3}-mt-sqlite
 %defattr(-,root,root,-)
 %{_libdir}/tqt3/plugins/sqldrivers/libqsqlite.so
 
 ##########
 
-%package -n libtqt3-mt-sqlite3
+%package -n %{libtqt3}-mt-sqlite3
 Summary:	SQLite3 database driver for TQt3 (Threaded)
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Provides:	libtqt3-mt-sqlite3 = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
-%description -n libtqt3-mt-sqlite3
+%description -n %{libtqt3}-mt-sqlite3
 This package contains the threaded SQLite3 plugin for TQt3. Install
 it if you intend to use or write TQt programs that are to access an
 SQLite3 DB.
 
-%files -n libtqt3-mt-sqlite3
+%files -n %{libtqt3}-mt-sqlite3
 %defattr(-,root,root,-)
 %{_libdir}/tqt3/plugins/sqldrivers/libqsqlite3.so
 
@@ -840,7 +893,7 @@ SQLite3 DB.
 %package -n tqt3-compat-headers
 Summary:	TQt 1.x and 2.x compatibility includes
 Group:		Development/Libraries/X11
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
 %description -n tqt3-compat-headers
 This package contains header files that are intended for build
@@ -915,7 +968,7 @@ libtqt3-headers.
 %package -n tqt3-dev-tools
 Summary:	TQt3 development tools
 Group:		Development/Libraries/X11
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt-devel = %{version}-%{release}
 Requires:	tqt3-dev-tools-devel = %{version}-%{release}
 
 %description -n tqt3-dev-tools
@@ -933,8 +986,8 @@ For TQt3 development, you most likely want to install this package.
 %{_bindir}/tquic
 %{_bindir}/tqmoc
 %{_bindir}/tqembed
+%{_mandir}/man1/lupdate-tqt3.1*
 %{_mandir}/man1/lrelease-tqt3.1*
-%{_mandir}/man1/lupdate-tqt3.1.gz
 %{_mandir}/man1/moc-tqt3.1*
 %{_mandir}/man1/uic-tqt3.1*
 
@@ -958,7 +1011,8 @@ that are written using TQt3.
 %package -n tqt3-designer
 Summary:	TQt3 Designer
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-designer
 The TQt Designer is a GUI design program that interactively lets you
@@ -986,7 +1040,6 @@ or automake.
 %{_libdir}/tqt3/plugins/designer/libkdevdlgplugin.so
 %{_libdir}/tqt3/plugins/designer/librcplugin.so
 %{_libdir}/tqt3/plugins/designer/libwizards.so
-#{_datadir}/applications/designer-tqt3.desktop
 %dir %{_datadir}/tqt3/tools/tqtconv2ui
 %{_datadir}/tqt3/tools/tqtconv2ui/main.cpp
 %{_datadir}/tqt3/tools/tqtconv2ui/tqtconv2ui.pro
@@ -994,15 +1047,15 @@ or automake.
 %{_datadir}/tqt3/tools/tqtcreatecw/README
 %{_datadir}/tqt3/tools/tqtcreatecw/main.cpp
 %{_datadir}/tqt3/tools/tqtcreatecw/tqtcreatecw.pro
-
+%{_datadir}/applications/tqdesigner.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqdesigner.png
 
 ###########
 
 %package -n tqt3-apps-devel
 Summary:	TQt3 Developer applications development files
 Group:		Development/Libraries/X11
-Requires:	libtqt3-mt = %{version}-%{release}
-Requires:	libtqt3-mt-devel = %{version}-%{release}
+Requires:	%{libtqt3}-mt-devel = %{version}-%{release}
 
 %description -n tqt3-apps-devel
 This package is intended for developers who want to develop applications
@@ -1043,7 +1096,8 @@ developer includes with his application.
 %package -n tqt3-linguist
 Summary:	The TQt3 Linguist
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-linguist
 This package contains the TQt3 Linguist which provides translators a
@@ -1058,16 +1112,18 @@ development files by the translator.
 %{_datadir}/tqt3/phrasebooks/*
 %{_datadir}/tqt3/doc/html/linguist*html
 %{_datadir}/tqt3/doc/html/linguist*dcf
-#{_datadir}/applications/linguist-tqt3.desktop
 %dir %{_docdir}/tqt3-linguist
 %{_docdir}/tqt3-linguist/qt_untranslated.ts
+%{_datadir}/applications/tqlinguist.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqlinguist.png
 
 ##########
 
 %package -n tqt3-assistant
 Summary:	The TQt3 assistant application
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-assistant
 This package contains the TQt3 Assistant, an easy to use frontend for
@@ -1084,16 +1140,19 @@ the package tqt3-apps-devel.
 %files -n tqt3-assistant
 %defattr(-,root,root,-)
 %{_bindir}/tqassistant
-#{_datadir}/applications/assistant-tqt3.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqassistant.png
 %{_datadir}/tqt3/doc/html/assistant*html
 %{_datadir}/tqt3/doc/html/assistant*dcf
+%{_datadir}/applications/tqassistant.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqassistant.png
 
 ##########
 
 %package -n tqt3-qtconfig
 Summary:	The TQt3 Configuration Application
 Group:		Development/Libraries/X11
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
+Requires:	tqt3-doc = %{version}-%{release}
 
 %description -n tqt3-qtconfig
 The TQt Configuration program allows endusers to configure the look
@@ -1107,14 +1166,15 @@ install this package.
 %files -n tqt3-qtconfig
 %defattr(-,root,root,-)
 %{_bindir}/tqtconfig
-#{_datadir}/applications/tqt3config.desktop
+%{_datadir}/applications/tqtconfig.desktop
+%{_datadir}/icons/hicolor/32x32/apps/tqtconfig.png
 
 ###########
 
 %package -n tqt3-dev-tools-embedded
 Summary:	Tools to develop embedded TQt applications
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt-devel = %{version}-%{release}
 
 %description -n tqt3-dev-tools-embedded
 This package contains applications only suitable for developing
@@ -1138,7 +1198,7 @@ by TQt Embedded applications.
 %package -n tqt3-dev-tools-compat
 Summary:	Conversion utilities for TQt3 development
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt-devel = %{version}-%{release}
 
 %description -n tqt3-dev-tools-compat
 This package contains some older TQt tools (namely tqt20fix tqtrename140,
@@ -1163,7 +1223,7 @@ translation system to the TQt 3 system.
 %package -n tqt3-i18n
 Summary:	Translation (i18n) files for TQt3 library
 Group:		System/GUI/Other
-Requires:	libtqt3-mt = %{version}-%{release}
+Requires:	%{libtqt3}-mt = %{version}-%{release}
 
 %description -n tqt3-i18n
 This package contains the internationalization files for the TQt library.
@@ -1279,10 +1339,6 @@ export QTDIR=$(pwd)
 export PATH=${QTDIR}/bin:${PATH}
 export MANPATH=${QTDIR}/doc/man:${MANPATH}
 export LD_LIBRARY_PATH="${QTDIR}/lib"
-
-%if 0%{?rhel} == 5
-%__sed -i src/kernel/ntqstyle.h -e "s|#ifdef ENABLE_TQSTYLECONTROLELEMENTDATA_SLOW_COPY|#if 1|"
-%endif
 
 # Checks for supplementary include dir
 INCDIRS=""
@@ -1406,56 +1462,69 @@ export LD_LIBRARY_PATH=${QTDIR}/lib
 %__make INSTALL_ROOT=%{?buildroot} install
 %__make INSTALL_ROOT=%{?buildroot} plugins-install
 
-%__install -m755 bin/tqtrename140 %{?buildroot}%{_bindir}
-%__install -m755 bin/tqt20fix %{?buildroot}%{_bindir}
-%__install -m755 bin/tqtfindtr %{?buildroot}%{_bindir}
+%__install -m755 "bin/tqtrename140" "%{?buildroot}%{_bindir}"
+%__install -m755 "bin/tqt20fix" "%{?buildroot}%{_bindir}"
+%__install -m755 "bin/tqtfindtr" "%{?buildroot}%{_bindir}"
 
 # install tqtconv2ui
-%__install -m755 bin/tqtconv2ui %{?buildroot}%{_bindir}/tqtconv2ui
+%__install -m755 "bin/tqtconv2ui" "%{?buildroot}%{_bindir}/tqtconv2ui"
 
 # install tqvfb
-%__install -m755 -D tools/tqvfb/tqvfb %{?buildroot}%{_bindir}/tqvfb
-%__install -m644 -D tools/tqvfb/pda.skin %{?buildroot}%{_sysconfdir}/tqt3/tqvfb/pda.skin
-%__install -m644 -D tools/tqvfb/pda_down.png %{?buildroot}%{_datadir}/tqvfb/pda_down.png
-%__install -m644 -D tools/tqvfb/pda_up.png %{?buildroot}%{_datadir}/tqvfb/pda_up.png
+%__install -m755 -D "tools/tqvfb/tqvfb" "%{?buildroot}%{_bindir}/tqvfb"
+%__install -m644 -D "tools/tqvfb/pda.skin" "%{?buildroot}%{_sysconfdir}/tqt3/tqvfb/pda.skin"
+%__install -m644 -D "tools/tqvfb/pda_down.png" "%{?buildroot}%{_datadir}/tqvfb/pda_down.png"
+%__install -m644 -D "tools/tqvfb/pda_up.png" "%{?buildroot}%{_datadir}/tqvfb/pda_up.png"
 
 ## create tqt3-apps-dev-package
 cp tools/designer/interfaces/*.h %{?buildroot}%{?_includedir}/tqt3/
 cp tools/designer/editor/*.h %{?buildroot}%{?_includedir}/tqt3/
 
 # language file for linguist
-%__install -D -m644 translations/qt_untranslated.ts %{?buildroot}%{?_docdir}/tqt3-linguist/qt_untranslated.ts
+%__install -D -m644 "translations/qt_untranslated.ts" "%{?buildroot}%{?_docdir}/tqt3-linguist/qt_untranslated.ts"
 
 # fix that stupid friggin professional file
-perl -pi -e 's{\$$\$$QT_SOURCE_TREE}{$(QTDIR)}' src/qt_professional.pri
+perl -pi -e 's{\$$\$$QT_SOURCE_TREE}{$(QTDIR)}' "src/qt_professional.pri"
 
 ## i18n files for designer, linguist and assistant
 for i in designer/designer assistant linguist/linguist; do
   pushd "tools/${i}"
   tqlrelease "${i##*/}.pro"
   for j in ${i##*/}_*.qm; do
-    install -m644 "${j}" %{?buildroot}%{_datadir}/tqt3/translations/
+    install -m644 "${j}" "%{?buildroot}%{_datadir}/tqt3/translations/"
   done
   popd
 done
 
 # desktop lnk files
-#install -m644 -D "%{SOURCE1}" "%{?buildroot}%{_datadir}/applications/assistant-tqt3.desktop"
-#install -m644 -D "%{SOURCE2}" "%{?buildroot}%{_datadir}/applications/designer-tqt3.desktop"
-#install -m644 -D "%{SOURCE3}" "%{?buildroot}%{_datadir}/applications/linguist-tqt3.desktop"
-#install -m644 -D "%{SOURCE4}" "%{?buildroot}%{_datadir}/applications/tqt3config.desktop"
+%__install -m644 -D "%{SOURCE11}" "%{?buildroot}%{_datadir}/applications/tqassistant.desktop"
+%__install -m644 -D "%{SOURCE12}" "%{?buildroot}%{_datadir}/applications/tqdesigner.desktop"
+%__install -m644 -D "%{SOURCE13}" "%{?buildroot}%{_datadir}/applications/tqlinguist.desktop"
+%__install -m644 -D "%{SOURCE14}" "%{?buildroot}%{_datadir}/applications/tqtconfig.desktop"
+
+%if 0%{?suse_version}
+%suse_update_desktop_file tqassistant Documentation
+%suse_update_desktop_file tqdesigner GUIDesigner
+%suse_update_desktop_file tqlinguist Translation
+%suse_update_desktop_file tqtconfig Utility
+%endif
+
+# Install applications icons
+%__install -m644 -D "tools/assistant/images/appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqassistant.png"
+%__install -m644 -D "tools/designer/designer/images/designer_appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqdesigner.png"
+%__install -m644 -D "tools/linguist/linguist/images/appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqlinguist.png"
+%__install -m644 -D "tools/qtconfig/images/appicon.png" "%{?buildroot}%{_datadir}/icons/hicolor/32x32/apps/tqtconfig.png"
 
 # build attic package and copy it to tqt3-compat-headers
 pushd src
-tar cvvfz attic.tar.gz attic/
-install -D -m644 attic.tar.gz %{?buildroot}%{_docdir}/tqt3-compat-headers/attic.tar.gz
+tar cvvfz "attic.tar.gz" attic/
+install -D -m644 "attic.tar.gz" "%{?buildroot}%{_docdir}/tqt3-compat-headers/attic.tar.gz"
 popd
 
 # install the man pages
-install -D -m644 doc/man/man1/moc.1 %{?buildroot}%{_mandir}/man1/moc-tqt3.1
-install -D -m644 doc/man/man1/uic.1 %{?buildroot}%{_mandir}/man1/uic-tqt3.1
-install -D -m644 doc/man/man1/lrelease.1 %{?buildroot}%{_mandir}/man1/lrelease-tqt3.1
-install -D -m644 doc/man/man1/lupdate.1 %{?buildroot}%{_mandir}/man1/lupdate-tqt3.1
+install -D -m644 "doc/man/man1/moc.1" "%{?buildroot}%{_mandir}/man1/moc-tqt3.1"
+install -D -m644 "doc/man/man1/uic.1" "%{?buildroot}%{_mandir}/man1/uic-tqt3.1"
+install -D -m644 "doc/man/man1/lrelease.1" "%{?buildroot}%{_mandir}/man1/lrelease-tqt3.1"
+install -D -m644 "doc/man/man1/lupdate.1" "%{?buildroot}%{_mandir}/man1/lupdate-tqt3.1"
 
 # Install source for the designer tools, such as tqtcreatecw.
 cp -ra tools/designer/tools %{?buildroot}%{_datadir}/tqt3/tools
@@ -1482,9 +1551,10 @@ find tqt3-examples -name "tt3" -print | xargs rm -rf
 find tqt3-examples -name ".moc" | xargs rm -rf
 find tqt3-examples -name ".obj" | xargs rm -rf
 find tqt3-examples -name "Makefile" | xargs rm -rf
-install -D -m 755 %{SOURCE5} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
+install -D -m 755 %{SOURCE1} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
 tar cvvfz tqt3-examples.tar.gz tqt3-examples/
-install -D -m644  tqt3-examples.tar.gz %{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz
+install -D -m644 "tqt3-examples.tar.gz" "%{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz"
+
 
 %clean
 %__rm -rf %{buildroot}

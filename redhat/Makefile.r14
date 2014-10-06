@@ -26,11 +26,11 @@ main:	tdelibs tdebase tdeaccessibility tdeadmin tdegames tdemultimedia tdepim td
 libraries:	libkdcraw libkexiv2 libkipi libksquirrel libtdeldap libtqt-perl pytdeextensions python-trinity
 applications:	abakus amarok basket bibletime digikam dolphin filelight gtk3-tqt-engine gtk-qt-engine gwenview k3b k9copy kaffeine kaffeine-mozilla kasablanca katapult kbarcode kbfx kbibtex kbiff kbookreader kchmviewer kcmautostart kcmldap kcmldapcontroller kcmldapmanager kcpuload kdbg kdbusnotification kdiff3 kdirstat keep kerberostray kftpgrabber kile kima kiosktool kkbswitch klcddimmer kmplayer kmyfirewall kmymoney knemo knetload knetstats knights knmap knowit knutclient koffice konversation kopete-otr kpicosim kpilot krecipes krename krusader kscope ksensors kshowmail kshutdown ksplash-engine-moodin ksquirrel kstreamripper ksystemlog ktechlab ktorrent kuickshow kvirc kvkbd kvpnc mplayerthumbs piklab potracegui qt4-tqt-theme-engine rosegarden smartcardauth smb4k soundkonverter tde-guidance tdeio-apt tdeio-ftps tdeio-locate tdeio-sword tdeio-umountwrapper tdenetworkmanager tdepowersave tderadio tde-style-lipstik tde-style-qtcurve tdesudo tdesvn tde-systemsettings tdmtheme tellico tork twin-style-crystal wlassistant yakuake
 i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
-extras:	icons-nuvola kdevmon kdissert klamav kompose koverartist kpacman style-ia-ora
+extras:	icons-nuvola kdevmon kdissert klamav kompose koverartist kpacman png2qrgb style-ia-ora
 
 
 ### Trinity Dependencies
-arts:	tqtinterface esound cmake
+arts:	tqtinterface trinity-filesystem esound cmake
 	$(call buildpkg,dependencies/arts)
 
 avahi-tqt:	tqtinterface
@@ -56,7 +56,7 @@ python-tqt: sip4-tqt tdelibs
 
 sip4-tqt:
 	$(call buildpkg,dependencies/sip4-tqt)
-	
+
 tqca:	tqtinterface
 	$(call buildpkg,dependencies/tqca)
 
@@ -85,7 +85,7 @@ tdeadmin:	tdebase
 tdeartwork:	tdebase
 	$(call buildpkg,tdeartwork)
 
-tdebase:	tdelibs htdig cmake
+tdebase:	tdelibs cmake htdig fileshareset
 	$(call buildpkg,tdebase)
 
 tdebindings:	tdebase tqscintilla
@@ -100,7 +100,7 @@ tdegames:	tdebase tdemultimedia
 tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake avahi-tqt
+tdelibs:	tqt3 tqtinterface trinity-filesystem arts dbus-tqt dbus-1-tqt cmake avahi-tqt
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode
@@ -199,7 +199,7 @@ ifneq ($(wildcard /boot/vmlinuz*.el6*),)
 endif
 
 m4:
-# Build on CentOS 5 only (vendor-provided Poppler is too old)
+# Build on CentOS 5 only (vendor-provided m4 is too old)
 ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,3rdparty/m4)
 endif
@@ -662,6 +662,9 @@ meta:
 	$(call buildpkg,extras/trinity-desktop)
 
 ### Extra packages
+fileshareset:
+	$(call buildpkg,extras/fileshareset)
+
 icons-nuvola:
 	$(call buildpkg,extras/icons-nuvola)
 
@@ -683,5 +686,11 @@ koverartist:
 kpacman:
 	$(call buildpkg,extras/kpacman)
 
+png2qrgb:
+	$(call buildpkg,extras/png2qrgb)
+
 style-ia-ora:
 	$(call buildpkg,extras/style-ia-ora)
+
+trinity-filesystem:
+	$(call buildpkg,extras/trinity-filesystem)

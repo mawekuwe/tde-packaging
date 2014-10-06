@@ -21,6 +21,29 @@ LOGFILE=/tmp/log.${COMP##*/}
 TEMPDIR="$(mktemp -d)"
 cp -f ${SPECFILE} ${SOURCES} ${TARBALL} "${TEMPDIR}"
 
+# Check if there are patches
+PATCHDIR="${SPECFILE%/*}/patches/${TDE_VERSION}"
+PATCHLIST="${PATCHDIR}/patches"
+if [ -r "${PATCHLIST}" ]; then
+  while read l; do
+    case "${l}" in
+      ""|"#"*);;
+      *)
+        if [ -r "${PATCHDIR}/${l}" ]; then
+          echo "Applying patch '${l}'..."
+          cat "${PATCHDIR}/${l}" >>"${TEMPDIR}/one.patch"
+        fi
+      ;;
+    esac
+  done < "${PATCHLIST}"
+fi
+
+if [ -r "${TEMPDIR}/one.patch" ]; then
+  sed -i "${TEMPDIR}/"*.spec \
+      -e "/^Source0:/ s/$/\nPatch0: one.patch/" \
+      -e "/%setup/ s/$/\n%patch0 -p1/"
+fi
+
 # Determines if we are running an i386 or x86_64 distro
 if [ "$(rpm -q --qf '%{arch}\n' kernel | tail -n 1)" = "i686" ]; then
 	ARGS="${ARGS} --target=i686"
@@ -39,11 +62,13 @@ rpmbuild -ba \
   --define "_rpmdir ${RPMDIR}" \
   --define "_srcrpmdir ${SRPMDIR}" \
   --define '_build_create_debug 1' \
+  --define "vendor Trinity\ Desktop" \
+  --define "packager Francois\ Andriot\ <francois.andriot@free.fr>" \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
-  --define "preversion ${PREVERSION}" \
+  --define "preversion ${PREVERSION:-\\\"\\\"}" \
   ${ARGS} \
-  "${SPECFILE}"
+  "${TEMPDIR}/${SPECFILE##*/}"
 RET=$?
 
 # Removes BUILDDIR if build succeeded

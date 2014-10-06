@@ -47,21 +47,6 @@ AutoReq: no
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-# TDE 3.5.12: Translate 'kdesu' message was modified in 'kdebase' package
-Patch0:		kde-i18n-kdesu.patch
-
-# TDE 3.5.12: Translate 'Open Terminal Here' desktop shortcut
-Patch1:		trinity-kde-i18n-fr-openterminalhere.patch
-
-# TDE 3.5.13: French translations for new features
-Patch2:		kde-i18n-3.5.13-add_french_translations.patch
-
-# TDE 3.5.13: Updated translations for zh_TW, thanks to Wei-Lun Chao !
-Patch3:		kde-i18n-zh_TW-3.5.10.patch.gz
-
-# TDE 3.5.13.2: Updated french translations
-Patch4:		trinity-tde-i18n-fr-3.5.13.2-updates.patch
-
 BuildRequires:	findutils
 BuildRequires:	gettext
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -694,19 +679,6 @@ Provides:	 trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-
-# Patches for French translations
-pushd tde-i18n-fr
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch4 -p1
-popd
-
-# Patches for Chinese (zh_TW) translations
-pushd tde-i18n-zh_TW
-zcat %{PATCH3} | patch -p1 || :
-popd
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"

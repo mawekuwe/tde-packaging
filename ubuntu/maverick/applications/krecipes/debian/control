@@ -12,7 +12,7 @@ Vcs-Svn: svn://svn.debian.org/svn/pkg-kde/kde-extras/krecipes/trunk
 Package: krecipes-trinity
 Architecture: any
 Depends: krecipes-data-trinity (= ${source:Version}), ${shlibs:Depends}, ${misc:Depends}
-Suggests: libtqt3-mt-mysql | libtqt3-mt-psql, krecipes-doc-trinity (= ${source:Version})
+Suggests: libtqt3-mt-sqlite3 | libtqt3-mt-mysql | libtqt3-mt-psql, krecipes-doc-trinity (= ${source:Version})
 Description: recipes manager for TDE
  Krecipes is a TDE application designed to manage recipes. It can help you to
  do your shopping list, search through your recipes to find what you can do

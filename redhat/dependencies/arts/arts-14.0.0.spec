@@ -15,28 +15,27 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific variables
+# TDE variables
 %define tde_version 14.0.0
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_datadir %{tde_prefix}/share
-
 %define tde_tdeincludedir %{tde_includedir}/tde
-
 %define _docdir %{tde_datadir}/doc
 
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
+
 Name:		trinity-arts
-Epoch:		1
+Epoch:		2
 Version:	1.5.10
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-Summary:	aRts (analog realtime synthesizer) - the TDE sound system
+Summary:	ARTS (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
 URL:		http://www.trinitydesktop.org/
 
@@ -54,7 +53,9 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	libtqt4-devel >= 1:4.2.0
+BuildRequires:	libtqt4-devel >= 2:4.2.0
+BuildRequires:	trinity-filesystem >= %{tde_version}
+Requires:		trinity-filesystem >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
@@ -117,7 +118,7 @@ BuildRequires:		libmad-devel
 %define with_pulseaudio 1
 %endif
 
-Requires:		libtqt4 >= 1:4.2.0
+Requires:		libtqt4 >= 2:4.2.0
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"
@@ -139,17 +140,8 @@ playing a wave file with some effects.
 %files
 %defattr(-,root,root,-)
 %doc COPYING.LIB
-%dir %{tde_prefix}
-%dir %{tde_bindir}
-%dir %{tde_datadir}
-%dir %{tde_datadir}/config
-%dir %{tde_datadir}/doc
-%dir %{tde_libdir}
 %dir %{tde_libdir}/mcop
 %dir %{tde_libdir}/mcop/Arts
-%dir %{tde_libdir}/pkgconfig
-%dir %{tde_includedir}
-%dir %{tde_tdeincludedir}
 %{tde_libdir}/mcop/Arts/*
 %{tde_libdir}/mcop/*.mcopclass
 %{tde_libdir}/mcop/*.mcoptype
@@ -174,11 +166,38 @@ playing a wave file with some effects.
 
 %package devel
 Group:		Development/Libraries
-Summary:	aRts (analog realtime synthesizer) - the TDE sound system (Development files)
+Summary:	ARTS (analog realtime synthesizer) - the TDE sound system (Development files)
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if "%{?tde_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
+
+Requires:	alsa-lib-devel
+Requires:	audiofile-devel
+Requires:	libvorbis-devel
+Requires:	esound-devel
+
+%if 0%{?with_libmad}
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires:		%{_lib}mad-devel
+%endif
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
+Requires:		libmad-devel
+%endif
+%endif
+
+%if 0%{?with_jack}
+%if 0%{?mgaversion} || 0%{?mdkversion}
+Requires:	%{_lib}jack-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora}
+Requires:	jack-audio-connection-kit-devel
+%endif
+%if 0%{?suse_version}
+Requires:	libjack-devel
+%endif
+%endif
+
 
 %description devel
 arts (analog real-time synthesizer) is the sound system of TDE.
@@ -235,7 +254,6 @@ Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 
 ##########
-
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}

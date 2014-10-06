@@ -54,13 +54,11 @@ BuildRequires:	desktop-file-utils
 
 BuildRequires:	trinity-tdenetwork-devel >= %{tde_version}
 
-# Kopete is provided by kdenetwork
+# Kopete is provided by tdenetwork
 Requires:		trinity-kopete >= %{tde_version}
-%if 0%{?suse_version} >= 1230
-BuildRequires:	libotr2-devel
-%else
+
+# OTR support
 BuildRequires:	libotr-devel
-%endif
 
 %description
 This plugin enables Off-The-Record encryption for the TDE instant
@@ -102,7 +100,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility
 
-%__make %{_smp_mflags}
+%__make %{_smp_mflags} || %__make
 
 
 %install

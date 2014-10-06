@@ -38,7 +38,7 @@ BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 
 # TDE specific building variables
 BuildRequires:	python
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
+BuildRequires:	libtqt4-devel >= 2:4.2.0
 
 %description
 SIP is a tool for generating bindings for C++ classes with some ideas

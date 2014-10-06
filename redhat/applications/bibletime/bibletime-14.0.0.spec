@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		A bible study tool for Trinity
 Version:		1.6.6.0
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -102,7 +102,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-%if 0%{?fedora} >= 20 || 0%{?pclinuxos} || 0%{?rhel} >= 7
+%if 0%{?pclinuxos} || 0%{?rhel} >= 7
   --with-sword-dir=%{tde_prefix}
 %endif
 
