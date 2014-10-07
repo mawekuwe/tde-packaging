@@ -39,8 +39,10 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
+BuildRequires:	update-desktop-files
 BuildRequires:	brp-check-suse
 BuildRequires:	brp-extract-appdata
+Requires:	update-desktop-files
 Requires:	brp-check-suse
 Requires:	brp-extract-appdata
 Requires:	sed
