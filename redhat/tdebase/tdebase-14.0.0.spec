@@ -101,9 +101,11 @@ Provides:	trinity-kdebase-extras = %{version}-%{release}
 Obsoletes:	tdebase < %{version}-%{release}
 Provides:	tdebase = %{version}-%{release}
 
-# for set_permissions macro
 %if 0%{?suse_version}
+# for set_permissions macro
 PreReq: permissions
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
 %endif
 
 ### Distribution-specific settings ###
@@ -1163,7 +1165,6 @@ plugdev group.
 %{tde_tdeappdir}/tdehtml_behavior.desktop
 %{tde_tdeappdir}/tdehtml_fonts.desktop
 %{tde_tdeappdir}/tdehtml_java_js.desktop
-#%{tde_tdeappdir}/kinfocenter.desktop
 %{tde_tdeappdir}/kthememanager.desktop
 %{tde_tdeappdir}/lanbrowser.desktop
 %{tde_tdeappdir}/language.desktop
@@ -1221,6 +1222,29 @@ plugdev group.
 %{tde_datadir}/services/kurisearchfilter.desktop
 %{tde_datadir}/services/localdomainurifilter.desktop
 %{tde_tdedocdir}/HTML/en/tdefontview/
+%{tde_datadir}/icons/hicolor/*/apps/kcmcolors.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmcomponentchooser.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmdesktop.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmdesktopbehavior.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmkdnssd.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmlaunch.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmmedia.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmmouse.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmnetpref.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmnic.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmperformance.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmprivacy.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmtaskbar.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmcgi.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmcrypto.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmhistory.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmjoystick.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmkded.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmkhtml_filter.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmsmserver.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmspellchecking.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmkhtml_filter.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmspellchecking.png
 
 %{tde_datadir}/apps/usb.ids
 %{tde_datadir}/apps/kcmview1394/oui.db
@@ -1696,13 +1720,13 @@ done
 eval $(tr "," ";" </etc/product.id) 2>/dev/null
 # Then, we create a symbolic link to the corresponding background
 if [ -r "%{_datadir}/mdk/backgrounds/Mandriva-${product:-Free}-1280x1024-1300.jpg" "%{tde_bg}" ]; then
-  %__ln -sf "%{_datadir}/mdk/backgrounds/Mandriva-${product:-Free}-1280x1024-1300.jpg" "%{tde_bg}"
+  ln -sf "%{_datadir}/mdk/backgrounds/Mandriva-${product:-Free}-1280x1024-1300.jpg" "%{tde_bg}"
 fi
 %endif
 
 %if "%{distribution}" == "Mageia"
 if [ ! -r "%{tde_bg}" ] && [ -r "%{_datadir}/mga/backgrounds/Mageia-Default-1920x1440.png" ]; then
-  %__ln -sf "%{_datadir}/mga/backgrounds/Mageia-Default-1920x1440.png" "%{tde_bg}"
+  ln -sf "%{_datadir}/mga/backgrounds/Mageia-Default-1920x1440.png" "%{tde_bg}"
 fi
 %endif
 
@@ -3459,6 +3483,29 @@ if [ -n "${REBOOT}" ]; then
   -e "s|/sbin/reboot|${REBOOT}|g"
 fi
 
+# Update icons for some control center modules
+%__sed -i "kcontrol/componentchooser/componentchooser.desktop"        -e "s|^Icon=.*|Icon=kcmcomponentchooser|"
+%__sed -i "kcontrol/taskbar/kcmtaskbar.desktop"                       -e "s|^Icon=.*|Icon=kcmtaskbar|"
+%__sed -i "kcontrol/nics/nic.desktop"                                 -e "s|^Icon=.*|Icon=kcmnic|"
+%__sed -i "kcontrol/input/mouse.desktop"                              -e "s|^Icon=.*|Icon=kcmmouse|"
+%__sed -i "kcontrol/smserver/kcmsmserver.desktop"                     -e "s|^Icon=.*|Icon=kcmsmserver|"
+%__sed -i "kcontrol/kded/kcmkded.desktop"                             -e "s|^Icon=.*|Icon=kcmkded|"
+%__sed -i "kcontrol/konq/desktop.desktop"                             -e "s|^Icon=.*|Icon=kcmdesktop|"
+%__sed -i "kcontrol/konq/desktopbehavior.desktop"                     -e "s|^Icon=.*|Icon=kcmdesktopbehavior|"
+%__sed -i "kcontrol/privacy/privacy.desktop"                          -e "s|^Icon=.*|Icon=kcmprivacy|"
+%__sed -i "kcontrol/crypto/crypto.desktop"                            -e "s|^Icon=.*|Icon=kcmcrypto|"
+%__sed -i "kcontrol/tdeio/netpref.desktop"                            -e "s|^Icon=.*|Icon=kcmnetpref|"
+%__sed -i "kcontrol/konqhtml/tdehtml_filter.desktop"                  -e "s|^Icon=.*|Icon=kcmkhtml_filter|"
+%__sed -i "kcontrol/joystick/joystick.desktop"                        -e "s|^Icon=.*|Icon=kcmjoystick|"
+%__sed -i "kcontrol/colors/colors.desktop"                            -e "s|^Icon=.*|Icon=kcmcolors|"
+%__sed -i "kcontrol/performance/kcmperformance.desktop"               -e "s|^Icon=.*|Icon=kcmperformance|"
+%__sed -i "kcontrol/launch/kcmlaunch.desktop"                         -e "s|^Icon=.*|Icon=kcmlaunch|"
+%__sed -i "kcontrol/dnssd/kcm_tdednssd.desktop"                       -e "s|^Icon=.*|Icon=kcmkdnssd|"
+%__sed -i "kcontrol/spellchecking/spellchecking.desktop"              -e "s|^Icon=.*|Icon=kcmspellchecking|"
+%__sed -i "konqueror/sidebar/trees/history_module/kcmhistory.desktop" -e "s|^Icon=.*|Icon=kcmhistory|"
+%__sed -i "tdeioslave/cgi/kcmcgi/kcmcgi.desktop"                      -e "s|^Icon=.*|Icon=kcmcgi|"
+%__sed -i "tdeioslave/media/tdecmodule/media.desktop"                 -e "s|^Icon=.*|Icon=kcmmedia|" 
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -3609,7 +3656,8 @@ EOF
 %__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
 %endif
 
-# Makes 'media_safelyremove.desktop' an alternative
+# Makes 'media_safelyremove.desktop' an alternative.
+# This allows the use of 'tdeio-umountwrapper' package.
 %__mv -f "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase"
 
 # SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
@@ -3619,7 +3667,7 @@ EOF
 %__sed -i "%{?buildroot}/usr/lib/X11/displaymanagers/tdm" -e "s|/opt/trinity/bin|%{tde_bindir}|g"
 %endif
 
-# Fedora 18: no more SYSV init script, we have to use systemd.
+# Fedora 18 / RHEL 7: no more SYSV init script, we have to use systemd to launch TDM.
 %if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
 %__install -D -m 644 "%{SOURCE7}" "%{?buildroot}/usr/lib/systemd/system/tdm.service"
 %__sed -i "s|kdm|tdm|g" "%{?buildroot}/usr/lib/systemd/system/tdm.service"
@@ -3629,12 +3677,12 @@ EOF
 %__mkdir_p "%{?buildroot}%{tde_datadir}/config"
 %__ln_s "%{_sysconfdir}/trinity/tdm" "%{?buildroot}%{tde_datadir}/config/tdm"
 
-# SELINUX policy
+# SELINUX policy for RHEL / Fedora
 %if 0%{?with_selinux_policy}
 %__install -D -m 644 "%{SOURCE8}" "%{?buildroot}%{?_sysconfdir}/trinity/tdm/tdm.pp"
 %endif
 
-# Mageia icon
+# Mageia icon for TDE menu
 %if 0%{?mgaversion} >= 3
 %__install -D -m 644 "%{SOURCE9}" "%{?buildroot}%{tde_datadir}/oxygen/scalable/mgabutton.svg"
 %endif
@@ -3673,6 +3721,74 @@ if [ ! -d "%{?buildroot}%{_datadir}/faces" ]; then
   rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
 fi
 %__ln_s "%{_datadir}/faces" "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
+
+# Adds missing icons in 'hicolor' theme
+# These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
+mkdir -p "%{?buildroot}%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128}/apps/"
+pushd "%{?buildroot}%{tde_datadir}/icons"
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/misc.png              hicolor/"$i"x"$i"/apps/kcmcomponentchooser.png  ;done
+for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png              hicolor/"$i"x"$i"/apps/kcmperformance.png       ;done
+for i in 16;                   do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/services.png            hicolor/"$i"x"$i"/apps/kcmkded.png              ;done
+for i in {16,22,32,48};        do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/exit.png                hicolor/"$i"x"$i"/apps/kcmsmserver.png          ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/spellcheck.png          hicolor/"$i"x"$i"/apps/kcmspellchecking.png     ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png              hicolor/"$i"x"$i"/apps/kcmdesktopbehavior.png   ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png              hicolor/"$i"x"$i"/apps/kcmdesktop.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kmenu.png                  hicolor/"$i"x"$i"/apps/kcmtaskbar.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/colorscm.png          hicolor/"$i"x"$i"/apps/kcmcolors.png            ;done
+for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png              hicolor/"$i"x"$i"/apps/kcmlaunch.png            ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/filter.png              hicolor/"$i"x"$i"/apps/kcmkhtml_filter.png      ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/run.png                 hicolor/"$i"x"$i"/apps/kcmcgi.png               ;done
+for i in {16,22};              do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png             hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png              hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png         hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
+for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/joystick.png            hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png               hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png              hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png           hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/trashcan_empty.png       hicolor/"$i"x"$i"/apps/kcmprivacy.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png              hicolor/"$i"x"$i"/apps/kcmnic.png               ;done
+popd
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+# Other applications
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Help.desktop             Documentation Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Home.desktop             System FileManager core
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kate.desktop             TextEditor
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/KControl.desktop         X-SuSE-core
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Kfind.desktop            System Filesystem core
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kjobviewer.desktop       PrintingUtility
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/klipper.desktop          System TrayIcon
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kmenuedit.desktop        Core-Configuration
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/knetattach.desktop       System Network
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konqbrowser.desktop      WebBrowser
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konquerorsu.desktop      System FileManager
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konsole.desktop          TerminalEmulator
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konsolesu.desktop        TerminalEmulator
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpager.desktop           Utility  DesktopUtility
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpersonalizer.desktop    DesktopUtility
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/ksysguard.desktop        System Monitor
+%suse_update_desktop_file -u %{?buildroot}%{tde_tdeappdir}/ktip.desktop             System Utility
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kwrite.desktop           TextEditor
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/tdeprintfax.desktop      PrintingUtility
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tdefontview.desktop      Graphics Viewer
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tderandrtray.desktop     Applet X-TDE-settings-desktop
+%suse_update_desktop_file    %{?buildroot}%{tde_datadir}/applnk/.hidden/konqfilemgr.desktop      System FileManager
+%endif
+
+# Icons from TDE Control Center should only be displayed in TDE
+for i in %{?buildroot}%{tde_tdeappdir}/*.desktop ; do
+  if grep -q "^Categories=.*X-TDE-settings" "${i}"; then
+    if ! grep -q "OnlyShowIn=TDE" "${i}" ; then
+      echo "OnlyShowIn=TDE;" >>"${i}"
+    fi
+  fi
+done
+
+# Other apps that should stay in TDE
+for i in ksysguard tde-kcontrol tdefontview showdesktop; do
+  echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/${i}.desktop"
+done
 
 
 %clean
