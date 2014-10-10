@@ -1,0 +1,5 @@
+Libraries for the Trinity Desktop Environment:
+TDE Libraries included: tdecore (TDE core library), kdeui (user interface),
+kfm (file manager), khtmlw (HTML widget), tdeio (Input/Output, networking),
+kspell (spelling checker), jscript (javascript), kab (addressbook),
+kimgio (image manipulation).
