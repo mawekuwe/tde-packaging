@@ -2,7 +2,7 @@
 
 set -e
 
-package_name=tdesudo-trinity
+package_name=synaptic-trinity
 
 if [ -z "$package_name" ]; then
     print >&2 "Internal Error. Please report a bug."
