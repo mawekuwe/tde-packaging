@@ -35,10 +35,12 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	tqt3-compat-headers >= 3.5.0
+BuildRequires:	libtqt4-devel >= 2:4.2.0
+BuildRequires:	trinity-arts-devel >= 2:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext

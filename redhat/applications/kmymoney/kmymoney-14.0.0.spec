@@ -75,8 +75,8 @@ BuildRequires:	openjade-devel
 %endif
 
 # TQT3-sqlite3
-BuildRequires:	trinity-tqt3-sqlite3
-Requires:		trinity-tqt3-sqlite3
+BuildRequires:	libtqt3-mt-sqlite3
+Requires:		libtqt3-mt-sqlite3
 
 Requires:		%{name}-common == %{version}-%{release}
 

@@ -74,7 +74,6 @@ temperatures with KSensors.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -93,7 +92,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-rpath \
   --disable-gcc-hidden-visibility
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
