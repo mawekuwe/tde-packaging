@@ -24,14 +24,19 @@ case "${PKGNAME}" in
 esac
 
 # Runtime packages
-lib=$(rpm -E %_lib)
+if [ -r /etc/mandriva-release ]; then
+  lib=$(rpm -E %_lib)
+else
+  lib="lib"
+fi
+
 case "${PKGNAME}" in
   # Some packages have different runtime name than source package.
   "avahi-tqt") PKGRUNTIME="${lib}avahi-tqt1";;
   "dbus-tqt") PKGRUNTIME="${lib}dbus-tqt-1-0";;
   "dbus-1-tqt") PKGRUNTIME="${lib}dbus-1-tqt0";;
   "esound") PKGRUNTIME="esound-libs";;
-  "koffice") PKGRUNTIME="trinity-koffice-suite";;
+  "koffice") PKGRUNTIME="koffice-suite";;
   "libart-lgpl") PKGRUNTIME="${lib}art_lgpl_2-2";;
   "tqt3") PKGRUNTIME="${lib}tqt3-mt";;
   "tqtinterface") PKGRUNTIME="${lib}tqt4";;
@@ -67,7 +72,7 @@ if [ -n "${DEVEL}" ]; then
     "dbus-1-tqt") PKGDEVEL="libdbus-1-tqt-devel";;
     "esound") PKGDEVEL="esound-devel";;
     "libart-lgpl") PKGDEVEL="libart_lgpl-devel";;
-    "tqt3") PKGDEVEL="tqt3-dev-tools tqt3-apps-devel";;
+    "tqt3") PKGDEVEL="tqt3-dev-tools tqt3-apps-devel tqt3-compat-headers";;
     # Default case: development package has same name as runtime package, plus '-devel' suffix.
     *) PKGDEVEL="${PKGRUNTIME}-devel";;
   esac

@@ -1,7 +1,7 @@
 #
 # spec file for package tqt3
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -95,16 +95,18 @@ BuildRequires: cups-devel
 # GLIB2 support
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
 %define with_glibmainloop 1
-BuildRequires: glib2-devel
+%define glib2_devel glib2-devel
 %endif
+%{?glib2_devel:BuildRequires: %{glib2_devel}}
 
 # UUID support
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
-BuildRequires: libuuid-devel
+%define uuid_devel libuuid-devel
 %endif
 %if 0%{?rhel} == 5
-BuildRequires: e2fsprogs-devel
+%define uuid_devel e2fsprogs-devel
 %endif
+%{?uuid_devel:BuildRequires: %{uuid_devel}}
 
 # NAS support
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
@@ -114,75 +116,84 @@ BuildRequires: nas-devel
 
 # Xrender support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXrender-devel
+%define xrender_devel libXrender-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libxrender-devel
+%define xrender_devel libxrender-devel
 %endif
+%{?xrender_devel:BuildRequires: %{xrender_devel}}
 
 # Xrandr support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXrandr-devel
+%define xrandr_devel libXrandr-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libxrandr-devel
+%define xrandr_devel libxrandr-devel
 %endif
+%{?xrandr_devel:BuildRequires: %{xrandr_devel}}
 
 # Xcursor support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXcursor-devel
+%define xcursor_devel libXcursor-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libxcursor-devel
+%define xcursor_devel libxcursor-devel
 %endif
+%{?xcursor_devel:BuildRequires: %{xcursor_devel}}
 
 # Xinerama support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXinerama-devel
+%define xinerama_devel libXinerama-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libxinerama-devel
+%define xinerama_devel libxinerama-devel
 %endif
+%{?xinerama_devel:BuildRequires: %{xinerama_devel}}
 
 # Xft support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXft-devel
+%define xft_devel libXft-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libxft-devel
+%define xft_devel libxft-devel
 %endif
+%{?xft_devel:BuildRequires: %{xft_devel}}
 
 # Xext support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXext-devel
+%define xext_devel libXext-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libxext-devel
+%define xext_devel libxext-devel
 %endif
+%{?xext_devel:BuildRequires: %{xext_devel}}
 
 # X11 support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libX11-devel
+%define x11_devel libX11-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libx11-devel
+%define x11_devel libx11-devel
 %endif
+%{?x11_devel:BuildRequires: %{x11_devel}}
 
 # SM support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libSM-devel
+%define sm_devel libSM-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libsm-devel
+%define sm_devel libsm-devel
 %endif
+%{?sm_devel:BuildRequires: %{sm_devel}}
 
 # ICE support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libICE-devel
+%define ice_devel libICE-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires: libice-devel
+%define ice_devel libice-devel
 %endif
+%{?ice_devel:BuildRequires: %{ice_devel}}
 
 # XT support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -199,17 +210,18 @@ BuildRequires: libxmu-devel
 
 # XI support
 %if 0%{?rhel} == 4
-BuildRequires:	xorg-x11-devel
+%define xi_devel xorg-x11-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}xi-devel
+%define xi_devel %{_lib}xi-devel
 %endif
 %if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
-BuildRequires:	libXi-devel
+%define xi_devel libXi-devel
 %endif
 %if 0%{?suse_version} == 1140
-BuildRequires:	libXi6-devel
+%define xi_devel libXi6-devel
 %endif
+%{?xi_devel:BuildRequires: %{xi_devel}}
 
 # Xorg support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -334,106 +346,18 @@ Requires: libjpeg-devel
 Requires: libpng-devel
 Requires: zlib-devel
 
-# GLIB2 support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
-%define with_glibmainloop 1
-Requires: glib2-devel
-%endif
-
-# UUID support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
-Requires: libuuid-devel
-%endif
-%if 0%{?rhel} == 5
-Requires: e2fsprogs-devel
-%endif
-
-# XI support
-%if 0%{?rhel} == 4
-Requires:	xorg-x11-devel
-%endif
-%if 0%{?mgaversion} || 0%{?mdkversion}
-Requires:	%{_lib}xi-devel
-%endif
-%if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
-Requires:	libXi-devel
-%endif
-%if 0%{?suse_version} == 1140
-Requires:	libXi6-devel
-%endif
-
-# Xrender support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXrender-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libxrender-devel
-%endif
-
-# Xrandr support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXrandr-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libxrandr-devel
-%endif
-
-# Xcursor support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXcursor-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libxcursor-devel
-%endif
-
-# Xinerama support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXinerama-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libxinerama-devel
-%endif
-
-# Xft support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXft-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libxft-devel
-%endif
-
-# Xext support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXext-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libxext-devel
-%endif
-
-# X11 support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libX11-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libx11-devel
-%endif
-
-# SM support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libSM-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libsm-devel
-%endif
-
-# ICE support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libICE-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires: libice-devel
-%endif
-
+%{?glib2_devel:Requires: %{glib2_devel}}
+%{?uuid_devel:Requires: %{uuid_devel}}
+%{?xi_devel:Requires: %{xi_devel}}
+%{?xrender_devel:Requires: %{xrender_devel}}
+%{?xrandr_devel:Requires: %{xrandr_devel}}
+%{?xcursor_devel:Requires: %{xcursor_devel}}
+%{?xinerama_devel:Requires: %{xinerama_devel}}
+%{?xft_devel:Requires: %{xft_devel}}
+%{?xext_devel:Requires: %{xext_devel}}
+%{?x11_devel:Requires: %{x11_devel}}
+%{?sm_devel:Requires: %{sm_devel}}
+%{?ice_devel:Requires: %{ice_devel}}
 
 %description -n %{libtqt3}-mt-devel
 TQt is a C++ class library optimized for graphical user interface
@@ -1456,7 +1380,7 @@ export PATH="${QTDIR}/bin:${PATH}"
 export LD_LIBRARY_PATH=${QTDIR}/lib
 
 # Installs 'libtqt-mt.so.3' library
-%__make -C src INSTALL_ROOT=%{?buildroot} install_target
+%__make -C src INSTALL_ROOT="%{?buildroot}" install_target
 
 # Installs all the remaining
 %__make INSTALL_ROOT=%{?buildroot} install
@@ -1476,8 +1400,8 @@ export LD_LIBRARY_PATH=${QTDIR}/lib
 %__install -m644 -D "tools/tqvfb/pda_up.png" "%{?buildroot}%{_datadir}/tqvfb/pda_up.png"
 
 ## create tqt3-apps-dev-package
-cp tools/designer/interfaces/*.h %{?buildroot}%{?_includedir}/tqt3/
-cp tools/designer/editor/*.h %{?buildroot}%{?_includedir}/tqt3/
+cp tools/designer/interfaces/*.h "%{?buildroot}%{?_includedir}/tqt3/"
+cp tools/designer/editor/*.h "%{?buildroot}%{?_includedir}/tqt3/"
 
 # language file for linguist
 %__install -D -m644 "translations/qt_untranslated.ts" "%{?buildroot}%{?_docdir}/tqt3-linguist/qt_untranslated.ts"

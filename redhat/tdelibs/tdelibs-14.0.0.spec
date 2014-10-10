@@ -1,7 +1,7 @@
 #
 # spec file for package tdelibs
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -21,16 +21,17 @@
 
 # TDE variables
 %define tde_version 14.0.0
+%define tde_pkg tdelibs
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
-%define _docdir %{tde_docdir}
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -38,7 +39,7 @@
 %endif
 
 
-Name:			trinity-tdelibs
+Name:			trinity-%{tde_pkg}
 Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:		TDE Libraries
@@ -46,9 +47,9 @@ Group:			System/GUI/Other
 URL:			http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
-License:	GPL-2.0+
+License:		GPL-2.0+
 %else
-License:	GPLv2+
+License:		GPLv2+
 %endif
 
 #Vendor:			Trinity Desktop
@@ -58,7 +59,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-Source1:		%{name}-rpmlintrc
+Source1:		trinity-tdelibs-rpmlintrc
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -213,18 +214,6 @@ BuildRequires:	%{_lib}ltdl-devel
 BuildRequires:	libtool-ltdl-devel
 %endif
 
-# XCOMPOSITE support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xcomposite-devel
-%else
-BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-%endif
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXcomposite-devel
-%endif
-
 # X11 support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	x11-proto-devel
@@ -284,10 +273,24 @@ Requires:		ca-certificates
 %define with_xrandr 1
 %endif
 
+# XCOMPOSITE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+%define xcomposite_devel %{_lib}xcomposite-devel
+%else
+%define xcomposite_devel %{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+%define xcomposite_devel libXcomposite-devel
+%endif
+%{?xcomposite_devel:BuildRequires: %{xcomposite_devel}}
+
 # XT support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXt-devel
+%define xt_devel libXt-devel
 %endif
+%{?xt_devel:BuildRequires: %{xt_devel}}
 
 # LIBMAGIC support
 BuildRequires:	file-devel
@@ -498,26 +501,9 @@ Provides:	trinity-kdelibs-devel = %{version}-%{release}
 Requires:	libtqt3-mt-devel >= 3.5.0
 Requires:	libtqt4-devel = 2:4.2.0
 Requires:	trinity-arts-devel >= 2:1.5.10
-
-# LIBART_LGPL support
-Requires:	libart_lgpl-devel
-
-# XT support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXt-devel
-%endif
-
-# XCOMPOSITE support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%if 0%{?mgaversion} >= 4
-Requires:	%{_lib}xcomposite-devel
-%else
-Requires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-%endif
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-Requires:	libXcomposite-devel
-%endif
+Requires:	libart_lgpl-devel >= 2.3.22
+%{?xcomposite_devel:Requires: %{xcomposite_devel}}
+%{?xt_devel:Requires: %{xt_devel}}
 
 %description devel
 This package includes the header files you will need to compile
@@ -607,6 +593,7 @@ fi
   %{?!with_pcre:-DWITH_PCRE=OFF} \
   %{?!with_inotify:-DWITH_INOTIFY=OFF} \
   %{?!with_gamin:-DWITH_GAMIN=OFF} \
+  %{?!with_tdehwlib:-DWITH_TDEHWLIB=OFF} \
   %{?!with_tdehwlib:-DWITH_TDEHWLIB_DAEMONS=OFF} \
   %{?with_hal:-DWITH_HAL=ON} \
   %{?with_devkitpower:-DWITH_DEVKITPOWER=ON} \
@@ -621,6 +608,7 @@ fi
   %{?!with_lzma:-DWITH_LZMA=OFF} \
   -DWITH_LIBBFD=OFF \
   %{?!with_xrandr:-DWITH_XRANDR=OFF} \
+  -DWITH_XCOMPOSITE=ON \
   -DWITH_KDE4_MENU_SUFFIX=OFF \
   \
   -DWITH_ASPELL=ON \

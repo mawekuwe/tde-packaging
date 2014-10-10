@@ -56,7 +56,7 @@ BuildRequires:	nas-devel
 
 # LIBART support
 %define with_libart 1
-BuildRequires:	trinity-libart-lgpl-devel
+BuildRequires:	libart_lgpl-devel
 
 # XSCREENSAVER support
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}

@@ -1,7 +1,7 @@
 #
 # spec file for package avahi-tqt
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -66,11 +66,12 @@ BuildRequires:	dbus-devel
 
 # AVAHI support
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}avahi-client-devel
+%define avahi_devel %{_lib}avahi-client-devel
 %endif
 %if 0%{?suse_version} || 0%{?rhel} || 0%{?fedora}
-BuildRequires:	avahi-devel
+%define avahi_devel avahi-devel
 %endif
+%{?avahi_devel:BuildRequires: %{avahi_devel}}
 
 # EXPAT support
 %if 0%{?rhel} || 0%{?fedora}
@@ -141,17 +142,10 @@ Provides:	libavahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Requires:	%{libavahi}-tqt1 = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	libtqt4-devel >= 2:4.2.0
+%{?avahi_devel:Requires: %{avahi_devel}}
 
 Obsoletes:		trinity-avahi-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		trinity-avahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-
-# AVAHI support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-Requires:	%{_lib}avahi-client-devel
-%endif
-%if 0%{?suse_version} || 0%{?rhel} || 0%{?fedora}
-Requires:	avahi-devel
-%endif
 
 %description -n %{libavahi}-tqt-devel
 Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
@@ -214,8 +208,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --with-distro=mandriva \
 %endif
 
-
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

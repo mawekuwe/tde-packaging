@@ -1,7 +1,7 @@
 #
 # spec file for package arts
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,15 +15,23 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
 # TDE variables
 %define tde_version 14.0.0
+%define tde_pkg tdeaddons
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_datadir %{tde_prefix}/share
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
-%define _docdir %{tde_datadir}/doc
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -75,14 +83,15 @@ BuildRequires:	esound-devel
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
 %define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}jack-devel
+%define jack_devel %{_lib}jack-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora}
-BuildRequires:	jack-audio-connection-kit-devel
+%define jack_devel jack-audio-connection-kit-devel
 %endif
 %if 0%{?suse_version}
-BuildRequires:	libjack-devel
+%define jack_devel libjack-devel
 %endif
+BuildRequires:	%{jack_devel}
 %endif
 
 # LIBTOOL
@@ -105,11 +114,12 @@ BuildRequires:	libtool
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} 
 %define with_libmad 1
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires:		%{_lib}mad-devel
+%define mad_devel %{_lib}mad-devel
 %endif
 %if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
-BuildRequires:		libmad-devel
+%define mad_devel libmad-devel
 %endif
+BuildRequires:		%{mad_devel}
 %endif
 %endif
 
@@ -153,7 +163,7 @@ playing a wave file with some effects.
 %{tde_bindir}/artsrec
 %{tde_bindir}/artsshell
 %{tde_bindir}/artswrapper
-# The '.la' files are runtime, not devel !
+# The '.la' files are needed for runtime, not devel !
 %{tde_libdir}/lib*.la
 
 %post
@@ -176,28 +186,8 @@ Requires:	alsa-lib-devel
 Requires:	audiofile-devel
 Requires:	libvorbis-devel
 Requires:	esound-devel
-
-%if 0%{?with_libmad}
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Requires:		%{_lib}mad-devel
-%endif
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
-Requires:		libmad-devel
-%endif
-%endif
-
-%if 0%{?with_jack}
-%if 0%{?mgaversion} || 0%{?mdkversion}
-Requires:	%{_lib}jack-devel
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora}
-Requires:	jack-audio-connection-kit-devel
-%endif
-%if 0%{?suse_version}
-Requires:	libjack-devel
-%endif
-%endif
-
+%{?with_libmad:Requires: %{mad_devel}}
+%{?with_jack:Requires: %{jack_devel}}
 
 %description devel
 arts (analog real-time synthesizer) is the sound system of TDE.
@@ -235,11 +225,12 @@ playing a wave file with some effects.
 
 %package config-pulseaudio
 Group:		System Environment/Daemons
-Summary:	%{name} - Default configuration file for Pulseaudio
+Summary:	ARTS - Default configuration file for Pulseaudio
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description config-pulseaudio
-%{summary}
+This package contains a default ARTS configuration file, that is 
+intended for systems running the Pulseaudio server.
 
 %files config-pulseaudio
 %defattr(-,root,root,-)
@@ -320,5 +311,5 @@ chmod 644 "%{?buildroot}%{tde_datadir}/config/kcmartsrc"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:1.5.10-2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:1.5.10-2
 - Initial release for TDE R14.0.0

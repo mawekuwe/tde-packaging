@@ -1,7 +1,7 @@
 #
 # spec file for package tdebase
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -17,6 +17,7 @@
 
 # TDE variables
 %define tde_version 14.0.0
+%define tde_pkg tdebase
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -34,17 +35,17 @@
 %endif
 
 
-Name:		trinity-tdebase
-Version:	%{tde_version}
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:	Trinity Base Programs
-Group:		User Interface/Desktops
-URL:		http://www.trinitydesktop.org/
+Name:			trinity-%{tde_pkg}
+Version:		%{tde_version}
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:		Trinity Base Programs
+Group:			User Interface/Desktops
+URL:			http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
-License:	GPL-2.0+
+License:		GPL-2.0+
 %else
-License:	GPLv2+
+License:		GPLv2+
 %endif
 
 #Vendor:			Trinity Desktop
@@ -53,14 +54,14 @@ License:	GPLv2+
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 # Pam configuration files for RHEL / Fedora
 %if 0%{?suse_version} == 0
-Source2:	pamd.kdm-trinity%{?dist}
-Source3:	pamd.kdm-trinity-np%{?dist}
-Source4:	pamd.kcheckpass-trinity%{?dist}
-Source5:	pamd.kscreensaver-trinity%{?dist}
+Source2:		pamd.kdm-trinity%{?dist}
+Source3:		pamd.kdm-trinity-np%{?dist}
+Source4:		pamd.kcheckpass-trinity%{?dist}
+Source5:		pamd.kscreensaver-trinity%{?dist}
 %endif
 
 # openSUSE: configuration file for TDM
@@ -68,12 +69,12 @@ Source6:	suse-displaymanagers-tdm
 
 # Fedora 18: use SYSTEMD for TDM startup
 %if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
-Source7:	tdm.service%{?dist}
+Source7:		tdm.service%{?dist}
 %endif
 
 # openSUSE 11.4: overwrite distribution-provided '/etc/init.d/xdm' !!!
 %if 0%{?suse_version} == 1140
-Source7:	xdm.oss114
+Source7:		xdm.oss114
 %endif
 
 # Fedora >= 17: special selinux policy required for TDM
@@ -401,11 +402,17 @@ BuildRequires:	lm_sensors-devel
 BuildRequires:	libsensors4-devel
 %endif
 
-# TSAK support (requires libudev-devel)
+# UDEV support (requires libudev)
 #  On RHEL5, udev is built statically, so TSAK cannot build.
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
-%define with_tsak 1
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
 BuildRequires:	libudev-devel
+%define with_tsak 1
+%define with_tdehwlib 1
+%endif
+
+# HAL support
+%if 0%{?rhel} == 5
+%define with_hal 1
 %endif
 
 # XRANDR support
@@ -3561,14 +3568,14 @@ fi
   -DWITH_LIBRAW1394=ON \
   -DWITH_SUDO_TDESU_BACKEND=OFF \
   -DWITH_PAM=ON \
-  -DWITH_SHADOW=ON \
+  -DWITH_SHADOW=OFF \
   -DWITH_XDMCP=ON \
   -DWITH_XINERAMA=ON \
   -DWITH_ARTS=ON \
   -DWITH_I8K=ON \
   -DWITH_SENSORS=ON \
-  -DWITH_HAL=OFF \
-  -DWITH_TDEHWLIB=ON \
+  %{?with_hal:-DWITH_HAL=ON} \
+  %{?!with_tdehwlib:-DWITH_TDEHWLIB=OFF} \
   -DWITH_ELFICON=OFF \
   -DWITH_UPOWER=ON \
   \

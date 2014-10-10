@@ -43,7 +43,6 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 Patch1:			k9copy-14.0.0-fix_k3b_link.patch
 Patch2:			k9copy-3.5.13.2-ftbfs.patch
-Patch3:			k9copy-14.0.0-fix_author.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -73,7 +72,6 @@ This is the Trinity version.
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .ftbfs
 %patch2 -p1 -b .ftbfs
-%patch3 -p1 -b .k9author
 
 # Removes internal dvdread headers
 %__rm -rf dvdread

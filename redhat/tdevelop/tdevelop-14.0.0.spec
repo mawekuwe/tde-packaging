@@ -45,20 +45,21 @@ Patch4:	c_cpp_reference-2.0.2-install.patch
 
 Requires: %{name}-libs = %{version}-%{release}
 
+BuildRequires:	tqt3-apps-devel >= 3.5.0
+BuildRequires:	libtqt4-devel >= 2:4.2.0
+BuildRequires:	trinity-arts-devel >= 2:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 
 Requires: make
 Requires: perl
 Requires: flex >= 2.5.4
-Requires:	trinity-tqt3-designer >= 3.5.0
-Requires:	trinity-tqt3-devel >= 3.5.0
+Requires:	tqt3-designer >= 3.5.0
+Requires:	libtqt3-mt-devel >= 3.5.0
 Requires: gettext
 Requires: ctags
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 %if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	db4-devel
 %endif

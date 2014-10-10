@@ -1,7 +1,7 @@
 #
 # spec file for package tqtinterface
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,13 +15,28 @@
 # Please submit bugfixes or comments via http:/www.trinitydesktop.org/
 #
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
 # TDE variables
 %define tde_version 14.0.0
+%define tde_pkg tdeaddons
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define cmake_modules_dir %{_datadir}/cmake/Modules
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
 %define libtqt4 %{_lib}tqt4
@@ -222,18 +237,18 @@ fi
 
 
 %install
-%__rm -rf %{?buildroot}
-%__make install DESTDIR=%{?buildroot} -C build
+%__rm -rf "%{?buildroot}"
+%__make install DESTDIR="%{?buildroot}" -C build
 
 # Install 'cmake' modules for development use
-%__mkdir_p %{?buildroot}%{cmake_modules_dir}
+%__mkdir_p "%{?buildroot}%{cmake_modules_dir}"
 for i in cmake/modules/*.cmake; do
-  %__install -m 644 $i %{?buildroot}%{cmake_modules_dir}
+  %__install -m 644 "$i" "%{?buildroot}%{cmake_modules_dir}"
 done
 
 
 %clean
-%__rm -rf %{?buildroot}
+%__rm -rf "%{?buildroot}"
 
 
 %changelog

@@ -49,7 +49,7 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 # FLEX
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?mgaversion}
 BuildRequires:	flex
 %else
 BuildRequires:	flex-devel
@@ -66,7 +66,7 @@ software does for Windows.  KPilot can back-up and restore your Palm Pilot
 and synchronize the built-in applications with their TDE counterparts.
 
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 

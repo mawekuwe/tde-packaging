@@ -1,41 +1,58 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdemultimedia
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
-# former extras bits
-%define _with_akode --with-akode
-## not currently compatible with libtunepimp-0.5 (only libtunepimp-0.4)
-#define _with_musicbrainz --with-musicbrainz
-%define _with_taglib --with-taglib
 
 Name:		trinity-tdemultimedia
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPLv2
 Group:		Applications/Multimedia
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -52,27 +69,33 @@ Obsoletes:	trinity-kdemultimedia-extras-libs < %{version}-%{release}
 Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 
 
-BuildRequires:	autoconf automake libtool m4
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-arts-devel >= 2:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
-%if "%{?_with_akode}" != ""
+BuildRequires:	autoconf automake libtool m4
+
+# TAGLIB support
+%define _with_taglib --with-taglib
+BuildRequires: taglib-devel
+
+# AKODE support
+%define _with_akode --with-akode
 BuildRequires: trinity-akode-devel
 BuildRequires: trinity-akode-libmad
-%endif
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	zlib-devel
+
+# MUSICBRAINZ support
+## not currently compatible with libtunepimp-0.5 (only libtunepimp-0.4)
+#define _with_musicbrainz --with-musicbrainz
+#BuildRequires: libmusicbrainz-devel libtunepimp-devel
 
 # Audio libraries
 BuildRequires:	libvorbis-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	libtheora-devel
 BuildRequires:	alsa-lib-devel 
-%{?_with_musicbrainz:BuildRequires: libmusicbrainz-devel libtunepimp-devel}
-%{?_with_taglib:BuildRequires: taglib-devel}
 BuildRequires:	cdparanoia
 
 # CDDA support
@@ -1141,7 +1164,7 @@ noatun plugins.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -1207,6 +1230,21 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # don't make these world-writeable
 chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file krec           AudioVideo Recorder
+%suse_update_desktop_file tdemid           AudioVideo Midi
+%suse_update_desktop_file artsbuilder    AudioVideo AudioVideoEditing
+%suse_update_desktop_file artscontrol    AudioVideo AudioVideoEditing
+%suse_update_desktop_file kmix           AudioVideo Mixer
+%suse_update_desktop_file kaboodle       AudioVideo Player
+%suse_update_desktop_file kaudiocreator  AudioVideo CD
+%suse_update_desktop_file kscd           AudioVideo Player CD
+%suse_update_desktop_file noatun         AudioVideo Player Video
+%suse_update_desktop_file juk            AudioVideo Player Jukebox
+%suse_update_desktop_file audiocd
+%endif
 
 
 %clean
