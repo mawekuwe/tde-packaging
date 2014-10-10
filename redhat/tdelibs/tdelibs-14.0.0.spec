@@ -273,10 +273,24 @@ Requires:		ca-certificates
 %define with_xrandr 1
 %endif
 
+# XCOMPOSITE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+%define xcomposite_devel %{_lib}xcomposite-devel
+%else
+%define xcomposite_devel %{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+%define xcomposite_devel libXcomposite-devel
+%endif
+%{?xcomposite_devel:BuildRequires: %{xcomposite_devel}}
+
 # XT support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXt-devel
+%define xt_devel libXt-devel
 %endif
+%{?xt_devel:BuildRequires: %{xt_devel}}
 
 # LIBMAGIC support
 BuildRequires:	file-devel
@@ -487,30 +501,9 @@ Provides:	trinity-kdelibs-devel = %{version}-%{release}
 Requires:	libtqt3-mt-devel >= 3.5.0
 Requires:	libtqt4-devel = 2:4.2.0
 Requires:	trinity-arts-devel >= 2:1.5.10
-
-# ARTS support
-Requires:	trinity-arts-devel >= 2:1.5.10
-
-# LIBART_LGPL support
 Requires:	libart_lgpl-devel >= 2.3.22
-
-# XT support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-Requires: libXt-devel
-%endif
-
-# XCOMPOSITE support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%define 
-%if 0%{?mgaversion} >= 4
-Requires:	%{_lib}xcomposite-devel
-%else
-Requires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-%endif
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-Requires:	libXcomposite-devel
-%endif
+%{?xcomposite_devel:Requires: %{xcomposite_devel}}
+%{?xt_devel:Requires: %{xt_devel}}
 
 %description devel
 This package includes the header files you will need to compile
