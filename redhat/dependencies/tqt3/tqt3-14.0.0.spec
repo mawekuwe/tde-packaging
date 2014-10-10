@@ -221,7 +221,7 @@ BuildRequires: libxmu-devel
 %if 0%{?suse_version} == 1140
 %define xi_devel libXi6-devel
 %endif
-%{?%define xi_devel:BuildRequires: %{xi_devel}}
+%{?xi_devel:BuildRequires: %{xi_devel}}
 
 # Xorg support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}

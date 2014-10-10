@@ -161,7 +161,7 @@ endif
 htdig:
 # build on Mageia, and CentOS >= 7
 ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
-	$(call buildpkg,3rdparty/htdig)
+	$(call buildpkg,extras/htdig)
 endif
 
 imlib1:
@@ -279,9 +279,6 @@ libtqt-perl:	tqtinterface
 
 mlt:	tqtinterface
 	$(call buildpkg,libraries/mlt)
-
-mlt++:	tqtinterface
-	$(call buildpkg,libraries/mlt++)
 
 pytdeextensions:	tqtinterface python-trinity
 	$(call buildpkg,libraries/pytdeextensions)
