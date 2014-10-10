@@ -92,3 +92,14 @@ Description: transitional package for K3b's extra decoders [Trinity]
  This is a dummy transitional package to enable a smooth transition from
  libk3b2-extracodecs to libk3b3-extracodecs.
  It may safely be removed after installation.
+
+Package: k3b-trinity-dbg
+Priority: extra
+Architecture: any
+Depends: k3b-trinity (= ${binary:Version})
+Recommends: tdelibs-trinity-dbg
+Description: debugging symbols for K3b [Trinity]
+ This package provides debugging symbols for all binary packages built from
+ k3b source package. It's highly recommended to have this package installed
+ before reporting any K3b crashes to either K3b developers or Debian
+ package maintainers.

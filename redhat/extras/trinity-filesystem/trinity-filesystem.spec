@@ -170,7 +170,7 @@ This package installs the Trinity directory structure.
 %post
 %if 0%{?suse_version}
 # Add setuid files in '/etc/permissions.local'
-for b in fileshareset kgrantpty kpac_dhcp_helper start_tdeinit; do
+for b in kgrantpty kpac_dhcp_helper start_tdeinit; do
   if ! grep -q "^%{tde_bindir}/${b}" "/etc/permissions.local"; then
     echo "%{tde_bindir}/${b}          root:root       4711" >>/etc/permissions.local
   fi

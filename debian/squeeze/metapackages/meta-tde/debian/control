@@ -34,7 +34,7 @@ Section: tde
 Priority: optional
 Replaces: kde-core-trinity (<< 5:55)
 Breaks: kde-core-trinity (<< 5:55)
-Depends: arts-trinity (>= 1.5.5), tdebase-trinity (>= 4:14.0.0~), tdelibs-trinity (>= 4:14.0.0~), sudo-trinity
+Depends: arts-trinity (>= 1.5.5), tdebase-trinity (>= 4:14.0.0~), tdelibs-trinity (>= 4:14.0.0~), sudo-trinity, synaptic-trinity
 Suggests: tde-i18n-trinity (>= 4:14.0.0~)
 Description: Trinity Desktop Environment core modules [Trinity]
  TDE (Trinity Desktop Environment) is a powerful Open Source graphical

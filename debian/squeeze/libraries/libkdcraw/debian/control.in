@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
 Build-Depends: cdbs, debhelper (>= 5), quilt, tdelibs14-trinity-dev,
- liblcms1-dev, libjpeg62-dev, pkg-config,
+ liblcms2-dev | liblcms1-dev, libjpeg62-dev, pkg-config,
  automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
 Standards-Version: 3.8.3
 Homepage: http://www.kipi-plugins.org/
