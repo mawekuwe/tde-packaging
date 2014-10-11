@@ -694,7 +694,7 @@ Such as the desktop right-click-"Create New" list
 %files runtime-data-common
 %defattr(-,root,root,-)
 %{tde_datadir}/autostart/khotkeys.desktop
-%{tde_datadir}/desktop-directories/*
+%{tde_datadir}/desktop-directories/
 %{tde_datadir}/icons/hicolor/*/apps/kxkb.png
 %{tde_datadir}/icons/hicolor/*/apps/knetattach.*
 %{tde_datadir}/icons/hicolor/*/apps/khotkeys.png
@@ -875,7 +875,7 @@ Kwrite is a text editor for TDE.
 %{tde_libdir}/libtdeinit_kwrite.la
 %{tde_libdir}/libtdeinit_kwrite.so
 %{tde_tdeappdir}/kwrite.desktop
-%{tde_datadir}/apps/kwrite/kwriteui.rc
+%{tde_datadir}/apps/kwrite/
 %{tde_datadir}/icons/hicolor/*/apps/kwrite.png
 %{tde_datadir}/icons/hicolor/*/apps/kwrite2.svgz
 %{tde_tdedocdir}/HTML/en/kwrite/
@@ -1170,7 +1170,7 @@ plugdev group.
 %{tde_datadir}/icons/hicolor/*/apps/kcmspellchecking.png
 
 %{tde_datadir}/apps/usb.ids
-%{tde_datadir}/apps/kcmview1394/oui.db
+%{tde_datadir}/apps/kcmview1394/
 
 # The following features are not compiled under RHEL 5 and older
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -1263,6 +1263,7 @@ TDE applications, particularly those in the TDE base module.
 %{tde_bindir}/krandom.kss
 %{tde_bindir}/ksystraycmd
 %{tde_bindir}/kxkb
+%dir %{tde_libdir}/tdeconf_update_bin
 %{tde_libdir}/tdeconf_update_bin/khotkeys_update
 %{tde_tdelibdir}/kcminit.la
 %{tde_tdelibdir}/kcminit.so
@@ -1304,7 +1305,7 @@ TDE applications, particularly those in the TDE base module.
 %{tde_datadir}/apps/tdeconf_update/khotkeys_32b1_update.upd
 %{tde_datadir}/apps/tdeconf_update/khotkeys_printscreen.upd
 %{tde_datadir}/apps/tdeconf_update/konqueror_gestures_trinity21_update.upd
-%{tde_datadir}/apps/kdcop/kdcopui.rc
+%{tde_datadir}/apps/kdcop/
 %{tde_datadir}/apps/khotkeys/
 %{tde_datadir}/services/kded/khotkeys.desktop
 %{tde_datadir}/services/kxkb.desktop
@@ -1380,11 +1381,11 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/applnk/.hidden/socks.desktop
 %{tde_datadir}/applnk/.hidden/userinfo.desktop
 %{tde_datadir}/applnk/.hidden/virtualdesktops.desktop
-%{tde_datadir}/apps/kaccess/eventsrc
-%{tde_datadir}/apps/kcmcss/template.css
+%{tde_datadir}/apps/kaccess/
+%{tde_datadir}/apps/kcmcss/
 %{tde_datadir}/apps/kcminput/
 %{tde_datadir}/apps/kcmkeys/
-%{tde_datadir}/apps/kcmlocale/pics/background.png
+%{tde_datadir}/apps/kcmlocale/
 %{tde_datadir}/apps/tdeconf_update/convertShortcuts.pl
 %{tde_datadir}/apps/tdeconf_update/tdeaccel.upd
 %{tde_datadir}/apps/tdeconf_update/kcmdisplayrc.upd
@@ -1394,7 +1395,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/apps/kcontrol/
 %{tde_datadir}/apps/tdedisplay/
 %{tde_datadir}/apps/tdefontview/
-%{tde_datadir}/apps/kthememanager/themes/*
+%{tde_datadir}/apps/kthememanager/
 %{tde_datadir}/icons/crystalsvg/*/apps/access.png
 %{tde_datadir}/icons/crystalsvg/*/apps/acroread.png
 %{tde_datadir}/icons/crystalsvg/*/apps/applixware.png
@@ -1614,7 +1615,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/*/apps/wmaker_apps.png
 %{tde_datadir}/icons/crystalsvg/*/apps/qtella.png
 %{tde_datadir}/services/searchproviders
-%{tde_datadir}/services/useragentstrings/*.desktop
+%{tde_datadir}/services/useragentstrings/
 %{tde_datadir}/servicetypes/searchprovider.desktop
 %{tde_datadir}/servicetypes/uasprovider.desktop
 %exclude %{tde_datadir}/sounds/pop.wav
@@ -1761,12 +1762,10 @@ group.
 %{tde_tdelibdir}/textthumbnail.la
 %{tde_tdelibdir}/textthumbnail.so
 %{tde_tdeappdir}/kcmcgi.desktop
-%{tde_datadir}/apps/tdeio_finger/tdeio_finger.css
-%{tde_datadir}/apps/tdeio_finger/tdeio_finger.pl
-%{tde_datadir}/apps/tdeio_info/kde-info2html
-%{tde_datadir}/apps/tdeio_info/kde-info2html.conf
-%{tde_datadir}/apps/tdeio_man/tdeio_man.css
-%{tde_datadir}/apps/systemview/*.desktop
+%{tde_datadir}/apps/tdeio_finger/
+%{tde_datadir}/apps/tdeio_info/
+%{tde_datadir}/apps/tdeio_man/
+%{tde_datadir}/apps/systemview/
 %{tde_datadir}/config.kcfg/mediamanagersettings.kcfg
 %{tde_datadir}/mimelnk/application/x-smb-server.desktop
 %{tde_datadir}/mimelnk/inode/system_directory.desktop
@@ -1929,7 +1928,7 @@ Installation of smbclient will make you able to use smb shared printers.
 %{tde_datadir}/apps/tdeprint/
 %{tde_datadir}/apps/tdeprintfax/
 %{tde_datadir}/apps/kjobviewer/
-%{tde_datadir}/apps/tdeprint_part/tdeprint_part.rc
+%{tde_datadir}/apps/tdeprint_part/
 %{tde_datadir}/icons/hicolor/*/apps/tdeprintfax.png
 %{tde_datadir}/icons/hicolor/*/apps/kjobviewer.png
 %{tde_datadir}/icons/hicolor/*/apps/printmgr.png
@@ -2094,9 +2093,12 @@ already. Most users won't need this.
 %{tde_bindir}/tdmctl
 %{tde_bindir}/tdm_greet
 %{tde_bindir}/krootimage
+%dir %{tde_datadir}/apps/tdm
+%dir %{tde_datadir}/apps/tdm/pics
 %{tde_datadir}/apps/tdm/pics/kdelogo.png
 %{tde_datadir}/apps/tdm/pics/shutdown.jpg
 %{tde_datadir}/apps/tdm/pics/users
+%dir %{tde_datadir}/apps/tdm/sessions
 %{tde_datadir}/apps/tdm/sessions/*.desktop
 %{tde_datadir}/apps/tdm/themes/
 %{tde_datadir}/config/tdm
@@ -2112,6 +2114,7 @@ already. Most users won't need this.
 %endif
 
 # XDG user faces
+%dir %{_datadir}/faces
 %{_datadir}/faces/default1.png
 %{_datadir}/faces/default2.png
 %{_datadir}/faces/default3.png
@@ -2397,15 +2400,14 @@ functionality.
 %{tde_datadir}/applnk/.hidden/kicker_config_arrangement.desktop
 %{tde_datadir}/applnk/.hidden/kicker_config_hiding.desktop
 %{tde_datadir}/applnk/.hidden/kicker_config_menus.desktop
-%{tde_datadir}/apps/clockapplet/pics/lcd.png
+%{tde_datadir}/apps/clockapplet/
 %{tde_datadir}/apps/tdeconf_update/kicker-3.1-properSizeSetting.pl
 %{tde_datadir}/apps/tdeconf_update/kicker-3.5-taskbarEnums.pl
 %{tde_datadir}/apps/tdeconf_update/kickerrc.upd
 %{tde_datadir}/apps/kicker/
 %exclude %{tde_datadir}/apps/kicker/applets/klipper.desktop
 %exclude %{tde_datadir}/apps/kicker/applets/ksysguardapplet.desktop
-%{tde_datadir}/apps/naughtyapplet/pics/naughty-happy.png
-%{tde_datadir}/apps/naughtyapplet/pics/naughty-sad.png
+%{tde_datadir}/apps/naughtyapplet/
 %{tde_datadir}/autostart/panel.desktop
 %{tde_datadir}/config.kcfg/kickerSettings.kcfg
 %{tde_datadir}/config.kcfg/launcherapplet.kcfg
@@ -2655,15 +2657,15 @@ ever launching another application.
 %{tde_datadir}/apps/tdeconf_update/kfmclient_3_2_update.sh
 %{tde_datadir}/apps/tdeconf_update/konqsidebartng.upd
 %{tde_datadir}/apps/tdeconf_update/move_konqsidebartng_entries.sh
-%{tde_datadir}/apps/keditbookmarks/keditbookmarks-genui.rc
-%{tde_datadir}/apps/keditbookmarks/keditbookmarksui.rc
-%{tde_datadir}/apps/tdehtml/kpartplugins/tdehtmlkttsd.desktop
-%{tde_datadir}/apps/tdehtml/kpartplugins/tdehtmlkttsd.rc
+%{tde_datadir}/apps/keditbookmarks/
+%{tde_datadir}/apps/tdehtml/kpartplugins/
 %{tde_datadir}/apps/konqiconview/
 %{tde_datadir}/apps/konqlistview/
 %exclude %{tde_datadir}/apps/konqsidebartng/virtual_folders/services/fonts.desktop
 %{tde_datadir}/apps/konqsidebartng/
 %{tde_datadir}/apps/konqueror/about/
+%dir %{tde_datadir}/apps/konqueror/dirtree
+%dir %{tde_datadir}/apps/konqueror/dirtree/remote
 %{tde_datadir}/apps/konqueror/icons/
 %{tde_datadir}/apps/konqueror/konq-simplebrowser.rc
 %{tde_datadir}/apps/konqueror/konqueror.rc
@@ -2677,7 +2679,7 @@ ever launching another application.
 %exclude %{tde_datadir}/apps/konqueror/servicemenus/installfont.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/*.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
-%{tde_datadir}/apps/konqueror/tiles/*.png
+%{tde_datadir}/apps/konqueror/tiles/
 %{tde_datadir}/autostart/konqy_preload.desktop
 %{tde_datadir}/config.kcfg/keditbookmarks.kcfg
 %{tde_datadir}/config.kcfg/konq_listview.kcfg
@@ -2943,8 +2945,7 @@ TDE will start, but many good defaults will not be set.
 %{tde_libdir}/libtdeinit_ksmserver.so
 %{tde_datadir}/apps/tdeconf_update/ksmserver.upd
 %{tde_datadir}/apps/tdeconf_update/move_session_config.sh
-%{tde_datadir}/apps/ksmserver/pics/shutdown.png
-%{tde_datadir}/apps/ksmserver/pics/shutdownkonq.png
+%{tde_datadir}/apps/ksmserver/
 
 %post -n trinity-ksmserver
 /sbin/ldconfig || :
@@ -3014,7 +3015,7 @@ Requires:	trinity-ksplash = %{version}-%{release}
 
 %files -n trinity-ksplash-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/ksplash/*
+%{tde_tdeincludedir}/ksplash/
 %{tde_libdir}/libksplashthemes.la
 %{tde_libdir}/libksplashthemes.so
 
@@ -3078,7 +3079,7 @@ Requires:	trinity-ksysguard = %{version}-%{release}
 
 %files -n trinity-ksysguard-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/ksgrd/*
+%{tde_tdeincludedir}/ksgrd/
 %{tde_libdir}/libksgrd.la
 %{tde_libdir}/libksgrd.so
 
@@ -3120,8 +3121,7 @@ ktip provides many useful tips on using TDE when you log in.
 %{tde_bindir}/ktip
 %{tde_tdeappdir}/ktip.desktop
 %{tde_datadir}/applnk/Toys/ktip.desktop
-%{tde_datadir}/apps/tdewizard/pics/wizard_small.png
-%{tde_datadir}/apps/tdewizard/tips
+%{tde_datadir}/apps/tdewizard/
 %{tde_datadir}/autostart/ktip.desktop
 %{tde_datadir}/icons/hicolor/*/apps/ktip.*
 
@@ -3254,9 +3254,10 @@ Konqueror and the kdesktop package.
 %{tde_tdelibdir}/konq_sound.la
 %{tde_tdelibdir}/konq_sound.so
 %{tde_libdir}/libkonq.so.*
-%{tde_datadir}/apps/kbookmark/directory_bookmarkbar.desktop
+%{tde_datadir}/apps/kbookmark/
 %{tde_datadir}/apps/tdeconf_update/favicons.upd
 %{tde_datadir}/apps/tdeconf_update/move_favicons.sh
+%dir %{tde_datadir}/apps/konqueror/pics
 %{tde_datadir}/apps/konqueror/pics/arrow_bottomleft.png
 %{tde_datadir}/apps/konqueror/pics/arrow_bottomright.png
 %{tde_datadir}/apps/konqueror/pics/arrow_topleft.png
@@ -3285,6 +3286,7 @@ These libraries allow you to use TDE dialogs in native TQt3 applications.
 
 %files libtqt3-integration
 %defattr(-,root,root,-)
+%dir %{tde_tdelibdir}/plugins/integration
 %{tde_tdelibdir}/plugins/integration/libqtkde.la
 %{tde_tdelibdir}/plugins/integration/libqtkde.so
 %{tde_tdelibdir}/plugins/integration/libqtkde.so.*
@@ -3339,6 +3341,7 @@ Windows and Samba shares.
 %{tde_tdelibdir}/tdeio_smb.so
 %{tde_datadir}/services/smb.protocol
 %{tde_datadir}/apps/konqueror/dirtree/remote/smb-network.desktop
+%dir %{tde_datadir}/apps/remoteview
 %{tde_datadir}/apps/remoteview/smb-network.desktop
 %{tde_datadir}/mimelnk/application/x-smb-workgroup.desktop
 
