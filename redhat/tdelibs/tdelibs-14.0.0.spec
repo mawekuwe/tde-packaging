@@ -1,5 +1,5 @@
 #
-# spec file for package tdelibs
+# spec file for package tdelibs (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -20,6 +20,7 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
 %define tde_pkg tdelibs
 %define tde_prefix /opt/trinity
@@ -74,11 +75,10 @@ PreReq: permissions
 %endif
 
 # Trinity dependencies
-BuildRequires:	libtqt3-mt-devel >= 3.5.0
-BuildRequires:	libtqt4-devel = 2:4.2.0
-BuildRequires:	trinity-arts-devel >= 2:1.5.10
-BuildRequires:	libdbus-tqt-1-devel >= 2:0.63
-BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
+BuildRequires:	libtqt4-devel = %{tde_epoch}:4.2.0
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
+BuildRequires:	libdbus-tqt-1-devel >= %{tde_epoch}:0.63
+BuildRequires:	libdbus-1-tqt-devel >= %{tde_epoch}:0.9
 BuildRequires:	trinity-filesystem >= %{tde_version}
 
 Requires:		trinity-arts >= 2:1.5.10
@@ -292,8 +292,14 @@ Requires:		ca-certificates
 %endif
 %{?xt_devel:BuildRequires: %{xt_devel}}
 
+### New features in TDE R14
+
 # LIBMAGIC support
+%if 0%{?rhel} == 5
+BuildRequires:	file
+%else
 BuildRequires:	file-devel
+%endif
 
 # NETWORKMANAGER support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?suse_version}
@@ -425,7 +431,6 @@ kimgio (image manipulation).
 %{tde_bindir}/meinproc
 %{tde_bindir}/networkstatustestservice
 %{tde_bindir}/start_tdeinit_wrapper
-%{tde_bindir}/tde_dbus_hardwarecontrol
 %{tde_bindir}/checkXML
 %{tde_bindir}/ksvgtopng
 %{tde_bindir}/tdeunittestmodrunner
@@ -464,8 +469,13 @@ kimgio (image manipulation).
 
 %config %{_sysconfdir}/xdg/menus/tde-applications.menu
 %config %{_sysconfdir}/xdg/menus/tde-applications.menu-no-kde
+
+# DBUS stuff, related to TDE hwlib
+%if 0%{?with_tdehwlib}
+%{tde_bindir}/tde_dbus_hardwarecontrol
 %config %{_sysconfdir}/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
 %{_datadir}/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service
+%endif
 
 %pre
 # TDE Bug #1074
@@ -650,7 +660,6 @@ chmod 0755 "%{?buildroot}%{tde_bindir}/start_tdeinit"
 
 %clean
 %__rm -rf "%{?buildroot}"
-
 
 %if 0%{?suse_version}
 # Check permissions on setuid files (openSUSE specific)

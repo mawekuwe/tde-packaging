@@ -1,5 +1,5 @@
 #
-# spec file for package avahi-tqt
+# spec file for package avahi-tqt (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -16,6 +16,7 @@
 #
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
 
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
@@ -26,7 +27,7 @@
 
 
 Name:		trinity-avahi-tqt
-Epoch:		2
+Epoch:		%{tde_epoch}
 Version:	0.6.30
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Avahi TQt integration library
@@ -47,7 +48,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	libtqt4-devel >= 2:4.2.0
+BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
 
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
@@ -63,6 +64,9 @@ BuildRequires:	dbus-1-devel
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	dbus-devel
 %endif
+
+# PCAP support
+BuildRequires:	libcap-devel
 
 # AVAHI support
 %if 0%{?mgaversion} || 0%{?mdkversion}

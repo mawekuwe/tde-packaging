@@ -168,7 +168,7 @@ fi
   -DLIB_INSTALL_DIR=%{_libdir} \
   ..
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

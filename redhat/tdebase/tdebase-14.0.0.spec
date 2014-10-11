@@ -1,5 +1,5 @@
 #
-# spec file for package tdebase
+# spec file for package tdebase (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -16,6 +16,7 @@
 #
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
 %define tde_pkg tdebase
 %define tde_prefix /opt/trinity
@@ -116,10 +117,6 @@ BuildRequires:	brp-check-trinity
 Requires:	lovelock-backgrounds-single
 %define tde_bg /usr/share/backgrounds/lovelock/default/standard/lovelock.png
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
-
-Requires:	fedora-release-notes
-%define tde_aboutlabel Fedora 15
-%define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
 
 # Fedora 16 Theme: "Verne"
@@ -127,10 +124,6 @@ Requires:	fedora-release-notes
 Requires:	verne-backgrounds-single
 %define tde_bg /usr/share/backgrounds/verne/default/standard/verne.png
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
-
-Requires:	fedora-release-notes
-%define tde_aboutlabel Fedora 16
-%define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
 
 # Fedora 17 Theme: "Beefy Miracle"
@@ -138,10 +131,6 @@ Requires:	fedora-release-notes
 Requires:	beefy-miracle-backgrounds-single
 %define tde_bg /usr/share/backgrounds/beefy-miracle/default/standard/beefy-miracle.png
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
-
-Requires:	fedora-release-notes
-%define tde_aboutlabel Fedora 17
-%define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
 
 # Fedora 18 Theme: "Spherical Cow"
@@ -150,10 +139,6 @@ Requires:	spherical-cow-backgrounds-single
 %define tde_bg /usr/share/backgrounds/spherical-cow/default/standard/spherical-cow.png
 Requires:	fedora-logos
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
-
-Requires:	fedora-release-notes
-%define tde_aboutlabel Fedora 18
-%define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
 
 # Fedora 19 Theme: "Schroedinger's cat"
@@ -162,10 +147,6 @@ Requires:	schroedinger-cat-backgrounds-base
 %define tde_bg /usr/share/backgrounds/schroedinger-cat/default/standard/schroedinger-cat.jpg
 Requires:	fedora-logos
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
-
-Requires:	fedora-release-notes
-%define tde_aboutlabel Fedora 19
-%define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
 %endif
 
 # Fedora 20 Theme: "Heisenbug"
@@ -174,10 +155,6 @@ Requires:	heisenbug-backgrounds-base
 %define tde_bg /usr/share/backgrounds/heisenbug/default/standard/heisenbug.png
 Requires:	fedora-logos
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
-
-Requires:	fedora-release-notes
-%define tde_aboutlabel Fedora 20
-%define tde_aboutpage /usr/share/doc/fedora-release-notes/index.html
 %endif
 
 # RHEL 4 Theme
@@ -186,10 +163,6 @@ Requires:	desktop-backgrounds-basic
 %define tde_bg /usr/share/backgrounds/images/default.png
 Requires:	redhat-logos
 %define tde_starticon /usr/share/pixmaps/redhat/rpmlogo-64.xpm
-
-Requires:	indexhtml
-%define tde_aboutlabel Enterprise Linux 4
-%define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
 # RHEL 5 Theme
@@ -197,10 +170,6 @@ Requires:	indexhtml
 Requires:	desktop-backgrounds-basic
 %define tde_bg /usr/share/backgrounds/images/default.jpg
 %define tde_starticon /usr/share/pixmaps/redhat-starthere.png
-
-Requires:	indexhtml
-%define tde_aboutlabel Enterprise Linux 5
-%define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
 # RHEL 6 Theme
@@ -208,10 +177,6 @@ Requires:	indexhtml
 Requires:	redhat-logos
 %define tde_bg /usr/share/backgrounds/default.png
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/system-logo-icon.png
-
-Requires:	redhat-indexhtml
-%define tde_aboutlabel Enterprise Linux 6
-%define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
 # RHEL 7 Theme
@@ -219,10 +184,6 @@ Requires:	redhat-indexhtml
 Requires:	redhat-logos
 %define tde_bg /usr/share/backgrounds/day.jpg
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/system-logo-icon.png
-
-Requires:	redhat-indexhtml
-%define tde_aboutlabel Enterprise Linux 7
-%define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
 # Mageia 2 Theme
@@ -230,10 +191,6 @@ Requires:	redhat-indexhtml
 Requires:	mageia-theme-Default
 %define tde_bg /usr/share/mga/backgrounds/default.jpg
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/mageia-menu.svg
-
-Requires:	indexhtml
-%define tde_aboutlabel Mageia 2
-%define tde_aboutpage /usr/share/mga/about/index.html
 %endif
 
 # Mageia 3 Theme
@@ -241,10 +198,6 @@ Requires:	indexhtml
 Requires:	mageia-theme-Default
 %define tde_bg /usr/share/mga/backgrounds/default.jpg
 %define tde_starticon %{tde_datadir}/oxygen/scalable/mgabutton.svg
-
-Requires:	indexhtml
-%define tde_aboutlabel Mageia 3
-%define tde_aboutpage /usr/share/mga/about/index.html
 %endif
 
 # Mageia 4 Theme
@@ -252,10 +205,6 @@ Requires:	indexhtml
 Requires:	mageia-theme-Default
 %define tde_bg /usr/share/mga/backgrounds/default.jpg
 %define tde_starticon %{tde_datadir}/oxygen/scalable/mgabutton.svg
-
-Requires:	indexhtml
-%define tde_aboutlabel Mageia 4
-%define tde_aboutpage /usr/share/mga/about/index.html
 %endif
 
 # Mandriva 2011 Theme: "rosa"
@@ -263,30 +212,18 @@ Requires:	indexhtml
 Requires:	mandriva-theme
 %define tde_bg /usr/share/mdk/backgrounds/default.jpg
 %define tde_starticon /usr/share/icons/mandriva.png
-
-Requires:	indexhtml
-%define tde_aboutlabel Mandriva 2011
-%define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
 # PCLINUXOS
 %if 0%{?pclinuxos}
 Requires:	desktop-common-data
 %define tde_starticon /usr/share/icons/pclinuxos.png
-
-Requires:	indexhtml
-%define tde_aboutlabel PCLinuxOS
-%define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
 # OpenSuse 11.4 Theme
 %if "%{?suse_version}" == "1140"
 Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
-
-Requires:	opensuse-manuals_en
-%define tde_aboutlabel OpenSuse 11.4
-%define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/manual/book.opensuse.startup.html
 %endif
 
 # OpenSuse 12.2 Theme
@@ -295,10 +232,6 @@ Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
 Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
-
-Requires:	opensuse-manuals_en
-%define tde_aboutlabel OpenSuse 12.2
-%define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
 %endif
 
 # OpenSuse 12.3 Theme
@@ -307,10 +240,6 @@ Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
 Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
-
-Requires:	opensuse-manuals_en
-%define tde_aboutlabel OpenSuse 12.3
-%define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
 %endif
 
 # OpenSuse 13.1 Theme
@@ -319,10 +248,6 @@ Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
 Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
-
-Requires:	opensuse-manuals_en
-%define tde_aboutlabel OpenSuse 13.1
-%define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
 %endif
 
 BuildRequires:	trinity-arts-devel >= 2:1.5.10
@@ -331,6 +256,8 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	make
+
+# HTDIG support
 BuildRequires:	htdig
 
 # OPENSSL support
@@ -412,6 +339,7 @@ BuildRequires:	libudev-devel
 
 # HAL support
 %if 0%{?rhel} == 5
+BuildRequires:	hal-devel >= 0.5
 %define with_hal 1
 %endif
 
@@ -559,18 +487,6 @@ BuildRequires:	%{_lib}xdamage-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXdamage-devel
-%endif
-
-# XCOMPOSITE support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xcomposite-devel
-%else
-BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-%endif
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXcomposite-devel
 %endif
 
 # Requires 'usb.ids'
@@ -3450,18 +3366,6 @@ Windows and Samba shares.
 	-e 's|/usr/share/wallpapers/isadora.png.desktop|%{tde_bg}|' \
 	-e 's|Wallpaper=isadora.png|Wallpaper=%{tde_bg}|'
 %endif
-
-# TDE branding: removes KUbuntu references [Bug #617]
-%__sed -i "kcontrol/tdm/tdm-appear.cpp" \
-	-e "s|Welcome to Kubuntu |Welcome to %{tde_aboutlabel} |"
-%__sed -i "konqueror/about/konq_aboutpage.cc" \
-	-e "s|About Kubuntu|About %{tde_aboutlabel}|" \
-	-e "s|help:/kubuntu/|%{tde_aboutpage}|" \
-	-e "s|Kubuntu Documentation|%{tde_aboutlabel} Documentation|"
-%__sed -i "konqueror/about/launch.html" \
-	-e "s|help:/kubuntu/about-kubuntu/index.html|%{tde_aboutpage}|"
-%__sed -i "tdm/config.def" \
-	-e "s|Welcome to Trinity |Welcome to %{tde_aboutlabel} |"
 
 # TDE default directory and icon in startup script
 %__sed -i "starttde" \
