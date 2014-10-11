@@ -81,7 +81,7 @@ BuildRequires:	libdbus-tqt-1-devel >= %{tde_epoch}:0.63
 BuildRequires:	libdbus-1-tqt-devel >= %{tde_epoch}:0.9
 BuildRequires:	trinity-filesystem >= %{tde_version}
 
-Requires:		trinity-arts >= 2:1.5.10
+Requires:		trinity-arts >= %{tde_epoch}:1.5.10
 Requires:		trinity-filesystem >= %{tde_version}
 Requires:		fileshareset >= 2.0
 
@@ -511,7 +511,7 @@ Provides:	trinity-kdelibs-devel = %{version}-%{release}
 Requires:	libtqt3-mt-devel >= 3.5.0
 Requires:	libtqt4-devel = 2:4.2.0
 Requires:	trinity-arts-devel >= 2:1.5.10
-Requires:	libart_lgpl-devel >= 2.3.22
+Requires:	libart_lgpl-devel
 %{?xcomposite_devel:Requires: %{xcomposite_devel}}
 %{?xt_devel:Requires: %{xt_devel}}
 

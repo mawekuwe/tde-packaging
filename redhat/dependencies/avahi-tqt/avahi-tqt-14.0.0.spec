@@ -145,7 +145,7 @@ Group:		Development/Libraries/C and C++
 Provides:	libavahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Requires:	%{libavahi}-tqt1 = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:	libtqt4-devel >= 2:4.2.0
+Requires:	libtqt4-devel >= %{tde_epoch}:4.2.0
 %{?avahi_devel:Requires: %{avahi_devel}}
 
 Obsoletes:		trinity-avahi-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}

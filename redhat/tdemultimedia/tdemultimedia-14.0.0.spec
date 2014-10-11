@@ -1170,12 +1170,6 @@ noatun plugins.
 
 ##########
 
-# FIXME 2014/03/15: FTBFS on PCLINUXOS ... Need to remove -fstack-protector
-%if 0%{?pclinuxos}
-%define _ssp_cflags -fno-stack-protector --param=ssp-buffer-size=4%{?_serverbuild_flags: %_serverbuild_flags}
-%endif
-
-
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 

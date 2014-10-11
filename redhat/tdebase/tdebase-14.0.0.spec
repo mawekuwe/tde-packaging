@@ -30,6 +30,10 @@
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
+%define tdm tdm
+%define tdm_datadir %{tde_datadir}/apps/%{tdm}
+%define starttde starttde
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
@@ -67,7 +71,7 @@ Source5:		pamd.kscreensaver-trinity%{?dist}
 %endif
 
 # openSUSE: configuration file for TDM
-Source6:	suse-displaymanagers-tdm
+Source6:		suse-displaymanagers-tdm
 
 # Fedora 18: use SYSTEMD for TDM startup
 %if 0%{?fedora} >= 18 || 0%{?rhel} >= 7
@@ -425,9 +429,9 @@ BuildRequires:	nas-devel
 BuildRequires:	dbus-devel >= 0.22-12.EL.9p1
 Requires:		dbus-qt >= 0.22-12.EL.9p1
 %else
-BuildRequires:	libdbus-tqt-1-devel >= 2:0.63
-BuildRequires:	libdbus-1-tqt-devel >= 2:0.9
-Requires:		libdbus-tqt-1-0 >= 2:0.63
+BuildRequires:	libdbus-tqt-1-devel >= %{tde_epoch}:0.63
+BuildRequires:	libdbus-1-tqt-devel >= %{tde_epoch}:0.9
+Requires:		libdbus-tqt-1-0 >= %{tde_epoch}:0.63
 %endif
 
 %if 0%{?fedora} >= 17
@@ -529,6 +533,7 @@ BuildRequires:	bdftopcf
 BuildRequires:	drakconf
 %endif
 
+# LIBCONFIG support
 # Needed for "compton" stuff
 BuildRequires:	libconfig-devel
 
@@ -566,9 +571,7 @@ Requires: trinity-libkonq = %{version}-%{release}
 Requires: %{name}-libtqt3-integration = %{version}-%{release}
 Requires: %{name}-tdeio-smb-plugin = %{version}-%{release}
  
-Requires:	libtqt3-mt >= 3.5.0
-Requires:	libtqt4 >= 2:4.2.0
-Requires:	trinity-arts >= 2:1.5.10
+Requires:	trinity-arts >= %{tde_epoch}:1.5.10
 Requires:	trinity-tdelibs >= %{tde_version}
 Requires:	openssl
 
@@ -606,8 +609,7 @@ web browser, X terminal emulator, and many other programs and components.
 Summary:	%{summary} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libtqt4-devel >= 2:4.2.0
-Requires:	trinity-arts-devel >= 2:1.5.10
+Requires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 Requires:	trinity-tdelibs-devel >= %{tde_version}
 
 Requires:	%{name}-bin-devel = %{version}-%{release}
@@ -976,8 +978,8 @@ plugdev group.
 %{tde_tdelibdir}/kcm_joystick.so
 %{tde_tdelibdir}/kcm_kded.la
 %{tde_tdelibdir}/kcm_kded.so
-%{tde_tdelibdir}/kcm_tdm.la
-%{tde_tdelibdir}/kcm_tdm.so
+%{tde_tdelibdir}/kcm_%{tdm}.la
+%{tde_tdelibdir}/kcm_%{tdm}.so
 %{tde_tdelibdir}/kcm_tdednssd.so
 %{tde_tdelibdir}/kcm_tdednssd.la
 %{tde_tdelibdir}/kcm_keys.la
@@ -1084,7 +1086,7 @@ plugdev group.
 %{tde_tdeappdir}/kcmusb.desktop
 %{tde_tdeappdir}/kcmview1394.desktop
 %{tde_tdeappdir}/KControl.desktop
-%{tde_tdeappdir}/tdm.desktop
+%{tde_tdeappdir}/%{tdm}.desktop
 %{tde_tdeappdir}/keys.desktop
 %{tde_tdeappdir}/tdefontview.desktop
 %{tde_tdeappdir}/tdehtml_behavior.desktop
@@ -1167,8 +1169,6 @@ plugdev group.
 %{tde_datadir}/icons/hicolor/*/apps/kcmkded.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmkhtml_filter.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmsmserver.png
-%{tde_datadir}/icons/hicolor/*/apps/kcmspellchecking.png
-%{tde_datadir}/icons/hicolor/*/apps/kcmkhtml_filter.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmspellchecking.png
 
 %{tde_datadir}/apps/usb.ids
@@ -1321,14 +1321,14 @@ TDE applications, particularly those in the TDE base module.
 # SETUID binaries
 # Some setuid binaries need special care
 %if 0%{?suse_version}
-%if %{?with_tsak}
-%verify(not mode) %{tde_bindir}/tdmtsak
+%if 0%{?with_tsak}
+%verify(not mode) %{tde_bindir}/%{tdm}tsak
 %endif
 %verify(not mode) %{tde_bindir}/kcheckpass
 %verify(not mode) %{tde_bindir}/tdekbdledsync
 %else
-%if %{?with_tsak}
-%attr(4511,root,root) %{tde_bindir}/tdmtsak
+%if 0%{?with_tsak}
+%attr(4511,root,root) %{tde_bindir}/%{tdm}tsak
 %endif
 %attr(4755,root,root) %{tde_bindir}/kcheckpass
 %attr(4755,root,root) %{tde_bindir}/tdekbdledsync
@@ -1437,7 +1437,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmpartitions.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmpci.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcontrol.png
-%{tde_datadir}/icons/crystalsvg/*/apps/tdmconfig.png
+%{tde_datadir}/icons/crystalsvg/*/apps/%{tdm}config.png
 %{tde_datadir}/icons/crystalsvg/*/apps/key_bindings.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kfm_home.png
 %{tde_datadir}/icons/crystalsvg/*/apps/tdescreensaver.png
@@ -1682,6 +1682,9 @@ Group:		Applications/Utilities
 Requires:	trinity-kdesktop = %{version}-%{release}
 Requires:	cyrus-sasl
 Requires:	psmisc
+%if 0%{?with_hal}
+Requires:	hal >= 0.5
+%endif
 %if 0%{?rhel} == 4 || 0%{?suse_version}
 Requires:	cryptsetup
 %else
@@ -2079,7 +2082,7 @@ Provides:	service(graphical-login)
 # Required for Mandriva's installer
 %if 0%{?mgaversion} || 0%{?mdkversion}
 Provides:	dm
-Provides:	tdm
+Provides:	%{tdm}
 %endif
 
 %description -n trinity-tdm
@@ -2102,27 +2105,27 @@ already. Most users won't need this.
 %defattr(-,root,root,-)
 %{tde_tdelibdir}/kgreet_pam.la
 %{tde_tdelibdir}/kgreet_pam.so
-%{tde_bindir}/gentdmconf
-%{tde_bindir}/tdm
-%{tde_bindir}/tdm_config
-%{tde_bindir}/tdmctl
-%{tde_bindir}/tdm_greet
+%{tde_bindir}/gen%{tdm}conf
+%{tde_bindir}/%{tdm}
+%{tde_bindir}/%{tdm}_config
+%{tde_bindir}/%{tdm}ctl
+%{tde_bindir}/%{tdm}_greet
 %{tde_bindir}/krootimage
-%dir %{tde_datadir}/apps/tdm
-%dir %{tde_datadir}/apps/tdm/pics
-%{tde_datadir}/apps/tdm/pics/kdelogo.png
-%{tde_datadir}/apps/tdm/pics/shutdown.jpg
-%{tde_datadir}/apps/tdm/pics/users
-%dir %{tde_datadir}/apps/tdm/sessions
-%{tde_datadir}/apps/tdm/sessions/*.desktop
-%{tde_datadir}/apps/tdm/themes/
-%{tde_datadir}/config/tdm
-%dir %{_sysconfdir}/trinity/tdm
+%dir %{tdm_datadir}
+%dir %{tdm_datadir}/pics
+%{tdm_datadir}/pics/kdelogo.png
+%{tdm_datadir}/pics/shutdown.jpg
+%{tdm_datadir}/pics/users
+%dir %{tdm_datadir}/sessions
+%{tdm_datadir}/sessions/*.desktop
+%{tdm_datadir}/themes/
+%{tde_datadir}/config/%{tdm}
+%dir %{_sysconfdir}/trinity/%{tdm}
 %if 0%{?with_selinux_policy}
-%exclude %{?_sysconfdir}/trinity/tdm/tdm.pp
+%exclude %{?_sysconfdir}/trinity/%{tdm}/tdm.pp
 %endif
-%config(noreplace) %{_sysconfdir}/trinity/tdm/*
-%{tde_tdedocdir}/HTML/en/tdm/
+%config(noreplace) %{_sysconfdir}/trinity/%{tdm}/*
+%{tde_tdedocdir}/HTML/en/%{tdm}/
 %if 0%{?suse_version} == 0
 %config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity
 %config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity-np
@@ -2158,7 +2161,7 @@ already. Most users won't need this.
 
 # SELINUX policy
 %if 0%{?with_selinux_policy}
-%{?_sysconfdir}/trinity/tdm/tdm.pp
+%{?_sysconfdir}/trinity/%{tdm}/tdm.pp
 %endif
 
 # Logrotate configuration
@@ -2166,26 +2169,26 @@ already. Most users won't need this.
 
 %pre -n trinity-tdm
 # Make sure that TDM configuration files are now under '/etc/trinity/tdm'
-if [ -d "%{tde_datadir}/config/tdm" ] && [ ! -L "%{tde_datadir}/config/tdm" ]; then
-  if [ -d "%{_sysconfdir}/trinity/tdm" ]; then
-    # If there is already something under '/etc/trinity/tdm', simply delete old configuration
-    echo "Deleting TDM configuration under '%{tde_datadir}/config/tdm'"
-    rm -rf "%{tde_datadir}/config/tdm"
+if [ -d "%{tde_datadir}/config/%{tdm}" ] && [ ! -L "%{tde_datadir}/config/%{tdm}" ]; then
+  if [ -d "%{_sysconfdir}/trinity/%{tdm}" ]; then
+    # If there is already something under '/etc/trinity/%{tdm}', simply delete old configuration
+    echo "Deleting TDM configuration under '%{tde_datadir}/config/%{tdm}'"
+    rm -rf "%{tde_datadir}/config/%{tdm}"
   else
     # Else, move '/opt/trinity/share/config/tdm' to '/etc/trinity/tdm'
     if [ ! -d "%{_sysconfdir}/trinity" ]; then
       mkdir -p "%{_sysconfdir}/trinity"
     fi
-    echo "Migrating TDM configuration from '%{tde_datadir}/config/tdm' to '%{_sysconfdir}/trinity/tdm'"
-    mv -f "%{tde_datadir}/config/tdm" "%{_sysconfdir}/trinity/tdm.migr"
+    echo "Migrating TDM configuration from '%{tde_datadir}/config/%{tdm}' to '%{_sysconfdir}/trinity/%{tdm}'"
+    mv -f "%{tde_datadir}/config/%{tdm}" "%{_sysconfdir}/trinity/%{tdm}.migr"
   fi
 fi
 
 # Remove actual directory before creating a symlink
-if [ ! -L "%{tde_datadir}/apps/tdm/pics/users" ]; then
+if [ ! -L "%{tdm_datadir}/pics/users" ]; then
   [ -d "%{_datadir}/faces" ] || mkdir -p "%{_datadir}/faces"
-  cp -f "%{tde_datadir}/apps/tdm/pics/users/"* "%{_datadir}/faces"
-  rm -rf "%{tde_datadir}/apps/tdm/pics/users"
+  cp -f "%{tdm_datadir}/pics/users/"* "%{_datadir}/faces"
+  rm -rf "%{tdm_datadir}/pics/users"
 fi
 
 %post -n trinity-tdm
@@ -2193,19 +2196,19 @@ fi
 %make_session
 %endif
 %if 0%{?with_selinux_policy}
-/usr/sbin/semodule -i "%{?_sysconfdir}/trinity/tdm/tdm.pp"
+/usr/sbin/semodule -i "%{?_sysconfdir}/trinity/%{tdm}/tdm.pp"
 %endif
 
 # Sets default user icon in TDM
-if [ ! -r "%{tde_datadir}/apps/tdm/faces/.default.face.icon" ]; then
-  [ -d "%{tde_datadir}/apps/tdm/faces" ] || mkdir -p "%{tde_datadir}/apps/tdm/faces"
-  %__cp -f "%{tde_datadir}/apps/tdm/pics/users/default2.png" "%{tde_datadir}/apps/tdm/faces/.default.face.icon"
+if [ ! -r "%{tdm_datadir}/faces/.default.face.icon" ]; then
+  [ -d "%{tdm_datadir}/faces" ] || mkdir -p "%{tdm_datadir}/faces"
+  cp -f "%{tdm_datadir}/pics/users/default2.png" "%{tdm_datadir}/faces/.default.face.icon"
 fi
 
 # Sets default language for TDM
 if [ "$1" = "1" ]; then
   if [ -n "${LANG}" ] && [ "${LANG}" != "C" ]; then
-    %__sed -i "%{_sysconfdir}/trinity/tdm/tdmrc" -e "s|^#*Language=.*|Language=${LANG}|"
+    sed -i "%{_sysconfdir}/trinity/%{tdm}/%{tdm}rc" -e "s|^#*Language=.*|Language=${LANG}|"
   fi
 fi
 
@@ -2217,9 +2220,9 @@ fi
 
 %posttrans -n trinity-tdm
 # Make sure that TDM configuration files are now under '/etc/trinity/tdm'
-if [ -d "%{_sysconfdir}/trinity/tdm.migr" ] && [ -d "%{_sysconfdir}/trinity/tdm" ]; then
-  %__mv -f "%{_sysconfdir}/trinity/tdm.migr/"* "%{_sysconfdir}/trinity/tdm/"
-  rmdir "%{_sysconfdir}/trinity/tdm.migr/"
+if [ -d "%{_sysconfdir}/trinity/%{tdm}.migr" ] && [ -d "%{_sysconfdir}/trinity/%{tdm}" ]; then
+  mv -f "%{_sysconfdir}/trinity/%{tdm}.migr/"* "%{_sysconfdir}/trinity/%{tdm}/"
+  rmdir "%{_sysconfdir}/trinity/%{tdm}.migr/"
 fi
 
 %postun -n trinity-tdm
@@ -2949,7 +2952,7 @@ TDE will start, but many good defaults will not be set.
 %files -n trinity-ksmserver
 %defattr(-,root,root,-)
 %{tde_bindir}/ksmserver
-%{tde_bindir}/starttde
+%{tde_bindir}/%{starttde}
 %{tde_bindir}/migratekde3
 %{tde_bindir}/r14-xdg-update
 %{tde_bindir}/tdeinit_displayconfig
@@ -3374,28 +3377,28 @@ Windows and Samba shares.
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
 # TDM Background
-%__sed -i "tdm/kfrontend/gentdmconf.c" \
+%__sed -i "%{tdm}/kfrontend/gen%{tdm}conf.c" \
 	-e 's|"Wallpaper=isadora.png\n"|"Wallpaper=%{tde_bg}\n"|'
 
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
 	-e 's|#define DEFAULT_WALLPAPER "isadora.png"|#define DEFAULT_WALLPAPER "%{tde_bg}"|'
-%__sed -i "starttde" \
+%__sed -i "%{starttde}" \
 	-e 's|/usr/share/wallpapers/isadora.png.desktop|%{tde_bg}|' \
 	-e 's|Wallpaper=isadora.png|Wallpaper=%{tde_bg}|'
 %endif
 
 # TDE default directory and icon in startup script
-%__sed -i "starttde" \
+%__sed -i "%{starttde}" \
 	-e "s|/opt/trinity|%{tde_prefix}|g" \
 	-e "s|%%{tde_starticon}|%{tde_starticon}|g"
 
 # Xsession script location may vary on some distro
 %if 0%{?rhel} || 0%{?fedora}
-%__sed -i "tdm/kfrontend/gentdmconf.c" -e "s|/etc/X11/Xsession|/etc/X11/xinit/Xsession|"
+%__sed -i "%{tdm}/kfrontend/gen%{tdm}conf.c" -e "s|/etc/X11/Xsession|/etc/X11/xinit/Xsession|"
 %endif
 %if 0%{?suse_version}
-%__sed -i "tdm/kfrontend/gentdmconf.c" -e "s|/etc/X11/Xsession|/etc/X11/xdm/Xsession|"
+%__sed -i "%{tdm}/kfrontend/gen%{tdm}conf.c" -e "s|/etc/X11/Xsession|/etc/X11/xdm/Xsession|"
 %endif
 
 # Reboot command location may vary on some distributions
@@ -3405,9 +3408,9 @@ if [ -x "/usr/bin/reboot" ]; then
 fi
 if [ -n "${REBOOT}" ]; then
   %__sed -i \
-    "doc/tdm/tdmrc-ref.docbook" \
-    "kcontrol/tdm/tdm-shut.cpp" \
-    "tdm/config.def" \
+    "doc/%{tdm}/%{tdm}rc-ref.docbook" \
+    "kcontrol/%{tdm}/%{tdm}-shut.cpp" \
+    "%{tdm}/config.def" \
   -e "s|/sbin/poweroff|${POWEROFF}|g" \
   -e "s|/sbin/reboot|${REBOOT}|g"
 fi
@@ -3530,21 +3533,21 @@ fi
 # Under RHEL/Fedora/Suse, static 'xsessions' files go to '/usr/share/xsessions'.
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__install -D -m 644 \
-	"%{?buildroot}%{tde_datadir}/apps/tdm/sessions/tde.desktop" \
+	"%{?buildroot}%{tdm_datadir}/sessions/tde.desktop" \
 	"%{?buildroot}%{_datadir}/xsessions/tde.desktop"
 %endif
 
 # Mageia/Mandriva/PCLinuxOS stores its session file in different folder than RHEL/Fedora
-# Generated files for TDM go to '/usr/share/xsessions'
+# Generated files for TDM/KDM4 go to '/usr/share/apps/kdm/sessions'
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/X11/wmsession.d
 cat <<EOF >"%{?buildroot}%{_sysconfdir}/X11/wmsession.d/45TDE"
 NAME=TDE
 ICON=kde-wmsession.xpm
 DESC=The Trinity Desktop Environment
-EXEC=%{tde_bindir}/starttde
+EXEC=%{tde_bindir}/%{starttde}
 SCRIPT:
-exec %{tde_bindir}/starttde
+exec %{tde_bindir}/%{starttde}
 EOF
 
 %__install -d -m 755 %{?buildroot}%{_datadir}/X11/dm.d
@@ -3552,7 +3555,7 @@ cat <<EOF >"%{?buildroot}%{_datadir}/X11/dm.d/45TDE.conf"
 NAME=TDM
 DESCRIPTION=TDM (Trinity Display Manager)
 PACKAGE=trinity-tdm
-EXEC=%{tde_bindir}/tdm
+EXEC=%{tde_bindir}/%{tdm}
 %if 0%{?pclinuxos}
 FNDSESSION_EXEC="/usr/sbin/chksession -k"
 %else
@@ -3570,7 +3573,7 @@ EOF
 %endif
 
 # TDM configuration
-%__sed -i "%{?buildroot}%{_sysconfdir}/trinity/tdm/tdmrc" \
+%__sed -i "%{?buildroot}%{_sysconfdir}/trinity/%{tdm}/%{tdm}rc" \
 %if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1210 || 0%{?rhel} >= 7
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
@@ -3604,11 +3607,11 @@ EOF
 
 # Symlink TDM configuration
 %__mkdir_p "%{?buildroot}%{tde_datadir}/config"
-%__ln_s "%{_sysconfdir}/trinity/tdm" "%{?buildroot}%{tde_datadir}/config/tdm"
+%__ln_s "%{_sysconfdir}/trinity/%{tdm}" "%{?buildroot}%{tde_datadir}/config/%{tdm}"
 
 # SELINUX policy for RHEL / Fedora
 %if 0%{?with_selinux_policy}
-%__install -D -m 644 "%{SOURCE8}" "%{?buildroot}%{?_sysconfdir}/trinity/tdm/tdm.pp"
+%__install -D -m 644 "%{SOURCE8}" "%{?buildroot}%{?_sysconfdir}/trinity/%{tdm}/tdm.pp"
 %endif
 
 # Mageia icon for TDE menu
@@ -3646,10 +3649,10 @@ EOF
 # Move faces icon to XDG directory '/usr/share/faces'
 if [ ! -d "%{?buildroot}%{_datadir}/faces" ]; then
   %__mkdir_p "%{?buildroot}%{_datadir}/faces"
-  %__mv -f "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users/"* "%{?buildroot}%{_datadir}/faces"
-  rmdir "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
+  %__mv -f "%{?buildroot}%{tdm_datadir}/pics/users/"* "%{?buildroot}%{_datadir}/faces"
+  rmdir "%{?buildroot}%{tdm_datadir}/pics/users"
 fi
-%__ln_s "%{_datadir}/faces" "%{?buildroot}%{tde_datadir}/apps/tdm/pics/users"
+%__ln_s "%{_datadir}/faces" "%{?buildroot}%{tdm_datadir}/pics/users"
 
 # Adds missing icons in 'hicolor' theme
 # These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
@@ -3720,8 +3723,8 @@ for i in ksysguard tde-kcontrol tdefontview showdesktop; do
 done
 
 # Remove setuid bit on some binaries.
-%if %{?with_tsak}
-chmod 0511 "%{?buildroot}%{tde_bindir}/tdmtsak"
+%if 0%{?with_tsak}
+chmod 0511 "%{?buildroot}%{tde_bindir}/%{tdm}tsak"
 %endif
 chmod 0755 "%{?buildroot}%{tde_bindir}/kcheckpass"
 chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"
@@ -3735,8 +3738,8 @@ chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"
 %if 0%{?suse_version}
 # Check permissions on setuid files (openSUSE specific)
 %verifyscript
-%if %{?with_tsak}
-%verify_permissions -e %{tde_bindir}/tdmtsak
+%if 0%{?with_tsak}
+%verify_permissions -e %{tde_bindir}/%{tdm}tsak
 %endif
 %verify_permissions -e %{tde_bindir}/kcheckpass
 %verify_permissions -e %{tde_bindir}/tdekbdledsync
