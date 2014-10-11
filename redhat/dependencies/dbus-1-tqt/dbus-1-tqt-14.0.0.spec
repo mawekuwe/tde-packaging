@@ -1,5 +1,5 @@
 #
-# spec file for package dbus-1-tqt
+# spec file for package dbus-1-tqt (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -16,6 +16,7 @@
 #
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
 
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
@@ -26,7 +27,7 @@
 
 
 Name:		trinity-dbus-1-tqt
-Epoch:		2
+Epoch:		%{tde_epoch}
 Version:	0.9
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	dbus bindings for the Trinity Qt [TQt] interface
@@ -48,7 +49,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	libtqt3-mt-devel >= 3.5.0
-BuildRequires:	libtqt4-devel >= 2:4.2.0
+BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
