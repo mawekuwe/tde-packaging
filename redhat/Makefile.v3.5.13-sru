@@ -1,9 +1,11 @@
 SHELL := /bin/bash
+PACKAGING_DIR := $(shell cd ..; pwd)
 PATH := $(PATH):$(shell pwd)/build
 TDE_VERSION = 3.5.13.2
 
 buildpkg = \
-  @echo "Now processing '$(1)' ."; \
+  @echo "Now processing '$(1)' [from $(PACKAGING_DIR)]."; \
+  export PACKAGING_DIR=$(PACKAGING_DIR); \
   if [ "${REBUILD}" = "$(1)" ] || ! is_latest_package_installed.sh "$(1)" ${TDE_VERSION}; then \
     echo "  Package '${1}' is not yet installed."; \
     if [ "${REBUILD}" = "$(1)" ] || ! is_latest_package_built.sh "$(1)" ${TDE_VERSION}; then \
@@ -18,7 +20,7 @@ buildpkg = \
   echo
 
 
-all:	dependencies main libraries applications i18n meta
+all:	dependencies main libraries applications i18n meta extras
 dependencies:	qt3 tqtinterface arts libcaldav libcarddav tqca tqca-tls avahi-tqt dbus-tqt dbus-1-tqt akode hal
 main:	tdelibs tdebase tdeaccessibility tdeadmin tdegames tdemultimedia tdepim tdetoys tdevelop tdeaddons tdeartwork tdebindings tdeedu tdegraphics tdenetwork tdesdk tdeutils tdewebdev
 libraries:	libkdcraw libkexiv2 libkipi libksquirrel pytdeextensions python-trinity
@@ -27,10 +29,10 @@ i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
 
 
 ### Trinity Dependencies
-arts:	tqtinterface esound cmake
+arts:	tqtinterface trinity-filesystem esound cmake
 	$(call buildpkg,dependencies/arts)
 
-avahi-tqt:	tqtinterface
+avahi-tqt:	tqtinterface autoconf automake libtool
 	$(call buildpkg,dependencies/avahi-tqt)
 
 dbus-1-tqt:	tqtinterface cmake
@@ -70,7 +72,7 @@ tdeadmin:	tdebase
 tdeartwork:	tdebase
 	$(call buildpkg,tdeartwork)
 
-tdebase:	tdelibs htdig cmake hal
+tdebase:	tdelibs cmake htdig fileshareset hal
 	$(call buildpkg,tdebase)
 
 tdebindings:	tdebase
@@ -85,7 +87,7 @@ tdegames:	tdebase tdemultimedia
 tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	qt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake
+tdelibs:	qt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake avahi-tqt fileshareset trinity-filesystem
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode
@@ -126,8 +128,8 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 
 cmake:
-# Build on CentOS only
-ifneq ($(wildcard /etc/centos-release /boot/vmlinuz*.el5*),)
+# Build on CentOS 5/6 only
+ifneq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el6*),)
 	$(call buildpkg,3rdparty/cmake)
 endif
 
@@ -158,7 +160,7 @@ endif
 htdig:
 # build on Mageia, and CentOS >= 7
 ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
-	$(call buildpkg,3rdparty/htdig)
+	$(call buildpkg,extras/htdig)
 endif
 
 imlib1:
@@ -196,7 +198,7 @@ ifneq ($(wildcard /boot/vmlinuz*.el6*),)
 endif
 
 m4:
-# Build on CentOS 5 only (vendor-provided Poppler is too old)
+# Build on CentOS 5 only (vendor-provided m4 is too old)
 ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,3rdparty/m4)
 endif
@@ -244,6 +246,11 @@ endif
 akode:	tqtinterface
 	$(call buildpkg,extras/akode)
 
+cmake-macros: cmake
+ifneq ($(wildcard /etc/SuSE-release),)
+	$(call buildpkg,extras/trinity-cmake-macros)
+endif
+
 ### Trinity Libraries
 kipi-plugins:	tqtinterface libkipi
 	$(call buildpkg,libraries/kipi-plugins)
@@ -262,9 +269,6 @@ libksquirrel:	tqtinterface
 
 mlt:	tqtinterface
 	$(call buildpkg,libraries/mlt)
-
-mlt++:	tqtinterface
-	$(call buildpkg,libraries/mlt++)
 
 pytdeextensions:	tqtinterface python-trinity
 	$(call buildpkg,libraries/pytdeextensions)
@@ -558,5 +562,11 @@ meta:
 	$(call buildpkg,extras/trinity-desktop)
 
 ### Extra packages
+fileshareset:
+	$(call buildpkg,extras/fileshareset)
+
+trinity-filesystem:
+	$(call buildpkg,extras/trinity-filesystem)
+
 ksensors:
 	$(call buildpkg,applications/ksensors)

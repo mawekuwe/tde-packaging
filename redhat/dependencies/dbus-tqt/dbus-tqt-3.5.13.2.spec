@@ -29,7 +29,7 @@
 Name:		trinity-dbus-tqt
 Epoch:		%{tde_epoch}
 Version:	0.63
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 Summary:	Simple inter-process messaging system
 Group:		System/Libraries
 URL:		http://www.trinitydesktop.org/
@@ -192,6 +192,9 @@ fi
 
 
 %changelog
+* Sat Oct 11 2014 Francois Andriot <francois.andriot@free.fr> - 1:0.63-2
+- Rename package to 'libdbus-tqt-1'
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1:0.63-1
 - Build for Fedora 19
 

@@ -100,7 +100,7 @@ tdegames:	tdebase tdemultimedia
 tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	tqt3 tqtinterface trinity-filesystem arts dbus-tqt dbus-1-tqt cmake avahi-tqt fileshareset libart_lgpl
+tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake avahi-tqt fileshareset trinity-filesystem libart_lgpl
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode
@@ -582,7 +582,7 @@ smb4k:	tdebase
 soundkonverter:	tdebase
 	$(call buildpkg,applications/soundkonverter)
 
-tde-guidance:	 pytdeextensions
+tde-guidance:	tdebase pytdeextensions
 	$(call buildpkg,applications/tde-guidance)
 
 tdeio-apt:	tdebase
@@ -669,6 +669,9 @@ meta:
 fileshareset:
 	$(call buildpkg,extras/fileshareset)
 
+trinity-filesystem:
+	$(call buildpkg,extras/trinity-filesystem)
+
 icons-nuvola:
 	$(call buildpkg,extras/icons-nuvola)
 
@@ -701,6 +704,3 @@ scribus:
 
 style-ia-ora:
 	$(call buildpkg,extras/style-ia-ora)
-
-trinity-filesystem:
-	$(call buildpkg,extras/trinity-filesystem)

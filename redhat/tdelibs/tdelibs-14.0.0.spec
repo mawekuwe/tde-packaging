@@ -509,8 +509,8 @@ Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
 Provides:	trinity-kdelibs-devel = %{version}-%{release}
 
 Requires:	libtqt3-mt-devel >= 3.5.0
-Requires:	libtqt4-devel = 2:4.2.0
-Requires:	trinity-arts-devel >= 2:1.5.10
+Requires:	libtqt4-devel = %{tde_epoch}:4.2.0
+Requires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 Requires:	libart_lgpl-devel
 %{?xcomposite_devel:Requires: %{xcomposite_devel}}
 %{?xt_devel:Requires: %{xt_devel}}

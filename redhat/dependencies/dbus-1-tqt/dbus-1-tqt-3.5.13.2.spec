@@ -29,7 +29,7 @@
 Name:		trinity-dbus-1-tqt
 Epoch:		%{tde_epoch}
 Version:	0.9
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 Summary:	dbus bindings for the Trinity Qt [TQt] interface
 Group:		System/Libraries
 URL:		http://www.trinitydesktop.org/
@@ -168,7 +168,7 @@ fi
   -DLIB_INSTALL_DIR=%{_libdir} \
   ..
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
@@ -181,6 +181,9 @@ fi
 
 
 %changelog
+* Sat Oct 11 2014 Francois Andriot <francois.andriot@free.fr> - 1:0.9-2
+- Rename package to 'libdbus-1-tqt'
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1:0.9-1
 - Build for Fedora 19
 

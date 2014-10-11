@@ -29,7 +29,7 @@
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -43,7 +43,7 @@
 Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	1.5.10
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 Summary:	ARTS (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
 URL:		http://www.trinitydesktop.org/
@@ -81,7 +81,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
 
 # JACK support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} [[ 0%{?with_jack}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?with_jack}
 %define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %define jack_devel %{_lib}jack-devel
@@ -312,6 +312,9 @@ chmod 644 "%{?buildroot}%{tde_datadir}/config/kcmartsrc"
 
 
 %changelog
+* Sat Oct 11 2014 Francois Andriot <francois.andriot@free.fr> - 1:1.5.10-2
+- Rebuild.
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1:1.5.10-1
 - Build for Fedora 19
 

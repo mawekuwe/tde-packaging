@@ -20,7 +20,8 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
-%define tde_version 14.0.0
+%define tde_epoch 1
+%define tde_version 3.5.13.2
 %define tde_pkg tqtinterface
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
@@ -48,7 +49,7 @@
 Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	4.2.0
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 Summary:	The Trinity Qt Interface Libraries
 Group:		System/GUI/Other
 URL:		http://www.trinitydesktop.org/
@@ -141,6 +142,8 @@ although some code has been added for useful functions that are no longer part o
 
 %files -n %{libtqt4}
 %defattr(-,root,root,-)
+%{_libdir}/libtqassistantclient.so.4
+%{_libdir}/libtqassistantclient.so.4.2.0
 %{_libdir}/libtqt.so.4
 %{_libdir}/libtqt.so.4.2.0
 
@@ -194,10 +197,11 @@ although some code has been added for useful functions that are no longer part o
 %{_bindir}/tqt-replace-stream
 %{_bindir}/uic-tqt
 %{_includedir}/tqt/
+%{_libdir}/libtqassistantclient.la
+%{_libdir}/libtqassistantclient.so
 %{_libdir}/libtqt.la
 %{_libdir}/libtqt.so
 %{_libdir}/pkgconfig/tqt.pc
-%{_libdir}/pkgconfig/tqtqui.pc
 %{cmake_modules_dir}/*.cmake
 
 ##########
@@ -258,7 +262,7 @@ fi
 
 # RHEL 5: add newline at end of include files to avoid warnings
 %if 0%{?rhel} && 0%{?rhel} <= 5
-for i in %{?buildroot}%{tde_includedir}/tqt/*.h; do
+for i in %{?buildroot}%{_includedir}/tqt/*.h; do
   echo "" >>${i}
 done
 %endif
@@ -275,6 +279,9 @@ done
 
 
 %changelog
+* Sat Oct 11 2014 Francois Andriot <francois.andriot@free.fr> - 1:4.2.0-3
+- Rename package to 'libtqt4'
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Build for Fedora 19
 

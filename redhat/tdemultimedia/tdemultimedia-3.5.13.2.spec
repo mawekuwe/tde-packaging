@@ -20,6 +20,7 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin

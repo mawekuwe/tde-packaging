@@ -1,7 +1,7 @@
 #
-# spec file for package trinity-filesystem
+# spec file for package trinity-filesystem (version R14.0.0)
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
