@@ -1,5 +1,5 @@
 #
-# spec file for package trinity-filesystem
+# spec file for package trinity-filesystem (version 3.5.13-SRU)
 #
 # Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
 #
@@ -16,7 +16,7 @@
 #
 
 # TDE variables
-%define tde_version 14.0.0
+%define tde_version 3.5.13.2
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -78,7 +78,7 @@ This package installs the Trinity directory structure.
 %dir %{tde_tdelibdir}
 
 %dir %{tde_datadir}/applications
-%dir %{tde_datadir}/applications/tde
+%dir %{tde_datadir}/applications/kde
 %dir %{tde_datadir}/applnk
 %dir %{tde_datadir}/applnk/.hidden
 %dir %{tde_datadir}/applnk/*
@@ -123,7 +123,7 @@ This package installs the Trinity directory structure.
 
 %__install -d -m 755 %{?buildroot}%{tde_datadir}
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applications
-%__install -d -m 755 %{?buildroot}%{tde_datadir}/applications/tde
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applications/kde
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/.hidden
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Applications
@@ -440,7 +440,7 @@ done
 %post
 %if 0%{?suse_version}
 # Add setuid files in '/etc/permissions.local'
-for b in kcheckpass kgrantpty kpac_dhcp_helper start_tdeinit tdmtsak tdekbdledsync ; do
+for b in kcheckpass kgrantpty kpac_dhcp_helper start_kdeinit kdmtsak ; do
   if ! grep -q "^%{tde_bindir}/${b}" "/etc/permissions.local"; then
     echo "%{tde_bindir}/${b}          root:root       4711" >>/etc/permissions.local
   fi
