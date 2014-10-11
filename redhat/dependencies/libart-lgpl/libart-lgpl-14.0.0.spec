@@ -1,5 +1,5 @@
 #
-# spec file for package libart-lgpl
+# spec file for package libart-lgpl (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -17,6 +17,7 @@
 
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
 
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
