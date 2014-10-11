@@ -1,5 +1,5 @@
 #
-# spec file for package arts
+# spec file for package arts (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -20,8 +20,9 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-%define tde_pkg tdeaddons
+%define tde_pkg arts
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -39,10 +40,10 @@
 %endif
 
 
-Name:		trinity-arts
-Epoch:		2
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
 Version:	1.5.10
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	ARTS (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
 URL:		http://www.trinitydesktop.org/
@@ -61,7 +62,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	libtqt4-devel >= 2:4.2.0
+BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
 BuildRequires:	trinity-filesystem >= %{tde_version}
 Requires:		trinity-filesystem >= %{tde_version}
 
@@ -80,7 +81,7 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
 
 # JACK support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} [[ 0%{?with_jack}
 %define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %define jack_devel %{_lib}jack-devel
@@ -128,7 +129,7 @@ BuildRequires:		%{mad_devel}
 %define with_pulseaudio 1
 %endif
 
-Requires:		libtqt4 >= 2:4.2.0
+Requires:		libtqt4 >= %{tde_epoch}:4.2.0
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"

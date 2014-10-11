@@ -1,41 +1,75 @@
+#
+# spec file for package arts (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 1
+%define tde_version 3.5.13.2
+%define tde_pkg arts
+%define tde_prefix /opt/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-%define tde_version 3.5.13.2
 
-%define tde_bindir %{tde_prefix}/bin
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_datadir %{tde_prefix}/share
-
-%define tde_tdeincludedir %{tde_includedir}/tde
-
-%define _docdir %{tde_datadir}/doc
-
-Name:		trinity-arts
-Epoch:		1
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
 Version:	1.5.10
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
-Summary:	aRts (analog realtime synthesizer) - the TDE sound system
+Summary:	ARTS (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
-
-Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
-Packager:	Francois Andriot <francois.andriot@free.fr>
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	kcmartsrc-pulseaudio
 
-Patch1:		arts-3.5.13.2-pkgconfig_requires.patch
+BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
+BuildRequires:	trinity-filesystem >= %{tde_version}
+Requires:		trinity-filesystem >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
@@ -47,18 +81,18 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
 
 # JACK support
-#  Not on RHEL4 !
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} [[ 0%{?with_jack}
 %define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}jack-devel
+%define jack_devel %{_lib}jack-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora}
-BuildRequires:	jack-audio-connection-kit-devel
+%define jack_devel jack-audio-connection-kit-devel
 %endif
 %if 0%{?suse_version}
-BuildRequires:	libjack-devel
+%define jack_devel libjack-devel
 %endif
+BuildRequires:	%{jack_devel}
 %endif
 
 # LIBTOOL
@@ -77,13 +111,16 @@ BuildRequires:	libtool
 %endif
 
 # MAD support
+%ifarch %{ix86} x86_64
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} 
 %define with_libmad 1
 %if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires:		%{_lib}mad-devel
+%define mad_devel %{_lib}mad-devel
 %endif
 %if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
-BuildRequires:		libmad-devel
+%define mad_devel libmad-devel
+%endif
+BuildRequires:		%{mad_devel}
 %endif
 %endif
 
@@ -92,7 +129,7 @@ BuildRequires:		libmad-devel
 %define with_pulseaudio 1
 %endif
 
-Requires:		trinity-tqtinterface >= %{tde_version}
+Requires:		libtqt4 >= %{tde_epoch}:4.2.0
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"
@@ -127,7 +164,7 @@ playing a wave file with some effects.
 %{tde_bindir}/artsrec
 %{tde_bindir}/artsshell
 %{tde_bindir}/artswrapper
-# The '.la' files are runtime, not devel !
+# The '.la' files are needed for runtime, not devel !
 %{tde_libdir}/lib*.la
 
 %post
@@ -140,14 +177,30 @@ playing a wave file with some effects.
 
 %package devel
 Group:		Development/Libraries
-Summary:	%{name} - Development files
+Summary:	ARTS (analog realtime synthesizer) - the TDE sound system (Development files)
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if "%{?tde_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
 
+Requires:	alsa-lib-devel
+Requires:	audiofile-devel
+Requires:	libvorbis-devel
+Requires:	esound-devel
+%{?with_libmad:Requires: %{mad_devel}}
+%{?with_jack:Requires: %{jack_devel}}
+
 %description devel
-Development files for %{name}
+arts (analog real-time synthesizer) is the sound system of TDE.
+
+The principle of arts is to create/process sound using small modules which do
+certain tasks. These may be create a waveform (oscillators), play samples,
+filter data, add signals, perform effects like delay/flanger/chorus, or
+output the data to the soundcard.
+
+By connecting all those small modules together, you can perform complex
+tasks like simulating a mixer, generating an instrument or things like
+playing a wave file with some effects.
 
 %files devel
 %defattr(-,root,root,-)
@@ -173,11 +226,12 @@ Development files for %{name}
 
 %package config-pulseaudio
 Group:		System Environment/Daemons
-Summary:	%{name} - Default configuration file for Pulseaudio
+Summary:	ARTS - Default configuration file for Pulseaudio
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description config-pulseaudio
-%{summary}
+This package contains a default ARTS configuration file, that is 
+intended for systems running the Pulseaudio server.
 
 %files config-pulseaudio
 %defattr(-,root,root,-)
@@ -187,16 +241,14 @@ Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
 ##########
 
-
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .mad
 
 
 %build
@@ -216,6 +268,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
@@ -239,9 +292,18 @@ fi
 %__rm -rf %{?buildroot}
 %__make install -C build DESTDIR=%{?buildroot}
 
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/config
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/doc
+
 # Installs the Pulseaudio configuration file
 %if 0%{?with_pulseaudio}
-%__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/config/kcmartsrc
+cat <<EOF >"%{?buildroot}%{tde_datadir}/config/kcmartsrc"
+[Arts]
+Arguments=\s-F 10 -S 4096 -a esd -n -s 1 -m artsmessage -c drkonqi -l 3 -f
+NetworkTransparent=true
+SuspendTime=1
+EOF
+chmod 644 "%{?buildroot}%{tde_datadir}/config/kcmartsrc"
 %endif
 
 
