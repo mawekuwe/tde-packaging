@@ -696,6 +696,9 @@ mathemagics:
 png2qrgb:
 	$(call buildpkg,extras/png2qrgb)
 
+scribus:
+	$(call buildpkg,extras/scribus)
+
 style-ia-ora:
 	$(call buildpkg,extras/style-ia-ora)
 

@@ -439,7 +439,7 @@ done
 %post
 %if 0%{?suse_version}
 # Add setuid files in '/etc/permissions.local'
-for b in kgrantpty kpac_dhcp_helper start_tdeinit; do
+for b in kcheckpass kgrantpty kpac_dhcp_helper start_tdeinit tdmtsak tdekbdledsync ; do
   if ! grep -q "^%{tde_bindir}/${b}" "/etc/permissions.local"; then
     echo "%{tde_bindir}/${b}          root:root       4711" >>/etc/permissions.local
   fi
