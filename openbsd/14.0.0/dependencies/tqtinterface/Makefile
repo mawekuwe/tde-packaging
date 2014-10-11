@@ -8,7 +8,7 @@ PREFIX=			${LOCALBASE}
 CATEGORIES=		x11/trinity
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
-DISTNAME=		trinity-tqtinterface-14.0.0~pre181+d144d721
+DISTNAME=		trinity-tqtinterface-14.0.0~pre185+b79cc765
 EXTRACT_SUFX=	.tar.gz
 
 BUILD_DEPENDS= 	devel/gmake \

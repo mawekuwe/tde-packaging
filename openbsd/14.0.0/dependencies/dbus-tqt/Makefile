@@ -9,7 +9,7 @@ CATEGORIES=		x11/trinity
 COMMENT=		Dbus TQT Interface
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
-DISTNAME=		trinity-dbus-tqt-14.0.0~pre100+bc50efff
+DISTNAME=		trinity-dbus-tqt-14.0.0~pre103+55421747
 EXTRACT_SUFX=	.tar.gz
 
 BUILD_DEPENDS= 	devel/gmake \

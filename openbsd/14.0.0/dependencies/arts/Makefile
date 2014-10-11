@@ -7,7 +7,7 @@ CATEGORIES=		x11/trinity
 COMMENT=		aRts (analog realtime synthesizer) - the TDE sound system
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
-DISTNAME=		trinity-arts-14.0.0~pre128+e39b3d2d
+DISTNAME=		trinity-arts-14.0.0~pre131+04e2524e
 EXTRACT_SUFX=	.tar.gz
 
 BUILD_DEPENDS= 	devel/gmake \

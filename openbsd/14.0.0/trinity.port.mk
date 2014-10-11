@@ -16,7 +16,7 @@ FLAVOR?=
 
 PKG_CONFIG_PATH=/opt/trinity/lib/pkgconfig:/usr/X11R6/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/lib/pkgconfig
 
-BUILD_DEPENDS= 	devel/gmake \
+BUILD_DEPENDS=	devel/gmake \
 				devel/cmake \
 				textproc/gsed \
 				shells/bash
@@ -30,7 +30,7 @@ CMAKE_LIBRARY_PATH=/usr/lib:/usr/local/lib:/usr/X11R6/lib
 TDE_FLAGS=${CXXFLAGS} \
 	-I${WRKDIST}/libltdl -I/usr/X11R6/include -I/usr/local/include \
 	-L/usr/X11R6/lib -L/usr/local/lib \
-	 -Wl,-lc
+	 -Wl,-lc -pthread
 
 .if ${FLAVOR:Mdebug}
 CMAKE_BUILD_TYPE=Debug
@@ -64,6 +64,15 @@ TDE_CMAKE_CONFIGURE=\
 		-DLIB_INSTALL_DIR="${TDE_PREFIX}/lib" \
 		-DPLUGIN_INSTALL_DIR="${TDE_PREFIX}/lib/trinity" \
 		-DPKGCONFIG_INSTALL_DIR="${TDE_PREFIX}/lib/pkgconfig"
+
+TDE_AUTOTOOLS_CONFIGURE=\
+	export PATH="${TDE_PREFIX}/bin:${PATH}"; \
+	export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}"; \
+	export CFLAGS="${TDE_FLAGS}" \
+	export CXXFLAGS="${TDE_FLAGS} -Wl,-lstdc++" \
+	cd ${WRKDIST} && ./configure \
+		--prefix=${TDE_PREFIX}
+	
 
 
 ### Custom build targets
