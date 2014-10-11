@@ -67,6 +67,7 @@ rpmbuild -ba \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
   --define "preversion ${PREVERSION:-}" \
+  --define "with_jack 1" \
   ${ARGS} \
   "${TEMPDIR}/${SPECFILE##*/}"
 RET=$?
