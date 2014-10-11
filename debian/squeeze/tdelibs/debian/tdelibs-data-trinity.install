@@ -2335,7 +2335,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/hdd_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/hdd_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/ipod_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/ipod_unmount.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/input-joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/input-gaming.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/memory.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/memory_stick_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/memory_stick_unmount.png
@@ -2767,7 +2768,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/hdd_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/hdd_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/ipod_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/ipod_unmount.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/input-joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/input-gaming.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/memory_stick_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/memory_stick_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/modem.png
@@ -3147,7 +3149,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/hdd_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/hdd_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/ipod_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/ipod_unmount.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/input-joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/input-gaming.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/memory.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/memory_stick_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/memory_stick_unmount.png
@@ -3401,7 +3404,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/hdd_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/hdd_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/ipod_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/ipod_unmount.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/input-joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/input-gaming.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/memory.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/memory_stick_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/memory_stick_unmount.png
@@ -3611,7 +3615,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/hdd_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/hdd_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/ipod_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/ipod_unmount.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/input-joystick.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/input-gaming.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/memory.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/memory_stick_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/memory_stick_unmount.png
