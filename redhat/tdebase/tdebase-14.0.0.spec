@@ -56,6 +56,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source1:		trinity-tdebase-rpmlintrc
 
 # Pam configuration files for RHEL / Fedora
 %if 0%{?suse_version} == 0
@@ -250,7 +251,7 @@ Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
-BuildRequires:	trinity-arts-devel >= 2:1.5.10
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
@@ -329,18 +330,12 @@ BuildRequires:	lm_sensors-devel
 BuildRequires:	libsensors4-devel
 %endif
 
-# UDEV support (requires libudev)
+# TSAK support (requires libudev-devel)
 #  On RHEL5, udev is built statically, so TSAK cannot build.
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
 BuildRequires:	libudev-devel
 %define with_tsak 1
 %define with_tdehwlib 1
-%endif
-
-# HAL support
-%if 0%{?rhel} == 5
-BuildRequires:	hal-devel >= 0.5
-%define with_hal 1
 %endif
 
 # XRANDR support
@@ -355,6 +350,13 @@ BuildRequires:	hal-devel >= 0.5
 %define with_xtest 1
 %endif
 
+# HAL support
+# Only for RHEL5
+%if 0%{?rhel} == 5
+%define with_hal 1
+BuildRequires:	hal-devel >= 0.5
+%endif
+
 # OPENEXR support
 #  Disabled on RHEL4
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
@@ -364,7 +366,7 @@ BuildRequires:	OpenEXR-devel
 
 # XSCREENSAVER support
 #  Disabled on RHEL4, RHEL >= 7
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7 || 0%{?suse_version}
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7 || 0%{?suse_version} || 0%{?with_xscreensaver}
 %if 0%{?rhel} == 0 || 0%{?rhel} <= 6
 %define with_xscreensaver 1
 %if 0%{?rhel} == 5
@@ -722,7 +724,7 @@ done
 ##########
 
 %package -n trinity-kappfinder
-Summary:	non-TDE application finder for TDE
+Summary:	Non-TDE application finder for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -774,7 +776,7 @@ Group:		Environment/Libraries
 ##########
 
 %package -n trinity-kate
-Summary:	advanced text editor for TDE
+Summary:	Advanced text editor for TDE
 Group:		Applications/Text
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-kwrite = %{version}-%{release}
@@ -859,7 +861,7 @@ Requires:	trinity-kate = %{version}-%{release}
 ##########
 
 %package -n trinity-kwrite
-Summary:	advanced text editor for TDE
+Summary:	Advanced text editor for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-libkateinterfaces = %{version}-%{release}
@@ -898,7 +900,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 ##########
 
 %package -n trinity-kcontrol
-Summary:	control center for TDE
+Summary:	Control center for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -1221,7 +1223,7 @@ Requires:	trinity-kcontrol = %{version}-%{release}
 ##########
 
 %package bin
-Summary:	core binaries for the TDE base module
+Summary:	Core binaries for the TDE base module
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
@@ -1237,7 +1239,6 @@ TDE applications, particularly those in the TDE base module.
 %defattr(-,root,root,-)
 %{tde_bindir}/krootbacking
 %if 0%{?with_tsak}
-%attr(4511,root,root) %{tde_bindir}/tdmtsak
 %{tde_bindir}/tsak
 %endif
 %{tde_bindir}/compton-tde
@@ -1250,11 +1251,9 @@ TDE applications, particularly those in the TDE base module.
 %{tde_bindir}/crashtest
 %{tde_bindir}/kapplymousetheme
 %{tde_bindir}/kblankscrn.kss
-%attr(4755,root,root) %{tde_bindir}/kcheckpass
 %{tde_bindir}/kcminit
 %{tde_bindir}/kcminit_startup
 %{tde_bindir}/kdcop
-%attr(4755,root,root) %{tde_bindir}/tdekbdledsync
 %{tde_bindir}/tdesu
 %attr(0755,root,root) %{tde_bindir}/tdesud
 %{tde_bindir}/kdialog
@@ -1319,6 +1318,22 @@ TDE applications, particularly those in the TDE base module.
 %{tde_tdedocdir}/HTML/en/knetattach/
 %{tde_tdedocdir}/HTML/en/kxkb/
 
+# SETUID binaries
+# Some setuid binaries need special care
+%if 0%{?suse_version}
+%if %{?with_tsak}
+%verify(not mode) %{tde_bindir}/tdmtsak
+%endif
+%verify(not mode) %{tde_bindir}/kcheckpass
+%verify(not mode) %{tde_bindir}/tdekbdledsync
+%else
+%if %{?with_tsak}
+%attr(4511,root,root) %{tde_bindir}/tdmtsak
+%endif
+%attr(4755,root,root) %{tde_bindir}/kcheckpass
+%attr(4755,root,root) %{tde_bindir}/tdekbdledsync
+%endif
+
 %post bin
 /sbin/ldconfig || :
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -1354,7 +1369,7 @@ Provides:	tdebase-bin-devel = %{version}-%{release}
 ##########
 
 %package data
-Summary:	shared data files for the TDE base module
+Summary:	Shared data files for the TDE base module
 Group:		Environment/Libraries
 Requires:	%{name}-runtime-data-common = %{version}-%{release}
 
@@ -1630,7 +1645,6 @@ needed for a basic TDE desktop installation.
 
 %{tde_tdedocdir}/HTML/en/kcontrol/
 %exclude %{tde_tdedocdir}/HTML/en/kcontrol/kcmkonsole/
-#%{tde_tdedocdir}/HTML/en/kinfocenter/
 
 %post data
 for f in crystalsvg ; do
@@ -1663,7 +1677,7 @@ done
 ##########
 
 %package tdeio-plugins
-Summary:	core I/O slaves for TDE
+Summary:	Core I/O slaves for TDE
 Group:		Applications/Utilities
 Requires:	trinity-kdesktop = %{version}-%{release}
 Requires:	cyrus-sasl
@@ -1833,7 +1847,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 ##########
 
 %package -n trinity-tdepasswd
-Summary:	password changer for TDE
+Summary:	Password changer for TDE
 Group:		Applications/Utilities
 
 Obsoletes:	trinity-kdepasswd < %{version}-%{release}
@@ -1891,7 +1905,7 @@ update-desktop-database %{tde_tdeappdir} 2> /dev/null || :
 ##########
 
 %package -n trinity-tdeprint
-Summary:	print system for TDE
+Summary:	Print system for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	psutils
@@ -1968,7 +1982,7 @@ done
 ##########
 
 %package -n trinity-kdesktop
-Summary:	miscellaneous binaries and files for the TDE desktop
+Summary:	Miscellaneous binaries and files for the TDE desktop
 Group:		Applications/Utilities
 Requires:	%{name}-bin = %{version}-%{release}
 Requires:	%{name}-data = %{version}-%{release}
@@ -2042,6 +2056,7 @@ Group:		Applications/Utilities
 Requires:	%{name}-bin = %{version}-%{release}
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
+Requires:	logrotate
 
 # Provides the global Xsession script (/etc/X11/xinit/Xsession or /etc/X11/Xsession)
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 4
@@ -2147,7 +2162,7 @@ already. Most users won't need this.
 %endif
 
 # Logrotate configuration
-%{_sysconfdir}/logrotate.d/tdm
+%config %{_sysconfdir}/logrotate.d/tdm
 
 %pre -n trinity-tdm
 # Make sure that TDM configuration files are now under '/etc/trinity/tdm'
@@ -2229,7 +2244,7 @@ Requires:	trinity-tdm = %{version}-%{release}
 ##########
 
 %package -n trinity-kfind
-Summary:	file-find utility for TDE
+Summary:	File-find utility for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -2266,7 +2281,7 @@ done
 ##########
 
 %package -n trinity-khelpcenter
-Summary:	help center for TDE
+Summary:	Help center for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	htdig
@@ -2315,7 +2330,7 @@ done
 ##########
 
 %package -n trinity-kicker
-Summary:	desktop panel for TDE
+Summary:	Desktop panel for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -2479,7 +2494,7 @@ Requires:	trinity-kicker = %{version}-%{release}
 ##########
 
 %package -n trinity-klipper
-Summary:	clipboard utility for Trinity
+Summary:	Clipboard utility for Trinity
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -2528,7 +2543,7 @@ done
 ##########
 
 %package -n trinity-kmenuedit
-Summary:	menu editor for TDE
+Summary:	Menu editor for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -2825,7 +2840,7 @@ Using Konsole, a user can open:
 %{tde_datadir}/servicetypes/terminalemulator.desktop
 %{tde_tdedocdir}/HTML/en/konsole/
 %{tde_tdedocdir}/HTML/en/kcontrol/kcmkonsole/
-%{_sysconfdir}/fonts/conf.d/99-konsole.conf
+%config %{_sysconfdir}/fonts/conf.d/99-konsole.conf
 
 %post -n trinity-konsole
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -2846,7 +2861,7 @@ done
 ##########
 
 %package -n trinity-kpager
-Summary:	desktop pager for TDE
+Summary:	Desktop pager for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -2880,7 +2895,7 @@ done
 ##########
 
 %package -n trinity-kpersonalizer
-Summary:	installation personalizer for TDE
+Summary:	Installation personalizer for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -2915,7 +2930,7 @@ done
 ##########
 
 %package -n trinity-ksmserver
-Summary:	session manager for TDE
+Summary:	Session manager for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-twin = %{version}-%{release}
@@ -2962,7 +2977,7 @@ fndSession
 ##########
 
 %package -n trinity-ksplash
-Summary:	the TDE splash screen
+Summary:	The TDE splash screen
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -3028,7 +3043,7 @@ Requires:	trinity-ksplash = %{version}-%{release}
 ##########
 
 %package -n trinity-ksysguard
-Summary:	system guard for TDE
+Summary:	System guard for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-ksysguardd = %{version}-%{release}
@@ -3092,7 +3107,7 @@ Requires:	trinity-ksysguard = %{version}-%{release}
 ##########
 
 %package -n trinity-ksysguardd
-Summary:	system guard daemon for TDE
+Summary:	System guard daemon for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -3142,7 +3157,7 @@ done
 ##########
 
 %package -n trinity-twin
-Summary:	the TDE window manager
+Summary:	The TDE window manager
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -3240,7 +3255,7 @@ Requires:	trinity-twin = %{version}-%{release}
 ##########
 
 %package -n trinity-libkonq
-Summary:	core libraries for Konqueror
+Summary:	Core libraries for Konqueror
 Group:		Environment/Libraries
 
 %description -n trinity-libkonq
@@ -3297,7 +3312,7 @@ These libraries allow you to use TDE dialogs in native TQt3 applications.
 ##########
 
 %package -n trinity-libkonq-devel
-Summary:	development files for Konqueror's core libraries
+Summary:	Development files for Konqueror's core libraries
 Group:		Development/Libraries
 Requires:	trinity-libkonq = %{version}-%{release}
 
@@ -3704,9 +3719,28 @@ for i in ksysguard tde-kcontrol tdefontview showdesktop; do
   echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/${i}.desktop"
 done
 
+# Remove setuid bit on some binaries.
+%if %{?with_tsak}
+chmod 0511 "%{?buildroot}%{tde_bindir}/tdmtsak"
+%endif
+chmod 0755 "%{?buildroot}%{tde_bindir}/kcheckpass"
+chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"
+
+
 
 %clean
 %__rm -rf %{?buildroot}
+
+
+%if 0%{?suse_version}
+# Check permissions on setuid files (openSUSE specific)
+%verifyscript
+%if %{?with_tsak}
+%verify_permissions -e %{tde_bindir}/tdmtsak
+%endif
+%verify_permissions -e %{tde_bindir}/kcheckpass
+%verify_permissions -e %{tde_bindir}/tdekbdledsync
+%endif
 
 
 %changelog
