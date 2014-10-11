@@ -80,8 +80,8 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/applications/tde
 %dir %{tde_datadir}/applnk
 %dir %{tde_datadir}/applnk/.hidden
-%dir %{tde_datadir}/applnk/Settings
-%dir %{tde_datadir}/applnk/Settings/*
+%dir %{tde_datadir}/applnk/*
+%dir %{tde_datadir}/applnk/*/*
 %dir %{tde_datadir}/apps
 %dir %{tde_datadir}/apps/plugin
 %dir %{tde_datadir}/cmake
@@ -125,7 +125,14 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applications/tde
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/.hidden
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Applications
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Development
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Edutainment
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Games
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Graphics
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Internet
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Multimedia
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Office
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Settings
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Settings/WebBrowsing
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/System
