@@ -156,7 +156,7 @@ BuildRequires:	libXxf86vm-devel
 %endif
 
 # XINE support
-%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?with_xine}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
@@ -755,7 +755,7 @@ This is a sound recording utility for Trinity.
 %{tde_tdelibdir}/kcm_krec_files.so
 %{tde_tdelibdir}/krec.la
 %{tde_tdelibdir}/krec.so
-%if %{?with_lame}
+%if 0%{?with_lame}
 %{tde_tdelibdir}/libkrecexport_mp3.la
 %{tde_tdelibdir}/libkrecexport_mp3.so
 %{tde_datadir}/services/krec_exportmp3.desktop
