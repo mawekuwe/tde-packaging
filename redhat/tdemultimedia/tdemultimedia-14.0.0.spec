@@ -1267,6 +1267,7 @@ export PATH="%{tde_bindir}:${PATH}"
   %__rm %{?buildroot}%{tde_bindir}/mpeglibartsplay
   %__rm %{?buildroot}%{tde_libdir}/libarts_mpeglib*
   %__rm %{?buildroot}%{tde_libdir}/libarts_splay.*
+  %__rm %{?buildroot}%{tde_libdir}/libmpeg*
   %__rm %{?buildroot}%{tde_libdir}/mcop/MP3PlayObject.mcopclass
   %__rm %{?buildroot}%{tde_libdir}/mcop/CDDAPlayObject.mcopclass
   %__rm %{?buildroot}%{tde_libdir}/mcop/NULLPlayObject.mcopclass
