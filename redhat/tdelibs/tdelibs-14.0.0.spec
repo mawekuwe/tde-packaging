@@ -447,7 +447,7 @@ kimgio (image manipulation).
 %{tde_datadir}/applnk/tdeio_iso.desktop
 %{tde_datadir}/apps/*
 %exclude %{tde_datadir}/apps/ksgmltools2/
-%config(noreplace) %{tde_datadir}/config/*
+%{tde_datadir}/config/*
 %{tde_datadir}/emoticons/*
 %{tde_datadir}/icons/crystalsvg/
 %{tde_datadir}/icons/default.tde

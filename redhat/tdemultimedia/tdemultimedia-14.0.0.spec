@@ -20,7 +20,9 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
+%define tde_pkg tdemultimedia
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -38,7 +40,7 @@
 %endif
 
 
-Name:		trinity-tdemultimedia
+Name:		trinity-%{tde_pkg}
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
@@ -73,22 +75,23 @@ BuildRequires:	trinity-arts-devel >= 2:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	autoconf automake libtool m4
+BuildRequires:	fdupes
 
 # TAGLIB support
-%define _with_taglib --with-taglib
+%define with_taglib 1
 BuildRequires: taglib-devel
 
 # AKODE support
-%define _with_akode --with-akode
+%define with_akode 1
 BuildRequires: trinity-akode-devel
-BuildRequires: trinity-akode-libmad
+%{?with_mad:BuildRequires: trinity-akode-libmad}
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	zlib-devel
 
 # MUSICBRAINZ support
 ## not currently compatible with libtunepimp-0.5 (only libtunepimp-0.4)
-#define _with_musicbrainz --with-musicbrainz
+#define with_musicbrainz 1
 #BuildRequires: libmusicbrainz-devel libtunepimp-devel
 
 # Audio libraries
@@ -149,7 +152,6 @@ BuildRequires:	xorg-x11-devel
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXxf86dga-devel
 BuildRequires:	libXxf86vm-devel
-BuildRequires:	libXt-devel
 %endif
 
 # XINE support
@@ -171,7 +173,8 @@ BuildRequires: libxine-devel
 %endif
 
 # LAME support
-%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
+%if 0%{?opensuse_bs} == 0
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} || 0%{?with_lame}
 %define with_lame 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
@@ -185,6 +188,7 @@ BuildRequires:		libmp3lame-devel
 %endif
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires:		lame-devel
+%endif
 %endif
 %endif
 
@@ -201,7 +205,7 @@ Requires: trinity-krec = %{version}-%{release}
 Requires: trinity-kscd = %{version}-%{release}
 Requires: trinity-libarts-akode = %{version}-%{release}
 Requires: trinity-libarts-audiofile = %{version}-%{release}
-Requires: trinity-libarts-mpeglib = %{version}-%{release}
+%{?with_mpeg:Requires: trinity-libarts-mpeglib = %{version}-%{release}}
 %{?with_xine:Requires: trinity-libarts-xine = %{version}-%{release}}
 Requires: trinity-libkcddb = %{version}-%{release}
 Requires: trinity-mpeglib = %{version}-%{release}
@@ -635,6 +639,7 @@ Konqueror and the audiocd:/ URL.
 %{tde_datadir}/services/audiocd.protocol
 %{tde_tdedocdir}/HTML/en/tdeioslave/audiocd/
 %{tde_tdedocdir}/HTML/en/kcontrol/audiocd/
+%{tde_datadir}/icons/hicolor/*/apps/kcmaudiocd.png
 
 %post tdeio-plugins
 /sbin/ldconfig
@@ -843,7 +848,7 @@ This package contains akode plugins for aRts.
 %{tde_libdir}/mcop/akodeXiphPlayObject.mcopclass
 
 # Requires MAD support
-%{tde_libdir}/mcop/akodeMPEGPlayObject.mcopclass
+%{?with_mad:%{tde_libdir}/mcop/akodeMPEGPlayObject.mcopclass}
 
 %post -n trinity-libarts-akode
 /sbin/ldconfig
@@ -876,6 +881,7 @@ This package contains audiofile plugins for aRts.
 
 ##########
 
+%if 0%{?with_mpeg}
 %package -n trinity-libarts-mpeglib
 Summary:	Mpeglib plugin for aRts, supporting mp3 and mpeg audio/video
 Group:		Environment/Libraries
@@ -905,6 +911,7 @@ This is the arts (TDE Sound daemon) plugin.
 
 %postun -n trinity-libarts-mpeglib
 /sbin/ldconfig
+%endif
 
 ##########
 
@@ -986,7 +993,9 @@ and WAV playback
 %{tde_bindir}/yaf-tplay
 %{tde_bindir}/yaf-vorbis
 %{tde_bindir}/yaf-yuv
+%if 0%{?with_mpeg}
 %{tde_libdir}/libmpeg-0.3.0.so
+%endif
 %{tde_libdir}/libyafcore.so
 %{tde_libdir}/libyafxplayer.so
 
@@ -1145,8 +1154,10 @@ noatun plugins.
 %{tde_libdir}/libtdeinit_noatun.la
 %{tde_libdir}/libtdemidlib.la
 %{tde_libdir}/libtdemidlib.so
+%if 0%{?with_mpeg}
 %{tde_libdir}/libmpeg.la
 %{tde_libdir}/libmpeg.so
+%endif
 %{tde_libdir}/libnoatun.la
 %{tde_libdir}/libnoatun.so
 %{tde_libdir}/libnoatuncontrols.la
@@ -1176,6 +1187,9 @@ noatun plugins.
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
+
+# Update icons for some control center modules
+%__sed -i "tdeioslave/audiocd/kcmaudiocd/audiocd.desktop" -e "s|^Icon=.*|Icon=kcmaudio|"
 
 
 %build
@@ -1208,10 +1222,10 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --with-vorbis \
   --with-alsa \
   --with-gstreamer \
-  --with-lame \
-  %{?_with_akode} %{!?_with_akode:--without-akode} \
-  %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
-  %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
+  %{?with_lame:--with-lame} %{!?with_lame:--without-lame} \
+  %{?with_akode:--with-akode} %{!?with_akode:--without-akode} \
+  %{?with_musicbrainz:--with-musicbrainz} %{!?with_musicbrainz:--without-musicbrainz} \
+  %{?with_taglib:--with-taglib} %{!?with_taglib:--without-taglib} \
   %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
 %__make %{?_smp_mflags} || %__make
@@ -1221,6 +1235,25 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot} 
 %__make install DESTDIR=%{buildroot}
+
+# Disable MPEG support entirely
+%if 0%{?with_mpeg} == 0
+  %__rm %{?buildroot}%{tde_bindir}/mpeglibartsplay
+  %__rm %{?buildroot}%{tde_libdir}/libarts_mpeglib*
+  %__rm %{?buildroot}%{tde_libdir}/libarts_splay.*
+  %__rm %{?buildroot}%{tde_libdir}/mcop/MP3PlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/CDDAPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/NULLPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/OGGPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/SplayPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/WAVPlayObject.mcopclass
+%endif
+
+# Copy missing icons from 'crystalsvg' theme (tdelibs)
+mkdir -p $RPM_BUILD_ROOT%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64}/apps/
+pushd $RPM_BUILD_ROOT%{tde_datadir}/icons/
+for i in {16,22,32,48,64}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/cdaudio_unmount.png hicolor/"$i"x"$i"/apps/kcmaudiocd.png;done
+popd
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
@@ -1236,6 +1269,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file juk            AudioVideo Player Jukebox
 %suse_update_desktop_file audiocd
 %endif
+
+# Symlinks duplicate files
+%fdupes -s "%{?buildroot}%{tde_datadir}"
 
 
 %clean
