@@ -2177,7 +2177,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/music_quarternote.pn
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/music_sixteenthnote.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/news_subscribe.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/news_unsubscribe.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/next.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/go-next.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/no.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/ok.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/openterm.png
@@ -2198,7 +2198,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/presence_away.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/presence_offline.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/presence_online.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/presence_unknown.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/previous.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/go-previous.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/project_open.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/queue.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/rebuild.png
@@ -2643,7 +2643,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/music_quarternote.pn
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/music_sixteenthnote.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/news_subscribe.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/news_unsubscribe.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/next.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/go-next.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/openterm.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/paintbrush.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/pencil.png
@@ -2656,7 +2656,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/player_play.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/player_rew.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/player_start.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/player_stop.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/previous.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/go-previous.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/project_open.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/queue.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/rebuild.png
@@ -3008,7 +3008,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/music_halfnote.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/music_natur.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/music_quarternote.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/music_sixteenthnote.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/next.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/go-next.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/openterm.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/player_eject.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/player_end.png
@@ -3023,7 +3023,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/presence_away.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/presence_offline.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/presence_online.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/presence_unknown.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/previous.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/go-previous.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/project_open.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/queue.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/rebuild.png
@@ -3331,12 +3331,12 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/lock.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/mail_new.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/mail_post_to.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/misc.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/next.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/go-next.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/player_playlist.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/presence_away.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/presence_offline.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/presence_online.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/previous.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/go-previous.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/reload_all_tabs.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/reload_page.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/reload.png
