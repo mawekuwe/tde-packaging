@@ -81,6 +81,8 @@ BuildRequires:	fdupes
 # SUSE desktop files utility
 %if 0%{?suse_version}
 BuildRequires:	update-desktop-files
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
 %endif
 
 # TAGLIB support
@@ -107,6 +109,11 @@ BuildRequires:	audiofile-devel
 BuildRequires:	libtheora-devel
 BuildRequires:	alsa-lib-devel 
 BuildRequires:	cdparanoia
+
+# NAS support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	nas-devel
+%endif
 
 # CDDA support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -162,7 +169,7 @@ BuildRequires:	libXxf86vm-devel
 %endif
 
 # XINE support
-%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?with_xine}
+%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?with_xine}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
@@ -1271,7 +1278,7 @@ export PATH="%{tde_bindir}:${PATH}"
 # Copy missing icons from 'crystalsvg' theme (tdelibs)
 mkdir -p $RPM_BUILD_ROOT%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64}/apps/
 pushd $RPM_BUILD_ROOT%{tde_datadir}/icons/
-for i in {16,22,32,48,64}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/cdaudio_unmount.png hicolor/"$i"x"$i"/apps/kcmaudiocd.png;done
+for i in {16,22,32,48,64}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/cdaudio_unmount.png hicolor/"$i"x"$i"/apps/kcmaudiocd.png;done
 popd
 
 # Updates applications categories for openSUSE
