@@ -78,6 +78,11 @@ BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gcc-c++
 BuildRequires:	fdupes
 
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
 # TAGLIB support
 %define with_taglib 1
 BuildRequires: taglib-devel
@@ -176,8 +181,9 @@ BuildRequires: libxine-devel
 
 # LAME support
 %if 0%{?opensuse_bs} == 0
-%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} || 0%{?with_lame}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?with_lame}
 %define with_lame 1
+
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
 BuildRequires:		liblame-devel
@@ -185,12 +191,15 @@ BuildRequires:		liblame-devel
 BuildRequires:		%{_lib}lame-devel
 %endif
 %endif
+
 %if 0%{?suse_version}
 BuildRequires:		libmp3lame-devel
 %endif
+
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires:		lame-devel
 %endif
+
 %endif
 %endif
 
@@ -462,7 +471,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kaboodle
-Summary:	light, embedded media player for Trinity
+Summary:	Light, embedded media player for Trinity
 Group:		Applications/Multimedia
 
 %if 0%{?with_xine}
@@ -546,7 +555,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package kfile-plugins
-Summary:	au/avi/m3u/mp3/ogg/wav plugins for kfile
+Summary:	An au/avi/m3u/mp3/ogg/wav plugins for kfile
 Group:		Applications/Multimedia
 
 %description kfile-plugins
@@ -591,7 +600,7 @@ au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
 ##########
 
 %package kappfinder-data
-Summary:	multimedia data for kappfinder-trinity
+Summary:	Multimedia data for kappfinder-trinity
 Group:		Applications/Multimedia
 
 Requires: 	trinity-kappfinder
@@ -921,7 +930,7 @@ This is the arts (TDE Sound daemon) plugin.
 
 %if 0%{?with_xine}
 %package -n trinity-libarts-xine
-Summary:	aRts plugin enabling xine support
+Summary:	ARTS plugin enabling xine support
 Group:		Environment/Libraries
 
 %description -n trinity-libarts-xine
@@ -1134,9 +1143,13 @@ noatun plugins.
 %{tde_libdir}/libarts_akode.so
 %endif
 %{tde_libdir}/libarts_audiofile.so
+%if 0%{?with_mpeg}
 %{tde_libdir}/libarts_mpeglib.so
 %{tde_libdir}/libarts_splay.so
-%{?with_xine:%{tde_libdir}/libarts_xine.so}
+%endif
+%if 0%{?with_xine}
+%{tde_libdir}/libarts_xine.so
+%endif
 %{tde_libdir}/libartsbuilder.so
 %{tde_libdir}/libartscontrolapplet.so
 %{tde_libdir}/libartscontrolsupport.so
