@@ -75,6 +75,7 @@ BuildRequires:	trinity-arts-devel >= 2:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
 BuildRequires:	fdupes
 
 # TAGLIB support
