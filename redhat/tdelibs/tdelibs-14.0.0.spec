@@ -266,6 +266,9 @@ Requires:		openssl
 BuildRequires:	ca-certificates
 Requires:		ca-certificates
 %endif
+%if "%{cacert}" != ""
+Requires:		%{cacert}
+%endif
 
 # XRANDR support
 #  On RHEL5, xrandr library is too old.

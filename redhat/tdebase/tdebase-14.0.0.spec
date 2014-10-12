@@ -227,7 +227,7 @@ Requires:	desktop-common-data
 
 # OpenSuse 11.4 Theme
 %if "%{?suse_version}" == "1140"
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 11.4
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -235,7 +235,7 @@ Requires:	hicolor-icon-theme-branding
 %if "%{?suse_version}" == "1220"
 Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 12.2
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -243,7 +243,7 @@ Requires:	hicolor-icon-theme-branding
 %if "%{?suse_version}" == "1230"
 Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 12.3
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -251,7 +251,7 @@ Requires:	hicolor-icon-theme-branding
 %if "%{?suse_version}" == "1310"
 Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 13.1
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -3127,7 +3127,7 @@ to monitor it through the daemon running there.
 ##########
 
 %package -n trinity-ktip
-Summary:	useful tips for TDE
+Summary:	Useful tips for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
@@ -3673,7 +3673,7 @@ for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/a
 for i in {16,22};              do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png             hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
 for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png              hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
 for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png         hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
-for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/joystick.png            hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
+for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/input-joystick.png      hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
 for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png               hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
 for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png              hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
 for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png           hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
