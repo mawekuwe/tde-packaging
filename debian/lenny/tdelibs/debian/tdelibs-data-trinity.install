@@ -2097,7 +2097,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/filesave.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/fill.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/filter.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/find.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/finish.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/go-last.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/flag.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/folder_new.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/fontsizedown.png
@@ -2219,7 +2219,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/show_side_panel.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/signature.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/spellcheck.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/stamp.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/start.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/go-first.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/stop.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/switchuser.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/tab_breakoff.png
@@ -2565,7 +2565,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/filesave.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/fill.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/filter.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/find.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/finish.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/go-last.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/folder_new.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/folder.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/fontsizedown.png
@@ -2678,7 +2678,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/showmenu.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/show_side_panel.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/signature.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/spellcheck.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/start.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/go-first.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/stop.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/switchuser.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/text_block.png
@@ -2945,7 +2945,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/filesaveas.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/filesave.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/filter.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/find.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/finish.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/go-last.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/folder_new.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/fonts.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/forward.png
@@ -3043,7 +3043,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/share.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/show_side_panel.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/signature.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/spellcheck.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/start.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/go-first.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/stop.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/switchuser.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/text_block.png
