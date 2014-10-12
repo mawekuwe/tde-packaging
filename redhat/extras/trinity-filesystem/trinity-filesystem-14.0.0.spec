@@ -84,7 +84,7 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/applnk/*
 %dir %{tde_datadir}/applnk/*/*
 %dir %{tde_datadir}/apps
-%dir %{tde_datadir}/apps/plugin
+%dir %{tde_datadir}/apps/*
 %dir %{tde_datadir}/cmake
 %dir %{tde_datadir}/config.kcfg
 %dir %{tde_datadir}/autostart
@@ -141,6 +141,8 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Utilities
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/plugin
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/profiles
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/videothumbnail
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/autostart
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/cmake
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config
@@ -153,6 +155,7 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/audio
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/fonts
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/image
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/interface
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/inode
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/media
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/message
@@ -169,7 +172,7 @@ This package installs the Trinity directory structure.
 
 # Create icons directories
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/icons
-for t in crystalsvg hicolor ; do
+for t in crystalsvg hicolor locolor ; do
   %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}"
   %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}/scalable"
   for i in {16,22,32,48,64,128} ; do

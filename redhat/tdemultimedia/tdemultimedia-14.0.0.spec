@@ -252,6 +252,7 @@ TDE, including:
 %package -n trinity-artsbuilder
 Summary:	Synthesizer designer for aRts
 Group:		Applications/Multimedia
+Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-artsbuilder
 This is the analog Realtime synthesizer's graphical design tool.
@@ -607,17 +608,18 @@ au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
 ##########
 
 %package kappfinder-data
-Summary:	Multimedia data for kappfinder-trinity
+Summary:	Multimedia data for kappfinder
 Group:		Applications/Multimedia
 
-Requires: 	trinity-kappfinder
+Requires: 	trinity-kappfinder >= %{tde_version}
+Requires:	trinity-tdebase-runtime-data-common >= %{tde_version}
 
 %description kappfinder-data
 This package provides data on multimedia applications for kappfinder.
 
 %files kappfinder-data
 %defattr(-,root,root,-)
-%{tde_datadir}/apps/kappfinder/*
+%{tde_datadir}/apps/kappfinder/
 %{tde_datadir}/desktop-directories/tde-multimedia-music.directory
 %{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu
 
@@ -626,6 +628,7 @@ This package provides data on multimedia applications for kappfinder.
 %package tdeio-plugins
 Summary:	Enables the browsing of audio CDs under Konqueror
 Group:		Applications/Multimedia
+Requires:	trinity-tdebase-tdeio-plugins >= %{tde_version}
 
 Obsoletes:	trinity-tdemultimedia-kio-plugins < %{version}-%{release}
 Provides:	trinity-tdemultimedia-kio-plugins = %{version}-%{release}
@@ -713,6 +716,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kmix
 Summary:	Sound mixer applet for Trinity
 Group:		Applications/Multimedia
+Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-kmix
 This package includes TDE's dockable sound mixer applet.
@@ -969,6 +973,7 @@ multimedia engine though aRts.
 %package -n trinity-libkcddb
 Summary:	CDDB library for Trinity
 Group:		Environment/Libraries
+Requires:	trinity-kcontrol >= %{tde_version}
 
 %description -n trinity-libkcddb
 The Trinity native CDDB (CD Data Base) library, providing easy access to Audio
@@ -1030,6 +1035,7 @@ and WAV playback
 %package -n trinity-noatun
 Summary:	Media player for Trinity
 Group:		Applications/Multimedia
+Requires:	trinity-tdebase-bin >= %{tde_version}
 
 # 20120802: Hack to avoid dependency issue on MGA2 and MDV2011
 %if 0%{?mgaversion} || 0%{?mdkversion}

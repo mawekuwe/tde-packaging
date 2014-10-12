@@ -93,6 +93,8 @@ BuildRequires:	fdupes
 # SUSE desktop files utility
 %if 0%{?suse_version}
 BuildRequires:	update-desktop-files
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
 %endif
 
 # KRB5 support

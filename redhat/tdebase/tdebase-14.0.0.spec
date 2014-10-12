@@ -417,7 +417,6 @@ BuildRequires: Mesa-libGLU-devel
 %endif
 
 # NAS support
-# (what is nas btw ?)
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	nas-devel
 %endif
