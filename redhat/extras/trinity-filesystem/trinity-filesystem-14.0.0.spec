@@ -96,6 +96,9 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/icons/hicolor
 %dir %{tde_datadir}/icons/hicolor/*
 %dir %{tde_datadir}/icons/hicolor/*/*
+%dir %{tde_datadir}/icons/locolor
+%dir %{tde_datadir}/icons/locolor/*
+%dir %{tde_datadir}/icons/locolor/*/*
 %dir %{tde_datadir}/locale
 %dir %{tde_datadir}/locale/en_US
 %dir %{tde_datadir}/locale/l10n
