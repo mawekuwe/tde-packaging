@@ -5,12 +5,8 @@ PKGNAME="$1"
 TDE_VERSION="${2:-14.0.0}"
 
 RPMDIR="$(rpm -E %{_rpmdir}.tde-${TDE_VERSION})"
-if [ $(uname -i) == "x86_64" ]; then
-  RPMDIR_ARCH=${RPMDIR}/x86_64
-else
-  RPMDIR_ARCH=${RPMDIR}/i?86
-fi
-RPMDIR_NOARCH=${RPMDIR}/noarch
+RPMDIR_ARCH="${RPMDIR}/$(rpm -E %_target_cpu)"
+RPMDIR_NOARCH="${RPMDIR}/noarch"
 RPMDIRS="${RPMDIR_ARCH} ${RPMDIR_NOARCH}"
 
 case "${PKGNAME##*/}" in

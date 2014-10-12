@@ -44,11 +44,6 @@ if [ -r "${TEMPDIR}/one.patch" ]; then
       -e "/%setup/ s/$/\n%patch0 -p1/"
 fi
 
-# Determines if we are running an i386 or x86_64 distro
-if [ "$(rpm -q --qf '%{arch}\n' kernel | tail -n 1)" = "i686" ]; then
-	ARGS="${ARGS} --target=i686"
-fi
-
 [ -d "${BUILDDIR}" ] || mkdir -p "${BUILDDIR}"
 
 RPMDIR="$(rpm -E %{_rpmdir}.tde-${TDE_VERSION})"
@@ -67,6 +62,8 @@ rpmbuild -ba \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
   --define "preversion ${PREVERSION:-}" \
+  --define "with_jack 1" \
+  --define "with_xscreensaver 1" \
   ${ARGS} \
   "${TEMPDIR}/${SPECFILE##*/}"
 RET=$?

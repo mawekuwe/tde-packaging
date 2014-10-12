@@ -1,21 +1,49 @@
-# TDE specific building variables
+#
+# spec file for package dbus-tqt (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
-%define tde_prefix /usr
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
+
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libdbus %{_lib}dbus
+%else
+%define libdbus libdbus
+%endif
+
 
 Name:		trinity-dbus-tqt
-Epoch:		1
+Epoch:		%{tde_epoch}
 Version:	0.63
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
-Summary:	Dbus TQT Interface
-Group:		System Environment/Libraries
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Summary:	Simple inter-process messaging system
+Group:		System/Libraries
+URL:		http://www.trinitydesktop.org/
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-Prefix:		%{tde_prefix}
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
@@ -23,68 +51,101 @@ Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 # [dbus-tqt] Fix build on RHEL 4
 Patch1:		dbus-tqt-3.5.13-fix_old_dbus_types.patch
 
+BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
+
+BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
+# DBUS support
 %if 0%{?suse_version}
 BuildRequires:	dbus-1-devel
 %else
 BuildRequires:	dbus-devel
 %endif
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-
-BuildRequires:	cmake >= 2.8
-BuildRequires:	qt3-devel >= 3.3.8d
-Requires:		qt3 >= 3.3.8d
-
-Obsoletes:		dbus-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:		dbus-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
-
 
 %description
-Dbus TQT Interface
+D-BUS is a message bus, used for sending messages between applications.
+Conceptually, it fits somewhere in between raw sockets and CORBA in
+terms of complexity.
 
-%post
-/sbin/ldconfig || :
+This package provides the TQt-based shared library for applications using the
+Qt interface to D-BUS.
 
-%postun
-/sbin/ldconfig || :
-
-%files
-%defattr(-,root,root,-)
-%{tde_libdir}/libdbus-tqt-1.so.0
-%{tde_libdir}/libdbus-tqt-1.so.0.0.0
+See the dbus description for more information about D-BUS in general.
 
 ##########
 
-%package devel
-Requires:		%{name}
-Summary:		%{name} - Development files
-Group:			Development/Libraries
+%package -n %{libdbus}-tqt-1-0
+Summary:		Simple inter-process messaging system (TQt-based shared library)
+Group:			System/Libraries
+Provides:		libdbus-tqt-1-0 = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes:		dbus-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:		dbus-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:		trinity-dbus-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		trinity-dbus-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description devel
-Development files for %{name}
+%description -n %{libdbus}-tqt-1-0
+D-BUS is a message bus, used for sending messages between applications.
+Conceptually, it fits somewhere in between raw sockets and CORBA in
+terms of complexity.
 
-%post devel
+This package provides the TQt-based shared library for applications using the
+Qt interface to D-BUS.
+
+See the dbus description for more information about D-BUS in general.
+
+%post -n %{libdbus}-tqt-1-0
 /sbin/ldconfig || :
 
-%postun devel
+%postun -n %{libdbus}-tqt-1-0
 /sbin/ldconfig || :
 
-%files devel
+%files -n %{libdbus}-tqt-1-0
 %defattr(-,root,root,-)
-%{tde_includedir}/dbus-1.0/*
-%{tde_libdir}/libdbus-tqt-1.so
-%{tde_libdir}/libdbus-tqt-1.la
-%{tde_libdir}/pkgconfig/dbus-tqt.pc
+%{_libdir}/libdbus-tqt-1.so.0
+%{_libdir}/libdbus-tqt-1.so.0.0.0
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%package -n %{libdbus}-tqt-1-devel
+Summary:		Simple inter-process messaging system (TQt interface)
+Group:			Development/Libraries/C and C++
+Provides:		libdbus-tqt-1-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:		%{libdbus}-tqt-1-0 = %{?epoch:%{epoch}:}%{version}-%{release}
+
+Obsoletes:		trinity-dbus-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		trinity-dbus-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n %{libdbus}-tqt-1-devel
+D-BUS is a message bus, used for sending messages between applications.
+Conceptually, it fits somewhere in between raw sockets and CORBA in
+terms of complexity.
+
+This package provides the TQt-based shared library for applications using the
+Qt interface to D-BUS.
+
+See the dbus description for more information about D-BUS in general.
+
+%post -n %{libdbus}-tqt-1-devel
+/sbin/ldconfig || :
+
+%postun -n %{libdbus}-tqt-1-devel
+/sbin/ldconfig || :
+
+%files -n %{libdbus}-tqt-1-devel
+%defattr(-,root,root,-)
+%{_includedir}/dbus-1.0/*
+%{_libdir}/libdbus-tqt-1.so
+%{_libdir}/libdbus-tqt-1.la
+%{_libdir}/pkgconfig/dbus-tqt.pc
+
+##########
+
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -96,8 +157,7 @@ Development files for %{name}
 
 %build
 unset QTDIR QTINC QTLIB
-. /etc/profile.d/qt?.sh
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+. /etc/profile.d/qt3.sh
 
 %if 0%{?rhel} == 4
 export CXXFLAGS="-DDBUS_API_SUBJECT_TO_CHANGE ${CXXFLAGS}"
@@ -115,8 +175,8 @@ fi
   -DCMAKE_SKIP_RPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
-  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DINCLUDE_INSTALL_DIR=%{_includedir} \
+  -DLIB_INSTALL_DIR=%{_libdir} \
   ..
 
 %__make %{?_smp_mflags}
@@ -132,6 +192,9 @@ fi
 
 
 %changelog
+* Sat Oct 11 2014 Francois Andriot <francois.andriot@free.fr> - 1:0.63-2
+- Rename package to 'libdbus-tqt-1'
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1:0.63-1
 - Build for Fedora 19
 

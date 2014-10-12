@@ -18,7 +18,7 @@ DEVEL="$2"
 # Some runtime packages are prefixed with 'trinity-', some are not.
 case "${PKGNAME}" in
   "trinity-"*|"qt3"|"tqt3"|"tqtinterface"|"python-qt3"|"esound"|"avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"fileshareset") PREFIX="";;
-  "autoconf"|"automake"|"cmake"|"gnuchess"|"htdig"|"imlib1"|"libotr3"|"libtool"|"lilypond"|"m4"|"mftrace"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
+  "autoconf"|"automake"|"cmake"|"gnuchess"|"htdig"|"imlib1"|"libconfig"|"libotr3"|"libtool"|"lilypond"|"m4"|"mftrace"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
   "curl") PREFIX="trinity-lib";;
   *) PREFIX="trinity-";;
 esac

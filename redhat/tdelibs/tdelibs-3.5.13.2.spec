@@ -1,7 +1,7 @@
 #
-# spec file for package tdelibs
+# spec file for package tdelibs (version 3.5.13-SRU)
 #
-# Copyright (c) 2014 François Andriot <francois.andriot@free.fr>
+# Copyright (c) 2014 Trinity Desktop Environment
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -20,17 +20,19 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
+%define tde_pkg tdelibs
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
-%define _docdir %{tde_docdir}
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -38,7 +40,7 @@
 %endif
 
 
-Name:			trinity-tdelibs
+Name:			trinity-%{tde_pkg}
 Version:		%{tde_version}
 Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 Summary:		TDE Libraries
@@ -46,18 +48,19 @@ Group:			System/GUI/Other
 URL:			http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
-License:	GPL-2.0+
+License:		GPL-2.0+
 %else
-License:	GPLv2+
+License:		GPLv2+
 %endif
 
-#Vendor:			Trinity Project
+#Vendor:			Trinity Desktop
 #Packager:		Francois Andriot <francois.andriot@free.fr>
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source1:		trinity-tdelibs-rpmlintrc
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -66,26 +69,52 @@ Provides:		trinity-kdelibs = %{version}-%{release}
 Obsoletes:		trinity-kdelibs-apidocs < %{version}-%{release}
 Provides:		trinity-kdelibs-apidocs = %{version}-%{release}
 
-# Trinity dependencies
-BuildRequires:	qt3-devel >= 3.3.8.d
-BuildRequires:	libtqt4-devel = 1:4.2.0
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
-BuildRequires:	libdbus-tqt-1-devel >= 1:0.63
-BuildRequires:	libdbus-1-tqt-devel >= 1:0.9
+# for set_permissions macro
+%if 0%{?suse_version}
+PreReq: permissions
+%endif
 
-Requires:		trinity-arts >= 1:1.5.10
+# Trinity dependencies
+BuildRequires:	libtqt4-devel = %{tde_epoch}:4.2.0
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
+BuildRequires:	libdbus-tqt-1-devel >= %{tde_epoch}:0.63
+BuildRequires:	libdbus-1-tqt-devel >= %{tde_epoch}:0.9
+BuildRequires:	trinity-filesystem >= %{tde_version}
+
+Requires:		trinity-arts >= %{tde_epoch}:1.5.10
+Requires:		trinity-filesystem >= %{tde_version}
+Requires:		fileshareset >= 2.0
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
+BuildRequires:	fdupes
 
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+# KRB5 support
 BuildRequires:	krb5-devel
+
+# XSLT support
 BuildRequires:	libxslt-devel
-BuildRequires:	cups-devel
-BuildRequires:	openssl-devel
+
+# ALSA support
 BuildRequires:	alsa-lib-devel
+
+# IDN support
 BuildRequires:	libidn-devel
+
+# CUPS support
+BuildRequires:	cups-devel
+
+# TIFF support
 BuildRequires:	libtiff-devel
+
+# OPENSSL support
+BuildRequires:	openssl-devel
 
 # GLIB2 support
 BuildRequires:	glib2-devel
@@ -159,7 +188,7 @@ BuildRequires:	jasper-devel
 # AVAHI support
 %if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_avahi 1
-BuildRequires:	trinity-avahi-tqt-devel >= 1:0.6.30
+BuildRequires:	libavahi-tqt-devel >= 1:0.6.30
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
 Requires:		%{_lib}avahi-client3
@@ -183,18 +212,6 @@ BuildRequires:	%{_lib}ltdl-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libtool-ltdl-devel
-%endif
-
-# XCOMPOSITE support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xcomposite-devel
-%else
-BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-%endif
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXcomposite-devel
 %endif
 
 # X11 support
@@ -230,9 +247,10 @@ BuildRequires:	xz-devel
 %endif
 %endif
 
-# Certificates support
+# Certificates support
 %if 0%{?rhel} >= 6 || 0%{?fedora}
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
+BuildRequires:	ca-certificates
 Requires:		ca-certificates
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -243,6 +261,11 @@ Requires:		openssl
 %define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 Requires:		openssl
 %endif
+%if 0%{?suse_version}
+%define cacert	%{_sysconfdir}/ssl/ca-bundle.pem
+BuildRequires:	ca-certificates
+Requires:		ca-certificates
+%endif
 
 # XRANDR support
 #  On RHEL5, xrandr library is too old.
@@ -250,10 +273,24 @@ Requires:		openssl
 %define with_xrandr 1
 %endif
 
+# XCOMPOSITE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+%define xcomposite_devel %{_lib}xcomposite-devel
+%else
+%define xcomposite_devel %{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+%define xcomposite_devel libXcomposite-devel
+%endif
+%{?xcomposite_devel:BuildRequires: %{xcomposite_devel}}
+
 # XT support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires: libXt-devel
+%define xt_devel libXt-devel
 %endif
+%{?xt_devel:BuildRequires: %{xt_devel}}
 
 
 
@@ -279,8 +316,6 @@ kimgio (image manipulation).
 %{tde_bindir}/dcopserver
 %{tde_bindir}/dcopserver_shutdown
 %{tde_bindir}/dcopstart
-%{tde_bindir}/filesharelist
-%{tde_bindir}/fileshareset
 %{tde_bindir}/imagetops
 %{tde_bindir}/kab2kabc
 %{tde_bindir}/kaddprinterwizard
@@ -309,7 +344,6 @@ kimgio (image manipulation).
 %{tde_bindir}/klauncher
 %{tde_bindir}/kmailservice
 %{tde_bindir}/kmimelist
-%attr(4755,root,root) %{tde_bindir}/kpac_dhcp_helper
 %{tde_bindir}/ksendbugmail
 %{tde_bindir}/kshell
 %{tde_bindir}/kstartupconfig
@@ -321,9 +355,7 @@ kimgio (image manipulation).
 %{tde_bindir}/make_driver_db_lpr
 %{tde_bindir}/meinproc
 %{tde_bindir}/networkstatustestservice
-%{tde_bindir}/start_kdeinit
 %{tde_bindir}/start_kdeinit_wrapper
-%attr(4755,root,root) %{tde_bindir}/kgrantpty
 %{tde_bindir}/checkXML
 %{tde_bindir}/ksvgtopng
 %{tde_bindir}/kunittestmodrunner
@@ -350,7 +382,18 @@ kimgio (image manipulation).
 %{tde_tdedocdir}/HTML/en/common/*
 %{tde_tdedocdir}/HTML/en/kspell/
 
-%{_sysconfdir}/xdg/menus/tde-applications.menu
+# Some setuid binaries need special care
+%if 0%{?suse_version}
+%verify(not mode) %{tde_bindir}/kgrantpty
+%verify(not mode) %{tde_bindir}/kpac_dhcp_helper
+%verify(not mode) %{tde_bindir}/start_kdeinit
+%else
+%attr(4755,root,root) %{tde_bindir}/kgrantpty
+%attr(4755,root,root) %{tde_bindir}/kpac_dhcp_helper
+%attr(4711,root,root) %{tde_bindir}/start_kdeinit
+%endif
+
+%config %{_sysconfdir}/xdg/menus/tde-applications.menu
 
 %pre
 # TDE Bug #1074
@@ -361,20 +404,34 @@ fi
 %post
 /sbin/ldconfig || :
 
+%if 0%{?suse_version}
+# Sets permissions on setuid files (openSUSE specific)
+%set_permissions %{tde_bindir}/kgrantpty
+%set_permissions %{tde_bindir}/kpac_dhcp_helper
+%set_permissions %{tde_bindir}/start_kdeinit
+%endif
+
 %postun
 /sbin/ldconfig || :
 
 ##########
 
 %package devel
-Summary:	%{name} - Development files
-Group:		Development/Libraries
+Summary:	TDE Libraries (Development files)
+Group:		Development/Libraries/X11
 Requires:	%{name} = %{version}-%{release}
 
 Obsoletes:	tdelibs-devel < %{version}-%{release}
 Provides:	tdelibs-devel = %{version}-%{release}
 Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
 Provides:	trinity-kdelibs-devel = %{version}-%{release}
+
+Requires:	qt3-devel >= 3.3.8d
+Requires:	libtqt4-devel = %{tde_epoch}:4.2.0
+Requires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
+Requires:	libart_lgpl-devel
+%{?xcomposite_devel:Requires: %{xcomposite_devel}}
+%{?xt_devel:Requires: %{xt_devel}}
 
 %description devel
 This package includes the header files you will need to compile
@@ -476,18 +533,48 @@ fi
 %__rm -rf "%{?buildroot}"
 %__make install DESTDIR="%{?buildroot}" -C build
 
-# Use system-wide CA certificate
+# Use system-wide CA certificates
 %if "%{?cacert}" != ""
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %endif
 
+# Symlinks duplicate files (mostly under 'ksgmltools2')
+%fdupes -s "%{?buildroot}"
+
+# Fix 'tderesources.desktop' (openSUSE only)
+%if 0%{?suse_version}
+%suse_update_desktop_file -r tderesources Qt X-TDE-settings-desktop
+%endif
+
+# Remove setuid bit on some binaries.
+chmod 0755 "%{?buildroot}%{tde_bindir}/kgrantpty"
+chmod 0755 "%{?buildroot}%{tde_bindir}/kpac_dhcp_helper"
+chmod 0755 "%{?buildroot}%{tde_bindir}/start_kdeinit"
+
+# fileshareset 2.0 is provided separately.
+# Remove integrated fileshareset 1.0 .
+%__rm -f "%{?buildroot}%{tde_bindir}/filesharelist"
+%__rm -f "%{?buildroot}%{tde_bindir}/fileshareset"
+
 
 %clean
 %__rm -rf "%{?buildroot}"
 
+%if 0%{?suse_version}
+# Check permissions on setuid files (openSUSE specific)
+%verifyscript
+%verify_permissions -e %{tde_bindir}/kgrantpty
+%verify_permissions -e %{tde_bindir}/kpac_dhcp_helper
+%verify_permissions -e %{tde_bindir}/start_kdeinit
+%endif
+
 
 %changelog
+* Sat Oct 11 2014 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-4
+- Remove integrated fileshareset.
+- Update dependencies.
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
 - Build for Fedora 19
 

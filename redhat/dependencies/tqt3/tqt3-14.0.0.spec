@@ -1,5 +1,5 @@
 #
-# spec file for package tqt3
+# spec file for package tqt3 (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #

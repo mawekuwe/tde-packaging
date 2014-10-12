@@ -1,5 +1,5 @@
 #
-# spec file for package tqtinterface
+# spec file for package tqtinterface (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -20,8 +20,9 @@
 #  Having KDE libraries may cause FTBFS here !
 
 # TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-%define tde_pkg tdeaddons
+%define tde_pkg tqtinterface
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -32,6 +33,7 @@
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
+%define cmake_modules_dir %{_datadir}/cmake/Modules
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -44,8 +46,8 @@
 %define libtqt4 libtqt4
 %endif
 
-Name:		trinity-tqtinterface
-Epoch:		2
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
 Version:	4.2.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	The Trinity Qt Interface Libraries
@@ -95,6 +97,19 @@ BuildRequires: Mesa-libGL-devel
 BuildRequires: Mesa-libGLU-devel
 %endif
 
+# X11 libraries
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xi-devel
+%endif
+%if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
+BuildRequires:	libXi-devel
+%endif
+%if 0%{?suse_version} == 1140
+BuildRequires:	libXi6-devel
+%endif
 
 %description
 The Trinity Qt Interface is a library that abstracts Qt from Trinity.

@@ -1,6 +1,6 @@
 PKGNAME=		trinity-tqt3-${VERSION}
 VERSION=		3.5.0
-DISTNAME=		trinity-tqt3-14.0.0~pre216+d9d3dd45
+DISTNAME=		trinity-tqt3-14.0.0~pre219+16e2c768
 EXTRACT_SUFX=	.tar.gz
 
 CATEGORIES=		x11/trinity/dependencies

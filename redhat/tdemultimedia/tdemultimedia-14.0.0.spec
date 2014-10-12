@@ -1,5 +1,5 @@
 #
-# spec file for package tdemultimedia
+# spec file for package tdemultimedia (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -1170,12 +1170,6 @@ noatun plugins.
 
 ##########
 
-# FIXME 2014/03/15: FTBFS on PCLINUXOS ... Need to remove -fstack-protector
-%if 0%{?pclinuxos}
-%define _ssp_cflags -fno-stack-protector --param=ssp-buffer-size=4%{?_serverbuild_flags: %_serverbuild_flags}
-%endif
-
-
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
@@ -1228,13 +1222,10 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot} 
 %__make install DESTDIR=%{buildroot}
 
-# don't make these world-writeable
-chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
-
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
 %suse_update_desktop_file krec           AudioVideo Recorder
-%suse_update_desktop_file tdemid           AudioVideo Midi
+%suse_update_desktop_file tdemid         AudioVideo Midi
 %suse_update_desktop_file artsbuilder    AudioVideo AudioVideoEditing
 %suse_update_desktop_file artscontrol    AudioVideo AudioVideoEditing
 %suse_update_desktop_file kmix           AudioVideo Mixer

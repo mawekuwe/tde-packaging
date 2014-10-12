@@ -26,14 +26,14 @@ main:	tdelibs tdebase tdeaccessibility tdeadmin tdegames tdemultimedia tdepim td
 libraries:	libkdcraw libkexiv2 libkipi libksquirrel libtdeldap libtqt-perl pytdeextensions python-trinity
 applications:	abakus amarok basket bibletime digikam dolphin filelight gtk3-tqt-engine gtk-qt-engine gwenview k3b k9copy kaffeine kaffeine-mozilla kasablanca katapult kbarcode kbfx kbibtex kbiff kbookreader kchmviewer kcmautostart kcmldap kcmldapcontroller kcmldapmanager kcpuload kdbg kdbusnotification kdiff3 kdirstat keep kerberostray kftpgrabber kile kima kiosktool kkbswitch klcddimmer kmplayer kmyfirewall kmymoney knemo knetload knetstats knights knmap knowit knutclient koffice konversation kopete-otr kpicosim kpilot krecipes krename krusader kscope ksensors kshowmail kshutdown ksplash-engine-moodin ksquirrel kstreamripper ksystemlog ktechlab ktorrent kuickshow kvirc kvkbd kvpnc mplayerthumbs piklab potracegui qt4-tqt-theme-engine rosegarden smartcardauth smb4k soundkonverter tde-guidance tdeio-apt tdeio-ftps tdeio-locate tdeio-sword tdeio-umountwrapper tdenetworkmanager tdepowersave tderadio tde-style-lipstik tde-style-qtcurve tdesudo tdesvn tde-systemsettings tdmtheme tellico tork twin-style-crystal wlassistant yakuake
 i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
-extras:	icons-nuvola kdevmon kdissert klamav kompose koverartist kpacman png2qrgb style-ia-ora
+extras:	icons-nuvola kdevmon kdissert klamav kompose koverartist kpacman mathemagics png2qrgb style-ia-ora
 
 
 ### Trinity Dependencies
 arts:	tqtinterface trinity-filesystem esound cmake
 	$(call buildpkg,dependencies/arts)
 
-avahi-tqt:	tqtinterface
+avahi-tqt:	tqtinterface autoconf automake libtool
 	$(call buildpkg,dependencies/avahi-tqt)
 
 dbus-1-tqt:	tqtinterface cmake
@@ -42,7 +42,7 @@ dbus-1-tqt:	tqtinterface cmake
 dbus-tqt: tqtinterface cmake
 	$(call buildpkg,dependencies/dbus-tqt)
 
-libart_lgpl:	tqtinterface
+libart_lgpl:	tqtinterface libtool
 	$(call buildpkg,dependencies/libart-lgpl)
 
 libcaldav: tqtinterface autoconf libcurl
@@ -85,7 +85,7 @@ tdeadmin:	tdebase
 tdeartwork:	tdebase
 	$(call buildpkg,tdeartwork)
 
-tdebase:	tdelibs cmake htdig fileshareset
+tdebase:	tdelibs cmake htdig fileshareset libconfig
 	$(call buildpkg,tdebase)
 
 tdebindings:	tdebase tqscintilla
@@ -100,7 +100,7 @@ tdegames:	tdebase tdemultimedia
 tdegraphics:	tdebase poppler cmake
 	$(call buildpkg,tdegraphics)
 
-tdelibs:	tqt3 tqtinterface trinity-filesystem arts dbus-tqt dbus-1-tqt cmake avahi-tqt
+tdelibs:	tqt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake avahi-tqt fileshareset trinity-filesystem libart_lgpl
 	$(call buildpkg,tdelibs)
 
 tdemultimedia:	tdebase akode
@@ -141,9 +141,9 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 
 cmake:
-# Build on CentOS only
+# Build on CentOS 5/6 only
 ifneq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el6*),)
-#	$(call buildpkg,3rdparty/cmake)
+	$(call buildpkg,3rdparty/cmake)
 endif
 
 esound:
@@ -173,6 +173,13 @@ ifeq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 endif
 endif
+
+libconfig:
+# Build on CentOS 5 only
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/libconfig)
+endif
+	
 
 libcurl: automake libtool
 # Build on CentOS 5 only
@@ -324,8 +331,8 @@ fusion-icon:	tdebase
 	$(call buildpkg,applications/fusion-icon)
 
 gtk3-tqt-engine:	tdebase
-# Do NOT build on CentOS
-ifeq ($(wildcard /etc/centos-release),)
+# Do NOT build on CentOS 5, CentOS 6
+ifeq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el6*),)
 	$(call buildpkg,applications/gtk3-tqt-engine)
 endif
 
@@ -575,7 +582,7 @@ smb4k:	tdebase
 soundkonverter:	tdebase
 	$(call buildpkg,applications/soundkonverter)
 
-tde-guidance:	 pytdeextensions
+tde-guidance:	tdebase pytdeextensions
 	$(call buildpkg,applications/tde-guidance)
 
 tdeio-apt:	tdebase
@@ -662,6 +669,9 @@ meta:
 fileshareset:
 	$(call buildpkg,extras/fileshareset)
 
+trinity-filesystem:
+	$(call buildpkg,extras/trinity-filesystem)
+
 icons-nuvola:
 	$(call buildpkg,extras/icons-nuvola)
 
@@ -683,11 +693,14 @@ koverartist:
 kpacman:
 	$(call buildpkg,extras/kpacman)
 
+mathemagics:
+	$(call buildpkg,extras/mathemagics)
+
 png2qrgb:
 	$(call buildpkg,extras/png2qrgb)
 
+scribus:
+	$(call buildpkg,extras/scribus)
+
 style-ia-ora:
 	$(call buildpkg,extras/style-ia-ora)
-
-trinity-filesystem:
-	$(call buildpkg,extras/trinity-filesystem)

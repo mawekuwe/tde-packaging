@@ -1,0 +1,5 @@
+Protocol handlers (TDEIOslaves) for personal information management, including:
+ * tdeio_ldap
+ * tdeio_nntp
+ * tdeio_pop3
+ * tdeio_smtp
