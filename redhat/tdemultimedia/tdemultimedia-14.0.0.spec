@@ -82,9 +82,10 @@ BuildRequires:	fdupes
 BuildRequires: taglib-devel
 
 # AKODE support
-%define with_akode 1
+%if 0%{?with_akode}
 BuildRequires: trinity-akode-devel
 %{?with_mad:BuildRequires: trinity-akode-libmad}
+%endif
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	zlib-devel
@@ -203,7 +204,7 @@ Requires: trinity-tdemid = %{version}-%{release}
 Requires: trinity-kmix = %{version}-%{release}
 Requires: trinity-krec = %{version}-%{release}
 Requires: trinity-kscd = %{version}-%{release}
-Requires: trinity-libarts-akode = %{version}-%{release}
+%{?with_akode:Requires: trinity-libarts-akode = %{version}-%{release}}
 Requires: trinity-libarts-audiofile = %{version}-%{release}
 %{?with_mpeg:Requires: trinity-libarts-mpeglib = %{version}-%{release}}
 %{?with_xine:Requires: trinity-libarts-xine = %{version}-%{release}}
@@ -214,7 +215,7 @@ Requires: trinity-noatun = %{version}-%{release}
 
 %description
 The Trinity Desktop Environment (TDE) is a GUI desktop for the X Window
-System. The %{name} package contains multimedia applications for
+System. The tdemultimedia package contains multimedia applications for
 TDE, including:
   artsbuilder, Synthesizer designer for aRts
   juk, a media player
@@ -828,6 +829,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
+%if 0%{?with_akode}
 %package -n trinity-libarts-akode
 Summary:	Akode plugin for aRts
 Group:		Environment/Libraries
@@ -855,6 +857,7 @@ This package contains akode plugins for aRts.
 
 %postun -n trinity-libarts-akode
 /sbin/ldconfig
+%endif
 
 ##########
 
@@ -1126,7 +1129,9 @@ noatun plugins.
 %files devel
 %defattr(-,root,root,-)
 %{tde_includedir}/*
+%if 0%{?with_akode}
 %{tde_libdir}/libarts_akode.so
+%endif
 %{tde_libdir}/libarts_audiofile.so
 %{tde_libdir}/libarts_mpeglib.so
 %{tde_libdir}/libarts_splay.so
