@@ -308,7 +308,7 @@ chmod 644 "%{?buildroot}%{tde_datadir}/config/kcmartsrc"
 %endif
 
 # Add supplementary folders
-%__install -D -m 755 "%{?buildroot}%{tde_libdir}/mcop/Arts/Environment"
+%__install -d -m 755 "%{?buildroot}%{tde_libdir}/mcop/Arts/Environment"
 
 
 %clean
