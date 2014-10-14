@@ -82,6 +82,9 @@ BuildRequires:	fdupes
 # SUSE desktop files utility
 %if 0%{?suse_version}
 BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs}
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif
@@ -622,7 +625,7 @@ This package provides data on multimedia applications for kappfinder.
 %defattr(-,root,root,-)
 %{tde_datadir}/apps/kappfinder/
 %{tde_datadir}/desktop-directories/tde-multimedia-music.directory
-%{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu
+%config %{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu
 
 ##########
 
@@ -1230,7 +1233,7 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
-# Warning: GCC visibility causes FTBFS [Bug #1285]
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure  \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -1247,7 +1250,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
+  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb" \
   \
   --with-cdparanoia \
   --with-flac \

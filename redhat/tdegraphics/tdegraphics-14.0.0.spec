@@ -1,65 +1,79 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdegraphics (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_pkg tdegraphics
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
 
-Name:		trinity-tdegraphics
+Name:		trinity-%{tde_pkg}
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPL
 Summary:    Trinity Desktop Environment - Graphics Applications
-
 Group:      Applications/Multimedia
-Prefix:		%{tde_prefix}
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+%if 0%{?suse_version}
+License:		GPL-2.0+
+%else
+License:		GPLv2+
+%endif
+
+#Vendor:			Trinity Desktop
+#Packager:		Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		%{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-# TDE
-## RHEL / Fedora specific patches
-# [kdegraphics/kpdf/xpdf] Disable 'mkstemps' support for RHEL5
-Patch3:		kdegraphics-3.5.13-xpdf_disable_mkstemps.patch
-
-# [tdegraphics] Fix build on RHEL4
-Patch201:	kdegraphics-3.5.13.1-fix_rhel4_libraries.patch
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
+BuildRequires: trinity-tdebase-devel >= %{tde_version}
 
 BuildRequires: cmake >= 2.8
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
-BuildRequires: trinity-tdebase-devel >= %{version}
 BuildRequires: gettext
-BuildRequires: libmng-devel
-%if 0%{?mdkversion} && 0%{?pclinuxos} == 0
-BuildRequires: %{_lib}png15-devel
-%else
-BuildRequires: libpng-devel
-%endif
-BuildRequires: libtiff-devel
 BuildRequires: automake libtool
+
+# LIBUSB support
 BuildRequires: libusb-devel
+
+# MNG support
+BuildRequires: libmng-devel
+
+# TIFF support
+BuildRequires: libtiff-devel
+
+# PCRE support
 BuildRequires: pcre-devel
 
 # GIF support
@@ -102,75 +116,61 @@ BuildRequires:	t1lib-devel
 %endif
 %endif
 
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}sane1-devel
-# kuickshow
+# IMLIB1 support (kuickshow)
 #BuildRequires:	%{_lib}imlib-devel
-# kpovmodeler
-BuildRequires:	%{_lib}xi-devel
-# kgamma
-BuildRequires:	%{_lib}xxf86vm-devel
-# ksvg
-%if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xmu-devel
-%else
-BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
-%endif
-# kpovmodeler
-BuildRequires:	%{_lib}mesagl1-devel
-BuildRequires:	%{_lib}mesaglu1-devel
-%else
-BuildRequires:	sane-backends-devel
-
-# kuickshow
 #BuildRequires:	imlib-devel
 
+# SANE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}sane1-devel
+%else
+BuildRequires:	sane-backends-devel
+%endif
+
+# LIBXXF86VM support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xxf86vm-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires:	libXxf86vm-devel
+%endif
+
+# XMU support
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libXmu-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires: libXmu-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion} >= 4
+BuildRequires: libxmu-devel
+%endif
+%if 0%{?mgaversion} == 2 || 0%{?mgaversion} == 3
+BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
+%endif
+
+# MESA support
+%if 0%{?rhel} || 0%{?fedora}
+BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGLU-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires: mesaglu-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: Mesa-libGL-devel
+BuildRequires: Mesa-libGLU-devel
+%endif
+
+# DRM support
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
 %else
 BuildRequires: libdrm-devel
-
-# kpovmodeler
-%if 0%{?suse_version} == 1140
-BuildRequires:	libXi6-devel
-%else
-BuildRequires:	libXi-devel
-
-# kgamma
-BuildRequires:	libXxf86vm-devel
 %endif
 
-# ksvg
-%if 0%{?suse_version} == 1140
-BuildRequires:	xorg-x11-libXmu-devel
-%else
-BuildRequires:	libXmu-devel
-%endif
-%endif
-
-# kpovmodeler
-%if 0%{?suse_version}
-%if 0%{?suse_version} >= 1220
-BuildRequires:	Mesa-libGL-devel
-BuildRequires:	Mesa-libGLU-devel
-%else
-BuildRequires:	Mesa-devel
-%endif
-%else
-BuildRequires:	libGL-devel
-BuildRequires:	libGLU-devel
-%endif
-%endif
-
-#kfile-plugin
+# OPENEXR support
 BuildRequires:	OpenEXR-devel
-
-# kpdf
-%if 0%{?suse_version} == 1140
-BuildRequires: freetype2-devel
-%else
-BuildRequires: freetype-devel
-%endif
 
 # poppler
 %if 0%{?rhel} >=6 || 0%{?fedora} >= 15 || 0%{?suse_version}
@@ -186,17 +186,14 @@ BuildRequires:	trinity-poppler-devel >= 0.12
 BuildRequires:	trinity-poppler-qt3-devel >= 0.12
 %endif
 
-# ksvg
-BuildRequires: fontconfig-devel
+# LCMS support
 %if 0%{?suse_version}
 BuildRequires: liblcms-devel
 %else
 BuildRequires: lcms-devel
 %endif
-BuildRequires: libart_lgpl-devel
 
-# kuickshow
-#define build_kuickshow 1
+# FRIBIDI support
 BuildRequires: fribidi-devel
 
 # kamera
@@ -295,9 +292,9 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %{tde_tdelibdir}/tdeio_kamera.so
 %{tde_tdeappdir}/kamera.desktop
 %{tde_datadir}/icons/crystalsvg/*/actions/camera_test.png
-%{tde_datadir}/icons/crystalsvg/*/apps/camera.png
-%{tde_datadir}/icons/crystalsvg/*/devices/camera.png
-%{tde_datadir}/icons/crystalsvg/*/places/camera.png
+%{tde_datadir}/icons/crystalsvg/*/apps/camera-photo.png
+%{tde_datadir}/icons/crystalsvg/*/devices/camera-photo.png
+%{tde_datadir}/icons/crystalsvg/*/places/camera-photo.png
 %{tde_datadir}/services/camera.protocol
 %{tde_tdedocdir}/HTML/en/kamera/
 %{tde_tdedocdir}/HTML/en/tdeioslave/camera/
@@ -1265,17 +1262,10 @@ Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-%if 0%{?rhel} && 0%{?rhel} <= 5
-%patch3 -p1 -b .mkstemps
-%endif
-
-%if 0%{?rhel} == 4
-%patch201 -p1 -b .rhel4
-%endif
-
 %if 0%{?build_kamera} == 0
 %__rm -rf doc/kamera/
 %endif
+
 
 %build
 unset QTDIR QTINC QTLIB

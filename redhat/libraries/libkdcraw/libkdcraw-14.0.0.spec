@@ -28,7 +28,7 @@ Summary:	Raw picture decoding C++ library (runtime) [Trinity]
 
 Epoch:		1
 Version:	0.1.9
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries

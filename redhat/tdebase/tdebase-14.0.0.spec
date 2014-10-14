@@ -111,6 +111,9 @@ Provides:	tdebase = %{version}-%{release}
 %if 0%{?suse_version}
 # for set_permissions macro
 PreReq: permissions
+%endif
+
+%if 0%{?opensuse_bs}
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif
@@ -227,7 +230,7 @@ Requires:	desktop-common-data
 
 # OpenSuse 11.4 Theme
 %if "%{?suse_version}" == "1140"
-Requires:	hicolor-icon-theme-branding = 11.4
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -235,7 +238,7 @@ Requires:	hicolor-icon-theme-branding = 11.4
 %if "%{?suse_version}" == "1220"
 Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding = 12.2
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -243,7 +246,7 @@ Requires:	hicolor-icon-theme-branding = 12.2
 %if "%{?suse_version}" == "1230"
 Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding = 12.3
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -251,7 +254,7 @@ Requires:	hicolor-icon-theme-branding = 12.3
 %if "%{?suse_version}" == "1310"
 Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding = 13.1
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -1444,22 +1447,22 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/*/apps/licq.png
 %{tde_datadir}/icons/crystalsvg/*/apps/linuxconf.png
 %{tde_datadir}/icons/crystalsvg/*/apps/locale.png
-%{tde_datadir}/icons/crystalsvg/*/apps/looknfeel.png
+%{tde_datadir}/icons/crystalsvg/*/categories/preferences-desktop.png
 %{tde_datadir}/icons/crystalsvg/*/apps/multimedia.png
 %{tde_datadir}/icons/crystalsvg/*/apps/netscape.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_applications.png
-%{tde_datadir}/icons/crystalsvg/*/apps/package_development.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-development.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_favourite.png
-%{tde_datadir}/icons/crystalsvg/*/apps/package_games.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-games.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_games_kids.png
-%{tde_datadir}/icons/crystalsvg/*/apps/package_multimedia.png
-%{tde_datadir}/icons/crystalsvg/*/apps/package_network.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-multimedia.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-internet.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_settings.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_toys.png
-%{tde_datadir}/icons/crystalsvg/*/apps/package_utilities.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-utilities.png
 %{tde_datadir}/icons/crystalsvg/*/apps/penguin.png
-%{tde_datadir}/icons/crystalsvg/*/apps/personal.png
+%{tde_datadir}/icons/crystalsvg/*/categories/preferences-desktop-personal.png
 %{tde_datadir}/icons/crystalsvg/*/apps/phppg.png
 %{tde_datadir}/icons/crystalsvg/*/apps/proxy.png
 %{tde_datadir}/icons/crystalsvg/*/apps/pysol.png
@@ -1549,7 +1552,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/*/apps/edu_languages.png
 %{tde_datadir}/icons/crystalsvg/*/apps/edu_mathematics.png
 %{tde_datadir}/icons/crystalsvg/*/apps/edu_miscellaneous.png
-%{tde_datadir}/icons/crystalsvg/*/apps/edu_science.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-science.png
 %{tde_datadir}/icons/crystalsvg/*/apps/emacs.png
 %{tde_datadir}/icons/crystalsvg/*/apps/enhanced_browsing.png
 %{tde_datadir}/icons/crystalsvg/*/apps/evolution.png
@@ -1565,13 +1568,13 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/*/apps/icons.png
 %{tde_datadir}/icons/crystalsvg/*/apps/iconthemes.png
 %{tde_datadir}/icons/crystalsvg/*/apps/ieee1394.png
-%{tde_datadir}/icons/crystalsvg/*/apps/input_devices_settings.png
+%{tde_datadir}/icons/crystalsvg/*/categories/preferences-desktop-peripherals.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmkicker.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmmidi.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmprocessor.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmscsi.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmsound.png
-%{tde_datadir}/icons/crystalsvg/*/apps/kcmsystem.png
+%{tde_datadir}/icons/crystalsvg/*/categories/preferences-system.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kcmx.png
 %{tde_datadir}/icons/crystalsvg/*/apps/keyboard.png
 %{tde_datadir}/icons/crystalsvg/*/apps/keyboard_layout.png
@@ -1590,9 +1593,9 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/*/apps/package_games_board.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_games_card.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_games_strategy.png
-%{tde_datadir}/icons/crystalsvg/*/apps/package_graphics.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-graphics.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_system.png
-%{tde_datadir}/icons/crystalsvg/*/apps/package_wordprocessing.png
+%{tde_datadir}/icons/crystalsvg/*/categories/applications-office.png
 %{tde_datadir}/icons/crystalsvg/*/apps/pan.png
 %{tde_datadir}/icons/crystalsvg/*/apps/panel_settings.png
 %{tde_datadir}/icons/crystalsvg/*/apps/plan.png
@@ -3657,27 +3660,27 @@ fi
 # These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
 mkdir -p "%{?buildroot}%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128}/apps/"
 pushd "%{?buildroot}%{tde_datadir}/icons"
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/misc.png              hicolor/"$i"x"$i"/apps/kcmcomponentchooser.png  ;done
-for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png              hicolor/"$i"x"$i"/apps/kcmperformance.png       ;done
-for i in 16;                   do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/services.png            hicolor/"$i"x"$i"/apps/kcmkded.png              ;done
-for i in {16,22,32,48};        do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/exit.png                hicolor/"$i"x"$i"/apps/kcmsmserver.png          ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/spellcheck.png          hicolor/"$i"x"$i"/apps/kcmspellchecking.png     ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png              hicolor/"$i"x"$i"/apps/kcmdesktopbehavior.png   ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png              hicolor/"$i"x"$i"/apps/kcmdesktop.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kmenu.png                  hicolor/"$i"x"$i"/apps/kcmtaskbar.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/colorscm.png          hicolor/"$i"x"$i"/apps/kcmcolors.png            ;done
-for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png              hicolor/"$i"x"$i"/apps/kcmlaunch.png            ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/filter.png              hicolor/"$i"x"$i"/apps/kcmkhtml_filter.png      ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/run.png                 hicolor/"$i"x"$i"/apps/kcmcgi.png               ;done
-for i in {16,22};              do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png             hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png              hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png         hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
-for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/input-joystick.png      hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png               hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png              hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png           hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/trashcan_empty.png       hicolor/"$i"x"$i"/apps/kcmprivacy.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png              hicolor/"$i"x"$i"/apps/kcmnic.png               ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/misc.png                hicolor/"$i"x"$i"/apps/kcmcomponentchooser.png  ;done
+for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                hicolor/"$i"x"$i"/apps/kcmperformance.png       ;done
+for i in 16;                   do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/services.png              hicolor/"$i"x"$i"/apps/kcmkded.png              ;done
+for i in {16,22,32,48};        do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-log-out.png        hicolor/"$i"x"$i"/apps/kcmsmserver.png          ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/tools-check-spelling.png  hicolor/"$i"x"$i"/apps/kcmspellchecking.png     ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                hicolor/"$i"x"$i"/apps/kcmdesktopbehavior.png   ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                hicolor/"$i"x"$i"/apps/kcmdesktop.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kmenu.png                    hicolor/"$i"x"$i"/apps/kcmtaskbar.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/colorscm.png            hicolor/"$i"x"$i"/apps/kcmcolors.png            ;done
+for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                hicolor/"$i"x"$i"/apps/kcmlaunch.png            ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/filter.png                hicolor/"$i"x"$i"/apps/kcmkhtml_filter.png      ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-run.png            hicolor/"$i"x"$i"/apps/kcmcgi.png               ;done
+for i in {16,22};              do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png               hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png           hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
+for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/input-joystick.png        hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png                 hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png                hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png             hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/trashcan_empty.png         hicolor/"$i"x"$i"/apps/kcmprivacy.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                hicolor/"$i"x"$i"/apps/kcmnic.png               ;done
 popd
 
 # Updates applications categories for openSUSE
