@@ -39,7 +39,6 @@ Source1:	http://download.sourceforge.net/quanta/css.tar.bz2
 Source2:	http://download.sourceforge.net/quanta/html.tar.bz2
 Source3:	http://download.sourceforge.net/quanta/php_manual_en_20030401.tar.bz2
 Source4:	http://download.sourceforge.net/quanta/javascript.tar.bz2
-Source5:	hi48-app-kxsldbg.png
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
@@ -433,11 +432,11 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_tdedocdir}/HTML/en/xsldbg/
 %{tde_datadir}/icons/hicolor/*/actions/1downarrow.png
 %{tde_datadir}/icons/hicolor/*/actions/configure.png
-#%{tde_datadir}/icons/hicolor/*/actions/system-log-out.png
+%{tde_datadir}/icons/hicolor/*/actions/system-log-out.png
 %{tde_datadir}/icons/hicolor/*/actions/hash.png
 %{tde_datadir}/icons/hicolor/*/actions/mark.png
 %{tde_datadir}/icons/hicolor/*/actions/next.png
-#%{tde_datadir}/icons/hicolor/*/actions/system-run.png
+%{tde_datadir}/icons/hicolor/*/actions/system-run.png
 %{tde_datadir}/icons/hicolor/*/actions/step.png
 %{tde_datadir}/icons/hicolor/*/actions/xsldbg_*.png
 %{tde_datadir}/icons/hicolor/*/apps/kxsldbg.png
@@ -489,7 +488,6 @@ Requires:	trinity-kommander-devel = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}} -a 1 -a 2 -a 3 -a 4
 
-%__install -m644 -p %{SOURCE5} kxsldbg/
 %if 0%{?build_kxsldbg} == 0
 %__rm -rf kxsldbg/ doc/kxsldbg/ doc/xsldbg/
 %endif
