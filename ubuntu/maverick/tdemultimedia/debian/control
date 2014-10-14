@@ -266,7 +266,7 @@ Section: libs
 Architecture: any
 Replaces: libarts1-xine-kde3 (<< 4:14.0.0~), libarts1-xine-trinity (<< 4:14.0.0~)
 Breaks: libarts1-xine-kde3 (<< 4:14.0.0~), libarts1-xine-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, libxine2-x | libxine1-x (<< 1.1.20) | libxine1 (<< 1.1.8-2)
 Description: aRts plugin enabling xine support
  This package contains aRts' xine plugin, allowing the use of the xine
  multimedia engine though aRts.
