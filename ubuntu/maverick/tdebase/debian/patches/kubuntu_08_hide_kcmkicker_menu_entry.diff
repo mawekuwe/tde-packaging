@@ -1,9 +1,9 @@
-Index: b/kicker/kicker/kcmkicker.desktop
-===================================================================
+diff --git a/kicker/kicker/kcmkicker.desktop b/kicker/kicker/kcmkicker.desktop
+index c7d4939..fd8b513 100644
 --- a/kicker/kicker/kcmkicker.desktop
 +++ b/kicker/kicker/kcmkicker.desktop
-@@ -79,3 +79,4 @@
- DocPath=kicker/configuring.html
+@@ -79,3 +79,4 @@ X-TDE-StartupNotify=true
+ X-DocPath=kicker/configuring.html
  OnlyShowIn=TDE;
  Categories=Qt;TDE;Settings;
 +NoDisplay=true

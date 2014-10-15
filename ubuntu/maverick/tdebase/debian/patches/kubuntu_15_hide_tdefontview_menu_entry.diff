@@ -1,9 +1,9 @@
-Index: b/kcontrol/tdefontinst/viewpart/tdefontview.desktop
-===================================================================
+diff --git a/kcontrol/tdefontinst/viewpart/tdefontview.desktop b/kcontrol/tdefontinst/viewpart/tdefontview.desktop
+index 5d5e2b8..c989adf 100644
 --- a/kcontrol/tdefontinst/viewpart/tdefontview.desktop
 +++ b/kcontrol/tdefontinst/viewpart/tdefontview.desktop
-@@ -99,3 +99,4 @@
- InitialPreference=1
+@@ -99,3 +99,4 @@ Terminal=false
+ X-TDE-InitialPreference=1
  Categories=Qt;TDE;Graphics;
- DocPath=tdefontview/index.html
+ X-DocPath=tdefontview/index.html
 +NoDisplay=true
