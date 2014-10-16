@@ -77,3 +77,15 @@ Description: An IDE for Unix/X11 - development files
  .
   Homepage: http://www.tdevelop.org/
 
+Package: tdevelop-trinity-dbg
+Section: debug
+Architecture: any
+Priority: extra
+Replaces: kdevelop-trinity-dbg (<< 4:14.0.0~)
+Breaks: kdevelop-trinity-dbg (<< 4:14.0.0~)
+Depends: tdevelop-trinity (= ${binary:Version}), tdelibs-trinity-dbg
+Description: debugging symbols for tdevelop
+ This package contains the debugging symbols associated with tdevelop.
+ They will automatically be used by gdb for debugging tdevelop-related
+ issues.
+
