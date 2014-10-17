@@ -21,8 +21,6 @@ Description: An IDE for Unix/X11
  .
  The application wizard can generate fully functional projects
  for terminal programs and GUI programs using TQt, Qt, TDE, KDE or GNOME.
- .
-  Homepage: http://www.tdevelop.org/
 
 Package: tdevelop-trinity-doc
 Section: doc
@@ -39,8 +37,6 @@ Description: An IDE for Unix/X11 - documentation
  for terminal programs and GUI programs using TQt, Qt, TDE, KDE or GNOME.
  .
  This package contains documentation for TDevelop.
- .
-  Homepage: http://www.tdevelop.org/
 
 Package: tdevelop-data-trinity
 Architecture: all
@@ -56,8 +52,6 @@ Description: An IDE for Unix/X11 - data
  for terminal programs and GUI programs using TQt, Qt, TDE, KDE or GNOME.
  .
  This package contains arch independent data for TDevelop.
- .
-  Homepage: http://www.tdevelop.org/
 
 Package: tdevelop-trinity-dev
 Architecture: any
@@ -74,8 +68,6 @@ Description: An IDE for Unix/X11 - development files
  for terminal programs and GUI programs using TQt, Qt, TDE, KDE or GNOME.
  .
  This package contains development files for TDevelop.
- .
-  Homepage: http://www.tdevelop.org/
 
 Package: tdevelop-trinity-dbg
 Section: debug
