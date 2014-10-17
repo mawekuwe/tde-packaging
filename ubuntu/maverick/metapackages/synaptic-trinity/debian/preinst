@@ -19,19 +19,6 @@ case "$1" in
     ;;
 
   upgrade)
-    # remove old diversion if present
-    divert=`dpkg-divert --listpackage "/usr/share/applications/synaptic.desktop"`
-    if [ -n "$divert" ] && [ "$divert" = "$package_name" ]; then
-        dpkg-divert --remove --package $package_name --rename "/usr/share/applications/synaptic.desktop"
-    fi
-
-    # add new diversion
-    divert=`dpkg-divert --listpackage "/usr/share/applications/synaptic.desktop"`
-    if [ -z "$divert" ]; then
-        dpkg-divert --package $package_name \
-                    --divert /usr/share/applications/synaptic.desktop.distrib \
-                    --rename /usr/share/applications/synaptic.desktop
-    fi
     ;;
 
   abort-upgrade)
