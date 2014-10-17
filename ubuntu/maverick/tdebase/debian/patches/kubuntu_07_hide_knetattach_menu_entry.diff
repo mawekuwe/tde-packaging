@@ -1,7 +1,9 @@
---- tdebase/knetattach/knetattach.desktop	2005-03-17 02:33:16.506855480 +0000
-+++ tdebase/knetattach/knetattach.desktop	2005-03-17 02:33:22.186991968 +0000
-@@ -45,3 +45,4 @@
+diff --git a/knetattach/knetattach.desktop b/knetattach/knetattach.desktop
+index 6003b68..f33e1f4 100644
+--- a/knetattach/knetattach.desktop
++++ b/knetattach/knetattach.desktop
+@@ -80,3 +80,4 @@ Terminal=false
  X-TDE-StartupNotify=true
  Categories=Qt;TDE;Network;
- DocPath=knetattach/index.html
+ X-DocPath=knetattach/index.html
 +OnlyShowIn=Old;

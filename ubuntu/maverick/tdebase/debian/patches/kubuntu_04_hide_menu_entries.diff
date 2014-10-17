@@ -1,7 +1,9 @@
---- tdebase/kate/data/kwrite.desktop	2005-03-17 02:30:43.361137168 +0000
-+++ tdebase/kate/data/kwrite.desktop	2005-03-17 02:30:51.972827992 +0000
-@@ -103,3 +103,4 @@
- InitialPreference=8
+diff --git a/kate/data/kwrite.desktop b/kate/data/kwrite.desktop
+index dd64b58..0af3e44 100644
+--- a/kate/data/kwrite.desktop
++++ b/kate/data/kwrite.desktop
+@@ -109,3 +109,4 @@ Terminal=false
+ X-TDE-InitialPreference=8
  X-DCOP-ServiceType=Multi
  Categories=Qt;TDE;TextEditor;
 +NoDisplay=true
