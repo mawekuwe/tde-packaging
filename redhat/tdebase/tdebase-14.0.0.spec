@@ -113,7 +113,7 @@ Provides:	tdebase = %{version}-%{release}
 PreReq: permissions
 %endif
 
-%if 0%{?opensuse_bs} && %{?suse_version}
+%if 0%{?opensuse_bs} && 0%{?suse_version}
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif
