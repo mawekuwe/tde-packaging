@@ -62,7 +62,7 @@ BuildRequires: trinity-tdebase-devel >= %{tde_version}
 
 BuildRequires: cmake >= 2.8
 BuildRequires: gettext
-BuildRequires: automake libtool
+BuildRequires: libtool
 
 # LIBUSB support
 BuildRequires: libusb-devel
@@ -202,9 +202,12 @@ BuildRequires: fribidi-devel
 %endif
 
 # kmrml
-#define build_kmrml 1
+%define build_kmrml 1
+%if 0%{?build_kmrml}
 #Requires:		gift
+%else
 Obsoletes:		trinity-kmrml
+%endif
 
 Obsoletes:	trinity-kdegraphics < %{version}-%{release}
 Provides:	trinity-kdegraphics = %{version}-%{release}
@@ -764,7 +767,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kpdf
 Summary:	PDF viewer for Trinity
 Group:		Applications/Graphics
-#Recommends: kghostview-trinity (= ${binary:Version})
 
 %description -n trinity-kpdf
 KPDF allows you to view PDF (Portable Document Format) files. This package

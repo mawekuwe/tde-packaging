@@ -22,6 +22,7 @@
 # TDE variables
 %define tde_epoch 1
 %define tde_version 3.5.13.2
+%define tde_pkg tdemultimedia
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -39,7 +40,7 @@
 %endif
 
 
-Name:		trinity-tdemultimedia
+Name:		trinity-%{tde_pkg}
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
 Version:	%{tde_version}
 Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
@@ -72,24 +73,38 @@ Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 
 BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 # TAGLIB support
-%define _with_taglib --with-taglib
+%define with_taglib 1
 BuildRequires: taglib-devel
 
 # AKODE support
-%define _with_akode --with-akode
+%if 0%{?with_akode}
 BuildRequires: trinity-akode-devel
-BuildRequires: trinity-akode-libmad
+%{?with_mad:BuildRequires: trinity-akode-libmad}
+%endif
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	zlib-devel
 
 # MUSICBRAINZ support
 ## not currently compatible with libtunepimp-0.5 (only libtunepimp-0.4)
-#define _with_musicbrainz --with-musicbrainz
+#define with_musicbrainz 1
 #BuildRequires: libmusicbrainz-devel libtunepimp-devel
 
 # Audio libraries
@@ -98,6 +113,11 @@ BuildRequires:	audiofile-devel
 BuildRequires:	libtheora-devel
 BuildRequires:	alsa-lib-devel 
 BuildRequires:	cdparanoia
+
+# NAS support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	nas-devel
+%endif
 
 # CDDA support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -150,11 +170,10 @@ BuildRequires:	xorg-x11-devel
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXxf86dga-devel
 BuildRequires:	libXxf86vm-devel
-BuildRequires:	libXt-devel
 %endif
 
 # XINE support
-%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?with_xine}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
@@ -172,8 +191,10 @@ BuildRequires: libxine-devel
 %endif
 
 # LAME support
-%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
+%if 0%{?opensuse_bs} == 0
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?with_lame}
 %define with_lame 1
+
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
 BuildRequires:		liblame-devel
@@ -181,11 +202,15 @@ BuildRequires:		liblame-devel
 BuildRequires:		%{_lib}lame-devel
 %endif
 %endif
+
 %if 0%{?suse_version}
 BuildRequires:		libmp3lame-devel
 %endif
+
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires:		lame-devel
+%endif
+
 %endif
 %endif
 
@@ -200,9 +225,9 @@ Requires: trinity-tdemid = %{version}-%{release}
 Requires: trinity-kmix = %{version}-%{release}
 Requires: trinity-krec = %{version}-%{release}
 Requires: trinity-kscd = %{version}-%{release}
-Requires: trinity-libarts-akode = %{version}-%{release}
+%{?with_akode:Requires: trinity-libarts-akode = %{version}-%{release}}
 Requires: trinity-libarts-audiofile = %{version}-%{release}
-Requires: trinity-libarts-mpeglib = %{version}-%{release}
+%{?with_mpeg:Requires: trinity-libarts-mpeglib = %{version}-%{release}}
 %{?with_xine:Requires: trinity-libarts-xine = %{version}-%{release}}
 Requires: trinity-libkcddb = %{version}-%{release}
 Requires: trinity-mpeglib = %{version}-%{release}
@@ -211,7 +236,7 @@ Requires: trinity-noatun = %{version}-%{release}
 
 %description
 The Trinity Desktop Environment (TDE) is a GUI desktop for the X Window
-System. The %{name} package contains multimedia applications for
+System. The tdemultimedia package contains multimedia applications for
 TDE, including:
   artsbuilder, Synthesizer designer for aRts
   juk, a media player
@@ -231,6 +256,7 @@ TDE, including:
 %package -n trinity-artsbuilder
 Summary:	Synthesizer designer for aRts
 Group:		Applications/Multimedia
+Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-artsbuilder
 This is the analog Realtime synthesizer's graphical design tool.
@@ -457,7 +483,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kaboodle
-Summary:	light, embedded media player for Trinity
+Summary:	Light, embedded media player for Trinity
 Group:		Applications/Multimedia
 
 %if 0%{?with_xine}
@@ -541,7 +567,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package kfile-plugins
-Summary:	au/avi/m3u/mp3/ogg/wav plugins for kfile
+Summary:	An au/avi/m3u/mp3/ogg/wav plugins for kfile
 Group:		Applications/Multimedia
 
 %description kfile-plugins
@@ -586,25 +612,27 @@ au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
 ##########
 
 %package kappfinder-data
-Summary:	multimedia data for kappfinder-trinity
+Summary:	Multimedia data for kappfinder
 Group:		Applications/Multimedia
 
-Requires: 	trinity-kappfinder
+Requires: 	trinity-kappfinder >= %{tde_version}
+Requires:	trinity-tdebase-runtime-data-common >= %{tde_version}
 
 %description kappfinder-data
 This package provides data on multimedia applications for kappfinder.
 
 %files kappfinder-data
 %defattr(-,root,root,-)
-%{tde_datadir}/apps/kappfinder/*
+%{tde_datadir}/apps/kappfinder/
 %{tde_datadir}/desktop-directories/tde-multimedia-music.directory
-%{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu
+%config %{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu
 
 ##########
 
 %package tdeio-plugins
 Summary:	Enables the browsing of audio CDs under Konqueror
 Group:		Applications/Multimedia
+Requires:	trinity-tdebase-tdeio-plugins >= %{tde_version}
 
 Obsoletes:	trinity-tdemultimedia-kio-plugins < %{version}-%{release}
 Provides:	trinity-tdemultimedia-kio-plugins = %{version}-%{release}
@@ -690,6 +718,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kmix
 Summary:	Sound mixer applet for Trinity
 Group:		Applications/Multimedia
+Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-kmix
 This package includes TDE's dockable sound mixer applet.
@@ -749,7 +778,7 @@ This is a sound recording utility for Trinity.
 %{tde_tdelibdir}/kcm_krec_files.so
 %{tde_tdelibdir}/krec.la
 %{tde_tdelibdir}/krec.so
-%if %{?with_lame}
+%if 0%{?with_lame}
 %{tde_tdelibdir}/libkrecexport_mp3.la
 %{tde_tdelibdir}/libkrecexport_mp3.so
 %{tde_datadir}/services/krec_exportmp3.desktop
@@ -823,6 +852,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
+%if 0%{?with_akode}
 %package -n trinity-libarts-akode
 Summary:	Akode plugin for aRts
 Group:		Environment/Libraries
@@ -843,13 +873,14 @@ This package contains akode plugins for aRts.
 %{tde_libdir}/mcop/akodeXiphPlayObject.mcopclass
 
 # Requires MAD support
-%{tde_libdir}/mcop/akodeMPEGPlayObject.mcopclass
+%{?with_mad:%{tde_libdir}/mcop/akodeMPEGPlayObject.mcopclass}
 
 %post -n trinity-libarts-akode
 /sbin/ldconfig
 
 %postun -n trinity-libarts-akode
 /sbin/ldconfig
+%endif
 
 ##########
 
@@ -876,6 +907,7 @@ This package contains audiofile plugins for aRts.
 
 ##########
 
+%if 0%{?with_mpeg}
 %package -n trinity-libarts-mpeglib
 Summary:	Mpeglib plugin for aRts, supporting mp3 and mpeg audio/video
 Group:		Environment/Libraries
@@ -905,12 +937,13 @@ This is the arts (TDE Sound daemon) plugin.
 
 %postun -n trinity-libarts-mpeglib
 /sbin/ldconfig
+%endif
 
 ##########
 
 %if 0%{?with_xine}
 %package -n trinity-libarts-xine
-Summary:	aRts plugin enabling xine support
+Summary:	ARTS plugin enabling xine support
 Group:		Environment/Libraries
 
 %description -n trinity-libarts-xine
@@ -942,6 +975,7 @@ multimedia engine though aRts.
 %package -n trinity-libkcddb
 Summary:	CDDB library for Trinity
 Group:		Environment/Libraries
+Requires:	trinity-kcontrol >= %{tde_version}
 
 %description -n trinity-libkcddb
 The Trinity native CDDB (CD Data Base) library, providing easy access to Audio
@@ -985,7 +1019,9 @@ and WAV playback
 %{tde_bindir}/yaf-tplay
 %{tde_bindir}/yaf-vorbis
 %{tde_bindir}/yaf-yuv
+%if 0%{?with_mpeg}
 %{tde_libdir}/libmpeg-0.3.0.so
+%endif
 %{tde_libdir}/libyafcore.so
 %{tde_libdir}/libyafxplayer.so
 
@@ -1000,6 +1036,7 @@ and WAV playback
 %package -n trinity-noatun
 Summary:	Media player for Trinity
 Group:		Applications/Multimedia
+Requires:	trinity-tdebase-bin >= %{tde_version}
 
 # 20120802: Hack to avoid dependency issue on MGA2 and MDV2011
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -1116,11 +1153,17 @@ noatun plugins.
 %files devel
 %defattr(-,root,root,-)
 %{tde_includedir}/*
+%if 0%{?with_akode}
 %{tde_libdir}/libarts_akode.so
+%endif
 %{tde_libdir}/libarts_audiofile.so
+%if 0%{?with_mpeg}
 %{tde_libdir}/libarts_mpeglib.so
 %{tde_libdir}/libarts_splay.so
-%{?with_xine:%{tde_libdir}/libarts_xine.so}
+%endif
+%if 0%{?with_xine}
+%{tde_libdir}/libarts_xine.so
+%endif
 %{tde_libdir}/libartsbuilder.so
 %{tde_libdir}/libartscontrolapplet.so
 %{tde_libdir}/libartscontrolsupport.so
@@ -1144,8 +1187,10 @@ noatun plugins.
 %{tde_libdir}/libkdeinit_noatun.la
 %{tde_libdir}/libkmidlib.la
 %{tde_libdir}/libkmidlib.so
+%if 0%{?with_mpeg}
 %{tde_libdir}/libmpeg.la
 %{tde_libdir}/libmpeg.so
+%endif
 %{tde_libdir}/libnoatun.la
 %{tde_libdir}/libnoatun.so
 %{tde_libdir}/libnoatuncontrols.la
@@ -1182,6 +1227,9 @@ noatun plugins.
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
+
+# Update icons for some control center modules
+%__sed -i "tdeioslave/audiocd/kcmaudiocd/audiocd.desktop" -e "s|^Icon=.*|Icon=kcmaudio|"
 
 
 %build
@@ -1221,10 +1269,10 @@ fi
   --with-vorbis \
   --with-alsa \
   --with-gstreamer \
-  --with-lame \
-  %{?_with_akode} %{!?_with_akode:--without-akode} \
-  %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
-  %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
+  %{?with_lame:--with-lame} %{!?with_lame:--without-lame} \
+  %{?with_akode:--with-akode} %{!?with_akode:--without-akode} \
+  %{?with_musicbrainz:--with-musicbrainz} %{!?with_musicbrainz:--without-musicbrainz} \
+  %{?with_taglib:--with-taglib} %{!?with_taglib:--without-taglib} \
   %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
 %__make %{?_smp_mflags} || %__make
@@ -1234,6 +1282,26 @@ fi
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot} 
 %__make install DESTDIR=%{buildroot}
+
+# Disable MPEG support entirely
+%if 0%{?with_mpeg} == 0
+  %__rm %{?buildroot}%{tde_bindir}/mpeglibartsplay
+  %__rm %{?buildroot}%{tde_libdir}/libarts_mpeglib*
+  %__rm %{?buildroot}%{tde_libdir}/libarts_splay.*
+  %__rm %{?buildroot}%{tde_libdir}/libmpeg*
+  %__rm %{?buildroot}%{tde_libdir}/mcop/MP3PlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/CDDAPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/NULLPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/OGGPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/SplayPlayObject.mcopclass
+  %__rm %{?buildroot}%{tde_libdir}/mcop/WAVPlayObject.mcopclass
+%endif
+
+# Copy missing icons from 'crystalsvg' theme (tdelibs)
+mkdir -p $RPM_BUILD_ROOT%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64}/apps/
+pushd $RPM_BUILD_ROOT%{tde_datadir}/icons/
+for i in {16,22,32,48,64}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/cdaudio_unmount.png hicolor/"$i"x"$i"/apps/kcmaudiocd.png;done
+popd
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
@@ -1249,6 +1317,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file juk            AudioVideo Player Jukebox
 %suse_update_desktop_file audiocd
 %endif
+
+# Symlinks duplicate files
+%fdupes -s "%{?buildroot}%{tde_datadir}"
 
 
 %clean

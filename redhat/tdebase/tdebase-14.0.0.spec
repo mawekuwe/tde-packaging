@@ -1135,8 +1135,10 @@ plugdev group.
 %{tde_datadir}/apps/kcm_componentchooser/kcm_browser.desktop
 %{tde_datadir}/apps/kcm_componentchooser/kcm_kemail.desktop
 %{tde_datadir}/apps/kcm_componentchooser/kcm_terminal.desktop
+%{tde_datadir}/apps/kcmview1394/
 %{tde_datadir}/apps/konqsidebartng/virtual_folders/services/fonts.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/installfont.desktop
+%{tde_datadir}/apps/usb.ids
 %{tde_datadir}/mimelnk/application/x-ktheme.desktop
 %{tde_datadir}/mimelnk/fonts/folder.desktop
 %{tde_datadir}/mimelnk/fonts/package.desktop
@@ -1150,7 +1152,6 @@ plugdev group.
 %{tde_datadir}/services/kuriikwsfilter.desktop
 %{tde_datadir}/services/kurisearchfilter.desktop
 %{tde_datadir}/services/localdomainurifilter.desktop
-%{tde_tdedocdir}/HTML/en/tdefontview/
 %{tde_datadir}/icons/hicolor/*/apps/kcmcolors.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmcomponentchooser.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmdesktop.png
@@ -1172,9 +1173,7 @@ plugdev group.
 %{tde_datadir}/icons/hicolor/*/apps/kcmkhtml_filter.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmsmserver.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmspellchecking.png
-
-%{tde_datadir}/apps/usb.ids
-%{tde_datadir}/apps/kcmview1394/
+%{tde_tdedocdir}/HTML/en/tdefontview/
 
 # The following features are not compiled under RHEL 5 and older
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -1334,6 +1333,16 @@ TDE applications, particularly those in the TDE base module.
 %endif
 %attr(4755,root,root) %{tde_bindir}/kcheckpass
 %attr(4755,root,root) %{tde_bindir}/tdekbdledsync
+%endif
+
+# SUSE's runupdater utility
+%if 0%{?suse_version} && 0%{?opensuse_bs} == 0
+%{tde_bindir}/runupdater
+%{tde_libdir}/libtdeinit_runupdater.la
+%{tde_libdir}/libtdeinit_runupdater.so
+%{tde_tdelibdir}/runupdater.la
+%{tde_tdelibdir}/runupdater.so
+%{tde_datadir}/apps/autostart/runupdater.desktop
 %endif
 
 %post bin
@@ -3686,28 +3695,28 @@ popd
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
 # Other applications
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Help.desktop             Documentation Viewer
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Home.desktop             System FileManager core
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kate.desktop             TextEditor
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/KControl.desktop         X-SuSE-core
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Kfind.desktop            System Filesystem core
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kjobviewer.desktop       PrintingUtility
-%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/klipper.desktop          System TrayIcon
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kmenuedit.desktop        Core-Configuration
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/knetattach.desktop       System Network
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konqbrowser.desktop      WebBrowser
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konquerorsu.desktop      System FileManager
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konsole.desktop          TerminalEmulator
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konsolesu.desktop        TerminalEmulator
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpager.desktop           Utility  DesktopUtility
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpersonalizer.desktop    DesktopUtility
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/ksysguard.desktop        System Monitor
-%suse_update_desktop_file -u %{?buildroot}%{tde_tdeappdir}/ktip.desktop             System Utility
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kwrite.desktop           TextEditor
-%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/tdeprintfax.desktop      PrintingUtility
-%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tdefontview.desktop      Graphics Viewer
-%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tderandrtray.desktop     Applet X-TDE-settings-desktop
-%suse_update_desktop_file    %{?buildroot}%{tde_datadir}/applnk/.hidden/konqfilemgr.desktop      System FileManager
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Help.desktop                       Documentation Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Home.desktop                       System FileManager core
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kate.desktop                       TextEditor
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/KControl.desktop                   X-SuSE-core
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Kfind.desktop                      System Filesystem core
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kjobviewer.desktop                 PrintingUtility
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/klipper.desktop                    System TrayIcon
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kmenuedit.desktop                  Core-Configuration
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/knetattach.desktop                 System Network
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konqbrowser.desktop                WebBrowser
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konquerorsu.desktop                System FileManager
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konsole.desktop                    TerminalEmulator
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/konsolesu.desktop                  TerminalEmulator
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpager.desktop                     Utility  DesktopUtility
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpersonalizer.desktop              DesktopUtility
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/ksysguard.desktop                  System Monitor
+%suse_update_desktop_file -u %{?buildroot}%{tde_tdeappdir}/ktip.desktop                       System Utility
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kwrite.desktop                     TextEditor
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/tdeprintfax.desktop                PrintingUtility
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tdefontview.desktop                Graphics Viewer
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tderandrtray.desktop               Applet X-TDE-settings-desktop
+%suse_update_desktop_file    %{?buildroot}%{tde_datadir}/applnk/.hidden/konqfilemgr.desktop   System FileManager
 %endif
 
 # Icons from TDE Control Center should only be displayed in TDE

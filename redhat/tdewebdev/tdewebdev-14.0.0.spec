@@ -432,11 +432,11 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_tdedocdir}/HTML/en/xsldbg/
 %{tde_datadir}/icons/hicolor/*/actions/1downarrow.png
 %{tde_datadir}/icons/hicolor/*/actions/configure.png
-%{tde_datadir}/icons/hicolor/*/actions/system-log-out.png
+#%{tde_datadir}/icons/hicolor/*/actions/system-log-out.png
 %{tde_datadir}/icons/hicolor/*/actions/hash.png
 %{tde_datadir}/icons/hicolor/*/actions/mark.png
 %{tde_datadir}/icons/hicolor/*/actions/next.png
-%{tde_datadir}/icons/hicolor/*/actions/system-run.png
+#%{tde_datadir}/icons/hicolor/*/actions/system-run.png
 %{tde_datadir}/icons/hicolor/*/actions/step.png
 %{tde_datadir}/icons/hicolor/*/actions/xsldbg_*.png
 %{tde_datadir}/icons/hicolor/*/apps/kxsldbg.png
