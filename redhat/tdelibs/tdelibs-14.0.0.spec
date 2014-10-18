@@ -95,7 +95,7 @@ BuildRequires:	fdupes
 BuildRequires:	update-desktop-files
 %endif
 
-%if 0%{?opensuse_bs}
+%if 0%{?opensuse_bs} && %{?suse_version}
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif

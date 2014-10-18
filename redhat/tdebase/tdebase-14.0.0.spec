@@ -113,7 +113,7 @@ Provides:	tdebase = %{version}-%{release}
 PreReq: permissions
 %endif
 
-%if 0%{?opensuse_bs}
+%if 0%{?opensuse_bs} && %{?suse_version}
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif
@@ -1336,7 +1336,7 @@ TDE applications, particularly those in the TDE base module.
 %endif
 
 # SUSE's runupdater utility
-%if 0%{?suse_version} && 0%{?opensuse_bs} == 0
+%if 0%{?opensuse_bs} == 0
 %{tde_bindir}/runupdater
 %{tde_libdir}/libtdeinit_runupdater.la
 %{tde_libdir}/libtdeinit_runupdater.so
