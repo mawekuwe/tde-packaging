@@ -1336,7 +1336,7 @@ TDE applications, particularly those in the TDE base module.
 %endif
 
 # SUSE's runupdater utility
-%if 0%{?opensuse_bs} == 0
+%if 0%{?opensuse_bs} == 0 && 0%{?suse_version}
 %{tde_bindir}/runupdater
 %{tde_libdir}/libtdeinit_runupdater.la
 %{tde_libdir}/libtdeinit_runupdater.so
