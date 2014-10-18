@@ -78,6 +78,7 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gcc-c++
 BuildRequires:	fdupes
+BuildRequires:	desktop-file-utils
 
 # SUSE desktop files utility
 %if 0%{?suse_version}
@@ -99,7 +100,7 @@ BuildRequires: trinity-akode-devel
 %{?with_mad:BuildRequires: trinity-akode-libmad}
 %endif
 
-BuildRequires:	desktop-file-utils
+# ZLIB support
 BuildRequires:	zlib-devel
 
 # MUSICBRAINZ support
@@ -1250,7 +1251,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb" \
+  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_includedir}/artsc:%{tde_tdeincludedir}/arts" \
   \
   --with-cdparanoia \
   --with-flac \

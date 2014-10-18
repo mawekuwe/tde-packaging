@@ -254,7 +254,7 @@ Requires:	hicolor-icon-theme-branding
 %if "%{?suse_version}" == "1310"
 Requires:	wallpaper-branding
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding-openSUSE
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
