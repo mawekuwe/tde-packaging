@@ -238,12 +238,6 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,3rdparty/sip)
 endif
 
-sword:
-# Build on Fedora >= 20, PCLinuxOS, CentOS >= 7
-ifneq ($(wildcard /boot/vmlinuz*.fc20* /etc/pclinuxos-release /boot/vmlinuz*.el7*),)
-	$(call buildpkg,3rdparty/sword)
-endif
-
 torsocks:
 	$(call buildpkg,3rdparty/torsocks)
 
@@ -306,7 +300,7 @@ amarok:	tdebase cmake
 basket:	tdebase
 	$(call buildpkg,applications/basket)
 
-bibletime:	tdebase sword
+bibletime:	tdebase
 	$(call buildpkg,applications/bibletime)
 
 compizconfig-backend-kconfig:	tdebase
@@ -594,7 +588,7 @@ tdeio-ftps:	tdebase
 tdeio-locate:	tdebase
 	$(call buildpkg,applications/tdeio-locate)
 
-tdeio-sword:	tdebase sword
+tdeio-sword:	tdebase
 	$(call buildpkg,applications/tdeio-sword)
 
 tdeio-umountwrapper:	tdebase
@@ -666,11 +660,11 @@ meta:
 	$(call buildpkg,extras/trinity-desktop)
 
 ### Extra packages
+celestia:
+	$(call buildpkg,extras/celestia)
+
 fileshareset:
 	$(call buildpkg,extras/fileshareset)
-
-trinity-filesystem:
-	$(call buildpkg,extras/trinity-filesystem)
 
 hk_classes:
 	$(call buildpkg,extras/hk_classes)
@@ -710,3 +704,6 @@ scribus:
 
 style-ia-ora:
 	$(call buildpkg,extras/style-ia-ora)
+
+trinity-filesystem:
+	$(call buildpkg,extras/trinity-filesystem)

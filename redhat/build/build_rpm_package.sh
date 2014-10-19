@@ -29,7 +29,7 @@ if [ -r "${PATCHLIST}" ]; then
     APPLY=""
     case "${l}" in
       ""|"#"*);;
-     "*opensuse*") [ -r /etc/SuSE-release ] && APPLY=1;;
+     *"opensuse"*) [ -r /etc/SuSE-release ] && APPLY=1;;
      *) APPLY=1;;
     esac
     

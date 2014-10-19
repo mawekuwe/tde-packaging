@@ -167,8 +167,8 @@ BuildRequires: libxine-devel
 %endif
 
 # AKODE support
-%if 0
-%define with_akode 1
+%define with_akode 0
+%if 0 && 0%{?with_akode}
 BuildRequires:	trinity-akode-devel
 %endif
 
@@ -289,7 +289,7 @@ Amarok is a multimedia player with:
 %{tde_tdelibdir}/libamarok_yauap-engine_plugin.*
 %endif
 # AKODE
-%if 0%{?with_akode}
+%if 0 && 0%{?with_akode}
 %{tde_datadir}/services/amarok_aKode-engine.desktop
 %{tde_tdelibdir}/libamarok_aKode-engine.*
 %endif
@@ -410,7 +410,7 @@ fi
   -DWITH_KONQSIDEBAR=ON \
   %{?with_xine:-DWITH_XINE=ON} \
   %{?with_yauap:-DWITH_YAUAP=ON} \
-  %{?with_akode:-DWITH_AKODE=ON} \
+  -DWITH_AKODE=OFF \
   %{?with_gpod:-DWITH_IPOD=ON} \
   %{?with_ifp:-DWITH_IFP=ON} \
   %{?with_njb:-DWITH_NJB=ON} \

@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		A bible study tool for Trinity
 Version:		1.6.6.0
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -39,8 +39,6 @@ Prefix:			%{_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-
-Patch0:			bibletime-3.5.13.2-fix_sword_detection.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -77,7 +75,6 @@ texts, write own notes, save, print etc.).
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -152,6 +149,9 @@ update-desktop-database %{tde_datadir}/applications -q &> /dev/null
 
 
 %changelog
+* Sun Sep 21 2014 Francois Andriot <francois.andriot@free.fr> - 1.6.6.0-7
+- Fix build with Sword 1.7
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.6.0-5
 - Build for Fedora 19
 

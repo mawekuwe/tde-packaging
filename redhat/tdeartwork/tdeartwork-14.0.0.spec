@@ -667,6 +667,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %if 0%{?fedora} >= 20
 %{tde_datadir}/applnk/System/ScreenSavers/projectiveplane.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/tessellimage.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/winduprobot.desktop
 %endif
 
 %endif

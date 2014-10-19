@@ -100,11 +100,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --disable-gcc-hidden-visibility \
-  \
-%if 0%{?pclinuxos} || 0%{?rhel} >= 7
-  --with-sword-dir=%{tde_prefix}
-%endif
+  --disable-gcc-hidden-visibility
 
 # Not SMP safe !
 %__make -C bibletime/frontend
