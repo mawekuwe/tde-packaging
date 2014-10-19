@@ -21,20 +21,27 @@ LOGFILE=/tmp/log.${COMP##*/}
 TEMPDIR="$(mktemp -d)"
 cp -f ${SPECFILE} ${SOURCES} ${TARBALL} "${TEMPDIR}"
 
-# Check if there are patches
+# Check if there are local patches
 PATCHDIR="${SPECFILE%/*}/patches/${TDE_VERSION}"
 PATCHLIST="${PATCHDIR}/patches"
 if [ -r "${PATCHLIST}" ]; then
   while read l; do
+    APPLY=""
     case "${l}" in
       ""|"#"*);;
-      *)
-        if [ -r "${PATCHDIR}/${l}" ]; then
-          echo "Applying patch '${l}'..."
-          cat "${PATCHDIR}/${l}" >>"${TEMPDIR}/one.patch"
-        fi
-      ;;
+     "*opensuse*") [ -r /etc/SuSE-release ] && APPLY=1;;
+     *) APPLY=1;;
     esac
+    
+    if [ "${APPLY}" ]; then
+      if [ -r "${PATCHDIR}/${l}" ]; then
+        echo "Applying patch '${l}'..."
+        cat "${PATCHDIR}/${l}" >>"${TEMPDIR}/one.patch"
+      else
+        echo "ERROR: invalid patch '${l}' !!"
+        exit 3
+      fi
+    fi
   done < "${PATCHLIST}"
 fi
 
@@ -62,9 +69,12 @@ rpmbuild -ba \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
   --define "preversion ${PREVERSION:-}" \
+  --define "with_akode 1" \
   --define "with_jack 1" \
+  --define "with_lame 1" \
+  --define "with_mad 1" \
+  --define "with_mpeg 1" \
   --define "with_xscreensaver 1" \
-  ${ARGS} \
   "${TEMPDIR}/${SPECFILE##*/}"
 RET=$?
 

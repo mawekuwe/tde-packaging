@@ -39,7 +39,6 @@ Source1:	http://download.sourceforge.net/quanta/css.tar.bz2
 Source2:	http://download.sourceforge.net/quanta/html.tar.bz2
 Source3:	http://download.sourceforge.net/quanta/php_manual_en_20030401.tar.bz2
 Source4:	http://download.sourceforge.net/quanta/javascript.tar.bz2
-Source5:	hi48-app-kxsldbg.png
 
 Patch1:		kdewebdev-3.5.4-kxsldbg-icons.patch
 
@@ -486,7 +485,6 @@ Requires:	trinity-kommander-devel = %{version}-%{release}
 %setup -q -a 1 -a 2 -a 3 -a 4
 %patch1 -p1 -b .kxsldbg-icons
 
-%__install -m644 -p %{SOURCE5} kxsldbg/
 %if 0%{?build_kxsldbg} == 0
 %__rm -rf kxsldbg/ doc/kxsldbg/ doc/xsldbg/
 %endif

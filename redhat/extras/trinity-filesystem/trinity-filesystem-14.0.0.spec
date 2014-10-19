@@ -183,7 +183,7 @@ for t in crystalsvg hicolor locolor ; do
   done
   
   # Create subdirectories
-  for r in actions apps devices mimetypes places ; do
+  for r in actions apps categories devices mimetypes places ; do
     %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}/scalable/${r}"
     for i in {16,22,32,48,64,128} ; do
       %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}/${i}x${i}/${r}"
@@ -203,10 +203,6 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_libdir}
 %__install -d -m 755 %{?buildroot}%{tde_libdir}/pkgconfig
 %__install -d -m 755 %{?buildroot}%{tde_tdelibdir}
-
-%__install -d -m 755 %{?buildroot}%{_datadir}/icons/hicolor
-%__install -d -m 755 %{?buildroot}%{_datadir}/icons/hicolor/32x32
-%__install -d -m 755 %{?buildroot}%{_datadir}/icons/hicolor/32x32/apps
 
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/trinity
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/xdg/menus

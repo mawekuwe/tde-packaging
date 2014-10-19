@@ -52,14 +52,6 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kppp.pamd
 Source2:	ktalk
 
-
-# [kdenetwork] Missing LDFLAGS cause FTBFS
-Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
-
-# RHEL4 specific
-Patch201:	kdenetwork-3.5.13.1-fix_rhel4_libraries.patch
-Patch202:	tdenetwork-3.5.13.2-fix_conflicting_definitions.patch
-
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gettext
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -1116,12 +1108,6 @@ update-desktop-database 2> /dev/null || :
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-%patch1 -p1 -b .ldflags
-
-%if 0%{?rhel} == 4
-%patch201 -p1 -b .rhel4
-%patch202 -p1 -b .rhel4
-%endif
 
 %build
 unset QTDIR QTINC QTLIB

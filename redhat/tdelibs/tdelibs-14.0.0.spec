@@ -93,6 +93,9 @@ BuildRequires:	fdupes
 # SUSE desktop files utility
 %if 0%{?suse_version}
 BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif
@@ -250,12 +253,12 @@ BuildRequires:	xz-devel
 %endif
 
 # Certificates support
-%if 0%{?rhel} >= 6 || 0%{?fedora}
+%if 0%{?rhel} == 6 || 0%{?fedora}
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
 BuildRequires:	ca-certificates
 Requires:		ca-certificates
 %endif
-%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
 Requires:		openssl
 %endif

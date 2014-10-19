@@ -26,9 +26,9 @@
 Name:		trinity-%{tde_pkg}
 Summary:	Raw picture decoding C++ library (runtime) [Trinity]
 
-Epoch:		1
+Epoch:		2
 Version:	0.1.9
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries
@@ -43,7 +43,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: desktop-file-utils
 %if 0%{?suse_version}

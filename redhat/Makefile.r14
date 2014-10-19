@@ -26,7 +26,7 @@ main:	tdelibs tdebase tdeaccessibility tdeadmin tdegames tdemultimedia tdepim td
 libraries:	libkdcraw libkexiv2 libkipi libksquirrel libtdeldap libtqt-perl pytdeextensions python-trinity
 applications:	abakus amarok basket bibletime digikam dolphin filelight gtk3-tqt-engine gtk-qt-engine gwenview k3b k9copy kaffeine kaffeine-mozilla kasablanca katapult kbarcode kbfx kbibtex kbiff kbookreader kchmviewer kcmautostart kcmldap kcmldapcontroller kcmldapmanager kcpuload kdbg kdbusnotification kdiff3 kdirstat keep kerberostray kftpgrabber kile kima kiosktool kkbswitch klcddimmer kmplayer kmyfirewall kmymoney knemo knetload knetstats knights knmap knowit knutclient koffice konversation kopete-otr kpicosim kpilot krecipes krename krusader kscope ksensors kshowmail kshutdown ksplash-engine-moodin ksquirrel kstreamripper ksystemlog ktechlab ktorrent kuickshow kvirc kvkbd kvpnc mplayerthumbs piklab potracegui qt4-tqt-theme-engine rosegarden smartcardauth smb4k soundkonverter tde-guidance tdeio-apt tdeio-ftps tdeio-locate tdeio-sword tdeio-umountwrapper tdenetworkmanager tdepowersave tderadio tde-style-lipstik tde-style-qtcurve tdesudo tdesvn tde-systemsettings tdmtheme tellico tork twin-style-crystal wlassistant yakuake
 i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
-extras:	icons-nuvola kdevmon kdissert klamav kompose koverartist kpacman mathemagics png2qrgb style-ia-ora
+extras:	icons-nuvola kdevmon kdissert klamav knoda kompose koverartist kpacman mathemagics png2qrgb style-ia-ora
 
 
 ### Trinity Dependencies
@@ -672,6 +672,9 @@ fileshareset:
 trinity-filesystem:
 	$(call buildpkg,extras/trinity-filesystem)
 
+hk_classes:
+	$(call buildpkg,extras/hk_classes)
+
 icons-nuvola:
 	$(call buildpkg,extras/icons-nuvola)
 
@@ -683,6 +686,9 @@ kdissert:
 
 klamav:
 	$(call buildpkg,extras/klamav)
+
+knoda: hk_classes
+	$(call buildpkg,extras/knoda)
 
 kompose:
 	$(call buildpkg,extras/kompose)
