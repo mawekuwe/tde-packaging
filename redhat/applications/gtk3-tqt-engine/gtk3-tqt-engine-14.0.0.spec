@@ -40,7 +40,6 @@ Prefix:			%{_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Patch1:			gtk3-tqt-engine-14.0.0-libsuffix.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -50,7 +49,7 @@ BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
 
-%if 0%{?fedora} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} >= 7
 BuildRequires:	gtk3-devel
 %else
 BuildRequires:	gtk+3.0-devel
@@ -60,7 +59,7 @@ BuildRequires:	gtk+3.0-devel
 GTK3 style engine which uses the active TDE style to draw its widgets
 
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -68,7 +67,7 @@ GTK3 style engine which uses the active TDE style to draw its widgets
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %if "%_lib" == "lib64"
-%patch1 -p1 -b .libsuffix
+%__sed -i "tdegtk/Makefile.am" -e "s|/lib/|/lib64/|g"
 %endif
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
@@ -79,7 +78,6 @@ GTK3 style engine which uses the active TDE style to draw its widgets
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
