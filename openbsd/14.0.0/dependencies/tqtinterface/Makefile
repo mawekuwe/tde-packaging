@@ -1,37 +1,30 @@
 .include </usr/ports/x11/trinity/trinity.port.mk>
 
-VERSION=		${TDE_VERSION}
-REVISION=		1
 PKGNAME=		trinity-tqtinterface-${VERSION}
-PREFIX=			${LOCALBASE}
+VERSION=		4.2.0${PREVERSION}
+PREVERSION=		~pre188+15d1da6f
 
-CATEGORIES=		x11/trinity
+COMMENT=		Trinity QT intefarce
+CATEGORIES=		x11/trinity/dependencies
+HOMEPAGE=		http://www.trinitydesktop.org/
+MAINTAINER=		François Andriot <francois.andriot@free.fr>
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
-DISTNAME=		trinity-tqtinterface-14.0.0~pre185+b79cc765
+DISTNAME=		trinity-tqtinterface-${TDE_VERSION}${PREVERSION}
 EXTRACT_SUFX=	.tar.gz
+
+PREFIX=			${LOCALBASE}
 
 BUILD_DEPENDS= 	devel/gmake \
 				devel/cmake \
 				x11/trinity/dependencies/tqt3,-main
 
-SHARED_LIBS=			tqt                       4.2
+SHARED_LIBS=	tqt                       4.2
 
-MULTI_PACKAGES=	-main -devel
-
-# Main package
-PKGNAME-main=			trinity-tqtinterface-${VERSION}
-COMMENT-main=			Trinity QT intefarce
-RUN_DEPENDS-main=		textproc/gsed \
-						shells/bash \
-						x11/trinity/dependencies/tqt3,-main
-LIB_DEPENDS-main=		x11/trinity/dependencies/tqt3,-main
-
-# Development package
-PKGNAME-devel=			trinity-tqtinterface-devel-${VERSION}
-COMMENT-devel=			development files for Trinity QT interface
-LIB_DEPENDS-devel=		${BUILD_PKGPATH},-main
-RUN_DEPENDS-devel=		x11/trinity/dependencies/tqt3,-main
+RUN_DEPENDS=	textproc/gsed \
+				shells/bash \
+				x11/trinity/dependencies/tqt3,-main
+LIB_DEPENDS=	x11/trinity/dependencies/tqt3,-main
 
 # Build
 do-configure: tde-cmake-rmbuild
@@ -39,6 +32,7 @@ do-configure: tde-cmake-rmbuild
 		-DQTDIR="${LOCALBASE}/share/tqt3" \
 		-DQT_INCLUDE_DIR="${LOCALBASE}/include/tqt3" \
 		-DQT_LIBRARY_DIR="${LOCALBASE}/lib" \
+		-DQT_LIBRARIES="tqt-mt" \
 		\
 		-DCMAKE_INSTALL_PREFIX="${LOCALBASE}" \
 		-DPKGCONFIG_INSTALL_DIR="${LOCALBASE}/lib/pkgconfig" \

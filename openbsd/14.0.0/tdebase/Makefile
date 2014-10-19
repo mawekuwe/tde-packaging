@@ -1,16 +1,19 @@
 .include </usr/ports/x11/trinity/trinity.port.mk>
 
-VERSION=		${TDE_VERSION}
-REVISION=		1
 PKGNAME=		trinity-tdebase-${VERSION}
-PREFIX=			${TDE_PREFIX}
+VERSION=		${TDE_VERSION}${PREVERSION}
+PREVERSION=		~pre1377+891da4b8
 
-CATEGORIES=		x11/trinity
 COMMENT=		Trinity Base Programs
+CATEGORIES=		x11/trinity
+HOMEPAGE=		http://www.trinitydesktop.org/
+MAINTAINER=		François Andriot <francois.andriot@free.fr>
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/
-DISTNAME=		trinity-tdebase-14.0.0~pre1318+cc12a51c
+DISTNAME=		trinity-tdebase-${TDE_VERSION}${PREVERSION}
 EXTRACT_SUFX=	.tar.gz
+
+PREFIX=			${TDE_PREFIX}
 
 RUN_DEPENDS=	devel/desktop-file-utils \
 				x11/gtk+2,-guic
@@ -19,7 +22,7 @@ BUILD_DEPENDS=	devel/imake \
 				devel/gmake \
 				devel/cmake
 
-LIB_DEPENDS+=	x11/trinity/dependencies/tqtinterface,-main \
+LIB_DEPENDS+=	x11/trinity/dependencies/tqtinterface \
 				x11/trinity/dependencies/arts \
 				x11/trinity/tdelibs
 
@@ -47,32 +50,6 @@ SHARED_LIBS +=  taskmanager               1.0
 SHARED_LIBS +=  tdecorations              1.0
 SHARED_LIBS +=  tdefontinst               0.0
 SHARED_LIBS +=  qtkde                     0.0
-
-MULTI_PACKAGES=	-main -konsole -tdm -tdeio-pim-plugins
-
-# Main package
-PKGNAME-main=	trinity-tdebase-${VERSION}
-COMMENT-main=	
-LIB_DEPENDS-main=		x11/trinity/tdelibs
-RUN_DEPENDS-main=		x11/trinity/tdebase,-konsole \
-						x11/trinity/tdebase,-tdm
-
-# Konsole package
-PKGNAME-konsole=		trinity-konsole-${VERSION}
-COMMENT-konsole=		X terminal emulator for TDE
-LIB_DEPENDS-konsole=	x11/trinity/tdelibs
-#RUN_DEPENDS-konsole=	x11/trinity/tdebase,-main
-
-# tdeio-pim-plugins
-PKGNAME-tdeio-pim-plugins=	trinity-tdeio-pim-plugins-${VERSION}
-COMMENT-tdeio-pim-plugins=	PIM TDEIOslaves from tdebase
-LIB_DEPENDS-tdeio-pim-plugins=	x11/trinity/tdelibs
-
-# TDM package
-PKGNAME-tdm=			trinity-tdm-${VERSION}
-COMMENT-tdm=			X Display manager for TDE
-LIB_DEPENDS-tdm=		x11/trinity/tdelibs
-#RUN_DEPENDS-tdm=		x11/trinity/tdebase,-main
 
 
 post-patch:
@@ -129,7 +106,9 @@ do-build: tde-cmake-build
 do-install: tde-cmake-install
 
 post-install:
-	chmod 0755 ${PREFIX}/bin/kcheckpass
-	chmod 0755 ${PREFIX}/bin/tdesud
+	# Remove setuid bit
+	cd "${WRKINST}${TDE_PREFIX}/bin" && chmod 0755 kcheckpass tdesud
+	# Default user face for TDM
+	cd "${WRKINST}${TDE_PREFIX}/share/apps/tdm/pics/users" && cp -f "default2.png" ".default.face.icon"
 
 .include <bsd.port.mk>

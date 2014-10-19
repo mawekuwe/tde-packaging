@@ -1,26 +1,30 @@
-VERSION=		1.5.10
-REVISION=		1
-PKGNAME=		trinity-arts-${VERSION}
-PREFIX=			${TDE_PREFIX}
+.include </usr/ports/x11/trinity/trinity.port.mk>
 
-CATEGORIES=		x11/trinity
+PKGNAME=		trinity-arts-${VERSION}
+VERSION=		1.5.10${PREVERSION}
+PREVERSION=		~pre134+62defb77
+
 COMMENT=		aRts (analog realtime synthesizer) - the TDE sound system
+CATEGORIES=		x11/trinity/dependencies
+HOMEPAGE=		http://www.trinitydesktop.org/
+MAINTAINER=		François Andriot <francois.andriot@free.fr>
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
-DISTNAME=		trinity-arts-14.0.0~pre131+04e2524e
+DISTNAME=		trinity-arts-${TDE_VERSION}${PREVERSION}
 EXTRACT_SUFX=	.tar.gz
+
+PREFIX=			${TDE_PREFIX}
 
 BUILD_DEPENDS= 	devel/gmake \
 				devel/cmake \
-				x11/trinity/dependencies/tqtinterface,-devel
+				x11/trinity/dependencies/tqtinterface
 
 LIB_DEPENDS=	devel/libaudiofile \
                 devel/glib2 \
                 audio/libvorbis \
                 audio/libogg \
                 audio/libmad \
-				x11/trinity/dependencies/tqtinterface,-main \
-				x11/trinity/dependencies/tqtinterface,-devel
+				x11/trinity/dependencies/tqtinterface
 
 WANTLIB = glib-2.0 audiofile mad ogg vorbis
 
@@ -40,7 +44,6 @@ SHARED_LIBS +=  mcop_mt                   1.0
 SHARED_LIBS +=  qtmcop                    1.0
 SHARED_LIBS +=  soundserver_idl           1.0
 
-.include </usr/ports/x11/trinity/trinity.port.mk>
 
 do-configure: tde-cmake-rmbuild
 	${TDE_CMAKE_CONFIGURE} \

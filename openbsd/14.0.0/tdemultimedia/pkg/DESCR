@@ -1,0 +1,13 @@
+The Trinity Desktop Environment (TDE) is a GUI desktop for the X Window
+System. The tdemultimedia package contains multimedia applications for
+TDE, including:
+  artsbuilder, Synthesizer designer for aRts
+  juk, a media player
+  tdemid, a midi player
+  kmix, an audio mixer
+  arts, additional functionality for the aRts sound system
+  krec, a recording tool
+  kscd, an Audio-CD player
+  kaudiocreator, a graphical frontend for audio file creation 
+  kaboodle, a media player
+  noatun, a media player

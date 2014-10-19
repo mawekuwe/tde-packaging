@@ -1,15 +1,20 @@
+.include </usr/ports/x11/trinity/trinity.port.mk>
+
 PKGNAME=		trinity-tqt3-${VERSION}
-VERSION=		3.5.0
-DISTNAME=		trinity-tqt3-14.0.0~pre219+16e2c768
-EXTRACT_SUFX=	.tar.gz
+VERSION=		3.5.0${PREVERSION}
+PREVERSION=		~pre221+117b166c
 
+COMMENT=		C++ X11 GUI toolkit
 CATEGORIES=		x11/trinity/dependencies
-MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
-
 HOMEPAGE=		http://www.trinitydesktop.org/
 MAINTAINER=		François Andriot <francois.andriot@free.fr>
 
-SHARED_LIBS =
+MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
+DISTNAME=		trinity-tqt3-${TDE_VERSION}${PREVERSION}
+EXTRACT_SUFX=	.tar.gz
+
+PREFIX=			${LOCALBASE}
+
 SHARED_LIBS += tqtdesignercore      1.0
 SHARED_LIBS += tqteditor            1.0
 SHARED_LIBS += tqassistantclient    1.0

@@ -41,11 +41,17 @@ TDE_FLAGS+= -DNDEBUG
 .endif
 
 # Custom configure commands
-TDE_CMAKE_CONFIGURE=\
-	export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}"; \
-	export CMAKE_LIBRARY_PATH="${CMAKE_LIBRARY_PATH}"; \
+TDE_BUILD_ENV=\
+	export TDEDIR="${TDE_PREFIX}"; \
 	export PATH="${TDE_PREFIX}/bin:${PATH}"; \
 	export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}"; \
+	export CFLAGS="${TDE_FLAGS}"; \
+	export CXXFLAGS="${TDE_FLAGS} -Wl,-lstdc++";
+
+TDE_CMAKE_CONFIGURE=\
+	${TDE_BUILD_ENV} \
+	export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}"; \
+	export CMAKE_LIBRARY_PATH="${CMAKE_LIBRARY_PATH}"; \
 	cd ${WRKDIST} && mkdir build && cd build && cmake .. \
 		-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}" \
 		-DCMAKE_C_FLAGS="${TDE_FLAGS}" \
@@ -66,23 +72,50 @@ TDE_CMAKE_CONFIGURE=\
 		-DPKGCONFIG_INSTALL_DIR="${TDE_PREFIX}/lib/pkgconfig"
 
 TDE_AUTOTOOLS_CONFIGURE=\
-	export PATH="${TDE_PREFIX}/bin:${PATH}"; \
-	export PKG_CONFIG_PATH="${PKG_CONFIG_PATH}"; \
-	export CFLAGS="${TDE_FLAGS}" \
-	export CXXFLAGS="${TDE_FLAGS} -Wl,-lstdc++" \
+	${TDE_BUILD_ENV} \
 	cd ${WRKDIST} && ./configure \
-		--prefix=${TDE_PREFIX}
-	
+		--prefix=${TDE_PREFIX} \
+		--exec-prefix=${TDE_PREFIX} \
+		--bindir=${TDE_PREFIX}/bin \
+		--libdir=${TDE_PREFIX}/lib \
+		--includedir=${TDE_PREFIX}/include \
+		--datadir=${TDE_PREFIX}/share \
+		\
+		--enable-shared \
+		--disable-static \
+		--disable-dependency-tracking \
+		--disable-debug \
+		--enable-final \
+		--enable-new-ldflags \
+		--enable-closure \
+		--enable-rpath \
+		--disable-gcc-hidden-visibility \
 
 
-### Custom build targets
+
+### Custom build targets for CMAKE
 tde-cmake-rmbuild:
 	rm -rf "${WRKDIST}/build"
 
 tde-cmake-build:
-	export TDEDIR="${TDE_PREFIX}"; \
+	${TDE_BUILD_ENV} \
 	cd "${WRKDIST}/build" && gmake ${MAKE_FLAGS} || gmake
 
 tde-cmake-install:
-	export TDEDIR="${TDE_PREFIX}"; \
+	${TDE_BUILD_ENV} \
 	cd "${WRKDIST}/build" && gmake install
+
+### Custom build targets for AUTOTOOLS
+tde-autotools-prepare:
+	cp -f "/usr/local/share/aclocal/libtool.m4" "${WRKDIST}/admin/libtool.m4.in"
+	cp "/usr/local/share/libtool/config/ltmain.sh" "${WRKDIST}/admin/ltmain.sh"
+	gsed -i "${WRKDIST}/admin/acinclude.m4.in" -e "s|/usr/include/tqt|${LOCALBASE}/include/tqt|g"
+	cd "${WRKDIST}" && gmake -f "admin/Makefile.common"
+
+tde-autotools-build:
+	${TDE_BUILD_ENV} \
+	cd "${WRKDIST}" && gmake ${MAKE_FLAGS} || gmake
+
+tde-autotools-install:
+	${TDE_BUILD_ENV} \
+	cd "${WRKDIST}" && gmake install

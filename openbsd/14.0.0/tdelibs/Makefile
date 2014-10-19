@@ -1,16 +1,19 @@
 .include </usr/ports/x11/trinity/trinity.port.mk>
 
-VERSION=		${TDE_VERSION}
-REVISION=		1
 PKGNAME=		trinity-tdelibs-${VERSION}
-PREFIX=			${TDE_PREFIX}
+VERSION=		${TDE_VERSION}${PREVERSION}
+PREVERSION=		~pre932+b05f8d18
 
-CATEGORIES=		x11/trinity
 COMMENT=		TDE Libraries
+CATEGORIES=		x11/trinity
+HOMEPAGE=		http://www.trinitydesktop.org/
+MAINTAINER=		François Andriot <francois.andriot@free.fr>
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/
-DISTNAME=		trinity-tdelibs-14.0.0~pre899+9a6735bb
+DISTNAME=		trinity-tdelibs-${TDE_VERSION}${PREVERSION}
 EXTRACT_SUFX=	.tar.gz
+
+PREFIX=			${TDE_PREFIX}
 
 RUN_DEPENDS=	devel/desktop-file-utils \
 				x11/gtk+2,-guic
@@ -19,7 +22,7 @@ BUILD_DEPENDS=	devel/imake \
 				devel/gmake \
 				devel/cmake
 
-LIB_DEPENDS+=	x11/trinity/dependencies/tqtinterface,-main \
+LIB_DEPENDS+=	x11/trinity/dependencies/tqtinterface \
 				x11/trinity/dependencies/arts \
 				x11/trinity/dependencies/dbus-tqt \
 				x11/trinity/dependencies/dbus-1-tqt \
@@ -27,6 +30,7 @@ LIB_DEPENDS+=	x11/trinity/dependencies/tqtinterface,-main \
 
 LIB_DEPENDS+=	archivers/bzip2 \
 				devel/libidn \
+				devel/libmagic \
 				devel/pcre \
 				graphics/jasper \
 				graphics/openexr \
@@ -143,8 +147,6 @@ do-build: tde-cmake-build
 
 do-install: tde-cmake-install
 	# Remove setuid bit
-	chmod 0755 ${PREFIX}/bin/fileshareset
-	chmod 0755 ${PREFIX}/bin/kgrantpty
-	chmod 0755 ${PREFIX}/bin/kpac_dhcp_helper
+	cd "${WRKINST}${TDE_PREFIX}/bin" && chmod 0755 fileshareset kgrantpty kpac_dhcp_helper
 
 .include <bsd.port.mk>

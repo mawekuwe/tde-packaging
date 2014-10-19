@@ -1,16 +1,19 @@
 .include </usr/ports/x11/trinity/trinity.port.mk>
 
-VERSION=		0.9
-REVISION=		1
 PKGNAME=		trinity-dbus_1_tqt-${VERSION}
-PREFIX=			${TDE_PREFIX}
+VERSION=		0.9${PREVERSION}
+PREVERSION=		~pre120+0add2f9a
 
-CATEGORIES=		x11/trinity
 COMMENT=		dbus TQT Interface
+CATEGORIES=		x11/trinity/dependencies
+HOMEPAGE=		http://www.trinitydesktop.org/
+MAINTAINER=		François Andriot <francois.andriot@free.fr>
 
 MASTER_SITES=	http://nuc.vtf/tde/tde-tarballs/14.0.0/main/dependencies/
-DISTNAME=		trinity-dbus-1-tqt-14.0.0~pre117+5ddc3488
+DISTNAME=		trinity-dbus-1-tqt-${TDE_VERSION}${PREVERSION}
 EXTRACT_SUFX=	.tar.gz
+
+PREFIX=			${TDE_PREFIX}
 
 BUILD_DEPENDS= 	devel/gmake \
 				devel/cmake \
