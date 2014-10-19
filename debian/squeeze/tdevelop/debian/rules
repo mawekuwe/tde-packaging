@@ -24,6 +24,7 @@ DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
 
 PACKAGES_WITH_LIBS := tdevelop-trinity
 
+DEB_KDE_APIDOX := yes
 DEB_KDE_ENABLE_FINAL :=
 DEB_INSTALL_DOCS_tdevelop = AUTHORS
 DEB_MAKE_INSTALL_TARGET := install DESTDIR=$(CURDIR)/debian/tmp

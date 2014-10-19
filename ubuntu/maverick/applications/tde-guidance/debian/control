@@ -43,15 +43,3 @@ Description: collection of system administration tools for GNU/Linux [Trinity]
  .
   Homepage: http://www.simonzone.com/software/guidance
 
-Package: tde-guidance-powermanager-trinity
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, tde-guidance-trinity, python-trinity-trinity, python-dbus, hal, python-gobject, python (>= 2.5), python-dev (>= 2.5)
-Replaces: kde-guidance-powermanager-kde3 (<< 4:14.0.0~), kde-guidance-powermanager-trinity (<< 4:14.0.0~)
-Breaks: kde-guidance-powermanager-kde3 (<< 4:14.0.0~), kde-guidance-powermanager-trinity (<< 4:14.0.0~)
-Conflicts: guidance-power-manager, kde-guidance-powermanager
-Provides: ${python:Provides}
-Description: HAL based power manager applet [Trinity]
- A power management applet to indicate battery levels and perform hibernate or
- suspend using HAL.
- .
-  Homepage: http://www.simonzone.com/software/guidance
