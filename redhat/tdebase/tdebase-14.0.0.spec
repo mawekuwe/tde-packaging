@@ -236,7 +236,7 @@ Requires:	hicolor-icon-theme-branding
 
 # OpenSuse 12.2 Theme
 %if "%{?suse_version}" == "1220"
-Requires:	wallpaper-branding
+Requires:	wallpaper-branding = 12.2
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
 Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
@@ -244,7 +244,7 @@ Requires:	hicolor-icon-theme-branding
 
 # OpenSuse 12.3 Theme
 %if "%{?suse_version}" == "1230"
-Requires:	wallpaper-branding
+Requires:	wallpaper-branding = 12.3
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
 Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
@@ -252,9 +252,9 @@ Requires:	hicolor-icon-theme-branding
 
 # OpenSuse 13.1 Theme
 %if "%{?suse_version}" == "1310"
-Requires:	wallpaper-branding
+Requires:	wallpaper-branding = 13.1
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding-openSUSE
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -631,9 +631,6 @@ Obsoletes:	trinity-kdebase-devel < %{version}-%{release}
 Provides:	tdebase-devel = %{version}-%{release}
 Obsoletes:	tdebase-devel < %{version}-%{release}
 
-Obsoletes:	trinity-kdebase-cmake < %{version}-%{release}
-Obsoletes:	tdebase-cmake < %{version}-%{release}
-
 %description devel
 This is a meta-package that installs all tdebase development packages.
 
@@ -765,7 +762,7 @@ Summary:	Common libraries used by kwrite and kate
 Group:		Environment/Libraries
 
 %description -n trinity-libkateinterfaces
-%{summary}
+%{summary}.
 
 %files -n trinity-libkateinterfaces
 %defattr(-,root,root,-)
@@ -846,7 +843,7 @@ Group:		Development/Libraries
 Requires:	trinity-kate = %{version}-%{release}
 
 %description -n trinity-kate-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-kate-devel
 %defattr(-,root,root,-)
@@ -871,7 +868,7 @@ Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-libkateinterfaces = %{version}-%{release}
 
 %description -n trinity-kwrite
-Kwrite is a text editor for TDE.
+Kwrite is an advanced text editor for TDE.
 
 %files -n trinity-kwrite
 %defattr(-,root,root,-)
@@ -1208,7 +1205,7 @@ Group:		Development/Libraries
 Requires:	trinity-kcontrol = %{version}-%{release}
 
 %description -n trinity-kcontrol-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-kcontrol-devel
 %defattr(-,root,root,-)
@@ -1348,6 +1345,13 @@ TDE applications, particularly those in the TDE base module.
 %post bin
 /sbin/ldconfig || :
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
+%if 0%{?suse_version}
+%if 0%{?with_tsak}
+%set_permissions %{tde_bindir}/%{tdm}tsak
+%endif
+%set_permissions %{tde_bindir}/kcheckpass
+%set_permissions %{tde_bindir}/tdekbdledsync
+%endif
 
 %postun bin
 /sbin/ldconfig || :
@@ -1364,7 +1368,7 @@ Obsoletes:	tdebase-bin-devel < %{version}-%{release}
 Provides:	tdebase-bin-devel = %{version}-%{release}
 
 %description bin-devel
-%{summary}
+%{summary}.
 
 %files bin-devel
 %defattr(-,root,root,-)
@@ -2054,7 +2058,7 @@ Group:		Development/Libraries
 Requires:	trinity-kdesktop = %{version}-%{release}
 
 %description -n trinity-kdesktop-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-kdesktop-devel
 %defattr(-,root,root,-)
@@ -2176,13 +2180,13 @@ already. Most users won't need this.
 %endif
 
 # Logrotate configuration
-%config %{_sysconfdir}/logrotate.d/tdm
+%config %{_sysconfdir}/logrotate.d/trinity-tdm
 
 %pre -n trinity-tdm
 # Make sure that TDM configuration files are now under '/etc/trinity/tdm'
 if [ -d "%{tde_datadir}/config/%{tdm}" ] && [ ! -L "%{tde_datadir}/config/%{tdm}" ]; then
   if [ -d "%{_sysconfdir}/trinity/%{tdm}" ]; then
-    # If there is already something under '/etc/trinity/%{tdm}', simply delete old configuration
+    # If there is already something under '/etc/trinity/tdm', simply delete old configuration
     echo "Deleting TDM configuration under '%{tde_datadir}/config/%{tdm}'"
     rm -rf "%{tde_datadir}/config/%{tdm}"
   else
@@ -2249,7 +2253,7 @@ Group:		Development/Libraries
 Requires:	trinity-tdm = %{version}-%{release}
 
 %description -n trinity-tdm-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-tdm-devel
 %defattr(-,root,root,-)
@@ -2482,7 +2486,7 @@ Group:		Development/Libraries
 Requires:	trinity-kicker = %{version}-%{release}
 
 %description -n trinity-kicker-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-kicker-devel
 %defattr(-,root,root,-)
@@ -2707,6 +2711,8 @@ ever launching another application.
 %exclude %{tde_datadir}/apps/konqueror/servicemenus/konsolehere.desktop
 %exclude %{tde_datadir}/apps/konqueror/servicemenus/installfont.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/*.desktop
+%ghost %{_sysconfdir}/alternatives/media_safelyremove.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
 %{tde_datadir}/apps/konqueror/tiles/
 %{tde_datadir}/autostart/konqy_preload.desktop
@@ -2761,7 +2767,7 @@ Group:		Development/Libraries
 Requires:	trinity-konqueror = %{version}-%{release}
 
 %description -n trinity-konqueror-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-konqueror-devel
 %defattr(-,root,root,-)
@@ -3040,7 +3046,7 @@ Group:		Development/Libraries
 Requires:	trinity-ksplash = %{version}-%{release}
 
 %description -n trinity-ksplash-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-ksplash-devel
 %defattr(-,root,root,-)
@@ -3104,7 +3110,7 @@ Group:		Development/Libraries
 Requires:	trinity-ksysguard = %{version}-%{release}
 
 %description -n trinity-ksysguard-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-ksysguard-devel
 %defattr(-,root,root,-)
@@ -3246,7 +3252,7 @@ Group:		Development/Libraries
 Requires:	trinity-twin = %{version}-%{release}
 
 %description -n trinity-twin-devel
-%{summary}
+%{summary}.
 
 %files -n trinity-twin-devel
 %defattr(-,root,root,-)
@@ -3602,6 +3608,7 @@ EOF
 # Makes 'media_safelyremove.desktop' an alternative.
 # This allows the use of 'tdeio-umountwrapper' package.
 %__mv -f "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase"
+%__ln_s "media_safelyremove.desktop_tdebase" "%{buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop"
 
 # SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
 #  You must set 'DISPLAYMANAGER=tdm' in '/etc/sysconfig/displaymanager'
@@ -3648,7 +3655,7 @@ EOF
 
 # logrotate configuration
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
-cat << EOF > "%{buildroot}%{_sysconfdir}/logrotate.d/tdm"
+cat << EOF > "%{buildroot}%{_sysconfdir}/logrotate.d/trinity-tdm"
 /var/log/tdm.log {
     weekly
     notifempty
@@ -3740,6 +3747,9 @@ chmod 0511 "%{?buildroot}%{tde_bindir}/%{tdm}tsak"
 chmod 0755 "%{?buildroot}%{tde_bindir}/kcheckpass"
 chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"
 
+# Fix permissions on shell scripts
+chmod 0755 "%{tde_datadir}/apps/tdeconf_update/move_session_config.sh"
+chmod 0755 "%{tde_tdedocdir}/HTML/en/khelpcenter/glossary/checkxrefs"
 
 
 %clean

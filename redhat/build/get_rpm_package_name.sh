@@ -18,7 +18,7 @@ DEVEL="$2"
 # Some runtime packages are prefixed with 'trinity-', some are not.
 case "${PKGNAME}" in
   "trinity-"*|"qt3"|"tqt3"|"tqtinterface"|"python-qt3"|"esound"|"avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"fileshareset"|"hk_classes") PREFIX="";;
-  "autoconf"|"automake"|"cmake"|"gnuchess"|"htdig"|"imlib1"|"libconfig"|"libotr3"|"libtool"|"lilypond"|"m4"|"mftrace"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
+  "autoconf"|"automake"|"cmake"|"gnuchess"|"htdig"|"imlib1"|"libconfig"|"libotr3"|"libtool"|"lilypond"|"m4"|"mftrace"|"pan"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
   "curl") PREFIX="trinity-lib";;
   *) PREFIX="trinity-";;
 esac
@@ -71,6 +71,7 @@ if [ -n "${DEVEL}" ]; then
     "dbus-tqt") PKGDEVEL="libdbus-tqt-1-devel";;
     "dbus-1-tqt") PKGDEVEL="libdbus-1-tqt-devel";;
     "esound") PKGDEVEL="esound-devel";;
+    "pan") PKGDEVEL="uulib-devel";;
     "libart-lgpl") PKGDEVEL="libart_lgpl-devel";;
     "tqt3") PKGDEVEL="tqt3-dev-tools tqt3-apps-devel tqt3-compat-headers";;
     # Default case: development package has same name as runtime package, plus '-devel' suffix.
