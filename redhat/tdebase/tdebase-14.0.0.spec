@@ -2713,7 +2713,6 @@ ever launching another application.
 %exclude %{tde_datadir}/apps/konqueror/servicemenus/installfont.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/*.desktop
 %ghost %{_sysconfdir}/alternatives/media_safelyremove.desktop
-%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
 %{tde_datadir}/apps/konqueror/tiles/
 %{tde_datadir}/autostart/konqy_preload.desktop
