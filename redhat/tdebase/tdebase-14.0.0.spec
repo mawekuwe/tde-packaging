@@ -1345,6 +1345,7 @@ TDE applications, particularly those in the TDE base module.
 %post bin
 /sbin/ldconfig || :
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
+# Sets permissions on setuid files (openSUSE specific)
 %if 0%{?suse_version}
 %if 0%{?with_tsak}
 %set_permissions %{tde_bindir}/%{tdm}tsak
@@ -3608,6 +3609,7 @@ EOF
 # Makes 'media_safelyremove.desktop' an alternative.
 # This allows the use of 'tdeio-umountwrapper' package.
 %__mv -f "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase"
+%__mkdir_p "%{buildroot}%{_sysconfdir}/alternatives"
 %__ln_s "media_safelyremove.desktop_tdebase" "%{buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop"
 
 # SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
