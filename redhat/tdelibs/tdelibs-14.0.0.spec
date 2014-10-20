@@ -253,12 +253,12 @@ BuildRequires:	xz-devel
 %endif
 
 # Certificates support
-%if 0%{?rhel} == 6 || 0%{?fedora} == 18 || 0%{?fedora} == 19
+%if 0%{?fedora} == 18 || 0%{?fedora} == 19
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
 BuildRequires:	ca-certificates
 Requires:		ca-certificates
 %endif
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7 || 0%{?fedora} >= 20
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?fedora} >= 20
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
 Requires:		openssl
 %endif

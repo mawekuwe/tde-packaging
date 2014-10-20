@@ -3750,8 +3750,8 @@ chmod 0755 "%{?buildroot}%{tde_bindir}/kcheckpass"
 chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"
 
 # Fix permissions on shell scripts
-chmod 0755 "%{tde_datadir}/apps/tdeconf_update/move_session_config.sh"
-chmod 0755 "%{tde_tdedocdir}/HTML/en/khelpcenter/glossary/checkxrefs"
+chmod 0755 "%{?buildroot}%{tde_datadir}/apps/tdeconf_update/move_session_config.sh"
+chmod 0755 "%{?buildroot}%{tde_tdedocdir}/HTML/en/khelpcenter/glossary/checkxrefs"
 
 
 %clean
