@@ -53,7 +53,7 @@ Epoch:		%{tde_epoch}
 Version:	4.10.5
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Python/C++ bindings generator runtime library
-Group:		System Environment/Libraries
+Group:		Development/Tools/Building
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -87,7 +87,7 @@ specificity towards C++ and Python.
 
 %package -n sip4-tqt
 Summary:	Python/C++ bindings generator (Runtime Library)
-Group:		System/Libraries
+Group:		Development/Tools/Building
 
 %description -n sip4-tqt
 SIP is a tool for generating bindings for C++ classes with some ideas
@@ -106,8 +106,8 @@ specificity towards C++ and Python.
 
 %package -n sip4-tqt-devel
 Summary:		Python/C++ bindings generator (Development Files)
-Group:			Development/Libraries
-Requires:		%{name} = %{version}-%{release}
+Group:			Development/Libraries/Python
+Requires:		sip4-tqt = %{version}-%{release}
 
 %description -n sip4-tqt-devel
 SIP is a tool for generating bindings for C++ classes with some ideas
