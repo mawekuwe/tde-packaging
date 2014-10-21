@@ -34,7 +34,7 @@ Name:		trinity-%{tde_pkg}
 Epoch:		2
 Version:	0.6.5
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:	A client library that adds support for the CalDAV protocol (rfc4791).
+Summary:	A client library that adds support for the CalDAV protocol (rfc4791)
 Group:		System/Libraries
 URL:		http://www.trinitydesktop.org/
 
@@ -176,7 +176,7 @@ fi
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-# Unwanted files
+# Unwanted files
 %__rm -f %{buildroot}%{_libdir}/*.a
 
 # Fix doc dir
