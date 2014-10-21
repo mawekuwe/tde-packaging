@@ -27,8 +27,18 @@
 
 # TDE variables
 %define tde_epoch 2
-%define tde_pkg sip4-tqt
 %define tde_version 14.0.0
+%define tde_pkg sip4-tqt
+%define tde_prefix /opt/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -37,9 +47,6 @@
 
 %{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
-%define tde_bindir %{tde_prefix}/bin
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
