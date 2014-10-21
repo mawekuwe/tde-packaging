@@ -53,6 +53,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	make
+BuildRequires:	libtool
 
 # CURL support
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
