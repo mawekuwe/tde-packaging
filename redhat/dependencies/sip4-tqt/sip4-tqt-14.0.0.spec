@@ -1,10 +1,32 @@
+#
+# spec file for package sip4-tqt (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
 # Note for RHEL6 / Fedora:
 #  Do *NOT* use 'byacc' to build sip4-tqt.
 #  Instead, use 'bison' with a wrapper shell script.
 #  e.g. /usr/local/bin/yacc
 #   contains 'bison --yacc $@'
 
-# Default version for this component
+# TDE variables
+%define tde_epoch 2
 %define tde_pkg sip4-tqt
 %define tde_version 14.0.0
 
@@ -20,32 +42,48 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
 Version:	4.10.5
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
 Summary:	Python/C++ bindings generator runtime library
 Group:		System Environment/Libraries
+URL:		http://www.trinitydesktop.org/
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
 
-# TDE specific building variables
 BuildRequires:	python
-BuildRequires:	libtqt4-devel >= 2:4.2.0
 
 %description
 SIP is a tool for generating bindings for C++ classes with some ideas
 borrowed from SWIG, but capable of tighter bindings because of its
 specificity towards C++ and Python.
 
-%files
+##########
+
+%package -n sip4-tqt
+Summary:	Python/C++ bindings generator runtime library
+Group:		System Environment/Libraries
+
+%description -n sip4-tqt
+SIP is a tool for generating bindings for C++ classes with some ideas
+borrowed from SWIG, but capable of tighter bindings because of its
+specificity towards C++ and Python.
+
+%files -n sip4-tqt
 %defattr(-,root,root,-)
 %dir %{python_sitearch}/sip4_tqt
 %{python_sitearch}/sip4_tqt/sip.so
@@ -55,12 +93,12 @@ specificity towards C++ and Python.
 
 ##########
 
-%package devel
+%package -n sip4-tqt-devel
 Summary:		Python/C++ bindings generator development files
 Group:			Development/Libraries
 Requires:		%{name} = %{version}-%{release}
 
-%description devel
+%description -n sip4-tqt-devel
 SIP is a tool for generating bindings for C++ classes with some ideas
 borrowed from SWIG, but capable of tighter bindings because of its
 specificity towards C++ and Python.
@@ -82,14 +120,14 @@ Features:
 This package contains the code generator tool and the development headers
 needed to develop Python bindings with sip.
 
-%files devel
+%files -n sip4-tqt-devel
 %defattr(-,root,root,-)
 %{tde_bindir}/sip
 %{tde_includedir}/sip.h
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -105,7 +143,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 mkdir build
 cd build
-python ../configure.py \
+%__python ../configure.py \
 	-b %{tde_bindir} \
 	-d %{python_sitearch}/sip4_tqt \
 	-e %{tde_includedir} \
