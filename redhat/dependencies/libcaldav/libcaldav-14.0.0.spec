@@ -1,46 +1,70 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package libcaldav (version 0.6.5)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-%define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
+%define tde_pkg libcaldav
+%define tde_prefix /opt/trinity
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-Name:		trinity-libcaldav
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libcaldav %{_lib}caldav
+%else
+%define libcaldav libcaldav
+%endif
+
+
+Name:		trinity-%{tde_pkg}
+Epoch:		2
 Version:	0.6.5
-Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
-
-Vendor:		Trinity Project
-URL:		http://www.trinitydesktop.org/
-Packager:	Francois Andriot <francois.andriot@free.fr>
-
-License:	GPL
-Group:		System Environment/Libraries
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	A client library that adds support for the CalDAV protocol (rfc4791).
+Group:		System/Libraries
+URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-#Patch1:		libcaldav-14.0.0-older_libcurl.patch
-
+BuildRequires:	make
 BuildRequires:	libtool
+BuildRequires:	fdupes
+
+# GTK2 support
 %if 0%{?rhel} == 4
 BuildRequires:	evolution28-gtk2-devel
 %else
 BuildRequires:	glib2-devel
 BuildRequires:	gtk2-devel
 %endif
-BuildRequires:	make
 
-Obsoletes:	libcaldav < %{version}-%{release}
-Provides:	libcaldav = %{version}-%{release}
-
+# CURL support
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
 BuildRequires:	libcurl-devel
 %else
@@ -57,25 +81,74 @@ libcaldev is a client library that adds support for the CalDAV protocol (rfc4791
 The object is to have a library which fully implements the protocol so that it is
 easy to integrate CalDAV support into any PIM application.
 
-%package devel
-Summary:	Development files for %{name}
-Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+##########
 
-Obsoletes:	libcaldav-devel < %{version}-%{release}
-Provides:	libcaldav-devel = %{version}-%{release}
+%package -n %{libcaldav}0
+Summary:	A client library that adds support for the CalDAV protocol (rfc4791)
+Group:		System/Libraries
 
-%description devel
-%{summary}
+Obsoletes:	trinity-libcaldav < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-libcaldav = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	libcaldav = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%description -n %{libcaldav}0
+libcaldev is a client library that adds support for the CalDAV protocol (rfc4791).
+The object is to have a library which fully implements the protocol so that it is
+easy to integrate CalDAV support into any PIM application.
+
+%files -n %{libcaldav}0
+%defattr(-,root,root,-)
+%{_libdir}/libcaldav.so.0
+%{_libdir}/libcaldav.so.0.0.6
+%{_docdir}/libcaldav-%{version}/
+
+%post -n %{libcaldav}0
+/sbin/ldconfig
+
+%postun -n %{libcaldav}0
+/sbin/ldconfig
+
+##########
+
+%package -n %{libcaldav}-devel
+Summary:	A client library that adds support for the CalDAV protocol (Development Files)
+Group:		Development/Libraries/C and C++
+Requires:	%{libcaldav}0 = %{?epoch:%{epoch}:}%{version}-%{release}
+
+Obsoletes:	trinity-libcaldav-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-libcaldav-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	libcaldav-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n %{libcaldav}-devel
+libcaldev is a client library that adds support for the CalDAV protocol (rfc4791).
+The object is to have a library which fully implements the protocol so that it is
+easy to integrate CalDAV support into any PIM application. 
+
+This package includes the development files.
+
+%files -n %{libcaldav}-devel
+%defattr(-,root,root,-)
+%{_includedir}/libcaldav/
+%{_libdir}/libcaldav.la
+%{_libdir}/libcaldav.so
+%{_libdir}/pkgconfig/libcaldav.pc
+
+%post -n %{libcaldav}-devel
+/sbin/ldconfig
+
+%postun -n %{libcaldav}-devel
+/sbin/ldconfig
+
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version}
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-#patch1 -p1 -b .libcurl
 ./autogen.sh
 
 
@@ -90,9 +163,9 @@ if [ -d /usr/evolution28 ]; then
 fi
 
 %configure \
-  --docdir=%{tde_docdir}/libcaldav \
-  --includedir=%{tde_includedir} \
-  --libdir=%{tde_libdir} \
+  --docdir=%{_docdir}/libcaldav \
+  --includedir=%{_includedir} \
+  --libdir=%{_libdir} \
   \
   --disable-dependency-tracking
 
@@ -104,38 +177,19 @@ fi
 %__make install DESTDIR=%{buildroot}
 
 # Unwanted files
-%__rm -f %{buildroot}%{tde_libdir}/*.a
+%__rm -f %{buildroot}%{_libdir}/*.a
+
+# Fix doc dir
+mv -f %{?buildroot}%{_docdir}/libcaldav/ %{?buildroot}%{_docdir}/libcaldav-%{version}/
+
+# Fix duplicate files
+%fdupes %{?buildroot}
 
 
 %clean
 %__rm -rf %{buildroot}
 
 
-%files
-%defattr(-,root,root,-)
-%{tde_libdir}/libcaldav.so.*
-%{tde_docdir}/libcaldav/
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_includedir}/libcaldav/caldav.h
-%{tde_libdir}/libcaldav.la
-%{tde_libdir}/libcaldav.so
-%{tde_libdir}/pkgconfig/libcaldav.pc
-
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
-
-%post devel
-/sbin/ldconfig
-
-%postun devel
-/sbin/ldconfig
-
-
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.5-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.6.5-1
 - Initial release for TDE R14.0.0
