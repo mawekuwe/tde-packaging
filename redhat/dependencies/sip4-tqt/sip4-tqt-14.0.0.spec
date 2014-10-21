@@ -71,6 +71,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
+BuildRequires:	trinity-filesystem >= %{tde_version}
+Requires:		trinity-filesystem >= %{tde_version}
 
 BuildRequires:	gcc-c++
 BuildRequires:	python
@@ -84,8 +86,8 @@ specificity towards C++ and Python.
 ##########
 
 %package -n sip4-tqt
-Summary:	Python/C++ bindings generator runtime library
-Group:		System Environment/Libraries
+Summary:	Python/C++ bindings generator (Runtime Library)
+Group:		System/Libraries
 
 %description -n sip4-tqt
 SIP is a tool for generating bindings for C++ classes with some ideas
@@ -103,7 +105,7 @@ specificity towards C++ and Python.
 ##########
 
 %package -n sip4-tqt-devel
-Summary:		Python/C++ bindings generator development files
+Summary:		Python/C++ bindings generator (Development Files)
 Group:			Development/Libraries
 Requires:		%{name} = %{version}-%{release}
 
@@ -171,5 +173,5 @@ cd build
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 4.10.5-1
-- Initial release for TDE R14, using 'tqt3' instead of 'qt3'
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:4.10.5-1
+- Initial release for TDE R14
