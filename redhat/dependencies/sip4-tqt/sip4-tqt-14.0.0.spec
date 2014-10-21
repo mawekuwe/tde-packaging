@@ -65,7 +65,9 @@ Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
 
+BuildRequires:	gcc-c++
 BuildRequires:	python
+BuildRequires:	python-devel
 
 %description
 SIP is a tool for generating bindings for C++ classes with some ideas
