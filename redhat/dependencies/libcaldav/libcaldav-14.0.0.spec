@@ -31,7 +31,7 @@
 
 
 Name:		trinity-%{tde_pkg}
-Epoch:		2
+Epoch:		%{tde_epoch}
 Version:	0.6.5
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	A client library that adds support for the CalDAV protocol (rfc4791)
