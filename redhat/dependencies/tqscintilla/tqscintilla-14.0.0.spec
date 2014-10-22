@@ -21,7 +21,7 @@
 %define tde_pkg tqscintilla
 %define tde_prefix /opt/trinity
 %define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
+%define tde_tdedocdir %{tde_datadir}/doc/tde
 
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
 %define libtqscintilla %{_lib}tqscintilla
@@ -53,6 +53,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-filesystem >= %{tde_version}
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
@@ -71,6 +72,7 @@ TQScintilla is a port or Scintilla to the TQt GUI toolkit.
 Summary:	TQt source code editing component based on Scintilla
 Group:		Development/Libraries/C and C++
 Provides:	libtqscintilla = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	libtqt3-mt >= 3.5.0
 
 %description -n %{libtqscintilla}7
 Scintilla is a free source code editing component. It has features found
@@ -92,6 +94,7 @@ TQScintilla is a port or Scintilla to the TQt GUI toolkit.
 %{_libdir}/libqscintilla.so.7.0
 %{_libdir}/libqscintilla.so.7.0.1
 %{_libdir}/tqt3/plugins/designer/*.so
+%dir %{_datadir}/tqt3/translations/
 %{_datadir}/tqt3/translations/*.qm
 
 ##########
@@ -123,14 +126,16 @@ This package contains the development files for tqscintilla.
 %package -n %{libtqscintilla}-doc
 Summary:	TQScintilla Documentation
 Group:		Development/Libraries/C and C++
+Provides:	libtqscintilla-doc = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	%{libtqscintilla}7 = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	trinity-filesystem >= %{tde_version}
 
 %description -n %{libtqscintilla}-doc
 This package contains the documentation for tqscintilla.
 
 %files -n %{libtqscintilla}-doc
 %defattr(-,root,root,-)
-%{tde_docdir}/HTML/en/%{name}/
+%{tde_tdedocdir}/HTML/en/%{name}/
 
 ##########
 
@@ -185,10 +190,8 @@ done
 
 # Installs the HTML documentation correctly
 for i in doc/html/*; do
-	%__install -D -m 644 $i %{buildroot}%{tde_docdir}/HTML/en/%{name}/${i##*/}
+	%__install -D -m 644 $i %{buildroot}%{tde_tdedocdir}/HTML/en/%{name}/${i##*/}
 done
-#__mkdir_p %{?buildroot}%{tde_docdir}/HTML/en/
-#__mv -f %{?buildroot}%{_docdir} %{?buildroot}%{tde_docdir}/HTML/en/%{name}
 
 # Installs the Designer plugin
 for i in designer/*.so; do
