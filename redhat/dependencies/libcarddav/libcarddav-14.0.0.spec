@@ -112,7 +112,7 @@ Build dependencies are minimal, requiring only libcurl.
 %package -n %{libcarddav}-devel
 Summary:	A portable CardDAV client implementation (Development Files)
 Group:		Development/Libraries/C and C++
-Requires:	%{libcarddav} = %{version}-%{release}
+Requires:	libcarddav = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Obsoletes:	trinity-libcarddav-devel < %{version}-%{release}
 Provides:	trinity-libcarddav-devel = %{version}-%{release}
