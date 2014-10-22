@@ -148,6 +148,7 @@ same way in both languages (with syntax differences, of course)
 
 %package -n python-tqt-gl
 Summary:	TQt OpenGL bindings for Python
+Group:		Development/Libraries/Python
 Requires:	python-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n python-tqt-gl
@@ -163,6 +164,7 @@ portable graphics-capable scripts.
 
 %package -n python-tqt-tqtext
 Summary:	TQtext extensions for python-tqt
+Group:		Development/Libraries/Python
 Requires:	python-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n python-tqt-tqtext
@@ -179,6 +181,7 @@ python-tqt Extensions. Contains:
 
 %package -n trinity-pytqt-tools
 Summary:	pyuic and pylupdate for TQt
+Group:		Development/Libraries/Python
 Requires:	python-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n trinity-pytqt-tools
@@ -196,6 +199,7 @@ Linguist translation files from Python code.
 
 %package -n python-tqt-devel
 Summary:	TQt bindings for Python - Development files
+Group:		Development/Libraries/Python
 Requires:	python-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	trinity-pytqt-tools = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	libtqt4-devel >= %{?epoch:%{epoch}:}4.2.0
@@ -208,6 +212,7 @@ packages based on them, like PyTDE.
 %files -n python-tqt-devel
 %defattr(-,root,root,-)
 %{python_sitearch}/python_tqt/pyqtconfig.py*
+%dir %{_datadir}/sip
 %{_datadir}/sip/tqt/
 
 ##########
