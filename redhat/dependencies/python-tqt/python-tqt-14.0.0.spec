@@ -76,6 +76,19 @@ BuildRequires:	gcc-c++
 BuildRequires:	python
 BuildRequires:	python-devel
 
+# MESA support
+%if 0%{?rhel} || 0%{?fedora}
+BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGLU-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires: mesaglu-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: Mesa-libGL-devel
+BuildRequires: Mesa-libGLU-devel
+%endif
+
 
 %description
 Python binding module that allows use of TQt X Window toolkit v3.
