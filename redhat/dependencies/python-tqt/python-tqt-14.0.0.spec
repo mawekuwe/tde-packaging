@@ -211,6 +211,7 @@ packages based on them, like PyTDE.
 
 %build
 unset QTDIR QTINC QTLIB
+export PATH="%{tde_bindir}:${PATH}"
 
 mkdir build
 cd build
