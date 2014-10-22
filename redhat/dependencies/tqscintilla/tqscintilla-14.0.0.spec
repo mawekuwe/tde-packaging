@@ -105,7 +105,7 @@ Summary:	TQScintilla Development Files
 Group:		Development/Libraries/C and C++
 Provides:	libtqscintilla-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	%{libtqscintilla}7 = %{?epoch:%{epoch}:}%{version}-%{release}
-Requires:	tqt3-devel >= 3.5.0
+Requires:	libtqt3-mt-devel >= 3.5.0
 
 %description -n %{libtqscintilla}-devel
 This package contains the development files for tqscintilla.
