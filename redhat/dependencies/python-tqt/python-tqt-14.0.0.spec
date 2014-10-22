@@ -67,6 +67,7 @@ Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Obsoletes:		trinity-PyQt
 Obsoletes:		trinity-python-qt3
 
+BuildRequires:	tqt3-apps-devel >= 3.5.0
 BuildRequires:	libtqt4-devel >= %{?epoch:%{epoch}:}4.2.0
 BuildRequires:	trinity-filesystem >= %{tde_version}
 BuildRequires:	sip4-tqt-devel >= %{?epoch:%{epoch}:}4.10.5
