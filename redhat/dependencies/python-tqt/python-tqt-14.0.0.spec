@@ -90,6 +90,19 @@ BuildRequires: Mesa-libGL-devel
 BuildRequires: Mesa-libGLU-devel
 %endif
 
+# XMU support
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libXmu-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires: libXmu-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion} >= 4
+BuildRequires: libxmu-devel
+%endif
+%if 0%{?mgaversion} == 2 || 0%{?mgaversion} == 3
+BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
+%endif
 
 %description
 Python binding module that allows use of TQt X Window toolkit v3.
