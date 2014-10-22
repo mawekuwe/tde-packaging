@@ -56,6 +56,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
+BuildRequires:	gcc-c++
 
 %description
 Scintilla is a free source code editing component. It has features found

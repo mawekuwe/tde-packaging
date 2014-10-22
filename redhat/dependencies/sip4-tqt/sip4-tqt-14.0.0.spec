@@ -70,9 +70,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
+BuildRequires:	libtqt4-devel >= %{?epoch:%{epoch}:}4.2.0
 BuildRequires:	trinity-filesystem >= %{tde_version}
-Requires:		trinity-filesystem >= %{tde_version}
 
 BuildRequires:	gcc-c++
 BuildRequires:	python
@@ -88,6 +87,8 @@ specificity towards C++ and Python.
 %package -n sip4-tqt
 Summary:	Python/C++ bindings generator (Runtime Library)
 Group:		Development/Tools/Building
+Requires:	trinity-filesystem >= %{tde_version}
+Requires:	python
 
 %description -n sip4-tqt
 SIP is a tool for generating bindings for C++ classes with some ideas
@@ -107,7 +108,8 @@ specificity towards C++ and Python.
 %package -n sip4-tqt-devel
 Summary:		Python/C++ bindings generator (Development Files)
 Group:			Development/Libraries/Python
-Requires:		sip4-tqt = %{version}-%{release}
+Requires:		sip4-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:		python-devel
 
 %description -n sip4-tqt-devel
 SIP is a tool for generating bindings for C++ classes with some ideas
