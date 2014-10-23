@@ -60,10 +60,11 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: trinity-tdebase-devel >= %{tde_version}
 
-BuildRequires: cmake >= 2.8
-BuildRequires: gcc-c++
-BuildRequires: gettext
-BuildRequires: libtool
+BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	gettext
+BuildRequires:	libtool
+BuildRequires:	fdupes
 
 # SUSE desktop files utility
 %if 0%{?suse_version}
@@ -136,10 +137,6 @@ BuildRequires:	%{_lib}t1lib-devel
 BuildRequires:	t1lib-devel
 %endif
 %endif
-
-# IMLIB1 support (kuickshow)
-#BuildRequires:	%{_lib}imlib-devel
-#BuildRequires:	imlib-devel
 
 # SANE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -471,7 +468,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kfax
 Summary:	G3/G4 fax viewer for Trinity
 Group:		Productivity/Graphics/Viewers
-Requires:	libtiff
 
 %description -n trinity-kfax
 A fax viewer for Trinity, supporting the display of raw and tiffed fax images
@@ -1135,6 +1131,7 @@ done
 %package -n trinity-libkscan-devel
 Summary:	Development files for the Trinity scanner library
 Group:		Development/Libraries/Other
+Requires:	trinity-libkscan = %{version}-%{release}
 
 %description -n trinity-libkscan-devel
 This package contains development files for Trinity's scanner library.
@@ -1218,7 +1215,8 @@ Requires: trinity-libkscan-devel = %{version}-%{release}
 Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 
 %description devel
-%{summary}.
+This package contains the development files needed to compile 
+applications against tdegraphics libraries.
 
 %files devel
 %defattr(-,root,root,-)
@@ -1256,19 +1254,6 @@ Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 %postun devel
 /sbin/ldconfig || :
 
-############
-
-# Excludes kuickshow (built separately)
-#%exclude %{tde_bindir}/kuickshow
-#%exclude %{tde_tdelibdir}/kuickshow.la
-#%exclude %{tde_tdelibdir}/kuickshow.so
-#%exclude %{tde_libdir}/libtdeinit_kuickshow.la
-#%exclude %{tde_libdir}/libtdeinit_kuickshow.so
-#%exclude %{tde_tdeappdir}/kuickshow.desktop
-#%exclude %{tde_datadir}/apps/kuickshow/
-#%exclude %{tde_datadir}/icons/hicolor/*/apps/kuickshow.png
-#%exclude %{tde_tdedocdir}/HTML/en/kuickshow/
-
 ##########
 
 %if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
@@ -1303,7 +1288,7 @@ if ! rpm -E %%cmake|grep -q "cd build"; then
   cd build
 fi
 
-# Warning: GCC visibility causes FTBFS [Bug #1285]
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
@@ -1364,6 +1349,9 @@ done
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kfaxview.desktop       Office Viewer
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kamera.desktop
 %endif
+
+# Symlinks duplicate files (mostly under 'ksgmltools2')
+%fdupes -s "%{?buildroot}"
 
 
 %clean
