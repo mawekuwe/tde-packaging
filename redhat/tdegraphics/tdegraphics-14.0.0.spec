@@ -65,6 +65,16 @@ BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: libtool
 
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
 # IDN support
 BuildRequires:	libidn-devel
 
