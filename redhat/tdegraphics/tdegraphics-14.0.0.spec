@@ -61,8 +61,19 @@ BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: trinity-tdebase-devel >= %{tde_version}
 
 BuildRequires: cmake >= 2.8
+BuildRequires: gcc-c++
 BuildRequires: gettext
 BuildRequires: libtool
+
+# IDN support
+BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} >= 1310
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
 
 # LIBUSB support
 BuildRequires: libusb-devel
@@ -1255,7 +1266,7 @@ Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
