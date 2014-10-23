@@ -40,7 +40,7 @@ Name:		trinity-%{tde_pkg}
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:    Trinity Desktop Environment - Graphics Applications
-Group:      Applications/Multimedia
+Group:      Productivity/Graphics/Viewers
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -278,7 +278,7 @@ Graphics applications for the Trinity Desktop Environment, including
 
 %package -n trinity-kamera
 Summary:	Digital camera io_slave for Konqueror
-Group:		Applications/Graphics
+Group:		Hardware/Camera
 
 %description -n trinity-kamera
 This is a digital camera io_slave for TDE which uses gphoto2 and libgpio
@@ -319,7 +319,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kcoloredit
 Summary:	A color palette editor and color picker for TDE
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kcoloredit
 This package contains two programs, a color palette editor and also a color
@@ -424,7 +424,7 @@ tags, etc. all from within the file manager).
 
 %package -n trinity-kdvi
 Summary:	Dvi viewer for TDE
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kdvi
 This program and KPart allow the user to display *.DVI files from TeX.
@@ -460,7 +460,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kfax
 Summary:	G3/G4 fax viewer for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 Requires:	libtiff
 
 %description -n trinity-kfax
@@ -494,7 +494,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kfaxview
 Summary:	G3/G4 fax viewer for Trinity using kviewshell
-Group:		Applications/Graphics
+Group:		Productivity/Publishing/TeX/Frontends
 
 %description -n trinity-kfaxview
 A fax viewer for Trinity, supporting the display of raw and tiffed fax images
@@ -536,7 +536,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kgamma
 Summary:	Gamma correction module for the Trinity Control Center
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kgamma
 KGamma is a Trinity Control Center module for gamma calibration/correction
@@ -573,7 +573,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kghostview
 Summary:	PostScript viewer for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 Requires:	ghostscript
 
 %description -n trinity-kghostview
@@ -619,7 +619,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-tdeiconedit
 Summary:	An icon editor for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 Obsoletes:	trinity-kiconedit < %{version}-%{release}
 Provides:	trinity-kiconedit = %{version}-%{release}
@@ -655,7 +655,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kmrml
 Summary: 	A Konqueror plugin for searching pictures
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kmrml
 MRML is short for Multimedia Retrieval Markup Language, which defines a
@@ -698,7 +698,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kolourpaint
 Summary:	A simple paint program for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kolourpaint
 KolourPaint is a very simple paint program for Trinity. It aims to be
@@ -742,7 +742,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kooka
 Summary:	Scanner program for Trinity
-Group:		Applications/Graphics
+Group:		Hardware/Scanner
 
 %description -n trinity-kooka
 Kooka is an open source GNU/Linux scan program based on SANE and
@@ -761,10 +761,11 @@ Homepage: http://kooka.kde.org/
 
 %files -n trinity-kooka
 %defattr(-,root,root,-)
-%{tde_datadir}/config/kookarc
 %{tde_bindir}/kooka
 %{tde_tdeappdir}/kooka.desktop
 %{tde_datadir}/apps/kooka/
+%{tde_datadir}/config/kookarc
+%{tde_datadir}/icons/hicolor/*/apps/kooka.png
 %{tde_tdedocdir}/HTML/en/kooka/
 
 %post -n trinity-kooka
@@ -777,7 +778,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kpdf
 Summary:	PDF viewer for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kpdf
 KPDF allows you to view PDF (Portable Document Format) files. This package
@@ -816,7 +817,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kpovmodeler
 Summary:	A graphical editor for povray scenes
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 #Requires:	povray
 
 %description -n trinity-kpovmodeler
@@ -865,7 +866,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kruler
 Summary:	A screen ruler and color measurement tool for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kruler
 Kruler is a screen ruler (using pixels) and color measurement tool for KDE.
@@ -897,7 +898,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksnapshot
 Summary:	Screenshot utility for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-ksnapshot
 KSnapshot is a simple applet for taking screenshots. It is capable of 
@@ -930,7 +931,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksvg
 Summary:	SVG viewer for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-ksvg
 KSVG allows you view SVG (scalable vector graphics) files. This package
@@ -967,7 +968,7 @@ application.
 
 %package -n trinity-kview
 Summary:	Simple image viewer/converter for Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kview
 KView is a simple image viewer and converter application. It supports
@@ -1043,7 +1044,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kviewshell
 Summary:	Generic framework for viewer applications in Trinity
-Group:		Applications/Graphics
+Group:		AProductivity/Graphics/Viewers
 
 %description -n trinity-kviewshell
 KViewShell is a generic viewing framework that allows the graphical
@@ -1127,7 +1128,7 @@ done
 
 %package -n trinity-libkscan-devel
 Summary:	Development files for the Trinity scanner library
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 %description -n trinity-libkscan-devel
 This package contains development files for Trinity's scanner library.
@@ -1171,7 +1172,7 @@ This library is used by the Trinity graphics file plugins for PDF support.
 
 %package -n trinity-libpoppler-tqt-devel
 Summary:	Development files for TQt support for Poppler
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libpoppler-tqt = %{version}-%{release}
 Obsoletes:	poppler-tqt-devel < %{version}-%{release}
 Provides:	poppler-tqt-devel = %{version}-%{release}
@@ -1279,6 +1280,9 @@ Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 %__rm -rf doc/kamera/
 %endif
 
+# Fix applications icons
+%__sed -i kooka/kooka.desktop -e "s|^Icon=.*|Icon=kooka|"
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -1302,6 +1306,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=OFF \
   \
@@ -1331,6 +1336,28 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+%__mkdir_p "%{buildroot}%{tde_datadir}/icons/hicolor/{16x16,32x32,48x48,64x64}/apps/"
+for i in {16,32,48,64}; do
+  %__cp "$BUILD_ROOT%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/scanner.png" "%{buildroot}%{tde_datadir}/icons/hicolor/"$i"x"$i"/apps/kooka.png";
+done
+
+%if 0%{?suse_version}
+%suse_update_desktop_file kpovmodeler    Graphics 3DGraphics
+%suse_update_desktop_file kolourpaint    Graphics RasterGraphics
+%suse_update_desktop_file tdeiconedit      Graphics RasterGraphics
+%suse_update_desktop_file kview          Graphics Viewer
+%suse_update_desktop_file kooka          Graphics Scanning
+%suse_update_desktop_file -r kruler         Utility DesktopUtility
+%suse_update_desktop_file -r ksnapshot      Utility DesktopUtility
+%suse_update_desktop_file -r kcolorchooser  Utility DesktopUtility
+%suse_update_desktop_file -r kcoloredit     Utility DesktopUtility
+%suse_update_desktop_file -u kfax        Office Viewer
+%suse_update_desktop_file kghostview     Office Viewer
+%suse_update_desktop_file kdvi           Office Viewer
+%suse_update_desktop_file kpdf           Office Viewer
+%suse_update_desktop_file kfaxview       Office Viewer
+%suse_update_desktop_file kamera
+%endif
 
 
 %clean
