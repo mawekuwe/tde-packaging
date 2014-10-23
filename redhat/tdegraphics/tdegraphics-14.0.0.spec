@@ -329,7 +329,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kcoloredit
 Summary:	A color palette editor and color picker for TDE
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kcoloredit
 This package contains two programs, a color palette editor and also a color
@@ -341,7 +341,7 @@ picker.
 %{tde_bindir}/kcoloredit
 %{tde_tdeappdir}/kcolorchooser.desktop
 %{tde_tdeappdir}/kcoloredit.desktop
-%{tde_datadir}/apps/kcoloredit/kcoloreditui.rc
+%{tde_datadir}/apps/kcoloredit/
 %{tde_datadir}/icons/hicolor/*/apps/kcolorchooser.png
 %{tde_datadir}/icons/hicolor/*/apps/kcoloredit.png
 %{tde_tdedocdir}/HTML/en/kcoloredit/
@@ -364,7 +364,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package kfile-plugins
 Summary:	TDE metainfo plugins for graphic files
-Group:		Environment/Libraries
+Group:		System/GUI/Other
  
 %description kfile-plugins
 This packages provides meta information for graphic files (file sizes,
@@ -434,7 +434,7 @@ tags, etc. all from within the file manager).
 
 %package -n trinity-kdvi
 Summary:	Dvi viewer for TDE
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kdvi
 This program and KPart allow the user to display *.DVI files from TeX.
@@ -470,7 +470,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kfax
 Summary:	G3/G4 fax viewer for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 Requires:	libtiff
 
 %description -n trinity-kfax
@@ -546,7 +546,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kgamma
 Summary:	Gamma correction module for the Trinity Control Center
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kgamma
 KGamma is a Trinity Control Center module for gamma calibration/correction
@@ -583,7 +583,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kghostview
 Summary:	PostScript viewer for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 Requires:	ghostscript
 
 %description -n trinity-kghostview
@@ -629,7 +629,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-tdeiconedit
 Summary:	An icon editor for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 Obsoletes:	trinity-kiconedit < %{version}-%{release}
 Provides:	trinity-kiconedit = %{version}-%{release}
@@ -665,7 +665,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kmrml
 Summary: 	A Konqueror plugin for searching pictures
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kmrml
 MRML is short for Multimedia Retrieval Markup Language, which defines a
@@ -708,7 +708,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kolourpaint
 Summary:	A simple paint program for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kolourpaint
 KolourPaint is a very simple paint program for Trinity. It aims to be
@@ -788,7 +788,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kpdf
 Summary:	PDF viewer for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kpdf
 KPDF allows you to view PDF (Portable Document Format) files. This package
@@ -801,8 +801,8 @@ application.
 %{tde_tdelibdir}/libkpdfpart.la
 %{tde_tdelibdir}/libkpdfpart.so
 %{tde_tdeappdir}/kpdf.desktop
-%{tde_datadir}/apps/kpdf/shell.rc
-%{tde_datadir}/apps/kpdfpart/part.rc
+%{tde_datadir}/apps/kpdf/
+%{tde_datadir}/apps/kpdfpart/
 %{tde_datadir}/config.kcfg/kpdf.kcfg
 %{tde_tdedocdir}/HTML/en/kpdf/
 %{tde_datadir}/icons/hicolor/*/apps/kpdf.png
@@ -827,7 +827,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kpovmodeler
 Summary:	A graphical editor for povray scenes
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 #Requires:	povray
 
 %description -n trinity-kpovmodeler
@@ -876,7 +876,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kruler
 Summary:	A screen ruler and color measurement tool for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kruler
 Kruler is a screen ruler (using pixels) and color measurement tool for KDE.
@@ -908,7 +908,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksnapshot
 Summary:	Screenshot utility for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-ksnapshot
 KSnapshot is a simple applet for taking screenshots. It is capable of 
@@ -941,7 +941,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksvg
 Summary:	SVG viewer for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-ksvg
 KSVG allows you view SVG (scalable vector graphics) files. This package
@@ -962,7 +962,7 @@ application.
 %{tde_libdir}/libksvg.so.0.0.1
 %{tde_libdir}/libtext2path.so.0
 %{tde_libdir}/libtext2path.so.0.0.0
-%{tde_datadir}/apps/ksvg/ksvgplugin.rc
+%{tde_datadir}/apps/ksvg/
 %{tde_datadir}/services/ksvglibartcanvas.desktop
 %{tde_datadir}/services/ksvgplugin.desktop
 %{tde_datadir}/services/svgthumbnail.desktop
@@ -978,7 +978,7 @@ application.
 
 %package -n trinity-kview
 Summary:	Simple image viewer/converter for Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kview
 KView is a simple image viewer and converter application. It supports
@@ -1019,14 +1019,10 @@ as well.
 %{tde_tdeappdir}/kview.desktop
 %{tde_datadir}/apps/kview/
 %{tde_datadir}/apps/kviewviewer/
-%{tde_datadir}/apps/photobook/photobookui.rc
+%{tde_datadir}/apps/photobook/
 %{tde_datadir}/icons/crystalsvg/*/apps/photobook.png
 %{tde_datadir}/icons/hicolor/*/apps/kview.png
-%{tde_datadir}/services/tdeconfiguredialog/kviewcanvasconfig.desktop
-%{tde_datadir}/services/tdeconfiguredialog/kviewgeneralconfig.desktop
-%{tde_datadir}/services/tdeconfiguredialog/kviewpluginsconfig.desktop
-%{tde_datadir}/services/tdeconfiguredialog/kviewpresenterconfig.desktop
-%{tde_datadir}/services/tdeconfiguredialog/kviewviewerpluginsconfig.desktop
+%{tde_datadir}/services/tdeconfiguredialog/
 %{tde_datadir}/services/kviewcanvas.desktop
 %{tde_datadir}/services/kviewviewer.desktop
 %{tde_datadir}/services/photobook.desktop
@@ -1054,7 +1050,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kviewshell
 Summary:	Generic framework for viewer applications in Trinity
-Group:		AProductivity/Graphics/Viewers
+Group:		Productivity/Graphics/Viewers
 
 %description -n trinity-kviewshell
 KViewShell is a generic viewing framework that allows the graphical
@@ -1078,7 +1074,7 @@ DjVu images.
 %{tde_libdir}/libtdemultipage.so.*
 %{tde_datadir}/apps/djvumultipage.rc
 %{tde_datadir}/apps/kviewerpart/
-%{tde_datadir}/apps/kviewshell/kviewshell.rc
+%{tde_datadir}/apps/kviewshell/
 %{tde_datadir}/config.kcfg/djvumultipage.kcfg
 %{tde_datadir}/config.kcfg/kviewshell.kcfg
 %{tde_datadir}/icons/crystalsvg/*/apps/kviewshell.png
@@ -1104,7 +1100,7 @@ done
 
 %package -n trinity-libkscan
 Summary:	Scanner library for Trinity
-Group:		Environment/Libraries
+Group:		Hardware/Scanner
 
 %description -n trinity-libkscan
 KScan is TDE's scanner library. It's used by kooka and by koffice currently.
@@ -1158,7 +1154,7 @@ This package contains development files for Trinity's scanner library.
 
 %package -n trinity-libpoppler-tqt
 Summary:	TQt support for Poppler
-Group:		Environment/Libraries
+Group:		Productivity/Graphics/Viewers
 Obsoletes:	poppler-tqt < %{version}-%{release}
 Provides:	poppler-tqt = %{version}-%{release}
 Obsoletes:	%{name}-libpoppler-tqt < %{version}-%{release}
@@ -1212,7 +1208,7 @@ This package contains the development files needed to compile applications again
 
 %package devel
 Summary:	Development files for %{name} 
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 Obsoletes:	trinity-kdegraphics-devel < %{version}-%{release}
 Provides:	trinity-kdegraphics-devel = %{version}-%{release}
@@ -1231,9 +1227,7 @@ Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 %{tde_tdeincludedir}/tdemultipageInterface.h
 %{tde_tdeincludedir}/ksvg/
 %{tde_tdeincludedir}/kviewshell/
-%{tde_tdeincludedir}/libtext2path-0.1/BezierPath.h
-%{tde_tdeincludedir}/libtext2path-0.1/Glyph.h
-%{tde_tdeincludedir}/libtext2path-0.1/GlyphTracer.h
+%{tde_tdeincludedir}/libtext2path-0.1/
 %{tde_libdir}/libtdeinit_kview.la
 %if 0%{?build_kmrml}
 %{tde_libdir}/libtdeinit_mrmlsearch.la
