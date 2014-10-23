@@ -1346,27 +1346,29 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+# Adds missing icons in 'hicolor' theme
 %__mkdir_p "%{buildroot}%{tde_datadir}/icons/hicolor/{16x16,32x32,48x48,64x64}/apps/"
 for i in {16,32,48,64}; do
   %__cp "$BUILD_ROOT%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/scanner.png" "%{buildroot}%{tde_datadir}/icons/hicolor/"$i"x"$i"/apps/kooka.png";
 done
 
+# Updates applications categories for openSUSE
 %if 0%{?suse_version}
-%suse_update_desktop_file kpovmodeler    Graphics 3DGraphics
-%suse_update_desktop_file kolourpaint    Graphics RasterGraphics
-%suse_update_desktop_file tdeiconedit      Graphics RasterGraphics
-%suse_update_desktop_file kview          Graphics Viewer
-%suse_update_desktop_file kooka          Graphics Scanning
-%suse_update_desktop_file -r kruler         Utility DesktopUtility
-%suse_update_desktop_file -r ksnapshot      Utility DesktopUtility
-%suse_update_desktop_file -r kcolorchooser  Utility DesktopUtility
-%suse_update_desktop_file -r kcoloredit     Utility DesktopUtility
-%suse_update_desktop_file -u kfax        Office Viewer
-%suse_update_desktop_file kghostview     Office Viewer
-%suse_update_desktop_file kdvi           Office Viewer
-%suse_update_desktop_file kpdf           Office Viewer
-%suse_update_desktop_file kfaxview       Office Viewer
-%suse_update_desktop_file kamera
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpovmodeler.desktop    Graphics 3DGraphics
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kolourpaint.desktop    Graphics RasterGraphics
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/tdeiconedit.desktop    Graphics RasterGraphics
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kview.desktop          Graphics Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kooka.desktop          Graphics Scanning
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/kruler.desktop         Utility DesktopUtility
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/ksnapshot.desktop      Utility DesktopUtility
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/kcolorchooser.desktop  Utility DesktopUtility
+%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/kcoloredit.desktop     Utility DesktopUtility
+%suse_update_desktop_file -u %{?buildroot}%{tde_tdeappdir}/kfax.desktop           Office Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kghostview.desktop     Office Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kdvi.desktop           Office Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kpdf.desktop           Office Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kfaxview.desktop       Office Viewer
+%suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kamera.desktop
 %endif
 
 
