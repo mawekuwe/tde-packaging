@@ -59,15 +59,15 @@ BuildRequires:	chrpath
 BuildRequires:	gcc-c++
 
 # SIP support
-BuildRequires:	trinity-sip4-tqt-devel >= 4.10.5
-Requires:		trinity-sip4-tqt >= 4.10.5
+BuildRequires:	sip4-tqt-devel >= 4.10.5
+Requires:		sip4-tqt >= 4.10.5
 
 # PYTHON-QT support
-BuildRequires:	trinity-python-tqt-devel
+BuildRequires:	python-tqt-devel
 BuildRequires:	trinity-python-trinity-devel
 BuildRequires:	trinity-pytqt-tools
 
-Requires:		trinity-python-tqt
+Requires:		python-tqt
 Requires:		trinity-python-trinity
 Requires:		trinity-pytdeextensions
 Requires:		python
@@ -125,10 +125,10 @@ or can be run as standalone applications.
 # Files from powermanager
 %if 0%{?with_powermanager}
 %exclude %{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
-%endif
 %exclude %{tde_datadir}/apps/guidance/pics/ac-adapter.png
 %exclude %{tde_datadir}/apps/guidance/pics/battery*.png
 %exclude %{tde_datadir}/apps/guidance/pics/processor.png
+%endif
 
 %post
 touch --no-create %{tde_datadir}/icons/crystalsvg || :

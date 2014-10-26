@@ -47,17 +47,17 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
-BuildRequires:	trinity-python-tqt-devel
+BuildRequires:	python-tqt-devel >= %{?epoch:%{epoch}:}3.18.1
 BuildRequires:	trinity-python-trinity-devel
 BuildRequires:	trinity-pytqt-tools
-Requires:		trinity-python-tqt
+Requires:		python-tqt
 Requires:		trinity-python-trinity
 
 Requires:		trinity-libpythonize0 = %{version}-%{release}
 
 # SIP
-BuildRequires:	trinity-sip4-tqt-devel >= 4.10.5
-Requires:		trinity-sip4-tqt >= 4.10.5
+BuildRequires:	sip4-tqt-devel >= 4.10.5
+Requires:		sip4-tqt >= 4.10.5
 
 
 Obsoletes:		trinity-pykdeextensions < %{version}-%{release}

@@ -44,7 +44,7 @@ Name:			trinity-%{tde_pkg}
 Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:		Trinity Base Programs
-Group:			User Interface/Desktops
+Group:			System/GUI/Other
 URL:			http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -111,6 +111,11 @@ Provides:	tdebase = %{version}-%{release}
 %if 0%{?suse_version}
 # for set_permissions macro
 PreReq: permissions
+%endif
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
 %endif
 
 %if 0%{?opensuse_bs} && 0%{?suse_version}
@@ -609,7 +614,7 @@ web browser, X terminal emulator, and many other programs and components.
 
 %package devel
 Summary:	%{summary} - Development files
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 Requires:	trinity-tdelibs-devel >= %{tde_version}
@@ -646,7 +651,7 @@ Kate plugins or TWin styles.
 
 %package tdeio-pim-plugins
 Summary:	PIM TDEIOslaves from %{name}
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 
 Provides:	trinity-kdebase-pim-ioslaves = %{version}-%{release}
 Obsoletes:	trinity-kdebase-pim-ioslaves < %{version}-%{release}
@@ -685,7 +690,7 @@ Protocol handlers (TDEIOslaves) for personal information management, including:
 
 %package runtime-data-common
 Summary:	Shared common files for Trinity and KDE4
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 
 Provides:	tdebase-runtime-data-common = %{version}-%{release}
 Obsoletes:	tdebase-runtime-data-common < %{version}-%{release}
@@ -726,7 +731,7 @@ done
 
 %package -n trinity-kappfinder
 Summary:	Non-TDE application finder for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kappfinder
@@ -759,7 +764,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-libkateinterfaces
 Summary:	Common libraries used by kwrite and kate
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 
 %description -n trinity-libkateinterfaces
 %{summary}.
@@ -778,7 +783,7 @@ Group:		Environment/Libraries
 
 %package -n trinity-kate
 Summary:	Advanced text editor for TDE
-Group:		Applications/Text
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-kwrite = %{version}-%{release}
 Requires:	trinity-libkateinterfaces = %{version}-%{release}
@@ -839,7 +844,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-kate-devel
 Summary:	Development files for kate
-Group:		Development/Libraries
+Group:		System/GUI/Other
 Requires:	trinity-kate = %{version}-%{release}
 
 %description -n trinity-kate-devel
@@ -863,7 +868,7 @@ Requires:	trinity-kate = %{version}-%{release}
 
 %package -n trinity-kwrite
 Summary:	Advanced text editor for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-libkateinterfaces = %{version}-%{release}
 
@@ -902,7 +907,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-kcontrol
 Summary:	Control center for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 # Requires 'usb.ids'
@@ -1201,7 +1206,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-kcontrol-devel
 Summary:	Development files for kcontrol
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kcontrol = %{version}-%{release}
 
 %description -n trinity-kcontrol-devel
@@ -1222,7 +1227,7 @@ Requires:	trinity-kcontrol = %{version}-%{release}
 
 %package bin
 Summary:	Core binaries for the TDE base module
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
 
@@ -1362,7 +1367,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package bin-devel
 Summary:	Development files for core binaries for the TDE base module
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	%{name}-bin = %{version}-%{release}
 
 Obsoletes:	tdebase-bin-devel < %{version}-%{release}
@@ -1386,7 +1391,7 @@ Provides:	tdebase-bin-devel = %{version}-%{release}
 
 %package data
 Summary:	Shared data files for the TDE base module
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 Requires:	%{name}-runtime-data-common = %{version}-%{release}
 
 Obsoletes:	tdebase-data < %{version}-%{release}
@@ -1694,7 +1699,7 @@ done
 
 %package tdeio-plugins
 Summary:	Core I/O slaves for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	trinity-kdesktop = %{version}-%{release}
 Requires:	cyrus-sasl
 Requires:	psmisc
@@ -1867,7 +1872,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-tdepasswd
 Summary:	Password changer for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 
 Obsoletes:	trinity-kdepasswd < %{version}-%{release}
 Provides:	trinity-kdepasswd = %{version}-%{release}
@@ -1925,7 +1930,7 @@ update-desktop-database %{tde_tdeappdir} 2> /dev/null || :
 
 %package -n trinity-tdeprint
 Summary:	Print system for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	psutils
 
@@ -2002,7 +2007,7 @@ done
 
 %package -n trinity-kdesktop
 Summary:	Miscellaneous binaries and files for the TDE desktop
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-bin = %{version}-%{release}
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-libkonq = %{version}-%{release}
@@ -2055,7 +2060,7 @@ done
 
 %package -n trinity-kdesktop-devel
 Summary:	Development files for kdesktop
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kdesktop = %{version}-%{release}
 
 %description -n trinity-kdesktop-devel
@@ -2071,7 +2076,7 @@ Requires:	trinity-kdesktop = %{version}-%{release}
 
 %package -n trinity-tdm
 Summary:	X Display manager for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-bin = %{version}-%{release}
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
@@ -2250,7 +2255,7 @@ fi
 
 %package -n trinity-tdm-devel
 Summary:	Development files for tdm
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-tdm = %{version}-%{release}
 
 %description -n trinity-tdm-devel
@@ -2264,7 +2269,7 @@ Requires:	trinity-tdm = %{version}-%{release}
 
 %package -n trinity-kfind
 Summary:	File-find utility for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kfind
@@ -2301,7 +2306,7 @@ done
 
 %package -n trinity-khelpcenter
 Summary:	Help center for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	htdig
 
@@ -2350,7 +2355,7 @@ done
 
 %package -n trinity-kicker
 Summary:	Desktop panel for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kicker
@@ -2483,7 +2488,7 @@ done
 
 %package -n trinity-kicker-devel
 Summary:	Development files for kicker
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kicker = %{version}-%{release}
 
 %description -n trinity-kicker-devel
@@ -2514,7 +2519,7 @@ Requires:	trinity-kicker = %{version}-%{release}
 
 %package -n trinity-klipper
 Summary:	Clipboard utility for Trinity
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-klipper
@@ -2563,7 +2568,7 @@ done
 
 %package -n trinity-kmenuedit
 Summary:	Menu editor for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kmenuedit
@@ -2600,7 +2605,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-konqueror
 Summary:	TDE's advanced file manager, web browser and document viewer
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-kcontrol = %{version}-%{release}
 Requires:	%{name}-tdeio-plugins = %{version}-%{release}
@@ -2763,7 +2768,7 @@ fi
 
 %package -n trinity-konqueror-devel
 Summary:	Development files for konqueror
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-konqueror = %{version}-%{release}
 
 %description -n trinity-konqueror-devel
@@ -2786,7 +2791,7 @@ Requires:	trinity-konqueror = %{version}-%{release}
 
 %package -n trinity-konqueror-nsplugins
 Summary:	Netscape plugin support for Konqueror
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	trinity-konqueror = %{version}-%{release}
 
 %description -n trinity-konqueror-nsplugins
@@ -2813,7 +2818,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-konsole
 Summary:	X terminal emulator for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-konsole
@@ -2882,7 +2887,7 @@ done
 
 %package -n trinity-kpager
 Summary:	Desktop pager for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kpager
@@ -2916,7 +2921,7 @@ done
 
 %package -n trinity-kpersonalizer
 Summary:	Installation personalizer for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kpersonalizer
@@ -2951,7 +2956,7 @@ done
 
 %package -n trinity-ksmserver
 Summary:	Session manager for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-twin = %{version}-%{release}
 
@@ -2998,7 +3003,7 @@ fndSession
 
 %package -n trinity-ksplash
 Summary:	The TDE splash screen
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-ksplash
@@ -3042,7 +3047,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-ksplash-devel
 Summary:	Development files for ksplash
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-ksplash = %{version}-%{release}
 
 %description -n trinity-ksplash-devel
@@ -3064,7 +3069,7 @@ Requires:	trinity-ksplash = %{version}-%{release}
 
 %package -n trinity-ksysguard
 Summary:	System guard for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-ksysguardd = %{version}-%{release}
 
@@ -3106,7 +3111,7 @@ done
 
 %package -n trinity-ksysguard-devel
 Summary:	Development files for ksysguard
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-ksysguard = %{version}-%{release}
 
 %description -n trinity-ksysguard-devel
@@ -3128,7 +3133,7 @@ Requires:	trinity-ksysguard = %{version}-%{release}
 
 %package -n trinity-ksysguardd
 Summary:	System guard daemon for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-ksysguardd
@@ -3145,7 +3150,7 @@ to monitor it through the daemon running there.
 
 %package -n trinity-ktip
 Summary:	Useful tips for TDE
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-ktip
@@ -3178,7 +3183,7 @@ done
 
 %package -n trinity-twin
 Summary:	The TDE window manager
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-twin
@@ -3248,7 +3253,7 @@ done
 
 %package -n trinity-twin-devel
 Summary:	Development files for twin
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-twin = %{version}-%{release}
 
 %description -n trinity-twin-devel
@@ -3276,7 +3281,7 @@ Requires:	trinity-twin = %{version}-%{release}
 
 %package -n trinity-libkonq
 Summary:	Core libraries for Konqueror
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 
 %description -n trinity-libkonq
 These libraries are used by several TDE applications, most notably
@@ -3311,7 +3316,7 @@ Konqueror and the kdesktop package.
 
 %package libtqt3-integration
 Summary:	Integration library between TQt3 and TDE
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 
 Obsoletes:	tdebase-libtqt3-integration < %{version}-%{release}
 Provides:	tdebase-libtqt3-integration = %{version}-%{release}
@@ -3333,7 +3338,7 @@ These libraries allow you to use TDE dialogs in native TQt3 applications.
 
 %package -n trinity-libkonq-devel
 Summary:	Development files for Konqueror's core libraries
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkonq = %{version}-%{release}
 
 %description -n trinity-libkonq-devel
@@ -3361,8 +3366,8 @@ Konqueror libraries.
 ##########
 
 %package tdeio-smb-plugin
-Summary:        Windows Connection Module for TDE
-Group:          Environment/Libraries
+Summary:	Windows Connection Module for TDE
+Group:		System/GUI/Other
 
 %description tdeio-smb-plugin
 This package provides the "smb://" protocol, to connect to and from
@@ -3677,27 +3682,27 @@ fi
 # These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
 mkdir -p "%{?buildroot}%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128}/apps/"
 pushd "%{?buildroot}%{tde_datadir}/icons"
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/misc.png                hicolor/"$i"x"$i"/apps/kcmcomponentchooser.png  ;done
-for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                hicolor/"$i"x"$i"/apps/kcmperformance.png       ;done
-for i in 16;                   do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/services.png              hicolor/"$i"x"$i"/apps/kcmkded.png              ;done
-for i in {16,22,32,48};        do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-log-out.png        hicolor/"$i"x"$i"/apps/kcmsmserver.png          ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/tools-check-spelling.png  hicolor/"$i"x"$i"/apps/kcmspellchecking.png     ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                hicolor/"$i"x"$i"/apps/kcmdesktopbehavior.png   ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                hicolor/"$i"x"$i"/apps/kcmdesktop.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kmenu.png                    hicolor/"$i"x"$i"/apps/kcmtaskbar.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/colorscm.png            hicolor/"$i"x"$i"/apps/kcmcolors.png            ;done
-for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                hicolor/"$i"x"$i"/apps/kcmlaunch.png            ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/filter.png                hicolor/"$i"x"$i"/apps/kcmkhtml_filter.png      ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-run.png            hicolor/"$i"x"$i"/apps/kcmcgi.png               ;done
-for i in {16,22};              do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png               hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png           hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
-for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/input-joystick.png        hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png                 hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png                hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png             hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/trashcan_empty.png         hicolor/"$i"x"$i"/apps/kcmprivacy.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                hicolor/"$i"x"$i"/apps/kcmnic.png               ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/application-vnd.tde.misc.png  hicolor/"$i"x"$i"/apps/kcmcomponentchooser.png  ;done
+for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                      hicolor/"$i"x"$i"/apps/kcmperformance.png       ;done
+for i in 16;                   do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/services.png                    hicolor/"$i"x"$i"/apps/kcmkded.png              ;done
+for i in {16,22,32,48};        do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-log-out.png              hicolor/"$i"x"$i"/apps/kcmsmserver.png          ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/tools-check-spelling.png        hicolor/"$i"x"$i"/apps/kcmspellchecking.png     ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                      hicolor/"$i"x"$i"/apps/kcmdesktopbehavior.png   ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                      hicolor/"$i"x"$i"/apps/kcmdesktop.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kmenu.png                          hicolor/"$i"x"$i"/apps/kcmtaskbar.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/application-x-kcsrc.png       hicolor/"$i"x"$i"/apps/kcmcolors.png            ;done
+for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                      hicolor/"$i"x"$i"/apps/kcmlaunch.png            ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/filter.png                      hicolor/"$i"x"$i"/apps/kcmkhtml_filter.png      ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-run.png                  hicolor/"$i"x"$i"/apps/kcmcgi.png               ;done
+for i in {16,22};              do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png                     hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                      hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png                 hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
+for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/input-joystick.png              hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
+for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png                       hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png                      hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
+for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png                   hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/trashcan_empty.png               hicolor/"$i"x"$i"/apps/kcmprivacy.png           ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                      hicolor/"$i"x"$i"/apps/kcmnic.png               ;done
 popd
 
 # Updates applications categories for openSUSE

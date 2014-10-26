@@ -1204,7 +1204,7 @@ This package contains the development files needed to compile applications again
 ##########
 
 %package devel
-Summary:	Development files for %{name} 
+Summary:	Development files for tdegraphics
 Group:		Development/Libraries/Other
 
 Obsoletes:	trinity-kdegraphics-devel < %{version}-%{release}
@@ -1270,7 +1270,7 @@ applications against tdegraphics libraries.
 %endif
 
 # Fix applications icons
-%__sed -i kooka/kooka.desktop -e "s|^Icon=.*|Icon=kooka|"
+%__sed -i "kooka/kooka.desktop" -e "s|^Icon=.*|Icon=kooka|"
 
 
 %build
@@ -1350,8 +1350,8 @@ done
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kamera.desktop
 %endif
 
-# Symlinks duplicate files (mostly under 'ksgmltools2')
-%fdupes -s "%{?buildroot}"
+# Links duplicate files
+%fdupes "%{?buildroot}"
 
 
 %clean
