@@ -148,8 +148,13 @@ This package contains the development files.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+
 # Fix empty ChangeLog cause invalid macro in 'configure.ac'
 echo "%{name} (%{version})" >ChangeLog
+
+# Fix invalid return value
+sed -i "src/get-carddav-report.c" -e "89s/TRUE/NULL/" 
+
 ./autogen.sh
 
 
