@@ -59,7 +59,7 @@ BuildRequires:	nas-devel
 BuildRequires:	libart_lgpl-devel
 
 # XSCREENSAVER support
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version} || 0%{?with_xscreensaver}
 %if 0%{?rhel} == 0 || 0%{?rhel} <= 6
 %define with_xscreensaver 1
 %if 0%{?mgaversion} || 0%{?mdkversion}

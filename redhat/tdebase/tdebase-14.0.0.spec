@@ -3412,8 +3412,13 @@ Windows and Samba shares.
 
 # TDE default directory and icon in startup script
 %__sed -i "%{starttde}" \
-	-e "s|/opt/trinity|%{tde_prefix}|g" \
-	-e "s|%%{tde_starticon}|%{tde_starticon}|g"
+	-e "s|/opt/trinity|%{tde_prefix}|g"
+
+# Sets default TDE menu icon
+%if "%{tde_starticon}" != ""
+%__sed -i "kicker/libkicker/kickerSettings.kcfg" \
+	-e "s|QString(\"kmenu\")|QString(\"%{tde_starticon}\")|"
+%endif
 
 # Xsession script location may vary on some distro
 %if 0%{?rhel} || 0%{?fedora}
