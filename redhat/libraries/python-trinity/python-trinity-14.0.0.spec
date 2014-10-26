@@ -51,12 +51,12 @@ BuildRequires:	gettext
 
 # PYTHON support
 BuildRequires:	python
-BuildRequires:	trinity-python-tqt-devel
-Requires:		trinity-python-tqt
+BuildRequires:	python-tqt-devel
+Requires:		python-tqt
 
 # SIP
-BuildRequires:	trinity-sip4-tqt-devel >= 4.10.5
-Requires:		trinity-sip4-tqt >= 4.10.5
+BuildRequires:	sip4-tqt-devel >= 4.10.5
+Requires:		sip4-tqt >= 4.10.5
 
 Obsoletes:	python-trinity < %{version}-%{release}
 Provides:	python-trinity = %{version}-%{release}

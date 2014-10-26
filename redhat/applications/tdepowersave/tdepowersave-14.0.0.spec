@@ -26,7 +26,7 @@
 
 Name:		trinity-%{tde_pkg}
 Version:	0.7.3
-Release:	%{?!preversion:5}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 Summary:	Power management applet for Trinityfiles or directories.
 
 License:	GPLv2+

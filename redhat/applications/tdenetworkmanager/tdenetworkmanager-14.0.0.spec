@@ -53,7 +53,7 @@ Provides:		trinity-knetworkmanager = %{version}-%{release}
 
 # NETWORKMANAGER support
 %if 0%{?rhel} || 0%{?fedora}
-%if 0%{?fedora} >= 20
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
 BuildRequires:	NetworkManager-devel
 Requires:		NetworkManager
 %else

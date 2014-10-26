@@ -60,14 +60,17 @@ BuildRequires:	libart_lgpl-devel
 
 # XSCREENSAVER support
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version} || 0%{?with_xscreensaver}
-%if 0%{?rhel} == 0 || 0%{?rhel} <= 6
+
+%if 0%{?rhel} == 0 || 0%{?rhel} <= 6 || 0%{?with_xscreensaver}
 %define with_xscreensaver 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
+
 %if 0%{?mgaversion} >= 4
 BuildRequires:	%{_lib}xscrnsaver-devel
 %else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
 %endif
+
 BuildRequires:	xscreensaver
 BuildRequires:	xscreensaver-base
 BuildRequires:	xscreensaver-extrusion
@@ -534,7 +537,9 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/epicycle.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/eruption.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/euler2d.desktop
+%if 0%{?rhel} != 7
 %{tde_datadir}/applnk/System/ScreenSavers/extrusion.desktop
+%endif
 %{tde_datadir}/applnk/System/ScreenSavers/fadeplot.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/fireworkx.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/flame.desktop
@@ -632,41 +637,34 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/xmatrix.desktop
 %endif
 
-%if 0%{?rhel} >= 6
+%if 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?fedora} >= 15 || 0%{?pclinuxos}
 %{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
 %endif
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?rhel} >= 7 || 0%{?fedora} >= 15 || 0%{?pclinuxos}
 %{tde_datadir}/applnk/System/ScreenSavers/companioncube.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/hilbert.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
-%if 0%{?fedora} >= 15 || 0%{?pclinuxos}
-%{tde_datadir}/applnk/System/ScreenSavers/companioncube.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/hilbert.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
-%endif
-
-%if 0%{?fedora} >= 18 || 0%{?pclinuxos} || 0%{?mgaversion} >= 4
+%if 0%{?fedora} >= 18 || 0%{?pclinuxos} || 0%{?mgaversion} >= 4 || 0%{?rhel} >= 7
 %{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/unknownpleasures.desktop
 %endif
 
-%if 0%{?fedora} >= 20 || 0%{?mgaversion} >= 4
+%if 0%{?fedora} >= 20 || 0%{?mgaversion} >= 4 || 0%{?rhel} >= 7
 %{tde_datadir}/applnk/System/ScreenSavers/geodesic.desktop
 %endif
 
-%if 0%{?fedora} >= 20
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
 %{tde_datadir}/applnk/System/ScreenSavers/projectiveplane.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/tessellimage.desktop
+%endif
+
+%if 0%{?fedora} >= 20
 %{tde_datadir}/applnk/System/ScreenSavers/winduprobot.desktop
 %endif
 
@@ -674,7 +672,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 

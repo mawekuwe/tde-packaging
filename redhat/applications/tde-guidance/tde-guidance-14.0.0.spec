@@ -32,7 +32,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		A collection of system administration tools for Trinity
 Version:		0.8.0svn20080103
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
