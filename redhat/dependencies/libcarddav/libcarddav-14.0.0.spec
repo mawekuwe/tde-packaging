@@ -152,9 +152,6 @@ This package contains the development files.
 # Fix empty ChangeLog cause invalid macro in 'configure.ac'
 echo "%{name} (%{version})" >ChangeLog
 
-# Fix invalid return value
-sed -i "src/get-carddav-report.c" -e "89s/TRUE/NULL/"
-
 ./autogen.sh
 
 

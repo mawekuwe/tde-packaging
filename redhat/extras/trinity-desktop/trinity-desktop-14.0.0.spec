@@ -82,6 +82,9 @@ Requires:	trinity-tdewebdev >= %{version}
 Group:		User Interface/Desktops
 Summary:	Meta-package to install all TDE applications
 
+# Warning, k9copy requires ffmpeg
+# Warning, tderadio requires libmp3lame
+
 Requires: trinity-abakus
 Requires: trinity-amarok
 Requires: trinity-basket
@@ -133,7 +136,6 @@ Requires: trinity-koffice-suite
 Requires: trinity-konversation
 Requires: trinity-kopete-otr
 Requires: trinity-kpicosim
-Requires: trinity-kpilot
 Requires: trinity-krecipes
 Requires: trinity-krename
 Requires: trinity-krusader
@@ -154,7 +156,6 @@ Requires: trinity-kvpnc
 Requires: trinity-mplayerthumbs
 Requires: trinity-piklab
 Requires: trinity-potracegui
-Requires: trinity-rosegarden
 Requires: trinity-smb4k
 Requires: trinity-smartcardauth
 Requires: trinity-soundkonverter
@@ -167,12 +168,7 @@ Requires: trinity-tdeio-ftps
 Requires: trinity-tdeio-locate
 Requires: trinity-tdeio-sword
 Requires: trinity-tdeio-umountwrapper
-Requires: trinity-tdenetworkmanager
-Requires: trinity-tdepowersave
 Requires: trinity-tderadio
-%if 0%{?pclinuxos} == 0
-Requires: trinity-tdesudo
-%endif
 Requires: trinity-tdesvn
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
@@ -181,14 +177,44 @@ Requires: trinity-twin-style-crystal
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
 
-# Obsolete stuff in R14
+# PCLinuxOS does not have sudo ...
+%if 0%{?pclinuxos} == 0
+Requires: trinity-tdesudo
+%endif
+
+# RHEL5: pilot library is too old
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+Requires: trinity-kpilot
+%endif
+
+# Network management
+# RHEL 6 and openSUSE 11.x: knetworkmanager8
+%if 0%{?rhel} == 6
+Requires: trinity-knetworkmanager
+%endif
+%if 0%{?suse_version} && 0%{?suse_version} <= 1140
+Requires: trinity-knetworkmanager
+%endif
+# Other distros use tdenetworkmanager (since R14)
+%if 0%{?rhel} >= 7 || 0%{?suse_version} >= 1210 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+Requires: trinity-tdenetworkmanager
+%endif
+
+# Power management
 Obsoletes: trinity-tde-guidance-powermanager
+Requires: trinity-tdepowersave
 
 # Decoration-related stuff (not installed by default)
 #Requires: trinity-kgtk-qt3
 #Requires: trinity-gtk-qt-engine
 #Requires: trinity-gtk3-tqt-engine
 #Requires: trinity-qt4-tqt-theme-engine
+
+# On RHEL 5/7, lilypond is not available, so no rosegarden :'-(
+%if 0%{?rhel} == 5 || 0%{?rhel} == 7
+%else
+Requires: trinity-rosegarden
+%endif
 
 # Compiz-related stuff does not work (obsolete)
 #Requires: trinity-compizconfig-backend-kconfig
@@ -265,6 +291,7 @@ Requires:	%{name}-devel = %{version}
 %package -n trinity-repo
 Group:		User Interface/Desktops
 Summary:	Yum configuration files for Trinity
+Requires(pre):	coreutils
 
 %description -n trinity-repo
 %{summary}

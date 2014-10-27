@@ -1308,8 +1308,8 @@ popd
 %suse_update_desktop_file audiocd
 %endif
 
-# Symlinks duplicate files
-%fdupes -s "%{?buildroot}%{tde_datadir}"
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean
