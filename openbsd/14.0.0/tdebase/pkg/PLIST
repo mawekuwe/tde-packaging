@@ -1804,6 +1804,7 @@ share/apps/tdm/pics/
 share/apps/tdm/pics/kdelogo.png
 share/apps/tdm/pics/shutdown.jpg
 share/apps/tdm/pics/users/
+share/apps/tdm/pics/users/.default.face.icon
 share/apps/tdm/pics/users/Apple.png
 share/apps/tdm/pics/users/BeachBall.png
 share/apps/tdm/pics/users/Blowfish.png

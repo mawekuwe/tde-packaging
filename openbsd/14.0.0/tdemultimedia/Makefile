@@ -20,6 +20,7 @@ LIB_DEPENDS =	x11/trinity/tdelibs \
 		audio/libogg \
 		audio/flac \
 		audio/libvorbis \
+		audio/lame \
 		audio/cdparanoia \
 		audio/taglib \
 		audio/mpg123 \
@@ -72,7 +73,7 @@ do-configure: tde-autotools-prepare
 		--with-theora \
 		--with-vorbis \
 		--with-gstreamer \
-		--without-lame \
+		--with-lame \
 		--with-akode \
 		--without-musicbrainz \
 		--with-taglib \
