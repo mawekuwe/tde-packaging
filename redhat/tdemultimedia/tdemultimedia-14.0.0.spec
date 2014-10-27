@@ -71,7 +71,7 @@ Obsoletes:	trinity-kdemultimedia-extras-libs < %{version}-%{release}
 Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 
 
-BuildRequires:	trinity-arts-devel >= 2:1.5.10
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 

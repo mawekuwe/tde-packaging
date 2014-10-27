@@ -17,9 +17,17 @@ DEVEL="$2"
 
 # Some runtime packages are prefixed with 'trinity-', some are not.
 case "${PKGNAME}" in
-  "trinity-"*|"qt3"|"tqt3"|"tqtinterface"|"python-qt3"|"esound"|"avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"fileshareset"|"hk_classes") PREFIX="";;
+  # In case prefix is already there, don't add it again.
+  "trinity-"*) PREFIX="";;
+  # Most TDE dependencies have no prefix
+  "avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"libcarddav"|"libcaldav"|"python-tqt"|"sip4-tqt"|"qt3"|"tqscintilla"|"tqt3"|"tqtinterface") PREFIX="";;
+  # 3rd party dependencies
+  "esound"|"fileshareset"|"hk_classes"|"python-qt3") PREFIX="";;
+  # Extra build stuff
   "autoconf"|"automake"|"cmake"|"gnuchess"|"htdig"|"imlib1"|"libconfig"|"libotr3"|"libtool"|"lilypond"|"m4"|"mftrace"|"pan"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
+  # Other
   "curl") PREFIX="trinity-lib";;
+  # Default case: add prefix
   *) PREFIX="trinity-";;
 esac
 
@@ -38,6 +46,9 @@ case "${PKGNAME}" in
   "esound") PKGRUNTIME="esound-libs";;
   "koffice") PKGRUNTIME="koffice-suite";;
   "libart-lgpl") PKGRUNTIME="${lib}art_lgpl_2-2";;
+  "libcaldav") PKGRUNTIME="${lib}caldav0";;
+  "libcarddav") PKGRUNTIME="${lib}carddav0";;
+  "tqscintilla") PKGRUNTIME="${lib}tqscintilla7";;
   "tqt3") PKGRUNTIME="${lib}tqt3-mt";;
   "tqtinterface") PKGRUNTIME="${lib}tqt4";;
   # Language package: install only French language package
@@ -56,7 +67,7 @@ if [ -n "${DEVEL}" ]; then
     # Applications do NOT have 'devel' package, except K3B.
     "applications") if [ "${PKGNAME}" != "k3b" ]; then exit 0; fi;;
     # Extras packages do NOT have 'devel' package, except Akode
-    "extras") if [ "${PKGNAME}" != "akode" ]; then exit 0; fi;;
+    "extras") if [ "${PKGNAME}" != "akode" ] && [ "${PKGNAME}" != "hk_classes" ]; then exit 0; fi;;
   esac
   
   # Some other packags NOT having development package
@@ -73,6 +84,9 @@ if [ -n "${DEVEL}" ]; then
     "esound") PKGDEVEL="esound-devel";;
     "pan") PKGDEVEL="uulib-devel";;
     "libart-lgpl") PKGDEVEL="libart_lgpl-devel";;
+    "libcaldav") PKGDEVEL="${lib}caldav-devel";;
+    "libcarddav") PKGDEVEL="${lib}carddav-devel";;
+    "tqscintilla") PKGDEVEL="${lib}tqscintilla-devel";;
     "tqt3") PKGDEVEL="tqt3-dev-tools tqt3-apps-devel tqt3-compat-headers";;
     # Default case: development package has same name as runtime package, plus '-devel' suffix.
     *) PKGDEVEL="${PKGRUNTIME}-devel";;

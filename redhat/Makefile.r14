@@ -563,7 +563,7 @@ endif
 
 rosegarden:	tdebase lilypond
 # Do NOT build on CentOS 5, CentOS 7
-ifeq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el7*),)
+ifeq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,applications/rosegarden)
 endif
 
@@ -595,8 +595,8 @@ tdeio-umountwrapper:	tdebase
 	$(call buildpkg,applications/tdeio-umountwrapper)
 
 tdenetworkmanager:	tdebase
-# Do NOT build on CentOS
-ifeq ($(wildcard /etc/centos-release),)
+# Do NOT build on CentOS 5, CentOS 6
+ifeq ($(wildcard /boot/vmlinuz*.el5* /boot/vmlinuz*.el6*),)
 	$(call buildpkg,applications/tdenetworkmanager)
 endif
 
@@ -604,10 +604,7 @@ tdepowersave:	tdebase
 	$(call buildpkg,applications/tdepowersave)
 
 tderadio:	tdebase
-# Do NOT build on CentOS 7
-ifeq ($(wildcard /boot/vmlinuz*.el7*),)
 	$(call buildpkg,applications/tderadio)
-endif
 
 tde-style-lipstik:	tdebase
 	$(call buildpkg,applications/tde-style-lipstik)
