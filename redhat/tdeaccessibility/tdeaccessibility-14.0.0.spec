@@ -67,6 +67,7 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
 
 BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
 BuildRequires:	desktop-file-utils
 BuildRequires:	fdupes
 
@@ -79,6 +80,9 @@ BuildRequires:	update-desktop-files
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif
+
+# AUDIOFILE support
+BuildRequires:	audiofile-devel
 
 # AKODE support
 %if 0%{?with_akode}
