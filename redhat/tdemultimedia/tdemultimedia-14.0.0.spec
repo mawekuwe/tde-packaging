@@ -1008,7 +1008,9 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-mpeglib
 Summary:	MP3 and MPEG-1 audio and video library
 Group:		Environment/Libraries
+%if 0%{?with_mpeg}
 Requires:	trinity-libarts-mpeglib = %{version}-%{release}
+%endif
 
 %description -n trinity-mpeglib
 mpeglib is a MPEG-1 and MP3 audio and video library. It supports
