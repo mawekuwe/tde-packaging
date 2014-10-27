@@ -1205,8 +1205,10 @@ noatun plugins.
 %{tde_libdir}/libnoatuncontrols.so
 %{tde_libdir}/libnoatuntags.la
 %{tde_libdir}/libnoatuntags.so
+%if 0%{?with_mpeg}
 %{tde_libdir}/libyafcore.la
 %{tde_libdir}/libyafxplayer.la
+%endif
 
 %post devel
 /sbin/ldconfig
