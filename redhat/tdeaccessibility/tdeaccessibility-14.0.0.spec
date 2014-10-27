@@ -123,22 +123,16 @@ BuildRequires:	libX11-devel
 BuildRequires:	xorg-x11-devel
 %endif
 
-# X11 Libraries
+# XTST support
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}xxf86dga-devel
-BuildRequires:	%{_lib}xxf86vm-devel
 %if 0%{?mgaversion} >= 4
 BuildRequires:	%{_lib}xtst-devel
 %else
 BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
 %endif
 %endif
-%if 0%{?rhel} == 4
-BuildRequires:	xorg-x11-devel
-%endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXxf86dga-devel
-BuildRequires:	libXxf86vm-devel
+BuildRequires:	libXtst-devel
 %endif
 
 # XI support

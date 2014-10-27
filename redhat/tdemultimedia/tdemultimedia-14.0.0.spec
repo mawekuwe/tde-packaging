@@ -159,11 +159,6 @@ BuildRequires:	gstreamer-0_10-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xxf86dga-devel
 BuildRequires:	%{_lib}xxf86vm-devel
-%if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xtst-devel
-%else
-BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
-%endif
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
@@ -171,6 +166,18 @@ BuildRequires:	xorg-x11-devel
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXxf86dga-devel
 BuildRequires:	libXxf86vm-devel
+%endif
+
+# XTST support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xtst-devel
+%else
+BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXtst-devel
 %endif
 
 # XINE support
