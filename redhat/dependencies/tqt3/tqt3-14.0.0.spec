@@ -108,11 +108,17 @@ BuildRequires: cups-devel
 %endif
 %{?uuid_devel:BuildRequires: %{uuid_devel}}
 
-# NAS support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+# LIBAUDIO support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_nas 1
-BuildRequires: nas-devel
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define libaudio_devel nas-devel
 %endif
+%if 0%{?suse_version}
+%define libaudio_devel libaudio-devel
+%endif
+%endif
+%{?libaudio_devel:BuildRequires: %{libaudio_devel}}
 
 # Xrender support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -364,6 +370,7 @@ Requires: zlib-devel
 %{?x11_devel:Requires: %{x11_devel}}
 %{?sm_devel:Requires: %{sm_devel}}
 %{?ice_devel:Requires: %{ice_devel}}
+%{?libaudio_devel:Requires: %{libaudio_devel}}
 
 %description -n %{libtqt3}-mt-devel
 TQt is a C++ class library optimized for graphical user interface

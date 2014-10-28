@@ -424,11 +424,6 @@ BuildRequires: Mesa-libGL-devel
 BuildRequires: Mesa-libGLU-devel
 %endif
 
-# NAS support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	nas-devel
-%endif
-
 # DBUS support
 #  TQT bindings not available for RHEL4
 %if 0%{?rhel} == 4
@@ -485,14 +480,15 @@ BuildRequires:	libXdmcp-devel
 # XTST support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xtst-devel
+%define xtst_devel %{_lib}xtst-devel
 %else
-BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%define xtst_devel %{_lib}xtst%{?mgaversion:6}-devel
 %endif
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXtst-devel
+%define xtst_devel libXtst-devel
 %endif
+%{?xtst_devel:BuildRequires: %{xtst_devel}}
 
 # XDAMAGE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -1369,6 +1365,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 Summary:	Development files for core binaries for the TDE base module
 Group:		Development/Libraries/Other
 Requires:	%{name}-bin = %{version}-%{release}
+%{?xtst_devel:Requires: %{xtst_devel}}
 
 Obsoletes:	tdebase-bin-devel < %{version}-%{release}
 Provides:	tdebase-bin-devel = %{version}-%{release}
@@ -2257,6 +2254,7 @@ fi
 Summary:	Development files for tdm
 Group:		Development/Libraries/Other
 Requires:	trinity-tdm = %{version}-%{release}
+%{?xtst_devel:Requires: %{xtst_devel}}
 
 %description -n trinity-tdm-devel
 %{summary}.
@@ -2490,6 +2488,7 @@ done
 Summary:	Development files for kicker
 Group:		Development/Libraries/Other
 Requires:	trinity-kicker = %{version}-%{release}
+%{?xtst_devel:Requires: %{xtst_devel}}
 
 %description -n trinity-kicker-devel
 %{summary}.
@@ -3340,6 +3339,7 @@ These libraries allow you to use TDE dialogs in native TQt3 applications.
 Summary:	Development files for Konqueror's core libraries
 Group:		Development/Libraries/Other
 Requires:	trinity-libkonq = %{version}-%{release}
+%{?xtst_devel:Requires: %{xtst_devel}}
 
 %description -n trinity-libkonq-devel
 This package contains headers and other development files for the core

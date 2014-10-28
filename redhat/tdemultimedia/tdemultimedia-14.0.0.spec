@@ -115,11 +115,6 @@ BuildRequires:	libtheora-devel
 BuildRequires:	alsa-lib-devel 
 BuildRequires:	cdparanoia
 
-# NAS support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	nas-devel
-%endif
-
 # CDDA support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	libcdda-devel
