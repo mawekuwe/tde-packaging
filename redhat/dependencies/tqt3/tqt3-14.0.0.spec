@@ -165,7 +165,7 @@ BuildRequires: cups-devel
 %endif
 %{?xft_devel:BuildRequires: %{xft_devel}}
 
-# Xext support
+# XEXT support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %define xext_devel libXext-devel
 %endif

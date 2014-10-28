@@ -163,18 +163,6 @@ BuildRequires:	libXxf86dga-devel
 BuildRequires:	libXxf86vm-devel
 %endif
 
-# XTST support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xtst-devel
-%else
-BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
-%endif
-%endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXtst-devel
-%endif
-
 # XINE support
 %if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} == 18 || 0%{?fedora} == 19 || 0%{?with_xine}
 %define with_xine 1
