@@ -109,7 +109,7 @@ BuildRequires: cups-devel
 %{?uuid_devel:BuildRequires: %{uuid_devel}}
 
 # LIBAUDIO support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %define with_nas 1
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define libaudio_devel nas-devel
