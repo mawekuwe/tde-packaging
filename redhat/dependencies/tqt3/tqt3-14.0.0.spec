@@ -114,7 +114,7 @@ BuildRequires: cups-devel
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define libaudio_devel nas-devel
 %endif
-%if 0%{?suse_version}
+%if 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %define libaudio_devel libaudio-devel
 %endif
 %endif
