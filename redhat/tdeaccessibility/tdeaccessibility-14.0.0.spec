@@ -194,9 +194,7 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %files -n trinity-kmag
 %defattr(-,root,root,-)
 %{tde_bindir}/kmag
-%if 0%{?suse_version} && 0%{?opensuse_bs}
-%{tde_datadir}/applnk/Applications/kmag.desktop
-%endif
+%{tde_tdeappdir}/kmag.desktop
 %{tde_datadir}/apps/kmag/
 %{tde_datadir}/icons/hicolor/*/apps/kmag.png
 %{tde_datadir}/icons/locolor/*/apps/kmag.png
@@ -232,9 +230,7 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %files -n trinity-kmousetool
 %defattr(-,root,root,-)
 %{tde_bindir}/kmousetool
-%if 0%{?suse_version} && 0%{?opensuse_bs}
-%{tde_datadir}/applnk/Applications/kmousetool.desktop
-%endif
+%{tde_tdeappdir}/kmousetool.desktop
 %{tde_datadir}/apps/kmousetool/
 %{tde_datadir}/icons/hicolor/*/apps/kmousetool.png
 %{tde_tdedocdir}/HTML/en/kmousetool/
@@ -269,9 +265,7 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %defattr(-,root,root,-)
 %{tde_datadir}/config/kmouthrc
 %{tde_bindir}/kmouth
-%if 0%{?suse_version} && 0%{?opensuse_bs}
-%{tde_datadir}/applnk/Applications/kmouth.desktop
-%endif
+%{tde_tdeappdir}/kmouth.desktop
 %{tde_datadir}/apps/kmouth/
 %{tde_datadir}/icons/hicolor/*/actions/speak.png
 %{tde_datadir}/icons/hicolor/*/actions/nospeak.png
@@ -558,6 +552,13 @@ popd
 %suse_update_desktop_file    kttsmgr      Utility Accessibility
 %suse_update_desktop_file    ksayit       Utility Accessibility
 %suse_update_desktop_file    kcmkttsd     Utility Accessibility
+%endif
+
+# Move desktop files to correct location
+%if 0%{?opensuse_bs} == 0 || 0%{?suse_version} == 0
+%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmag.desktop" "%{?buildroot}%{tde_tdeappdir}"
+%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmousetool.desktop" "%{?buildroot}%{tde_tdeappdir}"
+%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmouth.desktop" "%{?buildroot}%{tde_tdeappdir}"
 %endif
 
 # Links duplicate files
