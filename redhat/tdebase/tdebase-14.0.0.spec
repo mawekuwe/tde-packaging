@@ -3685,29 +3685,29 @@ fi
 
 # Adds missing icons in 'hicolor' theme
 # These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
-mkdir -p "%{?buildroot}%{tde_datadir}/icons/hicolor/"{16x16,22x22,32x32,48x48,64x64,128x128}"/apps/"
+%__mkdir_p "%{?buildroot}%{tde_datadir}/icons/hicolor/"{16x16,22x22,32x32,48x48,64x64,128x128}"/apps/"
 pushd "%{?buildroot}%{tde_datadir}/icons"
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/application-vnd.tde.misc.png  hicolor/"$i"x"$i"/apps/kcmcomponentchooser.png  ;done
-for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                      hicolor/"$i"x"$i"/apps/kcmperformance.png       ;done
-for i in 16;                   do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/services.png                    hicolor/"$i"x"$i"/apps/kcmkded.png              ;done
-for i in {16,22,32,48};        do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-log-out.png              hicolor/"$i"x"$i"/apps/kcmsmserver.png          ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/tools-check-spelling.png        hicolor/"$i"x"$i"/apps/kcmspellchecking.png     ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                      hicolor/"$i"x"$i"/apps/kcmdesktopbehavior.png   ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                      hicolor/"$i"x"$i"/apps/kcmdesktop.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kmenu.png                          hicolor/"$i"x"$i"/apps/kcmtaskbar.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/application-x-kcsrc.png       hicolor/"$i"x"$i"/apps/kcmcolors.png            ;done
-for i in {16,22,32,48,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                      hicolor/"$i"x"$i"/apps/kcmlaunch.png            ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/filter.png                      hicolor/"$i"x"$i"/apps/kcmkhtml_filter.png      ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-run.png                  hicolor/"$i"x"$i"/apps/kcmcgi.png               ;done
-for i in {16,22};              do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png                     hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                      hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png                 hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
-for i in {16,22,32,48,64};     do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/input-joystick.png              hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
-for i in {16,32,48,64,128};    do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png                       hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png                      hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
-for i in {16,22,32};           do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png                   hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/trashcan_empty.png               hicolor/"$i"x"$i"/apps/kcmprivacy.png           ;done
-for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                      hicolor/"$i"x"$i"/apps/kcmnic.png               ;done
+for i in {16,32,48,64,128};    do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/application-vnd.tde.misc.png  hicolor/"$i"x"$i"/apps/kcmcomponentchooser.png  ;done
+for i in {16,22,32,48,128};    do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                      hicolor/"$i"x"$i"/apps/kcmperformance.png       ;done
+for i in 16;                   do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/services.png                    hicolor/"$i"x"$i"/apps/kcmkded.png              ;done
+for i in {16,22,32,48};        do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-log-out.png              hicolor/"$i"x"$i"/apps/kcmsmserver.png          ;done
+for i in {16,22,32};           do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/tools-check-spelling.png        hicolor/"$i"x"$i"/apps/kcmspellchecking.png     ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                      hicolor/"$i"x"$i"/apps/kcmdesktopbehavior.png   ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/desktop.png                      hicolor/"$i"x"$i"/apps/kcmdesktop.png           ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kmenu.png                          hicolor/"$i"x"$i"/apps/kcmtaskbar.png           ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/mimetypes/application-x-kcsrc.png       hicolor/"$i"x"$i"/apps/kcmcolors.png            ;done
+for i in {16,22,32,48,128};    do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/launch.png                      hicolor/"$i"x"$i"/apps/kcmlaunch.png            ;done
+for i in {16,22,32};           do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/filter.png                      hicolor/"$i"x"$i"/apps/kcmkhtml_filter.png      ;done
+for i in {16,22,32};           do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/system-run.png                  hicolor/"$i"x"$i"/apps/kcmcgi.png               ;done
+for i in {16,22};              do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/history.png                     hicolor/"$i"x"$i"/apps/kcmhistory.png           ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                      hicolor/"$i"x"$i"/apps/kcmnetpref.png           ;done
+for i in {16,32,48,64,128};    do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/blockdevice.png                 hicolor/"$i"x"$i"/apps/kcmkdnssd.png            ;done
+for i in {16,22,32,48,64};     do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/input-joystick.png              hicolor/"$i"x"$i"/apps/kcmjoystick.png          ;done
+for i in {16,32,48,64,128};    do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/mouse.png                       hicolor/"$i"x"$i"/apps/kcmmouse.png             ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/system.png                      hicolor/"$i"x"$i"/apps/kcmmedia.png             ;done
+for i in {16,22,32};           do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/encrypted.png                   hicolor/"$i"x"$i"/apps/kcmcrypto.png            ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/trashcan_empty.png               hicolor/"$i"x"$i"/apps/kcmprivacy.png           ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png                      hicolor/"$i"x"$i"/apps/kcmnic.png               ;done
 popd
 
 # Updates applications categories for openSUSE

@@ -1326,10 +1326,10 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot} -C build
 
 # Adds missing icons in 'hicolor' theme
-mkdir -p "%{?buildroot}%{tde_datadir}/icons/hicolor/"{16x16,32x32,48x48,64x64}"/apps/"
-for i in {16,32,48,64}; do
-  %__cp "$BUILD_ROOT%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/scanner.png" "%{buildroot}%{tde_datadir}/icons/hicolor/"$i"x"$i"/apps/kooka.png";
-done
+%__mkdir_p "%{?buildroot}%{tde_datadir}/icons/hicolor/"{16x16,32x32,48x48,64x64}"/apps/"
+pushd "%{?buildroot}%{tde_datadir}/icons"
+for i in {16,32,48,64}; do %__cp $BUILD_ROOT%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/scanner.png %{buildroot}%{tde_datadir}/icons/hicolor/"$i"x"$i"/apps/kooka.png; done
+popd
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}

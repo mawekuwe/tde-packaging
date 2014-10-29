@@ -160,7 +160,7 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 ##########
 
 %package -n trinity-kbstate
-Summary:	a keyboard status applet for TDE
+Summary:	A keyboard status applet for TDE
 Group:		System/GUI/Other
 
 %description -n trinity-kbstate
@@ -194,7 +194,9 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %files -n trinity-kmag
 %defattr(-,root,root,-)
 %{tde_bindir}/kmag
+%if 0%{?suse_version} && 0%{?opensuse_bs}
 %{tde_datadir}/applnk/Applications/kmag.desktop
+%endif
 %{tde_datadir}/apps/kmag/
 %{tde_datadir}/icons/hicolor/*/apps/kmag.png
 %{tde_datadir}/icons/locolor/*/apps/kmag.png
@@ -230,7 +232,9 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %files -n trinity-kmousetool
 %defattr(-,root,root,-)
 %{tde_bindir}/kmousetool
+%if 0%{?suse_version} && 0%{?opensuse_bs}
 %{tde_datadir}/applnk/Applications/kmousetool.desktop
+%endif
 %{tde_datadir}/apps/kmousetool/
 %{tde_datadir}/icons/hicolor/*/apps/kmousetool.png
 %{tde_tdedocdir}/HTML/en/kmousetool/
@@ -265,7 +269,9 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %defattr(-,root,root,-)
 %{tde_datadir}/config/kmouthrc
 %{tde_bindir}/kmouth
+%if 0%{?suse_version} && 0%{?opensuse_bs}
 %{tde_datadir}/applnk/Applications/kmouth.desktop
+%endif
 %{tde_datadir}/apps/kmouth/
 %{tde_datadir}/icons/hicolor/*/actions/speak.png
 %{tde_datadir}/icons/hicolor/*/actions/nospeak.png
@@ -430,7 +436,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kttsd-contrib-plugins
-Summary:	the TDE Text-to-Speech system
+Summary:	The TDE Text-to-Speech system
 Group:		System/GUI/Other
 Requires:	trinity-kttsd = %{version}-%{release}
 
@@ -456,7 +462,7 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 ##########
 
 %package devel
-Summary:	Development files for %{name}
+Summary:	Development files for tdeaccessibility
 Group:		Development/Libraries/X11
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-tdelibs-devel >= %{version}
@@ -465,7 +471,8 @@ Obsoletes:		trinity-kdeaccessibility-devel < %{version}-%{release}
 Provides:		trinity-kdeaccessibility-devel = %{version}-%{release}
 
 %description devel
-%{summary}.
+This package contains the development file for TDE accessibility 
+programs.
 
 %files devel
 %defattr(-,root,root,-)
@@ -537,7 +544,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Adds missing icons in 'hicolor' theme
 # These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
-mkdir -p "%{?buildroot}%{tde_datadir}/icons/hicolor/"{16x16,22x22,32x32,48x48,64x64,128x128}"/apps/"
+%__mkdir_p "%{?buildroot}%{tde_datadir}/icons/hicolor/"{16x16,22x22,32x32,48x48,64x64,128x128}"/apps/"
 pushd "%{?buildroot}%{tde_datadir}/icons"
 for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kttsd.png  hicolor/"$i"x"$i"/apps/kttsd.png    ;done
 for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kttsd.png  hicolor/"$i"x"$i"/apps/kcmkttsd.png ;done
