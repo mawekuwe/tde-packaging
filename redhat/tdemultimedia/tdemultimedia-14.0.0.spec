@@ -1274,24 +1274,24 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Disable MPEG support entirely
 %if 0%{?with_mpeg} == 0
-  %__rm %{?buildroot}%{tde_bindir}/mpeglibartsplay
-  %__rm %{?buildroot}%{tde_bindir}/yaf-*
-  %__rm %{?buildroot}%{tde_libdir}/libarts_mpeglib*
-  %__rm %{?buildroot}%{tde_libdir}/libarts_splay.*
-  %__rm %{?buildroot}%{tde_libdir}/libmpeg*
-  %__rm %{?buildroot}%{tde_libdir}/libyaf*
-  %__rm %{?buildroot}%{tde_libdir}/mcop/MP3PlayObject.mcopclass
-  %__rm %{?buildroot}%{tde_libdir}/mcop/CDDAPlayObject.mcopclass
-  %__rm %{?buildroot}%{tde_libdir}/mcop/NULLPlayObject.mcopclass
-  %__rm %{?buildroot}%{tde_libdir}/mcop/OGGPlayObject.mcopclass
-  %__rm %{?buildroot}%{tde_libdir}/mcop/SplayPlayObject.mcopclass
-  %__rm %{?buildroot}%{tde_libdir}/mcop/WAVPlayObject.mcopclass
+%__rm %{?buildroot}%{tde_bindir}/mpeglibartsplay
+%__rm %{?buildroot}%{tde_bindir}/yaf-*
+%__rm %{?buildroot}%{tde_libdir}/libarts_mpeglib*
+%__rm %{?buildroot}%{tde_libdir}/libarts_splay.*
+%__rm %{?buildroot}%{tde_libdir}/libmpeg*
+%__rm %{?buildroot}%{tde_libdir}/libyaf*
+%__rm %{?buildroot}%{tde_libdir}/mcop/MP3PlayObject.mcopclass
+%__rm %{?buildroot}%{tde_libdir}/mcop/CDDAPlayObject.mcopclass
+%__rm %{?buildroot}%{tde_libdir}/mcop/NULLPlayObject.mcopclass
+%__rm %{?buildroot}%{tde_libdir}/mcop/OGGPlayObject.mcopclass
+%__rm %{?buildroot}%{tde_libdir}/mcop/SplayPlayObject.mcopclass
+%__rm %{?buildroot}%{tde_libdir}/mcop/WAVPlayObject.mcopclass
 %endif
 
 # Copy missing icons from 'crystalsvg' theme (tdelibs)
 mkdir -p $RPM_BUILD_ROOT%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64}/apps/
 pushd $RPM_BUILD_ROOT%{tde_datadir}/icons/
-for i in {16,22,32,48,64}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/cdaudio_unmount.png hicolor/"$i"x"$i"/apps/kcmaudiocd.png;done
+for i in {16,22,32,48,64}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/cdaudio_unmount.png hicolor/"$i"x"$i"/apps/kcmaudiocd.png; done
 popd
 
 # Updates applications categories for openSUSE

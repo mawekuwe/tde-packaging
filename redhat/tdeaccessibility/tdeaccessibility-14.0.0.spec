@@ -388,6 +388,8 @@ Homepage: http://accessibility.kde.org/developer/kttsd
 %{tde_datadir}/apps/kttsd/
 %{tde_datadir}/icons/hicolor/16x16/actions/female.png
 %{tde_datadir}/icons/hicolor/16x16/actions/male.png
+%{tde_datadir}/icons/hicolor/*/apps/kttsd.png
+%{tde_datadir}/icons/hicolor/*/apps/kcmkttsd.png
 %{tde_datadir}/services/tdetexteditor_kttsd.desktop
 %{tde_datadir}/services/kttsd.desktop
 %if 0%{?with_akode}
@@ -489,6 +491,9 @@ Provides:		trinity-kdeaccessibility-devel = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
+# Update icons for some control center modules
+%__sed -i "kttsd/kcmkttsmgr/kcmkttsd.desktop" -e "s|^Icon=.*|Icon=kcmkttsd|"
+
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -529,6 +534,14 @@ export PATH="%{tde_bindir}:${PATH}"
 # Avoid conflict with tdelibs
 %__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
 %__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/scalable/apps/kttsd.svgz
+
+# Adds missing icons in 'hicolor' theme
+# These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
+mkdir -p "%{?buildroot}%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128}/apps/"
+pushd "%{?buildroot}%{tde_datadir}/icons"
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kttsd.png  hicolor/"$i"x"$i"/apps/kttsd.png    ;done
+for i in {16,22,32,48,64,128}; do cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kttsd.png  hicolor/"$i"x"$i"/apps/kcmkttsd.png ;done
+popd
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
