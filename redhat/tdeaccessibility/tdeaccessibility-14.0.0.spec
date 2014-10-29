@@ -154,6 +154,13 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 
 %files -n trinity-tde-icons-mono
 %defattr(-,root,root,-)
+%dir %{tde_datadir}/icons/mono
+%dir %{tde_datadir}/icons/mono/scalable
+%dir %{tde_datadir}/icons/mono/scalable/actions
+%dir %{tde_datadir}/icons/mono/scalable/apps
+%dir %{tde_datadir}/icons/mono/scalable/devices
+%dir %{tde_datadir}/icons/mono/scalable/mimetypes
+%dir %{tde_datadir}/icons/mono/scalable/places
 %{tde_datadir}/icons/mono/index.theme
 %{tde_datadir}/icons/mono/scalable/*/*.svgz
 
@@ -383,7 +390,7 @@ Homepage: http://accessibility.kde.org/developer/kttsd
 %{tde_libdir}/libkttsd.so.*
 %{tde_tdeappdir}/kcmkttsd.desktop
 %{tde_tdeappdir}/kttsmgr.desktop
-%{tde_datadir}/apps/tdetexteditor_kttsd/tdetexteditor_kttsdui.rc
+%{tde_datadir}/apps/tdetexteditor_kttsd/
 %exclude %{tde_datadir}/apps/kttsd/hadifix/xslt/SSMLtoTxt2pho.xsl
 %{tde_datadir}/apps/kttsd/
 %{tde_datadir}/icons/hicolor/16x16/actions/female.png
@@ -536,6 +543,11 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
 %__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/scalable/apps/kttsd.svgz
 
+# Move desktop files to correct XDG location
+%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmag.desktop" "%{?buildroot}%{tde_tdeappdir}"
+%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmousetool.desktop" "%{?buildroot}%{tde_tdeappdir}"
+%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmouth.desktop" "%{?buildroot}%{tde_tdeappdir}"
+
 # Adds missing icons in 'hicolor' theme
 # These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
 %__mkdir_p "%{?buildroot}%{tde_datadir}/icons/hicolor/"{16x16,22x22,32x32,48x48,64x64,128x128}"/apps/"
@@ -552,13 +564,6 @@ popd
 %suse_update_desktop_file    kttsmgr      Utility Accessibility
 %suse_update_desktop_file    ksayit       Utility Accessibility
 %suse_update_desktop_file    kcmkttsd     Utility Accessibility
-%endif
-
-# Move desktop files to correct location
-%if 0%{?opensuse_bs} == 0 || 0%{?suse_version} == 0
-%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmag.desktop" "%{?buildroot}%{tde_tdeappdir}"
-%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmousetool.desktop" "%{?buildroot}%{tde_tdeappdir}"
-%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmouth.desktop" "%{?buildroot}%{tde_tdeappdir}"
 %endif
 
 # Links duplicate files
