@@ -1289,7 +1289,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %endif
 
 # Copy missing icons from 'crystalsvg' theme (tdelibs)
-mkdir -p $RPM_BUILD_ROOT%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64}/apps/
+mkdir -p $RPM_BUILD_ROOT%{tde_datadir}/icons/hicolor/"{16x16,22x22,32x32,48x48,64x64}"/apps/
 pushd $RPM_BUILD_ROOT%{tde_datadir}/icons/
 for i in {16,22,32,48,64}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/devices/cdaudio_unmount.png hicolor/"$i"x"$i"/apps/kcmaudiocd.png; done
 popd
