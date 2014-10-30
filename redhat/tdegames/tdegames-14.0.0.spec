@@ -1623,7 +1623,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file -r kmahjongg       Game BoardGame
 %suse_update_desktop_file -r kreversi        Game BoardGame
 %suse_update_desktop_file -r kshisen         Game BoardGame
-%suse_update_desktop_file -r kwin4           Game BoardGame
+%suse_update_desktop_file -r twin4           Game BoardGame
 %suse_update_desktop_file -r kpat            Game CardGame
 %suse_update_desktop_file -r kpoker          Game CardGame
 %suse_update_desktop_file -r lskat           Game CardGame
