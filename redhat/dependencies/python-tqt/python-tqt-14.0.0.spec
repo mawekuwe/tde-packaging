@@ -180,7 +180,7 @@ python-tqt Extensions. Contains:
 ##########
 
 %package -n trinity-pytqt-tools
-Summary:	pyuic and pylupdate for TQt
+Summary:	Pyuic and pylupdate for TQt
 Group:		Development/Libraries/Python
 Requires:	python-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -192,6 +192,7 @@ pylupdate is the counterpart for TQt's lupdate. It updates TQt
 Linguist translation files from Python code.
 
 %files -n trinity-pytqt-tools
+%defattr(-,root,root,-)
 %{tde_bindir}/pylupdate
 %{tde_bindir}/pyuic
 

@@ -307,7 +307,6 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %files -n trinity-ksayit
 %defattr(-,root,root,-)
 %{tde_bindir}/ksayit
-%{tde_tdeincludedir}/ksayit_fxplugin.h
 %{tde_tdelibdir}/libFreeverb_plugin.la
 %{tde_tdelibdir}/libFreeverb_plugin.so
 %{tde_libdir}/libKTTSD_Lib.so.*
@@ -467,6 +466,8 @@ Summary:	Development files for tdeaccessibility
 Group:		Development/Libraries/X11
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-tdelibs-devel >= %{version}
+Requires:	libjpeg-devel
+Requires:	libpng-devel
 
 Obsoletes:		trinity-kdeaccessibility-devel < %{version}-%{release}
 Provides:		trinity-kdeaccessibility-devel = %{version}-%{release}
@@ -481,6 +482,7 @@ programs.
 %{tde_libdir}/libkttsd.so
 %{tde_libdir}/libKTTSD_Lib.la
 %{tde_libdir}/libKTTSD_Lib.so
+%{tde_tdeincludedir}/ksayit_fxplugin.h
 
 %post devel
 /sbin/ldconfig ||:

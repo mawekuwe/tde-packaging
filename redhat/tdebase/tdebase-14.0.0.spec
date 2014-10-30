@@ -108,8 +108,8 @@ Provides:	trinity-kdebase-extras = %{version}-%{release}
 Obsoletes:	tdebase < %{version}-%{release}
 Provides:	tdebase = %{version}-%{release}
 
-%if 0%{?suse_version}
 # for set_permissions macro
+%if 0%{?suse_version}
 PreReq: permissions
 %endif
 
@@ -235,7 +235,7 @@ Requires:	desktop-common-data
 
 # OpenSuse 11.4 Theme
 %if "%{?suse_version}" == "1140"
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 11.4
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -243,7 +243,7 @@ Requires:	hicolor-icon-theme-branding
 %if "%{?suse_version}" == "1220"
 Requires:	wallpaper-branding = 12.2
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 12.2
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -251,7 +251,7 @@ Requires:	hicolor-icon-theme-branding
 %if "%{?suse_version}" == "1230"
 Requires:	wallpaper-branding = 12.3
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 12.3
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -259,7 +259,7 @@ Requires:	hicolor-icon-theme-branding
 %if "%{?suse_version}" == "1310"
 Requires:	wallpaper-branding = 13.1
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding
+Requires:	hicolor-icon-theme-branding = 13.1
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -269,6 +269,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	make
+BuildRequires:	fdupes
 
 # HTDIG support
 BuildRequires:	htdig
@@ -840,11 +841,11 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %package -n trinity-kate-devel
 Summary:	Development files for kate
-Group:		System/GUI/Other
+Group:		Development/Libraries/Other
 Requires:	trinity-kate = %{version}-%{release}
 
 %description -n trinity-kate-devel
-%{summary}.
+This package contains the development files fare Kate.
 
 %files -n trinity-kate-devel
 %defattr(-,root,root,-)
@@ -3761,6 +3762,9 @@ chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"
 # Fix permissions on shell scripts
 chmod 0755 "%{?buildroot}%{tde_datadir}/apps/tdeconf_update/move_session_config.sh"
 chmod 0755 "%{?buildroot}%{tde_tdedocdir}/HTML/en/khelpcenter/glossary/checkxrefs"
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean

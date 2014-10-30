@@ -287,6 +287,9 @@ BuildRequires: util-linux
 %endif
 
 %description
+This is the Trolltech TQt library, version 3. It's necessary for
+applications that link against the libtqt-mt.so.3, e.g. all Trinity
+applications.
 
 ##########
 
@@ -1491,6 +1494,9 @@ find tqt3-examples -name "Makefile" | xargs rm -rf
 install -D -m 755 %{SOURCE1} %{?buildroot}%{_docdir}/tqt3-examples/build-examples
 tar cvvfz tqt3-examples.tar.gz tqt3-examples/
 install -D -m644 "tqt3-examples.tar.gz" "%{?buildroot}%{_docdir}/tqt3-examples/tqt3-examples.tar.gz"
+
+# Fix wrong permissions
+chmod 644 "%{?buildroot}%{_datadir}/tqt3/mkspecs/"*/*
 
 
 %clean

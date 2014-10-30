@@ -57,15 +57,16 @@ BuildRequires:	libtool
 
 # CURL support
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
-BuildRequires:	libcurl-devel
+%define libcurl_devel libcurl-devel
 %else
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}curl-devel
+%define libcurl_devel %{_lib}curl-devel
 %else
 # Specific CURL version for TDE on RHEL 5 (and older)
-BuildRequires:	trinity-libcurl-devel
+#define libcurl_devel trinity-libcurl-devel
 %endif
 %endif
+%{?libcurl_devel:BuildRequires: %{libcurl_devel}}
 
 # GTK2 support
 %if 0%{?rhel} == 4
@@ -113,6 +114,8 @@ Build dependencies are minimal, requiring only libcurl.
 Summary:	A portable CardDAV client implementation (Development Files)
 Group:		Development/Libraries/C and C++
 Requires:	libcarddav = %{?epoch:%{epoch}:}%{version}-%{release}
+%{?libcurl_devel:Requires: %{libcurl_devel}}
+Requires:	glib2-devel
 
 Obsoletes:	trinity-libcarddav-devel < %{version}-%{release}
 Provides:	trinity-libcarddav-devel = %{version}-%{release}
