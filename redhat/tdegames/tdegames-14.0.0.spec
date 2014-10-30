@@ -170,6 +170,8 @@ This package is part of TDE, and a component of the TDE games module.
 %files -n trinity-libtdegames1
 %defattr(-,root,root,-)
 %{tde_libdir}/libtdegames.so.*
+%dir %{tde_datadir}/apps/tdegames
+%dir %{tde_datadir}/apps/tdegames/pics
 %{tde_datadir}/apps/tdegames/pics/star.png
 %{tde_datadir}/icons/crystalsvg/*/actions/roll.png
 %{tde_datadir}/icons/crystalsvg/*/actions/highscore.png
@@ -221,7 +223,7 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %files card-data
 %defattr(-,root,root,-)
-%{tde_datadir}/apps/carddecks/*
+%{tde_datadir}/apps/carddecks/
 
 ##########
 
@@ -714,8 +716,7 @@ This package is part of Trinity, and a component of the TDE games module.
 %{tde_tdeappdir}/klickety.desktop
 %{tde_datadir}/icons/hicolor/*/apps/klickety.png
 %{tde_datadir}/icons/crystalsvg/*/actions/endturn.png
-%{tde_datadir}/apps/klickety/klicketyui.rc
-%{tde_datadir}/apps/klickety/eventsrc
+%{tde_datadir}/apps/klickety/
 %{tde_tdedocdir}/HTML/en/klickety/
 
 %post -n trinity-klickety
@@ -1122,7 +1123,7 @@ This package is part of Trinity, and a component of the TDE games module.
 %defattr(-,root,root,-)
 %{tde_bindir}/ksame
 %{tde_datadir}/icons/hicolor/*/apps/ksame.png
-%{tde_datadir}/apps/ksame/*
+%{tde_datadir}/apps/ksame/
 %{tde_tdeappdir}/ksame.desktop
 %{tde_tdedocdir}/HTML/en/ksame/
 

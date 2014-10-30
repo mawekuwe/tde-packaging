@@ -63,6 +63,7 @@ This package installs the Trinity directory structure.
 
 %dir %{tde_datadir}
 %dir %{tde_datadir}/config
+%dir %{tde_datadir}/config/magic
 
 %dir %{tde_docdir}
 %dir %{tde_tdedocdir}
@@ -146,9 +147,11 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/plugin
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/profiles
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/videothumbnail
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/zeroconf
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/autostart
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/cmake
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/config/magic
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config.kcfg
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/emoticons
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale
