@@ -44,7 +44,7 @@ Name:		trinity-%{tde_pkg}
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Group:		Applications/Multimedia
+Group:		Productivity/Multimedia/Sound/Utilities
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -69,7 +69,6 @@ Obsoletes:	trinity-kdemultimedia-extras < %{version}-%{release}
 Provides:	trinity-kdemultimedia-extras = %{version}-%{release}
 Obsoletes:	trinity-kdemultimedia-extras-libs < %{version}-%{release}
 Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
-
 
 BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -246,7 +245,7 @@ TDE, including:
 
 %package -n trinity-artsbuilder
 Summary:	Synthesizer designer for aRts
-Group:		Applications/Multimedia
+Group:		Productivity/Multimedia/Sound/Mixers
 Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-artsbuilder
@@ -515,7 +514,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kaudiocreator
 Summary:	CD ripper and audio encoder frontend for Trinity
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/CD/Grabbers
 
 Requires:	%{name}-tdeio-plugins = %{version}-%{release}
 Requires:	vorbis-tools
@@ -559,7 +558,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package kfile-plugins
 Summary:	An au/avi/m3u/mp3/ogg/wav plugins for kfile
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Sound/Utilities
 
 %description kfile-plugins
 au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
@@ -604,7 +603,7 @@ au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
 
 %package kappfinder-data
 Summary:	Multimedia data for kappfinder
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Sound/Utilities
 
 Requires: 	trinity-kappfinder >= %{tde_version}
 Requires:	trinity-tdebase-runtime-data-common >= %{tde_version}
@@ -622,7 +621,7 @@ This package provides data on multimedia applications for kappfinder.
 
 %package tdeio-plugins
 Summary:	Enables the browsing of audio CDs under Konqueror
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Sound/Utilities
 Requires:	trinity-tdebase-tdeio-plugins >= %{tde_version}
 
 Obsoletes:	trinity-tdemultimedia-kio-plugins < %{version}-%{release}
@@ -669,7 +668,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-tdemid
 Summary:	MIDI/karaoke player for Trinity
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Sound/Midi
 
 Obsoletes:	trinity-kmid < %{version}-%{release}
 Provides:	trinity-kmid = %{version}-%{release}
@@ -710,7 +709,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kmix
 Summary:	Sound mixer applet for Trinity
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Sound/Mixers
 Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-kmix
@@ -757,7 +756,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-krec
 Summary:	Sound recorder utility for Trinity
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/CD/Record
 
 %description -n trinity-krec
 This is a sound recording utility for Trinity.
@@ -811,7 +810,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kscd
 Summary:	Audio CD player for Trinity
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/CD/Players
 
 %description -n trinity-kscd
 This is Trinity's audio CD player.
@@ -848,7 +847,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %if 0%{?with_akode}
 %package -n trinity-libarts-akode
 Summary:	Akode plugin for aRts
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Other
 
 %description -n trinity-libarts-akode
 This package contains akode plugins for aRts.
@@ -879,7 +878,7 @@ This package contains akode plugins for aRts.
 
 %package -n trinity-libarts-audiofile
 Summary:	Audiofile plugin for aRts
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Other
 
 %description -n trinity-libarts-audiofile
 This package contains audiofile plugins for aRts.
@@ -903,7 +902,7 @@ This package contains audiofile plugins for aRts.
 %if 0%{?with_mpeg}
 %package -n trinity-libarts-mpeglib
 Summary:	Mpeglib plugin for aRts, supporting mp3 and mpeg audio/video
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Other
 
 %description -n trinity-libarts-mpeglib
 This package contains the mpeglib aRts plugin, supporting mp3 and mpeg
@@ -937,7 +936,7 @@ This is the arts (TDE Sound daemon) plugin.
 %if 0%{?with_xine}
 %package -n trinity-libarts-xine
 Summary:	ARTS plugin enabling xine support
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Other
 
 %description -n trinity-libarts-xine
 This package contains aRts' xine plugin, allowing the use of the xine
@@ -967,7 +966,7 @@ multimedia engine though aRts.
 
 %package -n trinity-libkcddb
 Summary:	CDDB library for Trinity
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Other
 Requires:	trinity-kcontrol >= %{tde_version}
 
 %description -n trinity-libkcddb
@@ -999,7 +998,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-mpeglib
 Summary:	MP3 and MPEG-1 audio and video library
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Other
 %if 0%{?with_mpeg}
 Requires:	trinity-libarts-mpeglib = %{version}-%{release}
 %endif
@@ -1033,7 +1032,7 @@ and WAV playback
 
 %package -n trinity-noatun
 Summary:	Media player for Trinity
-Group:		System/GUI/Other
+Group:		Productivity/Multimedia/Video/Players
 Requires:	trinity-tdebase-bin >= %{tde_version}
 
 # 20120802: Hack to avoid dependency issue on MGA2 and MDV2011

@@ -194,7 +194,7 @@ done
 
 %package -n trinity-libtdegames-devel
 Summary:	Trinity games library headers
-Group:		Amusements/Games/Other
+Group:		Development/Libraries/Other
 Requires:	trinity-libtdegames1 = %{version}-%{release}
 
 %description -n trinity-libtdegames-devel
@@ -274,7 +274,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-atlantik-devel
 Summary:	Development files for Atlantik
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-atlantik = %{version}-%{release}
 
 %description -n trinity-atlantik-devel
@@ -780,7 +780,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kmahjongg
-Summary:	the classic mahjongg game for Trinity project
+Summary:	The classic mahjongg game for Trinity project
 Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kmahjongg
@@ -938,7 +938,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kolf-devel
 Summary:	Development files for Kolf
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kolf = %{version}-%{release}
 
 %description -n trinity-kolf-devel
@@ -1639,6 +1639,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file -r kbounce         Game LogicGame
 %suse_update_desktop_file -r kolf            Game SportsGame
 %endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}"
 
 
 %clean

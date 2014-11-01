@@ -1,23 +1,44 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdepim (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_pkg tdepim
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 
 # KDEPIM specific features
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -29,39 +50,56 @@ BuildRequires:	gnokii-devel
 #define		with_kitchensync 1
 
 
-Name:		trinity-tdepim
+Name:		trinity-%{tde_pkg}
+Summary:	Personal Information Management apps from the official Trinity release
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
 Group:		Applications/Productivity
+URL:		http://www.trinitydesktop.org/
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-Summary:	Personal Information Management apps from the official Trinity release
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	trinity-libcaldav-devel
 BuildRequires:	trinity-libcarddav-devel
 
 BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	fdupes
+BuildRequires:	desktop-file-utils
+BuildRequires:	make
+
 BuildRequires:	gpgme-devel
 BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
 BuildRequires:	libical-devel
 BuildRequires:	boost-devel
 BuildRequires:	pcre-devel
-BuildRequires:	glib2-devel
-BuildRequires:	gcc-c++
-BuildRequires:	make
 BuildRequires:	libidn-devel
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 # CURL support
 %if 0%{?fedora} >= 15
@@ -72,6 +110,9 @@ BuildRequires:	trinity-libcurl-devel
 %else
 BuildRequires:	curl-devel
 %endif
+
+# GLIB2 support
+BuildRequires:	glib2-devel
 
 # SASL support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -2229,6 +2270,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=OFF \
   \
@@ -2267,6 +2309,29 @@ fi
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file -r korganizer      Office   Calendar
+%suse_update_desktop_file -r kalarm          Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file -r karm            Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file    kaddressbook
+%suse_update_desktop_file -r knotes          Utility  DesktopUtility X-TDE-Utilities-Desktop
+%suse_update_desktop_file    KMail
+%suse_update_desktop_file -r KOrn            Utility  Applet X-TDE-More
+%suse_update_desktop_file    KNode
+%suse_update_desktop_file -r Kontact         Office  Core-Office
+%suse_update_desktop_file -r kpilot          Utility  PDA SyncUtility X-TDE-Utilities-Peripherals
+%suse_update_desktop_file -u -r kpalmdoc     Utility  PDA X-TDE-Utilities-File
+%suse_update_desktop_file -u ktnef           Network  Email
+%suse_update_desktop_file -r groupwarewizard Utility  DesktopSettings X-TDE-Utilities-PIM
+%suse_update_desktop_file -r kandy           Utility  Telephony X-TDE-Utilities-Peripherals
+%suse_update_desktop_file -r akregator       Network  RSS-News
+%suse_update_desktop_file    kitchensync     Utility  X-SuSE-SyncUtility
+%endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}"
 
 
 %clean
