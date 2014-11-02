@@ -39,10 +39,6 @@ Source1:	ftp://129.187.206.68/pub/unix/ide/KDevelop/c_cpp_reference-2.0.2_for_KD
 
 # [c_cpp_ref] Fix library directories detection
 Patch1: 	c_cpp_reference-2.0.2-config.patch
-# [kdevelop] fix FTBFS
-Patch2: kdevelop-3.5.13-kdevdesigner-ftbfs.patch
-# [kdevelop] Fix XDG menu
-Patch3:		tdevelop-3.5.13.2-fix_xdg_menu.patch
 # [c_cpp_ref] Fix installation of 'asm' files
 Patch4:		c_cpp_reference-2.0.2-install.patch
 
@@ -563,7 +559,7 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -572,8 +568,6 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}} -a 1
 %patch1 -p0 -b .config
-%patch2 -p1
-%patch3 -p1 -b .xdgmenu
 %patch4 -p1
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
