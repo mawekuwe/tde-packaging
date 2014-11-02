@@ -69,7 +69,7 @@ BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	autoconf
-BuildRequires;	automake
+BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	m4
 BuildRequires:	fdupes
