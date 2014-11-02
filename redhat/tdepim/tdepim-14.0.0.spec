@@ -945,12 +945,27 @@ keybox and for retrieving certificates from LDAP servers.
 %{tde_tdeappdir}/kleopatra.desktop
 %{tde_tdedocdir}/HTML/en/kleopatra/
 %{tde_tdedocdir}/HTML/en/kwatchgnupg/
+%{tde_datadir}/icons/hicolor/128x128/apps/kleopatra.png
+%{tde_datadir}/icons/hicolor/16x16/apps/kleopatra.png
+%{tde_datadir}/icons/hicolor/22x22/apps/kleopatra.png
+%{tde_datadir}/icons/hicolor/32x32/apps/kleopatra.png
+%{tde_datadir}/icons/hicolor/48x48/apps/kleopatra.png
+%{tde_datadir}/icons/hicolor/64x64/apps/kleopatra.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kleopatra.svgz
 
 %post -n trinity-kleopatra
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+for f in hicolor ; do
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
+done
 
 %postun -n trinity-kleopatra
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+for f in hicolor ; do
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
+done
 
 ##########
 
@@ -2325,7 +2340,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kalarm.desktop          Utility  TimeUtility X-TDE-Utilities-PIM
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kandy.desktop           Utility  Telephony X-TDE-Utilities-Peripherals
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/karm.desktop            Utility  TimeUtility X-TDE-Utilities-PIM
-%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kleopatra.desktop       Utility
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kleopatra.desktop       X-TDE-Utilities-PIM
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KNode.desktop
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/knotes.desktop          Utility  DesktopUtility X-TDE-Utilities-Desktop
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KMail.desktop

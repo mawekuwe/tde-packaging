@@ -184,7 +184,7 @@ BuildRequires:	perl-devel
 %define perl_vendorarch %{expand:%%(eval `perl -V:installvendorarch`; echo $installvendorarch)}
 
 ## QScintilla
-BuildRequires:	trinity-tqscintilla-devel
+BuildRequires:	libtqscintilla-devel >= %{?tde_epoch:%{tde_epoch}:}1.7.1
 %define _enable_qscintilla --enable-qscintilla
 
 Obsoletes:	trinity-kdebindings < %{version}-%{release}

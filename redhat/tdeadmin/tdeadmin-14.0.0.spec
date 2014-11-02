@@ -209,7 +209,8 @@ Summary:	Trinity file metainfo plugins for deb and rpm files
 Group:		System/GUI/Other
 
 %description kfile-plugins
-File metainfo plugins for deb and rpm package files.
+This package contains the Trinity File metainfo plugins for deb and rpm
+package files.
 
 %files kfile-plugins
 %defattr(-,root,root,-)

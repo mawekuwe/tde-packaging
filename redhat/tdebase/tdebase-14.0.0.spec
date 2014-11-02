@@ -263,6 +263,14 @@ Requires:	hicolor-icon-theme-branding = 13.1
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
+# OpenSuse 13.2 Theme
+%if "%{?suse_version}" == "1320"
+Requires:	wallpaper-branding = 13.2
+%define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
+Requires:	hicolor-icon-theme-branding = 13.2
+%define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
+%endif
+
 BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
@@ -378,30 +386,16 @@ BuildRequires:	OpenEXR-devel
 %endif
 
 # XSCREENSAVER support
-#  Disabled on RHEL4, RHEL >= 7
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7 || 0%{?suse_version} || 0%{?with_xscreensaver}
-%if 0%{?rhel} == 0 || 0%{?rhel} <= 6
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
 %define with_xscreensaver 1
-%if 0%{?rhel} == 5
-BuildRequires:	xorg-x11-proto-devel
-BuildRequires:	gnome-screensaver
+%if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?suse_version}
+BuildRequires:	libXScrnSaver-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?mgaversion} >= 4
 BuildRequires:	%{_lib}xscrnsaver-devel
 %else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
-%endif
-%endif
-%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
-BuildRequires:	xscreensaver
-BuildRequires:	libXScrnSaver-devel
-%if 0%{?suse_version}
-BuildRequires:	xscreensaver-data-extra
-%endif
-%endif
-%if 0%{?suse_version} == 1140
-BuildRequires:	xscreensaver
 %endif
 %endif
 %endif
@@ -3388,7 +3382,7 @@ Windows and Samba shares.
 
 ##########
 
-%if 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -3713,7 +3707,6 @@ popd
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
-# Other applications
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Help.desktop                       Documentation Viewer
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/Home.desktop                       System FileManager core
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kate.desktop                       TextEditor

@@ -179,6 +179,9 @@ BuildRequires: mesaglu-devel
 BuildRequires: Mesa-libGL-devel
 BuildRequires: Mesa-libGLU-devel
 %endif
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-Mesa-libGLU
+%endif
 
 # DRM support
 %if 0%{?rhel} == 4

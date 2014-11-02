@@ -23,16 +23,6 @@
 %define tde_epoch 2
 %define tde_version 14.0.0
 %define tde_pkg tqtinterface
-%define tde_prefix /opt/trinity
-%define tde_bindir %{tde_prefix}/bin
-%define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_tdeappdir %{tde_datadir}/applications/tde
-%define tde_tdedocdir %{tde_docdir}/tde
-%define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
 %define cmake_modules_dir %{_datadir}/cmake/Modules
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -230,7 +220,7 @@ fi
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=OFF \
   \
-  -DQTDIR="%{tde_datadir}/tqt3" \
+  -DQTDIR="%{_datadir}/tqt3" \
   -DQT_INCLUDE_DIR="%{_includedir}/tqt3" \
   -DQT_LIBRARY_DIR="%{_libdir}" \
   \
