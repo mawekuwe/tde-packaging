@@ -2328,7 +2328,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/KOrn.desktop            Utility  Applet X-TDE-More
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KNode.desktop
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/Kontact.desktop         Office   Core-Office
-%suse_update_desktop_file -u -r %{?buildroot}%{tde_tdeappdir}/kpalmdoc.desktop        Utility  PDA X-TDE-Utilities-File
 %suse_update_desktop_file -u    %{?buildroot}%{tde_tdeappdir}/ktnef.desktop           Network  Email
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/groupwarewizard.desktop Utility  DesktopSettings X-TDE-Utilities-PIM
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kandy.desktop           Utility  Telephony X-TDE-Utilities-Peripherals
