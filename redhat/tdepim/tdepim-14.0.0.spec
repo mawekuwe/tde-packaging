@@ -101,6 +101,13 @@ BuildRequires:	update-desktop-files
 BuildRequires:	brp-check-trinity
 %endif
 
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 # CURL support
 %if 0%{?fedora} >= 15
 BuildRequires:	flex-static
@@ -2238,7 +2245,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
