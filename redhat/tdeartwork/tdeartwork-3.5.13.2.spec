@@ -35,8 +35,6 @@ Url:		http://www.trinitydesktop.org/
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			tdeartwork-3.5.13.2-fix_update_screensaver_list.patch
-
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
@@ -681,7 +679,6 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .screenlist
 
 # http://www.trinitydesktop.org/wiki/bin/view/Developers/HowToBuild
 # NOTE: Before building tdeartwork, install any and all xhack screensavers that might be uses, then:

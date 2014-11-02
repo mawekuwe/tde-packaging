@@ -1,57 +1,81 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdeartwork (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_pkg tdeartwork
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
+%define tde_sbindir %{tde_prefix}/sbin
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
 
-
-Name:			trinity-tdeartwork
-Summary:		Additional artwork (themes, sound themes, ...) for TDE
-Version:		%{tde_version}
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPLv2
+Name:		trinity-%{tde_pkg}
+Summary:	Additional artwork (themes, sound themes, ...) for TDE
+Version:	%{tde_version}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Group:		User Interface/Desktops
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+URL:		http://www.trinitydesktop.org/
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-Url:		http://www.trinitydesktop.org/
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	cmake >= 2.8
+Obsoletes:	trinity-kdeartwork < %{version}-%{release}
+Provides:	trinity-kdeartwork = %{version}-%{release}
+
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 
-BuildRequires:	gettext
-BuildRequires:	esound-devel
+BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	fdupes
 
-# kdeartwork specific settings
+BuildRequires:	gettext
+
+# ESOUND support
+BuildRequires:	esound-devel
 
 # OpenGL support
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-Mesa-libGLU
-%endif
-
-# NAS support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	nas-devel
 %endif
 
 # LIBART support
@@ -100,16 +124,20 @@ BuildRequires:	xscreensaver-data-extra
 %endif
 
 # JACK support
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?with_jack}
+%define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}jack-devel
+%define jack_devel %{_lib}jack-devel
 %endif
-%if 0%{?fedora} || 0%{?rhel} >= 5
-BuildRequires:	jack-audio-connection-kit-devel
+%if 0%{?rhel} >= 5 || 0%{?fedora}
+%define jack_devel jack-audio-connection-kit-devel
+%endif
+%if 0%{?suse_version}
+%define jack_devel libjack-devel
+%endif
+BuildRequires:	%{jack_devel}
 %endif
 
-
-Obsoletes:	trinity-kdeartwork < %{version}-%{release}
-Provides:	trinity-kdeartwork = %{version}-%{release}
 
 # Metapackage
 Requires: %{name}-emoticons = %{version}-%{release}
@@ -139,7 +167,6 @@ This metapackage includes a collection of artistic extras (themes, widget
 styles, screen savers, wallpaper, icons, emoticons and so on) provided
 with the official release of TDE.
 
-Homepage: http://artist.kde.org 
 
 %files
 
