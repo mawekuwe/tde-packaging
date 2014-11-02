@@ -97,7 +97,8 @@ BuildRequires:	libart_lgpl-devel
 # XSCREENSAVER support
 #  RHEL 4: disabled
 #  RHEL 6: available in EPEL
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 5 || 0%{rhel} == 7 || 0%{?suse_version} || 0%{?with_xscreensaver}
+#  RHEL 7: available in NUX
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
 %define with_xscreensaver 1
 
 %if 0%{?fedora} || 0%{?rhel} >= 5
