@@ -119,7 +119,7 @@ Requires:	glib2-devel
 
 Obsoletes:	trinity-libcarddav-devel < %{version}-%{release}
 Provides:	trinity-libcarddav-devel = %{version}-%{release}
-Provides:	%{libcarddav} = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	libcarddav-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n %{libcarddav}-devel
 Libcarddav is a portable CardDAV client implementation originally developed for the Trinity PIM suite. 
