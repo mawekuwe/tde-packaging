@@ -113,7 +113,7 @@ easy to integrate CalDAV support into any PIM application.
 
 %package -n %{libcaldav}-devel
 Summary:	A client library that adds support for the CalDAV protocol (Development Files)
-Group:		Development/Libraries/C and C++
+Group:		Development/Libraries/Other
 Requires:	%{libcaldav}0 = %{?epoch:%{epoch}:}%{version}-%{release}
 %{?libcurl_devel:Requires: %{libcurl_devel}}
 Requires:	glib2-devel

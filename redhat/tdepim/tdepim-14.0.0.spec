@@ -212,7 +212,7 @@ This metapackage includes a collection of Personal Information Management
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 Obsoletes:	tdepim-cmake < %{version}-%{release}
 
@@ -309,7 +309,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-akregator-devel
 Summary:	Development files for trinity-akregator
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-akregator = %{version}-%{release}
 
 %description -n trinity-akregator-devel
@@ -401,7 +401,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kaddressbook-devel
 Summary:	Development files for trinity-kaddressbook
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kaddressbook = %{version}-%{release}
 
 %description -n trinity-kaddressbook-devel
@@ -554,7 +554,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-karm-devel
 Summary:	Development files for karm
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 %description -n trinity-karm-devel
 %{summary}
@@ -754,7 +754,7 @@ tracking feature plans.
 
 %package tderesources-devel
 Summary:	Development files for tderesources
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	libcaldav
 Requires:	libcarddav
@@ -1069,7 +1069,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kmail-devel
 Summary:	Development files for kmail
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 %description -n trinity-kmail-devel
 %{summary}
@@ -1165,7 +1165,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-knode-devel
 Summary:	Development files for trinity-knode
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-knode = %{version}-%{release}
 
 %description -n trinity-knode-devel
@@ -1231,7 +1231,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-knotes-devel
 Summary:	Development files for knots
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-knotes = %{version}-%{release}
 Requires:	%{name}-tderesources-devel = %{version}-%{release}
 
@@ -1278,7 +1278,7 @@ described by RelaxNG schemes.
 
 %package -n trinity-kode-devel
 Summary:	Development files for trinity-kode
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kode = %{version}-%{release}
 
 %description -n trinity-kode-devel
@@ -1405,7 +1405,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kontact-devel
 Summary:	Development files for kontact
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kontact = %{version}-%{release}
 
 %description -n trinity-kontact-devel
@@ -1504,7 +1504,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-korganizer-devel
 Summary:	Development files for korganizer
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-korganizer = %{version}-%{release}
 
 %description -n trinity-korganizer-devel
@@ -1635,7 +1635,7 @@ This is the runtime package for programs that use the libindex library.
 
 %package -n trinity-libindex-devel
 Summary:	Trinity indexing library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libindex = %{version}-%{release}
 
 %description -n trinity-libindex-devel
@@ -1702,7 +1702,7 @@ This is the runtime package for programs that use the libkcal-trinity library.
 
 %package -n trinity-libkcal-devel
 Summary:	Trinity calendaring library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkcal = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 Requires:	trinity-libktnef-devel = %{version}-%{release}
@@ -1776,7 +1776,7 @@ done
 
 %package -n trinity-libtdepim-devel
 Summary:	Trinity PIM library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libtdepim = %{version}-%{release}
 Requires:	trinity-tdelibs-devel >= %{version}
 
@@ -1823,7 +1823,7 @@ This is the runtime package for programs that use the libkgantt-trinity library.
 
 %package -n trinity-libkgantt-devel
 Summary:	Trinity gantt charting library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkgantt = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -1887,7 +1887,7 @@ done
 
 %package -n trinity-libkleopatra-devel
 Summary:	Trinity GnuPG interface libraries [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkleopatra = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -1943,7 +1943,7 @@ an object tree.
 
 %package -n trinity-libkmime-devel
 Summary:	Development files for libkmime
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkmime = %{version}-%{release}
 
 %description -n trinity-libkmime-devel
@@ -1964,7 +1964,7 @@ Requires:	trinity-libkmime = %{version}-%{release}
 
 %package -n trinity-libkpimexchange
 Summary:	Trinity PIM Exchange library
-Group:		Environment/Libraries
+Group:		Development/Libraries/Other
 
 %description -n trinity-libkpimexchange
 This is the runtime package for programs that use the libkpimexchange-trinity
@@ -1986,7 +1986,7 @@ library.
 
 %package -n trinity-libkpimexchange-devel
 Summary:	Trinity PIM Exchange library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkpimexchange = %{version}-%{release}
 Requires:	trinity-libkcal-devel = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
@@ -2035,7 +2035,7 @@ library.
 
 %package -n trinity-libkpimidentities-devel
 Summary:	Development files for libkpimidentities
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkpimidentities = %{version}-%{release}
 
 %description -n trinity-libkpimidentities-devel
@@ -2076,7 +2076,7 @@ This is the runtime package for programs that use the libksieve-trinity library.
 
 %package -n trinity-libksieve-devel
 Summary:	Trinity mail/news message filtering library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libksieve = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -2124,7 +2124,7 @@ This is the runtime library for packages using the ktnef-trinity library.
 
 %package -n trinity-libktnef-devel
 Summary:	KTNEF handler library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libktnef = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -2174,7 +2174,7 @@ This is the runtime package for programs that use the libmimelib-trinity library
 
 %package -n trinity-libmimelib-devel
 Summary:	Trinity mime library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libmimelib = %{version}-%{release}
 
 %description -n trinity-libmimelib-devel
@@ -2319,22 +2319,24 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
-%suse_update_desktop_file -r korganizer      Office   Calendar
-%suse_update_desktop_file -r kalarm          Utility  TimeUtility X-TDE-Utilities-PIM
-%suse_update_desktop_file -r karm            Utility  TimeUtility X-TDE-Utilities-PIM
-%suse_update_desktop_file    kaddressbook
-%suse_update_desktop_file -r knotes          Utility  DesktopUtility X-TDE-Utilities-Desktop
-%suse_update_desktop_file    KMail
-%suse_update_desktop_file -r KOrn            Utility  Applet X-TDE-More
-%suse_update_desktop_file    KNode
-%suse_update_desktop_file -r Kontact         Office  Core-Office
-%suse_update_desktop_file -r kpilot          Utility  PDA SyncUtility X-TDE-Utilities-Peripherals
-%suse_update_desktop_file -u -r kpalmdoc     Utility  PDA X-TDE-Utilities-File
-%suse_update_desktop_file -u ktnef           Network  Email
-%suse_update_desktop_file -r groupwarewizard Utility  DesktopSettings X-TDE-Utilities-PIM
-%suse_update_desktop_file -r kandy           Utility  Telephony X-TDE-Utilities-Peripherals
-%suse_update_desktop_file -r akregator       Network  RSS-News
-%suse_update_desktop_file    kitchensync     Utility  X-SuSE-SyncUtility
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/korganizer.desktop      Office   Calendar
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kalarm.desktop          Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/karm.desktop            Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kaddressbook.desktop
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/knotes.desktop          Utility  DesktopUtility X-TDE-Utilities-Desktop
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KMail.desktop
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/KOrn.desktop            Utility  Applet X-TDE-More
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KNode.desktop
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/Kontact.desktop         Office   Core-Office
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kpilot.desktop          Utility  PDA SyncUtility X-TDE-Utilities-Peripherals
+%suse_update_desktop_file -u -r %{?buildroot}%{tde_tdeappdir}/kpalmdoc.desktop        Utility  PDA X-TDE-Utilities-File
+%suse_update_desktop_file -u    %{?buildroot}%{tde_tdeappdir}/ktnef.desktop           Network  Email
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/groupwarewizard.desktop Utility  DesktopSettings X-TDE-Utilities-PIM
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kandy.desktop           Utility  Telephony X-TDE-Utilities-Peripherals
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/akregator.desktop       Network  RSS-News
+%if 0%{?with_kitchensync}
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kitchensync.desktop     Utility  X-SuSE-SyncUtility
+%endif
 %endif
 
 # Links duplicate files

@@ -112,7 +112,7 @@ Build dependencies are minimal, requiring only libcurl.
 
 %package -n %{libcarddav}-devel
 Summary:	A portable CardDAV client implementation (Development Files)
-Group:		Development/Libraries/C and C++
+Group:		Development/Libraries/Other
 Requires:	%{libcarddav}0 = %{?epoch:%{epoch}:}%{version}-%{release}
 %{?libcurl_devel:Requires: %{libcurl_devel}}
 Requires:	glib2-devel
