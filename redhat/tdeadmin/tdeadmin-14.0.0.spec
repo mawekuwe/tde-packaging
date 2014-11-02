@@ -143,7 +143,7 @@ It is a graphical user interface to cron, the UNIX system scheduler.
 %defattr(-,root,root,-)
 %{tde_bindir}/kcron
 %{tde_tdeappdir}/kcron.desktop
-%{tde_datadir}/apps/kcron/kcronui.rc
+%{tde_datadir}/apps/kcron/
 %{tde_datadir}/icons/hicolor/*/apps/kcron.png
 %{tde_tdedocdir}/HTML/en/kcron/
 
