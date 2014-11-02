@@ -492,6 +492,7 @@ Kandy is aimed at mobile phones with integrated (GSM) modems.
 %{tde_datadir}/applnk/Utilities/kandy.desktop
 %{tde_datadir}/apps/kandy/
 %{tde_datadir}/icons/crystalsvg/*/apps/kandy.png
+%{tde_datadir}/icons/hicolor/*/apps/kandy.png
 %{tde_datadir}/config.kcfg/kandy.kcfg
 %{tde_tdedocdir}/HTML/en/kandy/
 
@@ -2254,7 +2255,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
@@ -2319,23 +2319,29 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
-%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/korganizer.desktop      Office   Calendar
-%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kalarm.desktop          Utility  TimeUtility X-TDE-Utilities-PIM
-%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/karm.desktop            Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/akregator.desktop       Network  RSS-News
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/groupwarewizard.desktop Utility  DesktopSettings X-TDE-Utilities-PIM
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kaddressbook.desktop
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kalarm.desktop          Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kandy.desktop           Utility  Telephony X-TDE-Utilities-Peripherals
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/karm.desktop            Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kleopatra.desktop       Utility
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KNode.desktop
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/knotes.desktop          Utility  DesktopUtility X-TDE-Utilities-Desktop
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KMail.desktop
-%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/KOrn.desktop            Utility  Applet X-TDE-More
-%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KNode.desktop
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/Kontact.desktop         Office   Core-Office
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/korganizer.desktop      Office   Calendar
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/KOrn.desktop            Utility  Applet X-TDE-More
 %suse_update_desktop_file -u    %{?buildroot}%{tde_tdeappdir}/ktnef.desktop           Network  Email
-%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/groupwarewizard.desktop Utility  DesktopSettings X-TDE-Utilities-PIM
-%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kandy.desktop           Utility  Telephony X-TDE-Utilities-Peripherals
-%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/akregator.desktop       Network  RSS-News
 %if 0%{?with_kitchensync}
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kitchensync.desktop     Utility  X-SuSE-SyncUtility
 %endif
 %endif
+
+# Adds missing icons in 'hicolor' theme
+pushd "%{?buildroot}%{tde_datadir}/icons"
+for i in {16,32,48};    do %__cp crystalsvg/"$i"x"$i"/apps/kandy.png  hicolor/"$i"x"$i"/apps/kandy.png  ;done
+popd
 
 # Links duplicate files
 %fdupes "%{?buildroot}%{tde_datadir}"
