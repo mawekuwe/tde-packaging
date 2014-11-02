@@ -267,6 +267,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/icons/kdeclassic/
 %{tde_datadir}/icons/kids/
 %{tde_datadir}/icons/slick/
+%{tde_datadir}/icons/locolor/index.theme
+%{tde_datadir}/icons/locolor/*/*/*.png
 
 %post theme-icon
 for i in locolor ikons kdeclassic kids slick ; do
