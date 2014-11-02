@@ -151,6 +151,13 @@ BuildRequires:	xscreensaver-data-extra
 BuildRequires:	%{jack_devel}
 %endif
 
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 
 # Metapackage
 Requires: %{name}-emoticons = %{version}-%{release}
@@ -256,7 +263,10 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %files theme-icon
 %defattr(-,root,root,-)
-%{tde_datadir}/icons/*/*
+%{tde_datadir}/icons/ikons/
+%{tde_datadir}/icons/kdeclassic/
+%{tde_datadir}/icons/kids/
+%{tde_datadir}/icons/slick/
 
 %post theme-icon
 for i in locolor ikons kdeclassic kids slick ; do
