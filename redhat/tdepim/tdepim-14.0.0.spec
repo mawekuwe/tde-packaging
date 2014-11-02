@@ -74,8 +74,8 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	trinity-libcaldav-devel
-BuildRequires:	trinity-libcarddav-devel
+BuildRequires:	libcaldav-devel >= %{tde_epoch}:0.6.5
+BuildRequires:	libcarddav-devel >= %{tde_epoch}:0.6.2
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
