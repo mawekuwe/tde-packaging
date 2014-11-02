@@ -73,6 +73,7 @@ BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	m4
 BuildRequires:	fdupes
+BuildRequires:	gcc-c++
 
 # SUSE desktop files utility
 %if 0%{?suse_version}
