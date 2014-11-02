@@ -95,37 +95,40 @@ BuildRequires:	xorg-x11-Mesa-libGLU
 BuildRequires:	libart_lgpl-devel
 
 # XSCREENSAVER support
-#  Disabled on RHEL4, RHEL < 7
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7 || 0%{?suse_version} || 0%{?with_xscreensaver}
-
-%if 0%{?rhel} == 0 || 0%{?rhel} <= 6 || 0%{?with_xscreensaver}
+#  RHEL 4: disabled
+#  RHEL 6: available in EPEL
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 5 || 0%{rhel} == 7 || 0%{?suse_version} || 0%{?with_xscreensaver}
 %define with_xscreensaver 1
-%if 0%{?mgaversion} || 0%{?mdkversion}
 
+%if 0%{?fedora} || 0%{?rhel} >= 5
+BuildRequires:	libXScrnSaver-devel
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-base
+BuildRequires:	xscreensaver-extras
+%if 0%{?fedora} || 0%{?rhel} >= 6
+BuildRequires:	xscreensaver-extras-base
+%endif
+BuildRequires:	xscreensaver-gl-base
+BuildRequires:	xscreensaver-gl-extras
+%endif
+
+%if 0%{?suse_version}
+BuildRequires:	libXScrnSaver-devel
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-data
+BuildRequires:	xscreensaver-data-extra
+%endif
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?mgaversion} >= 4
 BuildRequires:	%{_lib}xscrnsaver-devel
 %else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
 %endif
-
 BuildRequires:	xscreensaver
 BuildRequires:	xscreensaver-base
 BuildRequires:	xscreensaver-extrusion
 BuildRequires:	xscreensaver-gl
-%endif
-%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
-BuildRequires:	libXScrnSaver-devel
-%endif
-
-%if 0%{?fedora} || 0%{?rhel} >= 6 
-# Provides '/usr/share/xscreensaver/config/deco.xml'
-BuildRequires:	xscreensaver
-BuildRequires:	xscreensaver-extras
-%endif
-%if 0%{?suse_version}
-BuildRequires:	xscreensaver
-BuildRequires:	xscreensaver-data
-BuildRequires:	xscreensaver-data-extra
 %endif
 
 # Opensuse does not provide 'webcollage' screensaver
@@ -133,7 +136,6 @@ BuildRequires:	xscreensaver-data-extra
 %define with_webcollage 1
 %endif
 
-%endif
 %endif
 
 # JACK support
@@ -488,11 +490,6 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/photopile.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/skytentacles.desktop
 
-# These screensavers do not exist on Mageia 2
-%if 0%{?mgaversion} == 0 && 0%{?mdkversion} == 0
-%{tde_datadir}/applnk/System/ScreenSavers/glmatrix.desktop
-%endif
-
 ##########
 
 %if 0%{?with_webcollage}
@@ -700,7 +697,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
-%if 0%{?fedora} >= 18 || 0%{?pclinuxos} || 0%{?mgaversion} >= 4 || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 20 || 0%{?pclinuxos} || 0%{?mgaversion} >= 4 || 0%{?rhel} >= 7
 %{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
