@@ -69,6 +69,7 @@ BuildRequires:	gcc-c++
 BuildRequires:	fdupes
 
 BuildRequires:	gettext
+BuildRequires:	libidn-devel
 
 # ESOUND support
 BuildRequires:	esound-devel
