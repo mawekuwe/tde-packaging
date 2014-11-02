@@ -1,43 +1,58 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdeadmin (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_pkg tdeadmin
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
-%define tde_sbindir %{tde_prefix}/sbin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
 
+Name:		trinity-%{tde_pkg}
+Summary:	Administrative tools for TDE
+Version:	%{tde_version}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Group:		System/GUI/Other
+URL:		http://www.trinitydesktop.org/
 
-Name:			trinity-tdeadmin
-Summary:		Administrative tools for TDE
-Version:		%{tde_version}
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-License:		GPLv2
-Group:			User Interface/Desktops
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.trinitydesktop.org/
-
-Prefix:			%{tde_prefix}
-
-Obsoletes:		trinity-kdeadmin < %{version}-%{release}
-Provides:		trinity-kdeadmin = %{version}-%{release}
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:		kuser.pam
@@ -46,17 +61,39 @@ Source5:		kpackagerc
 Source6:		ksysvrc
 Source7:		kuserrc
 
-BuildRequires: autoconf automake libtool m4
+Obsoletes:		trinity-kdeadmin < %{version}-%{release}
+Provides:		trinity-kdeadmin = %{version}-%{release}
+
 BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
+
+BuildRequires:	autoconf
+BuildRequires;	automake
+BuildRequires:	libtool
+BuildRequires:	m4
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+# RPM support
 BuildRequires: rpm-devel
+
+# PAM support
 BuildRequires: pam-devel
 
+# LILO support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 #define with_lilo 1
 %endif
-
 %if 0%{?with_lilo}
 BuildRequires:	lilo
 %endif
@@ -95,7 +132,7 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 
 %package -n trinity-kcron
 Summary:	The Trinity crontab editor
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 
 %description -n trinity-kcron
 KCron is an application for scheduling programs to run in the background.
@@ -127,7 +164,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kdat
 Summary:	A Trinity tape backup tool
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 
 %description -n trinity-kdat
 KDat is a tar-based tape archiver. It is designed to work with multiple
@@ -168,7 +205,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package kfile-plugins
 Summary:	Trinity file metainfo plugins for deb and rpm files
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 
 %description kfile-plugins
 File metainfo plugins for deb and rpm package files.
@@ -186,7 +223,7 @@ File metainfo plugins for deb and rpm package files.
 
 %package -n trinity-knetworkconf
 Summary:	Trinity network configuration tool
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 
 %description -n trinity-knetworkconf
 This is a TDE control center module to configure TCP/IP settings.  It
@@ -222,7 +259,7 @@ done
 
 %package -n trinity-kpackage
 Summary:	Trinity package management tool
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 
 %description -n trinity-kpackage
 This is a frontend to both .rpm and .deb package formats. It allows you
@@ -257,7 +294,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksysv
 Summary:	Trinity SysV-style init configuration editor
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 
 %description -n trinity-ksysv
 This program allows you to edit your start and stop scripts using a
@@ -294,7 +331,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kuser
 Summary:	Trinity user/group administration tool
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 
 %if 0%{?with_consolehelper}
 # package 'usermode' provides '/usr/bin/consolehelper-gtk'
@@ -346,7 +383,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %if 0%{?with_lilo}
 %package -n trinity-lilo-config
 Summary:	Trinity frontend for lilo configuration
-Group:		Applications/Utilities
+Group:		System/GUI/Other
 Requires:	trinity-kcontrol
 Requires:	trinity-tdebase-bin
 #Requires:	lilo
@@ -371,7 +408,7 @@ touch /etc/lilo.conf
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -471,6 +508,18 @@ done
 %__rm -f %{?buildroot}%{tde_tdelibdir}/kcm_lilo.so
 %__rm -f %{?buildroot}%{tde_tdeappdir}/lilo.desktop
 %endif
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file kdat     System Backup
+%suse_update_desktop_file kpackage System PackageManager
+%suse_update_desktop_file kcron    System ServiceConfiguration
+%suse_update_desktop_file ksysv    System ServiceConfiguration
+%suse_update_desktop_file kuser    System SystemSetup
+%endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean
