@@ -73,7 +73,18 @@ BuildRequires:	gettext
 # ESOUND support
 BuildRequires:	esound-devel
 
-# OpenGL support
+# MESA support
+%if 0%{?rhel} || 0%{?fedora}
+BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGLU-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires: mesaglu-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: Mesa-libGL-devel
+BuildRequires: Mesa-libGLU-devel
+%endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-Mesa-libGLU
 %endif
@@ -83,7 +94,8 @@ BuildRequires:	xorg-x11-Mesa-libGLU
 BuildRequires:	libart_lgpl-devel
 
 # XSCREENSAVER support
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version} || 0%{?with_xscreensaver}
+#  Disabled on RHEL4, RHEL < 7
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 7 || 0%{?suse_version} || 0%{?with_xscreensaver}
 
 %if 0%{?rhel} == 0 || 0%{?rhel} <= 6 || 0%{?with_xscreensaver}
 %define with_xscreensaver 1
@@ -763,6 +775,9 @@ export PATH="%{tde_bindir}:${PATH}"
 # Duplicate with trinity-kbabel (from tdesdk)
 %__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/16x16/apps/kbabel.png
 %__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/32x32/apps/kbabel.png
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean
