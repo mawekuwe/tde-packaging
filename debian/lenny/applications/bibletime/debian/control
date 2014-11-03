@@ -1,6 +1,6 @@
 Source: bibletime-trinity
 Section: tde
-Build-Depends: bzip2, autotools-dev, quilt, patchutils (>= 0.2.25), cdbs (>= 0.4.27), debhelper (>= 4.1.0), tdelibs14-trinity-dev, libsword-dev, libclucene-dev, poxml-trinity, libboost-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: bzip2, autotools-dev, quilt, patchutils (>= 0.2.25), cdbs (>= 0.4.27), debhelper (>= 4.1.0), tdelibs14-trinity-dev, libsword-dev, libclucene-dev, poxml-trinity, libboost-dev, automake, autoconf, libtool-bin | libtool (<< 2.4.2-1.11), libtool, libltdl-dev
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Standards-Version: 3.8.4
