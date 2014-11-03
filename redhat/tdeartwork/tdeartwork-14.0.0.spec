@@ -40,7 +40,7 @@ Name:		trinity-%{tde_pkg}
 Summary:	Additional artwork (themes, sound themes, ...) for TDE
 Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Group:		User Interface/Desktops
+Group:		System/GUI/Other
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -132,8 +132,8 @@ BuildRequires:	xscreensaver-extrusion
 BuildRequires:	xscreensaver-gl
 %endif
 
-# Opensuse does not provide 'webcollage' screensaver
-%if 0%{?suse_version} == 0
+# Opensuse <= 13.10 does not provide 'webcollage' screensaver
+%if 0%{?suse_version} == 0 || 0%{?suse_version} >= 1320
 %define with_webcollage 1
 %endif
 
@@ -196,8 +196,8 @@ with the official release of TDE.
 ##########
 
 %package emoticons
-Summary:	emoticon collections for tDE chat clients
-Group:		User Interface/Desktops
+Summary:	Emoticon collections for tDE chat clients
+Group:		System/GUI/Other
 
 %description emoticons
 This package contains several collections of emoticons used by official
@@ -212,8 +212,8 @@ This package is part of TDE, and a component of the TDE artwork module.
 ##########
 
 %package misc
-Summary:	various multimedia goodies released with TDE
-Group:		User Interface/Desktops
+Summary:	Various multimedia goodies released with TDE
+Group:		System/GUI/Other
 
 %description misc
 This package contains miscellaneous multimedia goodies for TDE.
@@ -230,8 +230,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 ##########
 
 %package style
-Summary:	widget styles released with Trinity
-Group:		User Interface/Desktops
+Summary:	Widget styles released with Trinity
+Group:		System/GUI/Other
 
 %description style
 This package contains additional widget styles for Trinity. Widget styles
@@ -251,8 +251,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 ##########
 
 %package theme-icon
-Summary:	icon themes released with Trinity
-Group:		User Interface/Desktops
+Summary:	Icon themes released with Trinity
+Group:		System/GUI/Other
 
 Obsoletes:	trinity-kdeartwork-icons < %{version}-%{release}
 Provides:	trinity-kdeartwork-icons = %{version}-%{release}
@@ -288,8 +288,8 @@ done
 ##########
 
 %package theme-window
-Summary:	window decoration themes released with Trinity
-Group:		User Interface/Desktops
+Summary:	Window decoration themes released with Trinity
+Group:		System/GUI/Other
 
 %description theme-window
 This package contains additional window decoration themes for Trinity. Window
@@ -307,8 +307,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 ##########
 
 %package -n trinity-tdewallpapers
-Summary:	wallpapers released with Trinity
-Group:		User Interface/Desktops
+Summary:	Wallpapers released with Trinity
+Group:		System/GUI/Other
 Obsoletes:	trinity-kdewallpapers < %{version}-%{release}
 Provides:	trinity-kdewallpapers = %{version}-%{release}
 
@@ -325,8 +325,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 ##########
 
 %package -n trinity-tdescreensaver
-Summary:	additional screen savers released with Trinity
-Group:		User Interface/Desktops
+Summary:	Additional screen savers released with Trinity
+Group:		System/GUI/Other
 
 Obsoletes:	trinity-kscreensaver < %{version}-%{release}
 Provides:	trinity-kscreensaver = %{version}-%{release}
@@ -398,7 +398,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %package -n trinity-tdescreensaver-xsavers
 Summary:	Trinity hooks for standard xscreensavers
-Group:		User Interface/Desktops
+Group:		System/GUI/Other
 Requires:	trinity-tdebase-bin >= %{tde_version}
 Requires:	xscreensaver
 
@@ -496,8 +496,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %if 0%{?with_webcollage}
 
 %package -n trinity-tdescreensaver-xsavers-webcollage
-Summary:	webcollage screensaver Trinity hook
-Group:		User Interface/Desktops
+Summary:	Webcollage screensaver Trinity hook
+Group:		System/GUI/Other
 Requires:	trinity-tdescreensaver-xsavers-extra = %{version}-%{release}
 Requires:	netpbm
 
@@ -528,7 +528,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %package -n trinity-tdescreensaver-xsavers-extra
 Summary:	Trinity hooks for standard xscreensavers
-Group:		User Interface/Desktops
+Group:		System/GUI/Other
 Requires:	trinity-tdescreensaver-xsavers = %{version}-%{release}
 
 Obsoletes:	trinity-kscreensaver-xsavers-extra < %{version}-%{release}
@@ -709,12 +709,12 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/geodesic.desktop
 %endif
 
-%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
+%if 0%{?opensuse_bs} == 0 && 0%{?fedora} >= 20 || 0%{?rhel} >= 7
 %{tde_datadir}/applnk/System/ScreenSavers/projectiveplane.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/tessellimage.desktop
 %endif
 
-%if 0%{?fedora} >= 20
+%if 0%{?opensuse_bs} == 0 && 0%{?fedora} >= 20
 %{tde_datadir}/applnk/System/ScreenSavers/winduprobot.desktop
 %endif
 
@@ -774,21 +774,27 @@ fi
 
 %install
 export PATH="%{tde_bindir}:${PATH}"
-%__rm -rf %{buildroot}
-%__make install -C build DESTDIR=%{buildroot}
+%__rm -rf "%{buildroot}"
+%__make install -C build DESTDIR="%{buildroot}"
 
 # Should not be here if xscreensaver is disabled
 %if 0%{?with_xscreensaver} == 0
-%__rm -f %{?buildroot}%{tde_bindir}/xscreensaver-getimage
-%__rm -f %{?buildroot}%{tde_bindir}/xscreensaver-getimage-file
+%__rm -f "%{?buildroot}%{tde_bindir}/xscreensaver-getimage"
+%__rm -f "%{?buildroot}%{tde_bindir}/xscreensaver-getimage-file"
 %endif
 
 # Duplicate with trinity-kbabel (from tdesdk)
-%__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/16x16/apps/kbabel.png
-%__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/32x32/apps/kbabel.png
+%__rm -f "%{?buildroot}%{tde_datadir}/icons/locolor/16x16/apps/kbabel.png"
+%__rm -f "%{?buildroot}%{tde_datadir}/icons/locolor/32x32/apps/kbabel.png"
 
 # Links duplicate files
 %fdupes "%{?buildroot}%{tde_datadir}"
+
+# Fix invalid permissions
+%if 0%{?with_xscreensaver}
+chmod +x "%{?buildroot}%{tde_bindir}/xscreensaver-getimage"
+chmod +x "%{?buildroot}%{tde_bindir}/xscreensaver-getimage-file"
+%endif
 
 
 %clean
