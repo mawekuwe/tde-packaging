@@ -1,0 +1,29 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+VERSION := $(shell dpkg-parsechangelog | grep ^Version: | cut -d' ' -f2)
+DISTRIBUTION := $(shell dpkg-parsechangelog | grep ^Distribution: | cut -d' ' -f2)
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+pre-build:: debian/stamp-distrospecific
+
+debian/stamp-distrospecific:
+	dh_testdir
+	[ -e debian/stamp-distrospecific ] || \
+	ls -a1 debian/distrospecific | grep -v "^\.*$$" | \
+	tee debian/stamp-distrospecific | \
+	tr "\n" "\0" | (cd debian/distrospecific && xargs -r0 mv -t ../..)
+
+clean::
+	dh_testdir
+	[ ! -e debian/stamp-distrospecific ] || \
+	cat debian/stamp-distrospecific | \
+	tr "\n" "\0" | xargs -r0 mv -t debian/distrospecific
+	rm -f debian/stamp-distrospecific
+
+binary-install/trinity-apt-archive::
+	dh_testdir
+	sed -i 's|ubuntu [^ ]* main|ubuntu ${DISTRIBUTION} main|g' debian/$(cdbs_curpkg)/etc/apt/sources.list.d/trinity.list
