@@ -26,4 +26,3 @@ clean::
 
 binary-install/trinity-keyring::
 	dh_testdir
-	sed -i 's|ubuntu [^ ]* main|ubuntu ${DISTRIBUTION} main|g' debian/$(cdbs_curpkg)/etc/apt/sources.list.d/trinity.list
