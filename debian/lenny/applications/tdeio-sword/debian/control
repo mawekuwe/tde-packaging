@@ -2,7 +2,7 @@ Source: tdeio-sword-trinity
 Section: tde
 Priority: extra
 Maintainer: Raphaël Pinson <raphink@raphink.net>
-Build-Depends: debhelper (>= 5.0.7), quilt, cdbs, automake, libtool, libsword-dev (>= 1.5.8-1), tdelibs14-trinity-dev
+Build-Depends: debhelper (>= 5.0.7), quilt, cdbs, automake, libtool-bin | libtool (<< 2.4.2-1.11), libtool, libsword-dev (>= 1.5.8-1), tdelibs14-trinity-dev
 Standards-Version: 3.7.2
 
 Package: tdeio-sword-trinity
