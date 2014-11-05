@@ -4,7 +4,7 @@ Priority: optional
 Homepage: http://tork.sourceforge.net/
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>= 5), cdbs, automake, libtool, 
- tdelibs-trinity-dev, libgeoip-dev, libgnutls-dev,
+ tdelibs-trinity-dev, libgeoip-dev,
  libjpeg-dev, libpng-dev, zlib1g-dev,
  pkg-config, torsocks
 Standards-Version: 3.9.1
