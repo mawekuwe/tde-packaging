@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Modestas Vainius <geromanas@mailas.com>, Sarah Hobbs <hobbsee@ubuntu.com>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quilt, cmake, autotools-dev, docbook-to-man, doxygen, gawk, gettext, tdelibs14-trinity-dev, libgadu-dev, libiw-dev (>> 27+28pre8), libmeanwhile-dev (>= 1.0.2), libslp-dev, libsqlite3-dev, libtiff-dev, libxml2-dev, libxslt1-dev, libxtst-dev, libtqtinterface-doc, sharutils, valgrind [!armel !mips !mipsel], libxxf86vm-dev, libv4l-dev, automake, autoconf, libtool, libltdl-dev, gnutls-dev | libgnutls-dev
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quilt, cmake, autotools-dev, docbook-to-man, doxygen, gawk, gettext, tdelibs14-trinity-dev, libgadu-dev (>> 1:1.12.0-3) | libgnutls-dev, libgadu-dev, libiw-dev (>> 27+28pre8), libmeanwhile-dev (>= 1.0.2), libslp-dev, libsqlite3-dev, libtiff-dev, libxml2-dev, libxslt1-dev, libxtst-dev, libtqtinterface-doc, sharutils, valgrind [!armel !mips !mipsel], libxxf86vm-dev, libv4l-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdenetwork-trinity

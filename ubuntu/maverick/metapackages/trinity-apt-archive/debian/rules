@@ -24,5 +24,6 @@ clean::
 	tr "\n" "\0" | xargs -r0 mv -t debian/distrospecific
 	rm -f debian/stamp-distrospecific
 
-binary-install/trinity-keyring::
+binary-install/trinity-apt-archive::
 	dh_testdir
+	sed -i 's|ubuntu [^ ]* main|ubuntu ${DISTRIBUTION} main|g' debian/$(cdbs_curpkg)/etc/apt/sources.list.d/trinity.list
