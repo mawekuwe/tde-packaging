@@ -63,7 +63,7 @@ License:	GPL-2.0+
 License:	GPLv2+
 %endif
 
-#Vendor:		Trinity Project
+#Vendor:		Trinity Desktop
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
@@ -2335,7 +2335,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kalarm.desktop          Utility  TimeUtility X-TDE-Utilities-PIM
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kandy.desktop           Utility  Telephony X-TDE-Utilities-Peripherals
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/karm.desktop            Utility  TimeUtility X-TDE-Utilities-PIM
-%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kleopatra.desktop       X-TDE-Utilities-PIM
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kleopatra.desktop       Network  System
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KNode.desktop
 %suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/knotes.desktop          Utility  DesktopUtility X-TDE-Utilities-Desktop
 %suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KMail.desktop
