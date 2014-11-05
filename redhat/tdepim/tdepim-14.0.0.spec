@@ -945,13 +945,7 @@ keybox and for retrieving certificates from LDAP servers.
 %{tde_tdeappdir}/kleopatra.desktop
 %{tde_tdedocdir}/HTML/en/kleopatra/
 %{tde_tdedocdir}/HTML/en/kwatchgnupg/
-%{tde_datadir}/icons/hicolor/128x128/apps/kleopatra.png
-%{tde_datadir}/icons/hicolor/16x16/apps/kleopatra.png
-%{tde_datadir}/icons/hicolor/22x22/apps/kleopatra.png
-%{tde_datadir}/icons/hicolor/32x32/apps/kleopatra.png
-%{tde_datadir}/icons/hicolor/48x48/apps/kleopatra.png
-%{tde_datadir}/icons/hicolor/64x64/apps/kleopatra.png
-%{tde_datadir}/icons/hicolor/scalable/apps/kleopatra.svgz
+%{tde_datadir}/icons/hicolor/*/apps/kleopatra.png
 
 %post -n trinity-kleopatra
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
@@ -2270,6 +2264,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
+
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
@@ -2355,7 +2350,8 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Adds missing icons in 'hicolor' theme
 pushd "%{?buildroot}%{tde_datadir}/icons"
-for i in {16,32,48};    do %__cp crystalsvg/"$i"x"$i"/apps/kandy.png  hicolor/"$i"x"$i"/apps/kandy.png  ;done
+for i in {16,32,48};           do %__cp crystalsvg/"$i"x"$i"/apps/kandy.png                           hicolor/"$i"x"$i"/apps/kandy.png      ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/places/network.png  hicolor/"$i"x"$i"/apps/kleopatra.png  ;done
 popd
 
 # Links duplicate files
