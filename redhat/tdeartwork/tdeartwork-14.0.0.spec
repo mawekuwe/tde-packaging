@@ -49,7 +49,7 @@ License:	GPL-2.0+
 License:	GPLv2+
 %endif
 
-#Vendor:		Trinity Project
+#Vendor:		Trinity Desktop
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
@@ -709,12 +709,12 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/geodesic.desktop
 %endif
 
-%if 0%{?opensuse_bs} == 0 && 0%{?fedora} >= 20 || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
 %{tde_datadir}/applnk/System/ScreenSavers/projectiveplane.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/tessellimage.desktop
 %endif
 
-%if 0%{?opensuse_bs} == 0 && 0%{?fedora} >= 20
+%if && 0%{?fedora} >= 20
 %{tde_datadir}/applnk/System/ScreenSavers/winduprobot.desktop
 %endif
 
@@ -794,6 +794,13 @@ export PATH="%{tde_bindir}:${PATH}"
 %if 0%{?with_xscreensaver}
 chmod +x "%{?buildroot}%{tde_bindir}/xscreensaver-getimage"
 chmod +x "%{?buildroot}%{tde_bindir}/xscreensaver-getimage-file"
+%endif
+
+# Fix missing screensavers on Fedora 20
+%if 0%{?with_xscreensaver} &&  0%{?fedora} >= 20
+touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/projectiveplane.desktop"
+touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/tessellimage.desktop"
+touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/winduprobot.desktop"
 %endif
 
 
