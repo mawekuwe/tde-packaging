@@ -708,6 +708,7 @@ tracking feature plans.
 %{tde_datadir}/services/tderesources/tdeabc/tdeabc_xmlrpc.desktop
 %{tde_datadir}/services/tderesources/tdeabc/kolab.desktop
 %{tde_datadir}/services/tderesources/tdeabc/scalix.desktop
+%dir %{tde_datadir}/services/tderesources/kcal
 %{tde_datadir}/services/tderesources/kcal/exchange.desktop
 %{tde_datadir}/services/tderesources/kcal/kcal_caldav.desktop
 %{tde_datadir}/services/tderesources/tdeabc/tdeabc_carddav.desktop
@@ -721,6 +722,7 @@ tracking feature plans.
 %{tde_datadir}/services/tderesources/kcal/kcal_xmlrpc.desktop
 %{tde_datadir}/services/tderesources/kcal/kolab.desktop
 %{tde_datadir}/services/tderesources/kcal/scalix.desktop
+%dir %{tde_datadir}/services/tderesources/knotes
 %{tde_datadir}/services/tderesources/knotes/knotes_xmlrpc.desktop
 %{tde_datadir}/services/tderesources/knotes/kolabresource.desktop
 %{tde_datadir}/services/tderesources/knotes/scalix.desktop
@@ -1376,8 +1378,8 @@ scheduling, address book and other PIM functionality.
 %{tde_libdir}/libkpinterfaces.so.*
 %{tde_tdeappdir}/Kontact.desktop
 %{tde_tdeappdir}/kontactdcop.desktop
-%{tde_datadir}/apps/kontact
-%{tde_datadir}/apps/kontactsummary/kontactsummary_part.rc
+%{tde_datadir}/apps/kontact/
+%{tde_datadir}/apps/kontactsummary/
 %{tde_datadir}/config.kcfg/kontact.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/kontact.png
 %{tde_datadir}/icons/crystalsvg/*/actions/kontact_*.png
@@ -1386,6 +1388,7 @@ scheduling, address book and other PIM functionality.
 %{tde_datadir}/services/kcmkontactsummary.desktop
 %{tde_datadir}/services/kcmkorgsummary.desktop
 %{tde_datadir}/services/kcmsdsummary.desktop
+%dir %{tde_datadir}/services/kontact
 %{tde_datadir}/services/kontact/newstickerplugin.desktop
 %{tde_datadir}/services/kontact/specialdatesplugin.desktop
 %{tde_datadir}/services/kontact/summaryplugin.desktop
@@ -1726,7 +1729,7 @@ library.
 
 %files -n trinity-libkcal-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/libemailfunctions/idmapper.h
+%{tde_tdeincludedir}/libemailfunctions/
 %{tde_tdeincludedir}/libkcal
 %{tde_libdir}/libkcal.la
 %{tde_libdir}/libkcal.so
@@ -2007,6 +2010,7 @@ libkpimexchange-trinity library.
 
 %files -n trinity-libkpimexchange-devel
 %defattr(-,root,root,-)
+%dir %{tde_tdeincludedir}/tdepim
 %{tde_tdeincludedir}/tdepim/exchangeaccount.h
 %{tde_tdeincludedir}/tdepim/exchangeclient.h
 %{tde_libdir}/libkpimexchange.la
@@ -2229,7 +2233,7 @@ dialing calls, phonebook, and phone status monitoring.
 %{tde_datadir}/services/libkmobile_gammu.desktop
 %{tde_datadir}/services/libkmobile_skeleton.desktop
 %{tde_datadir}/servicetypes/libkmobile.desktop
-%{tde_datadir}/apps/kmobile/kmobileui.rc
+%{tde_datadir}/apps/kmobile/
 %{tde_tdeappdir}/kmobile.desktop
 %{tde_tdelibdir}/libkmobile_skeleton.la
 %{tde_tdelibdir}/libkmobile_skeleton.so
