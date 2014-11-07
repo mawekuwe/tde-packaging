@@ -51,7 +51,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		TDE bindings to non-C++ languages
 Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Group:			User Interface/Desktops
+Group:			System/GUI/Other
 URL:			http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -115,8 +115,11 @@ BuildRequires:	gtk2-devel
 BuildRequires: mozilla-xulrunner20-devel
 %endif
 
+# OPENSSL support
+BuildRequires:	openssl-devel
+
 # GTK1 support
-%if 0%{?fedora} || 0%{?rhel}
+%if 0%{?fedora} || 0%{?with_gtk1}
 %define with_gtk1 1
 BuildRequires: glib-devel
 BuildRequires: gtk+-devel
@@ -559,7 +562,7 @@ This package is part of the official TDE bindings module.
 
 %package -n trinity-perl-dcop
 Summary:	DCOP Bindings for Perl 
-Group:		Development/Libraries
+Group:		Development/Libraries/Perl
 
 Obsoletes:	trinity-kdebindings-dcopperl < %{version}-%{release}
 Provides:	trinity-kdebindings-dcopperl = %{version}-%{release}
@@ -765,7 +768,7 @@ This package is part of the official TDE bindings module.
 
 %package -n trinity-libqt0-ruby
 Summary:	Qt bindings for Ruby [Trinity]
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 Requires:	ruby
 
 %description -n trinity-libqt0-ruby
@@ -802,7 +805,7 @@ This package is part of the official TDE bindings module.
 %if 0
 %package -n trinity-kmozilla
 Summary:	Kmozilla for TDE
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 
 %description -n trinity-kmozilla
 %{summary}
@@ -820,7 +823,7 @@ Group:		Environment/Libraries
 
 %package -n trinity-xpart-notepad
 Summary:	A small XPart editor
-Group:		Applications/Utilities
+Group:		Development/Languages/Other
 
 %description -n trinity-xpart-notepad
 xpart_notepad is a small XPart editor. Use it to understand how to use XPart.
@@ -846,7 +849,7 @@ xpart_notepad is a small XPart editor. Use it to understand how to use XPart.
 %if 0%{?with_gtk1}
 %package -n trinity-libgtkxparts1
 Summary:	Xparts library for GTK
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 
 %description -n trinity-libgtkxparts1
 %{summary}
@@ -867,7 +870,7 @@ Group:		Environment/Libraries
 
 %package -n trinity-libtdexparts
 Summary:	Xparts library for TDE
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 
 Obsoletes:	trinity-libkdexparts1 < %{version}-%{release}
 Provides:	trinity-libkdexparts1 = %{version}-%{release}
@@ -890,7 +893,7 @@ Provides:	trinity-libkdexparts1 = %{version}-%{release}
 
 %package -n trinity-libxparts-devel
 Summary:	Xparts development files
-Group:		Development/Libraries
+Group:		Development/Languages/Other
 %if 0%{?with_gtk1}
 Requires:	trinity-libgtkxparts1 = %{version}-%{release}
 %endif
@@ -917,7 +920,7 @@ Requires:	trinity-libtdexparts = %{version}-%{release}
 
 %package xparts-extras
 Summary:	Extra xparts for TDE [Trinity]
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 
 # Metapckage requires
 Requires:	trinity-xpart-notepad = %{version}-%{release}
@@ -940,7 +943,7 @@ This package is part of the official TDE bindings module.
 
 %package -n trinity-libdcop-c
 Summary:	DCOP bindings for C [Trinity]
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 
 %description -n trinity-libdcop-c
 %{summary}
@@ -959,7 +962,7 @@ Group:		Environment/Libraries
 
 %package -n trinity-libdcop-c-devel
 Summary:	DCOP bindings for C, development files [Trinity]
-Group:		Development/Libraries
+Group:		Development/Languages/Other
 Requires:	trinity-libdcop-c = %{version}-%{release}
 
 %description -n trinity-libdcop-c-devel
@@ -981,7 +984,7 @@ Requires:	trinity-libdcop-c = %{version}-%{release}
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
+Group:		Development/Languages/Other
 
 Requires:	trinity-tdelibs-devel >= %{tde_version}
 Requires:	%{name} = %{version}-%{release}
