@@ -35,7 +35,7 @@ Epoch:		%{tde_epoch}
 Version:	1.0
 Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 Summary:	TQt Cryptographic Architecture
-Group:		System Environment/Libraries
+Group:		Development/Libraries/C and C++
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -51,9 +51,10 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:        tqca-3.5.13.2.tar.gz
+Source1:		%{name}-rpmlintrc
 
 BuildRequires:  libtqt4-devel >= %{tde_epoch}:4.2.0
-
+BuildRequires:	gcc-c++
 
 %description
 Taking a hint from the similarly-named Java Cryptography Architecture,
@@ -69,7 +70,7 @@ application!
 
 %package -n %{libtqca}1
 Summary:	TQt Cryptographic Architecture
-Group:		System Environment/Libraries
+Group:		Development/Libraries/C and C++
 
 Obsoletes:	trinity-libtqca < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:	trinity-libtqca = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -103,7 +104,7 @@ application!
 
 %package -n %{libtqca}-devel
 Summary:	TQt Cryptographic Architecture development files
-Group:		Development/Libraries
+Group:		Development/Libraries/C and C++
 Requires:	%{libtqca}1 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Obsoletes:	trinity-libtqca-devel < %{?epoch:%{epoch}:}%{version}-%{release}
@@ -142,8 +143,6 @@ perl -pi -e 's,target\.path=\$PREFIX/lib,target.path=\$PREFIX/%{_lib},g' qcextra
 %build
 unset QTDIR QTINC QTLIB
 . /etc/profile.d/qt3.sh
-export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 ./configure \
   --prefix=%{_prefix} \

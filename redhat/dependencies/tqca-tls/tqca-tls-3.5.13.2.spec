@@ -1,38 +1,61 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tqca-tls (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
-
-%define tde_bindir %{tde_prefix}/bin
+%define tde_pkg tqca-tls
+%define tde_prefix /opt/trinity
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_datadir %{tde_prefix}/share
 
-%define tde_tdeincludedir %{tde_includedir}/tde
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libtqt3 %{_lib}tqt3
+%else
+%define libtqt3 libtqt3
+%endif
 
-%define _docdir %{tde_datadir}/doc
 
-Name:			trinity-tqca-tls
-Version:		1.0
-Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	1.0
+Release:	%{?!preversion:4}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	TLS plugin for the TQt Cryptographic Architecture
+Group:		Applications/Internet
+URL:		http://delta.affinix.com/qca/
 
-Summary:		TLS plugin for the TQt Cryptographic Architecture
-License:		LGPLv2+
-Group:			Applications/Internet
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-URL:			http://delta.affinix.com/qca/
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		tqca-tls-3.5.13.2.tar.gz
 
-BuildRequires:	qt3-devel >= 3.3.8.d
-BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-tqca-devel >= 1.0
+BuildRequires:  libtqt4-devel >= %{tde_epoch}:4.2.0
+BuildRequires:	libtqca-devel >= %{tde_epoch}:1.0
+
+BuildRequires:	gcc-c++
 BuildRequires:	openssl-devel >= 0.9.8
 
 
@@ -44,7 +67,32 @@ contains the TLS plugin.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%package -n %{libtqt3}-mt-tqca-tls
+Summary:	TLS plugin for the TQt Cryptographic Architecture
+Group:		Applications/Internet
+
+%description -n %{libtqt3}-mt-tqca-tls
+This is a plugin to provide SSL/TLS capability to programs that use the TQt
+Cryptographic Architecture (TQCA).  TQCA is a library providing an easy API
+for several cryptographic algorithms to TQt programs.  This package only
+contains the TLS plugin.
+
+%files -n %{libtqt3}-mt-tqca-tls
+%defattr(0644,root,root,0755)
+%doc README COPYING
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%{_libdir}/qt3/plugins/crypto/libqca-tls.so
+%endif
+%if 0%{?suse_version}
+%{_usr}/lib/qt3/plugins/crypto/libqca-tls.so
+%endif
+%if 0%{?rhel} || 0%{?fedora}
+%{_libdir}/qt-3.3/plugins/crypto/libqca-tls.so
+%endif
+
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -57,9 +105,6 @@ contains the TLS plugin.
 %build
 unset QTDIR QTINC QTLIB
 . /etc/profile.d/qt3.sh
-export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 ./configure
 %__make %{?_smp_mflags}
@@ -72,20 +117,6 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %clean
 %__rm -rf %{?buildroot}
-
-
-%files
-%defattr(0644,root,root,0755)
-%doc README COPYING
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%{_libdir}/qt3/plugins/crypto/libqca-tls.so
-%endif
-%if 0%{?suse_version}
-%{_usr}/lib/qt3/plugins/crypto/libqca-tls.so
-%endif
-%if 0%{?rhel} || 0%{?fedora}
-%{_libdir}/qt-3.3/plugins/crypto/libqca-tls.so
-%endif
 
 
 %changelog

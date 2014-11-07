@@ -1,37 +1,61 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tqca-tls (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-%define tde_bindir %{tde_prefix}/bin
+%define tde_pkg tqca-tls
+%define tde_prefix /opt/trinity
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_datadir %{tde_prefix}/share
 
-%define tde_tdeincludedir %{tde_includedir}/tde
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libtqt3 %{_lib}tqt3
+%else
+%define libtqt3 libtqt3
+%endif
 
-%define _docdir %{tde_datadir}/doc
 
-Name:			trinity-tqca-tls
-Version:		1.0
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	1.0
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	TLS plugin for the TQt Cryptographic Architecture
+Group:		Applications/Internet
+URL:		http://delta.affinix.com/qca/
 
-Summary:		TLS plugin for the TQt Cryptographic Architecture
-License:		LGPLv2+
-Group:			Applications/Internet
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-URL:			http://delta.affinix.com/qca/
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  libtqt4-devel >= 2:4.2.0
-BuildRequires:	trinity-tqca-devel >= 1.0
+BuildRequires:  libtqt4-devel >= %{tde_epoch}:4.2.0
+BuildRequires:	libtqca-devel >= %{tde_epoch}:1.0
+
+BuildRequires:	gcc-c++
 BuildRequires:	openssl-devel >= 0.9.8
 
 
@@ -40,6 +64,23 @@ This is a plugin to provide SSL/TLS capability to programs that use the TQt
 Cryptographic Architecture (TQCA).  TQCA is a library providing an easy API
 for several cryptographic algorithms to TQt programs.  This package only
 contains the TLS plugin.
+
+##########
+
+%package -n %{libtqt3}-mt-tqca-tls
+Summary:	TLS plugin for the TQt Cryptographic Architecture
+Group:		Applications/Internet
+
+%description -n %{libtqt3}-mt-tqca-tls
+This is a plugin to provide SSL/TLS capability to programs that use the TQt
+Cryptographic Architecture (TQCA).  TQCA is a library providing an easy API
+for several cryptographic algorithms to TQt programs.  This package only
+contains the TLS plugin.
+
+%files -n %{libtqt3}-mt-tqca-tls
+%defattr(0644,root,root,0755)
+%doc README COPYING
+%{_libdir}/tqt3/plugins/crypto/libtqca-tls.so
 
 ##########
 
@@ -54,12 +95,10 @@ contains the TLS plugin.
 
 
 %build
-unset QTDIR
-export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
+unset QTDIR QTINC QTLIB
 
 ./configure \
-  --qtdir=/usr
+  --qtdir=%{_prefix}
 
 %__make %{?_smp_mflags}
 
@@ -73,12 +112,6 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 %__rm -rf %{?buildroot}
 
 
-%files
-%defattr(0644,root,root,0755)
-%doc README COPYING
-%{_libdir}/tqt3/plugins/crypto/libtqca-tls.so
-
-
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:1.0-1
 - Initial release for TDE 14.0.0
