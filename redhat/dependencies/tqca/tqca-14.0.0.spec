@@ -51,6 +51,7 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+Source1:		%{name}-rpmlintrc
 
 BuildRequires:  libtqt4-devel >= %{tde_epoch}:4.2.0
 
