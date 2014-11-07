@@ -164,7 +164,8 @@ BuildRequires: python-devel
 %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")
 
 ## ruby
-BuildRequires: ruby-devel >= 1.8, ruby
+BuildRequires:	ruby-devel >= 1.8
+BuildRequires:	ruby >= 1.8
 %if "%{?ruby_libarchdir}" != ""
 %define ruby_arch %{?ruby_libarchdir}
 %else
@@ -642,7 +643,7 @@ This package is part of the official TDE bindings module.
 %{tde_datadir}/servicetypes/binding_type.desktop
 %{tde_bindir}/embedjs
 %{tde_datadir}/apps/embedjs/embedjsui.rc
-%{tde_datadir}/applnk/Utilities/embedjs.desktop
+%{tde_tdeappdir}/embedjs.desktop
 %{tde_datadir}/icons/hicolor/16x16/apps/embedjs.png
 %{tde_datadir}/icons/hicolor/32x32/apps/embedjs.png
 %{tde_tdelibdir}/libjavascript.la
@@ -1152,12 +1153,15 @@ find $RPM_BUILD_ROOT -type f -a \( -name perllocal.pod -o -name .packlist \
 %__install kjsembed/plugins/customqobject_plugin.h %{?buildroot}%{tde_docdir}/trinity-libkjsembed-devel/plugin-examples/customobject/
 %__install kjsembed/plugins/customqobject_plugin.desktop %{?buildroot}%{tde_docdir}/trinity-libkjsembed-devel/plugin-examples/customobject/
 
-
 # Man installation location is wrong on RHEL4...
 if [ -d "%{buildroot}%{_mandir}/man3" ]; then
   mv -f %{buildroot}%{_mandir}/man3 %{buildroot}%{tde_mandir}/man3/
   rm -rf %{buildroot}%{_mandir}
 fi
+
+# Move embedjs.desktop to correct location
+%__mv -f "%{?buildroot}%{tde_datadir}/applnk/Utilities/embedjs.desktop" "%{?buildroot}%{tde_tdeappdir}/embedjs.desktop"
+%__rm -rf "%{?buildroot}%{tde_datadir}/applnk"
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
