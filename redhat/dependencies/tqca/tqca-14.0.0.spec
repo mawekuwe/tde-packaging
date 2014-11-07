@@ -1,39 +1,58 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tqca (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-%define tde_bindir %{tde_prefix}/bin
+%define tde_pkg tqca
+%define tde_prefix /opt/trinity
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_datadir %{tde_prefix}/share
 
-%define tde_tdeincludedir %{tde_includedir}/tde
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libtqca %{_lib}tqca
+%else
+%define libtqca libtqca
+%endif
 
-%define _docdir %{tde_datadir}/doc
 
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	1.0
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	TQt Cryptographic Architecture
+Group:		System Environment/Libraries
+URL:		http://www.trinitydesktop.org/
 
-Name:           trinity-tqca
-Version:        1.0
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-Summary:        TQt Cryptographic Architecture
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Group:          System Environment/Libraries
-License:        LGPLv2+
-
-Vendor:			Trinity Project
-URL:			http://www.trinitydesktop.org/
-Packager:		Francois Andriot <francois.andriot@free.fr>
-
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  libtqt4-devel >= 2:4.2.0
+BuildRequires:  libtqt4-devel >= %{tde_epoch}:4.2.0
 
 
 %description
@@ -46,37 +65,64 @@ on any particular cryptographic library. This allows one to easily change
 or upgrade crypto implementations without even needing to recompile the
 application!
 
-%post
+##########
+
+%package -n %{libtqca}1
+Summary:	TQt Cryptographic Architecture
+Group:		System Environment/Libraries
+
+Obsoletes:	trinity-libtqca < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-libtqca = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	libtqca = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	libtqca1 = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n %{libtqca}1
+Taking a hint from the similarly-named Java Cryptography Architecture,
+TQCA aims to provide a straightforward and cross-platform crypto API,
+using TQt datatypes and conventions. TQCA separates the API from the
+implementation, using plugins known as Providers. The advantage of this
+model is to allow applications to avoid linking to or explicitly depending
+on any particular cryptographic library. This allows one to easily change
+or upgrade crypto implementations without even needing to recompile the
+application!
+
+%post -n %{libtqca}1
 /sbin/ldconfig
 
-%postun
+%postun -n %{libtqca}1
 /sbin/ldconfig
 
-%files
+%files -n %{libtqca}1
 %defattr(-,root,root,-)
 %doc COPYING README TODO
-%{tde_libdir}/libqca.so.*
+%{_libdir}/libqca.so.1
+%{_libdir}/libqca.so.1.0
+%{_libdir}/libqca.so.1.0.0
 
 ##########
 
-%package        devel
-Summary:        TQt Cryptographic Architecture development files
-Group:          Development/Libraries
-Requires:       %{name} = %{version}-%{release}
+%package -n %{libtqca}-devel
+Summary:	TQt Cryptographic Architecture development files
+Group:		Development/Libraries
+Requires:	%{libtqca}1 = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description    devel
+Obsoletes:	trinity-libtqca-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-libtqca-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	libtqca-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n %{libtqca}-devel
 This packages contains the development files for TQCA
 
-%post devel
+%post -n %{libtqca}-devel
 /sbin/ldconfig
 
-%postun devel
+%postun -n %{libtqca}-devel
 /sbin/ldconfig
 
-%files devel
+%files -n %{libtqca}-devel
 %defattr(-,root,root,-)
-%{tde_includedir}/qca.h
-%{tde_libdir}/libqca.so
+%{_includedir}/qca.h
+%{_libdir}/libqca.so
 
 ##########
 
@@ -99,7 +145,7 @@ export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 ./configure \
-  --prefix=%{tde_prefix} \
+  --prefix=%{_prefix} \
   --qtdir=/usr \
   --debug
 
@@ -116,5 +162,5 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:1.0-1
 - Initial release for TDE 14.0.0
