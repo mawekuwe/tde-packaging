@@ -35,7 +35,7 @@ Epoch:		%{tde_epoch}
 Version:	1.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	TQt Cryptographic Architecture
-Group:		System Environment/Libraries
+Group:		Development/Libraries/C and C++
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -70,7 +70,7 @@ application!
 
 %package -n %{libtqca}1
 Summary:	TQt Cryptographic Architecture
-Group:		System Environment/Libraries
+Group:		Development/Libraries/C and C++
 
 Obsoletes:	trinity-libtqca < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:	trinity-libtqca = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -104,7 +104,7 @@ application!
 
 %package -n %{libtqca}-devel
 Summary:	TQt Cryptographic Architecture development files
-Group:		Development/Libraries
+Group:		Development/Libraries/C and C++
 Requires:	%{libtqca}1 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Obsoletes:	trinity-libtqca-devel < %{?epoch:%{epoch}:}%{version}-%{release}
