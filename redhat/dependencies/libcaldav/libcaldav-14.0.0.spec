@@ -1,5 +1,5 @@
 #
-# spec file for package libcaldav (version 0.6.5)
+# spec file for package libcaldav (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
