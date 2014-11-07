@@ -80,6 +80,7 @@ contains the TLS plugin.
 %files -n %{libtqt3}-mt-tqca-tls
 %defattr(0644,root,root,0755)
 %doc README COPYING
+%dir %{_libdir}/tqt3/plugins/crypto
 %{_libdir}/tqt3/plugins/crypto/libtqca-tls.so
 
 ##########
