@@ -153,6 +153,7 @@ playing a wave file with some effects.
 %doc COPYING.LIB
 %dir %{tde_libdir}/mcop
 %dir %{tde_libdir}/mcop/Arts
+%dir %{tde_libdir}/mcop/Arts/Environment
 %{tde_libdir}/mcop/Arts/*
 %{tde_libdir}/mcop/*.mcopclass
 %{tde_libdir}/mcop/*.mcoptype
@@ -241,7 +242,7 @@ intended for systems running the Pulseaudio server.
 
 ##########
 
-%if 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -305,6 +306,9 @@ SuspendTime=1
 EOF
 chmod 644 "%{?buildroot}%{tde_datadir}/config/kcmartsrc"
 %endif
+
+# Add supplementary folders
+%__install -d -m 755 "%{?buildroot}%{tde_libdir}/mcop/Arts/Environment"
 
 
 %clean
