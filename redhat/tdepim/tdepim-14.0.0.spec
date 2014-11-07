@@ -1396,7 +1396,6 @@ scheduling, address book and other PIM functionality.
 %{tde_datadir}/services/kontactconfig.desktop
 %{tde_datadir}/servicetypes/kontactplugin.desktop
 %{tde_tdedocdir}/HTML/en/kontact/
-#%{tde_tdedocdir}/HTML/en/kpilot/
 
 %post -n trinity-kontact
 for f in crystalsvg hicolor ; do
