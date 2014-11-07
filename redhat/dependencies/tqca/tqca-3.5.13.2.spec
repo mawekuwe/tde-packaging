@@ -51,7 +51,7 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:        tqca-3.5.13.2.tar.gz
-Source1:		%{name}-rpmlintrc
+Source1:		trinity-tqca-rpmlintrc
 
 BuildRequires:  libtqt4-devel >= %{tde_epoch}:4.2.0
 BuildRequires:	gcc-c++
