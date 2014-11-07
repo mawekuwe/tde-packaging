@@ -1,5 +1,5 @@
 #
-# spec file for package libcarddav (version 0.6.2)
+# spec file for package libcarddav (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
