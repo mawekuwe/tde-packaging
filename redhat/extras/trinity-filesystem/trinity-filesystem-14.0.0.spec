@@ -22,6 +22,7 @@
 %define tde_datadir %{tde_prefix}/share
 %define _docdir %{tde_docdir}
 %define tde_docdir %{tde_datadir}/doc
+%define tde_mandir %{tde_datadir}/man
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_includedir %{tde_prefix}/include
 %define tde_tdeincludedir %{tde_includedir}/tde
@@ -75,6 +76,8 @@ This package installs the Trinity directory structure.
 %dir %{tde_tdeincludedir}
 
 %dir %{tde_libdir}
+%dir %{tde_libdir}/java
+%dir %{tde_libdir}/jni
 %dir %{tde_libdir}/pkgconfig
 %dir %{tde_tdelibdir}
 
@@ -104,6 +107,8 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/locale/en_US
 %dir %{tde_datadir}/locale/l10n
 %dir %{tde_datadir}/locale/l10n/*
+%dir %{tde_datadir}/man
+%dir %{tde_datadir}/man/*
 %dir %{tde_datadir}/mimelnk
 %dir %{tde_datadir}/mimelnk/*
 %dir %{tde_datadir}/services
@@ -155,6 +160,8 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config.kcfg
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/emoticons
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man3
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/all
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/application
@@ -204,6 +211,8 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_tdeincludedir}
 
 %__install -d -m 755 %{?buildroot}%{tde_libdir}
+%__install -d -m 755 %{?buildroot}%{tde_libdir}/java
+%__install -d -m 755 %{?buildroot}%{tde_libdir}/jni
 %__install -d -m 755 %{?buildroot}%{tde_libdir}/pkgconfig
 %__install -d -m 755 %{?buildroot}%{tde_tdelibdir}
 

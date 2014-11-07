@@ -22,6 +22,7 @@
 %define tde_datadir %{tde_prefix}/share
 %define _docdir %{tde_docdir}
 %define tde_docdir %{tde_datadir}/doc
+%define tde_mandir %{tde_datadir}/man
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_includedir %{tde_prefix}/include
 %define tde_tdeincludedir %{tde_includedir}/tde
@@ -63,6 +64,7 @@ This package installs the Trinity directory structure.
 
 %dir %{tde_datadir}
 %dir %{tde_datadir}/config
+%dir %{tde_datadir}/config/magic
 
 %dir %{tde_docdir}
 %dir %{tde_tdedocdir}
@@ -74,6 +76,8 @@ This package installs the Trinity directory structure.
 %dir %{tde_tdeincludedir}
 
 %dir %{tde_libdir}
+%dir %{tde_libdir}/java
+%dir %{tde_libdir}/jni
 %dir %{tde_libdir}/pkgconfig
 %dir %{tde_tdelibdir}
 
@@ -84,7 +88,7 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/applnk/*
 %dir %{tde_datadir}/applnk/*/*
 %dir %{tde_datadir}/apps
-%dir %{tde_datadir}/apps/plugin
+%dir %{tde_datadir}/apps/*
 %dir %{tde_datadir}/cmake
 %dir %{tde_datadir}/config.kcfg
 %dir %{tde_datadir}/autostart
@@ -96,10 +100,15 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/icons/hicolor
 %dir %{tde_datadir}/icons/hicolor/*
 %dir %{tde_datadir}/icons/hicolor/*/*
+%dir %{tde_datadir}/icons/locolor
+%dir %{tde_datadir}/icons/locolor/*
+%dir %{tde_datadir}/icons/locolor/*/*
 %dir %{tde_datadir}/locale
 %dir %{tde_datadir}/locale/en_US
 %dir %{tde_datadir}/locale/l10n
 %dir %{tde_datadir}/locale/l10n/*
+%dir %{tde_datadir}/man
+%dir %{tde_datadir}/man/*
 %dir %{tde_datadir}/mimelnk
 %dir %{tde_datadir}/mimelnk/*
 %dir %{tde_datadir}/services
@@ -141,18 +150,25 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Utilities
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/plugin
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/profiles
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/videothumbnail
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/zeroconf
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/autostart
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/cmake
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/config/magic
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/config.kcfg
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/emoticons
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man3
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/all
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/application
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/audio
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/fonts
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/image
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/interface
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/inode
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/media
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/message
@@ -169,7 +185,7 @@ This package installs the Trinity directory structure.
 
 # Create icons directories
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/icons
-for t in crystalsvg hicolor ; do
+for t in crystalsvg hicolor locolor ; do
   %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}"
   %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}/scalable"
   for i in {16,22,32,48,64,128} ; do
@@ -177,7 +193,7 @@ for t in crystalsvg hicolor ; do
   done
   
   # Create subdirectories
-  for r in actions apps devices mimetypes places ; do
+  for r in actions apps categories devices mimetypes places ; do
     %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}/scalable/${r}"
     for i in {16,22,32,48,64,128} ; do
       %__install -d -m 755 "%{?buildroot}%{tde_datadir}/icons/${t}/${i}x${i}/${r}"
@@ -195,12 +211,10 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_tdeincludedir}
 
 %__install -d -m 755 %{?buildroot}%{tde_libdir}
+%__install -d -m 755 %{?buildroot}%{tde_libdir}/java
+%__install -d -m 755 %{?buildroot}%{tde_libdir}/jni
 %__install -d -m 755 %{?buildroot}%{tde_libdir}/pkgconfig
 %__install -d -m 755 %{?buildroot}%{tde_tdelibdir}
-
-%__install -d -m 755 %{?buildroot}%{_datadir}/icons/hicolor
-%__install -d -m 755 %{?buildroot}%{_datadir}/icons/hicolor/32x32
-%__install -d -m 755 %{?buildroot}%{_datadir}/icons/hicolor/32x32/apps
 
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/trinity
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/xdg/menus

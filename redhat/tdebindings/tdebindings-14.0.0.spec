@@ -119,7 +119,12 @@ BuildRequires: mozilla-xulrunner20-devel
 BuildRequires:	openssl-devel
 
 # GTK1 support
-%if 0%{?fedora} || 0%{?with_rhel} && 0%{?with_gtk1}
+%if 0%{?fedora}
+%define with_gtk1 1
+BuildRequires: glib-devel
+BuildRequires: gtk+-devel
+%endif
+%if 0%{?with_rhel} && 0%{?with_gtk1}
 %define with_gtk1 1
 BuildRequires: glib-devel
 BuildRequires: gtk+-devel
@@ -289,8 +294,7 @@ This package is part of the official TDE bindings module.
 
 %files -n trinity-libdcop3-java
 %defattr(-,root,root,-)
-#%{tde_datadir}/java/dcopjava*.jar
-%{tde_libdir}/java/org/*/DCOP/*.class
+%{tde_libdir}/java/org/
 
 ##########
 
@@ -586,9 +590,9 @@ Perl bindings to the DCOP interprocess communication protocol used by TDE
 
 %files -n trinity-perl-dcop
 %defattr(-,root,root,-)
-%{perl_vendorarch}/auto/DCOP/*
+%{perl_vendorarch}/auto/DCOP/
 %{perl_vendorarch}/DCOP.pm
-%{perl_vendorarch}/DCOP/*
+%{perl_vendorarch}/DCOP/
 %doc dcopperl/AUTHORS dcopperl/Changes dcopperl/README dcopperl/TODO
 %{tde_mandir}/man3/DCOP.3pm*
 
@@ -639,15 +643,17 @@ This package is part of the official TDE bindings module.
 %{tde_tdelibdir}/libfileitemplugin.la
 %{tde_tdelibdir}/libfileitemplugin.so
 %{tde_datadir}/services/tdefileitem_plugin.desktop
-%{tde_datadir}/apps/kjsembed/cmdline.js
+%{tde_datadir}/apps/kjsembed/
 %{tde_datadir}/servicetypes/binding_type.desktop
 %{tde_bindir}/embedjs
-%{tde_datadir}/apps/embedjs/embedjsui.rc
+%{tde_datadir}/apps/embedjs/
 %{tde_tdeappdir}/embedjs.desktop
 %{tde_datadir}/icons/hicolor/16x16/apps/embedjs.png
 %{tde_datadir}/icons/hicolor/32x32/apps/embedjs.png
 %{tde_tdelibdir}/libjavascript.la
 %{tde_tdelibdir}/libjavascript.so
+%dir %{tde_datadir}/apps/kate
+%dir %{tde_datadir}/apps/kate/scripts
 %{tde_datadir}/apps/kate/scripts/swaptabs.js
 %{tde_datadir}/apps/kate/scripts/swaptabs.ui
 %{tde_datadir}/apps/kate/scripts/swaptabs.desktop
@@ -689,7 +695,7 @@ This package is part of the official TDE bindings module.
 %{tde_tdeincludedir}/kjsembed/
 %{tde_libdir}/libkjsembed.so
 %{tde_libdir}/libkjsembed.la
-%{tde_docdir}/trinity-libkjsembed-devel/plugin-examples/customobject/
+%{tde_docdir}/trinity-libkjsembed-devel/
 
 %post -n trinity-libkjsembed-devel
 /sbin/ldconfig || :
@@ -767,6 +773,7 @@ This package is part of the official TDE bindings module.
 %{tde_bindir}/krubyinit
 %{tde_bindir}/rbtdeconfig_compiler
 %{ruby_rubylibdir}/Korundum.rb
+%dir %{ruby_rubylibdir}/TDE
 %{ruby_rubylibdir}/TDE/korundum.rb
 %{ruby_arch}/korundum.la
 %{ruby_arch}/korundum.so*
@@ -800,6 +807,7 @@ This package is part of the official TDE bindings module.
 %{tde_bindir}/rbqtapi
 %{tde_bindir}/rbuic
 %{tde_bindir}/qtrubyinit
+%dir %{ruby_rubylibdir}/Qt
 %{ruby_rubylibdir}/Qt/qtruby.rb
 %{ruby_rubylibdir}/Qt.rb
 %{ruby_arch}/qtruby.so*
@@ -1159,7 +1167,7 @@ if [ -d "%{buildroot}%{_mandir}/man3" ]; then
   rm -rf %{buildroot}%{_mandir}
 fi
 
-# Move embedjs.desktop to correct location
+# Move 'embedjs.desktop' to correct location
 %__mv -f "%{?buildroot}%{tde_datadir}/applnk/Utilities/embedjs.desktop" "%{?buildroot}%{tde_tdeappdir}/embedjs.desktop"
 %__rm -rf "%{?buildroot}%{tde_datadir}/applnk"
 
