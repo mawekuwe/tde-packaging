@@ -119,7 +119,7 @@ BuildRequires: mozilla-xulrunner20-devel
 BuildRequires:	openssl-devel
 
 # GTK1 support
-%if 0%{?fedora} || 0%{?with_gtk1}
+%if 0%{?fedora} || 0%{?with_rhel} && 0%{?with_gtk1}
 %define with_gtk1 1
 BuildRequires: glib-devel
 BuildRequires: gtk+-devel
@@ -143,6 +143,19 @@ BuildRequires: gdk-pixbuf2-devel
 %else
 BuildRequires: gdk-pixbuf-devel
 %endif
+%endif
+
+# MESA support
+%if 0%{?rhel} || 0%{?fedora}
+BuildRequires: mesa-libGL-devel
+BuildRequires: mesa-libGLU-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires: mesaglu-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: Mesa-libGL-devel
+BuildRequires: Mesa-libGLU-devel
 %endif
 
 
