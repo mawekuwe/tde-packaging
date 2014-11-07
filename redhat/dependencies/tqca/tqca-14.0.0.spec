@@ -54,7 +54,7 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:		%{name}-rpmlintrc
 
 BuildRequires:  libtqt4-devel >= %{tde_epoch}:4.2.0
-
+BuildRequires:	gcc-c++
 
 %description
 Taking a hint from the similarly-named Java Cryptography Architecture,
@@ -142,8 +142,6 @@ perl -pi -e 's,target\.path=\$PREFIX/lib,target.path=\$PREFIX/%{_lib},g' qcextra
 
 %build
 unset QTDIR QTINC QTLIB
-export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 ./configure \
   --prefix=%{_prefix} \
