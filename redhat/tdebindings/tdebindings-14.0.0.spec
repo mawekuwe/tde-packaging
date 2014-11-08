@@ -171,6 +171,9 @@ BuildRequires: python-devel
 ## ruby
 BuildRequires:	ruby-devel >= 1.8
 BuildRequires:	ruby >= 1.8
+%if 0%{?fedora} >= 19
+BuildRequires:	rubypick
+%endif
 %if "%{?ruby_libarchdir}" != ""
 %define ruby_arch %{?ruby_libarchdir}
 %else
@@ -204,7 +207,7 @@ BuildRequires:	java-1.6.0-sun-devel
 # Others use OpenJDK
 BuildRequires: java-openjdk
 BuildRequires: java-devel >= 1.4.2
-%if 0%{?fedora} >= 17 || 0%{?suse_version} >= 1220 || 0%{?mgaversion} >= 3
+%if 0%{?fedora} >= 17 || 0%{?suse_version} >= 1220 || 0%{?mgaversion} >= 3 || 0%{?rhel} >= 7
 BuildRequires: java-1.7.0-openjdk-devel
 %else
 BuildRequires: java-1.6.0-openjdk-devel
