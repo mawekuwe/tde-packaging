@@ -58,31 +58,41 @@ It should not be installed on runtime computer.
 %files
 
 %post
-echo "Patching openSUSE brp scripts ..."
-sed -i.orig \
-	/usr/lib/rpm/brp-desktop.data/applications.menu \
-	/usr/lib/rpm/brp-desktop.data/kde-settings.menu \
-	/usr/lib/rpm/brp-desktop.data/xdg_menu \
-	/usr/lib/rpm/brp-suse.d/brp-25-symlink \
-	/usr/lib/rpm/brp-suse.d/brp-72-extract-appdata \
-	/usr/lib/rpm/suse_update_desktop_file.sh \
-    -e "s|opt/kde3|opt/trinity|g" \
-    -e "s|kde-config|tde-config|g" \
-    -e "s|kdesu|tdesu|g" \
-    -e "s|kde-settings-|tde-settings-|g" \
-    -e "s|doc/kde|doc/tde|g" \
-    -e "s|kde_xdgdata|tde_xdgdata|g" \
-    -e "s|applications/kde|applications/tde|g" \
-    -e "s|KDE|TDE|g"
+for i in \
+	brp-desktop.data/applications.menu \
+	brp-desktop.data/kde-settings.menu \
+	brp-desktop.data/xdg_menu \
+	brp-suse.d/brp-25-symlink \
+	brp-suse.d/brp-72-extract-appdata \
+	suse_update_desktop_file.sh \
+; do
+	echo "Patching file '/usr/lib/rpm/${i}' ..."
+	install -D "/usr/lib/rpm/${i}" "/usr/lib/rpm.orig/${i}"
+	sed -i "/usr/lib/rpm/${i}" \
+		-e "s|opt/kde3|opt/trinity|g" \
+		-e "s|kde-config|tde-config|g" \
+		-e "s|kdesu|tdesu|g" \
+		-e "s|kde-settings-|tde-settings-|g" \
+		-e "s|doc/kde|doc/tde|g" \
+		-e "s|kde_xdgdata|tde_xdgdata|g" \
+		-e "s|applications/kde|applications/tde|g" \
+		-e "s|KDE|TDE|g"
+done
 
 
 %postun
-find /usr/lib/rpm -name "*.orig" | while read f; do
-  echo "Restoring original file: '${f%.orig}'"
-  mv -f "${f}" "${f%.orig}"
-done    
-    
-
+for i in \
+	brp-desktop.data/applications.menu \
+	brp-desktop.data/kde-settings.menu \
+	brp-desktop.data/xdg_menu \
+	brp-suse.d/brp-25-symlink \
+	brp-suse.d/brp-72-extract-appdata \
+	suse_update_desktop_file.sh \
+; do
+	echo "Restoring file '/usr/lib/rpm/${i}' ..."
+	install "/usr/lib/rpm.orig/${i}" "/usr/lib/rpm/${i}"
+done
+rm -rf "/usr/lib/rpm.orig"
 
 ##########
 
