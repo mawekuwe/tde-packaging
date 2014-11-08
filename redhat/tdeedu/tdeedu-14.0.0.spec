@@ -74,7 +74,7 @@ BuildRequires:	gcc-c++
 BuildRequires:	desktop-file-utils
 
 # BOOST support
-BuildRequires: boost-devel
+BuildRequires:	boost-devel
 
 # OCAML support
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
@@ -1339,7 +1339,7 @@ Provides:	trinity-kdeedu-devel = %{version}-%{release}
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
