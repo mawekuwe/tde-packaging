@@ -67,11 +67,22 @@ BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: autoconf automake libtool m4
 BuildRequires: desktop-file-utils
 
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
 # PYTHON support
 BuildRequires:	python-devel
 BuildRequires:	python
 BuildRequires:	gcc-c++
 BuildRequires:	desktop-file-utils
+BuildRequires:	fdupes
 
 # BOOST support
 BuildRequires:	boost-devel
@@ -1319,7 +1330,7 @@ Obsoletes:	trinity-kdeedu-devel < %{version}-%{release}
 Provides:	trinity-kdeedu-devel = %{version}-%{release}
 
 %description devel
-%{summary}.
+This package contains the development files for tdeedu.
 
 %files devel
 %defattr(-,root,root,-)
@@ -1397,6 +1408,33 @@ fi
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file khangman      Education Languages
+%suse_update_desktop_file kiten         Education Languages
+%suse_update_desktop_file klatin        Education Languages
+%suse_update_desktop_file klettres      Education Languages
+%suse_update_desktop_file kverbos       Education Languages
+%suse_update_desktop_file kvoctrain     Education Languages
+%suse_update_desktop_file kwordquiz     Education Languages
+%suse_update_desktop_file kbruch        Education Math
+%suse_update_desktop_file kig           Education Math
+%suse_update_desktop_file kmplot        Education Math
+%suse_update_desktop_file kturtle       Education Math
+%suse_update_desktop_file kpercentage   Education Math
+%suse_update_desktop_file kalzium       Education Chemistry
+%suse_update_desktop_file kstars        Education Astronomy
+%suse_update_desktop_file keduca        Education X-TDE-Edu-Teaching
+%suse_update_desktop_file keducabuilder Education X-TDE-Edu-Teaching
+%suse_update_desktop_file ktouch        Education X-TDE-Edu-Teaching
+%suse_update_desktop_file blinken       Education X-TDE-Edu-Teaching
+%suse_update_desktop_file kgeography    Education X-TDE-Edu-Teaching
+%suse_update_desktop_file kanagram      Education Languages
+%endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean
