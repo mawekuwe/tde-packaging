@@ -161,7 +161,15 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/emoticons
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/man
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man1
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man2
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man3
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man4
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man5
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man6
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man7
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man8
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/man/man9
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/all
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/application
