@@ -158,7 +158,7 @@ Educational/Edutainment applications, including:
 ##########
 
 %package data
-Summary:	shared data for Trinity educational applications
+Summary:	Shared data for Trinity educational applications
 Group:		System/GUI/Other
 
 %description data
@@ -222,7 +222,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kalzium
-Summary:	chemistry teaching tool for Trinity
+Summary:	Chemistry teaching tool for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-kalzium-data = %{version}-%{release}
 Requires:	trinity-tdeedu-data = %{version}-%{release}
@@ -272,7 +272,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kalzium-data
-Summary:	data files for Kalzium
+Summary:	Data files for Kalzium
 Group:		System/GUI/Other
 
 %description -n trinity-kalzium-data
@@ -292,7 +292,7 @@ This package is part of Trinity, as a component of the TDE education module.
 ##########
 
 %package -n trinity-kanagram
-Summary:	letter order game for Trinity
+Summary:	Letter order game for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -338,7 +338,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kbruch
-Summary:	fraction calculation teaching tool for Trinity
+Summary:	Fraction calculation teaching tool for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -377,7 +377,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-keduca
-Summary:	interactive form-based tests for Trinity
+Summary:	Interactive form-based tests for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -460,7 +460,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kgeography-data
-Summary:	data files for KGeography
+Summary:	Data files for KGeography
 Group:		System/GUI/Other
 
 %description -n trinity-kgeography-data
@@ -479,7 +479,7 @@ This package is part of Trinity, as a component of the TDE education module.
 ##########
 
 %package -n trinity-khangman
-Summary:	the classical hangman game for Trinity
+Summary:	The classical hangman game for Trinity
 Group:		System/GUI/Other
 #Requires:	dustin-dustismo-sans-fonts
 Requires:	trinity-tdeedu-data = %{version}-%{release}
@@ -524,7 +524,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kig
-Summary:	interactive geometry program for KDE
+Summary:	Interactive geometry program for KDE
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -636,7 +636,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-klatin
-Summary:	application to help revise/teach Latin
+Summary:	Application to help revise/teach Latin
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -684,7 +684,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-klettres
-Summary:	foreign alphabet tutor for Trinity
+Summary:	Foreign alphabet tutor for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-klettres-data = %{version}-%{release}
 Requires:	trinity-tdeedu-data = %{version}-%{release}
@@ -727,7 +727,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-klettres-data
-Summary:	data files for KLettres foreign alphabet tutor
+Summary:	Data files for KLettres foreign alphabet tutor
 Group:		System/GUI/Other
 
 %description -n trinity-klettres-data
@@ -746,7 +746,7 @@ This package is part of Trinity, as a component of the TDE education module.
 ##########
 
 %package -n trinity-kmplot
-Summary:	mathematical function plotter for Trinity
+Summary:	Mathematical function plotter for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -797,7 +797,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kpercentage
-Summary:	percentage calculation teaching tool for Trinity
+Summary:	Percentage calculation teaching tool for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -837,7 +837,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kstars
-Summary:	desktop planetarium for Trinity
+Summary:	Desktop planetarium for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 Requires:	trinity-kstars-data = %{version}-%{release}
@@ -885,7 +885,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kstars-data
-Summary:	data files for KStars desktop planetarium
+Summary:	Data files for KStars desktop planetarium
 Group:		System/GUI/Other
 
 %description -n trinity-kstars-data
@@ -904,7 +904,7 @@ This package is part of Trinity, as a component of the TDE education module.
 ##########
 
 %package -n trinity-ktouch
-Summary:	touch typing tutor for Trinity
+Summary:	Touch typing tutor for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -947,7 +947,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kturtle
-Summary:	educational Logo programming environment
+Summary:	Educational Logo programming environment
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -1041,7 +1041,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kvoctrain
-Summary:	vocabulary trainer for Trinity
+Summary:	Vocabulary trainer for Trinity
 Group:		System/GUI/Other
 Requires:	perl
 Requires:	perl-libwww-perl
@@ -1099,7 +1099,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kwordquiz
-Summary:	flashcard and vocabulary learning program for Trinity
+Summary:	Flashcard and vocabulary learning program for Trinity
 Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -1145,7 +1145,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-libtdeedu3
-Summary:	library for use with Trinity educational apps
+Summary:	Library for use with Trinity educational apps
 Group:		System/GUI/Other
 
 %description -n trinity-libtdeedu3
@@ -1171,8 +1171,8 @@ This package is part of Trinity, as a component of the TDE education module.
 ##########
 
 %package -n trinity-libtdeedu-devel
-Summary:	development files for Trinity educational library
-Group:		Development/Libraries
+Summary:	Development files for Trinity educational library
+Group:		Development/Libraries/Other
 Requires:	trinity-libtdeedu3 = %{version}-%{release}
 
 %description -n trinity-libtdeedu-devel
@@ -1206,7 +1206,7 @@ This package is part of Trinity, as a component of the TDE education module.
 ##########
 
 %package -n trinity-libkiten1
-Summary:	library for Kiten Japanese reference/study tool
+Summary:	Library for Kiten Japanese reference/study tool
 Group:		System/GUI/Other
 #Requires:	kanjidic
 
@@ -1251,8 +1251,8 @@ done
 ##########
 
 %package -n trinity-libkiten-devel
-Summary:	development files for Kiten library
-Group:		Development/Libraries
+Summary:	Development files for Kiten library
+Group:		Development/Libraries/Other
 Requires:	trinity-libkiten1 = %{version}-%{release}
 Requires:	trinity-tdelibs-devel >= %{version}
 
@@ -1320,7 +1320,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-libtdeedu-devel = %{version}-%{release}
 Requires:	trinity-libkiten-devel = %{version}-%{release}
@@ -1374,7 +1374,7 @@ if [ -d "/usr/X11R6" ]; then
   export CFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
-# Warning: GCC visibility causes FTBFS [Bug #1285]
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
