@@ -1410,7 +1410,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
-%suse_update_desktop_file -r khangman   Education Languages Game KidsGame
+%suse_update_desktop_file -r khangman      Education Languages Game KidsGame
 %suse_update_desktop_file    kiten         Education Languages
 %suse_update_desktop_file    klatin        Education Languages
 %suse_update_desktop_file    klettres      Education Languages
@@ -1427,7 +1427,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file    keduca        Education Teaching
 %suse_update_desktop_file    keducabuilder Education Teaching
 %suse_update_desktop_file    ktouch        Education Teaching
-%suse_update_desktop_file    blinken       Education Teaching
+%suse_update_desktop_file -r blinken       Education Teaching Game KidsGame
 %suse_update_desktop_file    kgeography    Education Teaching
 %suse_update_desktop_file -r kanagram      Education Languages Game KidsGame
 %endif
