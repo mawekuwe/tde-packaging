@@ -352,7 +352,7 @@ This package is part of Trinity, as a component of the TDE education module.
 %files -n trinity-kbruch
 %defattr(-,root,root,-)
 %{tde_bindir}/kbruch
-%{tde_datadir}/apps/kbruch/kbruchui.rc
+%{tde_datadir}/apps/kbruch/
 %{tde_tdeappdir}/kbruch.desktop
 %{tde_datadir}/config.kcfg/kbruch.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/kbruch.png
