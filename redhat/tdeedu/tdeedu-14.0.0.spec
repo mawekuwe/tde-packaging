@@ -43,7 +43,7 @@
 
 Name:			trinity-%{tde_pkg}
 Summary:		Educational/Edutainment applications
-Group:			Amusements/Games
+Group:			System/GUI/Other
 Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 URL:			http://www.trinitydesktop.org/
@@ -159,7 +159,7 @@ Educational/Edutainment applications, including:
 
 %package data
 Summary:	shared data for Trinity educational applications
-Group:		Amusements/Games
+Group:		System/GUI/Other
 
 %description data
 This package contains shared data necessary for running the
@@ -180,8 +180,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package -n trinity-blinken
 Summary:	Trinity version of the Simon Says electronic memory game
-Group:		Amusements/Games
-#Requires:	sj-delphine-fonts
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-blinken
@@ -224,7 +223,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kalzium
 Summary:	chemistry teaching tool for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-kalzium-data = %{version}-%{release}
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -274,7 +273,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kalzium-data
 Summary:	data files for Kalzium
-Group:		Amusements/Games
+Group:		System/GUI/Other
 
 %description -n trinity-kalzium-data
 This package contains architecture-independent data files for
@@ -294,7 +293,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package -n trinity-kanagram
 Summary:	letter order game for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kanagram
@@ -340,7 +339,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kbruch
 Summary:	fraction calculation teaching tool for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kbruch
@@ -379,7 +378,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-keduca
 Summary:	interactive form-based tests for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-keduca
@@ -422,7 +421,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kgeography
 Summary:	Geography learning tool for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-kgeography-data = %{version}-%{release}
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -462,7 +461,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kgeography-data
 Summary:	data files for KGeography
-Group:		Amusements/Games
+Group:		System/GUI/Other
 
 %description -n trinity-kgeography-data
 This package contains architecture-independent data files for
@@ -481,7 +480,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package -n trinity-khangman
 Summary:	the classical hangman game for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 #Requires:	dustin-dustismo-sans-fonts
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -526,7 +525,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kig
 Summary:	interactive geometry program for KDE
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kig
@@ -598,7 +597,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kiten
 Summary:	Japanese reference/study tool for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 #Requires:	ttf-kochi-gothic | ttf-kochi-mincho
 
@@ -638,7 +637,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-klatin
 Summary:	application to help revise/teach Latin
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-klatin
@@ -686,7 +685,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-klettres
 Summary:	foreign alphabet tutor for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-klettres-data = %{version}-%{release}
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
@@ -729,7 +728,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-klettres-data
 Summary:	data files for KLettres foreign alphabet tutor
-Group:		Amusements/Games
+Group:		System/GUI/Other
 
 %description -n trinity-klettres-data
 This package contains architecture-independent data files for
@@ -748,7 +747,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package -n trinity-kmplot
 Summary:	mathematical function plotter for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kmplot
@@ -799,7 +798,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kpercentage
 Summary:	percentage calculation teaching tool for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kpercentage
@@ -839,7 +838,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kstars
 Summary:	desktop planetarium for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 Requires:	trinity-kstars-data = %{version}-%{release}
 Requires:	trinity-indi = %{version}-%{release}
@@ -887,7 +886,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kstars-data
 Summary:	data files for KStars desktop planetarium
-Group:		Amusements/Games
+Group:		System/GUI/Other
 
 %description -n trinity-kstars-data
 This package contains architecture-independent data files for KStars,
@@ -906,7 +905,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package -n trinity-ktouch
 Summary:	touch typing tutor for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-ktouch
@@ -949,7 +948,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kturtle
 Summary:	educational Logo programming environment
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kturtle
@@ -1000,7 +999,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kverbos
 Summary:	Spanish verb form study application for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kverbos
@@ -1043,7 +1042,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kvoctrain
 Summary:	vocabulary trainer for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	perl
 Requires:	perl-libwww-perl
 Requires:	trinity-tdeedu-data = %{version}-%{release}
@@ -1101,7 +1100,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kwordquiz
 Summary:	flashcard and vocabulary learning program for Trinity
-Group:		Amusements/Games
+Group:		System/GUI/Other
 Requires:	trinity-tdeedu-data = %{version}-%{release}
 
 %description -n trinity-kwordquiz
@@ -1147,7 +1146,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-libtdeedu3
 Summary:	library for use with Trinity educational apps
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 
 %description -n trinity-libtdeedu3
 The KDE-based library libtdeedu is used with educational
@@ -1208,7 +1207,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package -n trinity-libkiten1
 Summary:	library for Kiten Japanese reference/study tool
-Group:		Environment/Libraries
+Group:		System/GUI/Other
 #Requires:	kanjidic
 
 %description -n trinity-libkiten1
@@ -1284,7 +1283,7 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %package -n trinity-indi
 Summary:	Instrument Neutral Distributed Interface for astronomical devices
-Group:		Amusements/Games
+Group:		System/GUI/Other
 
 %description -n trinity-indi
 INDI is an Instrument Neutral Distributed Interface control protocol for
@@ -1425,11 +1424,11 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file kpercentage   Education Math
 %suse_update_desktop_file kalzium       Education Chemistry
 %suse_update_desktop_file kstars        Education Astronomy
-%suse_update_desktop_file keduca        Education X-TDE-Edu-Teaching
-%suse_update_desktop_file keducabuilder Education X-TDE-Edu-Teaching
-%suse_update_desktop_file ktouch        Education X-TDE-Edu-Teaching
-%suse_update_desktop_file blinken       Education X-TDE-Edu-Teaching
-%suse_update_desktop_file kgeography    Education X-TDE-Edu-Teaching
+%suse_update_desktop_file keduca        Education Teaching
+%suse_update_desktop_file keducabuilder Education Teaching
+%suse_update_desktop_file ktouch        Education Teaching
+%suse_update_desktop_file blinken       Education Teaching
+%suse_update_desktop_file kgeography    Education Teaching
 %suse_update_desktop_file kanagram      Education Languages
 %endif
 
