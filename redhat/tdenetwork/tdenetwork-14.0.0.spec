@@ -1,63 +1,85 @@
-# Avoids relinking, which breaks consolehelper
-%define dont_relink 1
+#
+# spec file for package tdenetwork (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
-# If TDE is built iwn a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
 
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_pkg tdenetwork
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_sbindir %{tde_prefix}/sbin
-
+%define tde_mandir %{tde_datadir}/man
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
-
-
-# Fedora review:  http://bugzilla.redhat.com/195486
-
-## Conditional build:
-# RHEL6: xmms is outdated !
-#define _with_xmms --with-xmms
-%ifnarch s390 s390x
-%define _with_wifi --with-wifi
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
 %endif
 
-Name:    	trinity-tdenetwork
-Version:	%{tde_version}
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:	Trinity Desktop Environment - Network Applications
+# Avoids relinking, which breaks consolehelper
+%define dont_relink 1
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
 
-License:	GPLv2
-Group:		Applications/Internet
+Name:			trinity-%{tde_pkg}
+Summary:		Trinity Desktop Environment - Network Applications
+Group:			Applications/Internet
+Version:		%{tde_version}
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kppp.pamd
 Source2:	ktalk
 
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gettext
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	coreutils 
+BuildRequires:	gcc-c++
+BuildRequires:	desktop-file-utils
+BuildRequires:	fdupes
+
+# OPENSSL support
 BuildRequires:	openssl-devel
+
+# TLS support
 BuildRequires:	gnutls-devel
 
 # SQLITE support
@@ -88,6 +110,14 @@ BuildRequires:	libXScrnSaver-devel
 BuildRequires:	libXxf86vm-devel
 %endif
 
+# Fedora review:  http://bugzilla.redhat.com/195486
+
+## Conditional build:
+# RHEL6: xmms is outdated !
+#define _with_xmms --with-xmms
+%ifnarch s390 s390x
+%define _with_wifi --with-wifi
+%endif
 
 # Wifi support
 %if "%{?_with_wifi:1}" == "1"
@@ -1099,7 +1129,7 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%if 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -1108,11 +1138,15 @@ update-desktop-database 2> /dev/null || :
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
+# Update icons for some control center modules
+%__sed -i "filesharing/simple/fileshare.desktop" -e "s|^Icon=.*|Icon=kcmfileshare|"
+
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
@@ -1130,6 +1164,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=OFF \
   \
@@ -1161,6 +1196,11 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+# Adds missing icons in 'hicolor' theme
+# These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
+%__mkdir_p %{buildroot}%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128}/apps/
+for i in {16,22,32,48,64,128}; do cp $BUILD_ROOT%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/share.png %{buildroot}%{tde_datadir}/icons/hicolor/"$i"x"$i"/apps/kcmfileshare.png ;done
+
 %if 0%{?with_consolehelper}
 # Run kppp through consolehelper, and rename it to 'kppp3'
 %__install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
@@ -1176,6 +1216,7 @@ USER=root
 PROGRAM=%{tde_sbindir}/kppp3
 SESSION=true
 EOF
+
 # Renames 'kppp' as 'kppp3' in launch icon
 %__sed -i %{buildroot}%{tde_tdeappdir}/Kppp.desktop -e "/Exec=/ s|kppp|kppp3|"
 %endif
@@ -1185,6 +1226,27 @@ EOF
 
 # Avoids conflict with trinity-kvirc
 %__mv -f %{buildroot}%{tde_datadir}/services/irc.protocol %{buildroot}%{tde_datadir}/apps/kopete/
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file    kcmkrfb
+%suse_update_desktop_file    fileshare
+%suse_update_desktop_file    kopete        Network  InstantMessaging
+%suse_update_desktop_file    ksirc         Network  IRCClient
+%suse_update_desktop_file    Kppp          Network  Dialup
+%suse_update_desktop_file -r kppplogview   System   Monitor
+%suse_update_desktop_file    kdict         Office   Dictionary
+%suse_update_desktop_file -r krdc          System   RemoteAccess
+%suse_update_desktop_file -r krfb          System   RemoteAccess
+%suse_update_desktop_file -r kget          System   TrayIcon
+%suse_update_desktop_file -r kwifimanager  System   Network
+%suse_update_desktop_file    kcmwifi
+%suse_update_desktop_file -u knewsticker-standalone Network  News
+%suse_update_desktop_file %{buildroot}%{tde_datadir}/apps/remoteview/zeroconf.desktop
+%endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean
