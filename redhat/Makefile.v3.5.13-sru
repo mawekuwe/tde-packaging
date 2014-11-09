@@ -61,58 +61,58 @@ tqtinterface:	qt3 cmake
 
 # Main packages
 tdeaccessibility:	tdebase tdemultimedia
-	$(call buildpkg,tdeaccessibility)
+	$(call buildpkg,main/tdeaccessibility)
 
 tdeaddons:	tdebase tdegames tdemultimedia tdenetwork tdepim
-	$(call buildpkg,tdeaddons)
+	$(call buildpkg,main/tdeaddons)
 
 tdeadmin:	tdebase
-	$(call buildpkg,tdeadmin)
+	$(call buildpkg,main/tdeadmin)
 
 tdeartwork:	tdebase
-	$(call buildpkg,tdeartwork)
+	$(call buildpkg,main/tdeartwork)
 
 tdebase:	tdelibs cmake htdig fileshareset hal
-	$(call buildpkg,tdebase)
+	$(call buildpkg,main/tdebase)
 
 tdebindings:	tdebase
-	$(call buildpkg,tdebindings)
+	$(call buildpkg,main/tdebindings)
 
 tdeedu:	tdebase
-	$(call buildpkg,tdeedu)
+	$(call buildpkg,main/tdeedu)
 
 tdegames:	tdebase tdemultimedia
-	$(call buildpkg,tdegames)
+	$(call buildpkg,main/tdegames)
 
 tdegraphics:	tdebase poppler cmake
-	$(call buildpkg,tdegraphics)
+	$(call buildpkg,main/tdegraphics)
 
 tdelibs:	qt3 tqtinterface arts dbus-tqt dbus-1-tqt cmake avahi-tqt fileshareset trinity-filesystem
-	$(call buildpkg,tdelibs)
+	$(call buildpkg,main/tdelibs)
 
 tdemultimedia:	tdebase akode
-	$(call buildpkg,tdemultimedia)
+	$(call buildpkg,main/tdemultimedia)
 
 tdenetwork:	tdebase
-	$(call buildpkg,tdenetwork)
+	$(call buildpkg,main/tdenetwork)
 
 tdepim:	tdebase libcaldav libcarddav cmake
-	$(call buildpkg,tdepim)
+	$(call buildpkg,main/tdepim)
 
 tdesdk:		tdebase tdebindings cmake
-	$(call buildpkg,tdesdk)
+	$(call buildpkg,main/tdesdk)
 
 tdetoys:	tdebase
-	$(call buildpkg,tdetoys)
+	$(call buildpkg,main/tdetoys)
 
 tdeutils:	tdebase
-	$(call buildpkg,tdeutils)
+	$(call buildpkg,main/tdeutils)
 
 tdevelop:	tdebase tdesdk cmake
-	$(call buildpkg,tdevelop)
+	$(call buildpkg,main/tdevelop)
 
 tdewebdev:	tdebase tdesdk
-	$(call buildpkg,tdewebdev)
+	$(call buildpkg,main/tdewebdev)
 
 ### 3rd party libraries and tools
 autoconf: m4

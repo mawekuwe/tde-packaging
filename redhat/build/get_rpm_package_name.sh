@@ -20,7 +20,7 @@ case "${PKGNAME}" in
   # In case prefix is already there, don't add it again.
   "trinity-"*) PREFIX="";;
   # Most TDE dependencies have no prefix
-  "avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"libcarddav"|"libcaldav"|"python-tqt"|"sip4-tqt"|"qt3"|"tqscintilla"|"tqt3"|"tqtinterface") PREFIX="";;
+  "avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"libcarddav"|"libcaldav"|"python-tqt"|"sip4-tqt"|"qt3"|"tqscintilla"|"tqt3"|"tqtinterface"|"tqca"|"tqca-tls") PREFIX="";;
   # 3rd party dependencies
   "esound"|"fileshareset"|"hk_classes"|"python-qt3") PREFIX="";;
   # Extra build stuff
@@ -49,6 +49,8 @@ case "${PKGNAME}" in
   "libcaldav") PKGRUNTIME="${lib}caldav0";;
   "libcarddav") PKGRUNTIME="${lib}carddav0";;
   "tqscintilla") PKGRUNTIME="${lib}tqscintilla7";;
+  "tqca") PKGRUNTIME="${lib}tqca1";;
+  "tqca-tls") PKGRUNTIME="${lib}tqt3-mt-tqca-tls";;
   "tqt3") PKGRUNTIME="${lib}tqt3-mt";;
   "tqtinterface") PKGRUNTIME="${lib}tqt4";;
   # Language package: install only French language package
@@ -86,6 +88,7 @@ if [ -n "${DEVEL}" ]; then
     "libart-lgpl") PKGDEVEL="libart_lgpl-devel";;
     "libcaldav") PKGDEVEL="${lib}caldav-devel";;
     "libcarddav") PKGDEVEL="${lib}carddav-devel";;
+    "tqca") PKGDEVEL="${lib}tqca-devel";;
     "tqscintilla") PKGDEVEL="${lib}tqscintilla-devel";;
     "tqt3") PKGDEVEL="tqt3-dev-tools tqt3-apps-devel tqt3-compat-headers";;
     # Default case: development package has same name as runtime package, plus '-devel' suffix.

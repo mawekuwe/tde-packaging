@@ -28,3 +28,9 @@ if [ -x /usr/sbin/urpmi ]; then
   sudo urpmi.addmedia rpmbuild.${ARCH} ${RPMDIR}/${ARCH}
   sudo urpmi.addmedia rpmbuild.noarch ${RPMDIR}/noarch
 fi
+
+# openSUSE
+if [ -x /usr/bin/zypper ]; then
+  sudo zypper ar -G ${RPMDIR}/${ARCH} rpmbuild.${ARCH}
+  sudo zypper ar -G ${RPMDIR}/noarch rpmbuild.noarch
+fi
