@@ -1185,6 +1185,19 @@ export PATH="%{tde_bindir}:${PATH}"
 # Removes useless stuff
 %__rm -f %{?buildroot}%{tde_datadir}/apps/kapptemplate/admin/debianrules
 
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file    kuiviewer      Development GUIDesigner
+%suse_update_desktop_file    umbrello       Development Design
+%suse_update_desktop_file    kbugbuster     Development Debugger
+%suse_update_desktop_file -u catalogmanager Development Translation
+%suse_update_desktop_file    kbabel         Development Translation
+%suse_update_desktop_file -u kbabeldict     Development Translation
+%suse_update_desktop_file    cervisia       Development RevisionControl
+%suse_update_desktop_file    kompare        Development RevisionControl
+%suse_update_desktop_file    tdecachegrind  Development Profiling
+%endif
+
 
 %clean
 %__rm -rf %{buildroot}
