@@ -73,6 +73,13 @@ BuildRequires:	libtool
 # IDN support
 BuildRequires:	libidn-devel
 
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 # PCRE support
 BuildRequires:	pcre-devel
 
@@ -1133,6 +1140,7 @@ fi
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=OFF \
