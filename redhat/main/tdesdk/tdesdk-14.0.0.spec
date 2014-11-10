@@ -1,5 +1,5 @@
 #
-# spec file for package tdenetwork (version R14.0.0)
+# spec file for package tdesdk (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #
@@ -22,7 +22,7 @@
 # TDE variables
 %define tde_epoch 2
 %define tde_version 14.0.0
-%define tde_pkg tdenetwork
+%define tde_pkg tdesdk
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
