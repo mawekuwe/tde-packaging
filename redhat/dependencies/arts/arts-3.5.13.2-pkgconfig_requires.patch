@@ -1,0 +1,48 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c122548..ad4f028 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -226,6 +226,34 @@ configure_file( config.h.cmake config.h @ONLY )
+ 
+ ##### write pkgconfig file ######################
+ 
++set( PC_LIB_REQUIRE "" )
++if( WITH_ALSA )
++  list( APPEND PC_LIB_REQUIRE "alsa" )
++endif( WITH_ALSA )
++if( WITH_AUDIOFILE )
++  list( APPEND PC_LIB_REQUIRE "audiofile" )
++endif( WITH_AUDIOFILE )
++if( WITH_VORBIS )
++  list( APPEND PC_LIB_REQUIRE "vorbis" )
++  list( APPEND PC_LIB_REQUIRE "vorbisfile" )
++endif( WITH_VORBIS )
++if( WITH_MAD )
++  list( APPEND PC_LIB_REQUIRE "mad" )
++endif( WITH_MAD )
++if( WITH_ESOUND )
++  list( APPEND PC_LIB_REQUIRE "esound" )
++endif( WITH_ESOUND )
++if( WITH_JACK )
++  list( APPEND PC_LIB_REQUIRE "jack" )
++endif( WITH_JACK )
++
++list( LENGTH PC_LIB_REQUIRE PC_LIB_REQUIRES_FOUND )
++if( PC_LIB_REQUIRES_FOUND GREATER 0 )
++  string( REPLACE ";" " " PC_LIB_REQUIRES "Requires: ${PC_LIB_REQUIRE}" )
++else( )
++  set( PC_LIB_REQUIRES "" )
++endif( )
++
+ string( REGEX REPLACE "^${CMAKE_INSTALL_PREFIX}" "\${prefix}" PC_EXEC_PREFIX ${EXEC_INSTALL_PREFIX} )
+ string( REGEX REPLACE "^${CMAKE_INSTALL_PREFIX}" "\${prefix}" PC_INCLUDE_DIR ${INCLUDE_INSTALL_DIR} )
+ string( REGEX REPLACE "^${CMAKE_INSTALL_PREFIX}" "\${prefix}" PC_LIB_DIR ${LIB_INSTALL_DIR} )
+diff --git a/arts.pc.cmake b/arts.pc.cmake
+index 2c26a41..77332d2 100644
+--- a/arts.pc.cmake
++++ b/arts.pc.cmake
+@@ -8,3 +8,4 @@ Description: Soundserver for the Trinity Desktop Environment (TDE)
+ Version: @ARTS_VERSION@
+ Libs: -L${libdir}
+ Cflags: -I${includedir}
++@PC_LIB_REQUIRES@

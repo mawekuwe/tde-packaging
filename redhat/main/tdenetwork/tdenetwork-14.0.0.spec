@@ -95,6 +95,13 @@ BuildRequires:	sqlite-devel
 BuildRequires:	libgadu-devel
 %endif
 
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 # XTST support
 %if 0%{?fedora} >= 5 || 0%{?rhel} >= 5 || 0%{?suse_version} >= 1210
 BuildRequires:	libXtst-devel
@@ -127,7 +134,7 @@ BuildRequires: wireless-tools-devel
 %if 0%{?mgaversion} == 2 || 0%{?mdkversion}
 BuildRequires:	%{_lib}iw29-devel
 %endif
-%if 0%{?rhel} == 5
+%if 0%{?rhel} == 5 || 0%{?suse_version}
 BuildRequires: wireless-tools
 %endif
 %if 0%{?suse_version} || 0%{?mgaversion} >= 3
@@ -350,6 +357,7 @@ NFS and Samba.
 %{tde_tdelibdir}/kcm_kcmsambaconf.so
 %{tde_tdeappdir}/fileshare.desktop
 %{tde_tdeappdir}/kcmsambaconf.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kcmfileshare.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmsambaconf.png
 %{tde_datadir}/services/fileshare_propsdlgplugin.desktop
 %{tde_tdedocdir}/HTML/en/kcontrol/fileshare/
