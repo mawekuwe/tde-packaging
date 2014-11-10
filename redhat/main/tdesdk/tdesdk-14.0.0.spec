@@ -49,16 +49,18 @@ Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 URL:			http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
-License:	GPL-2.0+
+License:		GPL-2.0+
 %else
-License:	GPLv2+
+License:		GPLv2+
 %endif
 
 #Vendor:		Trinity Desktop
-#Packager:	Francois Andriot <francois.andriot@free.fr>
+#Packager:		Francois Andriot <francois.andriot@free.fr>
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-perl-dcop >= {tde_version}

@@ -95,6 +95,9 @@ BuildRequires:	sqlite-devel
 BuildRequires:	libgadu-devel
 %endif
 
+# PCRE support
+BuildRequires:	pcre-devel
+
 # GAMIN support
 #  Not on openSUSE.
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
