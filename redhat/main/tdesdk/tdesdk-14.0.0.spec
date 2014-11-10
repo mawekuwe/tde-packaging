@@ -64,16 +64,19 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-perl-dcop >= {tde_version}
+BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	libtool
 
+# IDN support
+BuildRequires:	libidn-devel
+
 # PCRE support
 BuildRequires:	pcre-devel
 
 # for kbugbuster/libkcal
-BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 # DB4 support
