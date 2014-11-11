@@ -138,19 +138,28 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Applications
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Development
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Edutainment
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Edutainment/Languages
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Edutainment/Mathematics
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Edutainment/Miscellaneous
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Edutainment/Science
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Edutainment/Tools
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Games
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Games/Board
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Graphics
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Internet
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Multimedia
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Office
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Settings
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Settings/LookNFeel
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Settings/WebBrowsing
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/System
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Toys
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/applnk/Utilities
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/plugin
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/profiles
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/remoteview
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/videothumbnail
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/zeroconf
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/autostart
@@ -187,6 +196,7 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/uri
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/video
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/services
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/services/kconfiguredialog
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/servicetypes
 
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/wallpapers

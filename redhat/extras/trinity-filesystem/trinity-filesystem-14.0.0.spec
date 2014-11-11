@@ -159,6 +159,7 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/plugin
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/profiles
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/remoteview
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/videothumbnail
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/zeroconf
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/autostart
@@ -195,6 +196,7 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/uri
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/mimelnk/video
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/services
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/services/tdeconfiguredialog
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/servicetypes
 
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/wallpapers
