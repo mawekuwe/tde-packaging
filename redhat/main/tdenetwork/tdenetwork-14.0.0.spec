@@ -1160,6 +1160,11 @@ update-desktop-database 2> /dev/null || :
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
+# Workaround libiw detection failure on opensuse
+%if 0%{?suse_version}
+%__sed -i "wifi/ConfigureChecks.cmake" -e "s|^check_library_exists.*|set( HAVE_IW 1 )|"
+%endif
+
 # Update icons for some control center modules
 %__sed -i "filesharing/simple/fileshare.desktop" -e "s|^Icon=.*|Icon=kcmfileshare|"
 
@@ -1168,7 +1173,6 @@ update-desktop-database 2> /dev/null || :
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
