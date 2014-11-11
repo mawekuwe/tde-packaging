@@ -708,7 +708,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package -n trinity-kmtrace
-Summary:	a Trinity memory leak tracer
+Summary:	A Trinity memory leak tracer
 Group:		Development/Languages/Other
 Requires:	less
 
@@ -732,7 +732,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package -n trinity-kompare
-Summary:	a Trinity GUI for viewing differences between files
+Summary:	A Trinity GUI for viewing differences between files
 Group:		Development/Languages/Other
 
 %description -n trinity-kompare
@@ -746,7 +746,6 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %defattr(-,root,root,-)
 %{tde_bindir}/kompare
 %{tde_libdir}/libkompareinterface.la
-%{tde_libdir}/libkompareinterface.so
 %{tde_libdir}/libkompareinterface.so.*
 %{tde_tdelibdir}/libkomparenavtreepart.la
 %{tde_tdelibdir}/libkomparenavtreepart.so
@@ -1116,6 +1115,7 @@ Requires:	trinity-kspy = %{version}-%{release}
 Requires:	trinity-kmtrace = %{version}-%{release}
 Requires:	trinity-tdeunittest = %{version}-%{release}
 Requires:	trinity-libcvsservice-devel = %{version}-%{release}
+Requires:	trinity-kompare = %{version}-%{release}
 
 Obsoletes:	trinity-kdesdk-devel < %{version}-%{release}
 Provides:	trinity-kdesdk-devel = %{version}-%{release}
@@ -1137,6 +1137,8 @@ This package contains the development files for tdesdk.
 # tdeunittest
 %{tde_libdir}/libtdeunittestgui.so
 %{tde_tdeincludedir}/tdeunittest/runnergui.h
+# kompare
+%{tde_libdir}/libkompareinterface.so
 
 ##########
 
@@ -1213,6 +1215,14 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Fix permissions
 chmod 644 %{?buildroot}%{tde_datadir}/apps/kapptemplate/admin/Doxyfile.global
+
+# Make kapptemplate archive
+pushd  %{?buildroot}%{tde_datadir}/apps/kapptemplate
+mkdir kapptemplate
+mv admin appframework bin existing include kapp kpartapp kpartplugin kapptemplate/
+tar cfz kapptemplate.tar.gz kapptemplate
+rm -rf kapptemplate
+popd
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
