@@ -229,7 +229,7 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_tdelibdir}/libtdefilereplacepart.la
 %{tde_tdelibdir}/libtdefilereplacepart.so
 %{tde_tdeappdir}/tdefilereplace.desktop
-%{tde_datadir}/apps/tdefilereplace/tdefilereplaceui.rc
+%{tde_datadir}/apps/tdefilereplace/
 %{tde_datadir}/apps/tdefilereplacepart
 %{tde_datadir}/icons/hicolor/*/apps/tdefilereplace.png
 %{tde_datadir}/services/tdefilereplacepart.desktop
@@ -379,11 +379,9 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_tdelibdir}/libkommander_part.so
 %{tde_tdelibdir}/libkommander_part.la
 %{tde_datadir}/apps/kommander/
-%{tde_datadir}/apps/kmdr-editor/editor/
+%{tde_datadir}/apps/kmdr-editor/
 %{tde_datadir}/apps/katepart/syntax/kommander-new.xml
-%{tde_datadir}/apps/tdevappwizard/kommanderplugin.png
-%{tde_datadir}/apps/tdevappwizard/kommanderplugin.tar.gz
-%{tde_datadir}/apps/tdevappwizard/templates/kommanderplugin.tdevtemplate
+%{tde_datadir}/apps/tdevappwizard/
 %{tde_datadir}/services/kommander_part.desktop
 
 %post -n trinity-kommander
