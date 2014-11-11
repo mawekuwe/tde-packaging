@@ -1296,7 +1296,9 @@ EOF
 %endif
 
 # Remove setuid bit on some binaries.
-chmod 0755 "%{?buildroot}%{tde_bindir}/kppp"
+if [ -r "%{?buildroot}%{tde_bindir}/kppp" ]; then
+  chmod 0755 "%{?buildroot}%{tde_bindir}/kppp"
+fi
 
 # ktalk
 %__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
