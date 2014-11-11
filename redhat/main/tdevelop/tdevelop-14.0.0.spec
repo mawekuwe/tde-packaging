@@ -79,6 +79,9 @@ Requires:	gettext
 Requires:	ctags
 
 
+# LIBIDN support
+BuildRequires:	libidn-devel
+
 # DB4 support
 %if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	db4-devel
