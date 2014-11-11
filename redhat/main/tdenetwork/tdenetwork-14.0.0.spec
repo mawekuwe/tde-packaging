@@ -1286,9 +1286,9 @@ EOF
 
 # Icons from TDE Control Center should only be displayed in TDE
 for i in %{?buildroot}%{tde_tdeappdir}/*.desktop ; do
-  if grep -q "^Categories=.*X-KDE-settings" "${i}"; then
-    if ! grep -q "OnlyShowIn=KDE" "${i}" ; then
-      echo "OnlyShowIn=KDE;" >>"${i}"
+  if grep -q "^Categories=.*X-TDE-settings" "${i}"; then
+    if ! grep -q "OnlyShowIn=TDE" "${i}" ; then
+      echo "OnlyShowIn=TDE;" >>"${i}"
     fi
   fi
 done
