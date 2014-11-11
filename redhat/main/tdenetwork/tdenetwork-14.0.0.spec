@@ -341,8 +341,6 @@ development-related files for the TDE network module.
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/kopete/
 %{tde_tdeincludedir}/rss/
-%{tde_libdir}/libtdeinit_kdict.la
-%{tde_libdir}/libtdeinit_ksirc.la
 %{tde_libdir}/libkopete.la
 %{tde_libdir}/libkopete.so
 %{tde_libdir}/libkopete_oscar.la
@@ -1126,7 +1124,7 @@ but relying only on the TCP/IP protocol.
 %{tde_datadir}/apps/konqsidebartng/virtual_folders/services/lisa.desktop
 %{tde_datadir}/apps/konqueror/dirtree/remote/lan.desktop
 %{tde_datadir}/apps/lisa/
-%{tde_datadir}/apps/remoteview/
+%{tde_datadir}/apps/remoteview/lan.desktop
 %{tde_tdedocdir}/HTML/en/kcontrol/lanbrowser/
 %{tde_tdedocdir}/HTML/en/lisa/
 %{tde_datadir}/services/lan.protocol
