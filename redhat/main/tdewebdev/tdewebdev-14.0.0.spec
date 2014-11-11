@@ -1,35 +1,60 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdewebdev (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# TDE specific building variables
+%define tde_pkg tdewebdev
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_mandir %{tde_datadir}/man
-
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
-Name:		trinity-tdewebdev
-Version:	%{tde_version}
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
+
+Name:		trinity-%{tde_pkg}
 Summary:	Web development applications 
 Group:		Applications/Editors
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+Version:	%{tde_version}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -40,16 +65,30 @@ Source2:	http://download.sourceforge.net/quanta/html.tar.bz2
 Source3:	http://download.sourceforge.net/quanta/php_manual_en_20030401.tar.bz2
 Source4:	http://download.sourceforge.net/quanta/javascript.tar.bz2
 
-BuildRequires:	autoconf automake libtool m4
-BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
+
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	desktop-file-utils
+BuildRequires:	gcc-c++
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 BuildRequires:	libxslt-devel
 %if 0%{?rhel} == 4
 # a bogus dep in libexslt.la file from EL-4 (WONTFIX bug http://bugzilla.redhat.com/142241)
 BuildRequires:	libgcrypt-devel
 %endif
+
+# PERL support
 BuildRequires:	perl
 
 # KXSLDBG requires libxml2
@@ -73,7 +112,7 @@ Requires: trinity-kommander = %{version}-%{release}
 %{?build_kxsldbg:Requires: trinity-kxsldbg = %{version}-%{release}}
 
 %description
-%{summary}, including:
+Web development applications, including:
 * tdefilereplace: batch search and replace tool
 * kimagemapeditor: HTML image map editor
 * klinkstatus: link checker
@@ -82,6 +121,7 @@ Requires: trinity-kommander = %{version}-%{release}
 %{?build_kxsldbg:* kxsldbg: xslt Debugger}
 
 %files
+%defattr(-,root,root,-)
 
 ##########
 
