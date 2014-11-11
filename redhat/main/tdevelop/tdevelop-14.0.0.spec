@@ -58,6 +58,7 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 Requires:	%{name}-libs = %{version}-%{release}
 
+BuildRequires:	tqt3-apps-devel >= 3.5.0
 BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
@@ -81,6 +82,13 @@ Requires:	ctags
 
 # LIBIDN support
 BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
 
 # DB4 support
 %if 0%{?rhel} || 0%{?fedora}
