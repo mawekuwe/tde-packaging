@@ -601,7 +601,7 @@ cp -a php php.docrc %{buildroot}%{tde_datadir}/apps/quanta/doc/
 %suse_update_desktop_file -r kxsldbg          Office WebDevelopment
 %endif
 %suse_update_desktop_file -r kimagemapeditor  Office WebDevelopment
-%suse_update_desktop_file -r kfilereplace     System      FileManager
+%suse_update_desktop_file -r tdefilereplace   System      FileManager
 %suse_update_desktop_file    kmdr-editor      Development GUIDesigner
 %suse_update_desktop_file    kmdr-executor    Development GUIDesigner
 %suse_update_desktop_file -r quanta           Office WebDevelopment
