@@ -66,6 +66,16 @@ BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 Obsoletes:	trinity-kdevelop < %{version}-%{release}
 Provides:	trinity-kdevelop = %{version}-%{release}
 
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	fdupes
@@ -89,6 +99,9 @@ BuildRequires:	libidn-devel
 %define with_gamin 1
 BuildRequires:	gamin-devel
 %endif
+
+# PCRE support
+BuildRequires:	pcre-devel
 
 # DB4 support
 %if 0%{?rhel} || 0%{?fedora}
