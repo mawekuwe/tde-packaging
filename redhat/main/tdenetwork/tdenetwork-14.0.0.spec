@@ -88,6 +88,11 @@ BuildRequires:	update-desktop-files
 BuildRequires:	brp-check-trinity
 %endif
 
+# for set_permissions macro
+%if 0%{?suse_version}
+PreReq: permissions
+%endif
+
 # OPENSSL support
 BuildRequires:	openssl-devel
 
@@ -177,7 +182,7 @@ BuildRequires: openslp-devel
 %endif
 
 %ifarch %{ix86}
-# BR: %{tde_includedir}/valgrind/valgrind.h
+# BR: /usr/include/valgrind/valgrind.h
 BuildRequires: valgrind
 %endif
 
@@ -216,9 +221,9 @@ BuildRequires:	meanwhile-devel
 %endif
 
 # ORTP support
-#%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+#if 0%{?rhel} >= 6 || 0#{?fedora} >= 15
 #BuildRequires:	ortp-devel
-#%endif
+#endif
 
 # SPEEX support
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
@@ -466,7 +471,7 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kget
-Summary:		download manager for Trinity
+Summary:		Download manager for Trinity
 Group:			Applications/Internet
 Requires:		trinity-tdebase-data >= %{tde_version}
 Requires:		trinity-konqueror >= %{tde_version}
@@ -515,7 +520,7 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-knewsticker
-Summary:		news ticker applet for Trinity
+Summary:		News ticker applet for Trinity
 Group:			Applications/Internet
 Requires:		trinity-kicker >= %{tde_version}
 
@@ -558,10 +563,11 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kopete
-Summary:		instant messenger for Trinity
+Summary:		Instant messenger for Trinity
 Group:			Applications/Internet
 Requires:		trinity-tdebase-bin >= %{tde_version}
 Requires:		trinity-tdebase-data >= %{tde_version}
+Requires:		trinity-filesystem >= %{tde_version}
 
 %description -n trinity-kopete
 Kopete is an instant messenger program which can communicate with a variety
@@ -765,8 +771,10 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kopete-nowlistening
-Summary:		Nowlistening (xmms) plugin for Kopete.
+Summary:		Nowlistening (xmms) plugin for Kopete
 Group:			Applications/Internet
+Requires:		trinity-kopete = %{tde_version}-%{tde_release}
+Requires:		trinity-filesystem >= %{tde_version}
 
 %description -n trinity-kopete-nowlistening
 Kopete includes the "Now Listening" plug-in that can report what music you
@@ -818,7 +826,7 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kppp
-Summary:		modem dialer and ppp frontend for Trinity
+Summary:		Modem dialer and ppp frontend for Trinity
 Group:			Applications/Internet
 Requires:		ppp
 
@@ -843,7 +851,14 @@ track of the time spent online for you.
 
 %files -n trinity-kppp
 %defattr(-,root,root,-)
-%{?!with_consolehelper:%{tde_bindir}/kppp}
+%if 0%{?with_consolehelper} == 0
+# Some setuid binaries need special care
+%if 0%{?suse_version}
+%verify(not mode) %{tde_bindir}/kppp
+%else
+%attr(4711,root,root) %{tde_bindir}/kppp
+%endif
+%endif
 %{tde_bindir}/kppplogview
 %{tde_tdeappdir}/Kppp.desktop
 %{tde_tdeappdir}/kppplogview.desktop
@@ -864,6 +879,10 @@ for f in hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
+%if 0%{?suse_version}
+# Sets permissions on setuid files (openSUSE specific)
+%set_permissions %{tde_bindir}/kppp
+%endif
 
 %postun -n trinity-kppp
 for f in hicolor ; do
@@ -1276,6 +1295,9 @@ EOF
 %__sed -i %{buildroot}%{tde_tdeappdir}/Kppp.desktop -e "/Exec=/ s|kppp|kppp3|"
 %endif
 
+# Remove setuid bit on some binaries.
+chmod 0755 "%{?buildroot}%{tde_bindir}/kppp"
+
 # ktalk
 %__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
 
@@ -1315,6 +1337,13 @@ done
 
 %clean
 %__rm -rf %{buildroot}
+
+
+%if 0%{?suse_version}
+# Check permissions on setuid files (openSUSE specific)
+%verifyscript
+%verify_permissions -e %{tde_bindir}/kppp
+%endif
 
 
 %changelog
