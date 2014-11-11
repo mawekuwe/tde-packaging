@@ -102,9 +102,14 @@ BuildRequires:	flex
 # umbrello
 BuildRequires:	libxslt-devel
 BuildRequires:	libxml2-devel
-BuildRequires:	perl
 BuildRequires:	subversion-devel
 BuildRequires:	neon-devel
+
+# PERL support
+BuildRequires:	perl
+%if 0%{?fedora} >= 19
+BuildRequires:	perl-podlators
+%endif
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
