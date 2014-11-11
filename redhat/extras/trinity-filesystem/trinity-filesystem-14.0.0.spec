@@ -112,6 +112,7 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/mimelnk
 %dir %{tde_datadir}/mimelnk/*
 %dir %{tde_datadir}/services
+%dir %{tde_datadir}/services/*
 %dir %{tde_datadir}/servicetypes
 %dir %{tde_datadir}/wallpapers
 
