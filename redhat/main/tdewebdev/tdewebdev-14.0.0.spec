@@ -374,10 +374,8 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_datadir}/apps/katepart/syntax/kommander.xml
 %{tde_tdedocdir}/HTML/en/kommander/
 %{tde_datadir}/icons/crystalsvg/*/apps/kommander.png
+%{tde_datadir}/icons/hicolor/*/apps/kommander.png
 %{tde_datadir}/mimelnk/application/x-kommander.desktop
-#kommander/examples /opt/trinity/share/doc/kommander
-#kommander/working/extractkmdr /opt/trinity/bin
-#kommander/working/kmdr2po /opt/trinity/bin
 %{tde_tdelibdir}/libkommander_part.so
 %{tde_tdelibdir}/libkommander_part.la
 %{tde_datadir}/apps/kommander/
@@ -390,7 +388,7 @@ This package is part of TDE, as a component of the TDE web development module.
 
 %post -n trinity-kommander
 /sbin/ldconfig || :
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
@@ -398,7 +396,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kommander
 /sbin/ldconfig || :
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
@@ -606,6 +604,12 @@ cp -a php php.docrc %{buildroot}%{tde_datadir}/apps/quanta/doc/
 %suse_update_desktop_file    kmdr-executor    Development GUIDesigner
 %suse_update_desktop_file -r quanta           Office WebDevelopment
 %endif
+
+# Adds missing icons in 'hicolor' theme
+%__mkdir_p %{buildroot}%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128}/apps/
+pushd %{buildroot}%{tde_datadir}/icons
+for i in {16,22,32,64,128}; do %__cp crystalsvg/"$i"x"$i"/apps/kommander.png  hicolor/"$i"x"$i"/apps/kommander.png  ;done
+popd
 
 
 %clean
