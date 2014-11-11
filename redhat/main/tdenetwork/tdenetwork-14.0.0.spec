@@ -124,9 +124,22 @@ BuildRequires:	libXtst-devel
 BuildRequires:	libxtst-devel
 %endif
 
+# XMU support
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libXmu-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires: libXmu-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion} >= 4
+BuildRequires: libxmu-devel
+%endif
+%if 0%{?mgaversion} == 2 || 0%{?mgaversion} == 3
+BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
+%endif
+
 # Other stuff
 %if 0%{?fedora} >= 5 || 0%{?rhel} >= 5
-BuildRequires:	libXmu-devel
 BuildRequires:	libXScrnSaver-devel
 BuildRequires:	libXxf86vm-devel
 %endif
@@ -1160,11 +1173,6 @@ update-desktop-database 2> /dev/null || :
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-# Workaround libiw detection failure on opensuse
-%if 0%{?suse_version}
-%__sed -i "wifi/ConfigureChecks.cmake" -e "s|^check_library_exists.*|set( HAVE_IW 1 )|"
-%endif
-
 # Update icons for some control center modules
 %__sed -i "filesharing/simple/fileshare.desktop" -e "s|^Icon=.*|Icon=kcmfileshare|"
 
@@ -1173,6 +1181,7 @@ update-desktop-database 2> /dev/null || :
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
