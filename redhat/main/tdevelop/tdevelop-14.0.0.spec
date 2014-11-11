@@ -492,7 +492,7 @@ individual needs.
 %{tde_tdelibdir}/libkdevvisualboyadvance.la
 %{tde_tdelibdir}/libkdevvisualboyadvance.so
 %{tde_datadir}/apps/kdevdesignerpart/pics/
-%{tde_datadir}/apps/kdevvisualboyadvance/kdevpart_visualboyadvance.rc
+%{tde_datadir}/apps/kdevvisualboyadvance/
 %{tde_tdedocdir}/HTML/en/tde_app_devel/
 %{tde_datadir}/mimelnk/text/x-fortran.desktop
 %{tde_datadir}/services/kdevvisualboyadvance.desktop
