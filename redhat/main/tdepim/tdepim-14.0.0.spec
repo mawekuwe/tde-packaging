@@ -1676,6 +1676,7 @@ library.
 Summary:	Trinity calendaring library
 Group:		Environment/Libraries
 #Requires:	%{name}-tderesources = %{version}-%{release}
+Requires:	trinity-libkmime = %{version}-%{release}
 
 %description -n trinity-libkcal
 This library provides a C++ API for handling the vCalendar and iCalendar
@@ -1749,6 +1750,7 @@ library.
 Summary:	Trinity PIM library
 Group:		Environment/Libraries
 Requires:	trinity-libkcal = %{version}-%{release}
+Requires:	trinity-libktnef = %{version}-%{release}
 
 Obsoletes:	libtdepim < %{version}-%{release}
 Provides:	libtdepim = %{version}-%{release}
@@ -2292,6 +2294,7 @@ fi
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DCMAKE_PROGRAM_PATH="%{tde_bindir}" \
   -DWITH_GCC_VISIBILITY=OFF \
   \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \

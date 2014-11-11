@@ -435,6 +435,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %package -n trinity-kbugbuster
 Summary:	a front end for the Trinity bug tracking system
 Group:		Development/Utilities
+Requires:	trinity-libkcal >= %{tde_version}
 
 %description -n trinity-kbugbuster
 KBugBuster is a GUI front end for the TDE bug tracking system.
