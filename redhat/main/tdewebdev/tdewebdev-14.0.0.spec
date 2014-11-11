@@ -594,6 +594,19 @@ EOF
 done
 cp -a php php.docrc %{buildroot}%{tde_datadir}/apps/quanta/doc/
 
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file -r klinkstatus      Office WebDevelopment
+%if 0%{?build_kxsldbg}
+%suse_update_desktop_file -r kxsldbg          Office WebDevelopment
+%endif
+%suse_update_desktop_file -r kimagemapeditor  Office WebDevelopment
+%suse_update_desktop_file -r kfilereplace     System      FileManager
+%suse_update_desktop_file    kmdr-editor      Development GUIDesigner
+%suse_update_desktop_file    kmdr-executor    Development GUIDesigner
+%suse_update_desktop_file -r quanta           Office WebDevelopment
+%endif
+
 
 %clean
 %__rm -rf %{buildroot}
