@@ -205,7 +205,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/libcervisiapart.so
 %{tde_tdeappdir}/cervisia.desktop
 %{tde_datadir}/apps/cervisia/
-%{tde_datadir}/apps/cervisiapart/cervisiaui.rc
+%{tde_datadir}/apps/cervisiapart/
 %{tde_datadir}/apps/tdeconf_update/cervisia.upd
 %{tde_datadir}/apps/tdeconf_update/cervisia-change_repos_list.pl
 %{tde_datadir}/apps/tdeconf_update/cervisia-normalize_cvsroot.pl
@@ -335,7 +335,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdeappdir}/catalogmanager.desktop
 %{tde_tdeappdir}/kbabel.desktop
 %{tde_tdeappdir}/kbabeldict.desktop
-%{tde_datadir}/apps/catalogmanager/catalogmanagerui.rc
+%{tde_datadir}/apps/catalogmanager/
 %{tde_datadir}/apps/kbabel/
 %{tde_datadir}/apps/tdeconf_update/kbabel-difftoproject.upd
 %{tde_datadir}/apps/tdeconf_update/kbabel-project.upd
@@ -727,10 +727,11 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/kmmatch
 %{tde_bindir}/kmtrace
 %{tde_tdeincludedir}/ktrace.h
+%dir %{tde_libdir}/kmtrace
 %{tde_libdir}/kmtrace/libktrace.la
 %{tde_libdir}/kmtrace/libktrace.so
 %{tde_libdir}/kmtrace/libktrace_s.a
-%{tde_datadir}/apps/kmtrace/kde.excludes
+%{tde_datadir}/apps/kmtrace/
 
 ##########
 
@@ -756,8 +757,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/libkomparepart.la
 %{tde_tdelibdir}/libkomparepart.so
 %{tde_tdeappdir}/kompare.desktop
-%{tde_datadir}/apps/kompare/komparepartui.rc
-%{tde_datadir}/apps/kompare/kompareui.rc
+%{tde_datadir}/apps/kompare/
 %{tde_datadir}/services/komparenavtreepart.desktop
 %{tde_datadir}/services/komparepart.desktop
 %{tde_datadir}/servicetypes/komparenavigationpart.desktop
@@ -837,8 +837,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/quithumbnail.so
 %{tde_tdelibdir}/quithumbnail.la
 %{tde_tdeappdir}/kuiviewer.desktop
-%{tde_datadir}/apps/kuiviewer/kuiviewerui.rc
-%{tde_datadir}/apps/kuiviewerpart/kuiviewer_part.rc
+%{tde_datadir}/apps/kuiviewer/
+%{tde_datadir}/apps/kuiviewerpart/
 %{tde_datadir}/icons/hicolor/*/apps/kuiviewer.png
 %{tde_datadir}/icons/locolor/*/apps/kuiviewer.png
 %{tde_datadir}/services/designerthumbnail.desktop
