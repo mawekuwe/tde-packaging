@@ -228,12 +228,6 @@ Depends: tdevelop-trinity-dev
 Conflicts: kdevelop-trinity-dev (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
-Package: network-manager-kde-trinity
-Architecture: all
-Depends: network-manager-tde
-Conflicts: network-manager-kde-trinity (<< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
 Package: kdegraphics-trinity
 Architecture: all
 Depends: tdegraphics-trinity
