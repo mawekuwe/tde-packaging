@@ -6,24 +6,6 @@ Uploaders: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>=5.0), cdbs
 Standards-Version: 3.8.4
 
-Package: kde-trinity
-Architecture: all
-Depends: tde-trinity
-Conflicts: kde-trinity (<< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
-Package: kde-core-trinity
-Architecture: all
-Depends: tde-core-trinity
-Conflicts: kde-core-trinity (<< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
-Package: kde-devel-trinity
-Architecture: all
-Depends: tde-devel-trinity
-Conflicts: kde-devel-trinity (<< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
 Package: kdelibs-trinity
 Architecture: all
 Depends: tdelibs-trinity
