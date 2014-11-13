@@ -11,8 +11,9 @@ Package: tde-trinity
 Architecture: all
 Section: tde
 Priority: optional
-Replaces: kde-trinity (<< 5:55)
-Breaks: kde-trinity (<< 5:55)
+Provides: kde-trinity
+Replaces: kde-trinity
+Breaks: kde-trinity
 Depends: tde-core-trinity (>= 4:14.0.0~), tdeedu-trinity (>= 4:14.0.0~), tdegames-trinity (>= 4:14.0.0~), tdetoys-trinity (>= 4:14.0.0~), tdeaccessibility-trinity (>= 4:14.0.0~), tdeaddons-trinity (>= 4:14.0.0~), tdeadmin-trinity (>= 4:14.0.0~), tdeartwork-trinity (>= 4:14.0.0~), tdegraphics-trinity (>= 4:14.0.0~), tdemultimedia-trinity (>= 4:14.0.0~), tdenetwork-trinity (>= 4:14.0.0~), tdepim-trinity (>= 4:14.0.0~), tdeutils-trinity (>= 4:14.0.0~), tdewebdev-trinity (>= 4:14.0.0~), desktop-base-trinity
 Suggests: tde-i18n-trinity (>= 4:14.0.0~), x-window-system-core, tdesudo-trinity, gtk-qt-engine-trinity, gtk3-tqt-engine-trinity, qt4-tqt-theme-engine
 Description: Trinity Desktop Environment official modules [Trinity]
@@ -32,9 +33,10 @@ Package: tde-core-trinity
 Architecture: all
 Section: tde
 Priority: optional
-Replaces: kde-core-trinity (<< 5:55)
-Breaks: kde-core-trinity (<< 5:55)
-Depends: arts-trinity (>= 1.5.5), tdebase-trinity (>= 4:14.0.0~), tdelibs-trinity (>= 4:14.0.0~), sudo-trinity
+Provides: kde-core-trinity
+Replaces: kde-core-trinity
+Breaks: kde-core-trinity
+Depends: arts-trinity (>= 1.5.5), tdebase-trinity (>= 4:14.0.0~), tdelibs-trinity (>= 4:14.0.0~), sudo-trinity, synaptic-trinity
 Suggests: tde-i18n-trinity (>= 4:14.0.0~)
 Description: Trinity Desktop Environment core modules [Trinity]
  TDE (Trinity Desktop Environment) is a powerful Open Source graphical
@@ -51,8 +53,9 @@ Package: tde-devel-trinity
 Architecture: all
 Section: tde
 Priority: optional
-Replaces: kde-devel-trinity (<< 5:55)
-Breaks: kde-devel-trinity (<< 5:55)
+Provides: kde-devel-trinity
+Replaces: kde-devel-trinity
+Breaks: kde-devel-trinity
 Depends: tde-core-trinity (>= 4:14.0.0~), tdesdk-trinity (>= 4:14.0.0~), libartsc0-trinity-dev (>= 1.5.5), libarts1-trinity-dev (>= 1.5.5), tdelibs14-trinity-dev (>= 4:14.0.0~), tdebase-trinity-dev (>= 4:14.0.0~), libkonq4-trinity-dev (>= 4:14.0.0~), tqt3-designer
 Suggests: tde-i18n-trinity (>= 4:14.0.0~), kdbg-trinity, tdevelop-trinity (>= 4:14.0.0~), kprof-trinity
 Description: Trinity Desktop Environment development files and modules [Trinity]
