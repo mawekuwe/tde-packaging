@@ -19,3 +19,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinit
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
+
+# add installed liblcms*-dev to libkdcraw3-trinity-dev depends
+common-binary-arch::
+	(dpkg --get-selections "liblcms*-dev" | awk '{lcms=lcms $$1 ","} END { print "lcms-dev=" lcms}' >>debian/libkdcraw3-trinity-dev.substvars)
