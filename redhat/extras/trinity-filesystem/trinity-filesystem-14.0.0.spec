@@ -104,9 +104,8 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/icons/locolor/*
 %dir %{tde_datadir}/icons/locolor/*/*
 %dir %{tde_datadir}/locale
-%dir %{tde_datadir}/locale/en_US
-%dir %{tde_datadir}/locale/l10n
-%dir %{tde_datadir}/locale/l10n/*
+%dir %{tde_datadir}/locale/*
+%dir %{tde_datadir}/locale/*/*
 %dir %{tde_datadir}/man
 %dir %{tde_datadir}/man/*
 %dir %{tde_datadir}/mimelnk
@@ -470,10 +469,44 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/l10n/zm
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/l10n/zw
 
+# Directories for LC_MESSAGES (from *-i18n packages)
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ar/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/bg/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/br/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/cs/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/cy/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/da/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/de/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/el/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en_GB/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en_US/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/es/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/et/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/fr/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ga/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/gl/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/hu/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/it/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ja/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ka/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/lt/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/nl/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pl/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pt/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pt_BR/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ru/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/rw/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sk/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sr/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sr@Latn/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sv/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/tr/
+
 %post
 %if 0%{?suse_version}
 # Add setuid files in '/etc/permissions.local'
-for b in kcheckpass kgrantpty kpac_dhcp_helper start_tdeinit tdmtsak tdekbdledsync ; do
+for b in kcheckpass kgrantpty kpac_dhcp_helper kppp start_tdeinit tdmtsak tdekbdledsync ; do
   if ! grep -q "^%{tde_bindir}/${b}" "/etc/permissions.local"; then
     echo "%{tde_bindir}/${b}          root:root       4711" >>/etc/permissions.local
   fi
