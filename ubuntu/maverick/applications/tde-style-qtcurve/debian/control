@@ -29,3 +29,12 @@ Description: This is a set of widget styles for Trinity and Gtk2 based apps
  This is an empty dummy package which will drag the packages 
  tde-style-qtcurve and gtk2-engines-qtcurve in your system.
 
+Package: tde-style-qtcurve-trinity-dbg
+Section: libdevel
+Architecture: any
+Priority: extra
+Depends: tde-style-qtcurve-trinity (= ${Source-Version}), tdelibs-trinity-dbg
+Description: debugging symbols for tde-style-qtcurve-trinity
+ This package contains the debugging symbols associated with tde-style-qtcurve.
+ They will automatically be used by gdb for debugging tde-style-qtcurve-related
+ issues.
