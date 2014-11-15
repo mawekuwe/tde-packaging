@@ -54,7 +54,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-filesystem >= %{tde_version}
 
 BuildRequires: automake autoconf libtool
 BuildRequires: gcc-c++
@@ -120,6 +121,7 @@ libkdcraw contains the library of libkdcraw.
 %package -n trinity-libkdcraw-common
 Summary:	Raw picture decoding C++ library (runtime) [Trinity]
 Group:		System/Libraries
+Requires:	trinity-filesystem >= %{tde_version}
 
 %description -n trinity-libkdcraw-common
 C++ interface around dcraw binary program used to decode RAW
