@@ -1,61 +1,78 @@
-# Default version for this component
-%define tde_pkg libkdcraw
+#
+# spec file for package libkdcraw (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
-%define tde_bindir %{tde_prefix}/bin
+%define tde_pkg libkdcraw
+%define tde_prefix /opt/trinity
 %define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_mandir %{tde_datadir}/man
-
-%define tde_tdeappdir %{tde_datadir}/applications/tde
-%define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
+%define tde_libdir %{tde_prefix}/%{_lib}
 
-%define _docdir %{tde_docdir}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libkdcraw %{_lib}kdcraw
+%else
+%define libkdcraw libkdcraw
+%endif
 
 
 Name:		trinity-%{tde_pkg}
-Summary:	Raw picture decoding C++ library (runtime) [Trinity]
-
-Epoch:		2
+Epoch:		%{tde_epoch}
 Version:	0.1.9
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPLv2+
-Group:		Environment/Libraries
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+Summary:	Raw picture decoding C++ library (runtime) [Trinity]
+Group:		System/Libraries
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		/usr
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
+
+BuildRequires: automake autoconf libtool
+BuildRequires: gcc-c++
 BuildRequires: desktop-file-utils
+BuildRequires: pkgconfig
+BuildRequires: gettext
+
+# LCMS support
 %if 0%{?suse_version}
 BuildRequires: liblcms-devel
 %else
 BuildRequires: lcms-devel
 %endif
+
+# JPEG support
 BuildRequires: libjpeg-devel
-BuildRequires: pkgconfig
-BuildRequires: gettext
 
 # AUTOTOOLS
-BuildRequires: automake autoconf libtool
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
 %endif
@@ -69,22 +86,101 @@ picture files.
 This library is used by kipi-plugins, digiKam and others kipi host programs.
 libkdcraw contains the library of libkdcraw.
 
-%package devel
-Group:		Development/Libraries
-Summary:	RAW picture decoding C++ library (development) [Trinity]
-Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+##########
 
-%description devel
+%package -n trinity-%{libkdcraw}4
+Summary:	Raw picture decoding C++ library (runtime) [Trinity]
+Group:		System/Libraries
+Requires:	trinity-libkdcraw-common = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%if "%{libkdcraw}" != "libkdcraw"
+Obsoletes:	trinity-libkdcraw < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-libkdcraw = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
+
+%description -n trinity-%{libkdcraw}4
+C++ interface around dcraw binary program used to decode RAW
+picture files.
+This library is used by kipi-plugins, digiKam and others kipi host programs.
+libkdcraw contains the library of libkdcraw.
+
+%files -n trinity-%{libkdcraw}4
+%defattr(-,root,root,-)
+%{tde_libdir}/libkdcraw.so.4
+%{tde_libdir}/libkdcraw.so.4.0.3
+
+%post -n trinity-%{libkdcraw}4
+/sbin/ldconfig || :
+
+%postun -n trinity-%{libkdcraw}4
+/sbin/ldconfig || :
+
+##########
+
+%package -n trinity-libkdcraw-common
+Summary:	Raw picture decoding C++ library (runtime) [Trinity]
+Group:		System/Libraries
+
+%description -n trinity-libkdcraw-common
+C++ interface around dcraw binary program used to decode RAW
+picture files.
+This library is used by kipi-plugins, digiKam and others kipi host programs.
+libkdcraw contains the library of libkdcraw.
+
+%files -n trinity-libkdcraw-common -f %{tde_pkg}.lang
+%defattr(-,root,root,-)
+%{tde_datadir}/icons/hicolor/*/apps/kdcraw.png
+
+%post -n trinity-libkdcraw-common
+for f in hicolor ; do
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
+done
+
+%postun -n trinity-libkdcraw-common
+for f in hicolor ; do
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
+done
+
+##########
+
+%package -n trinity-%{libkdcraw}-devel
+Summary:	RAW picture decoding C++ library (development) [Trinity]
+Group:		Development/Libraries/Other
+Requires:	trinity-%{libkdcraw}4 = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%if "%{libkdcraw}" != "libkdcraw"
+Obsoletes:	trinity-libkdcraw-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-libkdcraw-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
+
+%description -n trinity-%{libkdcraw}-devel
 Libkdcraw is a C++ interface around dcraw binary program used to
 decode Raw picture files.
 libkdcraw-devel contains development files and documentation. The
 library documentation is available on kdcraw.h header file.
 
+%files -n trinity-%{libkdcraw}-devel
+%defattr(-,root,root,-)
+%{tde_libdir}/libkdcraw.so
+%{tde_libdir}/libkdcraw.la
+%{tde_tdeincludedir}/libkdcraw/
+%{tde_libdir}/pkgconfig/libkdcraw.pc
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%post -n trinity-%{libkdcraw}-devel
+/sbin/ldconfig || :
+
+%postun -n trinity-%{libkdcraw}-devel
+/sbin/ldconfig || :
+
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -134,40 +230,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
 
-%post
-for f in hicolor ; do
-  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
-done
-/sbin/ldconfig || :
-
-%postun
-for f in hicolor ; do
-  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
-done
-/sbin/ldconfig || :
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
-
-
-%files -f %{tde_pkg}.lang
-%defattr(-,root,root,-)
-%{tde_libdir}/libkdcraw.so.4
-%{tde_libdir}/libkdcraw.so.4.0.3
-%{tde_datadir}/icons/hicolor/*/apps/kdcraw.png
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_libdir}/libkdcraw.so
-%{tde_libdir}/libkdcraw.la
-%{tde_tdeincludedir}/libkdcraw/
-%{tde_libdir}/pkgconfig/libkdcraw.pc
-
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:0.1.9-2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.1.9-1
 - Initial release for TDE R14.0.0
