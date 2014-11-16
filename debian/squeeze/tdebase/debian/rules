@@ -105,8 +105,6 @@ common-install-prehook-arch::
 clean::
 	rm -f debian/kcontrol-trinity.install.kfreebsd* debian/tdebase-tdeio-plugins-trinity.install.kfreebs*
 	rm -f kcontrol/pics/cr*-app-energy_star.png kcontrol/energy/pics/energybig.png kcontrol/energy/pics/lo-energy.png
-	# KIO Media LUKS Icons
-	rm -f pics/crystalsvg/cr*decrypt.png pics/crystalsvg/cr*encrypt.png
 
 binary-install/tdebase-data-trinity::
 	# hack the oui.db install, as under kfreebsd it does not get installed and then breaks at dh_install time
