@@ -104,9 +104,8 @@ This package installs the Trinity directory structure.
 %dir %{tde_datadir}/icons/locolor/*
 %dir %{tde_datadir}/icons/locolor/*/*
 %dir %{tde_datadir}/locale
-%dir %{tde_datadir}/locale/en_US
-%dir %{tde_datadir}/locale/l10n
-%dir %{tde_datadir}/locale/l10n/*
+%dir %{tde_datadir}/locale/*
+%dir %{tde_datadir}/locale/*/*
 %dir %{tde_datadir}/man
 %dir %{tde_datadir}/man/*
 %dir %{tde_datadir}/mimelnk
@@ -470,10 +469,51 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/l10n/zm
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/l10n/zw
 
+# Directories for LC_MESSAGES (from *-i18n packages)
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ar/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/bg/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/br/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ca/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/cs/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/cy/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/da/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/de/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/el/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en_GB/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en_US/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/es/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/et/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/fr/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ga/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/gl/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/hu/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/is/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/it/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ja/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ka/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/lt/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ms/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/nds/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/nl/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pa/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pl/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pt/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pt_BR/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ru/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/rw/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sk/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sr/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sr@Latn/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/th/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sv/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/tr/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/uk/LC_MESSAGES/
+
 %post
 %if 0%{?suse_version}
 # Add setuid files in '/etc/permissions.local'
-for b in kcheckpass kgrantpty kpac_dhcp_helper start_tdeinit tdmtsak tdekbdledsync ; do
+for b in kcheckpass kgrantpty kpac_dhcp_helper kppp start_tdeinit tdmtsak tdekbdledsync ; do
   if ! grep -q "^%{tde_bindir}/${b}" "/etc/permissions.local"; then
     echo "%{tde_bindir}/${b}          root:root       4711" >>/etc/permissions.local
   fi
