@@ -117,9 +117,12 @@ makebuilddir::
 	uudecode -o pics/crystalsvg/cr16-device-cdrom_mount_decrypt.png debian/img/medialuks/cr16-device-cdrom_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr16-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr16-device-cdrom_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr16-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr16-device-cdrom_unmount_encrypt.png.uu
-	uudecode -o pics/crystalsvg/cr16-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr16-device-cdwriter_mount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr16-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr16-device-cdwriter_unmount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr16-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr16-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cd-r_mount_decrypt.png debian/img/medialuks/cr16-device-cd-r_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cd-r_unmount_decrypt.png debian/img/medialuks/cr16-device-cd-r_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cd-r_unmount_encrypt.png debian/img/medialuks/cr16-device-cd-r_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cd-rw_mount_decrypt.png debian/img/medialuks/cr16-device-cd-rw_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cd-rw_unmount_decrypt.png debian/img/medialuks/cr16-device-cd-rw_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cd-rw_unmount_encrypt.png debian/img/medialuks/cr16-device-cd-rw_unmount_encrypt.png.uu
 	uudecode -o pics/crystalsvg/cr16-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr16-device-compact_flash_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr16-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr16-device-compact_flash_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr16-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr16-device-compact_flash_unmount_encrypt.png.uu
@@ -162,9 +165,12 @@ makebuilddir::
 	uudecode -o pics/crystalsvg/cr32-device-cdrom_mount_decrypt.png debian/img/medialuks/cr32-device-cdrom_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr32-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr32-device-cdrom_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr32-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr32-device-cdrom_unmount_encrypt.png.uu
-	uudecode -o pics/crystalsvg/cr32-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr32-device-cdwriter_mount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr32-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr32-device-cdwriter_unmount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr32-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr32-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cd-r_mount_decrypt.png debian/img/medialuks/cr32-device-cd-r_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cd-r_unmount_decrypt.png debian/img/medialuks/cr32-device-cd-r_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cd-r_unmount_encrypt.png debian/img/medialuks/cr32-device-cd-r_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cd-rw_mount_decrypt.png debian/img/medialuks/cr32-device-cd-rw_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cd-rw_unmount_decrypt.png debian/img/medialuks/cr32-device-cd-rw_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cd-rw_unmount_encrypt.png debian/img/medialuks/cr32-device-cd-rw_unmount_encrypt.png.uu
 	uudecode -o pics/crystalsvg/cr32-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr32-device-compact_flash_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr32-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr32-device-compact_flash_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr32-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr32-device-compact_flash_unmount_encrypt.png.uu
@@ -189,9 +195,12 @@ makebuilddir::
 	uudecode -o pics/crystalsvg/cr48-device-cdrom_mount_decrypt.png debian/img/medialuks/cr48-device-cdrom_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr48-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr48-device-cdrom_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr48-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr48-device-cdrom_unmount_encrypt.png.uu
-	uudecode -o pics/crystalsvg/cr48-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr48-device-cdwriter_mount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr48-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr48-device-cdwriter_unmount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr48-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr48-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cd-r_mount_decrypt.png debian/img/medialuks/cr48-device-cd-r_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cd-r_unmount_decrypt.png debian/img/medialuks/cr48-device-cd-r_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cd-r_unmount_encrypt.png debian/img/medialuks/cr48-device-cd-r_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cd-rw_mount_decrypt.png debian/img/medialuks/cr48-device-cd-rw_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cd-rw_unmount_decrypt.png debian/img/medialuks/cr48-device-cd-rw_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cd-rw_unmount_encrypt.png debian/img/medialuks/cr48-device-cd-rw_unmount_encrypt.png.uu
 	uudecode -o pics/crystalsvg/cr48-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr48-device-compact_flash_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr48-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr48-device-compact_flash_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr48-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr48-device-compact_flash_unmount_encrypt.png.uu
@@ -216,9 +225,12 @@ makebuilddir::
 	uudecode -o pics/crystalsvg/cr64-device-cdrom_mount_decrypt.png debian/img/medialuks/cr64-device-cdrom_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr64-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr64-device-cdrom_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr64-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr64-device-cdrom_unmount_encrypt.png.uu
-	uudecode -o pics/crystalsvg/cr64-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr64-device-cdwriter_mount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr64-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr64-device-cdwriter_unmount_decrypt.png.uu
-	uudecode -o pics/crystalsvg/cr64-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr64-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cd-r_mount_decrypt.png debian/img/medialuks/cr64-device-cd-r_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cd-r_unmount_decrypt.png debian/img/medialuks/cr64-device-cd-r_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cd-r_unmount_encrypt.png debian/img/medialuks/cr64-device-cd-r_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cd-rw_mount_decrypt.png debian/img/medialuks/cr64-device-cd-rw_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cd-rw_unmount_decrypt.png debian/img/medialuks/cr64-device-cd-rw_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cd-rw_unmount_encrypt.png debian/img/medialuks/cr64-device-cd-rw_unmount_encrypt.png.uu
 	uudecode -o pics/crystalsvg/cr64-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr64-device-compact_flash_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr64-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr64-device-compact_flash_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr64-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr64-device-compact_flash_unmount_encrypt.png.uu
