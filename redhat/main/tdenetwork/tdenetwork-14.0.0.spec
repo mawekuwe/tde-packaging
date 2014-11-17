@@ -67,6 +67,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kppp.pamd
 Source2:	ktalk
+Source3:	trinity-tdenetwork-rpmlintrc
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
@@ -324,7 +325,7 @@ update-desktop-database 2> /dev/null || :
 
 %package devel
 Summary:		Development files for the Trinity network module
-Group:			Development/Libraries
+Group:			Development/Libraries/Other
 Requires:		%{name} = %{version}-%{release}
 Requires:		trinity-kdict = %{version}-%{release}
 Requires:		trinity-kopete = %{version}-%{release}
@@ -773,7 +774,7 @@ update-desktop-database 2> /dev/null || :
 %package -n trinity-kopete-nowlistening
 Summary:		Nowlistening (xmms) plugin for Kopete
 Group:			Applications/Internet
-Requires:		trinity-kopete = %{tde_version}-%{tde_release}
+Requires:		trinity-kopete = %{version}-%{release}
 Requires:		trinity-filesystem >= %{tde_version}
 
 %description -n trinity-kopete-nowlistening
