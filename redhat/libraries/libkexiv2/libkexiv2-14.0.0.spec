@@ -1,49 +1,72 @@
-# Default version for this component
-%define tde_pkg libkexiv2
+#
+# spec file for package libkexiv2 (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
+%define tde_pkg libkexiv2
+%define tde_prefix /opt/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE specific building variables
-%define tde_bindir %{tde_prefix}/bin
-%define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_mandir %{tde_datadir}/man
-
-%define tde_tdeappdir %{tde_datadir}/applications/tde
-%define tde_tdedocdir %{tde_docdir}/tde
-%define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
-
-%define _docdir %{tde_docdir}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
+%define libkexiv %{_lib}kexiv
+%else
+%define libkexiv libkexiv
+%endif
 
 
 Name:		trinity-%{tde_pkg}
 Summary:	Qt like interface for the libexiv2 library (runtime) [Trinity]
-
-Epoch:		1
+Group:		System/Libraries
+Epoch:		2
 Version:	0.1.7
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
 License:	GPLv2+
-Group:		Environment/Libraries
+%endif
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:		%{_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
@@ -72,21 +95,59 @@ BuildRequires:	libexiv2-devel
 libkexif2 contains the library of libkexiv2.
 Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
 
-%package devel
-Group:		Development/Libraries
+##########
+
+%package -n trinity-%{libkexiv}2-5
+Summary:	Qt like interface for the libexiv2 library (runtime) [Trinity]
+Group:		System/Libraries
+
+%description -n trinity-%{libkexiv}2-5
+libkexif2 contains the library of libkexiv2.
+Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
+
+%files -n trinity-%{libkexiv}2-5
+%defattr(-,root,root,-)
+%{tde_libdir}/libkexiv2.so.5
+%{tde_libdir}/libkexiv2.so.5.0.0
+
+%post -n trinity-%{libkexiv}2-5
+/sbin/ldconfig || :
+
+%postun -n trinity-%{libkexiv}2-5
+/sbin/ldconfig || :
+
+##########
+
+%package -n trinity-%{libkexiv}2-devel
+Group:		Development/Libraries/Other
 Summary:	Qt like interface for the libexiv2 library (development) [Trinity]
 Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description devel
+%description -n trinity-%{libkexiv}2-devel
 libkexif2-devel contains development files and documentation for libkexiv2
 library.  The library documentation is available on kexiv2.h header file.
 Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
 
+%files -n trinity-%{libkexiv}2-devel
+%defattr(-,root,root,-)
+%{tde_libdir}/libkexiv2.so
+%{tde_libdir}/libkexiv2.la
+%{tde_tdeincludedir}/libkexiv2/
+%{tde_libdir}/pkgconfig/libkexiv2.pc
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%post -n trinity-%{libkexiv}2-devel
+/sbin/ldconfig || :
+
+%postun -n trinity-%{libkexiv}2-devel
+/sbin/ldconfig || :
+
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -99,7 +160,6 @@ Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -132,30 +192,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %clean
 %__rm -rf %{buildroot}
 
-
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
-
-
-%files
-%defattr(-,root,root,-)
-%{tde_libdir}/libkexiv2.so.*
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_libdir}/libkexiv2.so
-%{tde_libdir}/libkexiv2.la
-%{tde_tdeincludedir}/libkexiv2/
-%{tde_libdir}/pkgconfig/libkexiv2.pc
 
 
 %Changelog
