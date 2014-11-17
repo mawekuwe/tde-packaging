@@ -67,9 +67,10 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tdelibs-devel >= %{tde_version}
-BuildRequires: desktop-file-utils
-BuildRequires: gettext
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+BuildRequires:	gettext
+BuildRequires:	gcc-c++
 
 # AUTOTOOLS
 BuildRequires: automake autoconf libtool
