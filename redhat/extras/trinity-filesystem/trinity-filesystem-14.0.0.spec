@@ -484,6 +484,7 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en_US/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/es/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/et/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/fi/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/fr/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ga/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/gl/LC_MESSAGES/
@@ -494,7 +495,9 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ka/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/lt/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ms/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/mt/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/nds/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/nb/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/nl/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pa/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/pl/LC_MESSAGES/
@@ -503,12 +506,15 @@ done
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ru/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/rw/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sk/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sl/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sr/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sr@Latn/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/ta/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/th/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/sv/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/tr/LC_MESSAGES/
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/uk/LC_MESSAGES/
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/zh_CN/LC_MESSAGES/
 
 %post
 %if 0%{?suse_version}
