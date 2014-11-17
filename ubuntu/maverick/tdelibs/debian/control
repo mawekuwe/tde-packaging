@@ -44,9 +44,9 @@ Section: libs
 Architecture: all
 Replaces: kdelibs-data-kde3 (<< 4:14.0.0~), kdelibs-data-trinity (<< 4:14.0.0~)
 Breaks: kdelibs-data-kde3 (<< 4:14.0.0~), kdelibs-data-trinity (<< 4:14.0.0~)
+Conflicts: tdelibs-data, kdebase-kio-plugins-kde3 (<= 4:3.5.13.2), kdebase-kio-plugins-trinity (<= 4:3.5.13.2)
 Depends: hicolor-icon-theme
 Provides: tdelibs-data
-Conflicts: tdelibs-data
 Description: core shared data for all TDE applications
  This package contains all the architecture independent data files
  commonly used by TDE applications. You need these data files to run
