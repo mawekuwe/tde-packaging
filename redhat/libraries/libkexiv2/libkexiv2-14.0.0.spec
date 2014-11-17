@@ -52,6 +52,7 @@ Group:		System/Libraries
 Epoch:		2
 Version:	0.1.7
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
 License:	GPL-2.0+
@@ -102,6 +103,9 @@ Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
 Summary:	Qt like interface for the libexiv2 library (runtime) [Trinity]
 Group:		System/Libraries
 
+Obsoletes:	trinity-%{tde_pkg} < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-%{tde_pkg} = %{?epoch:%{epoch}:}%{version}-%{release}
+
 %description -n trinity-%{libkexiv}2-5
 libkexif2 contains the library of libkexiv2.
 Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
@@ -122,7 +126,10 @@ Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
 %package -n trinity-%{libkexiv}2-devel
 Group:		Development/Libraries/Other
 Summary:	Qt like interface for the libexiv2 library (development) [Trinity]
-Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	trinity-%{libkexiv}2-5 = %{?epoch:%{epoch}:}%{version}-%{release}
+
+Obsoletes:	trinity-%{tde_pkg}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-%{tde_pkg}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n trinity-%{libkexiv}2-devel
 libkexif2-devel contains development files and documentation for libkexiv2

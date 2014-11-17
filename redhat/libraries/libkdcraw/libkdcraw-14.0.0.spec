@@ -94,10 +94,8 @@ Summary:	Raw picture decoding C++ library (runtime) [Trinity]
 Group:		System/Libraries
 Requires:	trinity-libkdcraw-common = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%if "%{libkdcraw}" != "libkdcraw"
-Obsoletes:	trinity-libkdcraw < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:	trinity-libkdcraw = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
+Obsoletes:	trinity-%{tde_pkg} < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-%{tde_pkg} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n trinity-%{libkdcraw}4
 C++ interface around dcraw binary program used to decode RAW
@@ -152,10 +150,8 @@ Summary:	RAW picture decoding C++ library (development) [Trinity]
 Group:		Development/Libraries/Other
 Requires:	trinity-%{libkdcraw}4 = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%if "%{libkdcraw}" != "libkdcraw"
-Obsoletes:	trinity-libkdcraw-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:	trinity-libkdcraw-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
+Obsoletes:	trinity-%{tde_pkg}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-%{tde_pkg}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description -n trinity-%{libkdcraw}-devel
 Libkdcraw is a C++ interface around dcraw binary program used to
