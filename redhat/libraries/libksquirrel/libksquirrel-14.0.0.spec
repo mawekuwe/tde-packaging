@@ -1,58 +1,87 @@
-# Default version for this component
-%define tde_pkg libksquirrel
+#
+# spec file for package libksquirrel (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
+%define tde_pkg libksquirrel
+%define tde_prefix /opt/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE specific building variables
-%define tde_bindir %{tde_prefix}/bin
-%define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdedocdir %{tde_docdir}/tde
-%define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
-
-%define _docdir %{tde_docdir}
-
 
 Name:		trinity-%{tde_pkg}
 Summary:	Trinity image viewer
-Epoch:		1
+Group:		System/Libraries
+Epoch:		2
 Version:	0.8.0
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPLv2+
-Group:		Environment/Libraries
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Patch0:		libksquirrel-3.5.13-detect_netpbm.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
-BuildRequires:	gettext-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
+# TRANSFIG support
 BuildRequires:	transfig
+
+# GETTEXT support
+BuildRequires:	gettext
+BuildRequires:	gettext-devel
+
+# OPENEXR support
 BuildRequires:	OpenEXR-devel
+
+# TIFF support
 BuildRequires:	libtiff-devel
 
+# GIF support
 %if 0%{?suse_version}
 BuildRequires:	giflib-devel
 %endif
@@ -118,6 +147,7 @@ BuildRequires: freetype-devel
 # WMF support
 BuildRequires:	libwmf-devel
 
+# NETPBM support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 BuildRequires:	netpbm
 %else
@@ -126,95 +156,7 @@ BuildRequires:	netpbm-progs
 
 
 %description
-Runtime libraries for KSquirrel.
-
-
-%package devel
-Group:		Development/Libraries
-Summary:	Trinity image viewer
-Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-
-%description devel
-Development libraries for KSquirrel.
-
-
-%package tools
-Summary:	Trinity image viewer
-Group:		Environment/Libraries
-Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-
-%description tools
-Tools for KSquirrel.
-
-
-%if 0%{?suse_version} || 0%{?pclinuxos}
-%debug_package
-%endif
-
-
-%prep
-%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .netpbm
-
-# FIXME: under PCLinuxOS, headers are under 'freetype2' not 'freetype'
-if [ -r /usr/include/freetype2/ftbitmap.h ]; then
-  %__sed -i "configure.ac" -e "s|freetype/ftbitmap.h|freetype2/ftbitmap.h|"
-  %__sed -i "kernel/kls_ttf/ttf2pnm.cpp" -e "s|freetype/config/|freetype2/config/|"
-fi
-
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-%__make -f "admin/Makefile.common"
-
-
-%build
-unset QTDIR QTINC QTLIB
-export PATH="%{tde_bindir}:${PATH}"
-
-%configure \
-  --prefix=%{tde_prefix} \
-  --exec-prefix=%{tde_prefix} \
-  --bindir=%{tde_bindir} \
-  --datadir=%{tde_datadir} \
-  --libdir=%{tde_libdir} \
-  --mandir=%{tde_mandir} \
-  --includedir=%{tde_includedir} \
-  \
-  --disable-dependency-tracking \
-  --disable-debug \
-  --enable-new-ldflags \
-  --enable-final \
-  --enable-closure \
-  --enable-rpath \
-  --disable-gcc-hidden-visibility \
-  \
-  %{?with_djvu:--enable-djvu}
-
-%__make %{?_smp_mflags}
-
-
-%install
-export PATH="%{tde_bindir}:${PATH}"
-%__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot}
-
-
-%clean
-%__rm -rf %{buildroot}
-
-
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
-
+This package contains the runtime libraries for KSquirrel.
 
 %files
 %defattr(-,root,root,-)
@@ -352,6 +294,22 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_datadir}/ksquirrel-libs/libkls_xcf.so.ui
 %{tde_datadir}/ksquirrel-libs/rgbmap
 
+%post
+/sbin/ldconfig || :
+
+%postun
+/sbin/ldconfig || :
+
+##########
+
+%package devel
+Group:		Development/Libraries/Other
+Summary:	Trinity image viewer
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description devel
+This package contains the development libraries for KSquirrel.
+
 %files devel
 %defattr(-,root,root,-)
 %{tde_includedir}/ksquirrel-libs/error.h
@@ -486,6 +444,22 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_libdir}/pkgconfig/ksquirrellibs.pc
 %{tde_docdir}/ksquirrel-libs/
 
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+##########
+
+%package tools
+Summary:	Trinity image viewer
+Group:		System/Libraries
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description tools
+This package contains the tools for KSquirrel.
+
 %files tools
 %defattr(-,root,root,-)
 %{tde_bindir}/ksquirrel-libs-camera2ppm
@@ -512,7 +486,63 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_bindir}/ksquirrel-libs-xcf2pnm
 %{tde_bindir}/ksquirrel-libs-xim2ppm
 
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
+%debug_package
+%endif
+
+##########
+
+%prep
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+
+# FIXME: under PCLinuxOS, headers are under 'freetype2' not 'freetype'
+if [ -r /usr/include/freetype2/ftbitmap.h ]; then
+  %__sed -i "configure.ac" -e "s|freetype/ftbitmap.h|freetype2/ftbitmap.h|"
+  %__sed -i "kernel/kls_ttf/ttf2pnm.cpp" -e "s|freetype/config/|freetype2/config/|"
+fi
+
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__make -f "admin/Makefile.common"
+
+
+%build
+unset QTDIR QTINC QTLIB
+export PATH="%{tde_bindir}:${PATH}"
+
+%configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_includedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility \
+  \
+  %{?with_djvu:--enable-djvu}
+
+%__make %{?_smp_mflags}
+
+
+%install
+export PATH="%{tde_bindir}:${PATH}"
+%__rm -rf %{buildroot}
+%__make install DESTDIR=%{buildroot}
+
+
+%clean
+%__rm -rf %{buildroot}
+
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0-2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.8.0-1
 - Initial release for TDE 14.0.0
