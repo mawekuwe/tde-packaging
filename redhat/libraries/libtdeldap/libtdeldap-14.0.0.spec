@@ -1,51 +1,81 @@
-# Default version for this component
-%define tde_pkg libtdeldap
+#
+# spec file for package libtdeldap (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
+%define tde_pkg libtdeldap
+%define tde_prefix /opt/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE specific building variables
-%define tde_bindir %{tde_prefix}/bin
-%define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadsir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/kde
-%define tde_tdedocdir %{tde_docdir}/tde
-%define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
-
-%define _docdir %{tde_docdir}
-
 
 Name:		trinity-%{tde_pkg}
 Summary:	LDAP interface library for TDE
+Group:		System/Libraries
+Epoch:		%{tde_epoch}
 Version:	0.5
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPLv2+
-Group:		Environment/Libraries
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
+BuildRequires:	gcc-c++
+
+# AUTOTOOLS
+BuildRequires: automake autoconf libtool
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}ltdl-devel
+%endif
+%if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?suse_version} >= 1220
+BuildRequires:	libtool-ltdl-devel
+%endif
 
 # OPENLDAP support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
@@ -73,9 +103,9 @@ LDAP interface library for TDE management modules.
 ##########
 
 %package devel
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Summary:	Trinity image viewer
-Requires:	%{name}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 LDAP interface library for TDE management modules.
@@ -97,7 +127,7 @@ libtdeldap-trinity-dev contains development files and documentation.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -121,7 +151,6 @@ export PATH="%{tde_bindir}:${PATH}"
   --bindir=%{tde_bindir} \
   --datadir=%{tde_datadir} \
   --libdir=%{tde_libdir} \
-  --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
   \
   --disable-dependency-tracking \
@@ -146,5 +175,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.5-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 20.5-1
 - Initial release for TDE 14.0.0
