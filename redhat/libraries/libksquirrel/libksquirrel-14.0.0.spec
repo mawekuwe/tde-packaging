@@ -68,6 +68,15 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 
+# AUTOTOOLS
+BuildRequires: automake autoconf libtool
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}ltdl-devel
+%endif
+%if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?suse_version} >= 1220
+BuildRequires:	libtool-ltdl-devel
+%endif
+
 # TRANSFIG support
 BuildRequires:	transfig
 
@@ -108,7 +117,7 @@ BuildRequires:	xmedcon-devel
 %if 0%{?fedora} || 0%{?rhel} 
 BuildRequires:	librsvg2
 %endif
-%if 0%{?fedora} || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 19 || 0%{?rhel} >= 7
 BuildRequires:	librsvg2-tools
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
