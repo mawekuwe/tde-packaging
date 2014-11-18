@@ -43,7 +43,7 @@
 Name:		trinity-%{tde_pkg}
 Summary:	Trinity image viewer
 Group:		System/Libraries
-Epoch:		2
+Epoch:		%{tde_epoch}
 Version:	0.8.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 URL:		http://www.trinitydesktop.org/
@@ -173,6 +173,7 @@ This package contains the runtime libraries for KSquirrel.
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING LICENSE README
+%dir %{tde_libdir}/ksquirrel-libs
 %{tde_libdir}/ksquirrel-libs/libkls_avs.so.0
 %{tde_libdir}/ksquirrel-libs/libkls_avs.so.0.8.0
 %{tde_libdir}/ksquirrel-libs/libkls_bmp.so.0
@@ -295,6 +296,7 @@ This package contains the runtime libraries for KSquirrel.
 %{tde_libdir}/libksquirrel-libs-png.so.0.0.0
 %{tde_libdir}/libksquirrel-libs.so.0
 %{tde_libdir}/libksquirrel-libs.so.0.8.0
+%dir %{tde_datadir}/ksquirrel-libs
 %{tde_datadir}/ksquirrel-libs/libkls_camera.so.ui
 %if 0%{?with_djvu}
 %{tde_datadir}/ksquirrel-libs/libkls_djvu.so.ui
@@ -324,6 +326,7 @@ This package contains the development libraries for KSquirrel.
 
 %files devel
 %defattr(-,root,root,-)
+%dir %{tde_includedir}/ksquirrel-libs
 %{tde_includedir}/ksquirrel-libs/error.h
 %{tde_includedir}/ksquirrel-libs/fileio.h
 %{tde_includedir}/ksquirrel-libs/fmt_codec_base.h
