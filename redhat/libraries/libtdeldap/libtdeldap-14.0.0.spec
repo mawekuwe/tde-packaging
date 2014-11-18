@@ -77,6 +77,14 @@ BuildRequires:	%{_lib}ltdl-devel
 BuildRequires:	libtool-ltdl-devel
 %endif
 
+# SASL support
+%if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
+BuildRequires:	%{_lib}sasl2-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	cyrus-sasl-devel
+%endif
+
 # OPENLDAP support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
 BuildRequires:	openldap-devel
