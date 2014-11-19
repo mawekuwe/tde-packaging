@@ -9,3 +9,6 @@ ButtonsOnLeft=M
 ButtonsOnRight=HIA_X
 CustomButtonPositions=true
 PluginLib=twin3_crystal
+
+[Notification Messages]
+UseTranslucency=true
