@@ -1,6 +1,6 @@
 # Trinity repositories
 
-deb http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-nightly-build-dependencies/ubuntu maverick main
-deb-src http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-nightly-build-dependencies/ubuntu maverick main
-deb http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-nightly-builds/ubuntu maverick main
-deb-src http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-nightly-builds/ubuntu maverick main
+deb http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-builddeps-r14.0.0/ubuntu maverick main
+deb-src http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-builddeps-r14.0.0/ubuntu maverick main
+deb http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-r14.0.0/ubuntu maverick main
+deb-src http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-r14.0.0/ubuntu maverick main
