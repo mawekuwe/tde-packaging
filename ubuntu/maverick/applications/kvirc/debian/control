@@ -28,7 +28,6 @@ Section: net
 Architecture: all
 Replaces: kvirc-data-kde3 (<< 4:14.0.0~), kvirc-data-trinity (<< 4:14.0.0~)
 Breaks: kvirc-data-kde3 (<< 4:14.0.0~), kvirc-data-trinity (<< 4:14.0.0~)
-Depends: kvirc-trinity (>= ${source:Version})
 Description: Data files for KVIrc
  This package contains the architecture-independent data needed by KVIrc in
  order to run, such as icons and images, language files, and shell scripts.
