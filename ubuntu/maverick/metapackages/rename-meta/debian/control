@@ -1248,12 +1248,6 @@ Depends: tde-guidance-trinity
 Conflicts: kde-guidance-trinity (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
-Package: kde-guidance-powermanager-trinity
-Architecture: all
-Depends: tde-guidance-powermanager-trinity
-Conflicts: kde-guidance-powermanager-trinity (<< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
 Package: kdmtheme-trinity
 Architecture: all
 Depends: tdmtheme-trinity
