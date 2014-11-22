@@ -33,7 +33,6 @@ Section: tde
 Architecture: all
 Replaces: kdebase-runtime-data-common-trinity (<< 4:14.0.0~)
 Breaks: kdebase-runtime-data-common-trinity (<< 4:14.0.0~)
-Depends: tdebase-trinity
 Description: Shared common files for Trinity and KDE4
  .
  Shared common files for both Trinity and KDE4
@@ -359,7 +358,8 @@ Architecture: any
 Replaces: konqueror-trinity (<< 4:14.0.0~)
 Breaks: konqueror-trinity (<< 4:14.0.0~)
 Provides: info-browser, man-browser, www-browser, konqueror
-Depends: ${shlibs:Depends}, kcontrol-trinity (= ${Source-Version}), tdebase-tdeio-plugins-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), kfind-trinity (= ${Source-Version}), konqueror-nsplugins-trinity
+Depends: ${shlibs:Depends}, kcontrol-trinity (= ${Source-Version}), tdebase-tdeio-plugins-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), kfind-trinity (= ${Source-Version})
+Recommends: konqueror-nsplugins-trinity
 Suggests: khelpcenter-trinity, konq-plugins-trinity, ksvg-trinity, gij-4.1, libgcj7-awt, libjessie-java
 Conflicts: tdebase-audiolibs-trinity (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0)
 Description: TDE's advanced file manager, web browser and document viewer
