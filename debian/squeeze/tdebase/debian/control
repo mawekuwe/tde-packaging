@@ -219,9 +219,8 @@ Section: utils
 Architecture: any
 Replaces: kdeprint-trinity (<< 4:14.0.0~)
 Breaks: kdeprint-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}, enscript, poster, psutils
+Depends: ${shlibs:Depends}, enscript, poster, psutils, foomatic-db | foomatic-db-compressed-ppds
 Recommends: kghostview-trinity | postscript-viewer
-Conflicts: foomatic-db-compressed-ppds
 Suggests: khelpcenter-trinity, efax | hylafax-client | mgetty-fax, smbclient
 Description: print system for TDE
  This package contains the TDE printing subsystem. It can use CUPS,
