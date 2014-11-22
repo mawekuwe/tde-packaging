@@ -31,7 +31,7 @@ Description: An open source multimedia framework - Core files [Trinity]
 
 Package: libmiracle0.2.5-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version}), libvalerie0.2.5-trinity (= ${binary:Version})
+Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version})
 Replaces: libmiracle0.2.5-trinity (<< 4:14.0.0~)
 Breaks: libmiracle0.2.5-trinity (<< 4:14.0.0~)
 Description: An open source multimedia framework - Core files [Trinity]
@@ -46,7 +46,7 @@ Description: An open source multimedia framework - Core files [Trinity]
 
 Package: libvalerie0.2.5-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version}), libmiracle0.2.5-trinity (= ${binary:Version})
+Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version})
 Replaces: libvalerie0.2.5-trinity (<< 4:14.0.0~)
 Breaks: libvalerie0.2.5-trinity (<< 4:14.0.0~)
 Description: An open source multimedia framework - Core files [Trinity]
