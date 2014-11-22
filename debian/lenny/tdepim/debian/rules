@@ -37,7 +37,6 @@ DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
 
 shlibs_ver=4:3.5.7
 DEB_DH_MAKESHLIBS_ARGS_libindex0-trinity := -V'libindex0-trinity (>= $(shlibs_ver))'
-DEB_DH_MAKESHLIBS_ARGS_libkcal2b-trinity := -V'libkcal2b-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libtdenetwork2-trinity := -V'libtdenetwork2-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libtdepim1a-trinity := -V'libtdepim1a-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libkgantt0-trinity := -V'libkgantt0-trinity (>= $(shlibs_ver))'
@@ -61,20 +60,6 @@ DEB_DH_SHLIBDEPS_ARGS_kontact-trinity := \
 	-dSuggests \
 	$(foreach p,$(kontact-trinity_suggests_plugins),debian/kontact/opt/trinity/lib/trinity/libkontact_$(p)plugin.so) \
 	-dDepends	# Since -u args go first in dpkg-shlibdeps call
-
-## Move kaddressbook-trinity dependency (from libtdeabc_xmlrpc.so) to Recommends
-#DEB_DH_SHLIBDEPS_ARGS_tdepim-tderesources-trinity := \
-#	-Xopt/lib/trinity/libtdeabc_xmlrpc.so.1 \
-#	-- -dRecommends \
-#	debian/tdepim-tderesources/opt/trinity/lib/libtdeabc_xmlrpc.so.1.* \
-#	-dDepends
-#
-## Move kaddressbook dependency of libkcal2b-trinity to Recommends
-#DEB_DH_SHLIBDEPS_ARGS_libkcal2b-trinity := \
-#	-Xopt/trinity/lib/trinity/kcal_tdeabc.so \
-#	-- -dRecommends \
-#	debian/libkcal2b/opt/trinity/lib/trinity/kcal_tdeabc.so \
-#	-dDepends
 
 test-shlibdeps:
 	@echo $(DEB_DH_SHLIBDEPS_ARGS_kontact-trinity)
