@@ -297,7 +297,7 @@ ClientLogFile=.xsession-errors-%s
 #GUIStyle=Windows
 # Compositor binary name, if compositing is desired. "" means no compositing support.
 # Default is ""
-#Compositor=
+Compositor=compton-tde
 # Window manager binary name, if window decorations are desired. "" means no window manager support.
 # Default is "twin"
 #WindowManager=

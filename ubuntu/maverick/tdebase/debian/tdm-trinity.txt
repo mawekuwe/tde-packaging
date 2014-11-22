@@ -70,6 +70,7 @@ gentdmconf --in $TDMCFGDIR 1> /dev/null
 [ -n "$BACKGROUNDCFG" ] && sed -i "s|^#\?BackgroundCfg=.*|BackgroundCfg=$BACKGROUNDCFG|" $TDMCFG
 [ -n "$USETHEME" ] && sed -i "s|^#\?UseTheme=.*|UseTheme=$USETHEME|" $TDMCFG
 [ -n "$THEME" ] && sed -i "s|^#\?Theme=.*|Theme=$THEME|" $TDMCFG
+[ -n "$COMPOSITOR" ] && sed -i "s|^#\?Compositor=.*|Compositor=$COMPOSITOR|" $TDMCFG
 [ -n "$WALLPAPER" ] && sed -i "s|^#\?Wallpaper=.*|Wallpaper=`readlink -f $WALLPAPER`|" $BACKGROUNDCFG
 
 
