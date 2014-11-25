@@ -481,9 +481,9 @@ Package: libtdepim1a-trinity
 Section: libs
 Architecture: any
 Provides: libkcal2b-trinity
-Replaces: libkdepim1a-trinity (<< 4:14.0.0~), libkcal2b-trinity (<< 4:14.0.0~)
-Breaks: libkdepim1a-trinity (<< 4:14.0.0~), libkcal2b-trinity (<< 4:14.0.0~)
-Conflicts: libkcal2-trinity, libkcal2a-trinity
+Replaces: libkdepim1a-trinity (<< 4:14.0.0~), libkcal2b-trinity
+Breaks: libkdepim1a-trinity (<< 4:14.0.0~)
+Conflicts: libkcal2-trinity, libkcal2a-trinity, libkcal2b-trinity
 Depends: ${shlibs:Depends}
 Suggests: tdepim-tderesources-trinity
 Description: Trinity PIM library
@@ -498,8 +498,9 @@ Package: libtdepim1-trinity-dev
 Section: libdevel
 Architecture: any
 Provides: libkcal2-trinity-dev
-Replaces: libkdepim1-trinity-dev (<< 4:14.0.0~), libkcal2-trinity-dev (<< 4:14.0.0~)
-Breaks: libkdepim1-trinity-dev (<< 4:14.0.0~), libkcal2-trinity-dev (<< 4:14.0.0~)
+Replaces: libkdepim1-trinity-dev (<< 4:14.0.0~), libkcal2-trinity-dev
+Breaks: libkdepim1-trinity-dev (<< 4:14.0.0~)
+Conflicts: libkcal2-trinity-dev
 Depends: libtdepim1a-trinity (= ${Source-Version}), libktnef1-trinity-dev (= ${Source-Version}), tdelibs14-trinity-dev
 Description: Trinity PIM library [development]
  This is the development package which contains the headers for the libtdepim-trinity
