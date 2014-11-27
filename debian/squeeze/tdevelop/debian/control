@@ -54,7 +54,7 @@ Description: An IDE for Unix/X11 - data
  This package contains arch independent data for TDevelop.
 
 Package: kdevdesigner-trinity
-Architecture: all
+Architecture: any
 Depends: ${shlibs:Depends}, tdevelop-trinity (= ${source:Version})
 Description: KDevDesigner part for TDevelop
  This package provides the KDevDesigner part for TDevelop
