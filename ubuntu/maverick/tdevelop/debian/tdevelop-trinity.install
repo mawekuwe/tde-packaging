@@ -1,7 +1,6 @@
 debian/tmp/etc/trinity/kdevassistantrc
 debian/tmp/etc/trinity/tdeveloprc
 debian/tmp/opt/trinity/bin/tdevelop-htdig
-debian/tmp/opt/trinity/bin/kdevdesigner
 debian/tmp/opt/trinity/bin/kdevprofileeditor
 debian/tmp/opt/trinity/bin/kdevassistant
 debian/tmp/opt/trinity/bin/kdevprj2tdevelop
