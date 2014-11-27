@@ -79,4 +79,5 @@ binary-install/tdevelop-trinity::
 	cp debian/tdevelop.xpm debian/tdevelop-trinity/opt/trinity/share/pixmaps
 	mv debian/tdevelop-trinity/usr/share/man debian/tdevelop-trinity/opt/trinity/share/
 	rm debian/tdevelop-trinity/opt/trinity/lib/trinity/libkdevdesignerpart.*
+	rm debian/tdevelop-trinity/opt/trinity/lib/libkinterfacedesigner.*
 	rm debian/tdevelop-trinity/opt/trinity/share/services/kdevdesigner_part.desktop
