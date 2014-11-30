@@ -163,6 +163,9 @@ install:
 	install -m644 kompmgr-rc-files/xcompmgrrc "$(SKELETON_DIR)/.xcompmgrrc"
 	install -m644 kompmgr-rc-files/compton-tde.conf "$(SKELETON_DIR)/.compton-tde.conf"
 
+	mkdir -p "$(SKELETON_DIR)/.config/qtcurve"
+	install -m644 qtcurve-rc-files/stylerc "$(SKELETON_DIR)/.config/qtcurve/stylerc"
+
 	mkdir -p "$(SETTINGS_DIR)/tde-profile/lesser-visual-impairment/share/config/"
 	cp -r accessibility/lesser-visual-impairment/* "$(SETTINGS_DIR)/tde-profile/lesser-visual-impairment/share/config/"
 	mkdir -p "$(SETTINGS_DIR)/tde-profile/moderate-visual-impairment/share/config/"
