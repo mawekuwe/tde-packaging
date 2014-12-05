@@ -15,6 +15,7 @@ debian/tmp/etc/trinity/kthemestylerc
 debian/tmp/etc/trinity/language.codes
 debian/tmp/etc/trinity/ui/kprintpreviewui.rc
 debian/tmp/etc/trinity/ui/ui_standards.rc
+debian/tmp/etc/trinity/magic
 debian/tmp/opt/trinity/share/applications/tde/tderesources.desktop
 debian/tmp/opt/trinity/share/apps/dcopidlng/Ast.pm
 debian/tmp/opt/trinity/share/apps/dcopidlng/Iter.pm
