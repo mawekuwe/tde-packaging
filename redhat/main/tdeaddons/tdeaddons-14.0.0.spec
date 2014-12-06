@@ -87,6 +87,16 @@ BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
 BuildRequires: openssl-devel
 
+# IDN support
+BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 # DB4/DB5 support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1220 || 0%{?mdkversion} || 0%{?mgaversion}
 %define with_db 1
@@ -696,7 +706,7 @@ done
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
