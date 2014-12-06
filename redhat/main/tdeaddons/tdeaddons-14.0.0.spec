@@ -83,8 +83,18 @@ BuildRequires:	fdupes
 BuildRequires:	update-desktop-files
 %endif
 
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+# SDL support
 BuildRequires: SDL-devel
+
+# ALSA support
 BuildRequires: alsa-lib-devel
+
+# OPENSSL support
 BuildRequires: openssl-devel
 
 # IDN support
@@ -95,6 +105,12 @@ BuildRequires:	libidn-devel
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_gamin 1
 BuildRequires:	gamin-devel
+%endif
+
+# PCRE support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%define with_pcre 1
+BuildRequires:	pcre-devel
 %endif
 
 # DB4/DB5 support
