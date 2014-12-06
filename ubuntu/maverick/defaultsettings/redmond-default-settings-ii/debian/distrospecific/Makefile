@@ -308,6 +308,7 @@ install:
 
 	mkdir -p "$(SKELETON_DIR)"
 	install -m644 kompmgr-rc-files/xcompmgrrc "$(SKELETON_DIR)/.xcompmgrrc"
+	install -m644 kompmgr-rc-files/compton-tde.conf "$(SKELETON_DIR)/.compton-tde.conf"
 
 	mkdir -p "$(KDESKEL_DIR)/share"
 	mkdir -p "$(KDESKEL_DIR)/share/apps"

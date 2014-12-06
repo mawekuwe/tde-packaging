@@ -32,6 +32,7 @@ Description: TQt wrapper library for subversion (development files) [Trinity]
 Package: tdesvn-trinity
 Section: devel
 Architecture: any
+Conflicts: libsvnqt4-trinity
 Replaces: kdesvn-trinity (<< 4:14.0.0~)
 Breaks: kdesvn-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}, tdesvn-tdeio-plugins-trinity (= ${binary:Version})

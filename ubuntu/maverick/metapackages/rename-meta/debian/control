@@ -1200,12 +1200,6 @@ Depends: tdeartwork-trinity-dbg
 Conflicts: kdeartwork-trinity-dbg (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
-Package: kdebindings-trinity
-Architecture: all
-Depends: tdebindings-trinity
-Conflicts: kdebindings-trinity (<< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
 Package: kdebindings-java-trinity
 Architecture: all
 Depends: tdebindings-java-trinity
@@ -1236,6 +1230,12 @@ Depends: libsmoketde-trinity-dev
 Conflicts: libsmokekde-trinity-dev (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
+Package: kde-xparts-extras-trinity
+Architecture: all
+Depends: tde-xparts-extras-trinity
+Conflicts: kde-xparts-extras-trinity (<< 4:13.9.9)
+Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
+
 Package: pykdeextensions-trinity
 Architecture: all
 Depends: pytdeextensions-trinity
@@ -1246,12 +1246,6 @@ Package: kde-guidance-trinity
 Architecture: all
 Depends: tde-guidance-trinity
 Conflicts: kde-guidance-trinity (<< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
-Package: kde-guidance-powermanager-trinity
-Architecture: all
-Depends: tde-guidance-powermanager-trinity
-Conflicts: kde-guidance-powermanager-trinity (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
 Package: kdmtheme-trinity

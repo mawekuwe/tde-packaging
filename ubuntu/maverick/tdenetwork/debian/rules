@@ -54,8 +54,6 @@ PACKAGES_WITH_LIBS := librss1-trinity kopete-trinity ksirc-trinity kwifimanager-
 DEB_FIXPERMS_EXCLUDE := opt/trinity/bin/kppp opt/trinity/bin/kppplogview \
 	opt/trinity/etc/ppp/peers/kppp-options
 
-DOC_HTML_PRUNE := kcontrol
-
 binary-install/kppp-trinity::
 	chown root:dip debian/kppp-trinity/opt/trinity/bin/kppp*
 	chown root:dip debian/kppp-trinity/opt/trinity/etc/ppp/peers/kppp-options

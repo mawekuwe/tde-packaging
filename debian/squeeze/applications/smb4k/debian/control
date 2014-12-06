@@ -8,7 +8,7 @@ Homepage: http://smb4k.berlios.de/
 
 Package: smb4k-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, samba-common, smbclient, smbfs
+Depends: ${shlibs:Depends}, samba-common, smbclient, smbfs | cifs-utils
 Replaces: smb4k-trinity (<< 4:14.0.0~)
 Breaks: smb4k-trinity (<< 4:14.0.0~)
 Recommends: super | sudo-trinity

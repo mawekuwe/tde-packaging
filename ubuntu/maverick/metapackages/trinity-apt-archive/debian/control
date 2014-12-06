@@ -6,7 +6,7 @@ Build-Depends: debhelper (>=5.0), cdbs
 Standards-Version: 3.8.4
 
 Package: trinity-apt-archive
-Priority: important
+Priority: optional
 Architecture: all
 Depends: apt
 Pre-Depends: trinity-keyring

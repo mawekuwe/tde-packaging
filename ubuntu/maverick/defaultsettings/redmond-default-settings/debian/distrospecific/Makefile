@@ -12,6 +12,7 @@ TDM_SETTINGS_DIR = $(DESTDIR)/etc/trinity/tdm/
 KSPLASH_THEME_DIR = $(DESTDIR)/opt/trinity/share/apps/ksplash/Themes/kubuntu
 SETTINGS_DIR = $(DESTDIR)/usr/share/redmond-default-settings-trinity
 CURSOR_DIR = $(DESTDIR)/usr/share/icons/contrastlarge
+SKELETON_DIR = $(DESTDIR)/etc/skel
 DESKTOP_DIR = $(DESTDIR)/etc/skel/Desktop
 KDESKEL_DIR = $(DESTDIR)/etc/skel/.trinity
 
@@ -303,6 +304,10 @@ install:
 
 	mkdir -p "$(KDESKEL_DIR)/env"
 	install -m644 gtk-qt-engine-rc-files/gtk-qt-engine.rc.sh "$(KDESKEL_DIR)/env/gtk-qt-engine.rc.sh"
+
+	mkdir -p "$(SKELETON_DIR)"
+	install -m644 kompmgr-rc-files/xcompmgrrc "$(SKELETON_DIR)/.xcompmgrrc"
+	install -m644 kompmgr-rc-files/compton-tde.conf "$(SKELETON_DIR)/.compton-tde.conf"
 
 	mkdir -p "$(KDESKEL_DIR)/share"
 	mkdir -p "$(KDESKEL_DIR)/share/apps"

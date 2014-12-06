@@ -1,5 +1,14 @@
 #!/usr/bin/make -f
 
+# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
+# Also include the main Trinity path
+ifeq ("$(LD_LIBRARY_PATH)", "")
+LD_LIBRARY_PATH=/opt/trinity/lib:debian/tmp/opt/trinity/lib
+else
+LD_LIBRARY_PATH += :/opt/trinity/lib:debian/tmp/opt/trinity/lib
+endif
+export LD_LIBRARY_PATH
+
 # work around debian/cdbs/uploaders.mk
 makebuilddir::
 	[ -f debian/control.tmp ] || cp debian/control debian/control.tmp
@@ -78,4 +87,5 @@ binary-install/tdevelop-trinity::
 	mkdir -p debian/tdevelop-trinity/opt/trinity/share/pixmaps
 	cp debian/tdevelop.xpm debian/tdevelop-trinity/opt/trinity/share/pixmaps
 	mv debian/tdevelop-trinity/usr/share/man debian/tdevelop-trinity/opt/trinity/share/
-
+	rm debian/tdevelop-trinity/opt/trinity/lib/trinity/libkdevdesignerpart.*
+	rm debian/tdevelop-trinity/opt/trinity/share/services/kdevdesigner_part.desktop

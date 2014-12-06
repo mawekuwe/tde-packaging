@@ -6,6 +6,7 @@ EMBLEMS=$(wildcard emblems/*png emblems/*icon)
 SPLASH=$(wildcard splash/*.png)
 PIXMAPS=$(wildcard pixmaps/*.png)
 DESKTOPFILES=$(wildcard *.desktop)
+SKELETON_DIR = $(DESTDIR)/etc/skel
 
 all:
 #	make -C usplash/moreblue-orbit
@@ -71,4 +72,8 @@ install:
 	# GNOME background descriptor
 	mkdir -p $(DESTDIR)/usr/share/gnome-background-properties
 	$(INSTALL) gnome-backgrounds.xml $(DESTDIR)/usr/share/gnome-background-properties/debian.xml
+	# Compositor control files
+	mkdir -p "$(SKELETON_DIR)"
+	$(INSTALL) kompmgr-rc-files/xcompmgrrc "$(SKELETON_DIR)/.xcompmgrrc"
+	$(INSTALL) kompmgr-rc-files/compton-tde.conf "$(SKELETON_DIR)/.compton-tde.conf"
 

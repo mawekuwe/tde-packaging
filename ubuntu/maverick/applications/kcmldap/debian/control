@@ -14,6 +14,6 @@ Description: Kerberos control module for the Trinity control center
 
 Package: tde-ldap-cert-updater
 Architecture: any
-Depends: kcontrol-ldap-bonding-trinity (>= ${Source-Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, libpam-heimdal, libpam-ldap, libnss-ldap, libnss-db, nss-updatedb, nscd, libpam-ccreds, ntp
 Description: Service to keep LDAP certificates up-to-date
  This is a small daemon which keeps the LDAP root certificate up to date with the LDAP server

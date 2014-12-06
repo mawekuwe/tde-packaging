@@ -194,8 +194,7 @@ Section: tde
 Architecture: any
 Replaces: kmrml-trinity (<< 4:14.0.0~)
 Breaks: kmrml-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}
-Recommends: gnuift
+Depends: ${shlibs:Depends}, gnuift
 Description: a Konqueror plugin for searching pictures
  MRML is short for Multimedia Retrieval Markup Language, which defines a
  protocol for querying a server for images based on their content. See 
