@@ -559,8 +559,7 @@ graphical disk usage viewer and image conversions and transformations.
 %{tde_datadir}/apps/akregator
 %{tde_datadir}/apps/domtreeviewer
 %{tde_datadir}/apps/fsview
-%{tde_datadir}/apps/imagerotation/orient.py*
-%{tde_datadir}/apps/imagerotation/exif.py*
+%{tde_datadir}/apps/imagerotation/
 %{tde_datadir}/apps/tdehtml/kpartplugins
 %{tde_datadir}/apps/konqiconview
 %{tde_datadir}/apps/konqlistview
@@ -568,10 +567,8 @@ graphical disk usage viewer and image conversions and transformations.
 %{tde_datadir}/apps/konqueror/icons
 %{tde_datadir}/apps/konqueror/kpartplugins
 %{tde_datadir}/apps/konqueror/servicemenus
-%{tde_datadir}/apps/metabar/iconsrc
-%{tde_datadir}/apps/metabar/themes/default/default.css
-%{tde_datadir}/apps/metabar/themes/default/layout.html
-%{tde_datadir}/apps/microformat/pics/microformat.png
+%{tde_datadir}/apps/metabar/
+%{tde_datadir}/apps/microformat/
 %{tde_datadir}/config.kcfg/konq_sidebarnews.kcfg
 %{tde_datadir}/icons/crystalsvg/*/actions/babelfish.png
 %{tde_datadir}/icons/crystalsvg/*/actions/cssvalidator.png
@@ -633,7 +630,7 @@ signatures in external mail clients such as KMail.
 %doc README
 %{tde_bindir}/ksig
 %{tde_tdeappdir}/ksig.desktop
-%{tde_datadir}/apps/ksig/ksigui.rc
+%{tde_datadir}/apps/ksig/
 %{tde_datadir}/icons/hicolor/*/apps/ksig.png
 %{tde_tdedocdir}/HTML/en/ksig/
 
