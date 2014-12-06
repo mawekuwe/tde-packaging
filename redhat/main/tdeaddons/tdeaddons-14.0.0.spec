@@ -65,12 +65,23 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: autoconf automake libtool m4
+
+# Trinity dependencies
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: trinity-tdebase-devel >= %{tde_version}
 BuildRequires: trinity-tdegames-devel >= %{tde_version}
 BuildRequires: trinity-tdemultimedia-devel >= %{tde_version}
 BuildRequires: trinity-tdepim-devel >= %{tde_version}
+
+BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
 
 BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
