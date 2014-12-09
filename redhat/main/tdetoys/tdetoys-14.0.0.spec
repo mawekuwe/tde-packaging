@@ -58,6 +58,8 @@ License:	GPLv2+
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+
 # Trinity dependencies
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 
