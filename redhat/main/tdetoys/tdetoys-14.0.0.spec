@@ -62,6 +62,7 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 # Trinity dependencies
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
+BuildRequires: trinity-kicker >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
