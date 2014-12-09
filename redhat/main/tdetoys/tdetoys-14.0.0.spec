@@ -91,6 +91,9 @@ BuildRequires:	libidn-devel
 BuildRequires:	gamin-devel
 %endif
 
+# PCRE support
+BuildRequires:	pcre-devel
+
 Obsoletes:		trinity-kdetoys < %{version}-%{release}
 Provides:		trinity-kdetoys = %{version}-%{release}
 
