@@ -1149,7 +1149,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file kregexpeditor  Utility Editor
 %suse_update_desktop_file kcmdf
 %suse_update_desktop_file kcmlirc
-%suse_update_desktop_file kwalletconfig
+%suse_update_desktop_file tdewalletconfig
 %suse_update_desktop_file thinkpad
 %suse_update_desktop_file kvaio
 %suse_update_desktop_file KFloppy     System  Filesystem
