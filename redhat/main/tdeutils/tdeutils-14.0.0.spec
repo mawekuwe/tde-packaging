@@ -118,10 +118,7 @@ BuildRequires:	gamin-devel
 # PCRE support
 BuildRequires:	pcre-devel
 
-%if 0%{?fedora} >= 5 || 0%{?rhel} >= 5
-BuildRequires:	libXScrnSaver-devel
-%endif
-
+# XMMS support
 #%if 0%{?fedora}
 #BuildRequires:	xmms-devel
 #%endif
@@ -133,9 +130,18 @@ BuildRequires:	libXScrnSaver-devel
 %endif
 
 # XSCREENSAVER support
-#  Not for RHEL 4!
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
 %define with_xscreensaver 1
+%if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?suse_version}
+BuildRequires:	libXScrnSaver-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
+BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
+%endif
 %endif
 
 # CONSOLEHELPER (usermode) support
