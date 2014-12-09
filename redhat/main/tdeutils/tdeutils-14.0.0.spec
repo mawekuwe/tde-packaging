@@ -28,6 +28,7 @@
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_sbindir %{tde_prefix}/sbin
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
@@ -1144,7 +1145,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file kcalc       Utility Calculator
 %suse_update_desktop_file kgpg        Utility Security
 %suse_update_desktop_file irkick      Applet
-%suse_update_desktop_file kwalletmanager Applet
+%suse_update_desktop_file tdewalletmanager Applet
 %suse_update_desktop_file kregexpeditor  Utility Editor
 %suse_update_desktop_file kcmdf
 %suse_update_desktop_file kcmlirc
