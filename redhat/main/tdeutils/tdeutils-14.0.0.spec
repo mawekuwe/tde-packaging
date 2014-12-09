@@ -92,9 +92,34 @@ BuildRequires:	update-desktop-files
 BuildRequires:	brp-check-trinity
 %endif
 
+# XTST support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+%define xtst_devel %{_lib}xtst-devel
+%else
+%define xtst_devel %{_lib}xtst%{?mgaversion:6}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+%define xtst_devel libXtst-devel
+%endif
+%{?xtst_devel:BuildRequires: %{xtst_devel}}
+
+# IDN support
+BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
+# PCRE support
+BuildRequires:	pcre-devel
+
 %if 0%{?fedora} >= 5 || 0%{?rhel} >= 5
 BuildRequires:	libXScrnSaver-devel
-BuildRequires:	libXtst-devel
 %endif
 
 #%if 0%{?fedora}
