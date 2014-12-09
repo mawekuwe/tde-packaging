@@ -81,6 +81,9 @@ BuildRequires:	brp-check-trinity
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
 
+# IDN support
+BuildRequires:	libidn-devel
+
 Obsoletes:		trinity-kdetoys < %{version}-%{release}
 Provides:		trinity-kdetoys = %{version}-%{release}
 
