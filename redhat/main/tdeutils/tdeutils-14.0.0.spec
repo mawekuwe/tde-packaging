@@ -1155,6 +1155,16 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file KFloppy     System  Filesystem
 %endif
 
+# Icons from TDE Control Center should only be displayed in TDE
+for i in %{?buildroot}%{tde_tdeappdir}/*.desktop ; do
+  if grep -q "^Categories=.*X-TDE-settings" "${i}"; then
+    if ! grep -q "OnlyShowIn=TDE" "${i}" ; then
+      echo "OnlyShowIn=TDE;" >>"${i}"
+    fi
+  fi
+done
+
+
 %clean
 %__rm -rf "%{?buildroot}"
 
