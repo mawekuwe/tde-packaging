@@ -84,6 +84,13 @@ BuildRequires: gettext
 # IDN support
 BuildRequires:	libidn-devel
 
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 Obsoletes:		trinity-kdetoys < %{version}-%{release}
 Provides:		trinity-kdetoys = %{version}-%{release}
 
@@ -159,6 +166,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 Summary:	eyes applet for Trinity
 Group:		Amusements/Graphics
 
+Requires:	trinity-kicker >= %{tde_version}
+
 %description -n trinity-eyesapplet
 An applet for the TDE panel containing a pair of eyes that follow your mouse
 around the screen.
@@ -197,6 +206,8 @@ This package is part of Trinity, and a component of the TDE toys module.
 %package -n trinity-kmoon
 Summary:	moon phase indicator for Trinity
 Group:		Amusements/Graphics
+
+Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-kmoon
 An applet for the TDE panel that displays the current phase of the moon.
@@ -238,7 +249,7 @@ This package is part of Trinity, and a component of the TDE toys module.
 %defattr(-,root,root,-)
 %{tde_bindir}/kodo
 %{tde_tdeappdir}/kodo.desktop
-%{tde_datadir}/apps/kodo/numbers.png
+%{tde_datadir}/apps/kodo/
 %{tde_datadir}/icons/hicolor/*/apps/kodo.png
 %{tde_tdedocdir}/HTML/en/kodo/
 %doc AUTHORS COPYING README
@@ -325,6 +336,8 @@ gtk-update-icon-cache -q %{tde_datadir}/icons/hicolor 2> /dev/null ||:
 Summary:	weather display applet for Trinity
 Group:		Amusements/Graphics
 
+Requires:	trinity-kicker >= %{tde_version}
+
 %description -n trinity-kweather
 An applet for the TDE panel that displays your area's current weather.
 Information shown includes the temperature, wind speed, air pressure
@@ -352,8 +365,7 @@ This package is part of Trinity, and a component of the TDE toys module.
 %{tde_tdelibdir}/weather_panelapplet.so
 %{tde_datadir}/apps/kicker/applets/kweather.desktop
 %{tde_datadir}/apps/kweather/
-%{tde_datadir}/apps/kweatherservice/stations.dat
-%{tde_datadir}/apps/kweatherservice/weather_stations.desktop
+%{tde_datadir}/apps/kweatherservice/
 %{tde_datadir}/icons/hicolor/*/apps/kweather.png
 %{tde_datadir}/services/kweatherservice.desktop
 %{tde_datadir}/services/kcmweather.desktop
@@ -376,6 +388,9 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kworldclock
 Summary:	earth watcher for Trinity
 Group:		Amusements/Graphics
+
+Requires:	trinity-kdesktop >= %{tde_version}
+Requires:	trinity-kicker >= %{tde_version}
 
 %description -n trinity-kworldclock
 Displays where in the world it is light and dark depending on time, as
