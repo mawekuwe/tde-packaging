@@ -49,7 +49,7 @@
 Name:		trinity-%{tde_pkg}
 Summary:	library for apps that want to use kipi-plugins (runtime version) [Trinity]
 Group:		System/Libraries
-Epoch:		2
+Epoch:		%{tde_epoch}
 Version:	0.1.5
 Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 URL:		http://www.trinitydesktop.org/

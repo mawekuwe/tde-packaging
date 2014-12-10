@@ -61,6 +61,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+Patch0:		%{tde_pkg}-%{tde_version}.patch
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
@@ -511,6 +512,7 @@ This package contains the tools for KSquirrel.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch0 -p1
 
 # FIXME: under PCLinuxOS, headers are under 'freetype2' not 'freetype'
 if [ -r /usr/include/freetype2/ftbitmap.h ]; then
