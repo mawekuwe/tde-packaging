@@ -1,0 +1,14 @@
+Source: tde-ubuntu-integration
+Section: kde
+Priority: extra
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>=5.0), cdbs
+Standards-Version: 3.8.4
+
+Package: tde-ubuntu-integration
+Architecture: all
+Depends: policykit-1-gnome
+Description: TDE Ubuntu Integration
+ Ubuntu integration for TDE
+ This includes files needed for Polkit to function correctly under TDE
