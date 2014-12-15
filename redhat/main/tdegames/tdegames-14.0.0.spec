@@ -40,7 +40,7 @@
 %endif
 
 
-Name:			trinity-tdegames
+Name:			trinity-%{tde_pkg}
 Summary:		Trinity Desktop Environment - Games
 Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}

@@ -112,15 +112,14 @@ This package is part of tdesvn-trinity.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Moves HTML files to the correect location
-find . -name "*.cmake" -exec %__sed -i {} \
-  -e "s,/doc/HTML,/doc/tde/HTML,g" \
-  \;
+rm -f src/svnqt/CMakeLists.txt.orig
+rm -fr src/svnqt/cache/sqlite3/
+
 
 
 %build
 unset QTDIR QTINC QTLIB
-export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
@@ -142,7 +141,6 @@ fi
   -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DMAN_INSTALL_DIR=%{tde_mandir}/man1 \
-  -DDATA_INSTALL_DIR=%{tde_datadir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
   \
@@ -217,11 +215,11 @@ fi
 %{tde_tdelibdir}/tdesvnpart.la
 %{tde_tdelibdir}/tdesvnpart.so
 %{tde_datadir}/applications/tde/tdesvn.desktop
-%{tde_datadir}/tdeconf_update/tdesvn-use-external-update.sh
-%{tde_datadir}/tdeconf_update/tdesvnpartrc-use-external.upd
-%{tde_datadir}/tdesvn/tdesvnui.rc
-%{tde_datadir}/tdesvnpart/tdesvn_part.rc
-%{tde_datadir}/konqueror/servicemenus/tdesvn_subversion.desktop
+%{tde_datadir}/apps/tdeconf_update/tdesvn-use-external-update.sh
+%{tde_datadir}/apps/tdeconf_update/tdesvnpartrc-use-external.upd
+%{tde_datadir}/apps/tdesvn/tdesvnui.rc
+%{tde_datadir}/apps/tdesvnpart/tdesvn_part.rc
+%{tde_datadir}/apps/konqueror/servicemenus/tdesvn_subversion.desktop
 %{tde_datadir}/config.kcfg/tdesvn_part.kcfg
 %{tde_datadir}/icons/hicolor/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
@@ -239,8 +237,6 @@ fi
 %{tde_libdir}/libtdesvnevents.so
 %{tde_libdir}/libtdesvnhelpers.la
 %{tde_libdir}/libtdesvnhelpers.so
-#%{tde_datadir}/tdesvn/icons/hicolor/*/apps/tdesvn.png
-#%{tde_datadir}/tdesvn/icons/hicolor/scalable/apps/tdesvn.svgz
 
 %files -n trinity-libsvnqt
 %defattr(-,root,root,-)

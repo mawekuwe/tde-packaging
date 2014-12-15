@@ -126,8 +126,10 @@ BuildRequires:	openldap2-devel
 BuildRequires:	openldap-devel
 %endif
 
-# ACL support
+# LIBACL support
+%if 0%{?suse_version} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	libacl-devel
+%endif
 
 %description
 The TDevelop Integrated Development Environment provides many features

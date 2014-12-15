@@ -69,6 +69,16 @@ BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 
+# UUID support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%define uuid_devel libuuid-devel
+%endif
+%if 0%{?rhel} == 5
+%define uuid_devel e2fsprogs-devel
+%endif
+%{?uuid_devel:BuildRequires: %{uuid_devel}}
+
+
 # PTHREAD support
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 BuildRequires:	pth-devel
@@ -92,7 +102,7 @@ BuildRequires: Mesa-libGLU-devel
 BuildRequires:	xorg-x11-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}xi-devel
+BuildRequires:	libxi-devel
 %endif
 %if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	libXi-devel

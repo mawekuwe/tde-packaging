@@ -207,6 +207,7 @@ This metapackage includes a collection of Personal Information Management
 (PIM) applications provided with the official release of Trinity.
 
 %files
+%defattr(-,root,root,-)
 
 ##########
 
@@ -1482,6 +1483,7 @@ installed.
 %{tde_datadir}/autostart/korgac.desktop
 %{tde_datadir}/config.kcfg/korganizer.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/korganizer.png
+%dir %{tde_datadir}/services/kontact
 %{tde_datadir}/services/kontact/korganizerplugin.desktop
 %{tde_datadir}/services/kontact/journalplugin.desktop
 %{tde_datadir}/services/kontact/todoplugin.desktop
@@ -1697,7 +1699,8 @@ This is the runtime package for programs that use the libkcal-trinity library.
 %{tde_libdir}/libkcal.so.*
 %{tde_libdir}/libkcal_resourceremote.so.*
 %{tde_libdir}/libkholidays.so.*
-%{tde_datadir}/apps/libkholidays
+%{tde_datadir}/apps/libkholidays/
+%dir %{tde_datadir}/services/tderesources/kcal
 %{tde_datadir}/services/tderesources/kcal/imap.desktop
 %{tde_datadir}/services/tderesources/kcal/tdeabc.desktop
 %{tde_datadir}/services/tderesources/kcal/local.desktop

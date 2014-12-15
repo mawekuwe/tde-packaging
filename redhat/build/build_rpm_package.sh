@@ -21,9 +21,18 @@ LOGFILE=/tmp/log.${COMP##*/}
 TEMPDIR="$(mktemp -d)"
 cp -f ${SPECFILE} ${SOURCES} ${TARBALL} "${TEMPDIR}"
 
-# Check if there are local patches
+### Check for patches
+
+# 1. Check if there is a big, monolithic patch
+PATCHDIR="${SPECFILE%/*}/patches"
+BIGPATCH="${PATCHDIR}/${PKGNAME}-${TDE_VERSION}.patch"
+if [ -r "${BIGPATCH}" ]; then
+  cp -f "${BIGPATCH}" "${TEMPDIR}/one.patch"
+fi
+
+# 2. Check if there are small, local patches
 PATCHDIR="${SPECFILE%/*}/patches/${TDE_VERSION}"
-PATCHLIST="${PATCHDIR}/patches"
+PATCHLIST="${PATCHDIR}/patches.list"
 if [ -r "${PATCHLIST}" ]; then
   while read l; do
     APPLY=""
@@ -69,6 +78,7 @@ rpmbuild -ba \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
   --define "preversion ${PREVERSION:-}" \
+  --define "tde_patch 1" \
   --define "with_akode 1" \
   --define "with_jack 1" \
   --define "with_lame 1" \

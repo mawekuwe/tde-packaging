@@ -111,6 +111,8 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -f %{buildroot}%{tde_datadir}/desktop-directories/tde-settings-power.directory
 %__rm -f %{buildroot}%{tde_datadir}/desktop-directories/tde-settings-system.directory
 
+%__rm -f %{buildroot}%{tde_datadir}/applications/tde/laptop.desktop
+
 %clean
 %__rm -rf %{buildroot}
 
@@ -134,7 +136,7 @@ update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 %{tde_datadir}/applications/tde/audioencoding.desktop
 %{tde_datadir}/applications/tde/defaultapplication.desktop
 %{tde_datadir}/applications/tde/kcm_knetworkconfmodule_ss.desktop
-%{tde_datadir}/applications/tde/laptop.desktop
+#%{tde_datadir}/applications/tde/laptop.desktop
 %{tde_datadir}/applications/tde/medianotifications.desktop
 %{tde_datadir}/applications/tde/systemsettings.desktop
 %{tde_datadir}/apps/systemsettings/systemsettingsui.rc

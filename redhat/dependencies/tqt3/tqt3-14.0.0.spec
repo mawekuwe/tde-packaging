@@ -1291,6 +1291,7 @@ for d in \
 	%{_includedir}/Xft2/X11/Xft \
 	%{_includedir}/mysql \
 	%{_includedir}/libpng15 \
+	%{_includedir}/libpng16 \
 ; do
 	if [ -d "${d}" ]; then
 		INCDIRS="${INCDIRS} -I${d}"

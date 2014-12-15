@@ -171,13 +171,13 @@ BuildRequires:	utempter-devel
 %endif
 
 # HSPELL support
-%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?rhel} >=6 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_hspell 1
 BuildRequires:	hspell-devel
 %endif
 
 # JASPER support
-%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?rhel} >=6 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_jasper 1
 %if 0%{?suse_version}
 BuildRequires:	libjasper-devel
@@ -205,7 +205,7 @@ Requires:		avahi
 %endif
 
 # OPENEXR support
-%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?rhel} >=6 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_openexr 1
 BuildRequires:	OpenEXR-devel
 %endif
@@ -253,12 +253,17 @@ BuildRequires:	xz-devel
 %endif
 
 # Certificates support
-%if 0%{?fedora} == 18 || 0%{?fedora} == 19
-%define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
+%if 0%{?fedora}
 BuildRequires:	ca-certificates
 Requires:		ca-certificates
+%if 0%{?fedora} == 20
+%define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 %endif
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?fedora} >= 20
+%if 0%{?fedora} == 18 || 0%{?fedora} == 19
+%define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
+%endif
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
 Requires:		openssl
 %endif

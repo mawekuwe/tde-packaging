@@ -63,7 +63,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-perl-dcop >= {tde_version}
+BuildRequires:	trinity-perl-dcop >= %{tde_version}
 BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8

@@ -54,8 +54,25 @@ BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 BuildRequires:	libtool
 
+# GLIB2 support
+BuildRequires:	glib2-devel
+
 # GETTEXT support
 BuildRequires:	gettext-devel
+
+# Xi support
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xi-devel
+%endif
+%if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
+BuildRequires:	libXi-devel
+%endif
+%if 0%{?suse_version} == 1140
+BuildRequires:	libXi6-devel
+%endif
 
 # DBUS support
 %if 0%{?suse_version}

@@ -153,6 +153,11 @@ BuildRequires:	gstreamer-0_10-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xxf86dga-devel
 BuildRequires:	%{_lib}xxf86vm-devel
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xtst-devel
+%else
+BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%endif
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
@@ -1246,7 +1251,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_includedir}/artsc:%{tde_tdeincludedir}/arts" \
+  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
   \
   --with-vorbis \
   --without-ossaudio \

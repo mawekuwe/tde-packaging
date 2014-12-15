@@ -108,7 +108,7 @@ BuildRequires:	libgstreamer-plugins-base-devel >= 0.10
 %if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
-%if 0%{pclinuxos}
+%if 0%{?pclinuxos}
 BuildRequires: %{_lib}xine-devel
 %else
 BuildRequires: %{_lib}xine1.2-devel

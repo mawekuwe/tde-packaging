@@ -106,7 +106,7 @@ BuildRequires:	libXScrnSaver-devel
 BuildRequires:	xscreensaver
 BuildRequires:	xscreensaver-base
 BuildRequires:	xscreensaver-extras
-%if 0%{?fedora} || 0%{?rhel} >= 6
+%if 0%{?fedora}
 BuildRequires:	xscreensaver-extras-base
 %endif
 BuildRequires:	xscreensaver-gl-base
@@ -716,6 +716,9 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %if 0%{?fedora} >= 20
 %{tde_datadir}/applnk/System/ScreenSavers/winduprobot.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/binaryring.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/cityflow.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/geodesicgears.desktop
 %endif
 
 %endif
@@ -798,6 +801,9 @@ chmod +x "%{?buildroot}%{tde_bindir}/xscreensaver-getimage-file"
 
 # Fix missing screensavers on Fedora 20
 %if 0%{?with_xscreensaver} &&  0%{?fedora} >= 20
+touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/binaryring.desktop"
+touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/cityflow.desktop"
+touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/geodesicgears.desktop"
 touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/projectiveplane.desktop"
 touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/tessellimage.desktop"
 touch "%{?buildroot}%{tde_datadir}/applnk/System/ScreenSavers/winduprobot.desktop"

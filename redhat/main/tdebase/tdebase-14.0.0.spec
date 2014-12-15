@@ -170,6 +170,14 @@ Requires:	fedora-logos
 %define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
 %endif
 
+# Fedora 21 Theme
+%if 0%{?fedora} == 21
+Requires:	f21-backgrounds-base
+%define tde_bg /usr/share/backgrounds/f21/default/standard/f21.png
+Requires:	fedora-logos
+%define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
+%endif
+
 # RHEL 4 Theme
 %if 0%{?rhel} == 4
 Requires:	desktop-backgrounds-basic
@@ -235,7 +243,7 @@ Requires:	desktop-common-data
 
 # OpenSuse 11.4 Theme
 %if "%{?suse_version}" == "1140"
-Requires:	hicolor-icon-theme-branding = 11.4
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -243,7 +251,7 @@ Requires:	hicolor-icon-theme-branding = 11.4
 %if "%{?suse_version}" == "1220"
 Requires:	wallpaper-branding = 12.2
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding = 12.2
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -251,7 +259,7 @@ Requires:	hicolor-icon-theme-branding = 12.2
 %if "%{?suse_version}" == "1230"
 Requires:	wallpaper-branding = 12.3
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding = 12.3
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -259,7 +267,7 @@ Requires:	hicolor-icon-theme-branding = 12.3
 %if "%{?suse_version}" == "1310"
 Requires:	wallpaper-branding = 13.1
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding = 13.1
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -267,7 +275,7 @@ Requires:	hicolor-icon-theme-branding = 13.1
 %if "%{?suse_version}" == "1320"
 Requires:	wallpaper-branding = 13.2
 %define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
-Requires:	hicolor-icon-theme-branding = 13.2
+Requires:	hicolor-icon-theme-branding
 %define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
 %endif
 
@@ -533,7 +541,20 @@ BuildRequires:	drakconf
 
 # LIBCONFIG support
 # Needed for "compton" stuff
+%if 0%{?rhel} >= 6 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora}
+%define with_compton 1
 BuildRequires:	libconfig-devel
+%endif
+
+# KBDLEDSYNC support
+%if 0%{?rhel} >= 6 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora}
+%define with_kbdledsync 1
+%endif
+
+# TDERANDR support
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+%define with_tderandrtray 1
+%endif
 
 # tdebase is a metapackage that installs all sub-packages
 Requires: %{name}-runtime-data-common = %{version}-%{release}
@@ -758,7 +779,7 @@ Summary:	Common libraries used by kwrite and kate
 Group:		System/GUI/Other
 
 %description -n trinity-libkateinterfaces
-%{summary}.
+This package contains the kateinterface library.
 
 %files -n trinity-libkateinterfaces
 %defattr(-,root,root,-)
@@ -961,8 +982,10 @@ plugdev group.
 %{tde_tdelibdir}/kcm_fontinst.so
 %{tde_tdelibdir}/kcm_fonts.la
 %{tde_tdelibdir}/kcm_fonts.so
+%if 0%{?with_tdehwlib}
 %{tde_tdelibdir}/kcm_hwmanager.la
 %{tde_tdelibdir}/kcm_hwmanager.so
+%endif
 %{tde_tdelibdir}/kcm_icons.la
 %{tde_tdelibdir}/kcm_icons.so
 %{tde_tdelibdir}/kcm_info.la
@@ -1062,7 +1085,9 @@ plugdev group.
 %{tde_tdeappdir}/filebrowser.desktop
 %{tde_tdeappdir}/filetypes.desktop
 %{tde_tdeappdir}/fonts.desktop
+%if 0%{?with_tdehwlib}
 %{tde_tdeappdir}/hwmanager.desktop
+%endif
 %{tde_tdeappdir}/icons.desktop
 %{tde_tdeappdir}/installktheme.desktop
 %{tde_tdeappdir}/interrupts.desktop
@@ -1169,7 +1194,7 @@ plugdev group.
 %{tde_tdedocdir}/HTML/en/tdefontview/
 
 # The following features are not compiled under RHEL 5 and older
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+%if 0%{?with_tderandrtray}
 %{tde_bindir}/tderandrtray
 %{tde_tdelibdir}/kcm_displayconfig.la
 %{tde_tdelibdir}/kcm_displayconfig.so
@@ -1221,6 +1246,11 @@ Summary:	Core binaries for the TDE base module
 Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
+%if 0%{?rhel} >= 7
+Requires:	xorg-x11-server-Xorg
+Requires:	xorg-x11-drv-evdev
+Requires:	dejavu-sans-fonts
+%endif
 
 Provides:	tdebase-bin = %{version}-%{release}
 Obsoletes:	tdebase-bin < %{version}-%{release}
@@ -1235,7 +1265,9 @@ TDE applications, particularly those in the TDE base module.
 %if 0%{?with_tsak}
 %{tde_bindir}/tsak
 %endif
+%if 0%{?with_compton}
 %{tde_bindir}/compton-tde
+%endif
 %{tde_bindir}/tdedebugdialog
 %{tde_bindir}/kreadconfig
 %{tde_bindir}/kwriteconfig
@@ -1315,21 +1347,17 @@ TDE applications, particularly those in the TDE base module.
 # SETUID binaries
 # Some setuid binaries need special care
 %if 0%{?suse_version}
-%if 0%{?with_tsak}
-%verify(not mode) %{tde_bindir}/%{tdm}tsak
-%endif
+%{?with_tsak:%verify(not mode) %{tde_bindir}/%{tdm}tsak}
 %verify(not mode) %{tde_bindir}/kcheckpass
-%verify(not mode) %{tde_bindir}/tdekbdledsync
+%{?with_kbdledsync:%verify(not mode) %{tde_bindir}/tdekbdledsync}
 %else
-%if 0%{?with_tsak}
-%attr(4511,root,root) %{tde_bindir}/%{tdm}tsak
-%endif
+%{?with_tsak:%attr(4511,root,root) %{tde_bindir}/%{tdm}tsak}
 %attr(4755,root,root) %{tde_bindir}/kcheckpass
-%attr(4755,root,root) %{tde_bindir}/tdekbdledsync
+%{?with_kbdledsync:%attr(4755,root,root) %{tde_bindir}/tdekbdledsync}
 %endif
 
 # SUSE's runupdater utility
-%if 0%{?opensuse_bs} == 0 && 0%{?suse_version}
+%if 0
 %{tde_bindir}/runupdater
 %{tde_libdir}/libtdeinit_runupdater.la
 %{tde_libdir}/libtdeinit_runupdater.so
@@ -1343,11 +1371,9 @@ TDE applications, particularly those in the TDE base module.
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
 # Sets permissions on setuid files (openSUSE specific)
 %if 0%{?suse_version}
-%if 0%{?with_tsak}
-%set_permissions %{tde_bindir}/%{tdm}tsak
-%endif
+%{?with_tsak:%set_permissions %{tde_bindir}/%{tdm}tsak}
 %set_permissions %{tde_bindir}/kcheckpass
-%set_permissions %{tde_bindir}/tdekbdledsync
+%{?with_kbdledsync:%set_permissions %{tde_bindir}/tdekbdledsync}
 %endif
 
 %postun bin
@@ -1366,7 +1392,8 @@ Obsoletes:	tdebase-bin-devel < %{version}-%{release}
 Provides:	tdebase-bin-devel = %{version}-%{release}
 
 %description bin-devel
-%{summary}.
+This package contains the development files for core binaries for 
+the TDE base module
 
 %files bin-devel
 %defattr(-,root,root,-)
@@ -1651,6 +1678,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/wallpapers/*
 
 # XDG directories information
+%dir %{_sysconfdir}/xdg/menus/applications-merged
 %config(noreplace) %{_sysconfdir}/xdg/menus/applications-merged/tde-essential.menu
 %config(noreplace) %{_sysconfdir}/xdg/menus/tde-information.menu
 %config(noreplace) %{_sysconfdir}/xdg/menus/tde-screensavers.menu
@@ -2056,7 +2084,7 @@ Group:		Development/Libraries/Other
 Requires:	trinity-kdesktop = %{version}-%{release}
 
 %description -n trinity-kdesktop-devel
-%{summary}.
+This package contains the development files for kdesktop.
 
 %files -n trinity-kdesktop-devel
 %defattr(-,root,root,-)
@@ -2212,6 +2240,14 @@ fi
 /usr/sbin/semodule -i "%{?_sysconfdir}/trinity/%{tdm}/tdm.pp"
 %endif
 
+# SELINUX context for tdm
+%if 0%{?fedora} == 21
+if ! grep -q "%{tde_bindir}/tdm" "/etc/selinux/targeted/contexts/files/file_contexts.local" ; then
+  echo "%{tde_bindir}/tdm	--	system_u:object_r:xdm_exec_t" >>"/etc/selinux/targeted/contexts/files/file_contexts.local"
+  restorecon "%{tde_bindir}/tdm"
+fi
+%endif
+
 # Sets default user icon in TDM
 if [ ! -r "%{tdm_datadir}/faces/.default.face.icon" ]; then
   [ -d "%{tdm_datadir}/faces" ] || mkdir -p "%{tdm_datadir}/faces"
@@ -2252,7 +2288,7 @@ Requires:	trinity-tdm = %{version}-%{release}
 %{?xtst_devel:Requires: %{xtst_devel}}
 
 %description -n trinity-tdm-devel
-%{summary}.
+This package contains the development files for TDM.
 
 %files -n trinity-tdm-devel
 %defattr(-,root,root,-)
@@ -2486,7 +2522,7 @@ Requires:	trinity-kicker = %{version}-%{release}
 %{?xtst_devel:Requires: %{xtst_devel}}
 
 %description -n trinity-kicker-devel
-%{summary}.
+This package contains the development files for kicker.
 
 %files -n trinity-kicker-devel
 %defattr(-,root,root,-)
@@ -2766,7 +2802,7 @@ Group:		Development/Libraries/Other
 Requires:	trinity-konqueror = %{version}-%{release}
 
 %description -n trinity-konqueror-devel
-%{summary}.
+This package contains the development files for konqueror.
 
 %files -n trinity-konqueror-devel
 %defattr(-,root,root,-)
@@ -3045,7 +3081,7 @@ Group:		Development/Libraries/Other
 Requires:	trinity-ksplash = %{version}-%{release}
 
 %description -n trinity-ksplash-devel
-%{summary}.
+This package contains the development files for ksplash.
 
 %files -n trinity-ksplash-devel
 %defattr(-,root,root,-)
@@ -3109,7 +3145,7 @@ Group:		Development/Libraries/Other
 Requires:	trinity-ksysguard = %{version}-%{release}
 
 %description -n trinity-ksysguard-devel
-%{summary}.
+This package contains the development files for ksysguard.
 
 %files -n trinity-ksysguard-devel
 %defattr(-,root,root,-)
@@ -3185,7 +3221,6 @@ This package contains the default X window manager for TDE.
 
 %files -n trinity-twin
 %defattr(-,root,root,-)
-%{tde_bindir}/kompmgr
 %{tde_bindir}/twin
 %{tde_bindir}/twin_killer_helper
 %{tde_bindir}/twin_resumer_helper
@@ -3251,7 +3286,7 @@ Group:		Development/Libraries/Other
 Requires:	trinity-twin = %{version}-%{release}
 
 %description -n trinity-twin-devel
-%{summary}.
+This package contains the development files for twin.
 
 %files -n trinity-twin-devel
 %defattr(-,root,root,-)
@@ -3401,8 +3436,8 @@ Windows and Samba shares.
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
 	-e 's|#define DEFAULT_WALLPAPER "isadora.png"|#define DEFAULT_WALLPAPER "%{tde_bg}"|'
 %__sed -i "%{starttde}" \
-	-e 's|/usr/share/wallpapers/isadora.png.desktop|%{tde_bg}|' \
-	-e 's|Wallpaper=isadora.png|Wallpaper=%{tde_bg}|'
+	-e 's|$TDEDIR/share/wallpapers/Trinity-lineart.svg.desktop|%{tde_bg}|' \
+	-e 's|Wallpaper=Trinity-lineart.svg|Wallpaper=%{tde_bg}|'
 %endif
 
 # TDE default directory and icon in startup script
@@ -3459,6 +3494,11 @@ fi
 %__sed -i "konqueror/sidebar/trees/history_module/kcmhistory.desktop" -e "s|^Icon=.*|Icon=kcmhistory|"
 %__sed -i "tdeioslave/cgi/kcmcgi/kcmcgi.desktop"                      -e "s|^Icon=.*|Icon=kcmcgi|"
 %__sed -i "tdeioslave/media/tdecmodule/media.desktop"                 -e "s|^Icon=.*|Icon=kcmmedia|" 
+
+# RHEL 5 does not support 'compton'
+%if 0%{?with_compton} == 0
+%__sed -i "twin/CMakeLists.txt" -e "/compton-tde/ s/^/#/"
+%endif
 
 
 %build
@@ -3536,6 +3576,7 @@ fi
   -DTDM_PAM_SERVICE="tdm-trinity" \
   -DTDESCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
 %endif
+  %{!?with_kbdledsync:-DBUILD_TDEKBDLEDSYNC=OFF} \
   %{!?with_tsak:-DBUILD_TSAK=OFF} \
   ..
 
@@ -3727,7 +3768,7 @@ popd
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/kwrite.desktop                     TextEditor
 %suse_update_desktop_file    %{?buildroot}%{tde_tdeappdir}/tdeprintfax.desktop                PrintingUtility
 %suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tdefontview.desktop                Graphics Viewer
-%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tderandrtray.desktop               Applet X-TDE-settings-desktop
+%{?with_tderandrtray:%suse_update_desktop_file -r %{?buildroot}%{tde_tdeappdir}/tderandrtray.desktop               Applet X-TDE-settings-desktop}
 %suse_update_desktop_file    %{?buildroot}%{tde_datadir}/applnk/.hidden/konqfilemgr.desktop   System FileManager
 %endif
 
@@ -3746,15 +3787,18 @@ for i in ksysguard tde-kcontrol tdefontview showdesktop; do
 done
 
 # Remove setuid bit on some binaries.
-%if 0%{?with_tsak}
-chmod 0511 "%{?buildroot}%{tde_bindir}/%{tdm}tsak"
-%endif
+%{?with_tsak:chmod 0511 "%{?buildroot}%{tde_bindir}/%{tdm}tsak"}
 chmod 0755 "%{?buildroot}%{tde_bindir}/kcheckpass"
-chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"
+%{?with_kbdledsync:chmod 0755 "%{?buildroot}%{tde_bindir}/tdekbdledsync"}
 
 # Fix permissions on shell scripts
 chmod 0755 "%{?buildroot}%{tde_datadir}/apps/tdeconf_update/move_session_config.sh"
 chmod 0755 "%{?buildroot}%{tde_tdedocdir}/HTML/en/khelpcenter/glossary/checkxrefs"
+
+# Removes tderandrtray documentation, if not built.
+%if 0%{?with_tderandrtray} == 0
+%__rm -rf "%{?buildroot}%{tde_tdedocdir}/HTML/en/tderandrtray"
+%endif
 
 # Links duplicate files
 %fdupes "%{?buildroot}%{tde_datadir}"
@@ -3767,11 +3811,9 @@ chmod 0755 "%{?buildroot}%{tde_tdedocdir}/HTML/en/khelpcenter/glossary/checkxref
 %if 0%{?suse_version}
 # Check permissions on setuid files (openSUSE specific)
 %verifyscript
-%if 0%{?with_tsak}
-%verify_permissions -e %{tde_bindir}/%{tdm}tsak
-%endif
+%{?with_tsak:%verify_permissions -e %{tde_bindir}/%{tdm}tsak}
 %verify_permissions -e %{tde_bindir}/kcheckpass
-%verify_permissions -e %{tde_bindir}/tdekbdledsync
+%{?with_kbdledsync:%verify_permissions -e %{tde_bindir}/tdekbdledsync}
 %endif
 
 

@@ -64,7 +64,7 @@ imlib-devel
 jack-audio-connection-kit-devel
 jasper-devel
 java-1.4.2-gcj-compat-devel
-java-1.7.0-openjdk-devel
+java-1.8.0-openjdk-devel
 java-devel
 java-openjdk
 lame-devel
@@ -200,4 +200,3 @@ libudisks2-devel
 htdig
 libconfig-devel
 gtk3-devel
-gtk3-devel sudo yum install -y libtqt3-mt-sqlite3

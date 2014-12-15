@@ -269,7 +269,7 @@ libkexiv2:	tqtinterface
 libkipi:	tqtinterface
 	$(call buildpkg,libraries/libkipi)
 
-libksquirrel:	tqtinterface
+libksquirrel:	tdelibs
 	$(call buildpkg,libraries/libksquirrel)
 
 libtdeldap:	tqtinterface

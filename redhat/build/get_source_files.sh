@@ -11,10 +11,13 @@ SPECDIR="${SPECFILE%/*}"
 
 while read var val; do
   case "${var}" in
+    Version:*) VERSION="${val}";;
     Source[0-9]*:|Source:|Patch[0-9]*:)
-      FILE=$(rpm -E "${SPECDIR}/${val##*/}")
+      FILE=$(rpm --define "tde_pkg ${PKGNAME}" --define "tde_version ${TDE_VERSION}" --define "name ${PKGNAME}" --define "version ${VERSION}" -E "${SPECDIR}/${val##*/}")
       if [ -r "${FILE}" ]; then
         echo "${FILE}"
+      else
+        echo "Warning: cannot find '${FILE}'" >&2
       fi
     ;;
   esac

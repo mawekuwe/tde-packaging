@@ -1003,7 +1003,7 @@ Obsoletes:	tdeutils-devel < %{version}-%{release}
 Provides:	tdeutils-devel = %{version}-%{release}
 
 %description devel
-Development files for %{name}.
+Development files for tdeutils.
 
 %files devel
 %defattr(-,root,root,-)

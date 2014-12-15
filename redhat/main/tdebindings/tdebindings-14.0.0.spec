@@ -124,7 +124,7 @@ BuildRequires:	openssl-devel
 BuildRequires: glib-devel
 BuildRequires: gtk+-devel
 %endif
-%if 0%{?rhel} == 5
+%if 0%{?rhel} == 5 || 0%{?rhel} == 6
 %define with_gtk1 1
 BuildRequires: glib-devel
 BuildRequires: gtk+-devel
@@ -207,9 +207,16 @@ BuildRequires:	java-1.6.0-sun-devel
 # Others use OpenJDK
 BuildRequires: java-openjdk
 BuildRequires: java-devel >= 1.4.2
-%if 0%{?fedora} >= 17 || 0%{?suse_version} >= 1220 || 0%{?mgaversion} >= 3 || 0%{?rhel} >= 7
+%if 0%{?suse_version} >= 1320
+BuildRequires:	java-1_8_0-openjdk-devel
+%endif
+%if 0%{?fedora} >= 21
+BuildRequires: java-1.8.0-openjdk-devel
+%endif
+%if 0%{?fedora} == 17 ||  0%{?fedora} == 18 ||  0%{?fedora} == 19 ||  0%{?fedora} == 20 || 0%{?suse_version} == 1230 || 0%{?suse_version} == 1310 || 0%{?mgaversion} >= 3 || 0%{?rhel} >= 7
 BuildRequires: java-1.7.0-openjdk-devel
-%else
+%endif
+%if 0%{?rhel} == 5 || 0%{?rhel} == 6
 BuildRequires: java-1.6.0-openjdk-devel
 %endif
 
@@ -246,7 +253,7 @@ Requires: trinity-tdebindings-java = %{version}-%{release}
 Requires: trinity-libsmoketqt = %{version}-%{release}
 Requires: trinity-libsmoketde = %{version}-%{release}
 Requires: perl-dcop = %{version}-%{release}
-Requires: trinity-python-dcop = %{version}-%{release}
+Requires: python-dcop = %{version}-%{release}
 Requires: trinity-libkjsembed1 = %{version}-%{release}
 Requires: trinity-kjscmd = %{version}-%{release}
 Requires: trinity-juic = %{version}-%{release}
@@ -616,12 +623,15 @@ Perl bindings to the DCOP interprocess communication protocol used by TDE
 
 ##########
 
-%package -n trinity-python-dcop
+%package -n python-dcop
 Summary:	DCOP bindings for Python
 Group:		System/Libraries
 Requires:	python
 
-%description -n trinity-python-dcop
+Obsoletes:	trinity-python-dcop < %{version}-%{release}
+Provides:	trinity-python-dcop = %{version}-%{release}
+
+%description -n python-dcop
 This package contains the shared libraries necessary to run and
 develop Python programs using the Python DCOP bindings
 libraries. DCOP is the TDE Desktop COmmunications Protocol, used for
@@ -629,7 +639,7 @@ communicating with running TDE applications.
 
 This package is part of the official TDE bindings module.
 
-%files -n trinity-python-dcop
+%files -n python-dcop
 %defattr(-,root,root,-)
 %{python_sitearch}/pcop.la
 %{python_sitearch}/pcop.so
@@ -1042,7 +1052,7 @@ Requires:	trinity-libqt3-jni-devel = %{version}-%{release}
 Requires:	trinity-libtrinity-jni-devel = %{version}-%{release}
 
 %description devel
-Development files for the TDE bindings.
+This package contains the development files for the TDE bindings.
 
 %files devel
 %defattr(-,root,root,-)
@@ -1079,6 +1089,7 @@ exit 1
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
+export TDEDIR=%{tde_prefix}
 
 unset JAVA_HOME ||:
 %{?java_home:JAVA_HOME=%{java_home}; export JAVA_HOME}
@@ -1105,7 +1116,7 @@ fi
 EXTRA_INCLUDES="/usr/include/ruby-%{rb20_ver}:/usr/include/ruby-%{rb20_ver}/%{_target}"
 %endif
 
-# Warning: GCC visibility causes FTBFS [Bug #1285]
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \

@@ -541,10 +541,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-# Avoid conflict with tdelibs
-%__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
-%__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/scalable/apps/kttsd.svgz
-
 # Move desktop files to correct XDG location
 %__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmag.desktop" "%{?buildroot}%{tde_tdeappdir}"
 %__mv -f "%{?buildroot}%{tde_datadir}/applnk/Applications/kmousetool.desktop" "%{?buildroot}%{tde_tdeappdir}"
@@ -557,6 +553,10 @@ pushd "%{?buildroot}%{tde_datadir}/icons"
 for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kttsd.png  hicolor/"$i"x"$i"/apps/kttsd.png    ;done
 for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kttsd.png  hicolor/"$i"x"$i"/apps/kcmkttsd.png ;done
 popd
+
+# Avoid conflict with tdelibs
+%__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
+%__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/scalable/apps/kttsd.svgz
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}

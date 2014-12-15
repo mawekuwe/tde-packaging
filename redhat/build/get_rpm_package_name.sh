@@ -20,7 +20,9 @@ case "${PKGNAME}" in
   # In case prefix is already there, don't add it again.
   "trinity-"*) PREFIX="";;
   # Most TDE dependencies have no prefix
-  "avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"libcarddav"|"libcaldav"|"python-tqt"|"sip4-tqt"|"qt3"|"tqscintilla"|"tqt3"|"tqtinterface"|"tqca"|"tqca-tls") PREFIX="";;
+  "avahi-tqt"|"dbus-tqt"|"dbus-1-tqt"|"libart-lgpl"|"libcaldav"|"libcarddav"|"python-tqt"|"sip4-tqt"|"qt3"|"tqscintilla"|"tqt3"|"tqtinterface"|"tqca"|"tqca-tls") PREFIX="";;
+  # Most TDE libraries have no prefix
+  #"libkdcraw") PREFIX="";;
   # 3rd party dependencies
   "esound"|"fileshareset"|"hk_classes"|"python-qt3") PREFIX="";;
   # Extra build stuff
@@ -40,23 +42,27 @@ fi
 
 case "${PKGNAME}" in
   # Some packages have different runtime name than source package.
-  "avahi-tqt") PKGRUNTIME="${lib}avahi-tqt1";;
-  "dbus-tqt") PKGRUNTIME="${lib}dbus-tqt-1-0";;
-  "dbus-1-tqt") PKGRUNTIME="${lib}dbus-1-tqt0";;
-  "esound") PKGRUNTIME="esound-libs";;
-  "koffice") PKGRUNTIME="koffice-suite";;
-  "libart-lgpl") PKGRUNTIME="${lib}art_lgpl_2-2";;
-  "libcaldav") PKGRUNTIME="${lib}caldav0";;
-  "libcarddav") PKGRUNTIME="${lib}carddav0";;
-  "tqscintilla") PKGRUNTIME="${lib}tqscintilla7";;
-  "tqca") PKGRUNTIME="${lib}tqca1";;
-  "tqca-tls") PKGRUNTIME="${lib}tqt3-mt-tqca-tls";;
-  "tqt3") PKGRUNTIME="${lib}tqt3-mt";;
+  "avahi-tqt")    PKGRUNTIME="${lib}avahi-tqt1";;
+  "dbus-tqt")     PKGRUNTIME="${lib}dbus-tqt-1-0";;
+  "dbus-1-tqt")   PKGRUNTIME="${lib}dbus-1-tqt0";;
+  "esound")       PKGRUNTIME="esound-libs";;
+  "koffice")      PKGRUNTIME="koffice-suite";;
+  "libart-lgpl")  PKGRUNTIME="${lib}art_lgpl_2-2";;
+  "libcaldav")    PKGRUNTIME="${lib}caldav0";;
+  "libcarddav")   PKGRUNTIME="${lib}carddav0";;
+  "libkdcraw")    PKGRUNTIME="${lib}kdcraw4";;
+  "libkexiv2")    PKGRUNTIME="${lib}kexiv2-5";;
+  "libkipi")      PKGRUNTIME="${lib}kipi0";;
+  "tqscintilla")  PKGRUNTIME="${lib}tqscintilla7";;
+  "tqca")         PKGRUNTIME="${lib}tqca1";;
+  "tqca-tls")     PKGRUNTIME="${lib}tqt3-mt-tqca-tls";;
+  "tqt3")         PKGRUNTIME="${lib}tqt3-mt";;
   "tqtinterface") PKGRUNTIME="${lib}tqt4";;
   # Language package: install only French language package
-  "k3b-i18n"|"koffice-i18n"|"tde-i18n") PKGRUNTIME="${PKGNAME}-French";;
+  "k3b-i18n"|"koffice-i18n"|"tde-i18n")
+                  PKGRUNTIME="${PKGNAME}-French";;
   # Default case: runtime package has same name as source package
-  *) PKGRUNTIME="${PKGNAME}";;
+  *)              PKGRUNTIME="${PKGNAME}";;
 esac
 
 # Finally, display the runtime package name.
@@ -80,19 +86,22 @@ if [ -n "${DEVEL}" ]; then
 
   # Some package have specific development package.
   case "${PKGNAME}" in
-    "avahi-tqt") PKGDEVEL="libavahi-tqt-devel";;
-    "dbus-tqt") PKGDEVEL="libdbus-tqt-1-devel";;
-    "dbus-1-tqt") PKGDEVEL="libdbus-1-tqt-devel";;
-    "esound") PKGDEVEL="esound-devel";;
-    "pan") PKGDEVEL="uulib-devel";;
+    "avahi-tqt")   PKGDEVEL="libavahi-tqt-devel";;
+    "dbus-tqt")    PKGDEVEL="libdbus-tqt-1-devel";;
+    "dbus-1-tqt")  PKGDEVEL="libdbus-1-tqt-devel";;
+    "esound")      PKGDEVEL="esound-devel";;
+    "pan")         PKGDEVEL="uulib-devel";;
     "libart-lgpl") PKGDEVEL="libart_lgpl-devel";;
-    "libcaldav") PKGDEVEL="${lib}caldav-devel";;
-    "libcarddav") PKGDEVEL="${lib}carddav-devel";;
-    "tqca") PKGDEVEL="${lib}tqca-devel";;
+    "libcaldav")   PKGDEVEL="${lib}caldav-devel";;
+    "libcarddav")  PKGDEVEL="${lib}carddav-devel";;
+    "libkdcraw")   PKGDEVEL="${lib}kdcraw-devel";;
+    "libkexiv2")   PKGDEVEL="${lib}kexiv2-devel";;
+    "libkipi")     PKGDEVEL="${lib}kipi-devel";;
+    "tqca")        PKGDEVEL="${lib}tqca-devel";;
     "tqscintilla") PKGDEVEL="${lib}tqscintilla-devel";;
-    "tqt3") PKGDEVEL="tqt3-dev-tools tqt3-apps-devel tqt3-compat-headers";;
+    "tqt3")        PKGDEVEL="tqt3-dev-tools tqt3-apps-devel tqt3-compat-headers";;
     # Default case: development package has same name as runtime package, plus '-devel' suffix.
-    *) PKGDEVEL="${PKGRUNTIME}-devel";;
+    *)             PKGDEVEL="${PKGRUNTIME}-devel";;
   esac
 
   # Finally, other packages do have a '-devel'

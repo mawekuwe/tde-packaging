@@ -66,7 +66,7 @@ software does for Windows.  KPilot can back-up and restore your Palm Pilot
 and synchronize the built-in applications with their TDE counterparts.
 
 
-%if 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -112,6 +112,11 @@ export PATH="%{tde_bindir}:${PATH}"
 # Unwanted files
 %__rm -f %{?buildroot}%{tde_libdir}/libkpilot.so
 
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kpilot.desktop          Utility  PDA SyncUtility X-KDE-Utilities-Peripherals
+%suse_update_desktop_file -u -r %{?buildroot}%{tde_tdeappdir}/kpalmdoc.desktop        Utility  PDA X-TDE-Utilities-File
+%endif
 
 
 %clean

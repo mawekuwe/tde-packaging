@@ -25,6 +25,7 @@
 %define tde_pkg tdeadmin
 %define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
+%define tde_sbindir %{tde_prefix}/sbin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
@@ -99,7 +100,6 @@ BuildRequires: pam-devel
 BuildRequires:	lilo
 %endif
 
-Requires: trinity-tdeadmin = %{version}-%{release}
 Requires: trinity-kcron = %{version}-%{release}
 Requires: trinity-kdat = %{version}-%{release}
 Requires: %{name}-kfile-plugins = %{version}-%{release}

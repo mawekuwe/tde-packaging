@@ -1,5 +1,5 @@
 #
-# spec file for package tdeaddons
+# spec file for package tdeaddons (version R14.0.0)
 #
 # Copyright (c) 2014 Trinity Desktop Environment
 #

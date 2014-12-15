@@ -14,7 +14,7 @@ if [ -z "${VERSION}" ] || [[ "${VERSION}" =~ "not installed" ]]; then
 fi
 
 VERSION=${VERSION/-*_/\~}
-VERSION=${VERSION%-[0-9]}
+#VERSION=${VERSION%-[0-9]}
 VERSION=${VERSION%.opt}
 VERSION=${VERSION%.[a-z]*}
 

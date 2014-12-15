@@ -180,3 +180,5 @@ dejagnu
 expect
 python-docutils
 texinfo-tex
+fdupes
+htdig
