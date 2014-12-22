@@ -187,12 +187,6 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,3rdparty/curl)
 endif
 
-libotr3:
-# Build on Mageia, CentOS >= 7
-ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
-	$(call buildpkg,3rdparty/libotr3)
-endif
-
 libtool: autoconf automake
 # Build on CentOS 5 only
 ifneq ($(wildcard /boot/vmlinuz*.el5*),)
@@ -239,7 +233,10 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 endif
 
 torsocks:
+# Do NOT build on RHEL 7
+ifeq ($(wildcard /boot/vmlinuz*.el7*),)
 	$(call buildpkg,3rdparty/torsocks)
+endif
 
 wv2:
 # Do NOT build on Mageia or openSUSE or PCLINUXOS
@@ -480,7 +477,7 @@ koffice:	tdebase wv2
 konversation:	tdebase
 	$(call buildpkg,applications/konversation)
 
-kopete-otr:	tdebase libotr3
+kopete-otr:	tdebase
 	$(call buildpkg,applications/kopete-otr)
 
 kpicosim:	tdebase

@@ -84,6 +84,7 @@ rpmbuild -ba \
   --define "with_lame 1" \
   --define "with_mad 1" \
   --define "with_mpeg 1" \
+  --define "with_xine 1" \
   --define "with_xscreensaver 1" \
   "${TEMPDIR}/${SPECFILE##*/}"
 RET=$?

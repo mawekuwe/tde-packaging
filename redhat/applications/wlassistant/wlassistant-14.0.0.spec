@@ -47,6 +47,20 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
+# Wireless support
+%if 0%{?fedora} >= 6 || 0%{?rhel} >= 5
+BuildRequires: wireless-tools-devel
+%endif
+%if 0%{?mgaversion} == 2 || 0%{?mdkversion}
+BuildRequires:	%{_lib}iw29-devel
+%endif
+%if 0%{?rhel} == 5 || 0%{?suse_version}
+BuildRequires: wireless-tools
+%endif
+%if 0%{?suse_version} || 0%{?mgaversion} >= 3
+BuildRequires:	libiw-devel
+%endif
+
 BuildRequires:	gettext
 
 BuildRequires:	python

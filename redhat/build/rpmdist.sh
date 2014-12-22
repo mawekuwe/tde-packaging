@@ -42,7 +42,8 @@ case $a in
     DIST=".oss$((read l; read a b c; echo ${c//./}) </etc/SuSE-release)"
   ;;
   # PCLinuxOS
-  PCLinuxOS) PCLINUXOS="${c}"; DIST=".pclos${c}";;
+  #PCLinuxOS) PCLINUXOS="${c}"; DIST=".pclos${c}";;
+  PCLinuxOS) PCLINUXOS="${c}"; DIST=".pclos";;
 
   *) echo "distrib non reconnue !! $a";;
 esac

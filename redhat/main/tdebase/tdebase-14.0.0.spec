@@ -3644,10 +3644,11 @@ EOF
 %endif
 
 # Symlinks 'usb.ids' (Use system-provided version, not TDE provided version)
+%if 0%{?suse_version} == 1230 || 0%{?suse_version} == 1310 || 0%{?suse_version} == 1320 || 0%{?mgaversion} >= 4
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
-%if 0%{?suse_version} || 0%{?mgaversion} >= 4
 %__ln_s -f "/usr/share/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
 %else
+%__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
 %__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
 %endif
 

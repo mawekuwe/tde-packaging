@@ -1268,6 +1268,11 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --with-flac \
   %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
+# Fix unexplained "undefined reference to `__stack_chk_fail'"
+%if 0%{?mgaversion} == 4
+%__sed -i "noatun/app/Makefile" -e "/^libtdeinit_noatun_la_LDFLAGS/ s/$/ -Wl,-lc/"
+%endif
+
 %__make %{?_smp_mflags} || %__make
 
 

@@ -49,9 +49,11 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 # FLEX
-%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?rhel}
+%if 0%{?suse_version} || 0%{?mgaversion}
 BuildRequires:	flex
-%else
+%endif
+%if 0%{?rhel} || 0%{?fedora}
+BuildRequires:	flex
 BuildRequires:	flex-devel
 %endif
 

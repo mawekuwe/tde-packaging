@@ -34,3 +34,5 @@ if [ -x /usr/bin/zypper ]; then
   sudo zypper ar -G ${RPMDIR}/${ARCH} rpmbuild.${ARCH}
   sudo zypper ar -G ${RPMDIR}/noarch rpmbuild.noarch
 fi
+
+# PCLOS

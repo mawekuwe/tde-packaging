@@ -29,11 +29,15 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_tdelibdir %{tde_libdir}/trinity
 
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
 
 Name:		trinity-filesystem
 Version:	%{tde_version}
-Release:	1%{?dist}
+Release:	1%{?dist}%{?_variant}
 Summary:	Trinity Directory Layout
 Group:		System/Fhs
 URL:		http://www.trinitydesktop.org/

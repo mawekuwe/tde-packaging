@@ -190,14 +190,16 @@ Requires: trinity-kpilot
 # Network management
 # RHEL 6 and openSUSE 11.x: knetworkmanager8
 %if 0%{?rhel} == 6
-Requires: trinity-knetworkmanager
+Requires: trinity-knetworkmanager8
 %endif
 %if 0%{?suse_version} && 0%{?suse_version} <= 1140
 Requires: trinity-knetworkmanager
 %endif
 # Other distros use tdenetworkmanager (since R14)
-%if 0%{?rhel} >= 7 || 0%{?suse_version} >= 1210 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?pclinuxos}
+%if 0%{?rhel} >= 7 || 0%{?suse_version} >= 1210 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?pclinuxos} || 0%{?fedora}
 Requires: trinity-tdenetworkmanager
+Obsoletes: trinity-knetworkmanager
+Obsoletes: trinity-knetworkmanager8
 %endif
 
 # Power management

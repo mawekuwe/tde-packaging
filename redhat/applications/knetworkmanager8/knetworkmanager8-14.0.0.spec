@@ -1,44 +1,67 @@
-# Default version for this component
-%define tde_pkg knetworkmanager8
+#
+# spec file for package knetworkmanager8 (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
+%define tde_pkg knetworkmanager
+%define tde_prefix /opt/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_prefix}/man
+%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE specific building variables
-%define tde_bindir %{tde_prefix}/bin
-%define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{tde_prefix}/include
-%define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
 
-%define tde_tdeappdir %{tde_appdir}/tde
-%define tde_tdedocdir %{tde_docdir}/tde
-%define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
-
-%define _docdir %{tde_tdedocdir}
-
-
-Name:			trinity-%{tde_pkg}
+Name:			trinity-%{tde_pkg}8
+Epoch:			%{tde_epoch}
 Version:		0.8
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
-
 Summary:		Trinity applet for Network Manager
-
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 Group:			Applications/Internet
-License:		GPLv2+
-URL:			http://en.opensuse.org/Projects/KNetworkManager
+URL:			http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-
-Patch0:			knetworkmanager-3.5.13-missing_includes.patch
-
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 #Requires:       kde-filesystem
 BuildRequires:	desktop-file-utils
@@ -73,7 +96,7 @@ Provides:		trinity-knetworkmanager-devel = %{version}-%{release}
 Development headers for knetworkmanager
 
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -89,7 +112,6 @@ Development headers for knetworkmanager
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -113,12 +135,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --with-vpnc \
   --with-pptp
 
-%__make %{?_smp_mflags} || %__make
+# Does not support parallel build
+%__make
 
 
 %install
 %__rm -rf $RPM_BUILD_ROOT
-%__make install DESTDIR=%{?buildroot} -C build
+%__make install DESTDIR=%{?buildroot}
+%find_lang knetworkmanager
 
 
 %clean
@@ -147,18 +171,23 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig
 
 
-%files 
+%files -f knetworkmanager.lang
 %defattr(-,root,root,-)
 %{tde_bindir}/knetworkmanager
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
+%{tde_tdelibdir}/knetworkmanager_openvpn.so.*
+%{tde_tdelibdir}/knetworkmanager_pptp.so.*
+%{tde_tdelibdir}/knetworkmanager_vpnc.so.*
 %{_sysconfdir}/dbus-1/system.d/knetworkmanager.conf
 %{tde_tdeappdir}/knetworkmanager.desktop
 %{tde_datadir}/apps/knetworkmanager
 %{tde_datadir}/icons/hicolor/*/apps/knetworkmanager*
 %{tde_datadir}/servicetypes/knetworkmanager_plugin.desktop
 %{tde_datadir}/servicetypes/knetworkmanager_vpnplugin.desktop
-
+%{tde_datadir}/services/knetworkmanager_openvpn.desktop
+%{tde_datadir}/services/knetworkmanager_pptp.desktop
+%{tde_datadir}/services/knetworkmanager_vpnc.desktop
 
 %files devel
 %defattr(-,root,root,-)

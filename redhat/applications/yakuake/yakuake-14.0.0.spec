@@ -23,6 +23,11 @@
 
 %define _docdir %{tde_tdedocdir}
 
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 
 Name:			trinity-%{tde_pkg}
 Summary:		Yakuake is a Quake-style terminal emulator based on TDE Konsole technology.

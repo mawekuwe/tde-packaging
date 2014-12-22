@@ -1,4 +1,5 @@
 GraphicsMagick-devel
+libotr-devel
 ImageMagick-devel
 NetworkManager-glib-devel
 OpenEXR-devel
@@ -207,3 +208,5 @@ yaz
 zlib-devel
 fdupes
 firebird-devel
+GraphicsMagick-devel
+dssi-devel

@@ -165,3 +165,9 @@ xmlto
 xorg-x11-font-utils
 xulrunner-devel
 xz-devel
+librsvg2-tools
+sword-devel
+readline-devel
+pilot-link-devel
+lirc-devel
+wireless-tools-devel

@@ -253,19 +253,24 @@ BuildRequires:	xz-devel
 %endif
 
 # Certificates support
-%if 0%{?fedora}
+%if 0%{?fedora} || 0%{?rhel} >= 6
 BuildRequires:	ca-certificates
 Requires:		ca-certificates
-%if 0%{?fedora} == 20
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 6
 %define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 %endif
 %if 0%{?fedora} == 18 || 0%{?fedora} == 19
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
 %endif
 %endif
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{pclinuxos}
+Requires:		rootcerts
+%define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
+%else
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
 Requires:		openssl
+%endif
 %endif
 %if 0%{?rhel} == 5
 %define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
@@ -341,9 +346,11 @@ BuildRequires:	libudev-devel
 
 # UDISKS support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} == 6
+%if 0%{?pclinuxos} == 0
 %define with_udisks 1
 BuildRequires:	udisks-devel
 Requires:		udisks
+%endif
 %endif
 
 # PMOUNT support
