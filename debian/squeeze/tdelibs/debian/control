@@ -43,7 +43,7 @@ Section: libs
 Architecture: all
 Replaces: kdelibs-data-trinity (<< 4:14.0.0~)
 Breaks: kdelibs-data-trinity (<< 4:14.0.0~)
-Conflicts: kdebase-kio-plugins-trinity (<= 4:3.5.13.2)
+Conflicts: kdebase-kio-plugins-trinity (<= 4:14.0.0~)
 Depends: hicolor-icon-theme
 Provides: tdelibs-data
 Description: core shared data for all TDE applications
