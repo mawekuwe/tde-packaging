@@ -501,7 +501,7 @@ Provides: libkcal2-trinity-dev
 Replaces: libkdepim1-trinity-dev (<< 4:14.0.0~), libkcal2-trinity-dev
 Breaks: libkdepim1-trinity-dev (<< 4:14.0.0~)
 Conflicts: libkcal2-trinity-dev
-Depends: libtdepim1a-trinity (= ${Source-Version}), libktnef1-trinity-dev (= ${Source-Version}), tdelibs14-trinity-dev
+Depends: libtdepim1a-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Description: Trinity PIM library [development]
  This is the development package which contains the headers for the libtdepim-trinity
  library and libkcal-trinity library.
