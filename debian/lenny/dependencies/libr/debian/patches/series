@@ -1,6 +1,0 @@
-000-fix-stack-smashing.diff
-001-fix-arm-builds.diff
-002-fix-crash-on-malformed-icon.diff
-003-fix-gtk-includes.diff
-004-fix-force-arch.diff
-005-fix-arm-mangled-section.diff
