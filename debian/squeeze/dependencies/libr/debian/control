@@ -1,0 +1,22 @@
+Source: libr
+Priority: extra
+Maintainer: Erich E. Hoover <ehoover@mines.edu>
+Build-Depends: debhelper (>= 7), quilt, autotools-dev, pkg-config,
+ libglade2-dev, binutils-dev, doxygen
+Standards-Version: 3.8.4
+Section: libs
+Homepage: http://www.compholio.com/elficon/
+
+Package: libr-dev
+Section: libdevel
+Architecture: any
+Depends: libr0 (= ${binary:Version})
+Description: ELF binary resource library
+ Store and retrieve resources from ELF binaries.
+
+Package: libr0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ELF binary resource library
+ Store and retrieve resources from ELF binaries.

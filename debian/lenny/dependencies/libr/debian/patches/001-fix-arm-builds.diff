@@ -1,0 +1,56 @@
+diff -ru libr-0.6.0~maverick/configure libr-0.6.0/configure
+--- libr-0.6.0~maverick/configure	2011-03-05 20:21:12.000000000 +0000
++++ libr-0.6.0/configure	2013-07-19 03:43:01.000000000 +0000
+@@ -13072,6 +13072,10 @@
+ 	ARCH="i386";
+ elif test "$UNAMEM" = "i686" ; then
+ 	ARCH="i386";
++elif test "$UNAMEM" = "armv5tejl" ; then
++	ARCH="armel";
++elif test "$UNAMEM" = "armv6l" ; then
++	ARCH="armhf";
+ elif test "$UNAMEM" = "x86_64"; then
+ 	ARCH="amd64";
+ fi
+@@ -13083,6 +13087,14 @@
+ 	CFLAGS="$CFLAGS -m64";
+ 	{ $as_echo "$as_me:${as_lineno-$LINENO}: Ready for 64-bit compilation." >&5
+ $as_echo "$as_me: Ready for 64-bit compilation." >&6;};
++elif test "$ARCH" = "armel" ; then
++	CFLAGS="$CFLAGS";
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: Ready for armel compilation." >&5
++$as_echo "$as_me: Ready for armel compilation." >&6;};
++elif test "$ARCH" = "armhf" ; then
++	CFLAGS="$CFLAGS";
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: Ready for armhf compilation." >&5
++$as_echo "$as_me: Ready for armhf compilation." >&6;};
+ else
+ 	as_fn_error $? "Target architecture ${ARCH} is invalid!" "$LINENO" 5 ;
+ fi
+diff -ru libr-0.6.0~maverick/configure.ac libr-0.6.0/configure.ac
+--- libr-0.6.0~maverick/configure.ac	2011-03-05 20:20:50.000000000 +0000
++++ libr-0.6.0/configure.ac	2013-07-19 03:41:27.000000000 +0000
+@@ -81,6 +81,10 @@
+ 	ARCH="i386";
+ elif test "$UNAMEM" = "i686" ; then
+ 	ARCH="i386";
++elif test "$UNAMEM" = "armv5tejl" ; then
++	ARCH="armel";
++elif test "$UNAMEM" = "armv6l" ; then
++	ARCH="armhf";
+ elif test "$UNAMEM" = "x86_64"; then
+ 	ARCH="amd64";
+ fi
+@@ -90,6 +94,12 @@
+ elif test "$ARCH" = "amd64" ; then
+ 	CFLAGS="$CFLAGS -m64";
+ 	AC_MSG_NOTICE([Ready for 64-bit compilation.]);
++elif test "$ARCH" = "armel" ; then
++	CFLAGS="$CFLAGS";
++	AC_MSG_NOTICE([Ready for armel compilation.]);
++elif test "$ARCH" = "armhf" ; then
++	CFLAGS="$CFLAGS";
++	AC_MSG_NOTICE([Ready for armhf compilation.]);
+ else
+ 	AC_MSG_ERROR([Target architecture ${ARCH} is invalid!]);
+ fi

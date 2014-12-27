@@ -1,0 +1,12 @@
+diff -ru libr-0.6.0~maverick/src/libr-gtk.c libr-0.6.0/src/libr-gtk.c
+--- libr-0.6.0~maverick/src/libr-gtk.c	2009-12-01 23:11:37.000000000 +0000
++++ libr-0.6.0/src/libr-gtk.c	2012-09-12 20:08:35.000000000 +0000
+@@ -33,7 +33,7 @@
+ 
+ /* For loading GTK/GDK images */
+ #include <gdk-pixbuf/gdk-pixbuf.h>
+-#include <glib/gthread.h>
++#include <glib.h>
+ 
+ /* For loading GLADE files */
+ #include <glade/glade.h>
