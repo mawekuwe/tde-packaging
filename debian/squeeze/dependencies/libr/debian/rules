@@ -32,6 +32,13 @@ major=2
 #major=`ls src/.libs/lib*.so.* | \
 # awk '{if (match($$0,/\.so\.[0-9]+$$/)) print substr($$0,RSTART+4)}'`
 
+configure:
+	cp -Rp /usr/share/aclocal/libtool.m4 libtool.m4.in
+	cp -Rp /usr/share/libtool/config/ltmain.sh ltmain.sh
+	cp -Rp /usr/share/libtool/libltdl/aclocal.m4 aclocal.m4
+	autoconf
+	automake
+
 config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
@@ -41,10 +48,6 @@ endif
 ifneq "$(wildcard /usr/share/misc/config.guess)" ""
 	cp -f /usr/share/misc/config.guess config.guess
 endif
-	cp -Rp /usr/share/aclocal/libtool.m4 libtool.m4.in
-	cp -Rp /usr/share/libtool/config/ltmain.sh ltmain.sh
-	autoconf
-	automake
 	./configure $(CROSS) --prefix=/usr --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
 
 
