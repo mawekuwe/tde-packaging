@@ -36,6 +36,7 @@ configure:
 	cp -Rp /usr/share/aclocal/libtool.m4 libtool.m4.in
 	cp -Rp /usr/share/libtool/config/ltmain.sh ltmain.sh
 	cp -Rp /usr/share/libtool/libltdl/aclocal.m4 aclocal.m4
+	autoreconf -i
 	autoconf
 	automake
 
@@ -56,7 +57,7 @@ build-stamp:  config.status
 	dh_testdir
 
 	# Add here commands to compile the package.
-	#$(MAKE)
+	$(MAKE)
 
 	touch $@
 
