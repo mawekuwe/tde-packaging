@@ -1133,26 +1133,26 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
-%suse_update_desktop_file KEdit       Utility TextEditor
-%suse_update_desktop_file superkaramba Utility DesktopUtility
-%suse_update_desktop_file KCharSelect Utility Accessibility
-%suse_update_desktop_file khexedit    Utility Editor
-%suse_update_desktop_file Kjots       Utility TimeUtility
-%suse_update_desktop_file ktimer      Utility TimeUtility
-%suse_update_desktop_file kwikdisk    System  Applet
-%suse_update_desktop_file kdf         System  Filesystem
-%suse_update_desktop_file ark         System  Archiving
-%suse_update_desktop_file kcalc       Utility Calculator
-%suse_update_desktop_file kgpg        Utility Security
-%suse_update_desktop_file irkick      Applet
-%suse_update_desktop_file tdewalletmanager Applet
-%suse_update_desktop_file kregexpeditor  Utility Editor
+%suse_update_desktop_file KEdit              Utility TextEditor
+%suse_update_desktop_file superkaramba       Utility DesktopUtility
+%suse_update_desktop_file KCharSelect        Utility Accessibility
+%suse_update_desktop_file khexedit           Utility Editor
+%suse_update_desktop_file Kjots              Utility TimeUtility
+%suse_update_desktop_file ktimer             Utility TimeUtility
+%suse_update_desktop_file kwikdisk           System  Applet
+%suse_update_desktop_file kdf                System  Filesystem
+%suse_update_desktop_file ark                System  Archiving
+%suse_update_desktop_file kcalc              Utility Calculator
+%suse_update_desktop_file kgpg               Utility Security
+%suse_update_desktop_file irkick             Applet
+%suse_update_desktop_file tdewalletmanager   Applet
+%suse_update_desktop_file kregexpeditor      Utility Editor
 %suse_update_desktop_file kcmdf
 %suse_update_desktop_file kcmlirc
 %suse_update_desktop_file tdewalletconfig
 %suse_update_desktop_file thinkpad
 %suse_update_desktop_file kvaio
-%suse_update_desktop_file KFloppy     System  Filesystem
+%suse_update_desktop_file KFloppy            System  Filesystem
 %endif
 
 # Icons from TDE Control Center should only be displayed in TDE
@@ -1163,6 +1163,17 @@ for i in %{?buildroot}%{tde_tdeappdir}/*.desktop ; do
     fi
   fi
 done
+
+# Other TDE-only apps
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/thinkpad.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kcmlirc.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kvaio.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kcmdf.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/tdewalletconfig.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/khexedit.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kregexpeditor.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kgpg.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/Kjots.desktop"
 
 
 %clean
