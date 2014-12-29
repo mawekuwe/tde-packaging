@@ -125,9 +125,11 @@ BuildRequires: glib-devel
 BuildRequires: gtk+-devel
 %endif
 %if 0%{?rhel} == 5 || 0%{?rhel} == 6
+%if 0%{?with_gtk1}
 %define with_gtk1 1
 BuildRequires: glib-devel
 BuildRequires: gtk+-devel
+%endif
 %endif
 %if 0%{?mdkversion} == 201100
 %define with_gtk1 1
@@ -200,8 +202,7 @@ BuildRequires:	gcc-java
 
 # PCLinuxOS use SUN's Java
 %if 0%{?pclinuxos}
-BuildRequires:	java-1.6.0-sun
-BuildRequires:	java-1.6.0-sun-devel
+BuildRequires:	java-devel
 %else
 
 # Others use OpenJDK
