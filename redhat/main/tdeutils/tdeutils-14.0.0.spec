@@ -477,7 +477,7 @@ reasonably fast start.
 %{tde_tdelibdir}/kedit.so
 %{tde_libdir}/libtdeinit_kedit.so
 %{tde_tdeappdir}/KEdit.desktop
-%{tde_datadir}/apps/kedit/keditui.rc
+%{tde_datadir}/apps/kedit/
 %{tde_datadir}/config.kcfg/kedit.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/kedit.png
 %{tde_tdedocdir}/HTML/en/kedit/
@@ -601,7 +601,7 @@ support and other powerful features.
 %{tde_libdir}/libkhexeditcommon.so.*
 %{tde_tdeappdir}/khexedit.desktop
 %{tde_datadir}/apps/khexedit/
-%{tde_datadir}/apps/khexedit2part/khexedit2partui.rc
+%{tde_datadir}/apps/khexedit2part/
 %{tde_datadir}/icons/hicolor/*/apps/khexedit.png
 %{tde_datadir}/services/kbyteseditwidget.desktop
 %{tde_datadir}/services/khexedit2part.desktop
@@ -967,8 +967,8 @@ Here are just some examples of the things that can be done:
 %files -n trinity-superkaramba
 %defattr(-,root,root,-)
 %{tde_bindir}/superkaramba
-%{tde_datadir}/applnk/Utilities/superkaramba.desktop
-%{tde_datadir}/apps/superkaramba/superkarambaui.rc
+%{tde_tdeappdir}/superkaramba.desktop
+%{tde_datadir}/apps/superkaramba/
 %{tde_datadir}/icons/crystalsvg/*/apps/superkaramba.png
 %{tde_datadir}/icons/crystalsvg/*/mimetypes/superkaramba_theme.png
 %{tde_datadir}/icons/crystalsvg/scalable/apps/superkaramba.svgz
@@ -1174,6 +1174,9 @@ echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/khexedit.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kregexpeditor.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kgpg.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/Kjots.desktop"
+
+# Fix desktop shortcut location
+%__mv "%{?buildroot}%{tde_datadir}/applnk/Utilities/superkaramba.desktop" "%{?buildroot}%{tde_tdeappdir}/superkaramba.desktop"
 
 
 %clean
