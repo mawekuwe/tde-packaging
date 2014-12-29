@@ -1131,6 +1131,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %endif
 
+# Fix desktop shortcut location
+%__mv "%{?buildroot}%{tde_datadir}/applnk/Utilities/superkaramba.desktop" "%{?buildroot}%{tde_tdeappdir}/superkaramba.desktop"
+
 # Updates applications categories for openSUSE
 %if 0%{?suse_version}
 %suse_update_desktop_file KEdit              Utility TextEditor
@@ -1174,9 +1177,6 @@ echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/khexedit.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kregexpeditor.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kgpg.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/Kjots.desktop"
-
-# Fix desktop shortcut location
-%__mv "%{?buildroot}%{tde_datadir}/applnk/Utilities/superkaramba.desktop" "%{?buildroot}%{tde_tdeappdir}/superkaramba.desktop"
 
 
 %clean
