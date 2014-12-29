@@ -160,6 +160,9 @@ BuildRequires: freetype-devel
 # WMF support
 BuildRequires:	libwmf-devel
 
+# XML2 support
+BuildRequires:	libxml2-devel
+
 # NETPBM support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 BuildRequires:	netpbm
@@ -546,10 +549,6 @@ export PATH="%{tde_bindir}:${PATH}"
   --disable-gcc-hidden-visibility \
   \
   %{?with_djvu:--enable-djvu}
-
-%if 0%{suse_version} == 1230
-cat config.log
-%endif
 
 %__make %{?_smp_mflags}
 
