@@ -36,9 +36,7 @@ configure:
 	cp -Rp /usr/share/aclocal/libtool.m4 libtool.m4.in
 	cp -Rp /usr/share/libtool/config/ltmain.sh ltmain.sh
 	cp -Rp /usr/share/libtool/libltdl/aclocal.m4 aclocal.m4
-	autoreconf -i
-	autoconf
-	automake
+	./autogen.sh
 
 config.status: configure
 	dh_testdir
