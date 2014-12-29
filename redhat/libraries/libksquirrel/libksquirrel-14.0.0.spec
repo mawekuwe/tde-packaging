@@ -547,6 +547,10 @@ export PATH="%{tde_bindir}:${PATH}"
   \
   %{?with_djvu:--enable-djvu}
 
+%if 0%{suse_version} == 1230
+cat config.log
+%endif
+
 %__make %{?_smp_mflags}
 
 
