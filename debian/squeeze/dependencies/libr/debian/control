@@ -1,8 +1,7 @@
 Source: libr
 Priority: extra
 Maintainer: Erich E. Hoover <ehoover@mines.edu>
-Build-Depends: debhelper (>= 7), quilt, autotools-dev, pkg-config,
- libglade2-dev, binutils-dev, doxygen
+Build-Depends: debhelper (>= 7), quilt, autotools-dev, autopoint, pkg-config, libglade2-dev, binutils-dev, doxygen, cvs, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Section: libs
 Homepage: http://www.compholio.com/elficon/
