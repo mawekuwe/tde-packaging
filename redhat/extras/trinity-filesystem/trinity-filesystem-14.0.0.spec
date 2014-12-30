@@ -163,6 +163,7 @@ This package installs the Trinity directory structure.
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/plugin
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/profiles
+%__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/remotes
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/remoteview
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/videothumbnail
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/apps/zeroconf
