@@ -308,6 +308,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kcharselect
 Summary:	character selector for Trinity
 Group:		Applications/Utilities
+Requires:	trinity-kicker
 
 %description -n trinity-kcharselect
 A character set selector for TDE.
@@ -419,6 +420,7 @@ This package contains TDE's frontend for ssh.
 %package -n trinity-kdf
 Summary:	disk space utility for Trinity
 Group:		Applications/Utilities
+Requires:	trinity-kcontrol
 
 %description -n trinity-kdf
 KDiskFree displays the available file devices (hard drive partitions, floppy
@@ -664,6 +666,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 Summary:	battery monitoring and management for laptops using Trinity
 Group:		Applications/Utilities
 Requires:	pm-utils
+Requires:	trinity-kcontrol
 
 %if 0%{?with_consolehelper}
 # package 'usermode' provides '/usr/bin/consolehelper-gtk'
@@ -749,7 +752,9 @@ with special keys.
 %{tde_tdelibdir}/kmilo_generic.so
 %{tde_libdir}/libkmilo.so.*
 %{tde_datadir}/services/kded/kmilod.desktop
+%dir %{tde_datadir}/services/kmilo
 %{tde_datadir}/services/kmilo/kmilo_generic.desktop
+%dir %{tde_datadir}/servicetypes/kmilo
 %{tde_datadir}/servicetypes/kmilo/kmilopluginsvc.desktop
 
 %post -n trinity-kmilo
@@ -764,6 +769,7 @@ with special keys.
 Summary:	non-standard plugins for KMilo
 Group:		Applications/Utilities
 Requires:	trinity-kmilo = %{version}-%{release}
+Requires:	trinity-kcontrol
 
 %description -n trinity-kmilo-legacy
 KMilo lets you use the special keys on some keyboards and laptops.
@@ -840,6 +846,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-ksim
 Summary:	system information monitor for Trinity
 Group:		Applications/Utilities
+Requires:	trinity-kicker
 
 %description -n trinity-ksim
 KSim is a system monitor app which has its own plugin system with support
