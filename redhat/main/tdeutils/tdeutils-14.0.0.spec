@@ -72,6 +72,7 @@ Obsoletes:	tdeutils < %{version}-%{release}
 Provides:	tdeutils = %{version}-%{release}
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
