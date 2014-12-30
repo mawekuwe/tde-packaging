@@ -71,6 +71,7 @@ Provides:	trinity-kdeutils-extras = %{version}-%{release}
 Obsoletes:	tdeutils < %{version}-%{release}
 Provides:	tdeutils = %{version}-%{release}
 
+BuildRequires:	trinity-filesystem >= %{tde_version}
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 
@@ -345,6 +346,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-tdelirc
 Summary:	infrared control for Trinity
 Group:		Applications/Utilities
+Requires:	trinity-filesystem
 
 Obsoletes:	trinity-kdelirc < %{version}-%{release}
 Provides:	trinity-kdelirc = %{version}-%{release}
