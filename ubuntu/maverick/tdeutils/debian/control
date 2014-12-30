@@ -13,8 +13,9 @@ Section: tde
 Architecture: all
 Replaces: kdeutils-kde3 (<< 4:14.0.0~), kdeutils-trinity (<< 4:14.0.0~)
 Breaks: kdeutils-kde3 (<< 4:14.0.0~), kdeutils-trinity (<< 4:14.0.0~)
-Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), tdelirc-trinity (>= ${Source-Version}), tdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}) | kpowersave-trinity, kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), tdewalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
+Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), tdelirc-trinity (>= ${Source-Version}), tdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}), kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), tdewalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
 Suggests: tdeutils-trinity-doc-html (>= ${Source-Version})
+Recommends: tdepowersave-trinity
 Description: general purpose utilities from the official Trinity release
  TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
