@@ -947,9 +947,11 @@ Group:		System/GUI/Other
 Requires:	%{name}-data = %{version}-%{release}
 
 # Requires 'usb.ids'
-Requires:	usbutils
+Requires:		usbutils
+BuildRequires:	usbutils
 %if 0%{?suse_version} == 0
-Requires:	hwdata
+BuildRequires:	hwdata
+Requires:		hwdata
 %endif
 
 %description -n trinity-kcontrol
@@ -3668,13 +3670,13 @@ EOF
 %endif
 
 # Symlinks 'usb.ids' (Use system-provided version, not TDE provided version)
-%if 0%{?suse_version} == 1230 || 0%{?suse_version} == 1310 || 0%{?suse_version} == 1320 || 0%{?mgaversion} >= 4
-%__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
-%__ln_s -f "/usr/share/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
-%else
-%__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
-%__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
-%endif
+if [ -r "/usr/share/usb.ids" ]; then
+  %__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
+  %__ln_s -f "/usr/share/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
+elif [ -r "/usr/share/hwdata/usb.ids" ]; then
+  %__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
+  %__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
+fi
 
 # Makes 'media_safelyremove.desktop' an alternative.
 # This allows the use of 'tdeio-umountwrapper' package.
