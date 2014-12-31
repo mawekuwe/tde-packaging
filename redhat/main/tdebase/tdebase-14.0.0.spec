@@ -394,17 +394,41 @@ BuildRequires:	OpenEXR-devel
 %endif
 
 # XSCREENSAVER support
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
+#  RHEL 4: disabled
+#  RHEL 6: available in EPEL
+#  RHEL 7: available in NUX
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
 %define with_xscreensaver 1
-%if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?suse_version}
+
+%if 0%{?fedora} || 0%{?rhel} >= 5
 BuildRequires:	libXScrnSaver-devel
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-base
+BuildRequires:	xscreensaver-extras
+%if 0%{?fedora}
+BuildRequires:	xscreensaver-extras-base
 %endif
+BuildRequires:	xscreensaver-gl-base
+BuildRequires:	xscreensaver-gl-extras
+%endif
+
+%if 0%{?suse_version}
+BuildRequires:	libXScrnSaver-devel
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-data
+BuildRequires:	xscreensaver-data-extra
+%endif
+
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?mgaversion} >= 4
 BuildRequires:	%{_lib}xscrnsaver-devel
 %else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
 %endif
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-base
+BuildRequires:	xscreensaver-extrusion
+BuildRequires:	xscreensaver-gl
 %endif
 %endif
 
