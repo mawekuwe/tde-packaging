@@ -369,6 +369,7 @@ This is a frontend for the LIRC suite to use infrared devices with TDE.
 %{tde_datadir}/apps/profiles/konqueror.profile.xml
 %{tde_datadir}/apps/profiles/noatun.profile.xml
 %{tde_datadir}/apps/profiles/profile.dtd
+%dir %{tde_datadir}/apps/remotes
 %{tde_datadir}/apps/remotes/RM-0010.remote.xml
 %{tde_datadir}/apps/remotes/cimr100.remote.xml
 %{tde_datadir}/apps/remotes/hauppauge.remote.xml
