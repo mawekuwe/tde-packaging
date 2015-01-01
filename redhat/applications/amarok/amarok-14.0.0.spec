@@ -157,7 +157,7 @@ BuildRequires:	%{_lib}inotifytools-devel
 %endif
 
 # XINE support
-%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} == 18 || 0%{?fedora} == 19 || 0%{?with_xine}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
@@ -194,6 +194,9 @@ BuildRequires:	libmp4v2-devel
 # ruby
 BuildRequires:	ruby
 BuildRequires:	ruby-devel
+%if 0%{?fedora} >= 19
+BuildRequires:	rubypick
+%endif
 
 # To open the selected browser, works with Patch2
 Requires:		xdg-utils
