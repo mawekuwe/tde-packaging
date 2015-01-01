@@ -1,51 +1,64 @@
-%{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
+#
+# spec file for package pytdeextensions (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg pytdeextensions
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
-
-%define _docdir %{tde_docdir}
 
 
-Name:		trinity-pytdeextensions
-Summary:	Python packages to support TDE applications (scripts) [Trinity]
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
 Version:	0.4.0
-Release:	%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	Python packages to support TDE applications (scripts)
+Group:		Development/Libraries/Python
+URL:		http://www.trinitydesktop.org/
+#URL:		http://www.simonzone.com/software/pykdeextensions
 
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
 License:	GPLv2+
-Group:		Applications/Utilities
+%endif
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.simonzone.com/software/pykdeextensions
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
 
 BuildRequires:	python-tqt-devel >= %{?epoch:%{epoch}:}3.18.1
 BuildRequires:	trinity-python-trinity-devel
@@ -53,15 +66,15 @@ BuildRequires:	trinity-pytqt-tools
 Requires:		python-tqt
 Requires:		trinity-python-trinity
 
-Requires:		trinity-libpythonize0 = %{version}-%{release}
+Requires:		trinity-libpythonize0 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 # SIP
 BuildRequires:	sip4-tqt-devel >= 4.10.5
 Requires:		sip4-tqt >= 4.10.5
 
 
-Obsoletes:		trinity-pykdeextensions < %{version}-%{release}
-Provides:		trinity-pykdeextensions = %{version}-%{release}
+Obsoletes:		trinity-pykdeextensions < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		trinity-pykdeextensions = %{?epoch:%{epoch}:}%{version}-%{release}
 
 
 %description
@@ -79,12 +92,12 @@ to support the creation and installation of TDE applications.
 ##########
 
 %package -n trinity-libpythonize0
-Summary:		Python packages to support KDE applications (library) [Trinity]	
-Group:			Environment/Libraries
+Summary:	Python packages to support TDE applications (library)
+Group:		Development/Libraries/Python
 
 %description -n trinity-libpythonize0
 PyTDE Extensions is a collection of software and Python packages
-to support the creation and installation of KDE applications.
+to support the creation and installation of TDE applications.
 
 This package contains the libpythonize library files.
 
@@ -100,24 +113,27 @@ This package contains the libpythonize library files.
 
 ##########
 
-%package -n trinity-libpythonize0-devel
-Summary:		Python packages to support KDE applications (development) [Trinity]
-Group:			Development/Libraries
-Requires:		trinity-libpythonize0 = %{version}-%{release}
+%package -n trinity-libpythonize-devel
+Summary:	Python packages to support TDE applications (development)
+Group:		Development/Libraries/Python
+Requires:	trinity-libpythonize0 = %{?epoch:%{epoch}:}%{version}-%{release}
 
-%description -n trinity-libpythonize0-devel
+Obsoletes:	trinity-libpythonize0-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	trinity-libpythonize0-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n trinity-libpythonize-devel
 PyTDE Extensions is a collection of software and Python packages
 to support the creation and installation of TDE applications.
 
 This package contains the libpythonize development files.
 
-%post -n trinity-libpythonize0-devel
+%post -n trinity-libpythonize-devel
 /sbin/ldconfig
 
-%postun -n trinity-libpythonize0-devel
+%postun -n trinity-libpythonize-devel
 /sbin/ldconfig
 
-%files -n trinity-libpythonize0-devel
+%files -n trinity-libpythonize-devel
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/*.h
 %{tde_libdir}/libpythonize.la
@@ -126,19 +142,20 @@ This package contains the libpythonize development files.
 ##########
 
 %package devel
-Summary:		Meta-package to install all pytdeextensions development files
-Group:			Development/Libraries
-Requires:		%{name}-devel = %{version}-%{release}
-Requires:		trinity-libpythonize0-devel = %{version}-%{release}
+Summary:	Meta-package to install all pytdeextensions development files
+Group:		Development/Libraries/Python
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	trinity-libpythonize-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
-%{summary}
+This package is a meta-package to install all pytdeextensions development
+files.
 
 %files devel
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -223,5 +240,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.4.0-1
 - Initial build for TDE 14.0.0
