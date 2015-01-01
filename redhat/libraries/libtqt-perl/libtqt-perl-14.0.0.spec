@@ -77,6 +77,7 @@ It provides an object-oriented interface and is easy to use.
 %{_bindir}/pqtsh
 %{perl_vendorarch}/TQt.pm
 %{perl_vendorarch}/TQt.pod
+%dir %{perl_vendorarch}/TQt
 %{perl_vendorarch}/TQt/GlobalSpace.pm
 %{perl_vendorarch}/TQt/attributes.pm
 %{perl_vendorarch}/TQt/constants.pm
