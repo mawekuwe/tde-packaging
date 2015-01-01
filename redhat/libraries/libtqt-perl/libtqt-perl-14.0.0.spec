@@ -59,7 +59,7 @@ BuildRequires:	pkgconfig
 
 BuildRequires:	trinity-libsmoketqt-devel >= %{tde_version}
 
-BuildRequires:	perl-ExtUtils-MakeMaker
+BuildRequires:	perl(ExtUtils::MakeMaker)
 
 Provides:		perl(TQtShell)
 Provides:		perl(TQtShellControl)
