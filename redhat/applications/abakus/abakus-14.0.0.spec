@@ -67,6 +67,13 @@ BuildRequires:	flex
 # IDN support
 BuildRequires:	libidn-devel
 
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 %description
 AbaKus is a complex calculator, which provides
 many different kinds of calculations.
