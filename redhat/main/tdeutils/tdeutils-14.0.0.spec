@@ -122,9 +122,9 @@ BuildRequires:	gamin-devel
 BuildRequires:	pcre-devel
 
 # XMMS support
-#%if 0%{?fedora}
+#if 0#{?fedora}
 #BuildRequires:	xmms-devel
-#%endif
+#endif
 
 # KLAPTOPDAEMON
 #  Not for RHEL 4!
@@ -204,7 +204,7 @@ Utilities for the Trinity Desktop Environment, including:
 ##########
 
 %package -n trinity-ark
-Summary:	graphical archiving tool for Trinity
+Summary:	Graphical archiving tool for Trinity
 Group:		Applications/Utilities
 #Requires:	ncompress
 Requires:	unzip
@@ -263,7 +263,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kcalc
-Summary:	calculator for Trinity
+Summary:	Calculator for Trinity
 Group:		Applications/Utilities
 
 %description -n trinity-kcalc
@@ -308,12 +308,12 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kcharselect
-Summary:	character selector for Trinity
+Summary:	Character selector for Trinity
 Group:		Applications/Utilities
 Requires:	trinity-kicker
 
 %description -n trinity-kcharselect
-A character set selector for TDE.
+This package contains kcharselect, a character set selector for TDE.
 
 %files -n trinity-kcharselect
 %defattr(-,root,root,-)
@@ -344,7 +344,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-tdelirc
-Summary:	infrared control for Trinity
+Summary:	Infrared control for Trinity
 Group:		Applications/Utilities
 Requires:	trinity-filesystem
 
@@ -401,7 +401,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-tdessh
-Summary:	ssh frontend for Trinity
+Summary:	Ssh frontend for Trinity
 Group:		Applications/Utilities
 %if 0%{?suse_version}
 Requires:	openssh
@@ -422,7 +422,7 @@ This package contains TDE's frontend for ssh.
 ##########
 
 %package -n trinity-kdf
-Summary:	disk space utility for Trinity
+Summary:	Disk space utility for Trinity
 Group:		Applications/Utilities
 Requires:	trinity-kcontrol
 
@@ -465,7 +465,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kedit
-Summary:	basic text editor for Trinity
+Summary:	Basic text editor for Trinity
 Group:		Applications/Utilities
 
 %description -n trinity-kedit
@@ -507,7 +507,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kfloppy
-Summary:	floppy formatter for Trinity
+Summary:	Floppy formatter for Trinity
 Group:		Applications/Utilities
 Requires:	dosfstools
 
@@ -632,7 +632,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kjots
-Summary:	note taking utility for Trinity
+Summary:	Note taking utility for Trinity
 Group:		Applications/Utilities
 
 %description -n trinity-kjots
@@ -667,7 +667,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %if 0%{?build_klaptopdaemon}
 
 %package -n trinity-klaptopdaemon
-Summary:	battery monitoring and management for laptops using Trinity
+Summary:	Battery monitoring and management for laptops using Trinity
 Group:		Applications/Utilities
 Requires:	pm-utils
 Requires:	trinity-kcontrol
@@ -738,7 +738,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kmilo
-Summary:	laptop special keys support for Trinity
+Summary:	Laptop special keys support for Trinity
 Group:		Applications/Utilities
 
 %description -n trinity-kmilo
@@ -770,7 +770,7 @@ with special keys.
 ##########
 
 %package -n trinity-kmilo-legacy
-Summary:	non-standard plugins for KMilo
+Summary:	Non-standard plugins for KMilo
 Group:		Applications/Utilities
 Requires:	trinity-kmilo = %{version}-%{release}
 Requires:	trinity-kcontrol
@@ -810,7 +810,7 @@ plugin, if you need this package please file a bug.
 ##########
 
 %package -n trinity-kregexpeditor
-Summary:	graphical regular expression editor plugin for Trinity
+Summary:	Graphical regular expression editor plugin for Trinity
 Group:		Applications/Utilities
 
 %description -n trinity-kregexpeditor
@@ -848,7 +848,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-ksim
-Summary:	system information monitor for Trinity
+Summary:	System information monitor for Trinity
 Group:		Applications/Utilities
 Requires:	trinity-kicker
 
@@ -886,7 +886,7 @@ done
 ##########
 
 %package -n trinity-ktimer
-Summary:	timer utility for Trinity
+Summary:	Timer utility for Trinity
 Group:		Applications/Utilities
 
 %description -n trinity-ktimer
@@ -918,7 +918,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-tdewalletmanager
-Summary:	wallet manager for Trinity
+Summary:	Wallet manager for Trinity
 Group:		Applications/Utilities
 
 Obsoletes:	trinity-kwalletmanager < %{version}-%{release}
@@ -960,7 +960,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-superkaramba
-Summary:	a program based on karamba improving the eyecandy of TDE
+Summary:	A program based on karamba improving the eyecandy of TDE
 Group:		Applications/Utilities
 
 %description -n trinity-superkaramba
@@ -1014,7 +1014,7 @@ Obsoletes:	tdeutils-devel < %{version}-%{release}
 Provides:	tdeutils-devel = %{version}-%{release}
 
 %description devel
-Development files for tdeutils.
+This package contains the development files for tdeutils.
 
 %files devel
 %defattr(-,root,root,-)
@@ -1188,6 +1188,9 @@ echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/khexedit.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kregexpeditor.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/kgpg.desktop"
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/Kjots.desktop"
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean
