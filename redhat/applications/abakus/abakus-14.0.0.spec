@@ -62,6 +62,10 @@ BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 
 BuildRequires:	bison
+BuildRequires:	flex
+
+# IDN support
+BuildRequires:	libidn-devel
 
 %description
 AbaKus is a complex calculator, which provides
