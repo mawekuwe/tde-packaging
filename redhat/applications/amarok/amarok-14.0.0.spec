@@ -82,6 +82,15 @@ BuildRequires:	sqlite-devel
 # not used anymore, in favor of libvisual ? -- Rex
 #{?fedora:BuildRequires:  xmms-devel}
 
+# IDN support
+BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
 
 # DBUS support
 %if 0%{?suse_version}
