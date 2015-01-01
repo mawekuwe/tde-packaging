@@ -1,58 +1,71 @@
-# Basic package informations
-%define tde_pkg amarok
+#
+# spec file for package amarok (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg amarok
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-
-%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
-
-%define _docdir %{tde_docdir}
 
 
-Name:			trinity-%{tde_pkg}
-Summary:		Media player
-Version:		1.4.10
-Release:		%{?!preversion:13}%{?preversion:12_%{preversion}}%{?dist}%{?_variant}
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	1.4.10
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	Media player for TDE
+Group:		Applications/Multimedia
+URL:		http://www.trinitydesktop.org/
+#Url:		http://amarok.kde.org
 
-Group:			Applications/Multimedia
-License:		GPLv2+
-Url:			http://amarok.kde.org
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch3:			amarok-3.5.13.1-fix_rhel4_libs.patch
-
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	desktop-file-utils
-
 BuildRequires:	trinity-konqueror-devel >= %{tde_version}
 
-BuildRequires:	alsa-lib-devel
 BuildRequires:	desktop-file-utils
+BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
+BuildRequires:	alsa-lib-devel
 BuildRequires:	esound-devel
 BuildRequires:	gettext
 BuildRequires:	pcre-devel
-BuildRequires:	taglib-devel 
 
 # LIBTOOL
 BuildRequires:	libtool
@@ -310,7 +323,7 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 %package ruby
 Summary:		%{name} Ruby support
 Group:			Applications/Multimedia
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 # For dir ownership and some default plugins (lyrics)
 Requires:		ruby
 
@@ -347,7 +360,7 @@ Requires:		trinity-konqueror
 %package visualisation
 Summary:		Visualisation plugins for Amarok
 Group:			Applications/Multimedia
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 # No plugins by default, we need libvisual-plugins
 #Requires:   libvisual-plugins
 
@@ -364,7 +377,7 @@ use any of xmms' visualisation plugins with Amarok.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -372,9 +385,7 @@ use any of xmms' visualisation plugins with Amarok.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%if 0%{?rhel} == 4
-%patch3 -p1 -b .rhel4
-%endif
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -454,5 +465,5 @@ done
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-13
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 2:1.4.10-1
 - Initial release for TDE 14.0.0
