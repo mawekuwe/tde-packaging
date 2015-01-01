@@ -1,51 +1,61 @@
-# Default version for this component
-%define tde_pkg libtqt-perl
+#
+# spec file for package libtqt-perl (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg libtqt-perl
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadsir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/tde
-%define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/trinity
-
-%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{tde_pkg}
-Summary:	Perl bindings for the TQt library
+Epoch:		%{tde_epoch}
 Version:	3.008
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPLv2+
+Summary:	Perl bindings for the TQt library
 Group:		Environment/Libraries
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+
+BuildRequires:	automake autoconf libtool
+BuildRequires:	gcc-c++
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
+BuildRequires:	pkgconfig
 
 BuildRequires:	trinity-libsmoketqt-devel >= %{tde_version}
 
@@ -56,13 +66,6 @@ Provides:		perl(TQtShellControl)
 %description
 This module lets you use the TQt library from Perl.
 It provides an object-oriented interface and is easy to use.
-
-
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
 
 %files
 %defattr(-,root,root,-)
@@ -86,7 +89,7 @@ It provides an object-oriented interface and is easy to use.
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -102,8 +105,8 @@ It provides an object-oriented interface and is easy to use.
 
 %build
 unset QTDIR QTINC QTLIB
+export TDEDIR=%{tde_prefix}
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -120,7 +123,9 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --disable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility \
+  \
+  --disable-smoke
 
 %__make %{?_smp_mflags}
 
@@ -130,6 +135,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# Unwanted files
 %__rm -f %{buildroot}%{perl_archlib}/perllocal.pod
 
 
