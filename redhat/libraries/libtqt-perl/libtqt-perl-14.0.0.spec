@@ -33,7 +33,7 @@ Epoch:		%{tde_epoch}
 Version:	3.008
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Perl bindings for the TQt library
-Group:		Environment/Libraries
+Group:		Development/Libraries/Perl
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
@@ -61,8 +61,7 @@ BuildRequires:	trinity-libsmoketqt-devel >= %{tde_version}
 
 BuildRequires:	perl(ExtUtils::MakeMaker)
 
-Provides:		perl(TQtShell)
-Provides:		perl(TQtShellControl)
+Requires:		perl-TQt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 
 %description
@@ -75,6 +74,22 @@ It provides an object-oriented interface and is easy to use.
 %{tde_mandir}/man1/puic.1*
 %{_bindir}/pqtapi
 %{_bindir}/pqtsh
+
+##########
+
+%package -n perl-TQt
+Summary:	Perl bindings for the TQt library
+Group:		Development/Libraries/Perl
+
+Provides:		perl(TQtShell)
+Provides:		perl(TQtShellControl)
+
+%description -n perl-TQt
+This module lets you use the TQt library from Perl.
+It provides an object-oriented interface and is easy to use.
+
+%files -n perl-TQt
+%defattr(-,root,root,-)
 %{perl_vendorarch}/TQt.pm
 %{perl_vendorarch}/TQt.pod
 %dir %{perl_vendorarch}/TQt
@@ -140,6 +155,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Unwanted files
 %__rm -f %{buildroot}%{perl_archlib}/perllocal.pod
+%__rm -f %{buildroot}%{perl_vendorarch}/auto/TQt/.packlist
 
 
 %clean
