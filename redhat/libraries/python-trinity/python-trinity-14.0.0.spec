@@ -57,6 +57,8 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
 
 # PYTHON support
 BuildRequires:	python
