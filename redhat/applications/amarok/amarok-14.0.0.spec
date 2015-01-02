@@ -29,7 +29,7 @@
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
-%define tde_tdelibdir %{tde_libdir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 
 Name:		trinity-%{tde_pkg}
@@ -58,6 +58,9 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	trinity-konqueror-devel >= %{tde_version}
+
+BuildRequires:	trinity-filesystem >= %{tde_version}
+Requires:		trinity-filesystem >= %{tde_version}
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	cmake >= 2.8
