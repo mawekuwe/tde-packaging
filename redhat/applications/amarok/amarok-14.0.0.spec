@@ -28,6 +28,7 @@
 %define tde_mandir %{tde_datadir}/man
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/tde
 
 
 Name:		trinity-%{tde_pkg}
