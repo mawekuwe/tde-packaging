@@ -73,8 +73,8 @@ This package installs the Trinity directory structure.
 %dir %{tde_docdir}
 %dir %{tde_tdedocdir}
 %dir %{tde_tdedocdir}/HTML
-%dir %{tde_tdedocdir}/HTML/en
-%dir %{tde_tdedocdir}/HTML/en/common
+%dir %{tde_tdedocdir}/HTML/*
+%dir %{tde_tdedocdir}/HTML/*/common
 
 %dir %{tde_includedir}
 %dir %{tde_tdeincludedir}
@@ -226,9 +226,37 @@ done
 
 %__install -d -m 755 %{?buildroot}%{tde_docdir}
 %__install -d -m 755 %{?buildroot}%{tde_tdedocdir}
+
+# HTML directories
 %__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML
-%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/en
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/ca/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/cs/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/da/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/de/common
 %__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/en/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/en_GB/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/es/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/et/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/fi/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/fr/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/he/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/hu/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/it/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/ja/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/nl/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/pl/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/pt_BR/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/pt/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/ro/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/ru/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/sk/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/sl/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/sr/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/sv/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/tr/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/uk/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/zh_CN/common
+%__install -d -m 755 %{?buildroot}%{tde_tdedocdir}/HTML/zh_TW/common
 
 %__install -d -m 755 %{?buildroot}%{tde_includedir}
 %__install -d -m 755 %{?buildroot}%{tde_tdeincludedir}
@@ -242,6 +270,7 @@ done
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/trinity
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/xdg/menus
 
+# Locales directories
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/en_US
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/l10n
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/locale/l10n/C
