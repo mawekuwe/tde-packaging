@@ -365,7 +365,7 @@ Requires:		ruby
 
 %files ruby
 %defattr(-,root,root,-)
-%{tde_libdir}/ruby_lib/*
+%{tde_libdir}/ruby_lib/
 
 ##########
 
