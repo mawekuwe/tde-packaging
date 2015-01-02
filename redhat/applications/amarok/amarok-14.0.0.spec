@@ -66,10 +66,25 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
-
-BuildRequires:	alsa-lib-devel
-BuildRequires:	esound-devel
 BuildRequires:	gettext
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+# ALSA support
+BuildRequires:	alsa-lib-devel
+
+# ESOUND support
+BuildRequires:	esound-devel
+
+# PCRE support
 BuildRequires:	pcre-devel
 
 # LIBTOOL
@@ -84,6 +99,7 @@ BuildRequires:	postgresql-devel
 BuildRequires:	SDL-devel
 BuildRequires:	taglib-devel
 BuildRequires:	sqlite-devel
+
 # not used anymore, in favor of libvisual ? -- Rex
 #{?fedora:BuildRequires:  xmms-devel}
 
