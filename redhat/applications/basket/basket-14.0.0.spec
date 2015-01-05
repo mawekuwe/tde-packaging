@@ -61,6 +61,7 @@ BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
+BuildRequires:	libtool
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	gpgme-devel
