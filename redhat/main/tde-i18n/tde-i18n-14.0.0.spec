@@ -1,21 +1,39 @@
-# Default version for this component
-%define tde_pkg tde-i18n
+#
+# spec file for package tde-i18n (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
-BuildRequires:	autoconf automake libtool m4
+%define tde_pkg tde-i18n
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
+%define tde_mandir %{tde_datadir}/man
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
 
 # Builds all supported languages (not unsupported ones)
 %if "%{?TDE_LANGS}" == ""
@@ -24,20 +42,21 @@ BuildRequires:	autoconf automake libtool m4
 
 
 Name:			trinity-%{tde_pkg}
-Summary:		Internationalization support for Trinity
 Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-
 Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.trinitydesktop.org/
-
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-# GFDL, with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
-License:		GFDL
+Summary:		Internationalization support for Trinity
 Group:			User Interface/Desktops
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
 BuildArch:		noarch
 
 # Speed build options
@@ -52,6 +71,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	findutils
 BuildRequires:	gettext
+BuildRequires:	cmake
 
 %description
 %{summary}.
