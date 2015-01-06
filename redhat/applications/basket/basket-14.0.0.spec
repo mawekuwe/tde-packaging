@@ -66,6 +66,16 @@ BuildRequires:	libtool
 BuildRequires:	desktop-file-utils
 BuildRequires:	gpgme-devel
 
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
 %description
 This application is mainly an all-purpose notes taker. It provide several baskets where
 to drop every sort of items: text, rich text, links, images, sounds, files, colors,
