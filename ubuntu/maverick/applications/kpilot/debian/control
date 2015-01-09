@@ -21,3 +21,14 @@ Description: TDE Palm Pilot hot-sync tool
  (like the Handspring Visor) with your Trinity desktop, much like the Palm HotSync
  software does for Windows.  KPilot can back-up and restore your Palm Pilot
  and synchronize the built-in applications with their TDE counterparts.
+
+Package: kpilot-trinity-dbg
+Priority: extra
+Architecture: any
+Depends: kpilot-trinity (= ${binary:Version})
+Recommends: tdelibs-trinity-dbg
+Description: debugging symbols for the TDE Palm Pilot hot-sync tool
+ This package provides debugging symbols for all binary packages built from the
+ kpilot-trinity source package. It's highly recommended to have this package installed
+ before reporting any kpilot-trinity crashes to either the TDE developers or Debian
+ package maintainers.
