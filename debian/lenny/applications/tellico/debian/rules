@@ -32,32 +32,7 @@ else
 	CXXFLAGS += -O2
 endif
 
-apply-patches:
-	#apply patches first
-	QUILT_PATCHES="debian/patches" quilt push -a -v
-
-	#regenerate the acinclude file with the "Debian" libtool
-	cp -a /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	cat admin/acinclude.m4.in admin/libtool.m4.in >acinclude.m4
-
-	#this will update the config.{sub,guess} and ltmain.sh files
-	libtoolize -c -f
-
-	# then, autoreconf with some tde magic
-	autoreconf -v -i
-	perl -w admin/am_edit
-
-update-autoconf:
-	cp -a /usr/share/misc/config.sub admin/
-	cp -a /usr/share/misc/config.guess admin/
-
-svn-number:
-	sed -e "s/svn[^-]*-/svn`svn info | \
-		grep "^Revision" | \
-		sed -e "s/Revision: //"`-/" debian/changelog > new_changelog
-	mv new_changelog debian/changelog
-
-config.status: configure
+config.status:
 	dh_testdir
 
 	# this makes the file more recent than configure and avoid make calling
@@ -68,6 +43,8 @@ config.status: configure
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
 	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	cp -p /usr/share/misc/config.sub admin/config.sub
+	cp -p /usr/share/misc/config.guess admin/config.guess
 	
 	make -f admin/Makefile.common cvs
 	
@@ -102,14 +79,6 @@ clean:
 	dh_testroot
 	rm -f build-stamp 
 
-	! [ -f /usr/share/libtool/ltmain.sh ] || \
-	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
-	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
-	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
-	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	
-	make -f admin/Makefile.common cvs
-
 	# Add here commands to clean up after the build process.
 	[ ! -f Makefile ] || $(MAKE) distclean
 	rm -f libtool config.log
@@ -130,9 +99,6 @@ install: build
 	install -c -p -m 644 -T icons/tellico.svg debian/tmp/opt/trinity/share/icons/hicolor/scalable/apps/tellico.svg
 	admin/mkinstalldirs debian/tmp/opt/trinity/share/icons/hicolor/scalable/mimetypes
 	install -c -p -m 644 -T icons/tellico_mime.svg debian/tmp/opt/trinity/share/icons/hicolor/scalable/mimetypes/application-x-tellico.svg
-
-	# Remove  dead symlink from French translation
-	rm debian/tmp/opt/trinity/share/doc/tde/HTML/fr/tellico/common
 
 
 # Build architecture-independent files here.

@@ -36,21 +36,23 @@ endif
 debian/debiandirs: admin/debianrules
 	perl -w admin/debianrules echodirs > debian/debiandirs
 
-patch-stamp:
-	# Apply Debian specific patches
-	if test ! -f patch-stamp; then \
-		for patch in $(CURDIR)/debian/patches/*.diff ;\
-		do \
-			echo APPLYING PATCH\: $${patch##*/};\
-			patch -p1 < $$patch ;\
-		done ;\
-		touch patch-stamp ;\
-	fi
-
-patch: patch-stamp
-
-config.status: configure patch
+config.status:
 	dh_testdir
+
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub admin/config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess admin/config.guess
+endif
+
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
 	
 	CFLAGS="$(CFLAGS) -Wl,-z,defs" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) $(configkde) --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 
@@ -59,15 +61,6 @@ build: build-stamp
 build-stamp:  config.status
 	dh_testdir
 
-	! [ -f /usr/share/libtool/ltmain.sh ] || \
-	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
-	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
-	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
-	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-
-	make -f admin/Makefile.common cvs
-	touch debian/stamp-bootstrap
-
 	$(MAKE)
 
 	touch build-stamp
@@ -75,37 +68,11 @@ build-stamp:  config.status
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp 
+	rm -f build-stamp
 
-	! [ -f /usr/share/libtool/ltmain.sh ] || \
-	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
-	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
-	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
-	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	[ ! -f Makefile ] || $(MAKE) distclean
 
-	make -f admin/Makefile.common cvs
-	touch debian/stamp-bootstrap
-
-	-$(MAKE) distclean
-
-ifneq "$(wildcard /usr/share/misc/config.sub)" ""
-	cp -f /usr/share/misc/config.sub config.sub
-endif
-ifneq "$(wildcard /usr/share/misc/config.guess)" ""
-	cp -f /usr/share/misc/config.guess config.guess
-endif
-
-	# Remove Debian specific patches
-	if test -f patch-stamp; then \
-		for patch in $(CURDIR)/debian/patches/*.diff ;\
-		do \
-			echo REMOVING PATCH\: $${patch##*/};\
-			patch -p1 -R < $$patch ;\
-		done ;\
-		rm -f patch-stamp ;\
-	fi
-
-	dh_clean  
+	dh_clean
 
 install: build
 	dh_testdir

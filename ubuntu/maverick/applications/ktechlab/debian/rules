@@ -29,7 +29,7 @@ endif
 debian/ktechlab.xpm: icons/hi32-app-ktechlab.png
 	convert $< $@
 
-config.status: configure.in
+config.status:
 	dh_testdir
 
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
@@ -37,26 +37,22 @@ config.status: configure.in
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
 	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub admin/config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess admin/config.guess
+endif
+
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-ifneq "$(wildcard /usr/share/misc/config.sub)" ""
-	cp -f /usr/share/misc/config.sub config.sub
-endif
-ifneq "$(wildcard /usr/share/misc/config.guess)" ""
-	cp -f /usr/share/misc/config.guess config.guess
-endif
 	PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde CFLAGS="$(CFLAGS) -Wl,-z,defs" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) $(configkde) --prefix=/opt/trinity
 
 build: build-stamp debian/ktechlab.xpm
 
 build-stamp:  config.status
 	dh_testdir
-	
-	make -f admin/Makefile.common cvs
-	touch debian/stamp-bootstrap
-
 	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde $(MAKE)
 	touch build-stamp
 
@@ -65,20 +61,9 @@ clean:
 	dh_testroot
 	rm -f build-stamp
 	[ ! -f po/Makefile ] || $(MAKE) -C po clean
-
-	! [ -f /usr/share/libtool/ltmain.sh ] || \
-	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
-	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
-	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
-	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	
-	make -f admin/Makefile.common cvs
-	touch debian/stamp-bootstrap
-
 	[ ! -f Makefile ] || $(MAKE) distclean
 	rm -f config.log debian/ktechlab.xpm config.sub config.guess
-
-	dh_clean 
+	dh_clean
 
 install: build
 	dh_testdir
