@@ -48,14 +48,12 @@ debian/build-kde:
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
 	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	
+	cp -p /usr/share/misc/config.sub admin/config.sub
+	cp -p /usr/share/misc/config.guess admin/config.guess
+
 	make -f admin/Makefile.common cvs
 #	automake
 #	autoconf
-	test -e config.sub -a -L config.sub || \
-		ln -sf /usr/share/misc/config.sub config.sub
-	test -e config.guess -a -L config.guess || \
-		ln -sf /usr/share/misc/config.guess config.guess
 
 	[ -d build-kde ] || mkdir build-kde
 	cd build-kde && ../configure CFLAGS="$(CFLAGS)" $(CONFIGURE_OPTIONS_TDE)

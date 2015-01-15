@@ -39,7 +39,7 @@ debian/knights.xpm: media/hi32-app-knights.png
 	convert $< $@
 
 
-config.status: configure
+config.status:
 	dh_testdir
 
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
@@ -47,6 +47,8 @@ config.status: configure
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
 	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	cp -p /usr/share/misc/config.sub admin/config.sub
+	cp -p /usr/share/misc/config.guess admin/config.guess
 	
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
@@ -67,20 +69,11 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f po/de.gmo
-	rm -f build-stamp 
-
-	! [ -f /usr/share/libtool/ltmain.sh ] || \
-	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
-	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
-	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
-	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	
-	make -f admin/Makefile.common cvs
-	touch debian/stamp-bootstrap
+	rm -f build-stamp
 
 	[ ! -f Makefile ] || $(MAKE) distclean
 
-	dh_clean 
+	dh_clean
 
 install: build
 	dh_testdir

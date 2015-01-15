@@ -33,11 +33,8 @@ post-patches::
 
 config.status: post-patches
 	dh_testdir
-	test -e config.sub -a -L config.sub || \
-		ln -sf /usr/share/misc/config.sub config.sub
-	test -e config.guess -a -L config.guess || \
-		ln -sf /usr/share/misc/config.guess config.guess
-
+	cp -p /usr/share/misc/config.sub admin/config.sub
+	cp -p /usr/share/misc/config.guess admin/config.guess
 	cp -Rp /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
 	cp -Rp /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	$(MAKE) -f admin/Makefile.common dist;

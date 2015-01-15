@@ -37,17 +37,17 @@ configure:
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
 	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub admin/config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess admin/config.guess
+endif
 
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
 	# Add here commands to configure the package.
-ifneq "$(wildcard /usr/share/misc/config.sub)" ""
-	cp -f /usr/share/misc/config.sub config.sub
-endif
-ifneq "$(wildcard /usr/share/misc/config.guess)" ""
-	cp -f /usr/share/misc/config.guess config.guess
-endif
 	PKG_CONFIG_PATH='/opt/trinity/lib/pkgconfig' ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/opt/trinity --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs" --disable-rpath 
 # Tricks for Intrepid
 #--disable-kexif --enable-mt --x-includes=/usr/include/qt4/Qt

@@ -49,22 +49,14 @@ configure: configure-stamp
 configure-stamp:
 	dh_testdir
 
-	# Apply Debian specific patches
-	if test ! -f patch-stamp; then \
-		for patch in $(CURDIR)/debian/patches/*.diff ;\
-		do \
-			echo APPLYING PATCH\: $${patch##*/};\
-			patch -p1 < $$patch ;\
-		done ;\
-		touch patch-stamp ;\
-	fi
-
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
 	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	
+	cp -p /usr/share/misc/config.sub admin/config.sub
+	cp -p /usr/share/misc/config.guess admin/config.guess
+
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
@@ -100,16 +92,6 @@ clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp
-
-	# Remove Debian specific patches
-	if test -f patch-stamp; then \
-		for patch in $(CURDIR)/debian/patches/*.diff ;\
-		do \
-			echo REMOVING PATCH\: $${patch##*/};\
-			patch -p1 -R < $$patch ;\
-		done ;\
-		rm -f patch-stamp ;\
-	fi
 
 	# Remove build tree
 	rm -rf $(objdir)
