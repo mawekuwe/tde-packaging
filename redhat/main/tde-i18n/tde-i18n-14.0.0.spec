@@ -67,6 +67,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	findutils
 BuildRequires:	gettext
 BuildRequires:	cmake
+BuildRequires:	gcc-c++
 
 %description
 This package contains %{summary}.
