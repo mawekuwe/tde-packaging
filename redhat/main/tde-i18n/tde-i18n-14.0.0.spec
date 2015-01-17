@@ -31,10 +31,6 @@
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-
-Name:		trinity-%{tde_pkg}
-Epoch:		%{tde_epoch}
-
 # Builds all supported languages (not unsupported ones)
 %if "%{?TDE_LANGS}" == ""
 %define TDE_LANGS ar bg bn ca cs da de el en_GB es et fi fr he hi hu is it ja lt nl nb nn pa pl pt pt_BR ro ru sk sl sr sv ta tr uk zh_CN zh_TW
@@ -145,9 +141,9 @@ This package contains %{summary}.
 %package Bulgarian
 Summary:		Bulgarian(bg) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-bg = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Bulgarian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Bulgarian = %{version}-%{release}
+Provides:		%{name}-bg = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Bulgarian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Bulgarian = %{version}-%{release}
 
 %description Bulgarian
 This package contains %{summary}.
@@ -161,9 +157,9 @@ This package contains %{summary}.
 %package Bengali
 Summary:		Bengali(bn) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-bn = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Bengali < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Bengali = %{version}-%{release}
+Provides:		%{name}-bn = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Bengali < %{version}-%{release}
+Provides:		trinity-kde-i18n-Bengali = %{version}-%{release}
 
 %description Bengali
 This package contains %{summary}.
@@ -177,9 +173,9 @@ This package contains %{summary}.
 %package Tibetan
 Summary:		Tibetan(bo) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-bo = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Tibetan < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Tibetan = %{version}-%{release}
+Provides:		%{name}-bo = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Tibetan < %{version}-%{release}
+Provides:		trinity-kde-i18n-Tibetan = %{version}-%{release}
 
 %description Tibetan
 This package contains %{summary}.
@@ -193,9 +189,9 @@ This package contains %{summary}.
 %package Breton
 Summary:		Breton(br) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-br = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Breton < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Breton = %{version}-%{release}
+Provides:		%{name}-br = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Breton < %{version}-%{release}
+Provides:		trinity-kde-i18n-Breton = %{version}-%{release}
 
 %description Breton
 This package contains %{summary}.
@@ -209,9 +205,9 @@ This package contains %{summary}.
 %package Bosnian
 Summary:		Bosnian(bs) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-bs = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Bosnian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Bosnian = %{version}-%{release}
+Provides:		%{name}-bs = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Bosnian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Bosnian = %{version}-%{release}
 
 %description Bosnian
 This package contains %{summary}.
@@ -225,9 +221,9 @@ This package contains %{summary}.
 %package Catalan
 Summary:		Catalan(ca) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ca = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Catalan < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Catalan = %{version}-%{release}
+Provides:		%{name}-ca = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Catalan < %{version}-%{release}
+Provides:		trinity-kde-i18n-Catalan = %{version}-%{release}
 
 %description Catalan
 This package contains %{summary}.
@@ -242,9 +238,9 @@ This package contains %{summary}.
 %package Czech
 Summary:		Czech(cs) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-cs = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Czech < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Czech = %{version}-%{release}
+Provides:		%{name}-cs = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Czech < %{version}-%{release}
+Provides:		trinity-kde-i18n-Czech = %{version}-%{release}
 
 %description Czech
 This package contains %{summary}.
@@ -259,8 +255,8 @@ This package contains %{summary}.
 %package Cymraeg
 Summary:		Cymraeg language support for TDE
 Group:			User Interface/Desktops
-Obsoletes:	 trinity-kde-i18n-Cymraeg < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Cymraeg = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Cymraeg < %{version}-%{release}
+Provides:		trinity-kde-i18n-Cymraeg = %{version}-%{release}
 
 %description Cymraeg
 This package contains %{summary}.
@@ -270,9 +266,9 @@ This package contains %{summary}.
 %package Welsh
 Summary:		Welsh(cy) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-cy = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Welsh < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Welsh = %{version}-%{release}
+Provides:		%{name}-cy = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Welsh < %{version}-%{release}
+Provides:		trinity-kde-i18n-Welsh = %{version}-%{release}
 
 %description Welsh
 This package contains %{summary}.
@@ -286,9 +282,9 @@ This package contains %{summary}.
 %package Danish
 Summary:		Danish(da) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-da = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Danish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Danish = %{version}-%{release}
+Provides:		%{name}-da = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Danish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Danish = %{version}-%{release}
 
 %description Danish
 This package contains %{summary}.
@@ -303,9 +299,9 @@ This package contains %{summary}.
 %package German
 Summary:		German(de) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-de = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-German < %{version}-%{release}
-Provides:	 trinity-kde-i18n-German = %{version}-%{release}
+Provides:		%{name}-de = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-German < %{version}-%{release}
+Provides:		trinity-kde-i18n-German = %{version}-%{release}
 
 %description German
 This package contains %{summary}.
@@ -320,9 +316,9 @@ This package contains %{summary}.
 %package Greek
 Summary:		Greek(el) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-el = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Greek < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Greek = %{version}-%{release}
+Provides:		%{name}-el = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Greek < %{version}-%{release}
+Provides:		trinity-kde-i18n-Greek = %{version}-%{release}
 
 %description Greek
 This package contains %{summary}.
@@ -336,9 +332,9 @@ This package contains %{summary}.
 %package British
 Summary:		British(en_GB) English support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-en_GB = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-British < %{version}-%{release}
-Provides:	 trinity-kde-i18n-British = %{version}-%{release}
+Provides:		%{name}-en_GB = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-British < %{version}-%{release}
+Provides:		trinity-kde-i18n-British = %{version}-%{release}
 
 %description British
 This package contains %{summary}.
@@ -353,9 +349,9 @@ This package contains %{summary}.
 %package Esperanto
 Summary:		Esperanto(eo) support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-eo = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Esperanto < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Esperanto = %{version}-%{release}
+Provides:		%{name}-eo = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Esperanto < %{version}-%{release}
+Provides:		trinity-kde-i18n-Esperanto = %{version}-%{release}
 
 %description Esperanto
 This package contains %{summary}.
@@ -369,9 +365,9 @@ This package contains %{summary}.
 %package Spanish
 Summary:		Spanish(es) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-es = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Spanish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Spanish = %{version}-%{release}
+Provides:		%{name}-es = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Spanish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Spanish = %{version}-%{release}
 
 %description Spanish
 This package contains %{summary}.
@@ -386,9 +382,9 @@ This package contains %{summary}.
 %package Estonian
 Summary:		Estonian(et) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-et = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Estonian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Estonian = %{version}-%{release}
+Provides:		%{name}-et = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Estonian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Estonian = %{version}-%{release}
 
 %description Estonian
 This package contains %{summary}.
@@ -403,9 +399,9 @@ This package contains %{summary}.
 %package Basque
 Summary:		Basque(eu) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-eu = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Basque < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Basque = %{version}-%{release}
+Provides:		%{name}-eu = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Basque < %{version}-%{release}
+Provides:		trinity-kde-i18n-Basque = %{version}-%{release}
 
 %description Basque
 This package contains %{summary}.
@@ -419,9 +415,9 @@ This package contains %{summary}.
 %package Farsi
 Summary:		Farsi(fa) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-fa = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Farsi < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Farsi = %{version}-%{release}
+Provides:		%{name}-fa = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Farsi < %{version}-%{release}
+Provides:		trinity-kde-i18n-Farsi = %{version}-%{release}
 
 %description Farsi
 This package contains %{summary}.
@@ -435,9 +431,9 @@ This package contains %{summary}.
 %package Finnish
 Summary:		Finnish(fi) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-fi = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Finnish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Finnish = %{version}-%{release}
+Provides:		%{name}-fi = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Finnish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Finnish = %{version}-%{release}
 
 %description Finnish
 This package contains %{summary}.
@@ -452,9 +448,9 @@ This package contains %{summary}.
 %package Faroese
 Summary:		Faroese(fo) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-fo = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Faroese < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Faroese = %{version}-%{release}
+Provides:		%{name}-fo = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Faroese < %{version}-%{release}
+Provides:		trinity-kde-i18n-Faroese = %{version}-%{release}
 
 %description Faroese
 This package contains %{summary}.
@@ -468,9 +464,9 @@ This package contains %{summary}.
 %package French
 Summary:		French(fr) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-fr = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-French < %{version}-%{release}
-Provides:	 trinity-kde-i18n-French = %{version}-%{release}
+Provides:		%{name}-fr = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-French < %{version}-%{release}
+Provides:		trinity-kde-i18n-French = %{version}-%{release}
 
 %description French
 This package contains %{summary}.
@@ -485,9 +481,9 @@ This package contains %{summary}.
 %package Frisian
 Summary:		Frisian(fy) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-fy = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Frisian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Frisian = %{version}-%{release}
+Provides:		%{name}-fy = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Frisian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Frisian = %{version}-%{release}
 
 %description Frisian
 This package contains %{summary}.
@@ -501,9 +497,9 @@ This package contains %{summary}.
 %package Irish
 Summary:		Irish(ga) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ga = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Irish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Irish = %{version}-%{release}
+Provides:		%{name}-ga = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Irish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Irish = %{version}-%{release}
 
 %description Irish
 This package contains %{summary}.
@@ -517,9 +513,9 @@ This package contains %{summary}.
 %package Galician
 Summary:		Galician(gl) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-gl = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Galician < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Galician = %{version}-%{release}
+Provides:		%{name}-gl = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Galician < %{version}-%{release}
+Provides:		trinity-kde-i18n-Galician = %{version}-%{release}
 
 %description Galician
 This package contains %{summary}.
@@ -533,9 +529,9 @@ This package contains %{summary}.
 %package Hebrew
 Summary:		Hebrew(he) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-he = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Hebrew < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Hebrew = %{version}-%{release}
+Provides:		%{name}-he = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Hebrew < %{version}-%{release}
+Provides:		trinity-kde-i18n-Hebrew = %{version}-%{release}
 
 %description Hebrew
 This package contains %{summary}.
@@ -550,9 +546,9 @@ This package contains %{summary}.
 %package Hindi
 Summary:		Hindi(hi) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-hi = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Hindi < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Hindi = %{version}-%{release}
+Provides:		%{name}-hi = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Hindi < %{version}-%{release}
+Provides:		trinity-kde-i18n-Hindi = %{version}-%{release}
 
 %description Hindi
 This package contains %{summary}.
@@ -566,9 +562,9 @@ This package contains %{summary}.
 %package Croatian
 Summary:		Croatian(hr) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-hr = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Croatian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Croatian = %{version}-%{release}
+Provides:		%{name}-hr = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Croatian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Croatian = %{version}-%{release}
 
 %description Croatian
 This package contains %{summary}.
@@ -583,9 +579,9 @@ This package contains %{summary}.
 %package Hungarian
 Summary:		Hungarian(hu) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-hu = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Hungarian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Hungarian = %{version}-%{release}
+Provides:		%{name}-hu = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Hungarian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Hungarian = %{version}-%{release}
 
 %description Hungarian
 This package contains %{summary}.
@@ -600,9 +596,9 @@ This package contains %{summary}.
 %package Indonesian
 Summary:		Indonesian(id) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-id = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Indonesian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Indonesian = %{version}-%{release}
+Provides:		%{name}-id = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Indonesian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Indonesian = %{version}-%{release}
 
 %description Indonesian
 This package contains %{summary}.
@@ -617,9 +613,9 @@ This package contains %{summary}.
 %package Icelandic
 Summary:		Icelandic(is) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-is = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Icelandic < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Icelandic = %{version}-%{release}
+Provides:		%{name}-is = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Icelandic < %{version}-%{release}
+Provides:		trinity-kde-i18n-Icelandic = %{version}-%{release}
 
 %description Icelandic
 This package contains %{summary}.
@@ -633,9 +629,9 @@ This package contains %{summary}.
 %package Italian
 Summary:		Italian(it) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-it = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Italian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Italian = %{version}-%{release}
+Provides:		%{name}-it = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Italian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Italian = %{version}-%{release}
 
 %description Italian
 This package contains %{summary}.
@@ -650,9 +646,9 @@ This package contains %{summary}.
 %package Japanese
 Summary:		Japanese(ja) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ja = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Japanese < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Japanese = %{version}-%{release}
+Provides:		%{name}-ja = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Japanese < %{version}-%{release}
+Provides:		trinity-kde-i18n-Japanese = %{version}-%{release}
 
 %description Japanese
 This package contains %{summary}.
@@ -667,9 +663,9 @@ This package contains %{summary}.
 %package Korean
 Summary:		Korean(ko) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ko = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Korean < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Korean = %{version}-%{release}
+Provides:		%{name}-ko = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Korean < %{version}-%{release}
+Provides:		trinity-kde-i18n-Korean = %{version}-%{release}
 
 %description Korean
 This package contains %{summary}.
@@ -684,9 +680,9 @@ This package contains %{summary}.
 %package Kurdish
 Summary:		Kurdish(ku) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ku = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Kurdish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Kurdish = %{version}-%{release}
+Provides:		%{name}-ku = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Kurdish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Kurdish = %{version}-%{release}
 
 %description Kurdish
 This package contains %{summary}.
@@ -701,9 +697,9 @@ This package contains %{summary}.
 %package Lao
 Summary:		Lao(lo) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-lo = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Lao < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Lao = %{version}-%{release}
+Provides:		%{name}-lo = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Lao < %{version}-%{release}
+Provides:		trinity-kde-i18n-Lao = %{version}-%{release}
 
 %description Lao
 This package contains %{summary}.
@@ -718,9 +714,9 @@ This package contains %{summary}.
 %package Lithuanian
 Summary:		Lithuanian(lt) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-lt = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Lithuanian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Lithuanian = %{version}-%{release}
+Provides:		%{name}-lt = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Lithuanian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Lithuanian = %{version}-%{release}
 
 %description Lithuanian
 This package contains %{summary}.
@@ -734,9 +730,9 @@ This package contains %{summary}.
 %package Latvian
 Summary:		Latvian(lv) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-lv = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Latvian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Latvian = %{version}-%{release}
+Provides:		%{name}-lv = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Latvian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Latvian = %{version}-%{release}
 
 %description Latvian
 This package contains %{summary}.
@@ -750,9 +746,9 @@ This package contains %{summary}.
 %package Maori
 Summary:		Maori(mi) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-mi = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Maori < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Maori = %{version}-%{release}
+Provides:		%{name}-mi = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Maori < %{version}-%{release}
+Provides:		trinity-kde-i18n-Maori = %{version}-%{release}
 
 %description Maori
 This package contains %{summary}.
@@ -766,9 +762,9 @@ This package contains %{summary}.
 %package Macedonian
 Summary:		Macedonian(mk) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-mk = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Macedonian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Macedonian = %{version}-%{release}
+Provides:		%{name}-mk = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Macedonian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Macedonian = %{version}-%{release}
 
 %description Macedonian
 This package contains %{summary}.
@@ -782,9 +778,9 @@ This package contains %{summary}.
 %package Maltese
 Summary:		Maltese(mt) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-mt = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Maltese < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Maltese = %{version}-%{release}
+Provides:		%{name}-mt = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Maltese < %{version}-%{release}
+Provides:		trinity-kde-i18n-Maltese = %{version}-%{release}
 
 %description Maltese
 This package contains %{summary}.
@@ -798,9 +794,9 @@ This package contains %{summary}.
 %package Dutch
 Summary:		Dutch(nl) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-nl = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Dutch < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Dutch = %{version}-%{release}
+Provides:		%{name}-nl = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Dutch < %{version}-%{release}
+Provides:		trinity-kde-i18n-Dutch = %{version}-%{release}
 
 %description Dutch
 This package contains %{summary}.
@@ -815,9 +811,9 @@ This package contains %{summary}.
 %package Norwegian
 Summary:		Norwegian(no) (Bokmaal) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-no = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Norwegian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Norwegian = %{version}-%{release}
+Provides:		%{name}-no = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Norwegian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Norwegian = %{version}-%{release}
 
 %description Norwegian
 This package contains %{summary}.
@@ -831,9 +827,9 @@ This package contains %{summary}.
 %package Norwegian-Nynorsk
 Summary:		Norwegian(nn) (Nynorsk) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-nn = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Norwegian-Nynorsk < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Norwegian-Nynorsk = %{version}-%{release}
+Provides:		%{name}-nn = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Norwegian-Nynorsk < %{version}-%{release}
+Provides:		trinity-kde-i18n-Norwegian-Nynorsk = %{version}-%{release}
 
 %description Norwegian-Nynorsk
 This package contains %{summary}.
@@ -847,9 +843,9 @@ This package contains %{summary}.
 %package Occitan
 Summary:		Occitan(oc) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-oc = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Occitan < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Occitan = %{version}-%{release}
+Provides:		%{name}-oc = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Occitan < %{version}-%{release}
+Provides:		trinity-kde-i18n-Occitan = %{version}-%{release}
 
 %description Occitan
 This package contains %{summary}.
@@ -863,9 +859,9 @@ This package contains %{summary}.
 %package Polish
 Summary:		Polish(pl) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-pl = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Polish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Polish = %{version}-%{release}
+Provides:		%{name}-pl = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Polish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Polish = %{version}-%{release}
 
 %description Polish
 This package contains %{summary}.
@@ -880,9 +876,9 @@ This package contains %{summary}.
 %package Portuguese
 Summary:		Portuguese(pt) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-pt = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Portuguese < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Portuguese = %{version}-%{release}
+Provides:		%{name}-pt = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Portuguese < %{version}-%{release}
+Provides:		trinity-kde-i18n-Portuguese = %{version}-%{release}
 
 %description Portuguese
 This package contains %{summary}.
@@ -897,9 +893,9 @@ This package contains %{summary}.
 %package Punjabi
 Summary:		Punjabi(pa) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-pa = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Punjabi < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Punjabi = %{version}-%{release}
+Provides:		%{name}-pa = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Punjabi < %{version}-%{release}
+Provides:		trinity-kde-i18n-Punjabi = %{version}-%{release}
 
 %description Punjabi
 This package contains %{summary}.
@@ -913,9 +909,9 @@ This package contains %{summary}.
 %package Brazil
 Summary:		Brazil(pt_BR) Portuguese language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-pt_BR = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Brazil < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Brazil = %{version}-%{release}
+Provides:		%{name}-pt_BR = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Brazil < %{version}-%{release}
+Provides:		trinity-kde-i18n-Brazil = %{version}-%{release}
 
 %description Brazil
 This package contains %{summary}.
@@ -930,9 +926,9 @@ This package contains %{summary}.
 %package Romanian
 Summary:		Romanian(ro) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ro = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Romanian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Romanian = %{version}-%{release}
+Provides:		%{name}-ro = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Romanian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Romanian = %{version}-%{release}
 
 %description Romanian
 This package contains %{summary}.
@@ -947,9 +943,9 @@ This package contains %{summary}.
 %package Russian
 Summary:		Russian(ru) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ru = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Russian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Russian = %{version}-%{release}
+Provides:		%{name}-ru = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Russian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Russian = %{version}-%{release}
 
 %description Russian
 This package contains %{summary}.
@@ -964,9 +960,9 @@ This package contains %{summary}.
 %package Slovak
 Summary:		Slovak(sk) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-sk = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Slovak < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Slovak = %{version}-%{release}
+Provides:		%{name}-sk = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Slovak < %{version}-%{release}
+Provides:		trinity-kde-i18n-Slovak = %{version}-%{release}
 
 %description Slovak
 This package contains %{summary}.
@@ -981,9 +977,9 @@ This package contains %{summary}.
 %package Slovenian
 Summary:		Slovenian(sl) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-sl = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Slovenian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Slovenian = %{version}-%{release}
+Provides:		%{name}-sl = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Slovenian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Slovenian = %{version}-%{release}
 
 %description Slovenian
 This package contains %{summary}.
@@ -998,9 +994,9 @@ This package contains %{summary}.
 %package Serbian
 Summary:		Serbian(sr) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-sr = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Serbian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Serbian = %{version}-%{release}
+Provides:		%{name}-sr = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Serbian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Serbian = %{version}-%{release}
 
 %description Serbian
 This package contains %{summary}.
@@ -1015,9 +1011,9 @@ This package contains %{summary}.
 %package Swedish
 Summary:		Swedish(sv) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-sv = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Swedish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Swedish = %{version}-%{release}
+Provides:		%{name}-sv = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Swedish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Swedish = %{version}-%{release}
 
 %description Swedish
 This package contains %{summary}.
@@ -1032,9 +1028,9 @@ This package contains %{summary}.
 %package Tamil
 Summary:		Tamil(ta) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ta = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Tamil < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Tamil = %{version}-%{release}
+Provides:		%{name}-ta = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Tamil < %{version}-%{release}
+Provides:		trinity-kde-i18n-Tamil = %{version}-%{release}
 
 %description Tamil
 This package contains %{summary}.
@@ -1048,9 +1044,9 @@ This package contains %{summary}.
 %package Tajik
 Summary:		Tajik(tg) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-tg = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Tajik < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Tajik = %{version}-%{release}
+Provides:		%{name}-tg = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Tajik < %{version}-%{release}
+Provides:		trinity-kde-i18n-Tajik = %{version}-%{release}
 
 %description Tajik
 This package contains %{summary}.
@@ -1064,9 +1060,9 @@ This package contains %{summary}.
 %package Thai
 Summary:		Thai(th) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-th = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Thai < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Thai = %{version}-%{release}
+Provides:		%{name}-th = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Thai < %{version}-%{release}
+Provides:		trinity-kde-i18n-Thai = %{version}-%{release}
 
 %description Thai
 This package contains %{summary}.
@@ -1080,9 +1076,9 @@ This package contains %{summary}.
 %package Turkish
 Summary:		Turkish(tr) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-tr = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Turkish < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Turkish = %{version}-%{release}
+Provides:		%{name}-tr = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Turkish < %{version}-%{release}
+Provides:		trinity-kde-i18n-Turkish = %{version}-%{release}
 
 %description Turkish
 This package contains %{summary}.
@@ -1114,9 +1110,9 @@ This package contains %{summary}.
 %package Venda
 Summary:		Venda(ven) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ven = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Venda < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Venda = %{version}-%{release}
+Provides:		%{name}-ven = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Venda < %{version}-%{release}
+Provides:		trinity-kde-i18n-Venda = %{version}-%{release}
 
 %description Venda
 This package contains %{summary}.
@@ -1130,9 +1126,9 @@ This package contains %{summary}.
 %package Vietnamese
 Summary:		Vietnamese(vi) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-vi = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Vietnamese < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Vietnamese = %{version}-%{release}
+Provides:		%{name}-vi = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Vietnamese < %{version}-%{release}
+Provides:		trinity-kde-i18n-Vietnamese = %{version}-%{release}
 
 %description Vietnamese
 This package contains %{summary}.
@@ -1146,9 +1142,9 @@ This package contains %{summary}.
 %package Walloon
 Summary:		Walloon(wa) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-wa = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Walloon < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Walloon = %{version}-%{release}
+Provides:		%{name}-wa = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Walloon < %{version}-%{release}
+Provides:		trinity-kde-i18n-Walloon = %{version}-%{release}
 
 %description Walloon
 This package contains %{summary}.
@@ -1162,9 +1158,9 @@ This package contains %{summary}.
 %package Xhosa
 Summary:		Xhosa(xh) (a Bantu language) support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-xh = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Xhosa < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Xhosa = %{version}-%{release}
+Provides:		%{name}-xh = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Xhosa < %{version}-%{release}
+Provides:		trinity-kde-i18n-Xhosa = %{version}-%{release}
 
 %description Xhosa
 This package contains %{summary}.
@@ -1179,9 +1175,9 @@ This package contains %{summary}.
 %package Chinese
 Summary:		Chinese(zh_CN) (Simplified Chinese) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-zh_CN = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Chinese < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Chinese = %{version}-%{release}
+Provides:		%{name}-zh_CN = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Chinese < %{version}-%{release}
+Provides:		trinity-kde-i18n-Chinese = %{version}-%{release}
 
 %description Chinese
 This package contains %{summary}.
@@ -1196,9 +1192,9 @@ This package contains %{summary}.
 %package Chinese-Big5
 Summary:		Chinese(zh_TW) (Big5) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-tz_TW = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Chinese-Big5 < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
+Provides:		%{name}-tz_TW = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Chinese-Big5 < %{version}-%{release}
+Provides:		trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
 
 %description Chinese-Big5
 This package contains %{summary}.
