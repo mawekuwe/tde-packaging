@@ -132,6 +132,17 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %find_lang %{tde_pkg}
 
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file -G "Extended Clipboard" basket DesktopUtility
+%endif
+
+
+# Apps that should stay in TDE
+for i in basket; do
+  echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/${i}.desktop"
+done
+
 
 %clean
 %__rm -rf %{buildroot}
