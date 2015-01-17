@@ -66,7 +66,6 @@ AutoReq: no
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires:	findutils
@@ -74,43 +73,74 @@ BuildRequires:	gettext
 BuildRequires:	cmake
 
 %description
-%{summary}.
+This package contains %{summary}.
+
+##########
 
 %package Afrikaans
 Summary:		Afrikaans(af) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-af = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Afrikaans < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Afrikaans = %{version}-%{release}
+Provides:		%{name}-af = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Afrikaans < %{version}-%{release}
+Provides:		trinity-kde-i18n-Afrikaans = %{version}-%{release}
+
 %description Afrikaans
-%{summary}.
+This package contains %{summary}.
+
+%files Afrikaans
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/af/*
+%{tde_tdedocdir}/HTML/af/
+
+##########
 
 %package Arabic 
 Summary:		Arabic(ar) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-ar = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Arabic < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Arabic = %{version}-%{release}
+Provides:		%{name}-ar = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Arabic < %{version}-%{release}
+Provides:		trinity-kde-i18n-Arabic = %{version}-%{release}
+
 %description Arabic
-%{summary}.
+This package contains %{summary}.
+
+%files Arabic 
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ar/*
+
+##########
 
 %package Azerbaijani
 Summary:		Azerbaijani(az) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-az = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Arabic < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Arabic = %{version}-%{release}
+Provides:		%{name}-az = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Arabic < %{version}-%{release}
+Provides:		trinity-kde-i18n-Arabic = %{version}-%{release}
+
 %description Azerbaijani
-%{summary}.
+This package contains %{summary}.
+
+%files Azerbaijani
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/az/*
+
+##########
 
 %package Belarusian
 Summary:		Belarusian(be) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-be = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Belarusian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Belarusian = %{version}-%{release}
+Provides:		%{name}-be = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Belarusian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Belarusian = %{version}-%{release}
+
 %description Belarusian
-%{summary}.
+This package contains %{summary}.
+
+%files Belarusian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/be/*
+
+##########
 
 %package Bulgarian
 Summary:		Bulgarian(bg) language support for TDE
@@ -118,8 +148,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-bg = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Bulgarian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Bulgarian = %{version}-%{release}
+
 %description Bulgarian
-%{summary}.
+This package contains %{summary}.
+
+%files Bulgarian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/bg/*
+
+##########
 
 %package Bengali
 Summary:		Bengali(bn) language support for TDE
@@ -127,8 +164,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-bn = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Bengali < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Bengali = %{version}-%{release}
+
 %description Bengali
-%{summary}.
+This package contains %{summary}.
+
+%files Bengali
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/bn/*
+
+##########
 
 %package Tibetan
 Summary:		Tibetan(bo) language support for TDE
@@ -136,8 +180,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-bo = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Tibetan < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Tibetan = %{version}-%{release}
+
 %description Tibetan
-%{summary}.
+This package contains %{summary}.
+
+%files Tibetan
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/bo/*
+
+##########
 
 %package Breton
 Summary:		Breton(br) language support for TDE
@@ -145,8 +196,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-br = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Breton < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Breton = %{version}-%{release}
+
 %description Breton
-%{summary}.
+This package contains %{summary}.
+
+%files Breton
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/br/*
+
+##########
 
 %package Bosnian
 Summary:		Bosnian(bs) language support for TDE
@@ -154,8 +212,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-bs = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Bosnian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Bosnian = %{version}-%{release}
+
 %description Bosnian
-%{summary}.
+This package contains %{summary}.
+
+%files Bosnian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/bs/*
+
+##########
 
 %package Catalan
 Summary:		Catalan(ca) language support for TDE
@@ -163,8 +228,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-ca = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Catalan < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Catalan = %{version}-%{release}
+
 %description Catalan
-%{summary}.
+This package contains %{summary}.
+
+%files Catalan
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ca/*
+%{tde_tdedocdir}/HTML/ca/
+
+##########
 
 %package Czech
 Summary:		Czech(cs) language support for TDE
@@ -172,16 +245,27 @@ Group:			User Interface/Desktops
 Provides: %{name}-cs = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Czech < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Czech = %{version}-%{release}
+
 %description Czech
-%{summary}.
+This package contains %{summary}.
+
+%files Czech
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/cs/*
+%{tde_tdedocdir}/HTML/cs/
+
+##########
 
 %package Cymraeg
 Summary:		Cymraeg language support for TDE
 Group:			User Interface/Desktops
 Obsoletes:	 trinity-kde-i18n-Cymraeg < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Cymraeg = %{version}-%{release}
+
 %description Cymraeg
-%{summary}.
+This package contains %{summary}.
+
+##########
 
 %package Welsh
 Summary:		Welsh(cy) language support for TDE
@@ -189,8 +273,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-cy = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Welsh < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Welsh = %{version}-%{release}
+
 %description Welsh
-%{summary}.
+This package contains %{summary}.
+
+%files Welsh
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/cy/*
+
+##########
 
 %package Danish
 Summary:		Danish(da) language support for TDE
@@ -198,8 +289,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-da = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Danish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Danish = %{version}-%{release}
+
 %description Danish
-%{summary}.
+This package contains %{summary}.
+
+%files Danish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/da/*
+%{tde_tdedocdir}/HTML/da/
+
+##########
 
 %package German
 Summary:		German(de) language support for TDE
@@ -207,8 +306,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-de = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-German < %{version}-%{release}
 Provides:	 trinity-kde-i18n-German = %{version}-%{release}
+
 %description German
-%{summary}.
+This package contains %{summary}.
+
+%files German
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/de/*
+%{tde_tdedocdir}/HTML/de/
+
+##########
 
 %package Greek
 Summary:		Greek(el) language support for TDE
@@ -216,8 +323,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-el = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Greek < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Greek = %{version}-%{release}
+
 %description Greek
-%{summary}.
+This package contains %{summary}.
+
+%files Greek
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/el/*
+
+##########
 
 %package British
 Summary:		British(en_GB) English support for TDE
@@ -225,8 +339,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-en_GB = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-British < %{version}-%{release}
 Provides:	 trinity-kde-i18n-British = %{version}-%{release}
+
 %description British
-%{summary}.
+This package contains %{summary}.
+
+%files British
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/en_GB/*
+%{tde_tdedocdir}/HTML/en_GB/
+
+##########
 
 %package Esperanto
 Summary:		Esperanto(eo) support for TDE
@@ -234,8 +356,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-eo = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Esperanto < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Esperanto = %{version}-%{release}
+
 %description Esperanto
-%{summary}.
+This package contains %{summary}.
+
+%files Esperanto
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/eo/*
+
+##########
 
 %package Spanish
 Summary:		Spanish(es) language support for TDE
@@ -243,8 +372,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-es = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Spanish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Spanish = %{version}-%{release}
+
 %description Spanish
-%{summary}.
+This package contains %{summary}.
+
+%files Spanish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/es/*
+%{tde_tdedocdir}/HTML/es/
+
+##########
 
 %package Estonian
 Summary:		Estonian(et) language support for TDE
@@ -252,8 +389,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-et = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Estonian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Estonian = %{version}-%{release}
+
 %description Estonian
-%{summary}.
+This package contains %{summary}.
+
+%files Estonian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/et/*
+%{tde_tdedocdir}/HTML/et/
+
+##########
 
 %package Basque
 Summary:		Basque(eu) language support for TDE
@@ -261,8 +406,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-eu = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Basque < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Basque = %{version}-%{release}
+
 %description Basque
-%{summary}.
+This package contains %{summary}.
+
+%files Basque
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/eu/*
+
+##########
 
 %package Farsi
 Summary:		Farsi(fa) language support for TDE
@@ -270,8 +422,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-fa = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Farsi < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Farsi = %{version}-%{release}
+
 %description Farsi
-%{summary}.
+This package contains %{summary}.
+
+%files Farsi
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/fa/*
+
+##########
 
 %package Finnish
 Summary:		Finnish(fi) language support for TDE
@@ -279,8 +438,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-fi = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Finnish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Finnish = %{version}-%{release}
+
 %description Finnish
-%{summary}.
+This package contains %{summary}.
+
+%files Finnish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/fi/*
+%{tde_tdedocdir}/HTML/fi/
+
+##########
 
 %package Faroese
 Summary:		Faroese(fo) language support for TDE
@@ -288,8 +455,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-fo = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Faroese < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Faroese = %{version}-%{release}
+
 %description Faroese
-%{summary}.
+This package contains %{summary}.
+
+%files Faroese
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/fo/*
+
+##########
 
 %package French
 Summary:		French(fr) language support for TDE
@@ -297,8 +471,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-fr = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-French < %{version}-%{release}
 Provides:	 trinity-kde-i18n-French = %{version}-%{release}
+
 %description French
-%{summary}.
+This package contains %{summary}.
+
+%files French
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/fr/*
+%{tde_tdedocdir}/HTML/fr/
+
+##########
 
 %package Frisian
 Summary:		Frisian(fy) language support for TDE
@@ -306,8 +488,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-fy = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Frisian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Frisian = %{version}-%{release}
+
 %description Frisian
-%{summary}.
+This package contains %{summary}.
+
+%files Frisian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/fy/*
+
+##########
 
 %package Irish
 Summary:		Irish(ga) language support for TDE
@@ -315,8 +504,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-ga = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Irish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Irish = %{version}-%{release}
+
 %description Irish
-%{summary}.
+This package contains %{summary}.
+
+%files Irish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ga/*
+
+##########
 
 %package Galician
 Summary:		Galician(gl) language support for TDE
@@ -324,8 +520,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-gl = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Galician < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Galician = %{version}-%{release}
+
 %description Galician
-%{summary}.
+This package contains %{summary}.
+
+%files Galician
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/gl/*
+
+##########
 
 %package Hebrew
 Summary:		Hebrew(he) language support for TDE
@@ -333,8 +536,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-he = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Hebrew < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Hebrew = %{version}-%{release}
+
 %description Hebrew
-%{summary}.
+This package contains %{summary}.
+
+%files Hebrew
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/he/*
+%{tde_tdedocdir}/HTML/he/
+
+##########
 
 %package Hindi
 Summary:		Hindi(hi) language support for TDE
@@ -342,8 +553,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-hi = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Hindi < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Hindi = %{version}-%{release}
+
 %description Hindi
-%{summary}.
+This package contains %{summary}.
+
+%files Hindi
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/hi/*
+
+##########
 
 %package Croatian
 Summary:		Croatian(hr) language support for TDE
@@ -351,8 +569,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-hr = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Croatian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Croatian = %{version}-%{release}
+
 %description Croatian
-%{summary}.
+This package contains %{summary}.
+
+%files Croatian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/hr/*
+%{tde_tdedocdir}/HTML/hr/
+
+##########
 
 %package Hungarian
 Summary:		Hungarian(hu) language support for TDE
@@ -360,8 +586,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-hu = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Hungarian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Hungarian = %{version}-%{release}
+
 %description Hungarian
-%{summary}.
+This package contains %{summary}.
+
+%files Hungarian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/hu/*
+%{tde_tdedocdir}/HTML/hu/
+
+##########
 
 %package Indonesian
 Summary:		Indonesian(id) language support for TDE
@@ -369,8 +603,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-id = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Indonesian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Indonesian = %{version}-%{release}
+
 %description Indonesian
-%{summary}.
+This package contains %{summary}.
+
+%files Indonesian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/id/*
+%{tde_tdedocdir}/HTML/id/
+
+##########
 
 %package Icelandic
 Summary:		Icelandic(is) language support for TDE
@@ -378,8 +620,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-is = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Icelandic < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Icelandic = %{version}-%{release}
+
 %description Icelandic
-%{summary}.
+This package contains %{summary}.
+
+%files Icelandic
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/is/*
+
+##########
 
 %package Italian
 Summary:		Italian(it) language support for TDE
@@ -387,8 +636,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-it = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Italian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Italian = %{version}-%{release}
+
 %description Italian
-%{summary}.
+This package contains %{summary}.
+
+%files Italian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/it/*
+%{tde_tdedocdir}/HTML/it/
+
+##########
 
 %package Japanese
 Summary:		Japanese(ja) language support for TDE
@@ -396,8 +653,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-ja = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Japanese < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Japanese = %{version}-%{release}
+
 %description Japanese
-%{summary}.
+This package contains %{summary}.
+
+%files Japanese
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ja/*
+%{tde_tdedocdir}/HTML/ja/
+
+##########
 
 %package Korean
 Summary:		Korean(ko) language support for TDE
@@ -405,8 +670,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-ko = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Korean < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Korean = %{version}-%{release}
+
 %description Korean
-%{summary}.
+This package contains %{summary}.
+
+%files Korean
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ko/*
+%{tde_tdedocdir}/HTML/ko/
+
+##########
 
 %package Kurdish
 Summary:		Kurdish(ku) language support for TDE
@@ -414,8 +687,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-ku = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Kurdish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Kurdish = %{version}-%{release}
+
 %description Kurdish
-%{summary}.
+This package contains %{summary}.
+
+%files Kurdish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ku/*
+%{tde_tdedocdir}/HTML/ku/
+
+##########
 
 %package Lao
 Summary:		Lao(lo) language support for TDE
@@ -423,8 +704,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-lo = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Lao < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Lao = %{version}-%{release}
+
 %description Lao
-%{summary}.
+This package contains %{summary}.
+
+%files Lao
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/lo/*
+%{tde_tdedocdir}/HTML/lo/
+
+##########
 
 %package Lithuanian
 Summary:		Lithuanian(lt) language support for TDE
@@ -432,8 +721,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-lt = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Lithuanian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Lithuanian = %{version}-%{release}
+
 %description Lithuanian
-%{summary}.
+This package contains %{summary}.
+
+%files Lithuanian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/lt/*
+
+##########
 
 %package Latvian
 Summary:		Latvian(lv) language support for TDE
@@ -441,8 +737,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-lv = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Latvian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Latvian = %{version}-%{release}
+
 %description Latvian
-%{summary}.
+This package contains %{summary}.
+
+%files Latvian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/lv/*
+
+##########
 
 %package Maori
 Summary:		Maori(mi) language support for TDE
@@ -450,8 +753,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-mi = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Maori < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Maori = %{version}-%{release}
+
 %description Maori
-%{summary}.
+This package contains %{summary}.
+
+%files Maori
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/mi/*
+
+##########
 
 %package Macedonian
 Summary:		Macedonian(mk) language support for TDE
@@ -459,8 +769,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-mk = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Macedonian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Macedonian = %{version}-%{release}
+
 %description Macedonian
-%{summary}.
+This package contains %{summary}.
+
+%files Macedonian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/mk/*
+
+##########
 
 %package Maltese
 Summary:		Maltese(mt) language support for TDE
@@ -468,8 +785,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-mt = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Maltese < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Maltese = %{version}-%{release}
+
 %description Maltese
-%{summary}.
+This package contains %{summary}.
+
+%files Maltese
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/mt/*
+
+##########
 
 %package Dutch
 Summary:		Dutch(nl) language support for TDE
@@ -477,8 +801,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-nl = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Dutch < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Dutch = %{version}-%{release}
+
 %description Dutch
-%{summary}.
+This package contains %{summary}.
+
+%files Dutch
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/nl/*
+%{tde_tdedocdir}/HTML/nl/
+
+##########
 
 %package Norwegian
 Summary:		Norwegian(no) (Bokmaal) language support for TDE
@@ -486,8 +818,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-no = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Norwegian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Norwegian = %{version}-%{release}
+
 %description Norwegian
-%{summary}.
+This package contains %{summary}.
+
+%files Norwegian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/nb/*
+
+##########
 
 %package Norwegian-Nynorsk
 Summary:		Norwegian(nn) (Nynorsk) language support for TDE
@@ -495,8 +834,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-nn = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Norwegian-Nynorsk < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Norwegian-Nynorsk = %{version}-%{release}
+
 %description Norwegian-Nynorsk
-%{summary}.
+This package contains %{summary}.
+
+%files Norwegian-Nynorsk
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/nn/*
+
+##########
 
 %package Occitan
 Summary:		Occitan(oc) language support for TDE
@@ -504,8 +850,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-oc = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Occitan < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Occitan = %{version}-%{release}
+
 %description Occitan
-%{summary}.
+This package contains %{summary}.
+
+%files Occitan
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/oc/*
+
+##########
 
 %package Polish
 Summary:		Polish(pl) language support for TDE
@@ -513,8 +866,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-pl = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Polish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Polish = %{version}-%{release}
+
 %description Polish
-%{summary}.
+This package contains %{summary}.
+
+%files Polish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/pl/*
+%{tde_tdedocdir}/HTML/pl/
+
+##########
 
 %package Portuguese
 Summary:		Portuguese(pt) language support for TDE
@@ -522,8 +883,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-pt = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Portuguese < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Portuguese = %{version}-%{release}
+
 %description Portuguese
-%{summary}.
+This package contains %{summary}.
+
+%files Portuguese
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/pt/*
+%{tde_tdedocdir}/HTML/pt/
+
+##########
 
 %package Punjabi
 Summary:		Punjabi(pa) language support for TDE
@@ -531,8 +900,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-pa = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Punjabi < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Punjabi = %{version}-%{release}
+
 %description Punjabi
-%{summary}.
+This package contains %{summary}.
+
+%files Punjabi
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/pa/*
+
+##########
 
 %package Brazil
 Summary:		Brazil(pt_BR) Portuguese language support for TDE
@@ -540,8 +916,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-pt_BR = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Brazil < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Brazil = %{version}-%{release}
+
 %description Brazil
-%{summary}.
+This package contains %{summary}.
+
+%files Brazil
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/pt_BR/*
+%{tde_tdedocdir}/HTML/pt_BR/
+
+##########
 
 %package Romanian
 Summary:		Romanian(ro) language support for TDE
@@ -549,8 +933,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-ro = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Romanian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Romanian = %{version}-%{release}
+
 %description Romanian
-%{summary}.
+This package contains %{summary}.
+
+%files Romanian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ro/*
+%{tde_tdedocdir}/HTML/ro/
+
+##########
 
 %package Russian
 Summary:		Russian(ru) language support for TDE
@@ -558,8 +950,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-ru = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Russian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Russian = %{version}-%{release}
+
 %description Russian
-%{summary}.
+This package contains %{summary}.
+
+%files Russian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ru/*
+%{tde_tdedocdir}/HTML/ru/
+
+##########
 
 %package Slovak
 Summary:		Slovak(sk) language support for TDE
@@ -567,8 +967,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-sk = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Slovak < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Slovak = %{version}-%{release}
+
 %description Slovak
-%{summary}.
+This package contains %{summary}.
+
+%files Slovak
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/sk/*
+%{tde_tdedocdir}/HTML/sk/
+
+##########
 
 %package Slovenian
 Summary:		Slovenian(sl) language support for TDE
@@ -576,8 +984,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-sl = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Slovenian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Slovenian = %{version}-%{release}
+
 %description Slovenian
-%{summary}.
+This package contains %{summary}.
+
+%files Slovenian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/sl/*
+%{tde_tdedocdir}/HTML/sl/
+
+##########
 
 %package Serbian
 Summary:		Serbian(sr) language support for TDE
@@ -585,8 +1001,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-sr = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Serbian < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Serbian = %{version}-%{release}
+
 %description Serbian
-%{summary}.
+This package contains %{summary}.
+
+%files Serbian
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/sr/*
+%{tde_tdedocdir}/HTML/sr/
+
+##########
 
 %package Swedish
 Summary:		Swedish(sv) language support for TDE
@@ -594,8 +1018,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-sv = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Swedish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Swedish = %{version}-%{release}
+
 %description Swedish
-%{summary}.
+This package contains %{summary}.
+
+%files Swedish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/sv/*
+%{tde_tdedocdir}/HTML/sv/
+
+##########
 
 %package Tamil
 Summary:		Tamil(ta) language support for TDE
@@ -603,8 +1035,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-ta = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Tamil < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Tamil = %{version}-%{release}
+
 %description Tamil
-%{summary}.
+This package contains %{summary}.
+
+%files Tamil
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ta/*
+
+##########
 
 %package Tajik
 Summary:		Tajik(tg) language support for TDE
@@ -612,8 +1051,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-tg = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Tajik < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Tajik = %{version}-%{release}
+
 %description Tajik
-%{summary}.
+This package contains %{summary}.
+
+%files Tajik
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/tg/*
+
+##########
 
 %package Thai
 Summary:		Thai(th) language support for TDE
@@ -621,8 +1067,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-th = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Thai < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Thai = %{version}-%{release}
+
 %description Thai
-%{summary}.
+This package contains %{summary}.
+
+%files Thai
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/th/*
+
+##########
 
 %package Turkish
 Summary:		Turkish(tr) language support for TDE
@@ -630,17 +1083,33 @@ Group:			User Interface/Desktops
 Provides: %{name}-tr = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Turkish < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Turkish = %{version}-%{release}
+
 %description Turkish
-%{summary}.
+This package contains %{summary}.
+
+%files Turkish
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/tr/*
+%{tde_tdedocdir}/HTML/tr/
+
+##########
 
 %package Ukrainian
 Summary:		Ukrainian(uk) language support for TDE
 Group:			User Interface/Desktops
-Provides: %{name}-uk = %{version}-%{release}
-Obsoletes:	 trinity-kde-i18n-Ukrainian < %{version}-%{release}
-Provides:	 trinity-kde-i18n-Ukrainian = %{version}-%{release}
+Provides:		%{name}-uk = %{version}-%{release}
+Obsoletes:		trinity-kde-i18n-Ukrainian < %{version}-%{release}
+Provides:		trinity-kde-i18n-Ukrainian = %{version}-%{release}
+
 %description Ukrainian
-%{summary}.
+This package contains %{summary}.
+
+%files Ukrainian
+%defattr(-,root,root,-)
+%{tde_tdedocdir}/HTML/uk/
+%{tde_datadir}/locale/uk/*
+
+##########
 
 %package Venda
 Summary:		Venda(ven) language support for TDE
@@ -648,8 +1117,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-ven = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Venda < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Venda = %{version}-%{release}
+
 %description Venda
-%{summary}.
+This package contains %{summary}.
+
+%files Venda
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/ven/*
+
+##########
 
 %package Vietnamese
 Summary:		Vietnamese(vi) language support for TDE
@@ -657,8 +1133,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-vi = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Vietnamese < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Vietnamese = %{version}-%{release}
+
 %description Vietnamese
-%{summary}.
+This package contains %{summary}.
+
+%files Vietnamese
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/vi/*
+
+##########
 
 %package Walloon
 Summary:		Walloon(wa) language support for TDE
@@ -666,8 +1149,15 @@ Group:			User Interface/Desktops
 Provides: %{name}-wa = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Walloon < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Walloon = %{version}-%{release}
+
 %description Walloon
-%{summary}.
+This package contains %{summary}.
+
+%files Walloon
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/wa/*
+
+##########
 
 %package Xhosa
 Summary:		Xhosa(xh) (a Bantu language) support for TDE
@@ -675,8 +1165,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-xh = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Xhosa < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Xhosa = %{version}-%{release}
+
 %description Xhosa
-%{summary}.
+This package contains %{summary}.
+
+%files Xhosa
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/xh/*
+%{tde_tdedocdir}/HTML/xh/
+
+##########
 
 %package Chinese
 Summary:		Chinese(zh_CN) (Simplified Chinese) language support for TDE
@@ -684,8 +1182,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-zh_CN = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Chinese < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Chinese = %{version}-%{release}
+
 %description Chinese
-%{summary}.
+This package contains %{summary}.
+
+%files Chinese
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/zh_CN/*
+%{tde_tdedocdir}/HTML/zh_CN/
+
+##########
 
 %package Chinese-Big5
 Summary:		Chinese(zh_TW) (Big5) language support for TDE
@@ -693,10 +1199,16 @@ Group:			User Interface/Desktops
 Provides: %{name}-tz_TW = %{version}-%{release}
 Obsoletes:	 trinity-kde-i18n-Chinese-Big5 < %{version}-%{release}
 Provides:	 trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
+
 %description Chinese-Big5
-%{summary}.
+This package contains %{summary}.
 
+%files Chinese-Big5
+%defattr(-,root,root,-)
+%{tde_datadir}/locale/zh_TW/*
+%{tde_tdedocdir}/HTML/zh_TW/
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -774,449 +1286,6 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %clean
 %__rm -rf %{buildroot}
 
-%if "%( grep -w af <<< '%{TDE_LANGS}' )" != ""
-%files Afrikaans
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/af/*
-%{tde_tdedocdir}/HTML/af/
-%endif
-
-%if "%( grep -w ar <<< '%{TDE_LANGS}' )" != ""
-%files Arabic 
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ar/*
-%endif
-
-%if "%( grep -w az <<< '%{TDE_LANGS}' )" != ""
-%files Azerbaijani
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/az/*
-%endif
-
-%if "%( grep -w be <<< '%{TDE_LANGS}' )" != ""
-%files Belarusian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/be/*
-%endif
-
-%if "%( grep -w bg <<< '%{TDE_LANGS}' )" != ""
-%files Bulgarian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/bg/*
-%endif
-
-%if "%( grep -w bn <<< '%{TDE_LANGS}' )" != ""
-%files Bengali
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/bn/*
-%endif
-
-%if "%( grep -w bo <<< '%{TDE_LANGS}' )" != ""
-%files Tibetan
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/bo/*
-%endif
-
-%if "%( grep -w br <<< '%{TDE_LANGS}' )" != ""
-%files Breton
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/br/*
-%endif
-
-%if "%( grep -w bs <<< '%{TDE_LANGS}' )" != ""
-%files Bosnian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/bs/*
-%endif
-
-%if "%( grep -w ca <<< '%{TDE_LANGS}' )" != ""
-%files Catalan
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ca/*
-%{tde_tdedocdir}/HTML/ca/
-%endif
-
-%if "%( grep -w cs <<< '%{TDE_LANGS}' )" != ""
-%files Czech
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/cs/*
-%{tde_tdedocdir}/HTML/cs/
-%endif
-
-%if "%( grep -w cy <<< '%{TDE_LANGS}' )" != ""
-%files Welsh
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/cy/*
-%endif
-
-%if "%( grep -w da <<< '%{TDE_LANGS}' )" != ""
-%files Danish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/da/*
-%{tde_tdedocdir}/HTML/da/
-%endif
-
-%if "%( grep -w de <<< '%{TDE_LANGS}' )" != ""
-%files German
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/de/*
-%{tde_tdedocdir}/HTML/de/
-%endif
-
-%if "%( grep -w el <<< '%{TDE_LANGS}' )" != ""
-%files Greek
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/el/*
-%endif
-
-%if "%( grep -w en_GB <<< '%{TDE_LANGS}' )" != ""
-%files British
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/en_GB/*
-%{tde_tdedocdir}/HTML/en_GB/
-%endif
-
-%if "%( grep -w eo <<< '%{TDE_LANGS}' )" != ""
-%files Esperanto
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/eo/*
-%endif
-
-%if "%( grep -w es <<< '%{TDE_LANGS}' )" != ""
-%files Spanish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/es/*
-%{tde_tdedocdir}/HTML/es/
-%endif
-
-%if "%( grep -w et <<< '%{TDE_LANGS}' )" != ""
-%files Estonian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/et/*
-%{tde_tdedocdir}/HTML/et/
-%endif
-
-%if "%( grep -w eu <<< '%{TDE_LANGS}' )" != ""
-%files Basque
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/eu/*
-%endif
-
-%if "%( grep -w fa <<< '%{TDE_LANGS}' )" != ""
-%files Farsi
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/fa/*
-%endif
-
-%if "%( grep -w fi <<< '%{TDE_LANGS}' )" != ""
-%files Finnish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/fi/*
-%{tde_tdedocdir}/HTML/fi/
-%endif
-
-%if "%( grep -w fo <<< '%{TDE_LANGS}' )" != ""
-%files Faroese
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/fo/*
-%endif
-
-%if "%( grep -w fr <<< '%{TDE_LANGS}' )" != ""
-%files French
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/fr/*
-%{tde_tdedocdir}/HTML/fr/
-%endif
-
-%if "%( grep -w fy <<< '%{TDE_LANGS}' )" != ""
-%files Frisian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/fy/*
-%endif
-
-%if "%( grep -w ga <<< '%{TDE_LANGS}' )" != ""
-%files Irish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ga/*
-%endif
-
-%if "%( grep -w gl <<< '%{TDE_LANGS}' )" != ""
-%files Galician
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/gl/*
-%endif
-
-%if "%( grep -w he <<< '%{TDE_LANGS}' )" != ""
-%files Hebrew
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/he/*
-%{tde_tdedocdir}/HTML/he/
-%endif
-
-%if "%( grep -w hi <<< '%{TDE_LANGS}' )" != ""
-%files Hindi
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/hi/*
-%endif
-
-%if "%( grep -w hr <<< '%{TDE_LANGS}' )" != ""
-%files Croatian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/hr/*
-%{tde_tdedocdir}/HTML/hr/
-%endif
-
-%if "%( grep -w hu <<< '%{TDE_LANGS}' )" != ""
-%files Hungarian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/hu/*
-%{tde_tdedocdir}/HTML/hu/
-%endif
-
-%if "%( grep -w id <<< '%{TDE_LANGS}' )" != ""
-%files Indonesian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/id/*
-%{tde_tdedocdir}/HTML/id/
-%endif
-
-%if "%( grep -w is <<< '%{TDE_LANGS}' )" != ""
-%files Icelandic
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/is/*
-%endif
-
-%if "%( grep -w it <<< '%{TDE_LANGS}' )" != ""
-%files Italian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/it/*
-%{tde_tdedocdir}/HTML/it/
-%endif
-
-%if "%( grep -w ja <<< '%{TDE_LANGS}' )" != ""
-%files Japanese
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ja/*
-%{tde_tdedocdir}/HTML/ja/
-%endif
-
-%if "%( grep -w ko <<< '%{TDE_LANGS}' )" != ""
-%files Korean
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ko/*
-%{tde_tdedocdir}/HTML/ko/
-%endif
-
-%if "%( grep -w ku <<< '%{TDE_LANGS}' )" != ""
-%files Kurdish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ku/*
-%{tde_tdedocdir}/HTML/ku/
-%endif
-
-%if "%( grep -w lao <<< '%{TDE_LANGS}' )" != ""
-%files Lao
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/lo/*
-%{tde_tdedocdir}/HTML/lo/
-%endif
-
-%if "%( grep -w lt <<< '%{TDE_LANGS}' )" != ""
-%files Lithuanian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/lt/*
-%endif
-
-%if "%( grep -w lv <<< '%{TDE_LANGS}' )" != ""
-%files Latvian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/lv/*
-%endif
-
-%if "%( grep -w mi <<< '%{TDE_LANGS}' )" != ""
-%files Maori
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/mi/*
-%endif
-
-%if "%( grep -w mk <<< '%{TDE_LANGS}' )" != ""
-%files Macedonian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/mk/*
-%endif
-
-%if "%( grep -w mt <<< '%{TDE_LANGS}' )" != ""
-%files Maltese
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/mt/*
-%endif
-
-%if "%( grep -w nl <<< '%{TDE_LANGS}' )" != ""
-%files Dutch
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/nl/*
-%{tde_tdedocdir}/HTML/nl/
-%endif
-
-%if "%( grep -w nb <<< '%{TDE_LANGS}' )" != ""
-%files Norwegian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/nb/*
-#%{tde_tdedocdir}/HTML/nb/
-%endif
-
-%if "%( grep -w nn <<< '%{TDE_LANGS}' )" != ""
-%files Norwegian-Nynorsk
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/nn/*
-#%{tde_tdedocdir}/HTML/nn/
-%endif
-
-%if "%( grep -w oc <<< '%{TDE_LANGS}' )" != ""
-%files Occitan
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/oc/*
-%endif
-
-%if "%( grep -w pa <<< '%{TDE_LANGS}' )" != ""
-%files Punjabi
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/pa/*
-%endif
-
-%if "%( grep -w pl <<< '%{TDE_LANGS}' )" != ""
-%files Polish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/pl/*
-%{tde_tdedocdir}/HTML/pl/
-%endif
-
-%if "%( grep -w pt <<< '%{TDE_LANGS}' )" != ""
-%files Portuguese
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/pt/*
-%{tde_tdedocdir}/HTML/pt/
-%endif
-
-%if "%( grep -w pt_BR <<< '%{TDE_LANGS}' )" != ""
-%files Brazil
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/pt_BR/*
-%{tde_tdedocdir}/HTML/pt_BR/
-%endif
-
-%if "%( grep -w ro <<< '%{TDE_LANGS}' )" != ""
-%files Romanian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ro/*
-%{tde_tdedocdir}/HTML/ro/
-%endif
-
-%if "%( grep -w ru <<< '%{TDE_LANGS}' )" != ""
-%files Russian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ru/*
-%{tde_tdedocdir}/HTML/ru/
-%endif
-
-%if "%( grep -w sk <<< '%{TDE_LANGS}' )" != ""
-%files Slovak
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/sk/*
-%{tde_tdedocdir}/HTML/sk/
-%endif
-
-%if "%( grep -w sl <<< '%{TDE_LANGS}' )" != ""
-%files Slovenian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/sl/*
-%{tde_tdedocdir}/HTML/sl/
-%endif
-
-%if "%( grep -w sr <<< '%{TDE_LANGS}' )" != ""
-%files Serbian
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/sr/*
-%{tde_tdedocdir}/HTML/sr/
-%endif
-
-%if "%( grep -w sv <<< '%{TDE_LANGS}' )" != ""
-%files Swedish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/sv/*
-%{tde_tdedocdir}/HTML/sv/
-%endif
-
-%if "%( grep -w ta <<< '%{TDE_LANGS}' )" != ""
-%files Tamil
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ta/*
-%endif
-
-%if "%( grep -w tg <<< '%{TDE_LANGS}' )" != ""
-%files Tajik
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/tg/*
-%endif
-
-%if "%( grep -w th <<< '%{TDE_LANGS}' )" != ""
-%files Thai
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/th/*
-%endif
-
-%if "%( grep -w tr <<< '%{TDE_LANGS}' )" != ""
-%files Turkish
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/tr/*
-%{tde_tdedocdir}/HTML/tr/
-%endif
-
-%if "%( grep -w uk <<< '%{TDE_LANGS}' )" != ""
-%files Ukrainian
-%defattr(-,root,root,-)
-%{tde_tdedocdir}/HTML/uk/
-%{tde_datadir}/locale/uk/*
-%endif
-
-%if "%( grep -w ven <<< '%{TDE_LANGS}' )" != ""
-%files Venda
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/ven/*
-%endif
-
-%if "%( grep -w vi <<< '%{TDE_LANGS}' )" != ""
-%files Vietnamese
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/vi/*
-%endif
-
-%if "%( grep -w wa <<< '%{TDE_LANGS}' )" != ""
-%files Walloon
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/wa/*
-%endif
-
-%if "%( grep -w xh <<< '%{TDE_LANGS}' )" != ""
-%files Xhosa
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/xh/*
-%{tde_tdedocdir}/HTML/xh/
-%endif
-
-%if "%( grep -w zh_CN <<< '%{TDE_LANGS}' )" != ""
-%files Chinese
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/zh_CN/*
-%{tde_tdedocdir}/HTML/zh_CN/
-%endif
-
-%if "%( grep -w zh_TW <<< '%{TDE_LANGS}' )" != ""
-%files Chinese-Big5
-%defattr(-,root,root,-)
-%{tde_datadir}/locale/zh_TW/*
-%{tde_tdedocdir}/HTML/zh_TW/
-%endif
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
