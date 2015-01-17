@@ -171,6 +171,7 @@ update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 %{tde_bindir}/basket
 %{tde_tdeappdir}/basket.desktop
 %{tde_datadir}/apps/basket/
+%dir %{tde_datadir}/apps/kontact/ksettingsdialog
 %{tde_datadir}/apps/kontact/ksettingsdialog/kontact_basketplugin.setdlg
 %{tde_libdir}/libbasketcommon.la
 %{tde_libdir}/libbasketcommon.so
