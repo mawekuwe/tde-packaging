@@ -13,7 +13,7 @@ Architecture: all
 Section: tde
 Replaces: kdewebdev-trinity (<< 4:14.0.0~)
 Breaks: kdewebdev-trinity (<< 4:14.0.0~)
-Depends: quanta-trinity (>= ${source:Version}), tdefilereplace-trinity (>= ${source:Version}), kimagemapeditor-trinity (>= ${source:Version}), klinkstatus-trinity (>= ${source:Version}), kommander-trinity (>= ${source:Version}), kxsldbg-trinity (>= ${source:Version})
+Depends: quanta-trinity (>= ${source:Version}), kimagemapeditor-trinity (>= ${source:Version}), klinkstatus-trinity (>= ${source:Version}), kommander-trinity (>= ${source:Version}), kxsldbg-trinity (>= ${source:Version})
 Suggests: kommander-trinity-dev (>= ${source:Version}), tdewebdev-trinity-doc-html (>= ${source:Version})
 Description: web development apps from the official TDE release [Trinity]
  TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
@@ -81,25 +81,6 @@ Description: data files for Quanta Plus web development environment [Trinity]
  languages.
  .
  See the quanta package for further information.
- .
- This package is part of TDE, as a component of the TDE web development module.
- See the 'tde-trinity' and 'tdewebdev-trinity' packages for more information.
-
-Package: tdefilereplace-trinity
-Architecture: any
-Section: tde
-Replaces: kfilereplace-trinity (<< 4:14.0.0~)
-Breaks: kfilereplace-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}
-Suggests: quanta-trinity
-Description: batch search-and-replace component for TDE [Trinity]
- KFileReplace is an embedded component for TDE that acts as a batch
- search-and-replace tool. It allows you to replace one expression with
- another in many files at once.
- .
- Note that at the moment KFileReplace does not come as a standalone
- application. An example of an application that uses the KFileReplace
- component is Quanta Plus (found in the package quanta).
  .
  This package is part of TDE, as a component of the TDE web development module.
  See the 'tde-trinity' and 'tdewebdev-trinity' packages for more information.
