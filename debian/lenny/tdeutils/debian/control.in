@@ -11,7 +11,7 @@ Standards-Version: 3.7.2
 Package: tdeutils
 Section: tde
 Architecture: all
-Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), tdelirc (>= ${Source-Version}), tdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), tdewalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version})
+Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), tdelirc (>= ${Source-Version}), tdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), tdewalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version}), tdefilereplace (>= ${Source-Version})
 Suggests: tdeutils-doc-html (>= ${Source-Version})
 Description: general purpose utilities from the official TDE release
  TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
@@ -331,3 +331,19 @@ Description: debugging symbols for tdeutils
  This package contains the debugging symbols associated with tdeutils.
  They will automatically be used by gdb for debugging tdeutils-related
  issues.
+
+Package: tdefilereplace
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}
+Suggests: quanta (= ${Source-Version})
+Description: batch search-and-replace component for TDE
+ TDEFileReplace is an embedded component for TDE that acts as a batch
+ search-and-replace tool. It allows you to replace one expression with
+ another in many files at once.
+ .
+ Note that at the moment TDEFileReplace does not come as a standalone
+ application.
+ .
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde' and 'tdeutils' packages for more information.

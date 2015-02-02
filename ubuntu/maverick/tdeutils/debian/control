@@ -13,7 +13,7 @@ Section: tde
 Architecture: all
 Replaces: kdeutils-kde3 (<< 4:14.0.0~), kdeutils-trinity (<< 4:14.0.0~)
 Breaks: kdeutils-kde3 (<< 4:14.0.0~), kdeutils-trinity (<< 4:14.0.0~)
-Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), tdelirc-trinity (>= ${Source-Version}), tdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}), kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), tdewalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
+Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), tdelirc-trinity (>= ${Source-Version}), tdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}), kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), tdewalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version}), tdefilereplace-trinity (>= ${source:Version})
 Suggests: tdeutils-trinity-doc-html (>= ${Source-Version})
 Recommends: tdepowersave-trinity
 Description: general purpose utilities from the official Trinity release
@@ -394,3 +394,21 @@ Description: debugging symbols for tdeutils-trinity
  This package contains the debugging symbols associated with tdeutils-trinity.
  They will automatically be used by gdb for debugging tdeutils-related
  issues.
+
+Package: tdefilereplace-trinity
+Architecture: any
+Section: tde
+Replaces: kfilereplace-kde3 (<< 4:14.0.0~), kfilereplace-trinity (<< 4:14.0.0~)
+Breaks: kfilereplace-kde3 (<< 4:14.0.0~), kfilereplace-trinity (<< 4:14.0.0~)
+Depends: ${shlibs:Depends}
+Suggests: quanta-trinity
+Description: batch search-and-replace component for TDE [Trinity]
+ TDEFileReplace is an embedded component for TDE that acts as a batch
+ search-and-replace tool. It allows you to replace one expression with
+ another in many files at once.
+ .
+ Note that at the moment TDEFileReplace does not come as a standalone
+ application.
+ .
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
