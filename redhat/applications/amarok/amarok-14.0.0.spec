@@ -35,7 +35,7 @@
 Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	1.4.10
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Media player for TDE
 Group:		Applications/Multimedia
 URL:		http://www.trinitydesktop.org/
@@ -373,7 +373,7 @@ Requires:		ruby
 Summary:		Amarok konqueror (service menus, sidebar) support
 Group:			Applications/Multimedia
 
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:		trinity-konqueror
 
 %description konqueror
@@ -499,5 +499,8 @@ done
 
 
 %changelog
+* Mon Feb 02 2015 Francois Andriot <francois.andriot@free.fr> - 2:1.4.10-2
+- Rebuild on CentOS 7 for updated mp4v2
+
 * Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 2:1.4.10-1
 - Initial release for TDE 14.0.0

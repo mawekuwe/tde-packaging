@@ -38,7 +38,7 @@
 
 Name:		trinity-%{tde_pkg}
 Version:	%{tde_version}
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:    Trinity Desktop Environment - Graphics Applications
 Group:      Productivity/Graphics/Viewers
 URL:		http://www.trinitydesktop.org/
@@ -1362,5 +1362,8 @@ popd
 
 
 %changelog
+* Mon Feb 02 2015 Francois Andriot <francois.andriot@free.fr> - 14.0.0-2
+- Rebuild on Fedora 21 for updated libgphoto2
+
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
 - Initial release for TDE R14.0.0
