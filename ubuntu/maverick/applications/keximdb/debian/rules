@@ -30,6 +30,8 @@ else
 	CFLAGS += -O2
 endif
 
+post-patches:: debian/stamp-bootstrap
+
 debian/stamp-bootstrap:
 	dh_testdir
 
@@ -58,20 +60,6 @@ build-stamp:  config.status
 	dh_testdir
 	$(MAKE)
 	touch build-stamp
-
-clean:
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp 
-
-	-$(MAKE) distclean
-ifneq "$(wildcard /usr/share/misc/config.sub)" ""
-	cp -f /usr/share/misc/config.sub config.sub
-endif
-ifneq "$(wildcard /usr/share/misc/config.guess)" ""
-	cp -f /usr/share/misc/config.guess config.guess
-endif
-	dh_clean 
 
 install: build
 	dh_testdir
