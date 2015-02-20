@@ -5,19 +5,11 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Uploaders: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper,
+               cmake,
                gcc,
                cdbs,
                pkg-config,
-               python-support (>= 0.6),
-               libglib2.0-dev (>= 2.4),
-               libgtk2.0-dev (>= 2.14.0),
-               libexpat-dev,
-               libdbus-1-dev (>= 0.60),
-               python-gdbm (>= 2.4.3),
-               python-dbus,
-               python-gtk2 (>= 2.8.6-2),
                libtqtinterface-dev,
-               intltool (>= 0.35.0),
                libavahi-common-dev,
                libavahi-client-dev
 Standards-Version: 3.9.1
