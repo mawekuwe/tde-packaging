@@ -2,7 +2,7 @@ Source: keximdb
 Priority: optional
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
 XSBC-Original-Maintainer: Martin Ellis <martin.ellis@kdemail.net>
-Build-Depends: debhelper (>= 4.0.0), autotools-dev, koffice-trinity-dev, libglib2.0-dev
+Build-Depends: cdbs, debhelper (>= 4.0.0), autotools-dev, automake, libtool, koffice-trinity-dev, libglib2.0-dev
 Standards-Version: 3.7.2
 Section: tde
 
