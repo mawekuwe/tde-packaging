@@ -44,12 +44,12 @@ stock["gtk-cancel"]={
 	{ "22x22/actions/button_cancel.png" }
 }
 stock["gtk-cdrom"]={
-	{ "32x32/devices/cdrom_unmount.png", *, *, "gtk-dnd" },
-	{ "32x32/devices/cdrom_unmount.png", *, *, "gtk-dialog" },
-	{ "16x16/devices/cdrom_unmount.png", *, *, "gtk-button" },
-	{ "16x16/devices/cdrom_unmount.png", *, *, "gtk-menu" },
-	{ "16x16/devices/cdrom_unmount.png", *, *, "gtk-small-toolbar" },
-	{ "32x32/devices/cdrom_unmount.png" }
+	{ "32x32/devices/media-optical-cdrom.png", *, *, "gtk-dnd" },
+	{ "32x32/devices/media-optical-cdrom.png", *, *, "gtk-dialog" },
+	{ "16x16/devices/media-optical-cdrom.png", *, *, "gtk-button" },
+	{ "16x16/devices/media-optical-cdrom.png", *, *, "gtk-menu" },
+	{ "16x16/devices/media-optical-cdrom.png", *, *, "gtk-small-toolbar" },
+	{ "32x32/devices/media-optical-cdrom.png" }
 }
 stock["gtk-clear"]={
 	{ "22x22/actions/editclear.png", *, *, "gtk-large-toolbar" },
@@ -175,13 +175,13 @@ stock["gtk-find"]={
 	{ "22x22/actions/find.png" }
 }
 stock["gtk-floppy"]={
-	{ "22x22/devices/3floppy_unmount.png", *, *, "gtk-large-toolbar" },
-	{ "32x32/devices/3floppy_unmount.png", *, *, "gtk-dnd" },
-	{ "32x32/devices/3floppy_unmount.png", *, *, "gtk-dialog" },
-	{ "16x16/devices/3floppy_unmount.png", *, *, "gtk-button" },
-	{ "16x16/devices/3floppy_unmount.png", *, *, "gtk-menu" },
-	{ "16x16/devices/3floppy_unmount.png", *, *, "gtk-small-toolbar" },
-	{ "22x22/devices/3floppy_unmount.png" }
+	{ "22x22/devices/media-floppy-3_5.png", *, *, "gtk-large-toolbar" },
+	{ "32x32/devices/media-floppy-3_5.png", *, *, "gtk-dnd" },
+	{ "32x32/devices/media-floppy-3_5.png", *, *, "gtk-dialog" },
+	{ "16x16/devices/media-floppy-3_5.png", *, *, "gtk-button" },
+	{ "16x16/devices/media-floppy-3_5.png", *, *, "gtk-menu" },
+	{ "16x16/devices/media-floppy-3_5.png", *, *, "gtk-small-toolbar" },
+	{ "22x22/devices/media-floppy-3_5.png" }
 }
 stock["gtk-goto-bottom"]={
 	{ "22x22/actions/bottom.png", *, *, "gtk-large-toolbar" },
