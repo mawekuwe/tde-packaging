@@ -1,10 +1,9 @@
 adept-trinity
 akregator-trinity
 amarok-trinity
-apport-qt
 avahi-autoipd
+bluetooth | bluez-utils
 bluez-cups
-bluez-utils
 bogofilter
 brltty
 cdparanoia
@@ -14,16 +13,19 @@ desktop-effects-tde-trinity
 digikam-trinity
 dmz-cursor-theme
 dvd+rw-tools
+fonts-arabeyes | ttf-arabeyes
+fonts-arphic-ukai | ttf-arphic-ukai
+fonts-arphic-uming | ttf-arphic-uming
+fonts-lao | ttf-lao
+fonts-thai-tlwg | ttf-thai-tlwg
+fonts-unfonts-core | ttf-unfonts-core
 foomatic-db-gutenprint
-foomatic-db-hpijs
 fortune-mod
 gcc
-gdebi-tde-trinity
-gtk-qt-engine-trinity
+gtk3-tqt-engine-trinity
 gwenview-trinity
 hpijs-ppds
 hplip
-hplip-gui
 ijsgutenprint
 jockey-gtk
 k3b-trinity
@@ -34,25 +36,19 @@ karm-trinity
 katapult-trinity
 kate-trinity
 kbstate-trinity
-tdebluetooth-trinity
-tdepim-tdeio-plugins-trinity
-tdepim-wizards-trinity
-tdepowersave-trinity
-tdesudo-trinity
 keep-trinity
 kfind-trinity
-tdeio-umountwrapper-trinity
 kipi-plugins-trinity
 klipper-trinity
 kmag-trinity
-kmail-trinity
 kmailcvt-trinity
+kmail-trinity
 kmilo-trinity
 kmousetool-trinity
 kmplayer-konq-plugins-trinity
 knotes-trinity
-konqueror-trinity
 konqueror-nsplugins-trinity
+konqueror-trinity
 kontact-trinity
 konversation-trinity
 kooka-trinity
@@ -62,32 +58,32 @@ kpf-trinity
 kppp-trinity
 krdc-trinity
 krfb-trinity
-tdescreensaver-trinity
 ksysguard-trinity
 ktorrent-trinity
 kubuntu-default-settings-trinity
-kubuntu-trinity-docs
+kubuntu-docs-trinity
 kubuntu-konqueror-shortcuts-trinity
 kvkbd-trinity
-tdewalletmanager-trinity
 landscape-client
 laptop-detect
 libgl1-mesa-dri
 libnss-mdns
-libreoffice-calc|openoffice.org-calc
-libreoffice-impress|openoffice.org-impress
-libreoffice-tde|openoffice.org-tde
-libreoffice-writer|openoffice.org-writer
+libreoffice-calc | openoffice.org-calc
+libreoffice-impress | openoffice.org-impress
+libreoffice-trinity | openoffice.org-trinity
+libreoffice-writer | openoffice.org-writer
 linux-headers-generic
 make
-networkstatus
+network-manager-tde | network-manager-gnome
+networkstatus-trinity
 pinentry-qt
+plymouth-theme-kubuntu-logo-trinity
 powernowd
 printer-driver-c2esp
-printer-driver-foo2zjs|foo2zjs
-printer-driver-min12xxw|min12xxw
+printer-driver-foo2zjs | foo2zjs
+printer-driver-min12xxw | min12xxw
 printer-driver-ptouch
-printer-driver-pxljr|pxljr
+printer-driver-pxljr | pxljr
 printer-driver-sag-gdi
 printer-driver-splix
 rdesktop
@@ -95,21 +91,23 @@ scim-bridge-agent
 scim-bridge-client-qt
 scim-qtimm
 skim
+smbclient
 speedcrunch
 splix
-strigi-applet
 strigi-daemon
-system-config-printer-tde
-ttf-arabeyes
-ttf-arphic-ukai
-ttf-arphic-uming
+system-config-printer-tde-trinity
+tdeio-apt-trinity
+tdeio-umountwrapper-trinity
+tdepim-tdeio-plugins-trinity
+tdepim-wizards-trinity
+tdepowersave-trinity
+tdescreensaver-trinity
+tdesudo-trinity
+tdewalletmanager-trinity
 ttf-indic-fonts-core
 ttf-kochi-gothic
 ttf-kochi-mincho
-ttf-lao
 ttf-malayalam-fonts
-ttf-thai-tlwg
-ttf-unfonts-core
 wodim
 wvdial
 xcursor-themes
