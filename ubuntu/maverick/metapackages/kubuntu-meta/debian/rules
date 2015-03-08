@@ -24,15 +24,36 @@ clean:
 DEB_BUILD_ARCH:=$(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
 build: debian/stamp-distrospecific build-stamp
-build-stamp:	desktop-$(DEB_BUILD_ARCH)
+build-stamp:
 	dh_clean
 
 	for seed in desktop; do \
-		package=kubuntu-$$seed; \
-		(printf "$$package:Depends="; perl -pe 's/\n/, /g'  $$seed-$(DEB_BUILD_ARCH); echo) \
+		package=kubuntu-$$seed-trinity; \
+		echo -n > debian/$$package.substvars; \
+		if [ -f $$seed-all ]; then \
+			(printf "$$seed-all:Depends="; perl -pe 's/\n/, /g'  $$seed-all; echo) \
 			>> debian/$$package.substvars; \
-		(printf "$$package:Recommends="; perl -pe 's/\n/, /g'  $$seed-recommends-$(DEB_BUILD_ARCH); echo) \
+		fi; \
+		if [ -f $$seed-recommends-all ]; then \
+			(printf "$$seed-all:Recommends="; perl -pe 's/\n/, /g'  $$seed-recommends-all; echo) \
 			>> debian/$$package.substvars; \
+		fi; \
+		if [ -f $$seed-suggests-all ]; then \
+			(printf "$$seed-all:Suggests="; perl -pe 's/\n/, /g'  $$seed-suggests-all; echo) \
+			>> debian/$$package.substvars; \
+		fi; \
+		if [ -f $$seed-$(DEB_BUILD_ARCH) ]; then \
+			(printf "$$seed-arch:Depends="; perl -pe 's/\n/, /g'  $$seed-$(DEB_BUILD_ARCH); echo) \
+			>> debian/$$package.substvars; \
+		fi; \
+		if [ -f $$seed-recommends-$(DEB_BUILD_ARCH) ]; then \
+			(printf "$$seed-arch:Recommends="; perl -pe 's/\n/, /g'  $$seed-recommends-$(DEB_BUILD_ARCH); echo) \
+			>> debian/$$package.substvars; \
+		fi; \
+		if [ -f $$seed-suggests-$(DEB_BUILD_ARCH) ]; then \
+			(printf "$$seed-arch:Suggests="; perl -pe 's/\n/, /g'  $$seed-suggests-$(DEB_BUILD_ARCH); echo) \
+			>> debian/$$package.substvars; \
+		fi; \
 	done
 	touch $@
 
