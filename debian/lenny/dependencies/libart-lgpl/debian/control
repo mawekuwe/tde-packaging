@@ -2,18 +2,17 @@
 # 
 # Modifications should be made to debian/control.in instead.
 # This file is regenerated automatically in the clean target.
-
 Source: libart-lgpl
 Section: devel
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>, Sebastian Drge <slomo@debian.org>, Sebastien Bacher <seb128@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>, Sebastian Dröge <slomo@debian.org>, Sebastien Bacher <seb128@debian.org>
 Standards-Version: 3.8.4
 Build-Depends: debhelper (>= 5), quilt,
                gnome-pkg-tools (>= 0.7),
                cdbs,
                dpkg-dev (>= 1.13.19),
-               automake, autoconf, libtool, libltdl-dev
+               automake, libtool, libltdl-dev
 
 Package: libart-2.0-2
 Architecture: any
