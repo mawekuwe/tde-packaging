@@ -165,7 +165,7 @@ ifneq ($(wildcard /etc/mageia-release /boot/vmlinuz*.el7*),)
 endif
 
 imlib1:
-# Do NOT build on Fedora, nor CentOS
+# Do NOT build on Fedora, nor CentOS, nor PCLOS
 ifeq ($(wildcard /etc/fedora-release),)
 ifeq ($(wildcard /etc/centos-release),)
 ifeq ($(wildcard /boot/vmlinuz*.el5*),)

@@ -710,11 +710,11 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/unknownpleasures.desktop
 %endif
 
-%if 0%{?fedora} >= 20 || 0%{?mgaversion} >= 4 || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 20 || 0%{?mgaversion} >= 4 || 0%{?rhel} >= 7 || 0%{?pclinuxos}
 %{tde_datadir}/applnk/System/ScreenSavers/geodesic.desktop
 %endif
 
-%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7 || 0%{?pclinuxos}
 %{tde_datadir}/applnk/System/ScreenSavers/projectiveplane.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/tessellimage.desktop
 %endif

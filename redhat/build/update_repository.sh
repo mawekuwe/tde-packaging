@@ -26,7 +26,7 @@ elif [ -x /usr/bin/yum ]; then
     REPOUPDATE='(cd ${RPMDIR}; createrepo --workers=${WORKERS} ${ARCH} & createrepo --workers=${WORKERS} noarch & wait; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
   fi
 elif [ -x /usr/bin/apt-get ]; then
-  REPOUPDATE='(cd ${RPMDIR}; genpkglist $PWD noarch & genpkglist $PWD ${ARCH} & wait; genbasedir $PWD ${ARCH} noarch; sudo apt-get update)'
+  REPOUPDATE='(cd ${RPMDIR}; genpkglist $PWD noarch & genpkglist $PWD ${ARCH} & wait; genbasedir $PWD i586 x86_64 noarch; sudo apt-get update)'
 fi
 
 eval "${REPOUPDATE}; rm -f ${LOCKFILE}" || exit 1

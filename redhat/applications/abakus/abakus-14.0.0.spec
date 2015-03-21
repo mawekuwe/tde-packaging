@@ -151,6 +151,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_tdedocdir}/HTML/en/abakus/
 %{tde_datadir}/applnk/Utilities/abakus.desktop
 
+
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.91-1
 - Initial release for TDE 14.0.0

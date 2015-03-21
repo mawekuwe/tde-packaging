@@ -1163,6 +1163,11 @@ if ! rpm -E %%cmake|grep -q "cd build"; then
   cd build
 fi
 
+# FIXME PCLinuxOS: '/usr/bin/ld: cannot find -ltdeabc'
+%if 0%{?pclinuxos}
+export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -L%{tde_libdir}"
+%endif
+
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \

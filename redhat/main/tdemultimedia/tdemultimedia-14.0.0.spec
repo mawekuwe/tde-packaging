@@ -43,7 +43,7 @@
 Name:		trinity-%{tde_pkg}
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
 Version:	%{tde_version}
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Group:		Productivity/Multimedia/Sound/Utilities
 URL:		http://www.trinitydesktop.org/
 
@@ -113,6 +113,7 @@ BuildRequires:	audiofile-devel
 BuildRequires:	libtheora-devel
 BuildRequires:	alsa-lib-devel 
 BuildRequires:	cdparanoia
+#BuildRequires:	libmpg123-devel
 
 # CDDA support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -1269,7 +1270,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
 # Fix unexplained "undefined reference to `__stack_chk_fail'"
-%if 0%{?mgaversion} == 4
+%if 0%{?mgaversion} == 4 || 0%{?pclinuxos}
 %__sed -i "noatun/app/Makefile" -e "/^libtdeinit_noatun_la_LDFLAGS/ s/$/ -Wl,-lc/"
 %endif
 
@@ -1327,5 +1328,8 @@ popd
 
 
 %changelog
+* Tue Mar 10 2015 Francois Andriot <francois.andriot@free.fr> - 14.0.0-2
+- Fix dependencies and rebuild for Fedora 21
+
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
 - Initial release for TDE 14.0.0

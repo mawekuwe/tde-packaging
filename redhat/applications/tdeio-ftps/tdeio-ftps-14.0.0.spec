@@ -66,8 +66,6 @@ most server implementations.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -75,6 +73,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
   \
   --disable-dependency-tracking \
   --disable-debug \

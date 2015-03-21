@@ -1,0 +1,90 @@
+diff --git a/kmail/kmkernel.cpp b/kmail/kmkernel.cpp
+index aa01c96..d27f041 100644
+--- a/kmail/kmkernel.cpp
++++ b/kmail/kmkernel.cpp
+@@ -170,17 +170,8 @@ KMKernel::KMKernel (TQObject *parent, const char *name) :
+   connectDCOPSignal( 0, 0, "kmailSelectFolder(TQString)",
+                      "selectFolder(TQString)", false );
+ 
+-  mNetworkManager = TDEGlobal::networkManager();
+-  if (mNetworkManager) {
+-    connect( mNetworkManager, TQT_SIGNAL( networkDeviceStateChanged( TDENetworkConnectionStatus::TDENetworkConnectionStatus, TDENetworkConnectionStatus::TDENetworkConnectionStatus, TQString ) ),
+-        this, TQT_SLOT( slotNetworkStateChanged( TDENetworkConnectionStatus::TDENetworkConnectionStatus, TDENetworkConnectionStatus::TDENetworkConnectionStatus, TQString ) ) );
+-    if (networkStateConnected()) {
+-      resumeNetworkJobs();
+-    }
+-    else {
+-      stopNetworkJobs();
+-    }
+-  }
++  // Assume connected
++  resumeNetworkJobs();
+ }
+ 
+ KMKernel::~KMKernel ()
+@@ -2470,34 +2461,8 @@ int KMKernel::timeOfLastMessageCountChange() const
+ 
+ bool KMKernel::networkStateConnected()
+ {
+-  if (mNetworkManager) {
+-    TDENetworkGlobalManagerFlags::TDENetworkGlobalManagerFlags networkStatus = mNetworkManager->backendStatus();
+-    if ((networkStatus & TDENetworkGlobalManagerFlags::Connected)
+-        || (networkStatus & TDENetworkGlobalManagerFlags::BackendUnavailable)
+-        || (networkStatus == TDENetworkGlobalManagerFlags::Unknown)
+-        ){
+-      // Connected or no backend available
+-      return true;
+-    }
+-    else {
+-      // Not connected
+-      return false;
+-    }
+-  }
+-  else {
+-    // Assume connected
+-    return true;
+-  }
+-}
+-
+-void KMKernel::slotNetworkStateChanged(TDENetworkConnectionStatus::TDENetworkConnectionStatus, TDENetworkConnectionStatus::TDENetworkConnectionStatus, TQString)
+-{
+-  if (networkStateConnected()) {
+-    resumeNetworkJobs();
+-  }
+-  else {
+-    stopNetworkJobs();
+-  }
++  // Assume connected
++  return true;
+ }
+ 
+ Wallet *KMKernel::wallet() {
+diff --git a/kmail/kmkernel.h b/kmail/kmkernel.h
+index 0dc4644..37a3eec 100644
+--- a/kmail/kmkernel.h
++++ b/kmail/kmkernel.h
+@@ -14,8 +14,6 @@
+ #include <tdeimproxy.h>
+ #include <tdepimmacros.h>
+ 
+-#include <tdenetworkconnections.h>
+-
+ #include "kmailIface.h"
+ #include "kmmsgbase.h"
+ #include "globalsettings.h"
+@@ -436,7 +434,6 @@ public slots:
+ protected slots:
+   void slotDataReq(TDEIO::Job*,TQByteArray&);
+   void slotResult(TDEIO::Job*);
+-  void slotNetworkStateChanged(TDENetworkConnectionStatus::TDENetworkConnectionStatus, TDENetworkConnectionStatus::TDENetworkConnectionStatus, TQString);
+ 
+ signals:
+   void configChanged();
+@@ -527,7 +524,6 @@ private:
+   TQString     mAddMessageLastFolder;
+   KMFolder    *mAddMsgCurrentFolder;
+ 
+-  TDEGlobalNetworkManager *mNetworkManager;
+ };
+ 
+ #endif

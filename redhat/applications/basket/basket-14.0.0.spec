@@ -36,8 +36,8 @@ Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	1.0.3.1
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Group:		Applications/Utilities
 Summary:	Taking care of your ideas.
+Group:		Applications/Utilities
 URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}

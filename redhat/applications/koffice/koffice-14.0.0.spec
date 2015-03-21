@@ -177,7 +177,7 @@ BuildRequires:	Mesa-libGLU-devel
 
 # OPENJPEG
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}openjpeg-devel
+#BuildRequires:	%{_lib}openjpeg-devel
 %endif
 
 # LIBXI support

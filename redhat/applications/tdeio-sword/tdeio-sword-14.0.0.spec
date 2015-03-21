@@ -74,6 +74,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
   \
   --disable-dependency-tracking \
   --disable-debug \
@@ -83,7 +84,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-%if 0%{?fedora} >= 20 || 0%{?pclinuxos} || 0%{?rhel} >= 7
+%if 0%{?fedora} >= 20 || 0%{?rhel} >= 7
   --with-sword-dir=%{tde_prefix}
 %endif
 

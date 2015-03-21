@@ -35,7 +35,7 @@
 Name:			trinity-%{tde_pkg}
 Epoch:			%{tde_epoch}
 Version:		0.9.6
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:		Digital photo management application for TDE
 Group:			Applications/Utilities
 URL:			http://www.trinitydesktop.org/
@@ -389,5 +389,8 @@ install -D -m 644 "%{SOURCE1}" "$RPM_BUILD_ROOT%{tde_datadir}/apps/konqueror/ser
 
 
 %changelog
+* Mon Feb 02 2015 Francois Andriot <francois.andriot@free.fr> - 2:0.9.6-2
+- Rebuild on Fedora 21 for updated libgphoto2
+
 * Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.9.6-1
 - Initial release for TDE 14.0.0

@@ -70,6 +70,7 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Patch0:		%{tde_pkg}-%{version}.patch
 
 BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -2271,6 +2272,9 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%if 0%{?rhel} == 5
+%patch0 -p1
+%endif
 
 
 %build

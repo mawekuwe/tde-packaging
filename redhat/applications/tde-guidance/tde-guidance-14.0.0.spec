@@ -79,6 +79,7 @@ Requires:		%{name}-backends = %{version}-%{release}
 
 # POWERMANAGER support (requires HAL)
 #define with_powermanager 1
+Obsoletes:	trinity-tde-guidance-powermanager
 
 Obsoletes:		trinity-guidance < %{version}-%{release}
 Provides:		trinity-guidance = %{version}-%{release}
