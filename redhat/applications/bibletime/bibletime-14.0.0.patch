@@ -1,0 +1,26 @@
+diff --git a/bibletime/backend/cswordbackend.cpp b/bibletime/backend/cswordbackend.cpp
+index 1c218b3..dda6275 100644
+--- a/bibletime/backend/cswordbackend.cpp
++++ b/bibletime/backend/cswordbackend.cpp
+@@ -251,7 +251,7 @@ const bool CSwordBackend::shutdownModules() {
+ 
+ /** Returns true if the given option is enabled. */
+ const bool CSwordBackend::isOptionEnabled( const CSwordModuleInfo::FilterTypes type) {
+-	return (getGlobalOption( optionName(type).latin1() ) == "On");
++	return (strcmp(getGlobalOption( optionName(type).latin1() ), "On"));
+ }
+ 
+ /** Sets the given options enabled or disabled depending on the second parameter. */
+diff --git a/bibletime/frontend/cdragdropmgr.cpp b/bibletime/frontend/cdragdropmgr.cpp
+index 52d012f..4f8c4fe 100644
+--- a/bibletime/frontend/cdragdropmgr.cpp
++++ b/bibletime/frontend/cdragdropmgr.cpp
+@@ -36,7 +36,7 @@ bool CDragDropMgr::BTDrag::canDecode( const TQMimeSource * mime ) {
+ };
+ 
+ bool CDragDropMgr::BTDrag::provides( const char* type ) const {
+-	return (type == "BibleTime/DND"); //return only true if the type is BibleTime/DND
++	return (strcmp(type, "BibleTime/DND")); //return only true if the type is BibleTime/DND
+ };
+ 
+ const char* CDragDropMgr::BTDrag::format( int i ) const {
