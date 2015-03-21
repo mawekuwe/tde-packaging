@@ -7,7 +7,7 @@ index 1c218b3..dda6275 100644
  /** Returns true if the given option is enabled. */
  const bool CSwordBackend::isOptionEnabled( const CSwordModuleInfo::FilterTypes type) {
 -	return (getGlobalOption( optionName(type).latin1() ) == "On");
-+	return (strcmp(getGlobalOption( optionName(type).latin1() ), "On"));
++	return (strcmp(getGlobalOption( optionName(type).latin1() ), "On") == 0);
  }
  
  /** Sets the given options enabled or disabled depending on the second parameter. */
@@ -20,7 +20,7 @@ index 52d012f..4f8c4fe 100644
  
  bool CDragDropMgr::BTDrag::provides( const char* type ) const {
 -	return (type == "BibleTime/DND"); //return only true if the type is BibleTime/DND
-+	return (strcmp(type, "BibleTime/DND")); //return only true if the type is BibleTime/DND
++	return (strcmp(type, "BibleTime/DND") == 0); //return only true if the type is BibleTime/DND
  };
  
  const char* CDragDropMgr::BTDrag::format( int i ) const {
