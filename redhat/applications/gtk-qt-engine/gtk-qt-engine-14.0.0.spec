@@ -69,7 +69,7 @@ BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 BuildRequires:	libtool
 
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} >= 7
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
 BuildRequires:	gtk2-devel
 %else
 BuildRequires:	gtk+2.0-devel
