@@ -34,4 +34,6 @@ case "$1" in
      exit 0;;
 esac
 
+#DEBHELPER#
+
 exit 0
