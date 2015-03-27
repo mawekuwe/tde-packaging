@@ -4,6 +4,7 @@
 set -e
 
 if [ "$1" = "configure" ] ; then
+  # force ldconfig due to tdeinit library
   ldconfig
 fi
 
