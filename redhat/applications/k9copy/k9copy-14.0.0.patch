@@ -9,3 +9,21 @@
  
  # this is where the desktop file will go 
  shelldesktopdir = $(kde_appsdir)/Utilities
+--- trinity-k9copy-3.5.13.2/k9decmpeg/mpeg2_internal.h.ORI	2013-07-28 19:42:30.331485057 +0200
++++ trinity-k9copy-3.5.13.2/k9decmpeg/mpeg2_internal.h	2013-07-28 19:43:09.713519110 +0200
+@@ -21,6 +21,9 @@
+  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+  */
+ 
++#ifndef __MPEG2_INTERNAL_H__
++#define __MPEG2_INTERNAL_H__
++
+ /* macroblock modes */
+ #define MACROBLOCK_INTRA 1
+ #define MACROBLOCK_PATTERN 2
+@@ -298,3 +301,5 @@
+ extern mpeg2_mc_t mpeg2_mc_altivec;
+ extern mpeg2_mc_t mpeg2_mc_alpha;
+ extern mpeg2_mc_t mpeg2_mc_vis;
++
++#endif // __MPEG2_INTERNAL_H__
