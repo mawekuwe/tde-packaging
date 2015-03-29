@@ -11,3 +11,17 @@
  	string buffer, filestring;
  
  	FILE* dirfile;
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 0b6b597..8cf8cb2 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -25,8 +25,7 @@ kasablanca_LDFLAGS = $(TDE_RPATH) $(all_libraries)
+ kasablanca_LDADD = -lssl $(LIB_TDEUI) -lcrypto $(LIB_TDECORE) -lDCOP $(LIB_QT)
+ 
+ # this is where the desktop file will go 
+-shelldesktopdir = $(kde_appsdir)/Utilities
+-shelldesktop_DATA = kasablanca.desktop
++xdg_apps_DATA = kasablanca.desktop
+ 
+ # this is where the shell's XML-GUI resource file goes
+ shellrcdir = $(kde_datadir)/kasablanca
