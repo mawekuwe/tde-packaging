@@ -1,8 +1,0 @@
---- kbfx/doc/CMakeLists.txt.ORI	2012-08-04 18:33:25.916251160 +0200
-+++ kbfx/doc/CMakeLists.txt	2012-08-04 18:33:49.658779402 +0200
-@@ -14,4 +14,4 @@
- 	)
- 
- INSTALL(FILES ${DOCFILES}
--    DESTINATION ${SHARE_INSTALL_PREFIX}/doc/kbfx)
-+	DESTINATION ${DOC_INSTALL_DIR}/kbfx)
