@@ -37,7 +37,7 @@ Name:			trinity-%{tde_pkg}
 Epoch:			%{tde_epoch}
 Version:        3.9
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:        TDE mail notification utility 
+Summary:        TDE mail notification utility
 Group:          Applications/Internet
 URL:            http://www.trinitydesktop.org/
 
