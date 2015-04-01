@@ -61,7 +61,6 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
-BuildRequires:	libtool
 
 # SUSE desktop files utility
 %if 0%{?suse_version}

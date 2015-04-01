@@ -133,7 +133,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -f %{?buildroot}%{tde_libdir}/*.la
 
 # Fix desktop files (openSUSE only)
-echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/katapult.desktop"
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/%{tde_pkg}.desktop"
 %if 0%{?suse_version}
 %suse_update_desktop_file -G "Application Launcher" katapult DesktopUtility
 %endif
