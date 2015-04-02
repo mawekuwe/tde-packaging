@@ -36,7 +36,7 @@ Name:			trinity-%{tde_pkg}
 Epoch:			%{tde_epoch}
 Version:		2.2.2
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:		graphical debugger interface [Trinity]
+Summary:		Graphical debugger interface [Trinity]
 Group:			Applications/Utilities
 URL:			http://www.trinitydesktop.org/
 

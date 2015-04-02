@@ -58,13 +58,13 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
+BuildRequires:	desktop-file-utils
+BuildRequires:	gpgme-devel
+
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 BuildRequires:	libtool
-
-BuildRequires:	desktop-file-utils
-BuildRequires:	gpgme-devel
 
 # SUSE desktop files utility
 %if 0%{?suse_version}
@@ -75,6 +75,7 @@ BuildRequires:	update-desktop-files
 # for xdg-menu script
 BuildRequires:	brp-check-trinity
 %endif
+
 
 %description
 This application is mainly an all-purpose notes taker. It provide several baskets where
