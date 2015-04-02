@@ -3,12 +3,12 @@ Section: tde
 Priority: extra
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>=5.0), cdbs, pcsc-tools, pcscd-nodbus, initramfs-tools, libpcsc-perl, libpcsclite1, libccid, opensc, libpar-packer-perl, libdb-dev (>= 4.7), libpam0g-dev, libssl-dev, libkrb5-dev, libtqtinterface-dev
+Build-Depends: debhelper (>=5.0), cdbs, libpcsclite1, libpcsc-perl, libpar-packer-perl, libdb-dev (>= 4.7), libpam0g-dev, libssl-dev, libkrb5-dev, libtqtinterface-dev
 Standards-Version: 3.8.4
 
 Package: smartcardauth
 Architecture: any
-Depends: pcsc-tools, pcscd-nodbus, initramfs-tools, libpcsc-perl, libpcsclite1, libccid, opensc, zenity, gksu
+Depends: ${shlibs:Depends}, pcsc-tools, pcscd-nodbus | pcscd (>= 1.7~), initramfs-tools, libpcsc-perl, libpcsclite1, libccid, opensc, zenity, gksu
 Replaces: smartcardauth (<< 4:14.0.0~)
 Breaks: smartcardauth (<< 4:14.0.0~)
 Conflicts: openct
