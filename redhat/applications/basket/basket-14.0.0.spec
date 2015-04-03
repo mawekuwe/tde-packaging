@@ -140,9 +140,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 # Apps that should stay in TDE
-for i in basket; do
-  echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/${i}.desktop"
-done
+echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/%{tde_pkg}.desktop"
 
 
 %clean
