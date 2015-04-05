@@ -50,6 +50,7 @@ DEB_CMAKE_EXTRA_FLAGS := \
  -DWITH_LZMA="ON" \
  -DWITH_XRANDR="ON" \
  -DWITH_XCOMPOSITE="ON" \
+ -DWITH_MITSHM="ON" \
  -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 # Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
