@@ -12,7 +12,7 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 #
-# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+# Please submit bugfixes or comments via http://www.trinitydesktop.org/
 #
 
 %{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
