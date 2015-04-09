@@ -60,7 +60,8 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-Source1:		trinity-tdelibs-rpmlintrc
+Source1:		%{name}-rpmlintrc
+Patch0:			%{tde_pkg}-%{tde_version}.patch
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -570,6 +571,7 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%patch0 -p1 -b .ftbfs
 
 
 %build

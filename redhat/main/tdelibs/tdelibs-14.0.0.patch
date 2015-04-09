@@ -1,0 +1,173 @@
+From 608ee3f53763ca7fe4e925e8309525c78d937984 Mon Sep 17 00:00:00 2001
+From: Slávek Banko <slavek.banko@axis.cz>
+Date: Thu, 25 Dec 2014 18:10:23 +0000
+Subject: Fix FTBFS because CUPS 2.x
+
+This resolves Bug 2270
+
+Signed-off-by: Slávek Banko <slavek.banko@axis.cz>
+(cherry picked from commit 592bebb509786ccec893b305d3ae6a0c76ed3bdb)
+---
+diff --git a/tdeprint/cups/cupsdconf2/cups-util.c b/tdeprint/cups/cupsdconf2/cups-util.c
+index eadd6b6..3772b35 100644
+--- a/tdeprint/cups/cupsdconf2/cups-util.c
++++ b/tdeprint/cups/cupsdconf2/cups-util.c
+@@ -33,7 +33,7 @@ cupsGetConf(void)
+   char		prompt[1024];		/* Prompt string */
+   int		digest_tries;		/* Number of tries with Digest */
+   static char	filename[HTTP_MAX_URI];	/* Local filename */
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+   const char    *fqdn = 0;
+ #else
+   char          fqdn[ HTTP_MAX_URI ];   /* Server name buffer */
+@@ -119,7 +119,7 @@ cupsGetConf(void)
+       * See if we should retry the current digest password...
+       */
+ 
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+       www_authenticate = cups_server->fields[HTTP_FIELD_WWW_AUTHENTICATE];
+ #else
+       www_authenticate = httpGetField( cups_server, HTTP_FIELD_WWW_AUTHENTICATE );
+@@ -130,7 +130,7 @@ cupsGetConf(void)
+        /*
+ 	* Nope - get a password from the user...
+ 	*/
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+         fqdn = cups_server->hostname;
+ #else
+         httpGetHostname( cups_server, fqdn, sizeof( fqdn ) );
+@@ -155,7 +155,7 @@ cupsGetConf(void)
+       * Got a password; encode it for the server...
+       */
+ 
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+       www_authenticate = cups_server->fields[HTTP_FIELD_WWW_AUTHENTICATE];
+ #else
+       www_authenticate = httpGetField( cups_server, HTTP_FIELD_WWW_AUTHENTICATE );
+@@ -167,7 +167,7 @@ cupsGetConf(void)
+ 	*/
+ 
+ 	snprintf(plain, sizeof(plain), "%s:%s", cupsUser(), pwdstring);
+-#if CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2
++#if CUPS_VERSION_MAJOR > 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2)
+        httpEncode64_2(encode, sizeof(encode), plain, sizeof(plain));
+ #else
+        httpEncode64(encode, plain);
+@@ -236,7 +236,7 @@ cupsGetConf(void)
+   */
+ 
+   while ((bytes =
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+           httpRead
+ #else
+           httpRead2
+@@ -266,7 +266,7 @@ cupsPutConf(const char *name)		/* I - Name of the config file to send */
+   http_status_t	status;			/* HTTP status from server */
+   char		prompt[1024];		/* Prompt string */
+   int		digest_tries;		/* Number of tries with Digest */
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+   const char    *fqdn = 0;
+ #else
+   char          fqdn[ HTTP_MAX_URI ];   /* Server name buffer */
+@@ -341,7 +341,7 @@ cupsPutConf(const char *name)		/* I - Name of the config file to send */
+ 	        break;
+ 	}
+ 	else
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+           httpWrite
+ #else
+           httpWrite2
+@@ -350,7 +350,7 @@ cupsPutConf(const char *name)		/* I - Name of the config file to send */
+ 
+     if (status == HTTP_CONTINUE)
+     {
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+         httpWrite
+ #else
+         httpWrite2
+@@ -381,7 +381,7 @@ cupsPutConf(const char *name)		/* I - Name of the config file to send */
+       * See if we should retry the current digest password...
+       */
+ 
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+       www_authenticate = cups_server->fields[HTTP_FIELD_WWW_AUTHENTICATE];
+ #else
+       www_authenticate = httpGetField( cups_server, HTTP_FIELD_WWW_AUTHENTICATE );
+@@ -394,7 +394,7 @@ cupsPutConf(const char *name)		/* I - Name of the config file to send */
+ 	*/
+ 
+ 
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+         fqdn = cups_server->hostname;
+ #else
+         httpGetHostname( cups_server, fqdn, sizeof( fqdn ) );
+@@ -418,7 +418,7 @@ cupsPutConf(const char *name)		/* I - Name of the config file to send */
+       * Got a password; encode it for the server...
+       */
+ 
+-#if CUPS_VERSION_MAJOR - 0 <= 1 && CUPS_VERSION_MINOR - 0 < 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+       www_authenticate = cups_server->fields[HTTP_FIELD_WWW_AUTHENTICATE];
+ #else
+       www_authenticate = httpGetField( cups_server, HTTP_FIELD_WWW_AUTHENTICATE );
+@@ -430,7 +430,7 @@ cupsPutConf(const char *name)		/* I - Name of the config file to send */
+ 	*/
+ 
+ 	snprintf(plain, sizeof(plain), "%s:%s", cupsUser(), pwdstring);
+-#if CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2
++#if CUPS_VERSION_MAJOR > 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2)
+        httpEncode64_2(encode, sizeof(encode), plain, sizeof(plain));
+ #else
+        httpEncode64(encode, plain);
+@@ -512,7 +512,7 @@ cups_local_auth(http_t *http)	/* I - Connection */
+   * See if we are accessing localhost...
+ 	the struct has changed in newer versions - PiggZ (adam@piggz.co.uk)
+   */
+-#if CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2
++#if CUPS_VERSION_MAJOR > 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2)
+         if (!httpAddrLocalhost(http))
+ #else
+ 	if (ntohl(*(int*)&http->hostaddr.sin_addr) != 0x7f000001 &&
+diff --git a/tdeprint/cups/ipprequest.cpp b/tdeprint/cups/ipprequest.cpp
+index b4e3991..8a36315 100644
+--- a/tdeprint/cups/ipprequest.cpp
++++ b/tdeprint/cups/ipprequest.cpp
+@@ -407,7 +407,7 @@ bool IppRequest::doFileRequest(const TQString& res, const TQString& filename)
+ 	}
+ 
+ #ifdef HAVE_CUPS_NO_PWD_CACHE
+-#if CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR <= 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+    strncpy(  HTTP->authstring, cups_authstring.data(), HTTP_MAX_VALUE );
+ #else
+    httpSetAuthString( HTTP, NULL, cups_authstring.data() );
+@@ -421,7 +421,7 @@ bool IppRequest::doFileRequest(const TQString& res, const TQString& filename)
+ 
+ 	request_ = cupsDoFileRequest(HTTP, request_, (res.isEmpty() ? "/" : res.latin1()), (filename.isEmpty() ? NULL : filename.latin1()));
+ #ifdef HAVE_CUPS_NO_PWD_CACHE
+-#if CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR <= 2
++#if CUPS_VERSION_MAJOR < 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR < 2)
+    cups_authstring = HTTP->authstring;
+ #else
+ 	cups_authstring = httpGetAuthString( HTTP );
+@@ -757,7 +757,7 @@ void IppRequest::setMap(const TQMap<TQString,TQString>& opts)
+ 	cupsFreeOptions(n, options);
+ 
+ 	// find an remove that annoying "document-format" attribute
+-#if CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2
++#if CUPS_VERSION_MAJOR > 1 || (CUPS_VERSION_MAJOR == 1 && CUPS_VERSION_MINOR >= 2)
+     ipp_attribute_t *attr = ippFindAttribute(request_, "document-format", IPP_TAG_NAME);
+     ippDeleteAttribute(request_, attr);
+ #else
+--
+cgit v0.9.0.2-52-g1de3
