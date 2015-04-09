@@ -1,77 +1,121 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdevelop (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
-
-# TDE specific building variables
+%define tde_pkg tdevelop
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
 
-Name:		trinity-tdevelop
+Name:		trinity-%{tde_pkg}
 Summary:	Integrated Development Environment for C++/C
 Version:	%{tde_version}
-Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
-
-License:	GPLv2
+Release:	%{?!preversion:4}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Group:		Development/Tools
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	ftp://129.187.206.68/pub/unix/ide/KDevelop/c_cpp_reference-2.0.2_for_KDE_3.0.tar.bz2
 
-# [c_cpp_ref] Fix library directories detection
-Patch1: 	c_cpp_reference-2.0.2-config.patch
-# [c_cpp_ref] Fix installation of 'asm' files
-Patch4:		c_cpp_reference-2.0.2-install.patch
+Requires:	%{name}-libs = %{version}-%{release}
 
-Requires: %{name}-libs = %{version}-%{release}
+BuildRequires:	tqt3-apps-devel >= 3.5.0
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 
+Obsoletes:	trinity-kdevelop < %{version}-%{release}
+Provides:	trinity-kdevelop = %{version}-%{release}
 
-Requires: make
-Requires: perl
-Requires: flex >= 2.5.4
-%if 0%{?rhel} || 0%{?fedora}
-Requires:	qt3-designer >= 3.3.8.d
-%endif
-%if 0%{?mgaversion} || 0%{?mdkversion}
-Requires:	%{_lib}qt3-devel >= 3.3.8.d
-%endif
+# SUSE desktop files utility
 %if 0%{?suse_version}
-Requires:	qt3-devel >= 3.3.8.d
+BuildRequires:	update-desktop-files
 %endif
-Requires: gettext
-Requires: ctags
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
+BuildRequires:	gcc-c++
+BuildRequires:	fdupes
+BuildRequires:	desktop-file-utils
+BuildRequires:	make
+
+Requires:	make
+Requires:	perl
+Requires:	qt3-devel >= 3.3.8.d
+Requires:	gettext
+Requires:	ctags
+
+
+# LIBIDN support
+BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
+# PCRE support
+BuildRequires:	pcre-devel
+
+# DB4 support
 %if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	db4-devel
 %endif
+
+# FLEX support
 BuildRequires:	flex
-# FIXME: No CVS support in tdevelop? This is going to suck...
-# Requires kdesdk3.
+Requires: flex >= 2.5.4
+
+# SVN support
 BuildRequires:	subversion-devel
+
+# NEON support
 BuildRequires:	neon-devel
 
 # LDAP support
@@ -85,9 +129,6 @@ BuildRequires:	openldap-devel
 %if 0%{?suse_version} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	libacl-devel
 %endif
-
-Obsoletes:	trinity-tdevelop < %{version}-%{release}
-Provides:	trinity-tdevelop = %{version}-%{release}
 
 %description
 The TDevelop Integrated Development Environment provides many features
@@ -283,15 +324,15 @@ individual needs.
 %{tde_tdelibdir}/libkdevvcsmanager.so
 %{tde_datadir}/apps/kconf_update/
 %{tde_datadir}/apps/kdevabbrev/
-%{tde_datadir}/apps/kdevadaproject/kdevadaproject.rc
-%{tde_datadir}/apps/kdevadasupport/kdevadasupport.rc
-%{tde_datadir}/apps/kdevantproject/kdevantproject.rc
-%{tde_datadir}/apps/kdevappoutputview/kdevmakeview.rc
+%{tde_datadir}/apps/kdevadaproject/
+%{tde_datadir}/apps/kdevadasupport/
+%{tde_datadir}/apps/kdevantproject/
+%{tde_datadir}/apps/kdevappoutputview/
 %{tde_datadir}/apps/kdevappwizard/
-%{tde_datadir}/apps/kdevassistant/kdevassistantui.rc
-%{tde_datadir}/apps/kdevastyle/kdevpart_astyle.rc
-%{tde_datadir}/apps/kdevautoproject/kdevautoproject.rc
-%{tde_datadir}/apps/kdevbashsupport/kdevbashsupport.rc
+%{tde_datadir}/apps/kdevassistant/
+%{tde_datadir}/apps/kdevastyle/
+%{tde_datadir}/apps/kdevautoproject/
+%{tde_datadir}/apps/kdevbashsupport/
 %{tde_datadir}/apps/kdevclassview/
 %{tde_datadir}/apps/kdevcppsupport/
 %{tde_datadir}/icons/hicolor/*/actions/breakpoint_add.png
@@ -401,50 +442,46 @@ individual needs.
 %{tde_datadir}/servicetypes/kdevelopsourceformatter.desktop
 %{tde_datadir}/servicetypes/kdevelopvcsintegrator.desktop
 %{tde_datadir}/servicetypes/kdevelopversioncontrol.desktop
-%{tde_datadir}/apps/kdevcsharpsupport/kdevcsharpsupport.rc
-%{tde_datadir}/apps/kdevctags2/kdevpart_ctags2.rc
-%{tde_datadir}/apps/kdevcustomproject/kdevcustomproject.rc
+%{tde_datadir}/apps/kdevcsharpsupport/
+%{tde_datadir}/apps/kdevctags2/
+%{tde_datadir}/apps/kdevcustomproject/
 %{tde_datadir}/apps/kdevdebugger/
-%{tde_datadir}/apps/kdevdesigner/kdevdesigner_shell.rc
-%{tde_datadir}/apps/kdevdesignerpart/kdevdesigner_part.rc
-%{tde_datadir}/apps/kdevdesignerpart/kdevdesigner_part_sh.rc
-%{tde_datadir}/apps/kdevdiff/kdevdiff.rc
-%{tde_datadir}/apps/kdevdistpart/kdevpart_distpart.rc
+%{tde_datadir}/apps/kdevdesigner/
+%{tde_datadir}/apps/kdevdesignerpart/
+%{tde_datadir}/apps/kdevdesignerpart/
+%{tde_datadir}/apps/kdevdiff/
+%{tde_datadir}/apps/kdevdistpart/
 %{tde_datadir}/apps/kdevdocumentation/
-%{tde_datadir}/apps/kdevdoxygen/kdevdoxygen.rc
+%{tde_datadir}/apps/kdevdoxygen/
 %{tde_datadir}/apps/kdevelop/
 %{tde_datadir}/apps/kdevfilecreate/
-%{tde_datadir}/apps/kdevfilelist/kdevfilelist.rc
-%{tde_datadir}/apps/kdevfilter/kdevfilter.rc
-%{tde_datadir}/apps/kdevfortransupport/kdevfortransupport.rc
-%{tde_datadir}/apps/kdevfullscreen/kdevpart_fullscreen.rc
+%{tde_datadir}/apps/kdevfilelist/
+%{tde_datadir}/apps/kdevfilter/
+%{tde_datadir}/apps/kdevfortransupport/
+%{tde_datadir}/apps/kdevfullscreen/
 %{tde_datadir}/apps/kdevgrepview/
-%{tde_datadir}/apps/kdevjavasupport/kdevjavasupport.rc
-%{tde_datadir}/apps/kdevmakeview/kdevmakeview.rc
-%{tde_datadir}/apps/kdevpartexplorer/kdevpartexplorer.rc
-%{tde_datadir}/apps/kdevpascalproject/kdevpascalproject.rc
-%{tde_datadir}/apps/kdevpascalsupport/kdevpascalsupport.rc
-%{tde_datadir}/apps/kdevperlsupport/kdevperlsupport.rc
-%{tde_datadir}/apps/kdevphpsupport/kdevphpsupport.rc
-%{tde_datadir}/apps/kdevphpsupport/phpfunctions
-%{tde_datadir}/apps/kdevpythonsupport/kdevpythonsupport.rc
-%{tde_datadir}/apps/kdevquickopen/kdevpart_quickopen.rc
+%{tde_datadir}/apps/kdevjavasupport/
+%{tde_datadir}/apps/kdevmakeview/
+%{tde_datadir}/apps/kdevpartexplorer/
+%{tde_datadir}/apps/kdevpascalproject/
+%{tde_datadir}/apps/kdevpascalsupport/
+%{tde_datadir}/apps/kdevperlsupport/
+%{tde_datadir}/apps/kdevphpsupport/
+%{tde_datadir}/apps/kdevpythonsupport/
+%{tde_datadir}/apps/kdevquickopen/
 %{tde_datadir}/apps/kdevrbdebugger/
-%{tde_datadir}/apps/kdevregexptest/kdevregexptest.rc
-%{tde_datadir}/apps/kdevreplace/kdevpart_replace.rc
-%{tde_datadir}/apps/kdevrubysupport/kdevrubysupport.rc
-%{tde_datadir}/apps/kdevrubysupport/pics/ruby_config.png
-%{tde_datadir}/apps/kdevrubysupport/pics/ruby_run.png
-%{tde_datadir}/apps/kdevscripting/kdevscripting.rc
-%{tde_datadir}/apps/kdevscriptproject/kdevscriptproject.rc
-%{tde_datadir}/apps/kdevsnippet/kdevpart_snippet.rc
-%{tde_datadir}/apps/kdevsqlsupport/kdevsqlsupport.rc
-%{tde_datadir}/apps/kdevtipofday/kdevpart_tipofday.rc
-%{tde_datadir}/apps/kdevtipofday/tips
-%{tde_datadir}/apps/kdevtools/kdevpart_tools.rc
-%{tde_datadir}/apps/kdevtrollproject/kdevtrollproject.rc
-%{tde_datadir}/apps/kdevvalgrind/kdevpart_valgrind.rc
-%{tde_datadir}/apps/kio_pydoc/kde_pydoc.py*
+%{tde_datadir}/apps/kdevregexptest/
+%{tde_datadir}/apps/kdevreplace/
+%{tde_datadir}/apps/kdevrubysupport/
+%{tde_datadir}/apps/kdevscripting/
+%{tde_datadir}/apps/kdevscriptproject/
+%{tde_datadir}/apps/kdevsnippet/
+%{tde_datadir}/apps/kdevsqlsupport
+%{tde_datadir}/apps/kdevtipofday/
+%{tde_datadir}/apps/kdevtools/
+%{tde_datadir}/apps/kdevtrollproject/
+%{tde_datadir}/apps/kdevvalgrind/
+%{tde_datadir}/apps/kio_pydoc/
 %{tde_datadir}/config/kdevassistantrc
 %{tde_datadir}/config/kdeveloprc
 %{tde_datadir}/desktop-directories/tde-development-kdevelop.directory
@@ -456,11 +493,10 @@ individual needs.
 %{tde_tdelibdir}/libkdevvisualboyadvance.la
 %{tde_tdelibdir}/libkdevvisualboyadvance.so
 %{tde_datadir}/apps/kdevdesignerpart/pics/
-%{tde_datadir}/apps/kdevvisualboyadvance/kdevpart_visualboyadvance.rc
+%{tde_datadir}/apps/kdevvisualboyadvance/
 %{tde_tdedocdir}/HTML/en/kde_app_devel/
 %{tde_datadir}/mimelnk/text/x-fortran.desktop
 %{tde_datadir}/services/kdevvisualboyadvance.desktop
-
 
 %post
 for f in hicolor locolor ; do
@@ -480,14 +516,14 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package devel
 Summary: Development files for %{name}
-Group: Development/Libraries
+Group:		Development/Libraries/Other
 Requires: %{name}-libs = %{version}-%{release}
 
 Obsoletes:	trinity-kdevelop-devel < %{version}-%{release}
 Provides:	trinity-kdevelop-devel = %{version}-%{release}
 
 %description devel
-%{summary}.
+This package contains the development files for tdevelop.
 
 %files devel
 %defattr(-,root,root,-)
@@ -514,7 +550,7 @@ Obsoletes:	trinity-kdevelop-libs < %{version}-%{release}
 Provides:	trinity-kdevelop-libs = %{version}-%{release}
 
 %description libs
-%{summary}.
+This package contains the libraries needed for the tdevelop programs.
 
 %files libs
 %defattr(-,root,root,-)
@@ -566,16 +602,7 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 ##########
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}} -a 1
-%patch1 -p0 -b .config
-%patch4 -p1
-
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-
-%__rm -rf c_cpp_reference-2.0.2_for_KDE_3.0/admin
-%__cp -ar admin c_cpp_reference-2.0.2_for_KDE_3.0/
-%__make -C c_cpp_reference-2.0.2_for_KDE_3.0 -f admin/Makefile.common cvs
+%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
 
 %build
@@ -589,20 +616,6 @@ if [ -d /usr/X11R6 ]; then
   export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
-# c references
-pushd c_cpp_reference-2.0.2_for_KDE_3.0
-%configure \
-  --prefix=%{tde_prefix} \
-  --exec-prefix=%{tde_prefix} \
-  --bindir=%{tde_bindir} \
-  --libdir=%{tde_libdir} \
-  --datadir=%{tde_datadir} \
-  --includedir=%{tde_tdeincludedir} \
-  --with-qt-libraries=${QTLIB:-${QTDIR}/%{_lib}} \
-  --with-qt-includes=${QTINC:-${QTDIR}/include} \
-  --with-extra-libs=%{tde_libdir}
-popd
-
 if ! rpm -E %%cmake|grep -q "cd build"; then
   %__mkdir_p build
   cd build
@@ -614,6 +627,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
@@ -629,14 +643,13 @@ fi
 
 %__make %{?_smp_mflags} || %__make
 
-# c references
-cd ..
-%__make %{?_smp_mflags} -C c_cpp_reference-2.0.2_for_KDE_3.0
 
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
-%__make install DESTDIR=%{buildroot} -C c_cpp_reference-2.0.2_for_KDE_3.0
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean

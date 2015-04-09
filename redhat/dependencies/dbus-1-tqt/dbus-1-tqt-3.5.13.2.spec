@@ -29,8 +29,8 @@
 Name:		trinity-dbus-1-tqt
 Epoch:		%{tde_epoch}
 Version:	0.9
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-Summary:	dbus bindings for the Trinity Qt [TQt] interface
+Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	Dbus bindings for the Trinity Qt [TQt] interface
 Group:		System/Libraries
 URL:		http://www.trinitydesktop.org/
 
@@ -74,7 +74,7 @@ See the dbus description for more information about D-BUS in general.
 ###########
 
 %package -n %{libdbus}-1-tqt0
-Summary:		dbus bindings for the Trinity Qt [TQt] interface
+Summary:		Dbus bindings for the Trinity Qt [TQt] interface
 Group:			System/Libraries
 Provides:		libdbus-1-tqt0 = %{?epoch:%{epoch}:}%{version}-%{release}
 
@@ -104,7 +104,7 @@ See the dbus description for more information about D-BUS in general.
 ##########
 
 %package -n %{libdbus}-1-tqt-devel
-Summary:		dbus bindings for the Trinity Qt [TQt] interface (Development Files)
+Summary:		Dbus bindings for the Trinity Qt [TQt] interface (Development Files)
 Group:			Development/Libraries/C and C++
 Provides:		libdbus-1-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:		%{libdbus}-1-tqt0 = %{?epoch:%{epoch}:}%{version}-%{release}
@@ -137,7 +137,7 @@ See the dbus description for more information about D-BUS in general.
 
 ##########
 
-%if 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 

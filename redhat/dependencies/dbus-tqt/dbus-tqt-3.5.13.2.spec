@@ -29,7 +29,7 @@
 Name:		trinity-dbus-tqt
 Epoch:		%{tde_epoch}
 Version:	0.63
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Simple inter-process messaging system
 Group:		System/Libraries
 URL:		http://www.trinitydesktop.org/

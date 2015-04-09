@@ -10,7 +10,12 @@
 #  qt-devel
 # ...maybe others !!!!
 
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
+Name:			qt
+%else
 Name:			qt3
+%endif
+
 Epoch:			1
 Version:		3.3.8.d%{?preversion:_%{preversion}}
 Release:		10%{?dist}
@@ -20,12 +25,9 @@ License:		QPL or GPLv2 or GPLv3
 Group:			System Environment/Libraries
 URL:			http://www.trinitydesktop.org/
 
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes:		qt < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:		qt = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Provides:		qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Source0: trinity-qt3-3.5.13.2%{?preversion:~%{preversion}}.tar.gz
 Source2: qt.sh
@@ -48,7 +50,7 @@ Patch27: qt-3.3.6-fontrendering-ml_IN-209097.patch
 Patch29: qt-3.3.8-fontrendering-as_IN-209972.patch
 Patch31: qt-3.3.6-fontrendering-te_IN-211259.patch
 Patch32: qt-3.3.6-fontrendering-214371.patch
-Patch33: qt-3.3.8-fontrendering-#214570.patch
+Patch33: qt-3.3.8-fontrendering-214570.patch
 Patch34: qt-3.3.6-fontrendering-ml_IN-209974.patch
 Patch35: qt-3.3.6-fontrendering-ml_IN-217657.patch
 Patch37: qt-3.3.6-fontrendering-gu-228452.patch
@@ -135,21 +137,71 @@ BuildRequires: mesa-libGL-devel
 BuildRequires: mesa-libGLU-devel
 %endif
 
+%description
+Qt is a GUI software toolkit which simplifies the task of writing and
+maintaining GUI (Graphical User Interface) applications
+for the X Window System.
+
+Qt is written in C++ and is fully object-oriented.
+
+This package contains the shared library needed to run Qt 3
+applications, as well as the README files for Qt 3.
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+%files
+%defattr(-,root,root,-)
+%doc FAQ LICENSE* README* changes*
+%dir %{qtdir}
+%dir %{qtdir}/bin
+%dir %{qtdir}/lib
+%dir %{qtdir}/plugins
+%dir %{qtdir}/plugins/sqldrivers
+%dir %{qtdir}/plugins/styles
+%{qtdir}/translations
+%{qtdir}/plugins/designer/
+%if %{immodule}
+%{qtdir}/plugins/inputmethods
+%endif
+%config /etc/profile.d/*
+/etc/ld.so.conf.d/*
+%{qtdir}/lib/libqui.so.*
+%{qtdir}/lib/libqt*.so.*
+
+##########
 
 %package config
 Summary: Graphical configuration tool for programs using Qt 3
 Group: User Interface/Desktops
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes: qt-config < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:  qt-config = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
+Requires:	qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	qt3-config = %{?epoch:%{epoch}:}%{version}-%{release}
 
+%description config
+Qt is a GUI software toolkit which simplifies the task of writing and
+maintaining GUI (Graphical User Interface) applications
+for the X Window System.
+
+Qt is written in C++ and is fully object-oriented.
+
+This package contains a graphical configuration tool for programs using Qt 3.
+
+%files config
+%defattr(-,root,root,-)
+%{qtdir}/bin/qtconfig
+%{_datadir}/applications/*qtconfig*.desktop
+%{_datadir}/pixmaps/qtconfig3.png
+
+##########
 
 %package devel
 Summary: Development files for the Qt 3 GUI toolkit
 Group: Development/Libraries
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	qt3-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires: freetype-devel
 Requires: fontconfig-devel
 Requires: libpng-devel
@@ -172,10 +224,52 @@ Requires: xorg-x11-proto-devel
 Requires: mesa-libGL-devel
 Requires: mesa-libGLU-devel
 %endif
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes: qt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:  qt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
+
+%description devel
+The %{name}-devel package contains the files necessary to develop
+applications using the Qt GUI toolkit: the header files, the Qt meta
+object compiler.
+
+Install %{name}-devel if you want to develop GUI applications using the Qt 3
+toolkit.
+
+%files devel
+%defattr(-,root,root,-)
+%{qt_docdir}/
+%{qtdir}/bin/moc
+%{qtdir}/bin/uic
+%{qtdir}/bin/findtr
+%{qtdir}/bin/qt20fix
+%{qtdir}/bin/qtrename140
+%{qtdir}/bin/assistant
+%{qtdir}/bin/qm2ts
+%{qtdir}/bin/qmake
+%{qtdir}/bin/qembed
+%{qtdir}/bin/linguist
+%{qtdir}/bin/lupdate
+%{qtdir}/bin/lrelease
+%{qtdir}/include
+%{qtdir}/mkspecs
+%{qtdir}/lib/libqt*.so
+%{qtdir}/lib/libqui.so
+%{qtdir}/lib/libeditor.a
+%{qtdir}/lib/libdesigner*.a
+%{qtdir}/lib/libqassistantclient.a
+%{qtdir}/lib/*.prl
+%{qtdir}/phrasebooks
+%{_libdir}/pkgconfig/*
+%{_datadir}/applications/*linguist*.desktop
+%{_datadir}/applications/*assistant*.desktop
+%{_datadir}/pixmaps/linguist3.png
+%{_datadir}/pixmaps/assistant3.png
+
+# QT 3.3.8.D (TDE): 4 binaries have appeared
+%{qtdir}/bin/createcw
+%{qtdir}/bin/makeqpf
+%{qtdir}/bin/mergetr
+%{qtdir}/bin/msg2qm
+
+##########
 
 %package devel-docs
 Summary: Documentation for the Qt 3 GUI toolkit
@@ -186,108 +280,96 @@ Obsoletes: qt-devel-docs < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-devel-docs = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
 
-%package ODBC
-Summary: ODBC drivers for Qt 3's SQL classes
-Group: System Environment/Libraries
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes: qt-ODBC < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:  qt-ODBC = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-
-%package MySQL
-Summary: MySQL drivers for Qt 3's SQL classes
-Group: System Environment/Libraries
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes: qt-MySQL < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:  qt-MySQL = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-
-%package PostgreSQL
-Summary: PostgreSQL drivers for Qt 3's SQL classes
-Group: System Environment/Libraries
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes: qt-PostgreSQL < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:  qt-PostgreSQL = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-
-%package sqlite
-Summary: sqlite drivers for Qt 3's SQL classes
-Group: System Environment/Libraries
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes: qt-sqlite < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:  qt-sqlite = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-
-
-%package designer
-Summary: Interface designer (IDE) for the Qt 3 toolkit
-Group: Development/Tools
-Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
-Obsoletes: qt-designer < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:  qt-designer = %{?epoch:%{epoch}:}%{version}-%{release}
-%endif
-
-
-%description
-Qt is a GUI software toolkit which simplifies the task of writing and
-maintaining GUI (Graphical User Interface) applications
-for the X Window System.
-
-Qt is written in C++ and is fully object-oriented.
-
-This package contains the shared library needed to run Qt 3
-applications, as well as the README files for Qt 3.
-
-
-%description config
-Qt is a GUI software toolkit which simplifies the task of writing and
-maintaining GUI (Graphical User Interface) applications
-for the X Window System.
-
-Qt is written in C++ and is fully object-oriented.
-
-This package contains a graphical configuration tool for programs using Qt 3.
-
-
-%description devel
-The %{name}-devel package contains the files necessary to develop
-applications using the Qt GUI toolkit: the header files, the Qt meta
-object compiler.
-
-Install %{name}-devel if you want to develop GUI applications using the Qt 3
-toolkit.
-
-
 %description devel-docs
 The %{name}-devel-docs package contains the man pages, the HTML documentation and
 example programs for Qt 3.
 
+%files devel-docs
+%defattr(-,root,root,-)
+%doc examples
+%doc tutorial
+%{_mandir}/*/*
+
+##########
+
+%package ODBC
+Summary: ODBC drivers for Qt 3's SQL classes
+Group: System Environment/Libraries
+Requires:	qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	qt3-ODBC = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description ODBC
 ODBC driver for Qt 3's SQL classes (QSQL)
 
+%files ODBC
+%defattr(-,root,root,-)
+%{qtdir}/plugins/sqldrivers/libqsqlodbc.so
+
+##########
+
+%package MySQL
+Summary: MySQL drivers for Qt 3's SQL classes
+Group: System Environment/Libraries
+Requires:	qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	qt3-MySQL = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description MySQL
 MySQL driver for Qt 3's SQL classes (QSQL)
 
+%files MySQL
+%defattr(-,root,root,-)
+%{qtdir}/plugins/sqldrivers/libqsqlmysql.so
+
+##########
+
+%package PostgreSQL
+Summary: PostgreSQL drivers for Qt 3's SQL classes
+Group: System Environment/Libraries
+Requires:	qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	qt3-PostgreSQL = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description PostgreSQL
 PostgreSQL driver for Qt 3's SQL classes (QSQL)
 
+%files PostgreSQL
+%defattr(-,root,root,-)
+%{qtdir}/plugins/sqldrivers/libqsqlpsql.so
+
+##########
+
+%package sqlite
+Summary: sqlite drivers for Qt 3's SQL classes
+Group: System Environment/Libraries
+Requires:	qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	qt3-sqlite = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description sqlite
 sqlite driver for Qt 3's SQL classes (QSQL)
 
+%files sqlite
+%defattr(-,root,root,-)
+%{qtdir}/plugins/sqldrivers/libqsqlite.so
+
+##########
+
+%package designer
+Summary: Interface designer (IDE) for the Qt 3 toolkit
+Group: Development/Tools
+Requires:	qt3 = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:	qt3-designer = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description designer
 The %{name}-designer package contains an User Interface designer tool
 for the Qt 3 toolkit.
 
+%files designer
+%defattr(-,root,root,-)
+%{qtdir}/templates
+%{qtdir}/bin/designer
+%{_datadir}/applications/*designer*.desktop
+%{_datadir}/pixmaps/designer3.png
+
+##########
 
 %prep
 %setup -q -n trinity-qt3-3.5.13.2%{?preversion:~%{preversion}}
@@ -523,105 +605,9 @@ install -m 644 tools/assistant/images/linguist.png %{buildroot}%{_datadir}/pixma
 # own style directory
 mkdir -p %{buildroot}%{qtdir}/plugins/styles
 
+
 %clean
 rm -rf %{buildroot}
-
-%post
-/sbin/ldconfig
-
-%postun
-/sbin/ldconfig
-
-%files
-%defattr(-,root,root,-)
-%doc FAQ LICENSE* README* changes*
-%dir %{qtdir}
-%dir %{qtdir}/bin
-%dir %{qtdir}/lib
-%dir %{qtdir}/plugins
-%dir %{qtdir}/plugins/sqldrivers
-%dir %{qtdir}/plugins/styles
-%{qtdir}/translations
-%{qtdir}/plugins/designer/
-%if %{immodule}
-%{qtdir}/plugins/inputmethods
-%endif
-%config /etc/profile.d/*
-/etc/ld.so.conf.d/*
-%{qtdir}/lib/libqui.so.*
-%{qtdir}/lib/libqt*.so.*
-
-%files config
-%defattr(-,root,root,-)
-%{qtdir}/bin/qtconfig
-%{_datadir}/applications/*qtconfig*.desktop
-%{_datadir}/pixmaps/qtconfig3.png
-
-%files devel
-%defattr(-,root,root,-)
-%{qt_docdir}/
-%{qtdir}/bin/moc
-%{qtdir}/bin/uic
-%{qtdir}/bin/findtr
-%{qtdir}/bin/qt20fix
-%{qtdir}/bin/qtrename140
-%{qtdir}/bin/assistant
-%{qtdir}/bin/qm2ts
-%{qtdir}/bin/qmake
-%{qtdir}/bin/qembed
-%{qtdir}/bin/linguist
-%{qtdir}/bin/lupdate
-%{qtdir}/bin/lrelease
-%{qtdir}/include
-%{qtdir}/mkspecs
-%{qtdir}/lib/libqt*.so
-%{qtdir}/lib/libqui.so
-%{qtdir}/lib/libeditor.a
-%{qtdir}/lib/libdesigner*.a
-%{qtdir}/lib/libqassistantclient.a
-%{qtdir}/lib/*.prl
-%{qtdir}/phrasebooks
-%{_libdir}/pkgconfig/*
-%{_datadir}/applications/*linguist*.desktop
-%{_datadir}/applications/*assistant*.desktop
-%{_datadir}/pixmaps/linguist3.png
-%{_datadir}/pixmaps/assistant3.png
-
-# QT 3.3.8.D (TDE): 4 binaries have appeared
-%{qtdir}/bin/createcw
-%{qtdir}/bin/makeqpf
-%{qtdir}/bin/mergetr
-%{qtdir}/bin/msg2qm
-
-
-%files devel-docs
-%defattr(-,root,root,-)
-%doc examples
-%doc tutorial
-%{_mandir}/*/*
-
-%files sqlite
-%defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlite.so
-
-%files ODBC
-%defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlodbc.so
-
-%files PostgreSQL
-%defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlpsql.so
-
-%files MySQL
-%defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlmysql.so
-
-%files designer
-%defattr(-,root,root,-)
-%{qtdir}/templates
-%{qtdir}/bin/designer
-%{_datadir}/applications/*designer*.desktop
-%{_datadir}/pixmaps/designer3.png
 
 
 %changelog

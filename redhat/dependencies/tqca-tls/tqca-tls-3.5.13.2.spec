@@ -24,9 +24,9 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?pclinuxos}
-%define libtqt3 %{_lib}tqt3
+%define libtqt3 %{_lib}qt3
 %else
-%define libtqt3 libtqt3
+%define libtqt3 libqt3
 %endif
 
 

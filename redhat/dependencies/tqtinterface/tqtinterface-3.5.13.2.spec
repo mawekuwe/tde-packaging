@@ -39,7 +39,7 @@
 Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	4.2.0
-Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	The Trinity Qt Interface Libraries
 Group:		System/GUI/Other
 URL:		http://www.trinitydesktop.org/
@@ -69,6 +69,9 @@ BuildRequires:	cmake >= 2.8
 BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 
+# UUID support
+BuildRequires: libuuid-devel
+
 # PTHREAD support
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 BuildRequires:	pth-devel
@@ -92,7 +95,7 @@ BuildRequires: Mesa-libGLU-devel
 BuildRequires:	xorg-x11-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}xi-devel
+BuildRequires:	libxi-devel
 %endif
 %if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	libXi-devel
@@ -152,6 +155,7 @@ Provides:	libtqt4-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Requires:	%{libtqt4} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:	qt3-devel >= 3.3.8d
+Requires:	libuuid-devel
 
 %if 0%{?suse_version} && 0%{?suse_version} < 1300
 Requires:		trinity-cmake-macros

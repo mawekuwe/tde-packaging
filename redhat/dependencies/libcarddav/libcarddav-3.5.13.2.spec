@@ -56,15 +56,11 @@ BuildRequires:	make
 BuildRequires:	libtool
 
 # CURL support
-%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define libcurl_devel libcurl-devel
 %else
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%define libcurl_devel %{_lib}curl-devel
-%else
 # Specific CURL version for TDE on RHEL 5 (and older)
-#define libcurl_devel trinity-libcurl-devel
-%endif
+%define libcurl_devel trinity-libcurl-devel
 %endif
 %{?libcurl_devel:BuildRequires: %{libcurl_devel}}
 
@@ -151,6 +147,7 @@ This package contains the development files.
 
 %prep
 %setup -q -n libcarddav-%{version}
+%__sed -i "src/get-carddav-report.c" -e "89s/return TRUE/return NULL/"
 autoreconf --force --install --symlink
 
 

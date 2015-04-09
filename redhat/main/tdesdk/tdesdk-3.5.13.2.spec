@@ -1,49 +1,105 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdesdk (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
-
-# TDE specific building variables
+%define tde_pkg tdesdk
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
-Name:			trinity-tdesdk
+
+Name:			trinity-%{tde_pkg}
 Summary:		The Trinity Software Development Kit (SDK)
+Group:			Development/Tools/Other
 Version:		%{tde_version}
-Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
-
-License:		GPLv2
-Group:			User Interface/Desktops
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 URL:			http://www.trinitydesktop.org/
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
+
+%if 0%{?suse_version}
+License:		GPL-2.0+
+%else
+License:		GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:		Francois Andriot <francois.andriot@free.fr>
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			tdesdk-3.5.13.2-fix_cervisia_pod.patch
+%{?tde_patch:Patch1:			%{tde_pkg}-%{tde_version}.patch}
+
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-perl-dcop >= %{tde_version}
+BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
 BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
 BuildRequires:	libtool
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+# IDN support
+BuildRequires:	libidn-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
+# PCRE support
 BuildRequires:	pcre-devel
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+
 # for kbugbuster/libkcal
-BuildRequires:	trinity-tdepim-devel >= %{version}
+BuildRequires:	desktop-file-utils
+
+# DB4 support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 #BuildRequires:	%{_lib}db4.8-devel
 %endif
@@ -53,15 +109,20 @@ BuildRequires:	db4-devel
 %if 0%{?suse_version}
 BuildRequires:	libdb-4_8-devel
 %endif
-BuildRequires:	desktop-file-utils
+
 # kbabel,  F-7+: flex >= 2.5.33-9
 BuildRequires:	flex
 # umbrello
 BuildRequires:	libxslt-devel
 BuildRequires:	libxml2-devel
-BuildRequires:	perl
 BuildRequires:	subversion-devel
 BuildRequires:	neon-devel
+
+# PERL support
+BuildRequires:	perl
+%if 0%{?fedora} >= 19
+BuildRequires:	perl-podlators
+%endif
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
@@ -99,11 +160,10 @@ Requires: trinity-kompare = %{version}-%{release}
 Requires: trinity-kspy = %{version}-%{release}
 Requires: trinity-kuiviewer = %{version}-%{release}
 Requires: trinity-libcvsservice0 = %{version}-%{release}
-Requires: trinity-libcvsservice-devel = %{version}-%{release}
 Requires: trinity-poxml = %{version}-%{release}
 Requires: trinity-umbrello = %{version}-%{release}
 %{?build_kioslave:Requires: %{name}-tdeio-plugins = %{version}-%{release}}
-Requires: trinity-kunittest = %{version}-%{release}
+Requires: trinity-tdeunittest = %{version}-%{release}
 
 
 %description
@@ -111,7 +171,7 @@ A collection of applications and tools used by developers, including:
 * cervisia: a CVS frontend
 * kbabel: PO file management
 * kbugbuster: a tool to manage the TDE bug report system
-* kcachegrind: a browser for data produced by profiling tools (e.g. cachegrind)
+* tdecachegrind: a browser for data produced by profiling tools (e.g. cachegrind)
 * kompare: diff tool
 * kuiviewer: displays designer's UI files
 * umbrello: UML modeller and UML diagram tool
@@ -123,7 +183,7 @@ A collection of applications and tools used by developers, including:
 
 %package -n trinity-cervisia
 Summary:	A graphical CVS front end for Trinity
-Group:		Development/Utilities
+Group:		Development/Tools/Version Control
 
 %description -n trinity-cervisia
 Cervisia is a TDE-based graphical front end for the CVS client.
@@ -147,7 +207,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/libcervisiapart.so
 %{tde_tdeappdir}/cervisia.desktop
 %{tde_datadir}/apps/cervisia/
-%{tde_datadir}/apps/cervisiapart/cervisiaui.rc
+%{tde_datadir}/apps/cervisiapart/
 %{tde_datadir}/apps/kconf_update/cervisia.upd
 %{tde_datadir}/apps/kconf_update/cervisia-change_repos_list.pl
 %{tde_datadir}/apps/kconf_update/cervisia-normalize_cvsroot.pl
@@ -180,7 +240,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kapptemplate
 Summary:	Creates a framework to develop a Trinity application
-Group:		Development/Utilities
+Group:		Development/Languages/Other
 
 %description -n trinity-kapptemplate
 KAppTemplate is a shell script that will create the necessary
@@ -204,7 +264,7 @@ fi
 
 %package -n trinity-kbabel
 Summary:	PO-file editing suite for Trinity
-Group:		Development/Utilities
+Group:		Development/Languages/Other
 
 %description -n trinity-kbabel
 This is a suite of programs for editing gettext message files (PO-files).
@@ -277,7 +337,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdeappdir}/catalogmanager.desktop
 %{tde_tdeappdir}/kbabel.desktop
 %{tde_tdeappdir}/kbabeldict.desktop
-%{tde_datadir}/apps/catalogmanager/catalogmanagerui.rc
+%{tde_datadir}/apps/catalogmanager/
 %{tde_datadir}/apps/kbabel/
 %{tde_datadir}/apps/kconf_update/kbabel-difftoproject.upd
 %{tde_datadir}/apps/kconf_update/kbabel-project.upd
@@ -340,7 +400,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kbabel-devel
 Summary:	PO-file editing suite for Trinity (development files)
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kbabel = %{version}-%{release}
 
 %description -n trinity-kbabel-devel
@@ -375,8 +435,9 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package -n trinity-kbugbuster
-Summary:	a front end for the Trinity bug tracking system
-Group:		Development/Utilities
+Summary:	A front end for the Trinity bug tracking system
+Group:		Development/Languages/Other
+Requires:	trinity-libkcal >= %{tde_version}
 
 %description -n trinity-kbugbuster
 KBugBuster is a GUI front end for the TDE bug tracking system.
@@ -414,11 +475,11 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-tdecachegrind
-Summary:	visualisation tool for valgrind profiling output
-Group:		Development/Utilities
+Summary:	Visualisation tool for valgrind profiling output
+Group:		Development/Languages/Other
 
 %description -n trinity-tdecachegrind
-KCachegrind is a visualisation tool for the profiling data generated
+tdecachegrind is a visualisation tool for the profiling data generated
 by calltree, a profiling skin for valgrind.  Applications can be
 profiled using calltree without being recompiled, and shared libraries
 and plugin architectures are supported.
@@ -455,8 +516,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-tdecachegrind-converters
-Summary:	format converters for KCachegrind profiling visualisation tool
-Group:		Development/Utilities
+Summary:	Format converters for tdecachegrind profiling visualisation tool
+Group:		Development/Languages/Other
 Requires:	python
 %if 0%{?suse_version} || 0%{?rhel} == 4
 Requires:	php
@@ -466,9 +527,9 @@ Requires:	php-cli
 
 %description -n trinity-tdecachegrind-converters
 This is a collection of scripts for converting the output from
-different profiling tools into a format that KCachegrind can use.
+different profiling tools into a format that tdecachegrind can use.
 
-KCachegrind is a visualisation tool for the profiling data generated
+tdecachegrind is a visualisation tool for the profiling data generated
 by calltree, a profiling skin for valgrind.  Applications can be
 profiled using calltree without being recompiled, and shared libraries
 and plugin architectures are supported.
@@ -487,7 +548,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %package kfile-plugins
 Summary:	Trinity file dialog plugins for software development files
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 
 %description kfile-plugins
 This is a collection of plugins for the TDE file dialog.  These plugins
@@ -512,8 +573,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package misc
-Summary:	various goodies from the Trinity Software Development Kit
-Group:		Development/Libraries
+Summary:	Various goodies from the Trinity Software Development Kit
+Group:		Development/Languages/Other
 
 %description misc
 This package contains miscellaneous goodies provided with the official
@@ -529,7 +590,6 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %files misc
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/kprofilemethod.h
 %{tde_tdelibdir}/kabcformat_kdeaccounts.la
 %{tde_tdelibdir}/kabcformat_kdeaccounts.so
 %{tde_tdelibdir}/plugins/styles/scheck.so
@@ -539,7 +599,6 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_datadir}/kdepalettes/
 
 %{tde_libdir}/libkstartperf.so.*
-%{tde_libdir}/libkstartperf.so
 %{tde_libdir}/libkstartperf.la
 %{tde_bindir}/kstartperf
 
@@ -553,7 +612,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %package scripts
 Summary:	a set of useful development scripts for Trinity
-Group:		Development/Utilities
+Group:		Development/Languages/Other
 Requires:	python
 
 %description scripts
@@ -651,8 +710,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package -n trinity-kmtrace
-Summary:	a Trinity memory leak tracer
-Group:		Development/Utilities
+Summary:	A Trinity memory leak tracer
+Group:		Development/Languages/Other
 Requires:	less
 
 %description -n trinity-kmtrace
@@ -667,17 +726,16 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/kminspector
 %{tde_bindir}/kmmatch
 %{tde_bindir}/kmtrace
-%{tde_tdeincludedir}/ktrace.h
+%dir %{tde_libdir}/kmtrace
 %{tde_libdir}/kmtrace/libktrace.la
 %{tde_libdir}/kmtrace/libktrace.so
-%{tde_libdir}/kmtrace/libktrace_s.a
-%{tde_datadir}/apps/kmtrace/kde.excludes
+%{tde_datadir}/apps/kmtrace/
 
 ##########
 
 %package -n trinity-kompare
-Summary:	a Trinity GUI for viewing differences between files
-Group:		Development/Utilities
+Summary:	A Trinity GUI for viewing differences between files
+Group:		Development/Languages/Other
 
 %description -n trinity-kompare
 Kompare is a graphical user interface for viewing the differences between
@@ -690,15 +748,13 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %defattr(-,root,root,-)
 %{tde_bindir}/kompare
 %{tde_libdir}/libkompareinterface.la
-%{tde_libdir}/libkompareinterface.so
 %{tde_libdir}/libkompareinterface.so.*
 %{tde_tdelibdir}/libkomparenavtreepart.la
 %{tde_tdelibdir}/libkomparenavtreepart.so
 %{tde_tdelibdir}/libkomparepart.la
 %{tde_tdelibdir}/libkomparepart.so
 %{tde_tdeappdir}/kompare.desktop
-%{tde_datadir}/apps/kompare/komparepartui.rc
-%{tde_datadir}/apps/kompare/kompareui.rc
+%{tde_datadir}/apps/kompare/
 %{tde_datadir}/services/komparenavtreepart.desktop
 %{tde_datadir}/services/komparepart.desktop
 %{tde_datadir}/servicetypes/komparenavigationpart.desktop
@@ -726,8 +782,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kspy
-Summary:	examines the internal state of a Qt/TDE app
-Group:		Environment/Libraries
+Summary:	Examines the internal state of a Qt/TDE app
+Group:		Development/Languages/Other
 Requires:	trinity-tdelibs-devel
 
 %description -n trinity-kspy
@@ -744,9 +800,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kspy
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/kspy.h
 %{tde_libdir}/libkspy.la
-%{tde_libdir}/libkspy.so
 %{tde_libdir}/libkspy.so.*
 
 %post -n trinity-kspy
@@ -758,8 +812,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package -n trinity-kuiviewer
-Summary:	viewer for Qt Designer user interface files
-Group:		Development/Utilities
+Summary:	Viewer for Qt Designer user interface files
+Group:		Development/Languages/Other
 
 %description -n trinity-kuiviewer
 KUIViewer is a utility to display and test the user interface (.ui) files
@@ -778,8 +832,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/quithumbnail.so
 %{tde_tdelibdir}/quithumbnail.la
 %{tde_tdeappdir}/kuiviewer.desktop
-%{tde_datadir}/apps/kuiviewer/kuiviewerui.rc
-%{tde_datadir}/apps/kuiviewerpart/kuiviewer_part.rc
+%{tde_datadir}/apps/kuiviewer/
+%{tde_datadir}/apps/kuiviewerpart/
 %{tde_datadir}/icons/hicolor/*/apps/kuiviewer.png
 %{tde_datadir}/icons/locolor/*/apps/kuiviewer.png
 %{tde_datadir}/services/designerthumbnail.desktop
@@ -801,7 +855,7 @@ done
 
 %package -n trinity-libcvsservice0
 Summary:	DCOP service for accessing CVS repositories
-Group:		Environment/Libraries
+Group:		Development/Languages/Other
 Requires:	cvs
 
 %description -n trinity-libcvsservice0
@@ -836,8 +890,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package -n trinity-libcvsservice-devel
-Summary:	development files for CVS DCOP service
-Group:		Development/Libraries
+Summary:	Development files for CVS DCOP service
+Group:		Development/Libraries/Other
 Requires:	trinity-libcvsservice0 = %{version}-%{release}
 
 %description -n trinity-libcvsservice-devel
@@ -871,8 +925,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 ##########
 
 %package -n trinity-poxml
-Summary:	tools for using PO-files to translate DocBook XML files
-Group:		Development/Utilities
+Summary:	Tools for using PO-files to translate DocBook XML files
+Group:		Development/Languages/Other
 
 %description -n trinity-poxml
 This is a collection of tools that facilitate translating DocBook XML
@@ -895,7 +949,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %package -n trinity-umbrello
 Summary:	UML modelling tool and code generator
-Group:		Development/Utilities
+Group:		Development/Languages/Other
 
 %description -n trinity-umbrello
 Umbrello UML Modeller is a Unified Modelling Language editor for TDE.
@@ -943,8 +997,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %if 0%{?build_kioslave}
 
 %package tdeio-plugins
-Summary:	subversion ioslave for Trinity
-Group:		Environment/Libraries
+Summary:	Subversion ioslave for Trinity
+Group:		Development/Languages/Other
 Requires:	subversion
 
 Obsoletes:	trinity-tdesdk-kio-plugins < %{version}-%{release}
@@ -1018,57 +1072,78 @@ fi
 
 ##########
 
-%package -n trinity-kunittest
-Summary:	unit testing library for Trinity
-Group:		Development/Utilities
+%package -n trinity-tdeunittest
+Summary:	Unit testing library for Trinity
+Group:		Development/Languages/Other
 
-%description -n trinity-kunittest
-KUnitTest is a small library that facilitates the writing of tests for
-TDE developers. There are two ways to use the KUnitTest library. One is
-to create dynamically loadable modules and use the kunittestmodrunner or
-kunittestguimodrunner programs to run the tests. The other is to use the
+Obsoletes:	trinity-kunittest < %{version}-%{release}
+Provides:	trinity-kunittest = %{version}-%{release}
+
+%description -n trinity-tdeunittest
+tdeunittest is a small library that facilitates the writing of tests for
+TDE developers. There are two ways to use the tdeunittest library. One is
+to create dynamically loadable modules and use the tdeunittestmodrunner or
+tdeunittestguimodrunner programs to run the tests. The other is to use the
 libraries to create your own testing application.
 
 This package is part of Trinity, and a component of the TDE SDK module.
 
-%files -n trinity-kunittest
+%files -n trinity-tdeunittest
 %defattr(-,root,root,-)
 %{tde_bindir}/kunittest
 %{tde_bindir}/kunittest_debughelper
 %{tde_bindir}/kunittestmod
 %{tde_bindir}/kunittestguimodrunner
 %{tde_libdir}/libkunittestgui.la
-%{tde_libdir}/libkunittestgui.so
 %{tde_libdir}/libkunittestgui.so.*
-%{tde_tdeincludedir}/kunittest/runnergui.h
 
-%post -n trinity-kunittest
+%post -n trinity-tdeunittest
 /sbin/ldconfig || :
 
-%postun -n trinity-kunittest
+%postun -n trinity-tdeunittest
 /sbin/ldconfig || :
 
 ##########
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-kbabel-devel = %{version}-%{release}
+Requires:	%{name}-misc = %{version}-%{release}
+Requires:	trinity-kspy = %{version}-%{release}
+Requires:	trinity-kmtrace = %{version}-%{release}
+Requires:	trinity-tdeunittest = %{version}-%{release}
+Requires:	trinity-libcvsservice-devel = %{version}-%{release}
+Requires:	trinity-kompare = %{version}-%{release}
 
 Obsoletes:	trinity-kdesdk-devel < %{version}-%{release}
 Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 %description devel
-%{summary}.
+This package contains the development files for tdesdk.
 
 %files devel
 %defattr(-,root,root,-)
+# misc
+%{tde_tdeincludedir}/kprofilemethod.h
+%{tde_libdir}/libkstartperf.so
+# kspy
+%{tde_tdeincludedir}/kspy.h
+%{tde_libdir}/libkspy.so
+# kmtrace
+%{tde_libdir}/kmtrace/libktrace_s.a
+%{tde_tdeincludedir}/ktrace.h
+# tdeunittest
+%{tde_libdir}/libkunittestgui.so
+%{tde_tdeincludedir}/kunittest/runnergui.h
+# kompare
+%{tde_libdir}/libkompareinterface.so
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -1077,7 +1152,7 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .cervisiapod
+%{?tde_patch:%patch1 -p1}
 
 
 %build
@@ -1101,6 +1176,7 @@ fi
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
@@ -1143,6 +1219,33 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Removes useless stuff
 %__rm -f %{?buildroot}%{tde_datadir}/apps/kapptemplate/admin/debianrules
+
+# Fix permissions
+chmod 644 %{?buildroot}%{tde_datadir}/apps/kapptemplate/admin/Doxyfile.global
+
+# Make kapptemplate archive
+pushd  %{?buildroot}%{tde_datadir}/apps/kapptemplate
+mkdir kapptemplate
+mv admin appframework bin existing include kapp kpartapp kpartplugin kapptemplate/
+tar cfz kapptemplate.tar.gz kapptemplate
+rm -rf kapptemplate
+popd
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file    kuiviewer      Development GUIDesigner
+%suse_update_desktop_file    umbrello       Development Design
+%suse_update_desktop_file    kbugbuster     Development Debugger
+%suse_update_desktop_file -u catalogmanager Development Translation
+%suse_update_desktop_file    kbabel         Development Translation
+%suse_update_desktop_file -u kbabeldict     Development Translation
+%suse_update_desktop_file    cervisia       Development RevisionControl
+%suse_update_desktop_file    kompare        Development RevisionControl
+%suse_update_desktop_file    kcachegrind    Development Profiling
+%endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean

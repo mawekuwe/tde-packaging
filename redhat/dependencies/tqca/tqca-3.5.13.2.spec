@@ -33,7 +33,7 @@
 Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	1.0
-Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:4}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	TQt Cryptographic Architecture
 Group:		Development/Libraries/C and C++
 URL:		http://www.trinitydesktop.org/

@@ -73,11 +73,19 @@ Buildroot: %_tmppath/%name-%version-%release-root
 %if %buildSQL
 BuildRequires: mysql-devel 
 BuildRequires: unixODBC-devel 
+
+# POSTGRESQL support
+%if 0%{?mgaversion} == 4
+BuildRequires: postgresql9.3-devel
+%else
 BuildRequires: postgresql-devel
+%endif
+
 %endif
 BuildRequires: freetype2-devel
 BuildRequires: mesaglu-devel
 BuildRequires: libsm-devel
+BuildRequires: libuuid-devel
 BuildRequires: libice-devel
 BuildRequires: libx11-devel
 BuildRequires: libxcursor-devel
@@ -97,7 +105,7 @@ BuildRequires: libiodbc-devel
 BuildRequires: cups-devel
 
 # PNG support
-%if 0%{pclinuxos}
+%if 0%{?pclinuxos}
 BuildRequires: libpng-devel
 %endif
 %if 0%{?mgaversion} >= 4

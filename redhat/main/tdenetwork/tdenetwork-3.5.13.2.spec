@@ -1,63 +1,104 @@
-# Avoids relinking, which breaks consolehelper
-%define dont_relink 1
+#
+# spec file for package tdenetwork (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
-# If TDE is built iwn a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
 
+# TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
-
-# TDE specific building variables
+%define tde_pkg tdenetwork
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
 %define tde_sbindir %{tde_prefix}/sbin
-
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
-
-
-# Fedora review:  http://bugzilla.redhat.com/195486
-
-## Conditional build:
-# RHEL6: xmms is outdated !
-#define _with_xmms --with-xmms
-%ifnarch s390 s390x
-%define _with_wifi --with-wifi
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
 %endif
 
-Name:    	trinity-tdenetwork
-Version:	%{tde_version}
-Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
-Summary:	Trinity Desktop Environment - Network Applications
+# Avoids relinking, which breaks consolehelper
+%define dont_relink 1
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
 
-License:	GPLv2
-Group:		Applications/Internet
+Name:			trinity-%{tde_pkg}
+Summary:		Trinity Desktop Environment - Network Applications
+Group:			Applications/Internet
+Version:		%{tde_version}
+Release:		%{?!preversion:4}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kppp.pamd
 Source2:	ktalk
 
+%{?tde_patch:Patch1:			%{tde_pkg}-%{tde_version}.patch}
+
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gettext
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	coreutils 
+BuildRequires:	gcc-c++
+BuildRequires:	desktop-file-utils
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+# for set_permissions macro
+%if 0%{?suse_version}
+PreReq: permissions
+%endif
+
+# OPENSSL support
 BuildRequires:	openssl-devel
+
+# TLS support
 BuildRequires:	gnutls-devel
 
 # SQLITE support
@@ -73,6 +114,16 @@ BuildRequires:	sqlite-devel
 BuildRequires:	libgadu-devel
 %endif
 
+# PCRE support
+BuildRequires:	pcre-devel
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
+
 # XTST support
 %if 0%{?fedora} >= 5 || 0%{?rhel} >= 5 || 0%{?suse_version} >= 1210
 BuildRequires:	libXtst-devel
@@ -81,13 +132,34 @@ BuildRequires:	libXtst-devel
 BuildRequires:	libxtst-devel
 %endif
 
+# XMU support
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libXmu-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires: libXmu-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion} >= 4
+BuildRequires: libxmu-devel
+%endif
+%if 0%{?mgaversion} == 2 || 0%{?mgaversion} == 3
+BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
+%endif
+
 # Other stuff
 %if 0%{?fedora} >= 5 || 0%{?rhel} >= 5
-BuildRequires:	libXmu-devel
 BuildRequires:	libXScrnSaver-devel
 BuildRequires:	libXxf86vm-devel
 %endif
 
+# Fedora review:  http://bugzilla.redhat.com/195486
+
+## Conditional build:
+# RHEL6: xmms is outdated !
+#define _with_xmms --with-xmms
+%ifnarch s390 s390x
+%define _with_wifi --with-wifi
+%endif
 
 # Wifi support
 %if "%{?_with_wifi:1}" == "1"
@@ -97,7 +169,7 @@ BuildRequires: wireless-tools-devel
 %if 0%{?mgaversion} == 2 || 0%{?mdkversion}
 BuildRequires:	%{_lib}iw29-devel
 %endif
-%if 0%{?rhel} == 5
+%if 0%{?rhel} == 5 || 0%{?suse_version}
 BuildRequires: wireless-tools
 %endif
 %if 0%{?suse_version} || 0%{?mgaversion} >= 3
@@ -112,7 +184,7 @@ BuildRequires: openslp-devel
 %endif
 
 %ifarch %{ix86}
-# BR: %{tde_includedir}/valgrind/valgrind.h
+# BR: /usr/include/valgrind/valgrind.h
 BuildRequires: valgrind
 %endif
 
@@ -151,9 +223,9 @@ BuildRequires:	meanwhile-devel
 %endif
 
 # ORTP support
-#%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+#if 0%{?rhel} >= 6 || 0#{?fedora} >= 15
 #BuildRequires:	ortp-devel
-#%endif
+#endif
 
 # SPEEX support
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
@@ -181,7 +253,7 @@ Provides:	tdenetwork = %{version}-%{release}
 Requires: trinity-dcoprss = %{version}-%{release}
 Requires: %{name}-filesharing = %{version}-%{release}
 Requires: trinity-kdict = %{version}-%{release}
-Requires: %{name}-kfile-plugins = %{version}-%{release}
+Requires: %{name}-tdefile-plugins = %{version}-%{release}
 Requires: trinity-kget = %{version}-%{release}
 Requires: trinity-knewsticker = %{version}-%{release}
 Requires: trinity-kopete = %{version}-%{release}
@@ -204,7 +276,7 @@ Networking applications, including:
 * dcoprss: RSS utilities for Trinity
 * filesharing: Network filesharing configuration module for Trinity
 * kdict: Dictionary client for Trinity
-* kfile-plugins: Torrent metainfo plugin for Trinity
+* tdefile-plugins: Torrent metainfo plugin for Trinity
 * kget: downloader manager
 * knewsticker: RDF newsticker applet
 * kopete: chat client
@@ -268,17 +340,14 @@ Obsoletes:	tdenetwork-devel < %{version}-%{release}
 Provides:	tdenetwork-devel = %{version}-%{release}
 
 %description devel
-This is the development package which contains the headers for the KDE RSS
+This is the development package which contains the headers for the TDE RSS
 library as well as the Kopete chat client, as well as miscellaneous
 development-related files for the TDE network module.
 
 %files devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/kopete/*.h
-%{tde_tdeincludedir}/kopete/ui/*.h
-%{tde_tdeincludedir}/rss/*.h
-%{tde_libdir}/libkdeinit_kdict.la
-%{tde_libdir}/libkdeinit_ksirc.la
+%{tde_tdeincludedir}/kopete/
+%{tde_tdeincludedir}/rss/
 %{tde_libdir}/libkopete.la
 %{tde_libdir}/libkopete.so
 %{tde_libdir}/libkopete_msn_shared.la
@@ -320,6 +389,7 @@ NFS and Samba.
 %{tde_tdelibdir}/kcm_kcmsambaconf.so
 %{tde_tdeappdir}/fileshare.desktop
 %{tde_tdeappdir}/kcmsambaconf.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kcmfileshare.png
 %{tde_datadir}/icons/hicolor/*/apps/kcmsambaconf.png
 %{tde_datadir}/services/fileshare_propsdlgplugin.desktop
 
@@ -340,6 +410,7 @@ update-desktop-database 2> /dev/null || :
 %package -n trinity-kdict
 Summary:		Dictionary client for Trinity
 Group:			Applications/Internet
+Requires:		trinity-kicker >= %{tde_version}
 
 %description -n trinity-kdict
 KDict is an advanced TDE graphical client for the DICT Protocol, with full
@@ -373,35 +444,39 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package kfile-plugins
+%package tdefile-plugins
 Summary:		Torrent metainfo plugin for Trinity
 Group:			Applications/Internet
 
 Obsoletes:		tdenetwork-kfile-plugins < %{version}-%{release}
 Provides:		tdenetwork-kfile-plugins = %{version}-%{release}
+Obsoletes:		trinity-tdenetwork-kfile-plugins < %{version}-%{release}
+Provides:		trinity-tdenetwork-kfile-plugins = %{version}-%{release}
 
-%description kfile-plugins
+%description tdefile-plugins
 This package provides a metainformation plugin for bittorrent files.
-TDE uses kfile-plugins to provide metainfo tab in the files properties
+TDE uses tdefile-plugins to provide metainfo tab in the files properties
 dialog in konqueror and other file-handling applications.
 
-%files kfile-plugins
+%files tdefile-plugins
 %defattr(-,root,root,-)
 %{tde_tdelibdir}/kfile_torrent.la
 %{tde_tdelibdir}/kfile_torrent.so
 %{tde_datadir}/services/kfile_torrent.desktop
 
-%post kfile-plugins
+%post tdefile-plugins
 update-desktop-database 2> /dev/null || : 
 
-%postun kfile-plugins
+%postun tdefile-plugins
 update-desktop-database 2> /dev/null || : 
 
 ##########
 
 %package -n trinity-kget
-Summary:		download manager for Trinity
+Summary:		Download manager for Trinity
 Group:			Applications/Internet
+Requires:		trinity-tdebase-data >= %{tde_version}
+Requires:		trinity-konqueror >= %{tde_version}
 
 %description -n trinity-kget
 KGet is a a download manager similar to GetRight or Go!zilla. It keeps
@@ -424,6 +499,7 @@ applications and Netscape.
 %{tde_datadir}/icons/crystalsvg/*/actions/khtml_kget.png
 %{tde_datadir}/icons/crystalsvg/*/apps/kget.png
 %{tde_datadir}/icons/crystalsvg/*/mimetypes/kget_list.png
+%{tde_datadir}/icons/hicolor/*/apps/kget.png
 %{tde_datadir}/mimelnk/application/x-kgetlist.desktop
 %{tde_datadir}/sounds/KGet_Added.ogg
 %{tde_datadir}/sounds/KGet_Finished.ogg
@@ -432,13 +508,13 @@ applications and Netscape.
 %{tde_tdedocdir}/HTML/en/kget
 
 %post -n trinity-kget
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-kget
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
@@ -446,8 +522,9 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-knewsticker
-Summary:		news ticker applet for Trinity
+Summary:		News ticker applet for Trinity
 Group:			Applications/Internet
+Requires:		trinity-kicker >= %{tde_version}
 
 %description -n trinity-knewsticker
 This is a news ticker applet for the Trinity panel. It can scroll news from
@@ -468,7 +545,7 @@ good news sources which provide such files.
 %{tde_datadir}/apps/kconf_update/knewsticker.upd
 %{tde_datadir}/apps/kconf_update/knt-0.1-0.2.pl
 %{tde_datadir}/apps/kicker/applets/knewsticker.desktop
-%{tde_datadir}/apps/knewsticker/eventsrc
+%{tde_datadir}/apps/knewsticker/
 %{tde_datadir}/icons/hicolor/*/apps/knewsticker.png
 %{tde_datadir}/services/kntsrcfilepropsdlg.desktop
 %{tde_tdedocdir}/HTML/en/knewsticker
@@ -488,13 +565,15 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kopete
-Summary:		instant messenger for Trinity
+Summary:		Instant messenger for Trinity
 Group:			Applications/Internet
-URL:			http://kopete.kde.org
+Requires:		trinity-tdebase-bin >= %{tde_version}
+Requires:		trinity-tdebase-data >= %{tde_version}
+Requires:		trinity-filesystem >= %{tde_version}
 
 %description -n trinity-kopete
 Kopete is an instant messenger program which can communicate with a variety
-of IM systems, such as Yahoo, ICQ, MSN, IRC and Jabber.
+of IM systems, such as Yahoo, ICQ, IRC and Jabber.
 
 Support for more IM protocols can be added through a plugin system.
 
@@ -527,9 +606,9 @@ Support for more IM protocols can be added through a plugin system.
 %{tde_libdir}/libkopete_videodevice.so.*
 %{tde_tdeappdir}/kopete.desktop
 %{tde_datadir}/apps/kconf_update/kopete-*
-%{tde_datadir}/apps/kopete
-%{tde_datadir}/apps/kopete_*/*.rc
-%{tde_datadir}/apps/kopeterichtexteditpart/kopeterichtexteditpartfull.rc
+%{tde_datadir}/apps/kopete/
+%{tde_datadir}/apps/kopete_*/
+%{tde_datadir}/apps/kopeterichtexteditpart/
 %{tde_datadir}/config.kcfg/historyconfig.kcfg
 %{tde_datadir}/config.kcfg/kopeteidentityconfigpreferences.kcfg
 %{tde_datadir}/config.kcfg/kopete.kcfg
@@ -656,8 +735,10 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kopete-nowlistening
-Summary:		Nowlistening (xmms) plugin for Kopete.
+Summary:		Nowlistening (xmms) plugin for Kopete
 Group:			Applications/Internet
+Requires:		trinity-kopete = %{tde_version}-%{tde_release}
+Requires:		trinity-filesystem >= %{tde_version}
 
 %description -n trinity-kopete-nowlistening
 Kopete includes the "Now Listening" plug-in that can report what music you
@@ -678,6 +759,7 @@ noatun, kscd, juk, kaffeine and amarok.
 %package -n trinity-kpf
 Summary:		Public fileserver for Trinity
 Group:			Applications/Internet
+Requires:		trinity-kicker >= %{tde_version}
 
 %description -n trinity-kpf
 kpf provides simple file sharing using HTTP. kpf is strictly a public
@@ -708,7 +790,7 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kppp
-Summary:		modem dialer and ppp frontend for Trinity
+Summary:		Modem dialer and ppp frontend for Trinity
 Group:			Applications/Internet
 Requires:		ppp
 
@@ -733,7 +815,14 @@ track of the time spent online for you.
 
 %files -n trinity-kppp
 %defattr(-,root,root,-)
-%{?!with_consolehelper:%{tde_bindir}/kppp}
+%if 0%{?with_consolehelper} == 0
+# Some setuid binaries need special care
+%if 0%{?suse_version}
+%verify(not mode) %{tde_bindir}/kppp
+%else
+%attr(4711,root,root) %{tde_bindir}/kppp
+%endif
+%endif
 %{tde_bindir}/kppplogview
 %{tde_tdeappdir}/Kppp.desktop
 %{tde_tdeappdir}/kppplogview.desktop
@@ -754,6 +843,10 @@ for f in hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
+%if 0%{?suse_version}
+# Sets permissions on setuid files (openSUSE specific)
+%set_permissions %{tde_bindir}/kppp
+%endif
 
 %postun -n trinity-kppp
 for f in hicolor ; do
@@ -780,18 +873,19 @@ Servers using RDP.
 %{tde_datadir}/apps/konqueror/servicemenus/smb2rdc.desktop
 %{tde_datadir}/apps/krdc/
 %{tde_datadir}/icons/crystalsvg/*/apps/krdc.png
+%{tde_datadir}/icons/hicolor/*/apps/krdc.png
 %{tde_datadir}/services/rdp.protocol
 %{tde_datadir}/services/vnc.protocol
 %{tde_tdedocdir}/HTML/en/krdc/
 
 %post -n trinity-krdc
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-krdc
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
@@ -820,9 +914,10 @@ task.
 %{tde_tdelibdir}/kded_kinetd.so
 %{tde_tdeappdir}/kcmkrfb.desktop
 %{tde_tdeappdir}/krfb.desktop
-%{tde_datadir}/apps/kinetd/eventsrc
+%{tde_datadir}/apps/kinetd/
 %{tde_datadir}/apps/krfb
 %{tde_datadir}/icons/crystalsvg/*/apps/krfb.png
+%{tde_datadir}/icons/hicolor/*/apps/krfb.png
 %{tde_datadir}/icons/locolor/*/apps/krfb.png
 %{tde_datadir}/services/kded/kinetd.desktop
 %{tde_datadir}/services/kinetd_krfb.desktop
@@ -831,13 +926,13 @@ task.
 %{tde_tdedocdir}/HTML/en/krfb/
 
 %post -n trinity-krfb
-for f in crystalsvg locolor ; do
+for f in crystalsvg hicolor locolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-krfb
-for f in crystalsvg locolor ; do
+for f in crystalsvg hicolor locolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
@@ -849,7 +944,7 @@ Summary:		IRC client for Trinity
 Group:			Applications/Internet
 
 %description -n trinity-ksirc
-KSirc is an IRC chat client for KDE. It supports scripting with Perl and has a
+KSirc is an IRC chat client for TDE. It supports scripting with Perl and has a
 lot of compatibility with mIRC for general use.
 
 If you want to connect to an IRC server via SSL, you will need to install the
@@ -887,6 +982,8 @@ update-desktop-database 2> /dev/null || :
 %package -n trinity-ktalkd
 Summary:		Talk daemon for Trinity
 Group:			Applications/Internet
+Requires:		trinity-kcontrol >= %{tde_version}
+Requires:		trinity-tdebase-data >= %{tde_version}
 
 %description -n trinity-ktalkd
 KTalkd is an enhanced talk daemon - a program to handle incoming talk
@@ -901,20 +998,21 @@ and shouldn't be run on a multi-user machine.
 %{tde_tdelibdir}/kcm_ktalkd.*
 %{tde_tdeappdir}/kcmktalkd.desktop
 %config(noreplace) %{tde_datadir}/config/ktalkdrc
-%{tde_datadir}/icons/crystalsvg/*/apps/ktalkd.*
+%{tde_datadir}/icons/crystalsvg/*/apps/ktalkd.png
+%{tde_datadir}/icons/hicolor/*/apps/ktalkd.png
 %{tde_datadir}/sounds/ktalkd.wav
 %config(noreplace) %{_sysconfdir}/xinetd.d/ktalk
 %{tde_tdedocdir}/HTML/en/kcontrol/kcmtalkd
 %{tde_tdedocdir}/HTML/en/ktalkd
 
 %post -n trinity-ktalkd
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-ktalkd
-for f in crystalsvg ; do
+for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
@@ -925,6 +1023,7 @@ update-desktop-database 2> /dev/null || :
 %package -n trinity-kwifimanager
 Summary:		Wireless lan manager for Trinity
 Group:			Applications/Internet
+Requires:		trinity-kicker >= %{tde_version}
 
 %description -n trinity-kwifimanager
 KWiFiManager suite is a set of tools which allows you to manage your
@@ -944,7 +1043,7 @@ wavelan card that uses the wireless extensions interface.
 %{tde_datadir}/apps/kwifimanager
 %{tde_datadir}/icons/hicolor/*/apps/kwifimanager.png
 %{tde_datadir}/icons/hicolor/*/apps/kwifimanager.svgz
-%doc %{tde_tdedocdir}/HTML/en/kwifimanager
+%{tde_tdedocdir}/HTML/en/kwifimanager/
 
 %post -n trinity-kwifimanager
 for f in hicolor ; do
@@ -986,6 +1085,8 @@ automatically when needed.
 %package -n trinity-lisa
 Summary:			LAN information server for Trinity
 Group:				Applications/Internet
+Requires:		trinity-konqueror >= %{tde_version}
+Requires:		trinity-tdebase-data >= %{tde_version}
 
 %description -n trinity-lisa
 LISa is intended to provide TDE with a kind of "network neighborhood"
@@ -1002,7 +1103,7 @@ but relying only on the TCP/IP protocol.
 %{tde_datadir}/applnk/.hidden/kcmreslisa.desktop
 %{tde_datadir}/apps/konqsidebartng/virtual_folders/services/lisa.desktop
 %{tde_datadir}/apps/konqueror/dirtree/remote/lan.desktop
-%{tde_datadir}/apps/lisa/README
+%{tde_datadir}/apps/lisa/
 %{tde_datadir}/apps/remoteview/lan.desktop
 %{tde_tdedocdir}/HTML/en/kcontrol/lanbrowser/
 %{tde_tdedocdir}/HTML/en/lisa/
@@ -1024,7 +1125,7 @@ Summary: Zeroconf support for TDE
 Group:			Applications/Internet
 
 %description -n trinity-kdnssd
-A kioslave and kded module that provide Zeroconf support. Try
+A tdeioslave and tded module that provide Zeroconf support. Try
 "zeroconf:/" in Konqueror.
 
 %files -n trinity-kdnssd
@@ -1053,7 +1154,7 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -1061,6 +1162,15 @@ update-desktop-database 2> /dev/null || :
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%{?tde_patch:%patch1 -p1}
+
+# Workaround libiw detection failure on opensuse
+%if 0%{?suse_version}
+%__sed -i "wifi/ConfigureChecks.cmake" -e "s|^check_library_exists.*|set( HAVE_IW 1 )|"
+%endif
+
+# Update icons for some control center modules
+%__sed -i "filesharing/simple/fileshare.desktop" -e "s|^Icon=.*|Icon=kcmfileshare|"
 
 
 %build
@@ -1085,6 +1195,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
@@ -1115,6 +1226,17 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+# Adds missing icons in 'hicolor' theme
+# These icons are copied from 'crystalsvg' theme, provided by 'tdelibs'.
+%__mkdir_p %{buildroot}%{tde_datadir}/icons/hicolor/{16x16,22x22,32x32,48x48,64x64,128x128}/apps/
+pushd %{buildroot}%{tde_datadir}/icons
+for i in {16,22,32,48}; do        %__cp %{?buildroot}%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/kget.png    hicolor/"$i"x"$i"/apps/kget.png          ;done
+for i in {32,48}; do              %__cp %{?buildroot}%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/krdc.png    hicolor/"$i"x"$i"/apps/krdc.png          ;done
+for i in {16,32,48}; do           %__cp %{?buildroot}%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/krfb.png    hicolor/"$i"x"$i"/apps/krfb.png          ;done
+for i in {16,22,32,48,128}; do    %__cp %{?buildroot}%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/apps/ktalkd.png  hicolor/"$i"x"$i"/apps/ktalkd.png        ;done
+for i in {16,22,32,48,64,128}; do %__cp $BUILD_ROOT%{tde_datadir}/icons/crystalsvg/"$i"x"$i"/actions/share.png  hicolor/"$i"x"$i"/apps/kcmfileshare.png  ;done
+popd
+
 %if 0%{?with_consolehelper}
 # Run kppp through consolehelper, and rename it to 'kppp3'
 %__install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
@@ -1130,9 +1252,15 @@ USER=root
 PROGRAM=%{tde_sbindir}/kppp3
 SESSION=true
 EOF
+
 # Renames 'kppp' as 'kppp3' in launch icon
 %__sed -i %{buildroot}%{tde_tdeappdir}/Kppp.desktop -e "/Exec=/ s|kppp|kppp3|"
 %endif
+
+# Remove setuid bit on some binaries.
+if [ -r "%{?buildroot}%{tde_bindir}/kppp" ]; then
+  chmod 0755 "%{?buildroot}%{tde_bindir}/kppp"
+fi
 
 # ktalk
 %__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
@@ -1140,9 +1268,46 @@ EOF
 # Avoids conflict with trinity-kvirc
 %__mv -f %{buildroot}%{tde_datadir}/services/irc.protocol %{buildroot}%{tde_datadir}/apps/kopete/
 
+# Icons from TDE Control Center should only be displayed in TDE
+for i in %{?buildroot}%{tde_tdeappdir}/*.desktop ; do
+  if grep -q "^Categories=.*X-KDE-settings" "${i}"; then
+    if ! grep -q "OnlyShowIn=KDE" "${i}" ; then
+      echo "OnlyShowIn=KDE;" >>"${i}"
+    fi
+  fi
+done
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file    kcmkrfb
+%suse_update_desktop_file    fileshare
+%suse_update_desktop_file    kopete        Network  InstantMessaging
+%suse_update_desktop_file    ksirc         Network  IRCClient
+%suse_update_desktop_file    Kppp          Network  Dialup
+%suse_update_desktop_file -r kppplogview   System   Monitor
+%suse_update_desktop_file    kdict         Office   Dictionary
+%suse_update_desktop_file -r krdc          System   RemoteAccess
+%suse_update_desktop_file -r krfb          System   RemoteAccess
+%suse_update_desktop_file -r kget          System   TrayIcon
+%suse_update_desktop_file -r kwifimanager  System   Network
+%suse_update_desktop_file    kcmwifi
+%suse_update_desktop_file -u knewsticker-standalone Network  News
+%suse_update_desktop_file %{buildroot}%{tde_datadir}/apps/remoteview/zeroconf.desktop
+%endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
+
 
 %clean
 %__rm -rf %{buildroot}
+
+
+%if 0%{?suse_version}
+# Check permissions on setuid files (openSUSE specific)
+%verifyscript
+%verify_permissions -e %{tde_bindir}/kppp
+%endif
 
 
 %changelog

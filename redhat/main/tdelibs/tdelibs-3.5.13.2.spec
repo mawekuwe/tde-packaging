@@ -29,6 +29,8 @@
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_sbindir %{tde_prefix}/sbin
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
@@ -41,8 +43,9 @@
 
 
 Name:			trinity-%{tde_pkg}
+Epoch:			%{tde_epoch}
 Version:		%{tde_version}
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:		TDE Libraries
 Group:			System/GUI/Other
 URL:			http://www.trinitydesktop.org/
@@ -61,6 +64,8 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:		trinity-tdelibs-rpmlintrc
+
+%{?tde_patch:Patch1:			%{tde_pkg}-%{tde_version}.patch}
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -93,6 +98,11 @@ BuildRequires:	fdupes
 # SUSE desktop files utility
 %if 0%{?suse_version}
 BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
 %endif
 
 # KRB5 support
@@ -166,21 +176,18 @@ BuildRequires:	utempter-devel
 %endif
 
 # HSPELL support
-%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?rhel} >=6 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_hspell 1
 BuildRequires:	hspell-devel
 %endif
 
 # JASPER support
-%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?rhel} >=6 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_jasper 1
 %if 0%{?suse_version}
 BuildRequires:	libjasper-devel
 %endif
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}jasper-devel
-%endif
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	jasper-devel
 %endif
 %endif
@@ -190,7 +197,7 @@ BuildRequires:	jasper-devel
 %define with_avahi 1
 BuildRequires:	libavahi-tqt-devel >= 1:0.6.30
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}avahi-client-devel
+BuildRequires:	avahi-client-devel
 Requires:		%{_lib}avahi-client3
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
@@ -200,7 +207,7 @@ Requires:		avahi
 %endif
 
 # OPENEXR support
-%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?rhel} >=6 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_openexr 1
 BuildRequires:	OpenEXR-devel
 %endif
@@ -208,7 +215,7 @@ BuildRequires:	OpenEXR-devel
 # LIBTOOL
 BuildRequires:	libtool
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}ltdl-devel
+BuildRequires:	libltdl-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libtool-ltdl-devel
@@ -240,7 +247,7 @@ Requires:		xorg-x11
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 %define with_lzma 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}lzma-devel
+BuildRequires:	liblzma-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 BuildRequires:	xz-devel
@@ -248,12 +255,12 @@ BuildRequires:	xz-devel
 %endif
 
 # Certificates support
-%if 0%{?rhel} >= 6 || 0%{?fedora}
+%if 0%{?fedora} == 18 || 0%{?fedora} == 19
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
 BuildRequires:	ca-certificates
 Requires:		ca-certificates
 %endif
-%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?fedora} >= 20
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
 Requires:		openssl
 %endif
@@ -266,6 +273,9 @@ Requires:		openssl
 BuildRequires:	ca-certificates
 Requires:		ca-certificates
 %endif
+%if "%{cacert}" != ""
+Requires:		%{cacert}
+%endif
 
 # XRANDR support
 #  On RHEL5, xrandr library is too old.
@@ -276,7 +286,7 @@ Requires:		ca-certificates
 # XCOMPOSITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?mgaversion} >= 4
-%define xcomposite_devel %{_lib}xcomposite-devel
+%define xcomposite_devel libxcomposite-devel
 %else
 %define xcomposite_devel %{_lib}xcomposite%{?mgaversion:1}-devel
 %endif
@@ -290,8 +300,10 @@ Requires:		ca-certificates
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %define xt_devel libXt-devel
 %endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%define xt_devel libxt-devel
+%endif
 %{?xt_devel:BuildRequires: %{xt_devel}}
-
 
 
 %description
@@ -419,12 +431,12 @@ fi
 %package devel
 Summary:	TDE Libraries (Development files)
 Group:		Development/Libraries/X11
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{tde_epoch}:%{version}-%{release}
 
-Obsoletes:	tdelibs-devel < %{version}-%{release}
-Provides:	tdelibs-devel = %{version}-%{release}
-Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
-Provides:	trinity-kdelibs-devel = %{version}-%{release}
+Obsoletes:	tdelibs-devel < %{tde_epoch}:%{version}-%{release}
+Provides:	tdelibs-devel = %{tde_epoch}:%{version}-%{release}
+Obsoletes:	trinity-kdelibs-devel < %{tde_epoch}:%{version}-%{release}
+Provides:	trinity-kdelibs-devel = %{tde_epoch}:%{version}-%{release}
 
 Requires:	qt3-devel >= 3.3.8d
 Requires:	libtqt4-devel = %{tde_epoch}:4.2.0
@@ -459,7 +471,7 @@ applications for TDE.
 
 ##########
 
-%if 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -467,6 +479,7 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%{?tde_patch:%patch1 -p1}
 
 
 %build
@@ -544,7 +557,7 @@ fi
 
 # Fix 'tderesources.desktop' (openSUSE only)
 %if 0%{?suse_version}
-%suse_update_desktop_file -r tderesources Qt X-TDE-settings-desktop
+%suse_update_desktop_file -r kresources Qt X-TDE-settings-desktop
 %endif
 
 # Remove setuid bit on some binaries.
@@ -571,16 +584,5 @@ chmod 0755 "%{?buildroot}%{tde_bindir}/start_kdeinit"
 
 
 %changelog
-* Sat Oct 11 2014 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-4
-- Remove integrated fileshareset.
-- Update dependencies.
-
-* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
-- Build for Fedora 19
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
-- Rebuild with NDEBUG option
-- Fix XDG menu
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Mon Nov 10 2014 Francois Andriot <francois.andriot@free.fr> - 1:3.5.13.2-1
+- Initial TDE 3.5.13.2 for openSUSE Build Service

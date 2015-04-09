@@ -65,15 +65,11 @@ BuildRequires:	gtk2-devel
 %endif
 
 # CURL support
-%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define libcurl_devel libcurl-devel
 %else
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%define libcurl_devel %{_lib}curl-devel
-%else
 # Specific CURL version for TDE on RHEL 5 (and older)
-#define libcurl_devel trinity-libcurl-devel
-%endif
+%define libcurl_devel trinity-libcurl-devel
 %endif
 %{?libcurl_devel:BuildRequires: %{libcurl_devel}}
 

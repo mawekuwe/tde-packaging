@@ -1,48 +1,60 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package akode (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
-# TDE 3.5.13 specific building variables
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 1
+%define tde_version 3.5.13.2
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
-Summary: 	Audio-decoding framework 
 Name:		trinity-akode 
-Version:	2.0.2
-Release:	5%{?dist}%{?_variant}
-
-License:	LGPLv2+
+Summary: 	Audio-decoding framework 
 Group: 		System Environment/Libraries
-#URL:		http://carewolf.com/akode/  
+Epoch:		%{tde_epoch}
+Version:	2.0.2
+Release:	1%{?dist}%{?_variant}
 URL:		http://www.kde-apps.org/content/show.php?content=30375
 
-Source0:	akode-2.0.2.tar.bz2
+License:	LGPLv2+
+#URL:		http://carewolf.com/akode/  
+
+Source0:	akode-%{tde_version}.tar.gz
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-
-# Legacy Fedora 9 patches
-Patch1: akode-pulseaudio.patch
-Patch2: akode-2.0.2-multilib.patch
-Patch3: akode-2.0.2-flac113-portable.patch
-Patch4: akode-2.0.2-gcc43.patch
-
-# New patches
-Patch10: akode-autotools.patch
-Patch11: akode-2.0.2-fix_ffmpeg_include.patch
 
 # FLAC support
 %define _with_flac --with-flac
@@ -145,15 +157,15 @@ aKode also has the following audio outputs:
 %package devel
 Summary: Headers for developing programs that will use %{name} 
 Group:   Development/Libraries
-Requires: %{name} = %{version}-%{release}
-%{?_with_jack:Requires: %{name}-jack = %{version}-%{release}}
-%{?_with_pulseaudio:Requires: %{name}-pulseaudio = %{version}-%{release}}
-%{?_with_libsamplerate:Requires: %{name}-libsamplerate = %{version}-%{release}}
-%{?_with_libmad:Requires: %{name}-libmad = %{version}-%{release}}
+Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+%{?_with_jack:Requires: %{name}-jack = %{?epoch:%{epoch}:}%{version}-%{release}}
+%{?_with_pulseaudio:Requires: %{name}-pulseaudio = %{?epoch:%{epoch}:}%{version}-%{release}}
+%{?_with_libsamplerate:Requires: %{name}-libsamplerate = %{?epoch:%{epoch}:}%{version}-%{release}}
+%{?_with_libmad:Requires: %{name}-libmad = %{?epoch:%{epoch}:}%{version}-%{release}}
 Requires: pkgconfig
 
 %description devel
-%{summary}.
+This package contains the development files for Akode.
 
 %files devel
 %defattr(-,root,root,-)
@@ -176,10 +188,10 @@ Requires: pkgconfig
 %package jack 
 Summary: Jack audio output backend for %{name}
 Group:   Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description jack 
-%{summary}.
+This package contains the Jack audio output backend for Akode.
 
 %files jack 
 %defattr(-,root,root,-)
@@ -201,10 +213,10 @@ Requires: %{name} = %{version}-%{release}
 %package pulseaudio
 Summary: Pulseaudio output backend for %{name}
 Group:   Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description pulseaudio
-%{summary}.
+This package contains the pulseaudio backend for Akode.
 Recommended for network transparent audio.
 
 %files pulseaudio
@@ -229,10 +241,10 @@ Recommended for network transparent audio.
 Summary: Resampler based on libsamplerate for %{name}
 Group:   Development/Libraries
 License: GPLv2+
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libsamplerate 
-%{summary}.
+This package contains the samplerate decoder for Akode.
 
 # License: GPLv2+
 %files libsamplerate
@@ -255,10 +267,10 @@ Requires: %{name} = %{version}-%{release}
 %package libmad
 Summary: Decoder based on libmad for %{name}
 Group:   Development/Libraries
-Requires: %{name} = %{version}-%{release}
+Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libmad 
-%{summary}.
+This package contains the mad decoder for Akode.
 
 %files libmad
 %{tde_libdir}/libakode_mpeg_decoder.la
@@ -274,28 +286,23 @@ Requires: %{name} = %{version}-%{release}
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
 ##########
 
 %prep
-%setup -q -n akode-%{version}
-
-%patch1 -p1 -b .pulseaudio
-%patch2 -p1 -b .multilib
-%patch3 -p4 -b .flac113_portable
-%patch4 -p1 -b .gcc43
-
-%patch10 -p1 -b .autotools
-%patch11 -p1 -b .ffmpeg
+%setup -q -n akode-2.0.2
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common cvs
+%__make -f admin/Makefile.common
+
 
 %build
+export CXXFLAGS="${RPM_OPT_FLAGS} -DHAVE_STDINT_H"
+
 %configure \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
@@ -342,7 +349,7 @@ done
 
 
 %changelog
-* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-5
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1:2.0.2-1
 - Build for Fedora 19
 
 * Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-4

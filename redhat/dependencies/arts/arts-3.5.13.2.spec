@@ -29,6 +29,7 @@
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_sbindir %{tde_prefix}/sbin
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
@@ -43,7 +44,7 @@
 Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	1.5.10
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	ARTS (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
 URL:		http://www.trinitydesktop.org/
@@ -61,6 +62,8 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+
+%{?tde_patch:Patch1:			%{tde_pkg}-%{tde_version}.patch}
 
 BuildRequires:	libtqt4-devel >= %{tde_epoch}:4.2.0
 BuildRequires:	trinity-filesystem >= %{tde_version}
@@ -83,24 +86,21 @@ BuildRequires:	esound-devel
 # JACK support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?with_jack}
 %define with_jack 1
-%if 0%{?mgaversion} || 0%{?mdkversion}
-%define jack_devel %{_lib}jack-devel
-%endif
 %if 0%{?rhel} >= 5 || 0%{?fedora}
 %define jack_devel jack-audio-connection-kit-devel
 %endif
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define jack_devel libjack-devel
 %endif
 BuildRequires:	%{jack_devel}
 %endif
 
 # LIBTOOL
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}ltdl-devel
-%endif
 %if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	libtool-ltdl-devel
+%endif
+%if  0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libltdl-devel
 %endif
 %if 0%{?suse_version}
 %if 0%{?suse_version} >= 1220
@@ -110,16 +110,14 @@ BuildRequires:	libtool
 %endif
 %endif
 
+# UUID support
+BuildRequires: libuuid-devel
+
 # MAD support
 %ifarch %{ix86} x86_64
 %if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} 
 %define with_libmad 1
-%if 0%{?mdkversion} || 0%{?mgaversion}
-%define mad_devel %{_lib}mad-devel
-%endif
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
 %define mad_devel libmad-devel
-%endif
 BuildRequires:		%{mad_devel}
 %endif
 %endif
@@ -250,6 +248,7 @@ intended for systems running the Pulseaudio server.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%{?tde_patch:%patch1 -p1}
 
 
 %build

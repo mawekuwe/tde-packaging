@@ -59,6 +59,10 @@ Patch135:       parseFontName.diff
 Patch136:       qt3-no-date.diff
 Patch139:       gcc46.diff
 
+# Patches from Trinity
+# [qt3] Fix FTBFS with libfreetype6 >= 2.5.x . This resolves Bug 1765
+Patch200:		1386900429_1ee1ffbae69dc78721af139f0794628571fd35ef.diff
+
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 #Remember also to modify Requires in -devel package
@@ -80,12 +84,15 @@ BuildRequires:	glu-devel
 
 # PNG support
 %if %suse_version >= 1310
+BuildRequires:  libpng16-devel
 BuildRequires:  libpng16-compat-devel
 %endif
 %if %suse_version == 1230
+BuildRequires:  libpng15-devel
 BuildRequires:  libpng15-compat-devel
 %endif
 %if %suse_version >= 1110 && %suse_version <= 1220
+BuildRequires:  libpng14-devel
 BuildRequires:  libpng14-compat-devel
 %endif
 
@@ -145,6 +152,7 @@ ln -sf $PWD/src/kernel/qximinputcontext_p.h       include/private/
 %patch135
 %patch136
 %patch139
+%patch200 -p1 -b .freetype250
 # copy qt kde integration files
 cp %SOURCE100 %SOURCE101 src/kernel/
 cp %SOURCE101 include/private/

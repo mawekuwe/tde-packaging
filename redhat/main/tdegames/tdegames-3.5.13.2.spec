@@ -1,50 +1,86 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdegames (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
-
-# TDE specific building variables
+%define tde_pkg tdegames
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
 
-Name:			trinity-tdegames
+Name:			trinity-%{tde_pkg}
 Summary:		Trinity Desktop Environment - Games
 Version:		%{tde_version}
-Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
-
-License:		GPLv2
-Group:			Amusements/Games
-
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
+Release:		%{?!preversion:4}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Group:			System/GUI/Other
 URL:			http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Project
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
+
 BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	desktop-file-utils
+BuildRequires:	fdupes
 BuildRequires:	libtool
 
-BuildRequires:	qt3-devel >= 3.3.8.d
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 Obsoletes:		trinity-kdegames < %{version}-%{release}
 Provides:		trinity-kdegames = %{version}-%{release}
@@ -99,8 +135,7 @@ ksnake, ksirtet, katomic, kjumpingcube, ktuberling.
 
 %package devel
 Summary:	Development files for %{name} 
-Group:		Development/Libraries
-License:	LGPLv2
+Group:		Amusements/Games/Other
 
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-tdelibs-devel >= %{tde_version}
@@ -112,8 +147,6 @@ Obsoletes:		trinity-kdegames-devel < %{version}-%{release}
 Provides:		trinity-kdegames-devel = %{version}-%{release}
 
 %description devel
-%{summary}.
-
 Install %{name}-devel if you wish to develop or compile games for the
 TDE desktop.
 
@@ -124,7 +157,7 @@ TDE desktop.
 
 %package -n trinity-libtdegames1
 Summary:	Trinity games library and common files
-Group:		Amusements/Games
+Group:		Amusements/Games/Other
 
 %description -n trinity-libtdegames1
 This library provides a common infrastructure for several of the
@@ -137,10 +170,11 @@ This package is part of TDE, and a component of the TDE games module.
 %files -n trinity-libtdegames1
 %defattr(-,root,root,-)
 %{tde_libdir}/libkdegames.so.*
+%dir %{tde_datadir}/apps/kdegames
+%dir %{tde_datadir}/apps/kdegames/pics
 %{tde_datadir}/apps/kdegames/pics/star.png
 %{tde_datadir}/icons/crystalsvg/*/actions/roll.png
 %{tde_datadir}/icons/crystalsvg/*/actions/highscore.png
-#%{tde_tdedocdir}/HTML/en/%{name}-%{version}-apidocs/
 
 %post -n trinity-libtdegames1
 for f in crystalsvg ; do
@@ -160,7 +194,7 @@ done
 
 %package -n trinity-libtdegames-devel
 Summary:	Trinity games library headers
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libtdegames1 = %{version}-%{release}
 
 %description -n trinity-libtdegames-devel
@@ -180,7 +214,7 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %package card-data
 Summary:	Card decks for Trinity games
-Group:		Amusements/Games
+Group:		Amusements/Games/Other
 
 %description card-data
 Several different collections of card images for use by TDE games.
@@ -189,13 +223,13 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %files card-data
 %defattr(-,root,root,-)
-%{tde_datadir}/apps/carddecks/*
+%{tde_datadir}/apps/carddecks/
 
 ##########
 
 %package -n trinity-atlantik
 Summary:	TDE client for Monopoly-like network games
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-atlantik
 This is a TDE client for playing Monopoly-like boardgames on the
@@ -240,7 +274,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-atlantik-devel
 Summary:	Development files for Atlantik
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-atlantik = %{version}-%{release}
 
 %description -n trinity-atlantik-devel
@@ -270,7 +304,7 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %package -n trinity-kasteroids
 Summary:	Asteroids for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-kasteroids
 You know this game.  It is based on Warwick Allison's QwSpriteField
@@ -309,7 +343,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-katomic
 Summary:	Atomic Entertainment game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Strategy/Other
 
 %description -n trinity-katomic
 This is a puzzle game, in which the object is to assemble a molecule
@@ -345,7 +379,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kbackgammon
 Summary:	A Backgammon game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kbackgammon
 KBackgammon is a backgammon program for Trinity. It is based on the
@@ -383,7 +417,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kbattleship
 Summary:	Battleship game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kbattleship
 This is an implementation of the Battleship game.  Each player tries
@@ -420,7 +454,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kblackbox
 Summary:	A simple logical game for the Trinity project
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kblackbox
 KBlackBox is a game of hide and seek played on an grid of boxes. Your
@@ -458,7 +492,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kbounce
 Summary:	Jezzball clone for the K Desktop Environment
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-kbounce
 This is a clone of the popular Jezzball game originally created by
@@ -506,7 +540,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kenolaba
 Summary:	Enolaba board game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kenolaba
 kenolaba is a simple board strategy game that is played by two
@@ -546,7 +580,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kfouleggs
 Summary:	A TDE clone of the Japanese PuyoPuyo game
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-kfouleggs
 KFouleggs is a clone of the Japanese PuyoPuyo game, with advanced
@@ -583,7 +617,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kgoldrunner
 Summary:	A Trinity clone of the Loderunner arcade game
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-kgoldrunner
 KGoldrunner, a game of action and puzzle solving.  Run through the
@@ -629,7 +663,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kjumpingcube
 Summary:	Tactical one or two player game
-Group:		Amusements/Games
+Group:		Amusements/Games/Strategy/Other
 
 %description -n trinity-kjumpingcube
 KJumpingCube is a simple tactical game. You can play it against the
@@ -668,7 +702,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-klickety
 Summary:	A Clickomania-like game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-klickety
 Klickety is an adaptation of the (perhaps) well-known Clickomania
@@ -682,8 +716,7 @@ This package is part of Trinity, and a component of the TDE games module.
 %{tde_tdeappdir}/klickety.desktop
 %{tde_datadir}/icons/hicolor/*/apps/klickety.png
 %{tde_datadir}/icons/crystalsvg/*/actions/endturn.png
-%{tde_datadir}/apps/klickety/klicketyui.rc
-%{tde_datadir}/apps/klickety/eventsrc
+%{tde_datadir}/apps/klickety/
 %{tde_tdedocdir}/HTML/en/klickety/
 
 %post -n trinity-klickety
@@ -704,7 +737,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-klines
 Summary:	Color lines for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Strategy/Other
 
 %description -n trinity-klines
 KLines is a simple game. It is played by one player, so there is only
@@ -747,8 +780,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kmahjongg
-Summary:	the classic mahjongg game for Trinity project
-Group:		Amusements/Games
+Summary:	The classic mahjongg game for Trinity project
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kmahjongg
 Your mission in this game is to remove all tiles from the game board. A
@@ -784,7 +817,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kmines
 Summary:	Minesweeper for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kmines
 KMines is the classic Minesweeper game. You must uncover all the
@@ -824,7 +857,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-knetwalk
 Summary:	A game for system administrators
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-knetwalk
 This game presents the player with a rectangular field consisting of
@@ -859,7 +892,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kolf
 Summary:	Minigolf game for TDE
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-kolf
 This is a minigolf game for TDE that allows you to go through different
@@ -904,7 +937,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kolf-devel
 Summary:	Development files for Kolf
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kolf = %{version}-%{release}
 
 %description -n trinity-kolf-devel
@@ -929,7 +962,7 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %package -n trinity-konquest
 Summary:	TDE based GNU-Lactic Konquest game
-Group:		Amusements/Games
+Group:		Amusements/Games/Strategy/Other
 
 %description -n trinity-konquest
 This the TDE version of Gnu-Lactic Konquest, a multi-player strategy
@@ -964,7 +997,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kpat
 Summary:	Trinity solitaire patience game
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Card
 
 %description -n trinity-kpat
 KPatience is a collection of 14 card games. All the games are single
@@ -998,7 +1031,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kpoker
 Summary:	Trinity based Poker clone
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Card
 
 %description -n trinity-kpoker
 KPoker is a TDE compliant clone of those highly addictive pocket
@@ -1032,7 +1065,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kreversi
 Summary:	Reversi for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kreversi
 Reversi is a simple strategy game that is played by two
@@ -1075,7 +1108,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksame
 Summary:	SameGame for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Strategy/Other
 
 %description -n trinity-ksame
 KSame is a simple game. It's played by one player, so there is only
@@ -1089,7 +1122,7 @@ This package is part of Trinity, and a component of the TDE games module.
 %defattr(-,root,root,-)
 %{tde_bindir}/ksame
 %{tde_datadir}/icons/hicolor/*/apps/ksame.png
-%{tde_datadir}/apps/ksame/*
+%{tde_datadir}/apps/ksame/
 %{tde_tdeappdir}/ksame.desktop
 %{tde_tdedocdir}/HTML/en/ksame/
 
@@ -1111,7 +1144,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kshisen
 Summary:	Shisen-Sho for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-kshisen
 KShisen-Sho is a single-player-game similar to Mahjongg and uses the
@@ -1148,7 +1181,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksirtet
 Summary:	Tetris and Puyo-Puyo games for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-ksirtet
 This program is a clone of the well known game Tetris. You must fit
@@ -1189,7 +1222,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksmiletris
 Summary:	Tetris like game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-ksmiletris
 This is a game with falling blocks composed of different types of
@@ -1224,7 +1257,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksnake
 Summary:	Snake Race for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-ksnake
 Snake Race is a game of speed and agility. You are a hungry snake and
@@ -1259,7 +1292,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ksokoban
 Summary:	Sokoban game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Strategy/Other
 
 %description -n trinity-ksokoban
 The first sokoban game was created in 1982 by Hiroyuki Imabayashi at
@@ -1308,7 +1341,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kspaceduel
 Summary:	Arcade two-player space game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-kspaceduel
 KSpaceduel is an space arcade game for two players.
@@ -1347,7 +1380,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ktron
 Summary:	Tron clone for the K Desktop Environment
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-ktron
 The object of the game is to avoid running into walls, your own tail,
@@ -1382,7 +1415,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-ktuberling
 Summary:	Potato Guy for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Action/Arcade
 
 %description -n trinity-ktuberling
 KTuberling is a game intended for small children. Of course, it may
@@ -1430,7 +1463,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-twin4
 Summary:	Connect Four clone for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Other
 
 %description -n trinity-twin4
 Four wins is a game for two players. Each player is represented by a
@@ -1474,7 +1507,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-lskat
 Summary:	Lieutnant Skat card game for Trinity
-Group:		Amusements/Games
+Group:		Amusements/Games/Board/Card
 
 %description -n trinity-lskat
 Lieutnant Skat (from German Offiziersskat) is a card game for two
@@ -1513,7 +1546,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -1529,7 +1562,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 # Do not build against any "/usr" installed KDE
@@ -1537,7 +1571,7 @@ export KDEDIR="%{tde_prefix}"
 
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %configure \
@@ -1570,6 +1604,45 @@ ln -s . atlantik/libatlantic/.libs/.libs
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file -r kasteroids      Game ArcadeGame
+%suse_update_desktop_file -r KGoldrunner     Game ArcadeGame
+%suse_update_desktop_file -r ksnake          Game ArcadeGame
+%suse_update_desktop_file -r kspaceduel      Game ArcadeGame
+%suse_update_desktop_file -r ktron           Game ArcadeGame
+%suse_update_desktop_file -r kfouleggs       Game BlocksGame
+%suse_update_desktop_file -r ksirtet         Game BlocksGame
+%suse_update_desktop_file -r klickety        Game BoardGame
+%suse_update_desktop_file -r ksmiletris      Game BlocksGame
+%suse_update_desktop_file -r ktuberling      Game KidsGame
+%suse_update_desktop_file -r atlantik        Game BoardGame
+%suse_update_desktop_file -r kbackgammon     Game BoardGame
+%suse_update_desktop_file -r kbattleship     Game BoardGame
+%suse_update_desktop_file -r kblackbox       Game BoardGame
+%suse_update_desktop_file -r kenolaba        Game BoardGame
+%suse_update_desktop_file -r kmahjongg       Game BoardGame
+%suse_update_desktop_file -r kreversi        Game BoardGame
+%suse_update_desktop_file -r kshisen         Game BoardGame
+%suse_update_desktop_file -r kwin4           Game BoardGame
+%suse_update_desktop_file -r kpat            Game CardGame
+%suse_update_desktop_file -r kpoker          Game CardGame
+%suse_update_desktop_file -r lskat           Game CardGame
+%suse_update_desktop_file -r katomic         Game LogicGame
+%suse_update_desktop_file -r kjumpingcube    Game LogicGame
+%suse_update_desktop_file -r klines          Game LogicGame
+%suse_update_desktop_file -r -G "Tactical Game" knetwalk Game LogicGame
+%suse_update_desktop_file -r kmines          Game LogicGame
+%suse_update_desktop_file -r konquest        Game LogicGame
+%suse_update_desktop_file -r ksame           Game LogicGame
+%suse_update_desktop_file -r ksokoban        Game LogicGame
+%suse_update_desktop_file -r kbounce         Game LogicGame
+%suse_update_desktop_file -r kolf            Game SportsGame
+%endif
+
+# Links duplicate files
+%fdupes "%{?buildroot}"
 
 
 %clean

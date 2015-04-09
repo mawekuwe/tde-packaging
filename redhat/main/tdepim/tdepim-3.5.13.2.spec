@@ -1,23 +1,44 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
+#
+# spec file for package tdepim (version 3.5.13-SRU)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http:/www.trinitydesktop.org/
+#
 
+# BUILD WARNING:
+#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
+#  Having KDE libraries may cause FTBFS here !
+
+# TDE variables
+%define tde_epoch 1
 %define tde_version 3.5.13.2
-
-# TDE specific building variables
+%define tde_pkg tdepim
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 
 # KDEPIM specific features
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -26,45 +47,66 @@ BuildRequires:	gnokii-devel
 %endif
 
 # TDEPIM optional features
-#define		with_kitchensync 0
+#define		with_kitchensync 1
 
 
-Name:		trinity-tdepim
-Version:	%{tde_version}
-Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
-Group:		Applications/Productivity
-
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+Name:		trinity-%{tde_pkg}
 Summary:	Personal Information Management apps from the official Trinity release
+Version:	%{tde_version}
+Release:	%{?!preversion:4}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Group:		Applications/Productivity
+URL:		http://www.trinitydesktop.org/
+
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
+
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-# [tdepim] Missing LDFLAGS cause FTBFS on MGA2/MDV2011
-Patch14:	kdepim-3.5.13-missing_ldflags.patch
-
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-libcaldav-devel
-BuildRequires:	trinity-libcarddav-devel
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	libcaldav-devel >= %{tde_epoch}:0.6.5
+BuildRequires:	libcarddav-devel >= %{tde_epoch}:0.6.2
 
 BuildRequires:	cmake >= 2.8
+BuildRequires:	gcc-c++
+BuildRequires:	fdupes
+BuildRequires:	desktop-file-utils
+BuildRequires:	make
+
 BuildRequires:	gpgme-devel
 BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
 BuildRequires:	libical-devel
 BuildRequires:	boost-devel
 BuildRequires:	pcre-devel
-BuildRequires:	glib2-devel
-BuildRequires:	gcc-c++
-BuildRequires:	make
 BuildRequires:	libidn-devel
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+# GAMIN support
+#  Not on openSUSE.
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gamin 1
+BuildRequires:	gamin-devel
+%endif
 
 # CURL support
 %if 0%{?fedora} >= 15
@@ -75,6 +117,9 @@ BuildRequires:	trinity-libcurl-devel
 %else
 BuildRequires:	curl-devel
 %endif
+
+# GLIB2 support
+BuildRequires:	glib2-devel
 
 # SASL support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -162,12 +207,13 @@ This metapackage includes a collection of Personal Information Management
 (PIM) applications provided with the official release of Trinity.
 
 %files
+%defattr(-,root,root,-)
 
 ##########
 
 %package devel
 Summary:	Development files for %{name}
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 Obsoletes:	tdepim-cmake < %{version}-%{release}
 
@@ -263,7 +309,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-akregator-devel
 Summary:	Development files for trinity-akregator
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-akregator = %{version}-%{release}
 
 %description -n trinity-akregator-devel
@@ -355,7 +401,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kaddressbook-devel
 Summary:	Development files for trinity-kaddressbook
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kaddressbook = %{version}-%{release}
 
 %description -n trinity-kaddressbook-devel
@@ -446,6 +492,7 @@ Kandy is aimed at mobile phones with integrated (GSM) modems.
 %{tde_datadir}/applnk/Utilities/kandy.desktop
 %{tde_datadir}/apps/kandy/
 %{tde_datadir}/icons/crystalsvg/*/apps/kandy.png
+%{tde_datadir}/icons/hicolor/*/apps/kandy.png
 %{tde_datadir}/config.kcfg/kandy.kcfg
 %{tde_tdedocdir}/HTML/en/kandy/
 
@@ -508,7 +555,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-karm-devel
 Summary:	Development files for karm
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 %description -n trinity-karm-devel
 %{summary}
@@ -671,6 +718,7 @@ tracking feature plans.
 %{tde_datadir}/services/kresources/kcal/kcal_xmlrpc.desktop
 %{tde_datadir}/services/kresources/kcal/kolab.desktop
 %{tde_datadir}/services/kresources/kcal/scalix.desktop
+%dir %{tde_datadir}/services/kresources/knotes
 %{tde_datadir}/services/kresources/knotes/knotes_xmlrpc.desktop
 %{tde_datadir}/services/kresources/knotes/kolabresource.desktop
 %{tde_datadir}/services/kresources/knotes/scalix.desktop
@@ -705,7 +753,7 @@ tracking feature plans.
 
 %package tderesources-devel
 Summary:	Development files for tderesources
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	libcaldav
 Requires:	libcarddav
@@ -894,12 +942,21 @@ keybox and for retrieving certificates from LDAP servers.
 %{tde_datadir}/services/kleopatra_config_*.desktop
 %{tde_tdedocdir}/HTML/en/kleopatra/
 %{tde_tdedocdir}/HTML/en/kwatchgnupg/
+%{tde_datadir}/icons/hicolor/*/apps/kleopatra.png
 
 %post -n trinity-kleopatra
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+for f in hicolor ; do
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
+done
 
 %postun -n trinity-kleopatra
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+for f in hicolor ; do
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
+done
 
 ##########
 
@@ -1019,7 +1076,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kmail-devel
 Summary:	Development files for kmail
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 
 %description -n trinity-kmail-devel
 %{summary}
@@ -1115,7 +1172,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-knode-devel
 Summary:	Development files for trinity-knode
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-knode = %{version}-%{release}
 
 %description -n trinity-knode-devel
@@ -1155,6 +1212,7 @@ program.  The program supports printing and mailing your notes.
 %{tde_datadir}/config.kcfg/knoteconfig.kcfg
 %{tde_datadir}/config.kcfg/knotesglobalconfig.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/knotes.png
+%dir %{tde_datadir}/services/kresources/knotes
 %{tde_datadir}/services/kresources/knotes/imap.desktop
 %{tde_datadir}/services/kresources/knotes/local.desktop
 %{tde_datadir}/services/kresources/knotes_manager.desktop
@@ -1181,7 +1239,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-knotes-devel
 Summary:	Development files for knots
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-knotes = %{version}-%{release}
 Requires:	%{name}-tderesources-devel = %{version}-%{release}
 
@@ -1228,7 +1286,7 @@ described by RelaxNG schemes.
 
 %package -n trinity-kode-devel
 Summary:	Development files for trinity-kode
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kode = %{version}-%{release}
 
 %description -n trinity-kode-devel
@@ -1316,8 +1374,8 @@ scheduling, address book and other PIM functionality.
 %{tde_libdir}/libkpinterfaces.so.*
 %{tde_tdeappdir}/Kontact.desktop
 %{tde_tdeappdir}/kontactdcop.desktop
-%{tde_datadir}/apps/kontact
-%{tde_datadir}/apps/kontactsummary/kontactsummary_part.rc
+%{tde_datadir}/apps/kontact/
+%{tde_datadir}/apps/kontactsummary/
 %{tde_datadir}/config.kcfg/kontact.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/kontact.png
 %{tde_datadir}/icons/crystalsvg/*/actions/kontact_*.png
@@ -1326,6 +1384,7 @@ scheduling, address book and other PIM functionality.
 %{tde_datadir}/services/kcmkontactsummary.desktop
 %{tde_datadir}/services/kcmkorgsummary.desktop
 %{tde_datadir}/services/kcmsdsummary.desktop
+%dir %{tde_datadir}/services/kontact
 %{tde_datadir}/services/kontact/newstickerplugin.desktop
 %{tde_datadir}/services/kontact/specialdatesplugin.desktop
 %{tde_datadir}/services/kontact/summaryplugin.desktop
@@ -1355,7 +1414,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-kontact-devel
 Summary:	Development files for kontact
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-kontact = %{version}-%{release}
 
 %description -n trinity-kontact-devel
@@ -1420,6 +1479,7 @@ installed.
 %{tde_datadir}/autostart/korgac.desktop
 %{tde_datadir}/config.kcfg/korganizer.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/korganizer.png
+%dir %{tde_datadir}/services/kontact
 %{tde_datadir}/services/kontact/korganizerplugin.desktop
 %{tde_datadir}/services/kontact/journalplugin.desktop
 %{tde_datadir}/services/kontact/todoplugin.desktop
@@ -1453,7 +1513,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %package -n trinity-korganizer-devel
 Summary:	Development files for korganizer
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-korganizer = %{version}-%{release}
 
 %description -n trinity-korganizer-devel
@@ -1584,7 +1644,7 @@ This is the runtime package for programs that use the libindex library.
 
 %package -n trinity-libindex-devel
 Summary:	Trinity indexing library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libindex = %{version}-%{release}
 
 %description -n trinity-libindex-devel
@@ -1613,6 +1673,7 @@ library.
 Summary:	Trinity calendaring library
 Group:		Environment/Libraries
 #Requires:	%{name}-tderesources = %{version}-%{release}
+Requires:	trinity-libkmime = %{version}-%{release}
 
 %description -n trinity-libkcal
 This library provides a C++ API for handling the vCalendar and iCalendar
@@ -1633,7 +1694,8 @@ This is the runtime package for programs that use the libkcal-trinity library.
 %{tde_libdir}/libkcal.so.*
 %{tde_libdir}/libkcal_resourceremote.so.*
 %{tde_libdir}/libkholidays.so.*
-%{tde_datadir}/apps/libkholidays
+%{tde_datadir}/apps/libkholidays/
+%dir %{tde_datadir}/services/kresources/kcal
 %{tde_datadir}/services/kresources/kcal/imap.desktop
 %{tde_datadir}/services/kresources/kcal/kabc.desktop
 %{tde_datadir}/services/kresources/kcal/local.desktop
@@ -1651,7 +1713,7 @@ This is the runtime package for programs that use the libkcal-trinity library.
 
 %package -n trinity-libkcal-devel
 Summary:	Trinity calendaring library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkcal = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 Requires:	trinity-libktnef-devel = %{version}-%{release}
@@ -1665,7 +1727,7 @@ library.
 
 %files -n trinity-libkcal-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/libemailfunctions/idmapper.h
+%{tde_tdeincludedir}/libemailfunctions/
 %{tde_tdeincludedir}/libkcal
 %{tde_libdir}/libkcal.la
 %{tde_libdir}/libkcal.so
@@ -1686,6 +1748,7 @@ library.
 Summary:	Trinity PIM library
 Group:		Environment/Libraries
 Requires:	trinity-libkcal = %{version}-%{release}
+Requires:	trinity-libktnef = %{version}-%{release}
 
 Obsoletes:	libtdepim < %{version}-%{release}
 Provides:	libtdepim = %{version}-%{release}
@@ -1695,14 +1758,14 @@ This is the runtime package for programs that use the trinity-libtdepim library.
 
 %files -n trinity-libtdepim
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/plugins/designer/[kt]depimwidgets.la
-%{tde_tdelibdir}/plugins/designer/[kt]depimwidgets.so
+%{tde_tdelibdir}/plugins/designer/kdepimwidgets.la
+%{tde_tdelibdir}/plugins/designer/kdepimwidgets.so
 %{tde_tdelibdir}/plugins/designer/kpartsdesignerplugin.la
 %{tde_tdelibdir}/plugins/designer/kpartsdesignerplugin.so
-%{tde_libdir}/lib[kt]depim.so.*
-%{tde_datadir}/apps/[kt]depimwidgets
-%{tde_datadir}/apps/lib[kt]depim
-%{tde_datadir}/apps/[kt]depim
+%{tde_libdir}/libkdepim.so.*
+%{tde_datadir}/apps/kdepimwidgets
+%{tde_datadir}/apps/libkdepim
+%{tde_datadir}/apps/kdepim
 %{tde_datadir}/config.kcfg/pimemoticons.kcfg
 %{tde_datadir}/icons/crystalsvg/22x22/actions/button_fewer.png
 %{tde_datadir}/icons/crystalsvg/22x22/actions/button_more.png
@@ -1725,7 +1788,7 @@ done
 
 %package -n trinity-libtdepim-devel
 Summary:	Trinity PIM library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libtdepim = %{version}-%{release}
 Requires:	trinity-tdelibs-devel >= %{version}
 
@@ -1772,7 +1835,7 @@ This is the runtime package for programs that use the libkgantt-trinity library.
 
 %package -n trinity-libkgantt-devel
 Summary:	Trinity gantt charting library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkgantt = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -1836,7 +1899,7 @@ done
 
 %package -n trinity-libkleopatra-devel
 Summary:	Trinity GnuPG interface libraries [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkleopatra = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -1892,7 +1955,7 @@ an object tree.
 
 %package -n trinity-libkmime-devel
 Summary:	Development files for libkmime
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkmime = %{version}-%{release}
 
 %description -n trinity-libkmime-devel
@@ -1913,7 +1976,7 @@ Requires:	trinity-libkmime = %{version}-%{release}
 
 %package -n trinity-libkpimexchange
 Summary:	Trinity PIM Exchange library
-Group:		Environment/Libraries
+Group:		Development/Libraries/Other
 
 %description -n trinity-libkpimexchange
 This is the runtime package for programs that use the libkpimexchange-trinity
@@ -1935,7 +1998,7 @@ library.
 
 %package -n trinity-libkpimexchange-devel
 Summary:	Trinity PIM Exchange library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkpimexchange = %{version}-%{release}
 Requires:	trinity-libkcal-devel = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
@@ -1946,6 +2009,7 @@ libkpimexchange-trinity library.
 
 %files -n trinity-libkpimexchange-devel
 %defattr(-,root,root,-)
+%dir %{tde_tdeincludedir}/kdepim
 %{tde_tdeincludedir}/kdepim/exchangeaccount.h
 %{tde_tdeincludedir}/kdepim/exchangeclient.h
 %{tde_libdir}/libkpimexchange.la
@@ -1984,7 +2048,7 @@ library.
 
 %package -n trinity-libkpimidentities-devel
 Summary:	Development files for libkpimidentities
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libkpimidentities = %{version}-%{release}
 
 %description -n trinity-libkpimidentities-devel
@@ -2024,7 +2088,7 @@ This is the runtime package for programs that use the libksieve-trinity library.
 
 %package -n trinity-libksieve-devel
 Summary:	Trinity mail/news message filtering library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libksieve = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -2072,7 +2136,7 @@ This is the runtime library for packages using the ktnef-trinity library.
 
 %package -n trinity-libktnef-devel
 Summary:	KTNEF handler library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libktnef = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
@@ -2122,7 +2186,7 @@ This is the runtime package for programs that use the libmimelib-trinity library
 
 %package -n trinity-libmimelib-devel
 Summary:	Trinity mime library [development]
-Group:		Development/Libraries
+Group:		Development/Libraries/Other
 Requires:	trinity-libmimelib = %{version}-%{release}
 
 %description -n trinity-libmimelib-devel
@@ -2167,7 +2231,7 @@ dialing calls, phonebook, and phone status monitoring.
 %{tde_datadir}/services/libkmobile_gammu.desktop
 %{tde_datadir}/services/libkmobile_skeleton.desktop
 %{tde_datadir}/servicetypes/libkmobile.desktop
-%{tde_datadir}/apps/kmobile/kmobileui.rc
+%{tde_datadir}/apps/kmobile/
 %{tde_tdeappdir}/kmobile.desktop
 %{tde_tdelibdir}/libkmobile_skeleton.la
 %{tde_tdelibdir}/libkmobile_skeleton.so
@@ -2192,7 +2256,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -2200,7 +2264,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch14 -p1 -b .ldflags
 
 # Fix 'ical2vcal' contains '/bin/perl' instead of '/usr/bin/perl'
 if [ -x /usr/bin/perl ]; then
@@ -2230,6 +2293,7 @@ fi
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_NO_BUILTIN_CHRPATH=ON \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DCMAKE_PROGRAM_PATH="%{tde_bindir}" \
   \
@@ -2268,6 +2332,36 @@ fi
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
+
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/akregator.desktop       Network  RSS-News
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/groupwarewizard.desktop Utility  DesktopSettings X-TDE-Utilities-PIM
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kaddressbook.desktop
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kalarm.desktop          Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/kandy.desktop           Utility  Telephony X-TDE-Utilities-Peripherals
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/karm.desktop            Utility  TimeUtility X-TDE-Utilities-PIM
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KNode.desktop
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/knotes.desktop          Utility  DesktopUtility X-TDE-Utilities-Desktop
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/KMail.desktop
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/Kontact.desktop         Office   Core-Office
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/korganizer.desktop      Office   Calendar
+%suse_update_desktop_file -r    %{?buildroot}%{tde_tdeappdir}/KOrn.desktop            Utility  Applet X-TDE-More
+%suse_update_desktop_file -u    %{?buildroot}%{tde_tdeappdir}/ktnef.desktop           Network  Email
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kmobile.desktop         Utility  Telephony X-TDE-Utilities-Peripherals
+%if 0%{?with_kitchensync}
+%suse_update_desktop_file       %{?buildroot}%{tde_tdeappdir}/kitchensync.desktop     Utility  X-SuSE-SyncUtility
+%endif
+%endif
+
+# Adds missing icons in 'hicolor' theme
+pushd "%{?buildroot}%{tde_datadir}/icons"
+for i in {16,32,48};           do %__cp crystalsvg/"$i"x"$i"/apps/kandy.png                                hicolor/"$i"x"$i"/apps/kandy.png      ;done
+for i in {16,22,32,48,64,128}; do %__cp %{tde_datadir}/icons/crystalsvg/"$i"x"$i"/filesystems/network.png  hicolor/"$i"x"$i"/apps/kleopatra.png  ;done
+popd
+
+# Links duplicate files
+%fdupes "%{?buildroot}%{tde_datadir}"
 
 
 %clean

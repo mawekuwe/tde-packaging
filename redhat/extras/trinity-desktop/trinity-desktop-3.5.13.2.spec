@@ -80,27 +80,9 @@ Requires:	trinity-tdewebdev >= %{version}
 Group:		User Interface/Desktops
 Summary:	Meta-package to install all TDE applications
 
-# Some applications are disabled for now ...
-# Compiz-related stuff does not work (obsolete)
-#Requires: trinity-compizconfig-backend-kconfig
-#Requires: trinity-desktop-effects-kde
-#Requires: trinity-fusion-icon
-
-# Obsolete l10n package
-#Requires: trinity-filelight-l10n
-
-# Not even an RPM package ...
-#Requires: trinity-konstruct
-
-# Debian/Ubuntu specific ...
-#Requires: trinity-adept
-
-# Future R14 packages
-#Requires: trinity-kvpnc
-#Requires: trinity-qt4-tqt-theme-engine
-
 # Warning, k9copy requires ffmpeg
 # Warning, tderadio requires libmp3lame
+
 Requires: trinity-abakus
 Requires: trinity-amarok
 Requires: trinity-basket
@@ -109,8 +91,8 @@ Requires: trinity-digikam
 Requires: trinity-dolphin
 Requires: trinity-filelight
 Requires: trinity-gwenview
-#Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
+Requires: trinity-k9copy
 Requires: trinity-kaffeine
 Requires: trinity-kaffeine-mozilla
 Requires: trinity-katapult
@@ -119,7 +101,6 @@ Requires: trinity-kbfx
 Requires: trinity-kbookreader
 Requires: trinity-kchmviewer
 Requires: trinity-kcpuload
-Requires: trinity-k9copy
 Requires: trinity-kdiff3
 Requires: trinity-kdirstat
 Requires: trinity-keep
@@ -147,22 +128,22 @@ Requires: trinity-ktorrent
 Requires: trinity-kuickshow
 Requires: trinity-kvirc
 Requires: trinity-kvkbd
-Requires: trinity-twin-style-crystal
 Requires: trinity-piklab
 Requires: trinity-potracegui
 Requires: trinity-smb4k
 Requires: trinity-smartcardauth
 Requires: trinity-soundkonverter
 Requires: trinity-tde-guidance
-Requires: trinity-tde-guidance-powermanager
 Requires: trinity-tde-style-lipstik
 Requires: trinity-tde-style-qtcurve
 Requires: trinity-tde-systemsettings
 Requires: trinity-tdeio-apt
 Requires: trinity-tdeio-locate
 Requires: trinity-tdeio-umountwrapper
+Requires: trinity-tderadio
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
+Requires: trinity-twin-style-crystal
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
 
@@ -171,35 +152,12 @@ Requires: trinity-yakuake
 Requires: trinity-tdesudo
 %endif
 
-# Disabled applications for RHEL5
+# RHEL5: pilot library is too old
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-# On RHEL 5, HAL version is too old for kpowersave .
-Requires: trinity-kpowersave
-# On RHEL 5, GTK2 version is too old for GTK stuff ...
-Requires: trinity-gtk-qt-engine
-# RHEL5: kpilot library is too old
 Requires: trinity-kpilot
 %endif
 
-# On RHEL 5/7, lilypond is not available, so no rosegarden :'-(
-%if 0%{?rhel} == 5 || 0%{?rhel} == 7
-%else
-Requires: trinity-rosegarden
-%endif
-
-# On RHEL 7, lirc is not available, so not tderaiod :'-(
-%if 0%{?rhel} != 7
-Requires: trinity-tderadio
-%endif
-
-# This one causes several crashes . Obsolete.
-#Requires: trinity-kgtk-qt3
-#Obsoletes: trinity-kgtk-qt3
-
-# OBSOLETE: beagle does not exist anymore. Kerry is now useless.
-# RHEL, openSUSE 12: no Beagle library
-Obsoletes: trinity-kerry
-
+# Network management
 # RHEL 6 and openSUSE 11.x: knetworkmanager8
 %if 0%{?rhel} == 6
 Requires: trinity-knetworkmanager
@@ -207,6 +165,33 @@ Requires: trinity-knetworkmanager
 %if 0%{?suse_version} && 0%{?suse_version} <= 1140
 Requires: trinity-knetworkmanager
 %endif
+
+# Power management
+Requires: trinity-tde-guidance-powermanager
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+# On RHEL 5, HAL version is too old for kpowersave .
+Requires: trinity-kpowersave
+%endif
+
+# Decoration-related stuff (not installed by default)
+#Requires: trinity-kgtk-qt3
+#Requires: trinity-gtk-qt-engine
+#Requires: trinity-gtk3-tqt-engine
+#Requires: trinity-qt4-tqt-theme-engine
+
+# On RHEL 5/7, lilypond is not available, so no rosegarden :'-(
+%if 0%{?rhel} == 5 || 0%{?rhel} == 7
+%else
+Requires: trinity-rosegarden
+%endif
+
+# Compiz-related stuff does not work (obsolete)
+#Requires: trinity-compizconfig-backend-kconfig
+#Requires: trinity-desktop-effects-kde
+#Requires: trinity-fusion-icon
+
+# Useless l10n package
+#Requires: trinity-filelight-l10n
 
 # RHEL 4
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -216,7 +201,7 @@ Requires: trinity-kmplayer
 # No OTR support
 Requires: trinity-kopete-otr
 # No DBUS support
-Requires: trinity-kdbusnotification
+Requires: trinity-kdbusfnotification
 # Subversion 1.1 is too old
 Requires: trinity-tdesvn
 %endif

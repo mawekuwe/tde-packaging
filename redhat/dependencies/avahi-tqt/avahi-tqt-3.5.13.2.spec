@@ -29,7 +29,7 @@
 Name:		trinity-avahi-tqt
 Epoch:		%{tde_epoch}
 Version:	0.6.30
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Avahi TQt integration library
 Group:		System/Libraries
 URL:		http://www.trinitydesktop.org/
@@ -54,8 +54,25 @@ BuildRequires:	gcc-c++
 BuildRequires:	pkgconfig
 BuildRequires:	libtool
 
+# GLIB2 support
+BuildRequires:	glib2-devel
+
 # GETTEXT support
 BuildRequires:	gettext-devel
+
+# Xi support
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libxi-devel
+%endif
+%if 0%{?suse_version} >= 1220 || 0%{?rhel} >= 5 || 0%{?fedora}
+BuildRequires:	libXi-devel
+%endif
+%if 0%{?suse_version} == 1140
+BuildRequires:	libXi6-devel
+%endif
 
 # DBUS support
 %if 0%{?suse_version}
@@ -70,7 +87,7 @@ BuildRequires:	libcap-devel
 
 # AVAHI support
 %if 0%{?mgaversion} || 0%{?mdkversion}
-%define avahi_devel %{_lib}avahi-client-devel
+%define avahi_devel libavahi-client-devel
 %endif
 %if 0%{?suse_version} || 0%{?rhel} || 0%{?fedora}
 %define avahi_devel avahi-devel
@@ -176,7 +193,7 @@ into a TQt main loop application.
 
 ##########
 
-%if 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
