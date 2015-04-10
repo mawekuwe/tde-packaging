@@ -138,7 +138,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %suse_update_desktop_file -G "Extended Clipboard" basket DesktopUtility
 %endif
 
-
 # Apps that should stay in TDE
 echo "OnlyShowIn=TDE;" >>"%{?buildroot}%{tde_tdeappdir}/%{tde_pkg}.desktop"
 

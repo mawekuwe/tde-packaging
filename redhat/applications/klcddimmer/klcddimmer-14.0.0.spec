@@ -75,10 +75,7 @@ BuildRequires:	brp-check-trinity
 
 
 %description
-KKBSwitch displays an icon in the system tray that indicates which 
-layout is  KLcdDimmer is applet for simple adjust LCD brightness.
-Notice that this applet relies on an external program to get/set the 
-brightness.
+
 
 
 ##########
