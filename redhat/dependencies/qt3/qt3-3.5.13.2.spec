@@ -37,31 +37,8 @@ Source5: assistant3.desktop
 Source6: linguist3.desktop
 Source7: qtconfig3.desktop
 
-Patch1: qt-3.3.4-print-CJK.patch
-Patch2: qt-3.0.5-nodebug.patch
-Patch3: qt-3.1.0-makefile.patch
-Patch4: qt-x11-free-3.3.7-umask.patch
-Patch5: qt-x11-free-3.3.6-strip.patch
-Patch7: qt-x11-free-3.3.2-quiet.patch
-Patch12: qt-uic-nostdlib.patch
-Patch13: qt-x11-free-3.3.6-qfontdatabase_x11.patch
-Patch25: qt-x11-free-3.3.8b-uic-multilib.patch
-Patch27: qt-3.3.6-fontrendering-ml_IN-209097.patch
-Patch29: qt-3.3.8-fontrendering-as_IN-209972.patch
-Patch31: qt-3.3.6-fontrendering-te_IN-211259.patch
-Patch32: qt-3.3.6-fontrendering-214371.patch
-Patch33: qt-3.3.8-fontrendering-214570.patch
-Patch34: qt-3.3.6-fontrendering-ml_IN-209974.patch
-Patch35: qt-3.3.6-fontrendering-ml_IN-217657.patch
-Patch37: qt-3.3.6-fontrendering-gu-228452.patch
-Patch39: qt-x11-free-3.3.7-arm.patch
-Patch40: qt-x11-free-3.3.8b-typo.patch
-
-# immodule patches
-Patch53: qt-x11-free-3.3.6-qt-x11-immodule-unified-qt3.3.5-20060318-resetinputcontext.patch
-
-# upstream patches
-Patch200: qt-x11-free-3.3.4-fullscreen.patch
+# Monolithic patch for QT3 for TDE 3.5.13.2
+Patch1: qt3-3.5.13.2.patch
 
 %define qt_dirname qt-3.3
 %define qtdir %{_libdir}/%{qt_dirname}
@@ -374,36 +351,8 @@ for the Qt 3 toolkit.
 %prep
 %setup -q -n trinity-qt3-3.5.13.2%{?preversion:~%{preversion}}
 
-%patch1 -p1 -b .cjk
-%patch2 -p1 -b .ndebug
-%patch3 -p1 -b .makefile
-%patch4 -p1 -b .umask
-%patch5 -p1
-%patch7 -p1 -b .quiet
-%patch12 -p1 -b .nostdlib
-%patch13 -p1 -b .fonts
-%patch25 -p1 -b .uic-multilib
-%patch27 -p1 -b .fontrendering-ml_IN-bz#209097
-%patch29 -p1 -b .fontrendering-as_IN-bz#209972
-%patch31 -p1 -b .fontrendering-te_IN-bz#211259
-%patch32 -p1 -b .fontrendering-bz#214371
-%patch33 -p1 -b .fontrendering-#214570
-%patch34 -p1 -b .fontrendering-#209974
-%patch35 -p1 -b .fontrendering-ml_IN-217657
-%patch37 -p1 -b .fontrendering-gu-228452
-# it's not 100% clear to me if this is safe for all archs -- Rex
-%ifarch armv5tel
-%patch39 -p1 -b .arm
-%endif
-%patch40 -p1
+%patch1 -p1
 
-# immodule patches
-%if %{immodule}
-%patch53 -p1 -b .resetinputcontext
-%endif
-
-# upstream patches
-%patch200 -p1 -b .fullscreen
 
 # convert to UTF-8
 iconv -f iso-8859-1 -t utf-8 < doc/man/man3/qdial.3qt > doc/man/man3/qdial.3qt_
@@ -575,13 +524,13 @@ for a in */*/Makefile ; do
   mv -v ${a}.2 $a
 done
 
-install -D -m 644 %{SOURCE2} %{buildroot}/etc/profile.d/qt3.sh
-install -D -m 644 %{SOURCE3} %{buildroot}/etc/profile.d/qt3.csh
+install -D -m 644 "%{SOURCE2}" %{buildroot}/etc/profile.d/qt3.sh
+install -D -m 644 "%{SOURCE3}" %{buildroot}/etc/profile.d/qt3.csh
 
 # Add desktop files
-mkdir -p %{buildroot}%{_datadir}/applications
+mkdir -p "%{buildroot}%{_datadir}/applications"
 desktop-file-install \
-  --dir %{buildroot}%{_datadir}/applications \
+  --dir "%{buildroot}%{_datadir}/applications" \
   --vendor="qt" \
   %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7}
 
@@ -596,14 +545,13 @@ mkdir -p %{buildroot}/etc/ld.so.conf.d
 echo "%{qtdir}/lib" > %{buildroot}/etc/ld.so.conf.d/qt-%{_arch}.conf
 
 # install icons
-mkdir %{buildroot}%{_datadir}/pixmaps
-install -m 644 tools/assistant/images/qt.png %{buildroot}%{_datadir}/pixmaps/qtconfig3.png
-install -m 644 tools/assistant/images/designer.png %{buildroot}%{_datadir}/pixmaps/designer3.png
-install -m 644 tools/assistant/images/assistant.png %{buildroot}%{_datadir}/pixmaps/assistant3.png
-install -m 644 tools/assistant/images/linguist.png %{buildroot}%{_datadir}/pixmaps/linguist3.png
+install -D -m 644 "tools/assistant/images/qt.png"         "%{buildroot}%{_datadir}/pixmaps/qtconfig3.png"
+install -D -m 644 "tools/assistant/images/designer.png"   "%{buildroot}%{_datadir}/pixmaps/designer3.png"
+install -D -m 644 "tools/assistant/images/assistant.png"  "%{buildroot}%{_datadir}/pixmaps/assistant3.png"
+install -D -m 644 "tools/assistant/images/linguist.png"   "%{buildroot}%{_datadir}/pixmaps/linguist3.png"
 
 # own style directory
-mkdir -p %{buildroot}%{qtdir}/plugins/styles
+mkdir -p "%{buildroot}%{qtdir}/plugins/styles"
 
 
 %clean

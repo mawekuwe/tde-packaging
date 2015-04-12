@@ -1,0 +1,516 @@
+commit 1ee1ffbae69dc78721af139f0794628571fd35ef
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1386900429 +0100
+
+    Fix FTBFS with libfreetype6 >= 2.5.x
+    This resolves Bug 1765
+
+diff --git a/config.tests/x11/xfreetype.test b/config.tests/x11/xfreetype.test
+index 5cabc32..d4cb4ba 100755
+--- a/config.tests/x11/xfreetype.test
++++ b/config.tests/x11/xfreetype.test
+@@ -116,12 +116,15 @@ fi
+ # check for freetype2 headers
+ FREETYPE2_INCDIR=
+ if [ "$XFT" = "yes" ]; then
+-    INC="freetype2/freetype/freetype.h"
+     XDIRS=`sed -n -e '/^QMAKE_INCDIR_X11[	]*=/ { s/[^=]*=[	 ]*//; s/-I/ /g; p; }' $XCONFIG`
+     LDIRS=`sed -n -e '/^QMAKE_INCDIR[	]*=/ { s/[^=]*=[	 ]*//; s/-I/ /g; p; }' $XCONFIG`
+     INCDIRS="$IN_INCDIRS $XDIRS $LDIRS /usr/include /include"
+     F=
+     for INCDIR in $INCDIRS; do
++	INC="freetype2/freetype/freetype.h"  # libfreetype <= 2.4.9-1.1
++	if ! [ -f $INCDIR/$INC ]; then
++	    INC="freetype2/freetype.h"  # libfreetype >= 2.5.1-1
++	fi
+ 	if [ -f $INCDIR/$INC ]; then
+ 	    # detect major version of freetype2
+ 	    FREETYPE_MAJOR=`grep "#define FREETYPE_MAJOR" $INCDIR/$INC | head -n 1 | awk '{ print \$3 }'`
+--- qt-x11-free-3.0.5/src/tools/qgpluginmanager.cpp.bero	2002-08-21 15:16:19.000000000 +0200
++++ qt-x11-free-3.0.5/src/tools/qgpluginmanager.cpp	2002-08-21 15:16:41.000000000 +0200
+@@ -501,10 +501,10 @@
+ 			     (*f).latin1(),
+ 			     (const char*) QFile::encodeName( old->library() ) );
+ 		} else {
+-		    qWarning("%s: Feature %s already defined in %s!",
++/*		    qWarning("%s: Feature %s already defined in %s!",
+ 			     (const char*) QFile::encodeName( old->library() ),
+ 			     (*f).latin1(),
+-			     (const char*) QFile::encodeName( plugin->library() ) );
++			     (const char*) QFile::encodeName( plugin->library() ) ); */
+ 		}
+ 	    }
+ 	}
+--- qt-x11-free-3.1.0/Makefile.orig	2002-11-14 15:44:17.000000000 +0100
++++ qt-x11-free-3.1.0/Makefile	2002-11-14 15:49:33.000000000 +0100
+@@ -11,7 +11,7 @@
+ install: FORCE
+ 	@$(MAKE) qt.install
+ 
+-all: symlinks src-qmake src-moc sub-src sub-tools sub-tutorial sub-examples
++all: symlinks src-qmake src-moc sub-src sub-tools
+ 	@echo
+ 	@echo "The Qt library is now built in ./lib"
+ 	@echo "The Qt examples are built in the directories in ./examples"
+--- qt-x11-free-3.3.4/src/kernel/qpsprinter.cpp.cjk	2005-01-21 18:16:11.000000000 +0100
++++ qt-x11-free-3.3.4/src/kernel/qpsprinter.cpp	2005-01-26 15:09:20.911239907 +0100
+@@ -4748,10 +4748,11 @@
+ 
+ // GB18030 fonts on Turbolinux
+ static const psfont SongGBK2K [] = {
+-    { "MSung-Light-GBK2K-H", 0, 100. },
+-    { "MSung-Italic-GBK2K-H", 0, 100. },
+-    { "MSung-Bold-GBK2K-H", 0, 100. },
+-    { "MSung-BoldItalic-GBK2K-H", 0, 100. },
++    { "MSungGBK-Light-GBK2K-H", 0, 100. },
++    { "MSungGBK-Light-GBK2K-H", 0, 100. },
++    { "MSungGBK-Light-GBK2K-H", 0, 100. },
++    { "MSungGBK-Light-GBK2K-H", 0, 100. },
++	 
+ };
+ static const psfont KaiGBK2K [] = {
+     { "MKai-Medium-GBK2K-H", 0, 100. },
+diff -pruN qt-x11-free-3.3.6.org/src/kernel/qscriptengine_x11.cpp qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp
+--- qt-x11-free-3.3.6.org/src/kernel/qscriptengine_x11.cpp	2006-12-04 18:47:11.000000000 +0530
++++ qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp	2006-12-05 12:05:10.000000000 +0530
+@@ -1412,7 +1412,10 @@ static bool indic_shape_syllable(QOpenTy
+                     toPos += 2;
+                 if (script == QFont::Devanagari || script == QFont::Gujarati || script == QFont::Bengali) {
+                     if (matra_position == Post || matra_position == Split) {
+-                        toPos = matra+1;
++                        if (matra_position == Post )
++			toPos = matra;
++			else
++			toPos = matra+1;
+                         matra -= 2;
+                     }
+                 } else if (script == QFont::Kannada) {
+--- qt3/src/kernel/qscriptengine_x11.cpp.fontrendering-gu-228452	2012-09-29 11:30:23.821539127 +0200
++++ qt3/src/kernel/qscriptengine_x11.cpp	2012-09-29 11:31:59.679413873 +0200
+@@ -261,7 +261,7 @@
+     Other, Other, Other, Other,
+     Other, Other, Other, Other,
+ 
+-    Other, Other, Other, Other,
++    Other, Other, VowelMark, VowelMark,
+     Other, Other, Other, Other,
+     Other, Other, Other, Other,
+     Other, Other, Other, Other,
+--- qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp.bak	2006-10-13 13:21:37.000000000 +0800
++++ qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp	2006-10-13 13:57:36.000000000 +0800
+@@ -868,7 +868,7 @@
+     None, None, None, None,
+     None, None, None, Post,
+ 
+-    Post, None, Below, None,
++    None, None, None, None,
+     None, Post, None, None,
+     None, None, None, None,
+     None, None, Post, Post,
+@@ -1271,6 +1271,16 @@
+     int base = 0;
+     int reph = -1;
+ 
++    //for the special conjuctions about Cons+0d4d+0d30 and Cons+0d40+0d31 of Malayalam
++    bool is_special_conjuction_malayalam = false;
++	
++    if ((len == 3) && 
++	((reordered[2] == 0x0d30) || (reordered[2] == 0x0d31)) && 
++	(reordered[1] == 0x0d4d) && 
++	((reordered[0] >= 0x0d15) && (reordered[0] <= 0x0d39))) {
++        is_special_conjuction_malayalam = true;
++    }
++
+ #ifdef INDIC_DEBUG
+     IDEBUG("original:");
+     for (i = 0; i < len; i++) {
+@@ -1547,6 +1557,15 @@
+                 reph = i;
+     }
+ 
++    //for the special conjuctions about Cons+0d4d+0d30 and Cons+0d40+0d31 of Malayalam
++    if (is_special_conjuction_malayalam) {
++        unsigned short temp;
++		
++	temp = reordered[0];		
++	reordered[0] = reordered[2];		
++	reordered[2] = temp;	
++    }
++
+     if (item->font->stringToCMap((const QChar *)reordered.data(), len, item->glyphs, item->advances,
+                                  &item->num_glyphs, item->flags & QTextEngine::RightToLeft) != QFontEngine::NoError)
+         return FALSE;
+@@ -1658,6 +1677,15 @@
+ 
+         // halant always applies
+ 
++        //for the special conjuctions about Cons+0d4d+0d30 and Cons+0d40+0d31 of Malayalam
++        if (is_special_conjuction_malayalam) {
++	    unsigned int temp;
++			
++	    temp = properties[0];
++	    properties[0] = ~PreSubstProperty;			
++	    properties[2] = temp; 
++	}
++
+ #ifdef INDIC_DEBUG
+         {
+             IDEBUG("OT properties:");
+--- qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp.orig	2006-11-29 17:17:26.000000000 +0100
++++ qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp	2006-11-29 17:22:34.000000000 +0100
+@@ -864,7 +864,7 @@
+     None, None, None, Post,
+ 
+     None, None, None, None,
+-    None, Post, None, None,
++    None, None, None, None,
+     None, None, None, None,
+     None, None, Post, Post,
+ 
+diff -pruN qt-x11-free-3.3.6.org/src/kernel/qfont_x11.cpp qt-x11-free-3.3.6/src/kernel/qfont_x11.cpp
+--- qt-x11-free-3.3.6.org/src/kernel/qfont_x11.cpp	2006-03-08 00:00:00.000000000 +0530
++++ qt-x11-free-3.3.6/src/kernel/qfont_x11.cpp	2006-12-04 18:49:09.000000000 +0530
+@@ -709,7 +709,7 @@ int QFontMetrics::charWidth( const QStri
+     if ( script >= QFont::Arabic && script <= QFont::Khmer ) {
+ 	// complex script shaping. Have to do some hard work
+ 	int from = QMAX( 0,  pos - 8 );
+-	int to = QMIN( (int)str.length(), pos + 8 );
++	int to = str.length();
+ 	QConstString cstr( str.unicode()+from, to-from);
+ 	QTextEngine layout( cstr.string(), d );
+ 	layout.itemize( QTextEngine::WidthOnly );
+--- qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp.bak	2006-10-18 17:55:23.000000000 +0800
++++ qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp	2006-10-19 16:42:31.641160984 +0800
+@@ -786,7 +786,7 @@
+     Below, None, Below, Below,
+     Below, Below, Below, Below,
+ 
+-    Below, None, Below, Below,
++    Below, Below, Below, Below,
+     None, Below, Below, Below,
+     Below, Below, None, None,
+     None, None, Post, Above,
+--- qt-x11-free-3.3.8/src/kernel/qscriptengine_x11.cpp.orig	2007-04-11 15:05:34.000000000 +0200
++++ qt-x11-free-3.3.8/src/kernel/qscriptengine_x11.cpp	2007-04-11 15:22:19.000000000 +0200
+@@ -1240,7 +1240,7 @@
+     int script = item->script;
+     Q_ASSERT(script >= QFont::Devanagari && script <= QFont::Sinhala);
+     const unsigned short script_base = 0x0900 + 0x80*(script-QFont::Devanagari);
+-    const unsigned short ra = script_base + 0x30;
++    unsigned short ra = script_base + 0x30;            //it was const unsigned short ra before modification
+     const unsigned short halant = script_base + 0x4d;
+     const unsigned short nukta = script_base + 0x3c;
+ 
+@@ -1278,6 +1278,11 @@
+     }
+ #endif
+ 
++    unsigned short *chkAssamese=reordered.data();
++    if((script == QFont::Bengali) && (*chkAssamese==0x09F0)) //if it is assamese ra
++    {
++       ra  = script_base + 0x70;
++    }
+     if (len != 1) {
+         unsigned short *uc = reordered.data();
+         bool beginsWithRa = FALSE;
+--- qt-x11-free-3.3.8/src/kernel/qscriptengine_x11.cpp.orig	2007-04-11 15:05:34.000000000 +0200
++++ qt-x11-free-3.3.8/src/kernel/qscriptengine_x11.cpp	2007-04-11 15:22:19.000000000 +0200
+@@ -601,7 +601,7 @@
+     None, None, None, None,
+     None, None, None, None,
+ 
+-    None, None, None, None,
++    Below, None, None, None,
+     None, None, None, None,
+     None, None, None, None,
+     None, None, None, None,
+--- qt-x11-free-3.3.2/tools/designer/uic/main.cpp.sopwith	2004-06-16 17:14:17.000000000 -0400
++++ qt-x11-free-3.3.2/tools/designer/uic/main.cpp	2004-06-16 17:21:43.000000000 -0400
+@@ -149,6 +149,9 @@
+ 		} else {
+ 		    trmacro = &opt[1];
+ 		}
++	    } else if ( opt == "nostdlib") {
++		QStringList x;
++		QApplication::setLibraryPaths(x);
+ 	    } else if ( opt == "L" ) {
+ 		if ( !(n < argc-1) ) {
+ 		    error = "Missing plugin path.";
+--- qt-x11-free-3.3.2/src/kernel/qpixmap_x11.cpp.orig	2004-05-10 13:54:03.592289052 +0200
++++ qt-x11-free-3.3.2/src/kernel/qpixmap_x11.cpp	2004-05-10 13:56:10.165560473 +0200
+@@ -288,8 +288,9 @@
+ {
+ #if defined(QT_CHECK_STATE)
+     if ( qApp->type() == QApplication::Tty ) {
+-	qWarning( "QPixmap: Cannot create a QPixmap when no GUI "
+-		  "is being used" );
++//	qWarning( "QPixmap: Cannot create a QPixmap when no GUI "
++//		  "is being used" );
++	;
+     }
+ #endif
+ 
+--- qt-x11-free-3.3.3/src/kernel/qapplication_x11.cpp.orig	2004-11-09 18:57:15.012843629 +0100
++++ qt-x11-free-3.3.3/src/kernel/qapplication_x11.cpp	2004-11-09 19:02:31.351637807 +0100
+@@ -1412,7 +1412,7 @@
+ 			       False, XA_ATOM, &type, &format, &nitems, &after, &data);
+ 
+ 	    if (type == XA_ATOM && format == 32) {
+-		ts.writeBlock((const char *) data, nitems * 4);
++		ts.writeBlock((const char *) data, nitems * sizeof(long));
+ 		offset += nitems;
+ 	    } else
+ 		after = 0;
+--- qt-x11-free-3.3.6/src/kernel/qfontdatabase_x11.cpp.fonts	2004-08-05 16:42:06.000000000 +0200
++++ qt-x11-free-3.3.6/src/kernel/qfontdatabase_x11.cpp	2004-09-28 16:11:54.955374161 +0200
+@@ -975,7 +981,7 @@
+     };
+     const XftDefaultFont defaults[] = {
+ 	{ "Serif", "serif", FALSE },
+-	{ "Sans Serif", "sans-serif", FALSE },
++	{ "Sans", "sans-serif", FALSE },
+         { "Monospace", "monospace", TRUE },
+ 	{ 0, 0, FALSE }
+     };
+--- ./src/widgets/qtextedit.cpp.resetinputcontext	2012-08-04 14:53:34.000000000 +0200
++++ ./src/widgets/qtextedit.cpp	2012-09-29 11:36:19.410163805 +0200
+@@ -1904,9 +1904,6 @@
+ 
+ void QTextEdit::removeSelectedText( int selNum )
+ {
+-    if(selNum != 0)
+-        resetInputContext();
+-
+     QTextCursor c1 = doc->selectionStartCursor( selNum );
+     c1.restoreState();
+     QTextCursor c2 = doc->selectionEndCursor( selNum );
+@@ -3169,7 +3166,6 @@
+ 	return;
+     }
+ #endif
+-    resetInputContext();
+     QTextParagraph *p = doc->paragAt( para );
+     if ( !p )
+ 	return;
+@@ -3196,7 +3192,6 @@
+ 	return;
+     }
+ #endif
+-    resetInputContext();
+     for ( int i = 0; i < (int)doc->numSelections(); ++i )
+ 	doc->removeSelection( i );
+ 
+@@ -3238,7 +3233,6 @@
+     if ( d->optimMode )
+ 	return;
+ #endif
+-    resetInputContext();
+     QTextParagraph *p = doc->paragAt( para );
+     if ( !p )
+ 	return;
+@@ -3283,7 +3277,6 @@
+     if ( isReadOnly() || !doc->commands()->isUndoAvailable() || !undoEnabled )
+ 	return;
+ 
+-    resetInputContext();
+     for ( int i = 0; i < (int)doc->numSelections(); ++i )
+ 	doc->removeSelection( i );
+ 
+@@ -3334,7 +3327,6 @@
+     if ( isReadOnly() || !doc->commands()->isRedoAvailable() || !undoEnabled )
+ 	return;
+ 
+-    resetInputContext();
+     for ( int i = 0; i < (int)doc->numSelections(); ++i )
+ 	doc->removeSelection( i );
+ 
+@@ -3448,7 +3440,6 @@
+ {
+     if ( isReadOnly() )
+ 	return;
+-    resetInputContext();
+     normalCopy();
+     removeSelectedText();
+     updateMicroFocusHint();
+@@ -3936,7 +3927,6 @@
+ 	return;
+     }
+ #endif
+-    resetInputContext();
+     if ( !isModified() && isReadOnly() &&
+ 	 this->context() == context && this->text() == text )
+ 	return;
+@@ -4110,7 +4100,6 @@
+     if ( !p )
+ 	return;
+ 
+-    resetInputContext();
+     if ( index > p->length() - 1 )
+ 	index = p->length() - 1;
+ 
+@@ -4167,7 +4156,6 @@
+ 	return;
+     }
+ #endif
+-    resetInputContext();
+     if ( doc->hasSelection( selNum ) ) {
+ 	doc->removeSelection( selNum );
+ 	repaintChanged();
+@@ -5074,7 +5062,6 @@
+     }
+     if ( dc == doc )
+ 	return;
+-    resetInputContext();
+     doc = dc;
+     delete cursor;
+     cursor = new QTextCursor( doc );
+--- qt-x11-free-3.3.6/mkspecs/linux-g++/qmake.conf.orig	2006-06-21 15:37:53.000000000 +0200
++++ qt-x11-free-3.3.6/mkspecs/linux-g++/qmake.conf	2006-06-21 15:38:02.000000000 +0200
+@@ -84,7 +84,7 @@
+ QMAKE_MOVE		= mv -f
+ QMAKE_DEL_FILE		= rm -f
+ QMAKE_DEL_DIR		= rmdir
+-QMAKE_STRIP             =
+-QMAKE_STRIPFLAGS_LIB 	+= --strip-unneeded
++QMAKE_STRIP             =
++QMAKE_STRIPFLAGS_LIB 	+=
+ QMAKE_CHK_DIR_EXISTS	= test -d
+ QMAKE_MKDIR		= mkdir -p
+--- qt-x11-free-3.3.6/mkspecs/linux-g++-32/qmake.conf.orig	2006-06-21 15:37:09.000000000 +0200
++++ qt-x11-free-3.3.6/mkspecs/linux-g++-32/qmake.conf	2006-06-21 15:37:19.000000000 +0200
+@@ -84,7 +84,7 @@
+ QMAKE_MOVE		= mv -f
+ QMAKE_DEL_FILE		= rm -f
+ QMAKE_DEL_DIR		= rmdir
+-QMAKE_STRIP             = strip
+-QMAKE_STRIPFLAGS_LIB 	+= --strip-unneeded
++QMAKE_STRIP             =
++QMAKE_STRIPFLAGS_LIB 	+=
+ QMAKE_CHK_DIR_EXISTS	= test -d
+ QMAKE_MKDIR		= mkdir -p
+--- qt-x11-free-3.3.6/mkspecs/linux-g++-64/qmake.conf.orig	2006-06-21 15:36:23.000000000 +0200
++++ qt-x11-free-3.3.6/mkspecs/linux-g++-64/qmake.conf	2006-06-21 15:36:56.000000000 +0200
+@@ -87,7 +87,7 @@
+ QMAKE_MOVE		= mv -f
+ QMAKE_DEL_FILE		= rm -f
+ QMAKE_DEL_DIR		= rmdir
+-QMAKE_STRIP             = strip
+-QMAKE_STRIPFLAGS_LIB 	+= --strip-unneeded
++QMAKE_STRIP             =
++QMAKE_STRIPFLAGS_LIB 	+=
+ QMAKE_CHK_DIR_EXISTS	= test -d
+ QMAKE_MKDIR		= mkdir -p
+--- qt-x11-free-3.3.7/src/tools/qsettings.cpp.tn	2006-11-09 20:53:25.000000000 +0100
++++ qt-x11-free-3.3.7/src/tools/qsettings.cpp	2006-11-09 20:59:53.000000000 +0100
+@@ -994,7 +994,10 @@
+ #endif
+ 
+ 	QFile file( filename + ".tmp" );
+-	if (! file.open(IO_WriteOnly)) {
++	mode_t old_umask = umask(0022);
++	bool f = file.open(IO_WriteOnly);
++	umask(old_umask);
++	if (! f) {
+ 
+ #ifdef QT_CHECK_STATE
+ 	    qWarning("QSettings::sync: failed to open '%s' for writing",
+--- qt-x11-free-3.3.8b/mkspecs/macx-mwerks/mwerkstmpl.xml.orig	2010-06-30 01:00:36.000000000 +0200
++++ qt-x11-free-3.3.8b/mkspecs/macx-mwerks/mwerkstmpl.xml	2010-06-30 01:00:56.000000000 +0200
+@@ -817,7 +817,7 @@
+                 <PATHFORMAT>MacOS</PATHFORMAT>
+             </FILEREF>
+         </GROUP>
+-        <GROUP><Name>QtGenerated</NAME>
++        <GROUP><NAME>QtGenerated</NAME>
+ $$CODEWARRIOR_QPREPROCESS_GROUP
+ $$CODEWARRIOR_QPREPROCESSOUT_GROUP
+         </GROUP>
+diff -up qt-x11-free-3.3.8b/tools/designer/uic/main.cpp.orig qt-x11-free-3.3.8b/tools/designer/uic/main.cpp
+--- qt-x11-free-3.3.8b/tools/designer/uic/main.cpp.orig	2008-01-24 13:25:29.000000000 +0100
++++ qt-x11-free-3.3.8b/tools/designer/uic/main.cpp	2008-01-24 13:28:17.000000000 +0100
+@@ -320,7 +320,7 @@ int main( int argc, char * argv[] )
+ 	out << "/****************************************************************************" << endl;
+ 	out << "** Form "<< (impl? "implementation" : "interface") << " generated from reading ui file '" << fileName << "'" << endl;
+ 	out << "**" << endl;
+-	out << "** Created: " << QDateTime::currentDateTime().toString() << endl;
++	out << "** Created by User Interface Compiler" << endl;
+ 	out << "**" << endl;
+ 	out << "** WARNING! All changes made in this file will be lost!" << endl;
+ 	out << "****************************************************************************/" << endl << endl;
+diff -up qt-x11-free-3.3.8b/tools/designer/uic/embed.cpp.orig qt-x11-free-3.3.8b/tools/designer/uic/embed.cpp
+--- qt-x11-free-3.3.8b/tools/designer/uic/embed.cpp.orig	2008-01-24 13:28:30.000000000 +0100
++++ qt-x11-free-3.3.8b/tools/designer/uic/embed.cpp	2008-01-24 13:29:10.000000000 +0100
+@@ -137,7 +137,7 @@ void Uic::embed( QTextStream& out, const
+     for ( it = images.begin(); it != images.end(); ++it )
+ 	out << "**      " << *it << "\n";
+     out << "**\n";
+-    out << "** Created: " << QDateTime::currentDateTime().toString() << "\n";
++    out << "** Created by The User Interface Compiler" << "\n";
+     out << "**\n";
+     out << "** WARNING! All changes made in this file will be lost!\n";
+     out << "****************************************************************************/\n";
+--- a/qmake/project.cpp.orig	2015-04-10 17:15:10.731091347 +0200
++++ b/qmake/project.cpp	2013-12-30 17:58:15.471703644 +0100
+@@ -685,7 +685,7 @@
+ //	    fprintf(stderr,"Current QT version number: " + ver + "\n");
+ 	    if (ver != "" && ver != test_version) {
+ 		ver = test_version;
+-		fprintf(stderr,"Changed QT version number to " + test_version + "!\n");
++		fprintf(stderr,"Changed QT version number to %s!\n", test_version.ascii());
+ 	    }
+ 	}
+     }
+--- qt3/src/tools/qgdict.cpp	2015-04-10 17:15:11.057092017 +0200
++++ qt3/src/tools/qgdict.cpp	2013-12-30 17:58:15.516704273 +0100
+@@ -846,11 +846,11 @@
+     QString line;
+     line.fill( '-', 60 );
+     double real, ideal;
+-    qDebug( line.ascii() );
++    qDebug( "%s", line.ascii() );
+     qDebug( "DICTIONARY STATISTICS:" );
+     if ( count() == 0 ) {
+ 	qDebug( "Empty!" );
+-	qDebug( line.ascii() );
++	qDebug( "%s", line.ascii() );
+ 	return;
+     }
+     real = 0.0;
+@@ -871,7 +871,7 @@
+ 	while ( b-- )
+ 	    *pbuf++ = '*';
+ 	*pbuf = '\0';
+-	qDebug( buf );
++	qDebug( "%s", buf );
+ 	i++;
+     }
+     qDebug( "Array size = %d", size() );
+@@ -879,7 +879,7 @@
+     qDebug( "Real dist  = %g", real );
+     qDebug( "Rand dist  = %g", ideal );
+     qDebug( "Real/Rand  = %g", real/ideal );
+-    qDebug( line.ascii() );
++    qDebug( "%s", line.ascii() );
+ #endif // QT_DEBUG
+ }
+ 
+--- a/src/tools/qgcache.cpp	2015-04-10 17:15:11.053092009 +0200
++++ b/src/tools/qgcache.cpp	2013-12-30 17:58:15.515704259 +0100
+@@ -641,7 +641,7 @@
+ #if defined(QT_DEBUG)
+     QString line;
+     line.fill( '*', 80 );
+-    qDebug( line.ascii() );
++    qDebug( "%s", line.ascii() );
+     qDebug( "CACHE STATISTICS:" );
+     qDebug( "cache contains %d item%s, with a total cost of %d",
+ 	   count(), count() != 1 ? "s" : "", tCost );
+@@ -662,7 +662,7 @@
+ 	   lruList->dumps != 1 ? "have" : "has", lruList->dumpCosts );
+     qDebug( "Statistics from internal dictionary class:" );
+     dict->statistics();
+-    qDebug( line.ascii() );
++    qDebug( "%s", line.ascii() );
+ #endif
+ }
+ 
