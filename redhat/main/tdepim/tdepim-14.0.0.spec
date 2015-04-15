@@ -70,7 +70,9 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+%if 0%{?rhel} == 5
 Patch0:		%{tde_pkg}-%{version}.patch
+%endif
 
 BuildRequires:	trinity-arts-devel >= %{tde_epoch}:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -971,7 +973,7 @@ done
 Summary:	Trinity Email client
 Group:		Applications/Communications
 Requires:	%{name}-tdeio-plugins = %{version}-%{release}
-Requires:	trinity-tdebase-tdeio-pim-plugins >= %{version}
+Requires:	trinity-tdebase-tdeio-pim-plugins >= %{tde_version}
 
 # GPG support
 %if 0%{?suse_version}
@@ -992,7 +994,7 @@ Requires:	pinentry
 Requires:	procmail
 Requires:	trinity-kaddressbook = %{version}-%{release}
 Requires:	trinity-kleopatra = %{version}-%{release}
-Requires:	trinity-tdebase-tdeio-pim-plugins >= %{version}-%{release}
+Requires:	trinity-tdebase-tdeio-pim-plugins >= %{tde_version}
 
 Provides: imap-client, mail-reader
 
