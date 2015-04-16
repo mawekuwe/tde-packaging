@@ -73,13 +73,13 @@ binary-install/tdelibs-data-trinity::
 	install -p -D -m644 debian/trinitylibs.conf debian/tdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf
 #	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/apps/tdeui/pics/abouttde.png debian/icons/abouttde-kubuntu.png.uu
 
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/system.png debian/icons/cr16-device-system.png.uu
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png debian/icons/cr22-device-system.png.uu
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/devices/system.png debian/icons/cr32-device-system.png.uu
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/devices/system.png debian/icons/cr48-device-system.png.uu
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/64x64/devices/system.png debian/icons/cr64-device-system.png.uu
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/128x128/devices/system.png debian/icons/cr128-device-system.png.uu
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/scalable/devices/system.svgz debian/icons/crsc-device-system.svgz.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/computer.png debian/icons/cr16-device-computer.png.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/computer.png debian/icons/cr22-device-computer.png.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/devices/computer.png debian/icons/cr32-device-computer.png.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/devices/computer.png debian/icons/cr48-device-computer.png.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/64x64/devices/computer.png debian/icons/cr64-device-computer.png.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/128x128/devices/computer.png debian/icons/cr128-device-computer.png.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/scalable/devices/computer.svgz debian/icons/crsc-device-computer.svgz.uu
 
 	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/hibernate.png debian/icons/cr16-action-hibernate.png.uu
 	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/actions/hibernate.png debian/icons/cr16-action-hibernate.png.uu
