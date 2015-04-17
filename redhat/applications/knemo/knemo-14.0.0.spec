@@ -100,7 +100,6 @@ Homepage: http://extragear.kde.org/apps/knemo/
 
 ##########
 
-
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 

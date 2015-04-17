@@ -15,10 +15,6 @@
 # Please submit bugfixes or comments via http://www.trinitydesktop.org/
 #
 
-# BUILD WARNING:
-#  Remove qt-devel and qt3-devel and any kde*-devel on your system !
-#  Having KDE libraries may cause FTBFS here !
-
 # TDE variables
 %define tde_epoch 2
 %define tde_version 14.0.0
@@ -29,25 +25,20 @@
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
-%define tde_mandir %{tde_prefix}/man
+%define tde_mandir %{tde_datadir}/man
 %define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
 
-
-Name:			trinity-%{tde_pkg}8
-Epoch:			%{tde_epoch}
-Version:		0.8
-Summary:		Trinity applet for Network Manager
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
-Group:			Applications/Internet
-URL:			http://www.trinitydesktop.org/
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	0.8
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	Trinity applet for Network Manager
+Group:		Applications/Internet
+URL:		http://www.trinitydesktop.org/
 
 %if 0%{?suse_version}
 License:	GPL-2.0+
@@ -55,16 +46,34 @@ License:	GPL-2.0+
 License:	GPLv2+
 %endif
 
-#Vendor:		Trinity Project
+#Vendor:		Trinity Desktop
 #Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}8-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-#Requires:       kde-filesystem
+BuildRequires:	trinity-dbus-1-tqt-devel >= 1:0.9
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	libtool
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 %if 0%{?rhel} || 0%{?fedora}
 Requires:		NetworkManager-gnome
@@ -72,9 +81,11 @@ Requires:		NetworkManager-gnome
 Requires:		networkmanager
 %endif
 
-BuildRequires:	trinity-dbus-1-tqt-devel >= 1:0.9
-BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
+# NetworkManager support
 BuildRequires:	NetworkManager-glib-devel
+
+# HAL support
+BuildRequires:	hal-devel
 
 Obsoletes:		trinity-knetworkmanager < %{version}-%{release}
 Provides:		trinity-knetworkmanager = %{version}-%{release}
@@ -83,6 +94,38 @@ Provides:		trinity-knetworkmanager = %{version}-%{release}
 KNetworkManager is a system tray applet for controlling network
 connections on systems that use the NetworkManager daemon.
 
+%post
+update-desktop-database %{tde_appdir} > /dev/null
+/sbin/ldconfig
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+
+
+%postun
+update-desktop-database %{tde_appdir} > /dev/null
+/sbin/ldconfig
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+
+%files -f knetworkmanager.lang
+%defattr(-,root,root,-)
+%{tde_bindir}/knetworkmanager
+%{tde_libdir}/*.la
+%{tde_libdir}/*.so
+%{tde_tdelibdir}/knetworkmanager_openvpn.so.*
+%{tde_tdelibdir}/knetworkmanager_pptp.so.*
+%{tde_tdelibdir}/knetworkmanager_vpnc.so.*
+%{_sysconfdir}/dbus-1/system.d/knetworkmanager.conf
+%{tde_tdeappdir}/knetworkmanager.desktop
+%{tde_datadir}/apps/knetworkmanager
+%{tde_datadir}/icons/hicolor/*/apps/knetworkmanager*
+%{tde_datadir}/servicetypes/knetworkmanager_plugin.desktop
+%{tde_datadir}/servicetypes/knetworkmanager_vpnplugin.desktop
+%{tde_datadir}/services/knetworkmanager_openvpn.desktop
+%{tde_datadir}/services/knetworkmanager_pptp.desktop
+%{tde_datadir}/services/knetworkmanager_vpnc.desktop
+
+##########
 
 %package devel
 Summary:		Common data shared among the MySQL GUI Suites
@@ -95,14 +138,29 @@ Provides:		trinity-knetworkmanager-devel = %{version}-%{release}
 %description devel
 Development headers for knetworkmanager
 
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
+
+%files devel
+%defattr(-,root,root,-)
+%{tde_tdeincludedir}/*.h
+%{tde_tdelibdir}/*.la
+%{tde_tdelibdir}/*.so
+
+##########
 
 %if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
+##########
+
 
 %prep 
-%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}8-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -149,52 +207,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT
 
 
-%post
-update-desktop-database %{tde_appdir} > /dev/null
-/sbin/ldconfig
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-
-
-%postun
-update-desktop-database %{tde_appdir} > /dev/null
-/sbin/ldconfig
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-
-
-%post devel
-/sbin/ldconfig
-
-
-%postun devel
-/sbin/ldconfig
-
-
-%files -f knetworkmanager.lang
-%defattr(-,root,root,-)
-%{tde_bindir}/knetworkmanager
-%{tde_libdir}/*.la
-%{tde_libdir}/*.so
-%{tde_tdelibdir}/knetworkmanager_openvpn.so.*
-%{tde_tdelibdir}/knetworkmanager_pptp.so.*
-%{tde_tdelibdir}/knetworkmanager_vpnc.so.*
-%{_sysconfdir}/dbus-1/system.d/knetworkmanager.conf
-%{tde_tdeappdir}/knetworkmanager.desktop
-%{tde_datadir}/apps/knetworkmanager
-%{tde_datadir}/icons/hicolor/*/apps/knetworkmanager*
-%{tde_datadir}/servicetypes/knetworkmanager_plugin.desktop
-%{tde_datadir}/servicetypes/knetworkmanager_vpnplugin.desktop
-%{tde_datadir}/services/knetworkmanager_openvpn.desktop
-%{tde_datadir}/services/knetworkmanager_pptp.desktop
-%{tde_datadir}/services/knetworkmanager_vpnc.desktop
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_tdeincludedir}/*.h
-%{tde_tdelibdir}/*.la
-%{tde_tdelibdir}/*.so
-
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.8-1
 - Initial release for TDE 14.0.0

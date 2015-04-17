@@ -1,53 +1,78 @@
-# Default version for this component
-%define tde_pkg knowit
+#
+# spec file for package knowit (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http://www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg knowit
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/tde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
 
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	0.10
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	Tool for managing notes [Trinity]
+Group:		Applications/Utilities
+URL:		http://www.trinitydesktop.org
 
-Name:			trinity-%{tde_pkg}
-Summary:		Tool for managing notes [Trinity]
-Version:		0.10
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-License:		GPLv2+
-Group:			Applications/Utilities
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.trinitydesktop.org
-
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-
 BuildRequires:	gettext
+
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	libtool
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 
 %description
@@ -56,9 +81,13 @@ tree-like hierarchy. It is similar to TuxCards,
 but TDE-based, and requires Trinity.
 
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
+
+##########
 
 
 %prep
@@ -72,7 +101,6 @@ but TDE-based, and requires Trinity.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -105,9 +133,12 @@ export PATH="%{tde_bindir}:${PATH}"
 %__mv %{buildroot}%{tde_datadir}/applnk/Applications/knowit.desktop %{buildroot}%{tde_tdeappdir}/knowit.desktop
 %__rm -r %{buildroot}%{tde_datadir}/applnk
 
-
 %find_lang %{tde_pkg}
 
+# Updates applications categories for openSUSE
+%if 0%{?suse_version}
+%suse_update_desktop_file -r %{tde_pkg} Utility Applet X-SuSE-DesktopUtility
+%endif
 
 
 %clean
@@ -115,12 +146,12 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %post
-update-desktop-database %{tde_appdir} > /dev/null
+update-desktop-database %{tde_tdeappdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-update-desktop-database %{tde_appdir} > /dev/null
+update-desktop-database %{tde_tdeappdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
@@ -129,15 +160,11 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %defattr(-,root,root,-)
 %{tde_bindir}/knowit
 %{tde_tdeappdir}/knowit.desktop
-%{tde_datadir}/apps/knowit/knowitui.rc
-%{tde_datadir}/apps/knowit/tips
-%{tde_tdedocdir}/HTML/en/knowit/common
-%{tde_tdedocdir}/HTML/en/knowit/index.cache.bz2
-%{tde_tdedocdir}/HTML/en/knowit/index.docbook
-%{tde_tdedocdir}/HTML/en/knowit/screenshot.png
+%{tde_datadir}/apps/knowit/
+%{tde_tdedocdir}/HTML/en/knowit/
 %{tde_datadir}/icons/hicolor/*/apps/knowit.png
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.10-1
 - Initial release for TDE 14.0.0
