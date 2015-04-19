@@ -79,7 +79,7 @@ BuildRequires:	brp-check-trinity
 BuildRequires:   boost-devel
 
 # Requires: clucene
-%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} >= 7
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} >= 6
 BuildRequires:	clucene-core-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}

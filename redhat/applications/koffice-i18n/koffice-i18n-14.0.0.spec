@@ -1,27 +1,36 @@
-# Default version for this component
-%define tde_pkg koffice-i18n
+#
+# spec file for package koffice-i18n (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http://www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg koffice-i18n
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/tde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
 
 # Builds all supported languages (not unsupported ones)
 %if "%{?TDE_LANGS}" == ""
@@ -29,22 +38,26 @@
 %endif
 
 
-Name:			trinity-%{tde_pkg}
-Summary:		Internationalization support for Koffice [Trinity]
-Version:		1.6.3
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	1.6.3
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	Internationalization support for Koffice [Trinity]
+Group:		User Interface/Desktops
+URL:		http://www.trinitydesktop.org/
 
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.trinitydesktop.org/
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-# GFDL, with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
-License:		GFDL
-Group:			User Interface/Desktops
-BuildArch:		noarch
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildArch:	noarch
 
 # Speed build options
 %define debug_package %{nil}
@@ -53,15 +66,26 @@ AutoReq: no
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-
 BuildRequires:	findutils
 BuildRequires:	gettext
+
 BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
 
 %description
 %{summary}.
@@ -649,6 +673,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/ca/*
 %{tde_tdedocdir}/HTML/ca/
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/ca.xml
 %endif
 
@@ -656,6 +682,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %files Czech
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/cs/*
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/cs.xml
 %endif
 
@@ -677,6 +705,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/de/*
 %{tde_tdedocdir}/HTML/de/
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/de.xml
 %endif
 
@@ -704,6 +734,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/es/*
 %{tde_tdedocdir}/HTML/es/
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/es.xml
 %endif
 
@@ -743,6 +775,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/fr/*
 %{tde_tdedocdir}/HTML/fr/
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/fr.xml
 %endif
 
@@ -786,6 +820,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %files Hungarian
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/hu/*
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/hu.xml
 %endif
 
@@ -806,6 +842,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/it/*
 %{tde_tdedocdir}/HTML/it/
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/it.xml
 %endif
 
@@ -848,6 +886,7 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %if "%( grep -w lv <<< '%{TDE_LANGS}' )" != ""
 %files Latvian
 %defattr(-,root,root,-)
+%{tde_datadir}/locale/lv
 %{tde_datadir}/locale/lv/*
 %endif
 
@@ -956,6 +995,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %defattr(-,root,root,-)
 %{tde_datadir}/locale/sk/*
 %{tde_tdedocdir}/HTML/sk/
+%dir %{tde_datadir}/apps/koffice
+%dir %{tde_datadir}/apps/koffice/autocorrect
 %{tde_datadir}/apps/koffice/autocorrect/sk.xml
 %endif
 
@@ -1047,5 +1088,5 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:1.6.3-1
 - Initial release for TDE 14.0.0
