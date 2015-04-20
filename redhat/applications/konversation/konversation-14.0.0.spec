@@ -36,7 +36,7 @@ Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	1.1
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:	user friendly Internet Relay Chat (IRC) client for TDE [Trinity]
+Summary:	User friendly Internet Relay Chat (IRC) client for TDE
 Group:		Applications/Utilities
 URL:		http://www.trinitydesktop.org/
 
@@ -109,7 +109,6 @@ and experienced users alike will appreciate its many features:
  * Smart logging
  * Traditional or enhanced-shell-style nick completion
  * DCC file transfer with resume support
-
 
 
 ##########
