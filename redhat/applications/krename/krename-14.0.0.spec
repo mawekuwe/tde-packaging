@@ -36,7 +36,7 @@ Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	3.0.14
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:	A TDE batch file renaming utility. 
+Summary:	A TDE batch file renaming utility
 Group:		Applications/Utilities
 URL:		http://www.trinitydesktop.org/
 

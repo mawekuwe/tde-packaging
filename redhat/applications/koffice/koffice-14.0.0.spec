@@ -120,6 +120,9 @@ BuildRequires:	libpaper-devel
 # RUBY support
 %if 0%{?with_ruby}
 BuildRequires:	ruby ruby-devel >= 1.8.1
+%if 0%{?fedora} >= 19
+BuildRequires:	rubypick
+%endif
 %endif
 
 # FREETYPE support

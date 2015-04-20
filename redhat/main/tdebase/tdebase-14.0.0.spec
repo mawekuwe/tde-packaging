@@ -2188,9 +2188,6 @@ already. Most users won't need this.
 %{tdm_datadir}/themes/
 %{tde_datadir}/config/%{tdm}
 %dir %{_sysconfdir}/trinity/%{tdm}
-%if 0%{?with_selinux_policy}
-%exclude %{?_sysconfdir}/trinity/%{tdm}/tdm.pp
-%endif
 %config(noreplace) %{_sysconfdir}/trinity/%{tdm}/*
 %{tde_tdedocdir}/HTML/en/%{tdm}/
 %if 0%{?suse_version} == 0
@@ -2262,12 +2259,13 @@ fi
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %make_session
 %endif
+
+# SELINUX context for tdm
 %if 0%{?with_selinux_policy}
 /usr/sbin/semodule -i "%{?_sysconfdir}/trinity/%{tdm}/tdm.pp"
 %endif
 
-# SELINUX context for tdm
-%if 0%{?fedora} == 21
+%if 0%{?fedora} == 21 || 0%{?rhel} >= 7
 if ! grep -q "%{tde_bindir}/tdm" "/etc/selinux/targeted/contexts/files/file_contexts.local" ; then
   echo "%{tde_bindir}/tdm	--	system_u:object_r:xdm_exec_t" >>"/etc/selinux/targeted/contexts/files/file_contexts.local"
   restorecon "%{tde_bindir}/tdm"

@@ -193,7 +193,7 @@ BuildRequires: libdrm-devel
 # OPENEXR support
 BuildRequires:	OpenEXR-devel
 
-# poppler
+# POPPLER support
 %if 0%{?rhel} >=6 || 0%{?fedora} >= 15 || 0%{?suse_version}
 BuildRequires: poppler-devel >= 0.12
 #BuildRequires:	poppler-qt-devel >= 0.12
