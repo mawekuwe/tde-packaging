@@ -1,55 +1,83 @@
-# Default version for this component
-%define tde_pkg kvpnc
+#
+# spec file for package kvpnc (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http://www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg kvpnc
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/tde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
 
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	0.9.6a
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	Vpn clients frontend for TDE
+Group:		Applications/Utilities
+URL:		http://www.trinitydesktop.org/
 
-Name:			trinity-%{tde_pkg}
-Summary:		vpn clients frontend for TDE
-Version:		0.9.6a
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-License:		GPLv2+
-Group:			Applications/Utilities
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.trinitydesktop.org/
-
-Prefix:			%{_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			kvpnc-14.0.0-fix_install.patch
+Patch0:			%{tde_pkg}-%{tde_version}.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-
 BuildRequires:	gettext
+
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+BuildRequires:	libgcrypt-devel >= 1.2.0
+
 
 %description
 KVpnc is a TDE frontend for various vpn clients.
@@ -61,14 +89,18 @@ It supports :
 * Virtual Private Network daemon (openvpn)
 
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
+
+##########
 
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .installdir
+%patch0 -p1 -b .installdir
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -78,7 +110,6 @@ It supports :
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -106,6 +137,7 @@ export PATH="%{_bindir}:${PATH}"
 
 %find_lang %{tde_pkg}
 
+
 %clean
 %__rm -rf %{buildroot}
 
@@ -115,14 +147,14 @@ for f in hicolor locolor ; do
   touch --no-create %{tde_datadir}/icons/${f} || :
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
-update-desktop-database %{tde_appdir} -q &> /dev/null ||:
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null ||:
 
 %postun
 for f in hicolor locolor ; do
   touch --no-create %{tde_datadir}/icons/${f} || :
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
-update-desktop-database %{tde_appdir} -q &> /dev/null ||:
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null ||:
 
 
 %files -f %{tde_pkg}.lang
@@ -143,6 +175,6 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6a-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.9.6a-1
 - Initial release for TDE 14.0.0
 

@@ -1,54 +1,83 @@
-# Default version for this component
-%define tde_pkg ktorrent
+#
+# spec file for package ktorrent (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http://www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg ktorrent
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/tde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
 
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	2.2.8
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	BitTorrent client for Trinity
+Group:		Applications/Utilities
+URL:		http://ktorrent.org
 
-Name:			trinity-%{tde_pkg}
-Summary:		BitTorrent client for Trinity
-Version:		2.2.8
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-License:		GPLv2+
-Group:			Applications/Utilities
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://ktorrent.org
-
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch0:			%{tde_pkg}-%{tde_version}.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-
 BuildRequires:	gettext
+
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
+
+# GMP support
+BuildRequires:	gmp-devel
 
 # AVAHI support
 #  Disabled on RHEL4 and RHEL5
@@ -73,13 +102,18 @@ certain file types (video and audio) and integration into the TDE Panel
 enabling background downloading.
  
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
+
+##########
 
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch0 -p1 -b .ftbfs
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -130,13 +164,13 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %post
-update-desktop-database %{tde_appdir} > /dev/null
+update-desktop-database %{tde_tdeappdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 %postun
-update-desktop-database %{tde_appdir} > /dev/null
+update-desktop-database %{tde_tdeappdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
@@ -174,7 +208,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_tdelibdir}/ktwebinterfaceplugin.la
 %{tde_tdelibdir}/ktwebinterfaceplugin.so
 %{tde_tdeappdir}/ktorrent.desktop
-%{tde_datadir}/apps/ktorrent
+%{tde_datadir}/apps/ktorrent/
 %{tde_datadir}/config.kcfg/*.kcfg
 %{tde_datadir}/icons/hicolor/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
@@ -189,5 +223,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.8-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:2.2.8-1
 - Initial release for TDE 14.0.0
