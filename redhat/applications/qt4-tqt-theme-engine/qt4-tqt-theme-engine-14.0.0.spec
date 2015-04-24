@@ -1,57 +1,81 @@
-%if "%{?_qt4_plugindir}" == ""
-%define _qt4_plugindir %{_libdir}/qt4/plugins
-%endif
+#
+# spec file for package qt4-tqt-theme-engine (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http://www.trinitydesktop.org/
+#
 
-# Default version for this component
-%define tde_pkg qt4-tqt-theme-engine
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg qt4-tqt-theme-engine
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/tde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
+%if "%{?_qt4_plugindir}" == ""
+%define _qt4_plugindir %{_libdir}/qt4/plugins
+%endif
 
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	0.1
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	TDE theme engine for Qt4
+Group:		Applications/Utilities
+URL:		http://www.trinitydesktop.org/
 
-Name:			trinity-%{tde_pkg}
-Summary:		TDE theme engine for Qt4
-Version:		0.1
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-License:		GPLv2+
-Group:			Applications/Utilities
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.trinitydesktop.org/
-
-Prefix:			%{_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-
 BuildRequires:	gettext
+
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 # QT4 support
 %if 0%{?suse_version}
@@ -60,13 +84,18 @@ BuildRequires:	qt-devel
 BuildRequires:	qt4-devel
 %endif
 
+
 %description
 TDE theme engine for Qt4
 
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+##########
+
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
+
+##########
 
 
 %prep
@@ -78,7 +107,7 @@ TDE theme engine for Qt4
 %endif
 
 # Fix TDE include directory
-%__sed -i */*.pro -e "s|INCLUDEPATH += /opt/trinity/include|INCLUDEPATH += /opt/trinity/include/tde|"
+%__sed -i */*.pro -e "s|INCLUDEPATH += /opt/trinity/include|INCLUDEPATH += %{tde_tdeincludedir}|"
 
 
 %build
@@ -116,9 +145,10 @@ export PATH="%{tde_bindir}:${PATH}"
 %{_libdir}/libtdeqt4interface.so.1
 %{_libdir}/libtdeqt4interface.so.1.0
 %{_libdir}/libtdeqt4interface.so.1.0.0
+%dir %{_qt4_plugindir}/styles/
 %{_qt4_plugindir}/styles/libsimplestyleplugin.so
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.1-1
 - Initial release for TDE 14.0.0
