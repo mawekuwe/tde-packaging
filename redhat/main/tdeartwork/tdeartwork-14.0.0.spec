@@ -145,7 +145,7 @@ BuildRequires:	xscreensaver-gl
 %endif
 
 # JACK support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?with_jack}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
 %define with_jack 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %define jack_devel %{_lib}jack-devel
