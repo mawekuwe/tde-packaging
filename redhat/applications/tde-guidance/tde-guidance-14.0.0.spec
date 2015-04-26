@@ -1,53 +1,62 @@
-# Default version for this component
-%define tde_pkg tde-guidance
+#
+# spec file for package tde-guidance (version R14.0.0)
+#
+# Copyright (c) 2014 Trinity Desktop Environment
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+#
+# Please submit bugfixes or comments via http://www.trinitydesktop.org/
+#
+
+# TDE variables
+%define tde_epoch 2
 %define tde_version 14.0.0
-
-# REMOVE KDELIBS4-DEVEL before building !!!!
-
-%{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
-
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-# TDE specific building variables
+%define tde_pkg tde-guidance
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadir}/applications
-
-%define tde_tdeappdir %{tde_appdir}/tde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
-%define _docdir %{tde_docdir}
-
+%{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 %define __arch_install_post %{nil}
 
-Name:			trinity-%{tde_pkg}
-Summary:		A collection of system administration tools for Trinity
-Version:		0.8.0svn20080103
-Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
-License:		GPLv2+
-Group:			Applications/Utilities
+Name:		trinity-%{tde_pkg}
+Epoch:		%{tde_epoch}
+Version:	0.8.0svn20080103
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:	A collection of system administration tools for Trinity
+Group:		Applications/Utilities
+URL:		http://www.simonzone.com/software/guidance
 
-Vendor:			Trinity Project
-Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.simonzone.com/software/guidance
+%if 0%{?suse_version}
+License:	GPL-2.0+
+%else
+License:	GPLv2+
+%endif
 
-Prefix:			%{tde_prefix}
-BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+#Vendor:		Trinity Desktop
+#Packager:	Francois Andriot <francois.andriot@free.fr>
+
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
@@ -56,7 +65,21 @@ BuildRequires:	trinity-pytdeextensions
 BuildRequires:	trinity-libpythonize0-devel
 BuildRequires:	trinity-python-trinity
 BuildRequires:	chrpath
+
+BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gcc-c++
+BuildRequires:	pkgconfig
+BuildRequires:	fdupes
+
+# SUSE desktop files utility
+%if 0%{?suse_version}
+BuildRequires:	update-desktop-files
+%endif
+
+%if 0%{?opensuse_bs} && 0%{?suse_version}
+# for xdg-menu script
+BuildRequires:	brp-check-trinity
+%endif
 
 # SIP support
 BuildRequires:	sip4-tqt-devel >= 4.10.5
@@ -66,6 +89,53 @@ Requires:		sip4-tqt >= 4.10.5
 BuildRequires:	python-tqt-devel
 BuildRequires:	trinity-python-trinity-devel
 BuildRequires:	trinity-pytqt-tools
+
+# LIBXXF86VM support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xxf86vm-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires:	libXxf86vm-devel
+%endif
+
+# XSCREENSAVER support
+#  RHEL 4: disabled
+#  RHEL 6: available in EPEL
+#  RHEL 7: available in NUX
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
+%define with_xscreensaver 1
+
+%if 0%{?fedora} || 0%{?rhel} >= 5
+BuildRequires:	libXScrnSaver-devel
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-base
+BuildRequires:	xscreensaver-extras
+%if 0%{?fedora}
+BuildRequires:	xscreensaver-extras-base
+%endif
+BuildRequires:	xscreensaver-gl-base
+BuildRequires:	xscreensaver-gl-extras
+%endif
+
+%if 0%{?suse_version}
+BuildRequires:	libXScrnSaver-devel
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-data
+BuildRequires:	xscreensaver-data-extra
+%endif
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
+BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
+BuildRequires:	xscreensaver
+BuildRequires:	xscreensaver-base
+BuildRequires:	xscreensaver-extrusion
+BuildRequires:	xscreensaver-gl
+%endif
+%endif
 
 Requires:		python-tqt
 Requires:		trinity-python-trinity
@@ -160,6 +230,7 @@ Guidance configuration tools.
 
 %files backends
 %defattr(-,root,root,-)
+%dir %{python_sitearch}/%{name}
 %{python_sitearch}/%{name}/MicroHAL.py*
 %{python_sitearch}/%{name}/drivedetect.py*
 %{python_sitearch}/%{name}/wineread.py*
@@ -218,7 +289,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 ##########
 
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?pclinuxos} || 0%{?suse_version} && 0%{?opensuse_bs} == 0
 %debug_package
 %endif
 
@@ -387,5 +458,5 @@ find %{buildroot}%{tde_libdir} -name "*.a" -exec rm -f {} \;
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-8
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.8.0svn20080103-1
 - Initial release for TDE 14.0.0

@@ -36,7 +36,7 @@ Name:		trinity-%{tde_pkg}
 Epoch:		%{tde_epoch}
 Version:	0.5b
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-Summary:	A video thumbnail generator for TDE file managers.
+Summary:	A video thumbnail generator for TDE file managers
 Group:		Applications/Multimedia
 URL:		http://kde-apps.org/content/show.php?content=41180
 

@@ -78,7 +78,7 @@ BuildRequires:	brp-check-trinity
 A TDE interface for the commandline tracing tools potrace and/or autotrace. It
 supports drag and drop as well as all image types recognized by TDE, which are
 a lot more than the 4 recognized by the potrace commandline tool. Loading of
-remote files (web, ftp, ...) is also supported.  
+remote files (web, ftp, ...) is also supported.
 
 
 ##########
