@@ -319,8 +319,10 @@ BuildRequires:	%{_lib}sasl2-devel
 BuildRequires:	cyrus-sasl-devel
 %endif
 
-# LIBUSB support
+# PAM support
 BuildRequires:	pam-devel
+
+# LIBUSB support
 %if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
 BuildRequires:	%{_lib}usb1.0-devel
 BuildRequires:	%{_lib}usb-compat0.1-devel
@@ -397,7 +399,7 @@ BuildRequires:	OpenEXR-devel
 #  RHEL 4: disabled
 #  RHEL 6: available in EPEL
 #  RHEL 7: available in NUX
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
 %define with_xscreensaver 1
 
 %if 0%{?fedora} || 0%{?rhel} >= 5

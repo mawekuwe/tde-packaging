@@ -133,7 +133,7 @@ BuildRequires:	pcre-devel
 %endif
 
 # XSCREENSAVER support
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version} || 0%{?with_xscreensaver}
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
 %define with_xscreensaver 1
 %if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?suse_version}
 BuildRequires:	libXScrnSaver-devel
