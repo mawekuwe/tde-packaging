@@ -22,6 +22,16 @@ DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinit
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
+DEB_HOST_ARCH_CPU := $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
+
+ifneq (,$(filter powerpc64 ppc64el mips64,$(DEB_HOST_ARCH_CPU)))
+  # Fix "include/linux/types.h:148:1: error: unknown type name 'u32'".
+  # See linux commits:
+  #   "asm/types.h: Remove include/asm-generic/int-l64.h"
+  #   "powerpc: Add __SANE_USERSPACE_TYPES__ to asm/types.h for LL64"
+  CXXFLAGS += -D__SANE_USERSPACE_TYPES__
+endif
+
 binary-install/bibletime-trinity::
 	chmod 644 debian/bibletime-trinity/opt/trinity/share/apps/bibletime/pics/*
 	chmod 644 debian/bibletime-trinity/opt/trinity/share/apps/bibletime/bibletimeui.rc
