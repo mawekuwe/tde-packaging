@@ -1,4 +1,5 @@
-============================================================ DOCUMENTATION =======================================================
+DOCUMENTATION
+=============
 
 GIT tutorial on github:
 http://schacon.github.com/git/gittutorial.html
@@ -9,7 +10,8 @@ http://jonas.nitro.dk/git/quick-reference.html
 GIT for those who are used to centralized SCMs:
 http://media.pragprog.com/titles/tsgit/chap-005-extract.html
 
-================================================================ HOWTO ===========================================================
+HOWTO
+=====
 
 To get a copy of the repo:
 	git clone http://your-username@scm.trinitydesktop.org/scm/git/<repository name>
@@ -50,7 +52,8 @@ To tag a commit WITH GPG verification (secure release anyone?):
 
 
 
-================================================================= NOTE ============================================================
+NOTE
+====
 GIT cannot store empty directories due to a intentional design limitation.
 
 Therefore, this command should be run prior to any commits to ensure your empty directories stick around:
@@ -59,7 +62,8 @@ find . -type d -empty -exec touch {}/.gitignore \;
 
 This will add a .gitignore to every empty directory.
 
-================================================================ WORKFLOW ==========================================================
+WORKFLOW
+========
 
 
 git clone http://your-username@scm.trinitydesktop.org/scm/git/<repository>
